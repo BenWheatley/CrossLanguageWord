@@ -1,0 +1,21 @@
+body {
+  font-family: serif;
+}
+
+.topbar,
+.sidebar {
+  display: none;
+}
+
+.layout {
+  display: block;
+}
+
+#grid {
+  margin: 0 auto;
+  transform: scale(1.2);
+}
+
+.cell input {
+  font-size: 12px;
+}
