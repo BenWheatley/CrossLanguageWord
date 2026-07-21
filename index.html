@@ -91,6 +91,20 @@
     font-family:'Inter',sans-serif;
     font-size:13.5px;
   }
+  select#wordListSelect{
+    padding:7px 30px 7px 10px;
+    border:1.5px solid var(--ink);
+    border-radius:4px;
+    font-family:'Inter',sans-serif;
+    font-weight:600;
+    font-size:13.5px;
+    background:var(--panel) url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M5 8l5 5 5-5" fill="none" stroke="%232B2A28" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>') no-repeat right 8px center;
+    background-size:14px;
+    color:var(--ink);
+    appearance:none;
+    -webkit-appearance:none;
+    cursor:pointer;
+  }
   input[type="number"]{
     width:80px;
     padding:7px 8px;
@@ -196,6 +210,38 @@
   .cell.active input{background:var(--highlight-cell);box-shadow:inset 0 0 0 2px var(--highlight-cell-border);}
   .cell input:focus-visible{box-shadow:inset 0 0 0 2px var(--accent);}
 
+  #grid.solved .cell:not(.block) input{
+    animation:solvedPop .55s ease both;
+    animation-delay:var(--pop-delay,0s);
+  }
+  @keyframes solvedPop{
+    0%{ transform:scale(1); }
+    45%{ transform:scale(1.16); background:var(--highlight-cell); box-shadow:inset 0 0 0 2px var(--highlight-cell-border); }
+    100%{ transform:scale(1); background:var(--highlight-word); box-shadow:none; }
+  }
+
+  #successToast{
+    position:absolute;
+    top:-14px;
+    left:50%;
+    transform:translate(-50%,-100%);
+    background:var(--ink);
+    color:var(--accent-ink);
+    font-family:'IBM Plex Mono',monospace;
+    font-size:13px;
+    padding:9px 16px;
+    border-radius:5px;
+    white-space:nowrap;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .35s ease, transform .35s ease;
+    z-index:30;
+  }
+  #successToast.show{
+    opacity:1;
+    transform:translate(-50%,0);
+  }
+
   #dirPopup{
     position:absolute;
     display:none;
@@ -294,8 +340,14 @@
 
   <div class="panel no-print controls">
     <div class="field">
-      <label for="fileInput">Word list (.json)</label>
-      <input type="file" id="fileInput" accept="application/json,.json">
+      <label for="wordListSelect">Word list</label>
+      <select id="wordListSelect">
+        <option value="" disabled selected>Choose word list…</option>
+        <option value="load">Load…</option>
+        <option value="english">English</option>
+        <option value="german">Deutsch B1</option>
+      </select>
+      <input type="file" id="fileInput" accept="application/json,.json" style="display:none">
     </div>
     <div class="field">
       <label for="wordCount">Words in puzzle</label>
@@ -313,6 +365,7 @@
 
   <div class="board-area">
     <div id="gridHost">
+      <div id="successToast" class="no-print">✓ All words are correct</div>
       <div id="grid"></div>
       <div id="dirPopup">
         <button data-dir="across">→ Across</button>
@@ -349,8 +402,11 @@
   let focusedR = -1, focusedC = -1;
   let currentDir = 'across';
   let currentWordKey = null; // e.g. "across-3"
+  let celebrated = false;
 
   const fileInput = document.getElementById('fileInput');
+  const wordListSelect = document.getElementById('wordListSelect');
+  const successToast = document.getElementById('successToast');
   const wordCountInput = document.getElementById('wordCount');
   const generateBtn = document.getElementById('generateBtn');
   const regenBtn = document.getElementById('regenBtn');
@@ -379,6 +435,27 @@
   }
 
   // ---------- file loading ----------
+  wordListSelect.addEventListener('change', function(){
+    const v = wordListSelect.value;
+    if(v === 'load'){
+      wordListSelect.value = '';
+      fileInput.click();
+      return;
+    }
+    if(v === 'english') fetchWordList('example.json', 'English');
+    else if(v === 'german') fetchWordList('german.json', 'Deutsch B1');
+  });
+
+  function fetchWordList(path, label){
+    setStatus('Loading ' + label + '…');
+    fetch(path)
+      .then(r => { if(!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+      .then(loadWordBank)
+      .catch(err => {
+        setStatus('Could not load ' + path + ' (' + err.message + '). This only works when the page is served over http(s) from the same folder as ' + path + ' — try "Load…" to pick a file instead.', true);
+      });
+  }
+
   fileInput.addEventListener('change', function(e){
     const file = e.target.files[0];
     if(!file) return;
@@ -393,6 +470,7 @@
     };
     reader.onerror = function(){ setStatus('Could not read that file.', true); };
     reader.readAsText(file, 'utf-8');
+    fileInput.value = '';
   });
 
   function loadWordBank(data){
@@ -586,6 +664,9 @@
 
   // ---------- render ----------
   function renderGrid(built, numbering){
+    celebrated = false;
+    gridEl.classList.remove('solved');
+    successToast.classList.remove('show');
     rows = built.rows; cols = built.cols;
     gridData = built.grid;
     placedWords = numbering.placements.sort((a,b) => a.number-b.number || (a.dir>b.dir?1:-1));
@@ -619,6 +700,7 @@
         input.spellcheck = false;
         input.setAttribute('inputmode','text');
         input.dataset.r = r; input.dataset.c = c;
+        input.style.setProperty('--pop-delay', ((r+c)*22) + 'ms');
         wrap.appendChild(input);
         gridEl.appendChild(wrap);
         rowArr.push({wrap, input, across:null, down:null, number:num||null});
@@ -811,6 +893,38 @@
     const ch = g.length ? toUpperGrapheme(g[g.length-1]) : '';
     cell.input.value = ch;
     if(ch) advanceAfterInput(r,c);
+    checkAndCelebrate();
+  }
+
+  function isSolved(){
+    if(!placedWords.length) return false;
+    for(let r=0;r<rows;r++){
+      for(let c=0;c<cols;c++){
+        const letter = gridData[r][c];
+        if(letter === null) continue;
+        const val = cellEls[r][c].input.value;
+        if(!val || toUpperGrapheme(val) !== letter) return false;
+      }
+    }
+    return true;
+  }
+
+  function checkAndCelebrate(){
+    if(isSolved()){
+      if(!celebrated){
+        celebrated = true;
+        gridEl.classList.remove('solved');
+        void gridEl.offsetWidth; // force reflow so the animation can replay
+        gridEl.classList.add('solved');
+        successToast.classList.add('show');
+        clearTimeout(checkAndCelebrate._t);
+        checkAndCelebrate._t = setTimeout(() => successToast.classList.remove('show'), 3200);
+      }
+    } else if(celebrated){
+      celebrated = false;
+      gridEl.classList.remove('solved');
+      successToast.classList.remove('show');
+    }
   }
 
   function onKeyDown(e,r,c){
@@ -831,9 +945,10 @@
             cellAt(prev.r,prev.c).input.value = '';
           }
         }
+        checkAndCelebrate();
         break;
       }
-      case 'Delete': e.preventDefault(); cell.input.value=''; break;
+      case 'Delete': e.preventDefault(); cell.input.value=''; checkAndCelebrate(); break;
       case ' ': e.preventDefault(); onCellMouseDown(r,c); break;
       default: break;
     }
