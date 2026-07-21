@@ -1,0 +1,192 @@
+{
+  "metadata": {
+    "title": "Example",
+    "language": "en",
+    "version": 1
+  },
+  "words": [
+    {
+      "word":"APPLE",
+      "clues":[
+        "Common red or green fruit",
+        "Keeps the doctor away"
+      ]
+    },
+    {
+      "word":"BANANA",
+      "clues":[
+        "Yellow curved fruit",
+        "Monkey stereotype food"
+      ]
+    },
+    {
+      "word":"ORANGE",
+      "clues":[
+        "Citrus fruit",
+        "Also a colour"
+      ]
+    },
+    {
+      "word":"PEAR",
+      "clues":[
+        "Bell-shaped fruit"
+      ]
+    },
+    {
+      "word":"PEACH",
+      "clues":[
+        "Soft fruit with a stone"
+      ]
+    },
+    {
+      "word":"GRAPE",
+      "clues":[
+        "Fruit used for wine"
+      ]
+    },
+    {
+      "word":"CHERRY",
+      "clues":[
+        "Small red stone fruit"
+      ]
+    },
+    {
+      "word":"PLUM",
+      "clues":[
+        "Purple stone fruit"
+      ]
+    },
+    {
+      "word":"MELON",
+      "clues":[
+        "Large sweet fruit"
+      ]
+    },
+    {
+      "word":"LEMON",
+      "clues":[
+        "Very sour citrus"
+      ]
+    },
+    {
+      "word":"HOUSE",
+      "clues":[
+        "Place where people live"
+      ]
+    },
+    {
+      "word":"WINDOW",
+      "clues":[
+        "Lets light into a room"
+      ]
+    },
+    {
+      "word":"DOOR",
+      "clues":[
+        "Entrance to a room"
+      ]
+    },
+    {
+      "word":"TABLE",
+      "clues":[
+        "Furniture with legs"
+      ]
+    },
+    {
+      "word":"CHAIR",
+      "clues":[
+        "Furniture for sitting"
+      ]
+    },
+    {
+      "word":"BOOK",
+      "clues":[
+        "Something you read"
+      ]
+    },
+    {
+      "word":"PENCIL",
+      "clues":[
+        "Used for writing"
+      ]
+    },
+    {
+      "word":"PAPER",
+      "clues":[
+        "Thin writing material"
+      ]
+    },
+    {
+      "word":"CLOCK",
+      "clues":[
+        "Shows the time"
+      ]
+    },
+    {
+      "word":"GARDEN",
+      "clues":[
+        "Area where plants grow"
+      ]
+    },
+    {
+      "word":"FLOWER",
+      "clues":[
+        "Colourful part of many plants"
+      ]
+    },
+    {
+      "word":"RIVER",
+      "clues":[
+        "Natural flowing water"
+      ]
+    },
+    {
+      "word":"MOUNTAIN",
+      "clues":[
+        "Very high landform"
+      ]
+    },
+    {
+      "word":"FOREST",
+      "clues":[
+        "Large area of trees"
+      ]
+    },
+    {
+      "word":"OCEAN",
+      "clues":[
+        "Largest body of salt water"
+      ]
+    },
+    {
+      "word":"TRAIN",
+      "clues":[
+        "Travels on rails"
+      ]
+    },
+    {
+      "word":"BICYCLE",
+      "clues":[
+        "Two-wheeled vehicle"
+      ]
+    },
+    {
+      "word":"COMPUTER",
+      "clues":[
+        "Electronic machine"
+      ]
+    },
+    {
+      "word":"KEYBOARD",
+      "clues":[
+        "Used for typing"
+      ]
+    },
+    {
+      "word":"SCREEN",
+      "clues":[
+        "Displays images"
+      ]
+    }
+  ]
+}
