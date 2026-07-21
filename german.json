@@ -1,0 +1,433 @@
+{
+  "metadata": {
+    "title": "B1 German Vocabulary",
+    "language": "de",
+    "version": 1
+  },
+  "words": [
+    {
+      "word": "Apfel",
+      "clues": ["Common fruit", "Red or green and grows on trees"]
+    },
+    {
+      "word": "Banane",
+      "clues": ["Yellow curved fruit", "Often eaten as a snack"]
+    },
+    {
+      "word": "Orange",
+      "clues": ["Citrus fruit", "Also a colour"]
+    },
+    {
+      "word": "Erdbeere",
+      "clues": ["Small red fruit", "Often used in desserts"]
+    },
+    {
+      "word": "Kartoffel",
+      "clues": ["Common vegetable", "Grows underground"]
+    },
+    {
+      "word": "Tomate",
+      "clues": ["Red vegetable-like food", "Used in salads and sauces"]
+    },
+    {
+      "word": "Zwiebel",
+      "clues": ["Vegetable that makes you cry", "Used for cooking"]
+    },
+    {
+      "word": "Brot",
+      "clues": ["Basic food made from flour", "Common German food"]
+    },
+    {
+      "word": "Käse",
+      "clues": ["Food made from milk", "Often on bread"]
+    },
+    {
+      "word": "Fleisch",
+      "clues": ["Food from animals", "Contains protein"]
+    },
+    {
+      "word": "Haus",
+      "clues": ["Building where people live"]
+    },
+    {
+      "word": "Wohnung",
+      "clues": ["Place to live in a building"]
+    },
+    {
+      "word": "Zimmer",
+      "clues": ["Room in a house or flat"]
+    },
+    {
+      "word": "Küche",
+      "clues": ["Room where food is prepared"]
+    },
+    {
+      "word": "Badezimmer",
+      "clues": ["Room with a shower or bath"]
+    },
+    {
+      "word": "Fenster",
+      "clues": ["Lets light into a room"]
+    },
+    {
+      "word": "Tür",
+      "clues": ["Used to enter or leave a room"]
+    },
+    {
+      "word": "Tisch",
+      "clues": ["Furniture with a flat surface"]
+    },
+    {
+      "word": "Stuhl",
+      "clues": ["Furniture used for sitting"]
+    },
+    {
+      "word": "Bett",
+      "clues": ["Furniture used for sleeping"]
+    },
+    {
+      "word": "Schule",
+      "clues": ["Place where students learn"]
+    },
+    {
+      "word": "Universität",
+      "clues": ["Place for higher education"]
+    },
+    {
+      "word": "Lehrer",
+      "clues": ["Person who teaches"]
+    },
+    {
+      "word": "Schüler",
+      "clues": ["Person who studies at school"]
+    },
+    {
+      "word": "Arbeit",
+      "clues": ["Activity done to earn money"]
+    },
+    {
+      "word": "Beruf",
+      "clues": ["Type of job or career"]
+    },
+    {
+      "word": "Firma",
+      "clues": ["Company or business"]
+    },
+    {
+      "word": "Chef",
+      "clues": ["Person who manages workers"]
+    },
+    {
+      "word": "Kollege",
+      "clues": ["Person you work with"]
+    },
+    {
+      "word": "Termin",
+      "clues": ["Planned time for a meeting"]
+    },
+    {
+      "word": "Auto",
+      "clues": ["Vehicle with four wheels"]
+    },
+    {
+      "word": "Zug",
+      "clues": ["Vehicle that travels on rails"]
+    },
+    {
+      "word": "Bus",
+      "clues": ["Large vehicle for many passengers"]
+    },
+    {
+      "word": "Fahrrad",
+      "clues": ["Two-wheeled vehicle powered by people"]
+    },
+    {
+      "word": "Flugzeug",
+      "clues": ["Vehicle that flies"]
+    },
+    {
+      "word": "Bahnhof",
+      "clues": ["Place where trains stop"]
+    },
+    {
+      "word": "Straße",
+      "clues": ["Place where cars drive"]
+    },
+    {
+      "word": "Stadt",
+      "clues": ["Large place where many people live"]
+    },
+    {
+      "word": "Dorf",
+      "clues": ["Small place with houses"]
+    },
+    {
+      "word": "Land",
+      "clues": ["Country or rural area"]
+    },
+    {
+      "word": "Wetter",
+      "clues": ["Condition of the atmosphere"]
+    },
+    {
+      "word": "Regen",
+      "clues": ["Water falling from clouds"]
+    },
+    {
+      "word": "Schnee",
+      "clues": ["White frozen water from the sky"]
+    },
+    {
+      "word": "Wind",
+      "clues": ["Moving air"]
+    },
+    {
+      "word": "Sonne",
+      "clues": ["Star that gives Earth light"]
+    },
+    {
+      "word": "Wolke",
+      "clues": ["White or grey shape in the sky"]
+    },
+    {
+      "word": "Meer",
+      "clues": ["Large area of salt water"]
+    },
+    {
+      "word": "Fluss",
+      "clues": ["Natural moving water"]
+    },
+    {
+      "word": "Berg",
+      "clues": ["Very high natural landform"]
+    },
+    {
+      "word": "Wald",
+      "clues": ["Large area full of trees"]
+    },
+    {
+      "word": "Freund",
+      "clues": ["Person you like and trust"]
+    },
+    {
+      "word": "Familie",
+      "clues": ["Parents, children and relatives"]
+    },
+    {
+      "word": "Mutter",
+      "clues": ["Female parent"]
+    },
+    {
+      "word": "Vater",
+      "clues": ["Male parent"]
+    },
+    {
+      "word": "Bruder",
+      "clues": ["Male sibling"]
+    },
+    {
+      "word": "Schwester",
+      "clues": ["Female sibling"]
+    },
+    {
+      "word": "Kind",
+      "clues": ["Young person"]
+    },
+    {
+      "word": "Mensch",
+      "clues": ["Person or human being"]
+    },
+    {
+      "word": "Körper",
+      "clues": ["Physical part of a person"]
+    },
+    {
+      "word": "Kopf",
+      "clues": ["Body part containing the brain"]
+    },
+    {
+      "word": "Hand",
+      "clues": ["Body part used for holding"]
+    },
+    {
+      "word": "Auge",
+      "clues": ["Body part used for seeing"]
+    },
+    {
+      "word": "Ohr",
+      "clues": ["Body part used for hearing"]
+    },
+    {
+      "word": "Mund",
+      "clues": ["Used for speaking and eating"]
+    },
+    {
+      "word": "Herz",
+      "clues": ["Organ that pumps blood"]
+    },
+    {
+      "word": "Arzt",
+      "clues": ["Person who treats sick people"]
+    },
+    {
+      "word": "Krankenhaus",
+      "clues": ["Place for medical treatment"]
+    },
+    {
+      "word": "Medizin",
+      "clues": ["Used to treat illness"]
+    },
+    {
+      "word": "Gesundheit",
+      "clues": ["State of being healthy"]
+    },
+    {
+      "word": "Reise",
+      "clues": ["Trip to another place"]
+    },
+    {
+      "word": "Urlaub",
+      "clues": ["Time away from work or school"]
+    },
+    {
+      "word": "Hotel",
+      "clues": ["Place where travellers sleep"]
+    },
+    {
+      "word": "Karte",
+      "clues": ["Paper showing places or directions"]
+    },
+    {
+      "word": "Stadtplan",
+      "clues": ["Map of a city"]
+    },
+    {
+      "word": "Pass",
+      "clues": ["Document needed for international travel"]
+    },
+    {
+      "word": "Geld",
+      "clues": ["Used to buy things"]
+    },
+    {
+      "word": "Preis",
+      "clues": ["Amount something costs"]
+    },
+    {
+      "word": "Kaufen",
+      "clues": ["To get something by paying"]
+    },
+    {
+      "word": "Verkaufen",
+      "clues": ["To give something for money"]
+    },
+    {
+      "word": "Essen",
+      "clues": ["Food or the action of eating"]
+    },
+    {
+      "word": "Trinken",
+      "clues": ["Action involving liquids"]
+    },
+    {
+      "word": "Kochen",
+      "clues": ["Preparing food with heat"]
+    },
+    {
+      "word": "Schlafen",
+      "clues": ["Resting at night"]
+    },
+    {
+      "word": "Lesen",
+      "clues": ["Looking at written words"]
+    },
+    {
+      "word": "Schreiben",
+      "clues": ["Creating text with a pen or keyboard"]
+    },
+    {
+      "word": "Sprechen",
+      "clues": ["Using your voice to communicate"]
+    },
+    {
+      "word": "Hören",
+      "clues": ["Using your ears"]
+    },
+    {
+      "word": "Sehen",
+      "clues": ["Using your eyes"]
+    },
+    {
+      "word": "Lernen",
+      "clues": ["Gaining knowledge"]
+    },
+    {
+      "word": "Verstehen",
+      "clues": ["Knowing the meaning of something"]
+    },
+    {
+      "word": "Fragen",
+      "clues": ["To ask for information"]
+    },
+    {
+      "word": "Antwort",
+      "clues": ["Information given after a question"]
+    },
+    {
+      "word": "Problem",
+      "clues": ["Something difficult to solve"]
+    },
+    {
+      "word": "Lösung",
+      "clues": ["Answer to a problem"]
+    },
+    {
+      "word": "Idee",
+      "clues": ["Thought or plan"]
+    },
+    {
+      "word": "Meinung",
+      "clues": ["Personal view about something"]
+    },
+    {
+      "word": "Grund",
+      "clues": ["Reason why something happens"]
+    },
+    {
+      "word": "Beispiel",
+      "clues": ["Something used to explain an idea"]
+    },
+    {
+      "word": "Zeit",
+      "clues": ["Measured in hours and minutes"]
+    },
+    {
+      "word": "Jahr",
+      "clues": ["Period of twelve months"]
+    },
+    {
+      "word": "Monat",
+      "clues": ["One part of a year"]
+    },
+    {
+      "word": "Woche",
+      "clues": ["Seven days"]
+    },
+    {
+      "word": "Tag",
+      "clues": ["Twenty-four hour period"]
+    },
+    {
+      "word": "Morgen",
+      "clues": ["Time after night"]
+    },
+    {
+      "word": "Abend",
+      "clues": ["Time before night"]
+    },
+    {
+      "word": "Nacht",
+      "clues": ["Dark time of day"]
+    }
+  ]
+}
