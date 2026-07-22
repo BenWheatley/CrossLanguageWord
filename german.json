@@ -1,433 +1,3063 @@
 {
   "metadata": {
-    "title": "B1 German Vocabulary",
+    "title": "Deutsch B1",
     "language": "de",
-    "version": 1
+    "version": 3
   },
   "words": [
     {
-      "word": "Apfel",
-      "clues": ["Common fruit", "Red or green and grows on trees"]
+      "word": "HAUS",
+      "clues": [
+        "House"
+      ]
     },
     {
-      "word": "Banane",
-      "clues": ["Yellow curved fruit", "Often eaten as a snack"]
+      "word": "WOHNUNG",
+      "clues": [
+        "Apartment"
+      ]
     },
     {
-      "word": "Orange",
-      "clues": ["Citrus fruit", "Also a colour"]
+      "word": "ZIMMER",
+      "clues": [
+        "Room"
+      ]
     },
     {
-      "word": "Erdbeere",
-      "clues": ["Small red fruit", "Often used in desserts"]
+      "word": "KÜCHE",
+      "clues": [
+        "Kitchen"
+      ]
     },
     {
-      "word": "Kartoffel",
-      "clues": ["Common vegetable", "Grows underground"]
+      "word": "BAD",
+      "clues": [
+        "Bathroom"
+      ]
     },
     {
-      "word": "Tomate",
-      "clues": ["Red vegetable-like food", "Used in salads and sauces"]
+      "word": "GARTEN",
+      "clues": [
+        "Garden"
+      ]
     },
     {
-      "word": "Zwiebel",
-      "clues": ["Vegetable that makes you cry", "Used for cooking"]
+      "word": "TISCH",
+      "clues": [
+        "Table"
+      ]
     },
     {
-      "word": "Brot",
-      "clues": ["Basic food made from flour", "Common German food"]
+      "word": "STUHL",
+      "clues": [
+        "Chair"
+      ]
     },
     {
-      "word": "Käse",
-      "clues": ["Food made from milk", "Often on bread"]
+      "word": "BETT",
+      "clues": [
+        "Bed"
+      ]
     },
     {
-      "word": "Fleisch",
-      "clues": ["Food from animals", "Contains protein"]
+      "word": "SCHRANK",
+      "clues": [
+        "Cupboard/closet"
+      ]
     },
     {
-      "word": "Haus",
-      "clues": ["Building where people live"]
+      "word": "FENSTER",
+      "clues": [
+        "Window"
+      ]
     },
     {
-      "word": "Wohnung",
-      "clues": ["Place to live in a building"]
+      "word": "TÜR",
+      "clues": [
+        "Door"
+      ]
     },
     {
-      "word": "Zimmer",
-      "clues": ["Room in a house or flat"]
+      "word": "SCHLÜSSEL",
+      "clues": [
+        "Key"
+      ]
     },
     {
-      "word": "Küche",
-      "clues": ["Room where food is prepared"]
+      "word": "MIETE",
+      "clues": [
+        "Rent",
+        "mieten (to rent) — ich, present tense"
+      ]
     },
     {
-      "word": "Badezimmer",
-      "clues": ["Room with a shower or bath"]
+      "word": "VERMIETER",
+      "clues": [
+        "Landlord"
+      ]
     },
     {
-      "word": "Fenster",
-      "clues": ["Lets light into a room"]
+      "word": "NACHBAR",
+      "clues": [
+        "Neighbor"
+      ]
     },
     {
-      "word": "Tür",
-      "clues": ["Used to enter or leave a room"]
+      "word": "NACHBARSCHAFT",
+      "clues": [
+        "Neighborhood"
+      ]
     },
     {
-      "word": "Tisch",
-      "clues": ["Furniture with a flat surface"]
+      "word": "STRASSE",
+      "clues": [
+        "Street"
+      ]
     },
     {
-      "word": "Stuhl",
-      "clues": ["Furniture used for sitting"]
+      "word": "STADT",
+      "clues": [
+        "City"
+      ]
     },
     {
-      "word": "Bett",
-      "clues": ["Furniture used for sleeping"]
+      "word": "DORF",
+      "clues": [
+        "Village"
+      ]
     },
     {
-      "word": "Schule",
-      "clues": ["Place where students learn"]
+      "word": "LAND",
+      "clues": [
+        "Country/land"
+      ]
     },
     {
-      "word": "Universität",
-      "clues": ["Place for higher education"]
+      "word": "KARTE",
+      "clues": [
+        "Map/card"
+      ]
     },
     {
-      "word": "Lehrer",
-      "clues": ["Person who teaches"]
+      "word": "ADRESSE",
+      "clues": [
+        "Address"
+      ]
     },
     {
-      "word": "Schüler",
-      "clues": ["Person who studies at school"]
+      "word": "ARBEIT",
+      "clues": [
+        "Work"
+      ]
     },
     {
-      "word": "Arbeit",
-      "clues": ["Activity done to earn money"]
+      "word": "ARBEITSPLATZ",
+      "clues": [
+        "Workplace"
+      ]
     },
     {
-      "word": "Beruf",
-      "clues": ["Type of job or career"]
+      "word": "ARBEITSLOSIGKEIT",
+      "clues": [
+        "Unemployment"
+      ]
     },
     {
-      "word": "Firma",
-      "clues": ["Company or business"]
+      "word": "BEWERBUNG",
+      "clues": [
+        "Job application"
+      ]
     },
     {
-      "word": "Chef",
-      "clues": ["Person who manages workers"]
+      "word": "LEBENSLAUF",
+      "clues": [
+        "Résumé/CV"
+      ]
     },
     {
-      "word": "Kollege",
-      "clues": ["Person you work with"]
+      "word": "VERTRAG",
+      "clues": [
+        "Contract"
+      ]
     },
     {
-      "word": "Termin",
-      "clues": ["Planned time for a meeting"]
+      "word": "GEHALT",
+      "clues": [
+        "Salary"
+      ]
     },
     {
-      "word": "Auto",
-      "clues": ["Vehicle with four wheels"]
+      "word": "KOLLEGE",
+      "clues": [
+        "Colleague (m.)"
+      ]
     },
     {
-      "word": "Zug",
-      "clues": ["Vehicle that travels on rails"]
+      "word": "KOLLEGIN",
+      "clues": [
+        "Colleague (f.)"
+      ]
     },
     {
-      "word": "Bus",
-      "clues": ["Large vehicle for many passengers"]
+      "word": "CHEF",
+      "clues": [
+        "Boss (m.)"
+      ]
     },
     {
-      "word": "Fahrrad",
-      "clues": ["Two-wheeled vehicle powered by people"]
+      "word": "CHEFIN",
+      "clues": [
+        "Boss (f.)"
+      ]
     },
     {
-      "word": "Flugzeug",
-      "clues": ["Vehicle that flies"]
+      "word": "BÜRO",
+      "clues": [
+        "Office"
+      ]
     },
     {
-      "word": "Bahnhof",
-      "clues": ["Place where trains stop"]
+      "word": "TERMIN",
+      "clues": [
+        "Appointment"
+      ]
     },
     {
-      "word": "Straße",
-      "clues": ["Place where cars drive"]
+      "word": "BESPRECHUNG",
+      "clues": [
+        "Meeting"
+      ]
     },
     {
-      "word": "Stadt",
-      "clues": ["Large place where many people live"]
+      "word": "PAUSE",
+      "clues": [
+        "Break"
+      ]
     },
     {
-      "word": "Dorf",
-      "clues": ["Small place with houses"]
+      "word": "URLAUB",
+      "clues": [
+        "Vacation"
+      ]
     },
     {
-      "word": "Land",
-      "clues": ["Country or rural area"]
+      "word": "RENTE",
+      "clues": [
+        "Pension"
+      ]
     },
     {
-      "word": "Wetter",
-      "clues": ["Condition of the atmosphere"]
+      "word": "AUSBILDUNG",
+      "clues": [
+        "Vocational training"
+      ]
     },
     {
-      "word": "Regen",
-      "clues": ["Water falling from clouds"]
+      "word": "PRAKTIKUM",
+      "clues": [
+        "Internship"
+      ]
     },
     {
-      "word": "Schnee",
-      "clues": ["White frozen water from the sky"]
+      "word": "BEHÖRDE",
+      "clues": [
+        "Government office"
+      ]
     },
     {
-      "word": "Wind",
-      "clues": ["Moving air"]
+      "word": "ANTRAG",
+      "clues": [
+        "Application form"
+      ]
     },
     {
-      "word": "Sonne",
-      "clues": ["Star that gives Earth light"]
+      "word": "FORMULAR",
+      "clues": [
+        "Form (document)"
+      ]
     },
     {
-      "word": "Wolke",
-      "clues": ["White or grey shape in the sky"]
+      "word": "UNTERSCHRIFT",
+      "clues": [
+        "Signature"
+      ]
     },
     {
-      "word": "Meer",
-      "clues": ["Large area of salt water"]
+      "word": "AUSWEIS",
+      "clues": [
+        "ID card"
+      ]
     },
     {
-      "word": "Fluss",
-      "clues": ["Natural moving water"]
+      "word": "PASS",
+      "clues": [
+        "Passport"
+      ]
     },
     {
-      "word": "Berg",
-      "clues": ["Very high natural landform"]
+      "word": "FÜHRERSCHEIN",
+      "clues": [
+        "Driver's license"
+      ]
     },
     {
-      "word": "Wald",
-      "clues": ["Large area full of trees"]
+      "word": "VERSICHERUNG",
+      "clues": [
+        "Insurance"
+      ]
     },
     {
-      "word": "Freund",
-      "clues": ["Person you like and trust"]
+      "word": "STEUER",
+      "clues": [
+        "Tax"
+      ]
     },
     {
-      "word": "Familie",
-      "clues": ["Parents, children and relatives"]
+      "word": "BANK",
+      "clues": [
+        "Bank"
+      ]
     },
     {
-      "word": "Mutter",
-      "clues": ["Female parent"]
+      "word": "KONTO",
+      "clues": [
+        "Account"
+      ]
     },
     {
-      "word": "Vater",
-      "clues": ["Male parent"]
+      "word": "GELD",
+      "clues": [
+        "Money"
+      ]
     },
     {
-      "word": "Bruder",
-      "clues": ["Male sibling"]
+      "word": "MÜNZE",
+      "clues": [
+        "Coin"
+      ]
     },
     {
-      "word": "Schwester",
-      "clues": ["Female sibling"]
+      "word": "SCHEIN",
+      "clues": [
+        "Banknote"
+      ]
     },
     {
-      "word": "Kind",
-      "clues": ["Young person"]
+      "word": "RECHNUNG",
+      "clues": [
+        "Invoice/bill"
+      ]
     },
     {
-      "word": "Mensch",
-      "clues": ["Person or human being"]
+      "word": "QUITTUNG",
+      "clues": [
+        "Receipt"
+      ]
     },
     {
-      "word": "Körper",
-      "clues": ["Physical part of a person"]
+      "word": "PREIS",
+      "clues": [
+        "Price"
+      ]
     },
     {
-      "word": "Kopf",
-      "clues": ["Body part containing the brain"]
+      "word": "RABATT",
+      "clues": [
+        "Discount"
+      ]
     },
     {
-      "word": "Hand",
-      "clues": ["Body part used for holding"]
+      "word": "SCHULDEN",
+      "clues": [
+        "Debts"
+      ]
     },
     {
-      "word": "Auge",
-      "clues": ["Body part used for seeing"]
+      "word": "KREDIT",
+      "clues": [
+        "Loan/credit"
+      ]
     },
     {
-      "word": "Ohr",
-      "clues": ["Body part used for hearing"]
+      "word": "SPARKONTO",
+      "clues": [
+        "Savings account"
+      ]
     },
     {
-      "word": "Mund",
-      "clues": ["Used for speaking and eating"]
+      "word": "GESUNDHEIT",
+      "clues": [
+        "Health"
+      ]
     },
     {
-      "word": "Herz",
-      "clues": ["Organ that pumps blood"]
+      "word": "KRANKHEIT",
+      "clues": [
+        "Illness"
+      ]
     },
     {
-      "word": "Arzt",
-      "clues": ["Person who treats sick people"]
+      "word": "ARZT",
+      "clues": [
+        "Doctor (m.)"
+      ]
     },
     {
-      "word": "Krankenhaus",
-      "clues": ["Place for medical treatment"]
+      "word": "ÄRZTIN",
+      "clues": [
+        "Doctor (f.)"
+      ]
     },
     {
-      "word": "Medizin",
-      "clues": ["Used to treat illness"]
+      "word": "KRANKENHAUS",
+      "clues": [
+        "Hospital"
+      ]
     },
     {
-      "word": "Gesundheit",
-      "clues": ["State of being healthy"]
+      "word": "APOTHEKE",
+      "clues": [
+        "Pharmacy"
+      ]
     },
     {
-      "word": "Reise",
-      "clues": ["Trip to another place"]
+      "word": "MEDIKAMENT",
+      "clues": [
+        "Medication"
+      ]
     },
     {
-      "word": "Urlaub",
-      "clues": ["Time away from work or school"]
+      "word": "SCHMERZEN",
+      "clues": [
+        "Pain"
+      ]
     },
     {
-      "word": "Hotel",
-      "clues": ["Place where travellers sleep"]
+      "word": "FIEBER",
+      "clues": [
+        "Fever"
+      ]
     },
     {
-      "word": "Karte",
-      "clues": ["Paper showing places or directions"]
+      "word": "ERKÄLTUNG",
+      "clues": [
+        "Cold (illness)"
+      ]
     },
     {
-      "word": "Stadtplan",
-      "clues": ["Map of a city"]
+      "word": "UNFALL",
+      "clues": [
+        "Accident"
+      ]
     },
     {
-      "word": "Pass",
-      "clues": ["Document needed for international travel"]
+      "word": "VERLETZUNG",
+      "clues": [
+        "Injury"
+      ]
     },
     {
-      "word": "Geld",
-      "clues": ["Used to buy things"]
+      "word": "BEHANDLUNG",
+      "clues": [
+        "Treatment"
+      ]
     },
     {
-      "word": "Preis",
-      "clues": ["Amount something costs"]
+      "word": "KRANKENKASSE",
+      "clues": [
+        "Health insurance fund"
+      ]
     },
     {
-      "word": "Kaufen",
-      "clues": ["To get something by paying"]
+      "word": "TERMINKALENDER",
+      "clues": [
+        "Appointment calendar"
+      ]
     },
     {
-      "word": "Verkaufen",
-      "clues": ["To give something for money"]
+      "word": "FAMILIE",
+      "clues": [
+        "Family"
+      ]
     },
     {
-      "word": "Essen",
-      "clues": ["Food or the action of eating"]
+      "word": "ELTERN",
+      "clues": [
+        "Parents"
+      ]
     },
     {
-      "word": "Trinken",
-      "clues": ["Action involving liquids"]
+      "word": "MUTTER",
+      "clues": [
+        "Mother"
+      ]
     },
     {
-      "word": "Kochen",
-      "clues": ["Preparing food with heat"]
+      "word": "VATER",
+      "clues": [
+        "Father"
+      ]
     },
     {
-      "word": "Schlafen",
-      "clues": ["Resting at night"]
+      "word": "KIND",
+      "clues": [
+        "Child"
+      ]
     },
     {
-      "word": "Lesen",
-      "clues": ["Looking at written words"]
+      "word": "GESCHWISTER",
+      "clues": [
+        "Siblings"
+      ]
     },
     {
-      "word": "Schreiben",
-      "clues": ["Creating text with a pen or keyboard"]
+      "word": "BRUDER",
+      "clues": [
+        "Brother"
+      ]
     },
     {
-      "word": "Sprechen",
-      "clues": ["Using your voice to communicate"]
+      "word": "SCHWESTER",
+      "clues": [
+        "Sister"
+      ]
     },
     {
-      "word": "Hören",
-      "clues": ["Using your ears"]
+      "word": "EHEMANN",
+      "clues": [
+        "Husband"
+      ]
     },
     {
-      "word": "Sehen",
-      "clues": ["Using your eyes"]
+      "word": "EHEFRAU",
+      "clues": [
+        "Wife"
+      ]
     },
     {
-      "word": "Lernen",
-      "clues": ["Gaining knowledge"]
+      "word": "GROSSELTERN",
+      "clues": [
+        "Grandparents"
+      ]
     },
     {
-      "word": "Verstehen",
-      "clues": ["Knowing the meaning of something"]
+      "word": "ENKEL",
+      "clues": [
+        "Grandchild"
+      ]
     },
     {
-      "word": "Fragen",
-      "clues": ["To ask for information"]
+      "word": "FREUNDSCHAFT",
+      "clues": [
+        "Friendship"
+      ]
     },
     {
-      "word": "Antwort",
-      "clues": ["Information given after a question"]
+      "word": "BEZIEHUNG",
+      "clues": [
+        "Relationship"
+      ]
     },
     {
-      "word": "Problem",
-      "clues": ["Something difficult to solve"]
+      "word": "HOCHZEIT",
+      "clues": [
+        "Wedding"
+      ]
     },
     {
-      "word": "Lösung",
-      "clues": ["Answer to a problem"]
+      "word": "GEBURTSTAG",
+      "clues": [
+        "Birthday"
+      ]
     },
     {
-      "word": "Idee",
-      "clues": ["Thought or plan"]
+      "word": "FEIER",
+      "clues": [
+        "Celebration"
+      ]
     },
     {
-      "word": "Meinung",
-      "clues": ["Personal view about something"]
+      "word": "EINLADUNG",
+      "clues": [
+        "Invitation"
+      ]
     },
     {
-      "word": "Grund",
-      "clues": ["Reason why something happens"]
+      "word": "GESCHENK",
+      "clues": [
+        "Gift"
+      ]
     },
     {
-      "word": "Beispiel",
-      "clues": ["Something used to explain an idea"]
+      "word": "ÜBERRASCHUNG",
+      "clues": [
+        "Surprise"
+      ]
     },
     {
-      "word": "Zeit",
-      "clues": ["Measured in hours and minutes"]
+      "word": "SCHULE",
+      "clues": [
+        "School"
+      ]
     },
     {
-      "word": "Jahr",
-      "clues": ["Period of twelve months"]
+      "word": "UNTERRICHT",
+      "clues": [
+        "Lessons/instruction"
+      ]
     },
     {
-      "word": "Monat",
-      "clues": ["One part of a year"]
+      "word": "LEHRER",
+      "clues": [
+        "Teacher (m.)"
+      ]
     },
     {
-      "word": "Woche",
-      "clues": ["Seven days"]
+      "word": "LEHRERIN",
+      "clues": [
+        "Teacher (f.)"
+      ]
     },
     {
-      "word": "Tag",
-      "clues": ["Twenty-four hour period"]
+      "word": "SCHÜLER",
+      "clues": [
+        "Pupil (m.)"
+      ]
     },
     {
-      "word": "Morgen",
-      "clues": ["Time after night"]
+      "word": "KLASSE",
+      "clues": [
+        "Class"
+      ]
     },
     {
-      "word": "Abend",
-      "clues": ["Time before night"]
+      "word": "PRÜFUNG",
+      "clues": [
+        "Exam"
+      ]
     },
     {
-      "word": "Nacht",
-      "clues": ["Dark time of day"]
+      "word": "ZEUGNIS",
+      "clues": [
+        "School report"
+      ]
+    },
+    {
+      "word": "HAUSAUFGABE",
+      "clues": [
+        "Homework"
+      ]
+    },
+    {
+      "word": "UNIVERSITÄT",
+      "clues": [
+        "University"
+      ]
+    },
+    {
+      "word": "STUDIUM",
+      "clues": [
+        "(university) studies"
+      ]
+    },
+    {
+      "word": "VORLESUNG",
+      "clues": [
+        "Lecture"
+      ]
+    },
+    {
+      "word": "BIBLIOTHEK",
+      "clues": [
+        "Library"
+      ]
+    },
+    {
+      "word": "STIPENDIUM",
+      "clues": [
+        "Scholarship"
+      ]
+    },
+    {
+      "word": "NOTE",
+      "clues": [
+        "Grade"
+      ]
+    },
+    {
+      "word": "WISSEN",
+      "clues": [
+        "Knowledge"
+      ]
+    },
+    {
+      "word": "BILDUNG",
+      "clues": [
+        "Education"
+      ]
+    },
+    {
+      "word": "UMWELT",
+      "clues": [
+        "Environment"
+      ]
+    },
+    {
+      "word": "KLIMA",
+      "clues": [
+        "Climate"
+      ]
+    },
+    {
+      "word": "KLIMAWANDEL",
+      "clues": [
+        "Climate change"
+      ]
+    },
+    {
+      "word": "MÜLL",
+      "clues": [
+        "Trash"
+      ]
+    },
+    {
+      "word": "MÜLLTRENNUNG",
+      "clues": [
+        "Waste separation"
+      ]
+    },
+    {
+      "word": "RECYCLING",
+      "clues": [
+        "Recycling"
+      ]
+    },
+    {
+      "word": "ENERGIE",
+      "clues": [
+        "Energy"
+      ]
+    },
+    {
+      "word": "STROM",
+      "clues": [
+        "Electricity"
+      ]
+    },
+    {
+      "word": "SONNENENERGIE",
+      "clues": [
+        "Solar energy"
+      ]
+    },
+    {
+      "word": "WASSER",
+      "clues": [
+        "Water"
+      ]
+    },
+    {
+      "word": "LUFT",
+      "clues": [
+        "Air"
+      ]
+    },
+    {
+      "word": "NATUR",
+      "clues": [
+        "Nature"
+      ]
+    },
+    {
+      "word": "WALD",
+      "clues": [
+        "Forest"
+      ]
+    },
+    {
+      "word": "TIER",
+      "clues": [
+        "Animal"
+      ]
+    },
+    {
+      "word": "PFLANZE",
+      "clues": [
+        "Plant"
+      ]
+    },
+    {
+      "word": "VERSCHMUTZUNG",
+      "clues": [
+        "Pollution"
+      ]
+    },
+    {
+      "word": "VERKEHR",
+      "clues": [
+        "Traffic"
+      ]
+    },
+    {
+      "word": "VERKEHRSMITTEL",
+      "clues": [
+        "Means of transport"
+      ]
+    },
+    {
+      "word": "BAHNHOF",
+      "clues": [
+        "Train station"
+      ]
+    },
+    {
+      "word": "FLUGHAFEN",
+      "clues": [
+        "Airport"
+      ]
+    },
+    {
+      "word": "HALTESTELLE",
+      "clues": [
+        "Bus/tram stop"
+      ]
+    },
+    {
+      "word": "FAHRKARTE",
+      "clues": [
+        "Ticket"
+      ]
+    },
+    {
+      "word": "FAHRPLAN",
+      "clues": [
+        "Timetable"
+      ]
+    },
+    {
+      "word": "VERSPÄTUNG",
+      "clues": [
+        "Delay"
+      ]
+    },
+    {
+      "word": "STAU",
+      "clues": [
+        "Traffic jam"
+      ]
+    },
+    {
+      "word": "AUTO",
+      "clues": [
+        "Car"
+      ]
+    },
+    {
+      "word": "FAHRRAD",
+      "clues": [
+        "Bicycle"
+      ]
+    },
+    {
+      "word": "BUS",
+      "clues": [
+        "Bus"
+      ]
+    },
+    {
+      "word": "ZUG",
+      "clues": [
+        "Train"
+      ]
+    },
+    {
+      "word": "STRASSENBAHN",
+      "clues": [
+        "Tram"
+      ]
+    },
+    {
+      "word": "FÜHRERSCHEINPRÜFUNG",
+      "clues": [
+        "Driving test"
+      ]
+    },
+    {
+      "word": "REISE",
+      "clues": [
+        "Trip",
+        "reisen (to travel) — ich, present tense"
+      ]
+    },
+    {
+      "word": "URLAUBSREISE",
+      "clues": [
+        "Vacation trip"
+      ]
+    },
+    {
+      "word": "GEPÄCK",
+      "clues": [
+        "Luggage"
+      ]
+    },
+    {
+      "word": "KOFFER",
+      "clues": [
+        "Suitcase"
+      ]
+    },
+    {
+      "word": "HOTEL",
+      "clues": [
+        "Hotel"
+      ]
+    },
+    {
+      "word": "UNTERKUNFT",
+      "clues": [
+        "Accommodation"
+      ]
+    },
+    {
+      "word": "SEHENSWÜRDIGKEIT",
+      "clues": [
+        "Tourist attraction"
+      ]
+    },
+    {
+      "word": "AUSFLUG",
+      "clues": [
+        "Excursion"
+      ]
+    },
+    {
+      "word": "STRAND",
+      "clues": [
+        "Beach"
+      ]
+    },
+    {
+      "word": "BERG",
+      "clues": [
+        "Mountain"
+      ]
+    },
+    {
+      "word": "MEER",
+      "clues": [
+        "Sea"
+      ]
+    },
+    {
+      "word": "ESSEN",
+      "clues": [
+        "Food/meal",
+        "essen (to eat) — wir, present tense",
+        "essen (to eat) — sie/Sie, present tense"
+      ]
+    },
+    {
+      "word": "FRÜHSTÜCK",
+      "clues": [
+        "Breakfast"
+      ]
+    },
+    {
+      "word": "MITTAGESSEN",
+      "clues": [
+        "Lunch"
+      ]
+    },
+    {
+      "word": "ABENDESSEN",
+      "clues": [
+        "Dinner"
+      ]
+    },
+    {
+      "word": "REZEPT",
+      "clues": [
+        "Recipe"
+      ]
+    },
+    {
+      "word": "ZUTAT",
+      "clues": [
+        "Ingredient"
+      ]
+    },
+    {
+      "word": "GEMÜSE",
+      "clues": [
+        "Vegetables"
+      ]
+    },
+    {
+      "word": "OBST",
+      "clues": [
+        "Fruit"
+      ]
+    },
+    {
+      "word": "BROT",
+      "clues": [
+        "Bread"
+      ]
+    },
+    {
+      "word": "KÄSE",
+      "clues": [
+        "Cheese"
+      ]
+    },
+    {
+      "word": "FLEISCH",
+      "clues": [
+        "Meat"
+      ]
+    },
+    {
+      "word": "SUPERMARKT",
+      "clues": [
+        "Supermarket"
+      ]
+    },
+    {
+      "word": "EINKAUF",
+      "clues": [
+        "Purchase/shopping"
+      ]
+    },
+    {
+      "word": "EINKAUFSLISTE",
+      "clues": [
+        "Shopping list"
+      ]
+    },
+    {
+      "word": "RESTAURANT",
+      "clues": [
+        "Restaurant"
+      ]
+    },
+    {
+      "word": "KELLNER",
+      "clues": [
+        "Waiter"
+      ]
+    },
+    {
+      "word": "SPEISEKARTE",
+      "clues": [
+        "Menu"
+      ]
+    },
+    {
+      "word": "MEDIEN",
+      "clues": [
+        "Media"
+      ]
+    },
+    {
+      "word": "ZEITUNG",
+      "clues": [
+        "Newspaper"
+      ]
+    },
+    {
+      "word": "NACHRICHTEN",
+      "clues": [
+        "News"
+      ]
+    },
+    {
+      "word": "FERNSEHEN",
+      "clues": [
+        "Television"
+      ]
+    },
+    {
+      "word": "RADIO",
+      "clues": [
+        "Radio"
+      ]
+    },
+    {
+      "word": "WERBUNG",
+      "clues": [
+        "Advertising"
+      ]
+    },
+    {
+      "word": "ARTIKEL",
+      "clues": [
+        "Article"
+      ]
+    },
+    {
+      "word": "MELDUNG",
+      "clues": [
+        "Report/notice"
+      ]
+    },
+    {
+      "word": "MEINUNG",
+      "clues": [
+        "Opinion"
+      ]
+    },
+    {
+      "word": "GESELLSCHAFT",
+      "clues": [
+        "Society"
+      ]
+    },
+    {
+      "word": "POLITIK",
+      "clues": [
+        "Politics"
+      ]
+    },
+    {
+      "word": "WAHL",
+      "clues": [
+        "Election"
+      ]
+    },
+    {
+      "word": "REGIERUNG",
+      "clues": [
+        "Government"
+      ]
+    },
+    {
+      "word": "GESETZ",
+      "clues": [
+        "Law"
+      ]
+    },
+    {
+      "word": "REGEL",
+      "clues": [
+        "Rule"
+      ]
+    },
+    {
+      "word": "PFLICHT",
+      "clues": [
+        "Duty/obligation"
+      ]
+    },
+    {
+      "word": "RECHT",
+      "clues": [
+        "Right/law"
+      ]
+    },
+    {
+      "word": "VERANTWORTUNG",
+      "clues": [
+        "Responsibility"
+      ]
+    },
+    {
+      "word": "ENTSCHEIDUNG",
+      "clues": [
+        "Decision"
+      ]
+    },
+    {
+      "word": "GELEGENHEIT",
+      "clues": [
+        "Opportunity"
+      ]
+    },
+    {
+      "word": "PROBLEM",
+      "clues": [
+        "Problem"
+      ]
+    },
+    {
+      "word": "LÖSUNG",
+      "clues": [
+        "Solution"
+      ]
+    },
+    {
+      "word": "ERFAHRUNG",
+      "clues": [
+        "Experience"
+      ]
+    },
+    {
+      "word": "GEWOHNHEIT",
+      "clues": [
+        "Habit"
+      ]
+    },
+    {
+      "word": "ZUKUNFT",
+      "clues": [
+        "Future"
+      ]
+    },
+    {
+      "word": "VERGANGENHEIT",
+      "clues": [
+        "Past"
+      ]
+    },
+    {
+      "word": "GEGENWART",
+      "clues": [
+        "Present (time)"
+      ]
+    },
+    {
+      "word": "ZIEL",
+      "clues": [
+        "Goal"
+      ]
+    },
+    {
+      "word": "PLAN",
+      "clues": [
+        "Plan"
+      ]
+    },
+    {
+      "word": "IDEE",
+      "clues": [
+        "Idea"
+      ]
+    },
+    {
+      "word": "GRUND",
+      "clues": [
+        "Reason"
+      ]
+    },
+    {
+      "word": "BEISPIEL",
+      "clues": [
+        "Example"
+      ]
+    },
+    {
+      "word": "UNTERSCHIED",
+      "clues": [
+        "Difference"
+      ]
+    },
+    {
+      "word": "ÄHNLICHKEIT",
+      "clues": [
+        "Similarity"
+      ]
+    },
+    {
+      "word": "VORTEIL",
+      "clues": [
+        "Advantage"
+      ]
+    },
+    {
+      "word": "NACHTEIL",
+      "clues": [
+        "Disadvantage"
+      ]
+    },
+    {
+      "word": "MÖGLICHKEIT",
+      "clues": [
+        "Possibility"
+      ]
+    },
+    {
+      "word": "SCHWIERIGKEIT",
+      "clues": [
+        "Difficulty"
+      ]
+    },
+    {
+      "word": "BESCHWERDE",
+      "clues": [
+        "Complaint"
+      ]
+    },
+    {
+      "word": "KRITIK",
+      "clues": [
+        "Criticism"
+      ]
+    },
+    {
+      "word": "GEFÜHL",
+      "clues": [
+        "Feeling"
+      ]
+    },
+    {
+      "word": "FREUDE",
+      "clues": [
+        "Joy"
+      ]
+    },
+    {
+      "word": "ÄRGER",
+      "clues": [
+        "Anger/trouble"
+      ]
+    },
+    {
+      "word": "ANGST",
+      "clues": [
+        "Fear"
+      ]
+    },
+    {
+      "word": "SORGE",
+      "clues": [
+        "Worry"
+      ]
+    },
+    {
+      "word": "HOFFNUNG",
+      "clues": [
+        "Hope"
+      ]
+    },
+    {
+      "word": "GEDULD",
+      "clues": [
+        "Patience"
+      ]
+    },
+    {
+      "word": "MUT",
+      "clues": [
+        "Courage"
+      ]
+    },
+    {
+      "word": "STOLZ",
+      "clues": [
+        "Pride"
+      ]
+    },
+    {
+      "word": "LANGEWEILE",
+      "clues": [
+        "Boredom"
+      ]
+    },
+    {
+      "word": "STRESS",
+      "clues": [
+        "Stress"
+      ]
+    },
+    {
+      "word": "RUHE",
+      "clues": [
+        "Calm/quiet"
+      ]
+    },
+    {
+      "word": "GERÄUSCH",
+      "clues": [
+        "Noise/sound"
+      ]
+    },
+    {
+      "word": "HANDY",
+      "clues": [
+        "Cell phone"
+      ]
+    },
+    {
+      "word": "COMPUTER",
+      "clues": [
+        "Computer"
+      ]
+    },
+    {
+      "word": "BILDSCHIRM",
+      "clues": [
+        "Screen"
+      ]
+    },
+    {
+      "word": "TASTATUR",
+      "clues": [
+        "Keyboard"
+      ]
+    },
+    {
+      "word": "INTERNET",
+      "clues": [
+        "Internet"
+      ]
+    },
+    {
+      "word": "PASSWORT",
+      "clues": [
+        "Password"
+      ]
+    },
+    {
+      "word": "NACHRICHT",
+      "clues": [
+        "Message"
+      ]
+    },
+    {
+      "word": "ANRUF",
+      "clues": [
+        "Phone call"
+      ]
+    },
+    {
+      "word": "AKKU",
+      "clues": [
+        "Battery"
+      ]
+    },
+    {
+      "word": "LADEGERÄT",
+      "clues": [
+        "Charger"
+      ]
+    },
+    {
+      "word": "GERÄT",
+      "clues": [
+        "Device"
+      ]
+    },
+    {
+      "word": "SOFTWARE",
+      "clues": [
+        "Software"
+      ]
+    },
+    {
+      "word": "DATEI",
+      "clues": [
+        "File (computer)"
+      ]
+    },
+    {
+      "word": "SICHERHEIT",
+      "clues": [
+        "Safety/security"
+      ]
+    },
+    {
+      "word": "KLEIDUNG",
+      "clues": [
+        "Clothing"
+      ]
+    },
+    {
+      "word": "JACKE",
+      "clues": [
+        "Jacket"
+      ]
+    },
+    {
+      "word": "HOSE",
+      "clues": [
+        "Trousers"
+      ]
+    },
+    {
+      "word": "SCHUH",
+      "clues": [
+        "Shoe"
+      ]
+    },
+    {
+      "word": "MANTEL",
+      "clues": [
+        "Coat"
+      ]
+    },
+    {
+      "word": "MÜTZE",
+      "clues": [
+        "Cap/hat"
+      ]
+    },
+    {
+      "word": "REGENSCHIRM",
+      "clues": [
+        "Umbrella"
+      ]
+    },
+    {
+      "word": "WETTER",
+      "clues": [
+        "Weather"
+      ]
+    },
+    {
+      "word": "REGEN",
+      "clues": [
+        "Rain"
+      ]
+    },
+    {
+      "word": "SCHNEE",
+      "clues": [
+        "Snow"
+      ]
+    },
+    {
+      "word": "SONNE",
+      "clues": [
+        "Sun"
+      ]
+    },
+    {
+      "word": "WOLKE",
+      "clues": [
+        "Cloud"
+      ]
+    },
+    {
+      "word": "WIND",
+      "clues": [
+        "Wind"
+      ]
+    },
+    {
+      "word": "TEMPERATUR",
+      "clues": [
+        "Temperature"
+      ]
+    },
+    {
+      "word": "JAHRESZEIT",
+      "clues": [
+        "Season"
+      ]
+    },
+    {
+      "word": "FRÜHLING",
+      "clues": [
+        "Spring"
+      ]
+    },
+    {
+      "word": "SOMMER",
+      "clues": [
+        "Summer"
+      ]
+    },
+    {
+      "word": "HERBST",
+      "clues": [
+        "Autumn"
+      ]
+    },
+    {
+      "word": "WINTER",
+      "clues": [
+        "Winter"
+      ]
+    },
+    {
+      "word": "KLEIN",
+      "clues": [
+        "Small"
+      ]
+    },
+    {
+      "word": "GROSS",
+      "clues": [
+        "Big"
+      ]
+    },
+    {
+      "word": "SCHNELL",
+      "clues": [
+        "Fast"
+      ]
+    },
+    {
+      "word": "LANGSAM",
+      "clues": [
+        "Slow"
+      ]
+    },
+    {
+      "word": "WICHTIG",
+      "clues": [
+        "Important"
+      ]
+    },
+    {
+      "word": "EINFACH",
+      "clues": [
+        "Simple/easy"
+      ]
+    },
+    {
+      "word": "SCHWIERIG",
+      "clues": [
+        "Difficult"
+      ]
+    },
+    {
+      "word": "MÖGLICH",
+      "clues": [
+        "Possible"
+      ]
+    },
+    {
+      "word": "NÖTIG",
+      "clues": [
+        "Necessary"
+      ]
+    },
+    {
+      "word": "GENUG",
+      "clues": [
+        "Enough"
+      ]
+    },
+    {
+      "word": "BESONDERS",
+      "clues": [
+        "Especially"
+      ]
+    },
+    {
+      "word": "VIELLEICHT",
+      "clues": [
+        "Maybe"
+      ]
+    },
+    {
+      "word": "EIGENTLICH",
+      "clues": [
+        "Actually"
+      ]
+    },
+    {
+      "word": "UNGEFÄHR",
+      "clues": [
+        "Approximately"
+      ]
+    },
+    {
+      "word": "ZUFRIEDEN",
+      "clues": [
+        "Satisfied"
+      ]
+    },
+    {
+      "word": "MÜDE",
+      "clues": [
+        "Tired"
+      ]
+    },
+    {
+      "word": "GESUND",
+      "clues": [
+        "Healthy"
+      ]
+    },
+    {
+      "word": "KRANK",
+      "clues": [
+        "Sick"
+      ]
+    },
+    {
+      "word": "SICHER",
+      "clues": [
+        "Safe/certain"
+      ]
+    },
+    {
+      "word": "GEFÄHRLICH",
+      "clues": [
+        "Dangerous"
+      ]
+    },
+    {
+      "word": "FREUNDLICH",
+      "clues": [
+        "Friendly"
+      ]
+    },
+    {
+      "word": "HÖFLICH",
+      "clues": [
+        "Polite"
+      ]
+    },
+    {
+      "word": "PÜNKTLICH",
+      "clues": [
+        "Punctual"
+      ]
+    },
+    {
+      "word": "ZUVERLÄSSIG",
+      "clues": [
+        "Reliable"
+      ]
+    },
+    {
+      "word": "SELBSTSTÄNDIG",
+      "clues": [
+        "Independent/self-employed"
+      ]
+    },
+    {
+      "word": "BEQUEM",
+      "clues": [
+        "Comfortable"
+      ]
+    },
+    {
+      "word": "PRAKTISCH",
+      "clues": [
+        "Practical"
+      ]
+    },
+    {
+      "word": "MODERN",
+      "clues": [
+        "Modern"
+      ]
+    },
+    {
+      "word": "TYPISCH",
+      "clues": [
+        "Typical"
+      ]
+    },
+    {
+      "word": "BIN",
+      "clues": [
+        "sein (to be) — ich, present tense"
+      ]
+    },
+    {
+      "word": "BIST",
+      "clues": [
+        "sein (to be) — du, present tense"
+      ]
+    },
+    {
+      "word": "IST",
+      "clues": [
+        "sein (to be) — er/sie/es, present tense"
+      ]
+    },
+    {
+      "word": "SIND",
+      "clues": [
+        "sein (to be) — wir, present tense",
+        "sein (to be) — sie/Sie, present tense"
+      ]
+    },
+    {
+      "word": "SEID",
+      "clues": [
+        "sein (to be) — ihr, present tense"
+      ]
+    },
+    {
+      "word": "WAR",
+      "clues": [
+        "sein (to be) — ich, simple past (Präteritum)"
+      ]
+    },
+    {
+      "word": "GEWESEN",
+      "clues": [
+        "sein (to be) — past participle"
+      ]
+    },
+    {
+      "word": "HABE",
+      "clues": [
+        "haben (to have) — ich, present tense"
+      ]
+    },
+    {
+      "word": "HAST",
+      "clues": [
+        "haben (to have) — du, present tense"
+      ]
+    },
+    {
+      "word": "HAT",
+      "clues": [
+        "haben (to have) — er/sie/es, present tense"
+      ]
+    },
+    {
+      "word": "HABEN",
+      "clues": [
+        "haben (to have) — wir, present tense",
+        "haben (to have) — sie/Sie, present tense"
+      ]
+    },
+    {
+      "word": "HABT",
+      "clues": [
+        "haben (to have) — ihr, present tense"
+      ]
+    },
+    {
+      "word": "HATTE",
+      "clues": [
+        "haben (to have) — ich, simple past (Präteritum)"
+      ]
+    },
+    {
+      "word": "GEHABT",
+      "clues": [
+        "haben (to have) — past participle"
+      ]
+    },
+    {
+      "word": "WERDE",
+      "clues": [
+        "werden (to become) — ich, present tense"
+      ]
+    },
+    {
+      "word": "WIRST",
+      "clues": [
+        "werden (to become) — du, present tense"
+      ]
+    },
+    {
+      "word": "WIRD",
+      "clues": [
+        "werden (to become) — er/sie/es, present tense"
+      ]
+    },
+    {
+      "word": "WERDEN",
+      "clues": [
+        "werden (to become) — wir, present tense",
+        "werden (to become) — sie/Sie, present tense"
+      ]
+    },
+    {
+      "word": "WERDET",
+      "clues": [
+        "werden (to become) — ihr, present tense"
+      ]
+    },
+    {
+      "word": "WURDE",
+      "clues": [
+        "werden (to become) — ich, simple past (Präteritum)"
+      ]
+    },
+    {
+      "word": "GEWORDEN",
+      "clues": [
+        "werden (to become) — past participle"
+      ]
+    },
+    {
+      "word": "GEHE",
+      "clues": [
+        "gehen (to go) — ich, present tense"
+      ]
+    },
+    {
+      "word": "GEHST",
+      "clues": [
+        "gehen (to go) — du, present tense"
+      ]
+    },
+    {
+      "word": "GEHT",
+      "clues": [
+        "gehen (to go) — er/sie/es, present tense",
+        "gehen (to go) — ihr, present tense"
+      ]
+    },
+    {
+      "word": "GEHEN",
+      "clues": [
+        "gehen (to go) — wir, present tense",
+        "gehen (to go) — sie/Sie, present tense"
+      ]
+    },
+    {
+      "word": "GING",
+      "clues": [
+        "gehen (to go) — ich, simple past (Präteritum)"
+      ]
+    },
+    {
+      "word": "GEGANGEN",
+      "clues": [
+        "gehen (to go) — past participle"
+      ]
+    },
+    {
+      "word": "FAHRE",
+      "clues": [
+        "fahren (to drive/go) — ich, present tense"
+      ]
+    },
+    {
+      "word": "FÄHRST",
+      "clues": [
+        "fahren (to drive/go) — du, present tense"
+      ]
+    },
+    {
+      "word": "FÄHRT",
+      "clues": [
+        "fahren (to drive/go) — er/sie/es, present tense"
+      ]
+    },
+    {
+      "word": "FAHREN",
+      "clues": [
+        "fahren (to drive/go) — wir, present tense",
+        "fahren (to drive/go) — sie/Sie, present tense"
+      ]
+    },
+    {
+      "word": "FAHRT",
+      "clues": [
+        "fahren (to drive/go) — ihr, present tense"
+      ]
+    },
+    {
+      "word": "FUHR",
+      "clues": [
+        "fahren (to drive/go) — ich, simple past (Präteritum)"
+      ]
+    },
+    {
+      "word": "GEFAHREN",
+      "clues": [
+        "fahren (to drive/go) — past participle"
+      ]
+    },
+    {
+      "word": "SPRECHE",
+      "clues": [
+        "sprechen (to speak) — ich, present tense"
+      ]
+    },
+    {
+      "word": "SPRICHST",
+      "clues": [
+        "sprechen (to speak) — du, present tense"
+      ]
+    },
+    {
+      "word": "SPRICHT",
+      "clues": [
+        "sprechen (to speak) — er/sie/es, present tense"
+      ]
+    },
+    {
+      "word": "SPRECHEN",
+      "clues": [
+        "sprechen (to speak) — wir, present tense",
+        "sprechen (to speak) — sie/Sie, present tense"
+      ]
+    },
+    {
+      "word": "SPRECHT",
+      "clues": [
+        "sprechen (to speak) — ihr, present tense"
+      ]
+    },
+    {
+      "word": "SPRACH",
+      "clues": [
+        "sprechen (to speak) — ich, simple past (Präteritum)"
+      ]
+    },
+    {
+      "word": "GESPROCHEN",
+      "clues": [
+        "sprechen (to speak) — past participle"
+      ]
+    },
+    {
+      "word": "ESSE",
+      "clues": [
+        "essen (to eat) — ich, present tense"
+      ]
+    },
+    {
+      "word": "ISST",
+      "clues": [
+        "essen (to eat) — du, present tense",
+        "essen (to eat) — er/sie/es, present tense"
+      ]
+    },
+    {
+      "word": "ESST",
+      "clues": [
+        "essen (to eat) — ihr, present tense"
+      ]
+    },
+    {
+      "word": "ASS",
+      "clues": [
+        "essen (to eat) — ich, simple past (Präteritum)"
+      ]
+    },
+    {
+      "word": "GEGESSEN",
+      "clues": [
+        "essen (to eat) — past participle"
+      ]
+    },
+    {
+      "word": "GEBE",
+      "clues": [
+        "geben (to give) — ich, present tense"
+      ]
+    },
+    {
+      "word": "GIBST",
+      "clues": [
+        "geben (to give) — du, present tense"
+      ]
+    },
+    {
+      "word": "GIBT",
+      "clues": [
+        "geben (to give) — er/sie/es, present tense"
+      ]
+    },
+    {
+      "word": "GEBEN",
+      "clues": [
+        "geben (to give) — wir, present tense",
+        "geben (to give) — sie/Sie, present tense"
+      ]
+    },
+    {
+      "word": "GEBT",
+      "clues": [
+        "geben (to give) — ihr, present tense"
+      ]
+    },
+    {
+      "word": "GAB",
+      "clues": [
+        "geben (to give) — ich, simple past (Präteritum)"
+      ]
+    },
+    {
+      "word": "GEGEBEN",
+      "clues": [
+        "geben (to give) — past participle"
+      ]
+    },
+    {
+      "word": "SEHE",
+      "clues": [
+        "sehen (to see) — ich, present tense"
+      ]
+    },
+    {
+      "word": "SIEHST",
+      "clues": [
+        "sehen (to see) — du, present tense"
+      ]
+    },
+    {
+      "word": "SIEHT",
+      "clues": [
+        "sehen (to see) — er/sie/es, present tense"
+      ]
+    },
+    {
+      "word": "SEHEN",
+      "clues": [
+        "sehen (to see) — wir, present tense",
+        "sehen (to see) — sie/Sie, present tense"
+      ]
+    },
+    {
+      "word": "SEHT",
+      "clues": [
+        "sehen (to see) — ihr, present tense"
+      ]
+    },
+    {
+      "word": "SAH",
+      "clues": [
+        "sehen (to see) — ich, simple past (Präteritum)"
+      ]
+    },
+    {
+      "word": "GESEHEN",
+      "clues": [
+        "sehen (to see) — past participle"
+      ]
+    },
+    {
+      "word": "LESE",
+      "clues": [
+        "lesen (to read) — ich, present tense"
+      ]
+    },
+    {
+      "word": "LIEST",
+      "clues": [
+        "lesen (to read) — du, present tense",
+        "lesen (to read) — er/sie/es, present tense"
+      ]
+    },
+    {
+      "word": "LESEN",
+      "clues": [
+        "lesen (to read) — wir, present tense",
+        "lesen (to read) — sie/Sie, present tense"
+      ]
+    },
+    {
+      "word": "LEST",
+      "clues": [
+        "lesen (to read) — ihr, present tense"
+      ]
+    },
+    {
+      "word": "LAS",
+      "clues": [
+        "lesen (to read) — ich, simple past (Präteritum)"
+      ]
+    },
+    {
+      "word": "GELESEN",
+      "clues": [
+        "lesen (to read) — past participle"
+      ]
+    },
+    {
+      "word": "NEHME",
+      "clues": [
+        "nehmen (to take) — ich, present tense"
+      ]
+    },
+    {
+      "word": "NIMMST",
+      "clues": [
+        "nehmen (to take) — du, present tense"
+      ]
+    },
+    {
+      "word": "NIMMT",
+      "clues": [
+        "nehmen (to take) — er/sie/es, present tense"
+      ]
+    },
+    {
+      "word": "NEHMEN",
+      "clues": [
+        "nehmen (to take) — wir, present tense",
+        "nehmen (to take) — sie/Sie, present tense"
+      ]
+    },
+    {
+      "word": "NEHMT",
+      "clues": [
+        "nehmen (to take) — ihr, present tense"
+      ]
+    },
+    {
+      "word": "NAHM",
+      "clues": [
+        "nehmen (to take) — ich, simple past (Präteritum)"
+      ]
+    },
+    {
+      "word": "GENOMMEN",
+      "clues": [
+        "nehmen (to take) — past participle"
+      ]
+    },
+    {
+      "word": "HELFE",
+      "clues": [
+        "helfen (to help) — ich, present tense"
+      ]
+    },
+    {
+      "word": "HILFST",
+      "clues": [
+        "helfen (to help) — du, present tense"
+      ]
+    },
+    {
+      "word": "HILFT",
+      "clues": [
+        "helfen (to help) — er/sie/es, present tense"
+      ]
+    },
+    {
+      "word": "HELFEN",
+      "clues": [
+        "helfen (to help) — wir, present tense",
+        "helfen (to help) — sie/Sie, present tense"
+      ]
+    },
+    {
+      "word": "HELFT",
+      "clues": [
+        "helfen (to help) — ihr, present tense"
+      ]
+    },
+    {
+      "word": "HALF",
+      "clues": [
+        "helfen (to help) — ich, simple past (Präteritum)"
+      ]
+    },
+    {
+      "word": "GEHOLFEN",
+      "clues": [
+        "helfen (to help) — past participle"
+      ]
+    },
+    {
+      "word": "SCHLAFE",
+      "clues": [
+        "schlafen (to sleep) — ich, present tense"
+      ]
+    },
+    {
+      "word": "SCHLÄFST",
+      "clues": [
+        "schlafen (to sleep) — du, present tense"
+      ]
+    },
+    {
+      "word": "SCHLÄFT",
+      "clues": [
+        "schlafen (to sleep) — er/sie/es, present tense"
+      ]
+    },
+    {
+      "word": "SCHLAFEN",
+      "clues": [
+        "schlafen (to sleep) — wir, present tense",
+        "schlafen (to sleep) — sie/Sie, present tense"
+      ]
+    },
+    {
+      "word": "SCHLAFT",
+      "clues": [
+        "schlafen (to sleep) — ihr, present tense"
+      ]
+    },
+    {
+      "word": "SCHLIEF",
+      "clues": [
+        "schlafen (to sleep) — ich, simple past (Präteritum)"
+      ]
+    },
+    {
+      "word": "GESCHLAFEN",
+      "clues": [
+        "schlafen (to sleep) — past participle"
+      ]
+    },
+    {
+      "word": "TRAGE",
+      "clues": [
+        "tragen (to carry/wear) — ich, present tense"
+      ]
+    },
+    {
+      "word": "TRÄGST",
+      "clues": [
+        "tragen (to carry/wear) — du, present tense"
+      ]
+    },
+    {
+      "word": "TRÄGT",
+      "clues": [
+        "tragen (to carry/wear) — er/sie/es, present tense"
+      ]
+    },
+    {
+      "word": "TRAGEN",
+      "clues": [
+        "tragen (to carry/wear) — wir, present tense",
+        "tragen (to carry/wear) — sie/Sie, present tense"
+      ]
+    },
+    {
+      "word": "TRAGT",
+      "clues": [
+        "tragen (to carry/wear) — ihr, present tense"
+      ]
+    },
+    {
+      "word": "TRUG",
+      "clues": [
+        "tragen (to carry/wear) — ich, simple past (Präteritum)"
+      ]
+    },
+    {
+      "word": "GETRAGEN",
+      "clues": [
+        "tragen (to carry/wear) — past participle"
+      ]
+    },
+    {
+      "word": "WASCHE",
+      "clues": [
+        "waschen (to wash) — ich, present tense"
+      ]
+    },
+    {
+      "word": "WÄSCHST",
+      "clues": [
+        "waschen (to wash) — du, present tense"
+      ]
+    },
+    {
+      "word": "WÄSCHT",
+      "clues": [
+        "waschen (to wash) — er/sie/es, present tense"
+      ]
+    },
+    {
+      "word": "WASCHEN",
+      "clues": [
+        "waschen (to wash) — wir, present tense",
+        "waschen (to wash) — sie/Sie, present tense"
+      ]
+    },
+    {
+      "word": "WASCHT",
+      "clues": [
+        "waschen (to wash) — ihr, present tense"
+      ]
+    },
+    {
+      "word": "WUSCH",
+      "clues": [
+        "waschen (to wash) — ich, simple past (Präteritum)"
+      ]
+    },
+    {
+      "word": "GEWASCHEN",
+      "clues": [
+        "waschen (to wash) — past participle"
+      ]
+    },
+    {
+      "word": "LAUFE",
+      "clues": [
+        "laufen (to run/walk) — ich, present tense"
+      ]
+    },
+    {
+      "word": "LÄUFST",
+      "clues": [
+        "laufen (to run/walk) — du, present tense"
+      ]
+    },
+    {
+      "word": "LÄUFT",
+      "clues": [
+        "laufen (to run/walk) — er/sie/es, present tense"
+      ]
+    },
+    {
+      "word": "LAUFEN",
+      "clues": [
+        "laufen (to run/walk) — wir, present tense",
+        "laufen (to run/walk) — sie/Sie, present tense"
+      ]
+    },
+    {
+      "word": "LAUFT",
+      "clues": [
+        "laufen (to run/walk) — ihr, present tense"
+      ]
+    },
+    {
+      "word": "LIEF",
+      "clues": [
+        "laufen (to run/walk) — ich, simple past (Präteritum)"
+      ]
+    },
+    {
+      "word": "GELAUFEN",
+      "clues": [
+        "laufen (to run/walk) — past participle"
+      ]
+    },
+    {
+      "word": "FANGE",
+      "clues": [
+        "fangen (to catch) — ich, present tense"
+      ]
+    },
+    {
+      "word": "FÄNGST",
+      "clues": [
+        "fangen (to catch) — du, present tense"
+      ]
+    },
+    {
+      "word": "FÄNGT",
+      "clues": [
+        "fangen (to catch) — er/sie/es, present tense"
+      ]
+    },
+    {
+      "word": "FANGEN",
+      "clues": [
+        "fangen (to catch) — wir, present tense",
+        "fangen (to catch) — sie/Sie, present tense"
+      ]
+    },
+    {
+      "word": "FANGT",
+      "clues": [
+        "fangen (to catch) — ihr, present tense"
+      ]
+    },
+    {
+      "word": "FING",
+      "clues": [
+        "fangen (to catch) — ich, simple past (Präteritum)"
+      ]
+    },
+    {
+      "word": "GEFANGEN",
+      "clues": [
+        "fangen (to catch) — past participle"
+      ]
+    },
+    {
+      "word": "HALTE",
+      "clues": [
+        "halten (to hold/stop) — ich, present tense"
+      ]
+    },
+    {
+      "word": "HÄLTST",
+      "clues": [
+        "halten (to hold/stop) — du, present tense"
+      ]
+    },
+    {
+      "word": "HÄLT",
+      "clues": [
+        "halten (to hold/stop) — er/sie/es, present tense"
+      ]
+    },
+    {
+      "word": "HALTEN",
+      "clues": [
+        "halten (to hold/stop) — wir, present tense",
+        "halten (to hold/stop) — sie/Sie, present tense"
+      ]
+    },
+    {
+      "word": "HALTET",
+      "clues": [
+        "halten (to hold/stop) — ihr, present tense"
+      ]
+    },
+    {
+      "word": "HIELT",
+      "clues": [
+        "halten (to hold/stop) — ich, simple past (Präteritum)"
+      ]
+    },
+    {
+      "word": "GEHALTEN",
+      "clues": [
+        "halten (to hold/stop) — past participle"
+      ]
+    },
+    {
+      "word": "LASSE",
+      "clues": [
+        "lassen (to let/leave) — ich, present tense"
+      ]
+    },
+    {
+      "word": "LÄSST",
+      "clues": [
+        "lassen (to let/leave) — du, present tense",
+        "lassen (to let/leave) — er/sie/es, present tense"
+      ]
+    },
+    {
+      "word": "LASSEN",
+      "clues": [
+        "lassen (to let/leave) — wir, present tense",
+        "lassen (to let/leave) — sie/Sie, present tense"
+      ]
+    },
+    {
+      "word": "LASST",
+      "clues": [
+        "lassen (to let/leave) — ihr, present tense"
+      ]
+    },
+    {
+      "word": "LIESS",
+      "clues": [
+        "lassen (to let/leave) — ich, simple past (Präteritum)"
+      ]
+    },
+    {
+      "word": "GELASSEN",
+      "clues": [
+        "lassen (to let/leave) — past participle"
+      ]
+    },
+    {
+      "word": "KOMME",
+      "clues": [
+        "kommen (to come) — ich, present tense"
+      ]
+    },
+    {
+      "word": "KOMMST",
+      "clues": [
+        "kommen (to come) — du, present tense"
+      ]
+    },
+    {
+      "word": "KOMMT",
+      "clues": [
+        "kommen (to come) — er/sie/es, present tense",
+        "kommen (to come) — ihr, present tense"
+      ]
+    },
+    {
+      "word": "KOMMEN",
+      "clues": [
+        "kommen (to come) — wir, present tense",
+        "kommen (to come) — sie/Sie, present tense"
+      ]
+    },
+    {
+      "word": "KAM",
+      "clues": [
+        "kommen (to come) — ich, simple past (Präteritum)"
+      ]
+    },
+    {
+      "word": "GEKOMMEN",
+      "clues": [
+        "kommen (to come) — past participle"
+      ]
+    },
+    {
+      "word": "FINDE",
+      "clues": [
+        "finden (to find) — ich, present tense"
+      ]
+    },
+    {
+      "word": "FINDEST",
+      "clues": [
+        "finden (to find) — du, present tense"
+      ]
+    },
+    {
+      "word": "FINDET",
+      "clues": [
+        "finden (to find) — er/sie/es, present tense",
+        "finden (to find) — ihr, present tense"
+      ]
+    },
+    {
+      "word": "FINDEN",
+      "clues": [
+        "finden (to find) — wir, present tense",
+        "finden (to find) — sie/Sie, present tense"
+      ]
+    },
+    {
+      "word": "FAND",
+      "clues": [
+        "finden (to find) — ich, simple past (Präteritum)"
+      ]
+    },
+    {
+      "word": "GEFUNDEN",
+      "clues": [
+        "finden (to find) — past participle"
+      ]
+    },
+    {
+      "word": "DENKE",
+      "clues": [
+        "denken (to think) — ich, present tense"
+      ]
+    },
+    {
+      "word": "DENKST",
+      "clues": [
+        "denken (to think) — du, present tense"
+      ]
+    },
+    {
+      "word": "DENKT",
+      "clues": [
+        "denken (to think) — er/sie/es, present tense",
+        "denken (to think) — ihr, present tense"
+      ]
+    },
+    {
+      "word": "DENKEN",
+      "clues": [
+        "denken (to think) — wir, present tense",
+        "denken (to think) — sie/Sie, present tense"
+      ]
+    },
+    {
+      "word": "DACHTE",
+      "clues": [
+        "denken (to think) — ich, simple past (Präteritum)"
+      ]
+    },
+    {
+      "word": "GEDACHT",
+      "clues": [
+        "denken (to think) — past participle"
+      ]
+    },
+    {
+      "word": "BRINGE",
+      "clues": [
+        "bringen (to bring) — ich, present tense"
+      ]
+    },
+    {
+      "word": "BRINGST",
+      "clues": [
+        "bringen (to bring) — du, present tense"
+      ]
+    },
+    {
+      "word": "BRINGT",
+      "clues": [
+        "bringen (to bring) — er/sie/es, present tense",
+        "bringen (to bring) — ihr, present tense"
+      ]
+    },
+    {
+      "word": "BRINGEN",
+      "clues": [
+        "bringen (to bring) — wir, present tense",
+        "bringen (to bring) — sie/Sie, present tense"
+      ]
+    },
+    {
+      "word": "BRACHTE",
+      "clues": [
+        "bringen (to bring) — ich, simple past (Präteritum)"
+      ]
+    },
+    {
+      "word": "GEBRACHT",
+      "clues": [
+        "bringen (to bring) — past participle"
+      ]
+    },
+    {
+      "word": "KENNE",
+      "clues": [
+        "kennen (to know (a person/place)) — ich, present tense"
+      ]
+    },
+    {
+      "word": "KENNST",
+      "clues": [
+        "kennen (to know (a person/place)) — du, present tense"
+      ]
+    },
+    {
+      "word": "KENNT",
+      "clues": [
+        "kennen (to know (a person/place)) — er/sie/es, present tense",
+        "kennen (to know (a person/place)) — ihr, present tense"
+      ]
+    },
+    {
+      "word": "KENNEN",
+      "clues": [
+        "kennen (to know (a person/place)) — wir, present tense",
+        "kennen (to know (a person/place)) — sie/Sie, present tense"
+      ]
+    },
+    {
+      "word": "KANNTE",
+      "clues": [
+        "kennen (to know (a person/place)) — ich, simple past (Präteritum)"
+      ]
+    },
+    {
+      "word": "GEKANNT",
+      "clues": [
+        "kennen (to know (a person/place)) — past participle"
+      ]
+    },
+    {
+      "word": "TREFFE",
+      "clues": [
+        "treffen (to meet) — ich, present tense"
+      ]
+    },
+    {
+      "word": "TRIFFST",
+      "clues": [
+        "treffen (to meet) — du, present tense"
+      ]
+    },
+    {
+      "word": "TRIFFT",
+      "clues": [
+        "treffen (to meet) — er/sie/es, present tense"
+      ]
+    },
+    {
+      "word": "TREFFEN",
+      "clues": [
+        "treffen (to meet) — wir, present tense",
+        "treffen (to meet) — sie/Sie, present tense"
+      ]
+    },
+    {
+      "word": "TREFFT",
+      "clues": [
+        "treffen (to meet) — ihr, present tense"
+      ]
+    },
+    {
+      "word": "TRAF",
+      "clues": [
+        "treffen (to meet) — ich, simple past (Präteritum)"
+      ]
+    },
+    {
+      "word": "GETROFFEN",
+      "clues": [
+        "treffen (to meet) — past participle"
+      ]
+    },
+    {
+      "word": "VERGESSE",
+      "clues": [
+        "vergessen (to forget) — ich, present tense"
+      ]
+    },
+    {
+      "word": "VERGISST",
+      "clues": [
+        "vergessen (to forget) — du, present tense",
+        "vergessen (to forget) — er/sie/es, present tense"
+      ]
+    },
+    {
+      "word": "VERGESSEN",
+      "clues": [
+        "vergessen (to forget) — wir, present tense",
+        "vergessen (to forget) — sie/Sie, present tense",
+        "vergessen (to forget) — past participle"
+      ]
+    },
+    {
+      "word": "VERGESST",
+      "clues": [
+        "vergessen (to forget) — ihr, present tense"
+      ]
+    },
+    {
+      "word": "VERGASS",
+      "clues": [
+        "vergessen (to forget) — ich, simple past (Präteritum)"
+      ]
+    },
+    {
+      "word": "VERSTEHE",
+      "clues": [
+        "verstehen (to understand) — ich, present tense"
+      ]
+    },
+    {
+      "word": "VERSTEHST",
+      "clues": [
+        "verstehen (to understand) — du, present tense"
+      ]
+    },
+    {
+      "word": "VERSTEHT",
+      "clues": [
+        "verstehen (to understand) — er/sie/es, present tense",
+        "verstehen (to understand) — ihr, present tense"
+      ]
+    },
+    {
+      "word": "VERSTEHEN",
+      "clues": [
+        "verstehen (to understand) — wir, present tense",
+        "verstehen (to understand) — sie/Sie, present tense"
+      ]
+    },
+    {
+      "word": "VERSTAND",
+      "clues": [
+        "verstehen (to understand) — ich, simple past (Präteritum)"
+      ]
+    },
+    {
+      "word": "VERSTANDEN",
+      "clues": [
+        "verstehen (to understand) — past participle"
+      ]
+    },
+    {
+      "word": "BEGINNE",
+      "clues": [
+        "beginnen (to begin) — ich, present tense"
+      ]
+    },
+    {
+      "word": "BEGINNST",
+      "clues": [
+        "beginnen (to begin) — du, present tense"
+      ]
+    },
+    {
+      "word": "BEGINNT",
+      "clues": [
+        "beginnen (to begin) — er/sie/es, present tense",
+        "beginnen (to begin) — ihr, present tense"
+      ]
+    },
+    {
+      "word": "BEGINNEN",
+      "clues": [
+        "beginnen (to begin) — wir, present tense",
+        "beginnen (to begin) — sie/Sie, present tense"
+      ]
+    },
+    {
+      "word": "BEGANN",
+      "clues": [
+        "beginnen (to begin) — ich, simple past (Präteritum)"
+      ]
+    },
+    {
+      "word": "BEGONNEN",
+      "clues": [
+        "beginnen (to begin) — past participle"
+      ]
+    },
+    {
+      "word": "BLEIBE",
+      "clues": [
+        "bleiben (to stay) — ich, present tense"
+      ]
+    },
+    {
+      "word": "BLEIBST",
+      "clues": [
+        "bleiben (to stay) — du, present tense"
+      ]
+    },
+    {
+      "word": "BLEIBT",
+      "clues": [
+        "bleiben (to stay) — er/sie/es, present tense",
+        "bleiben (to stay) — ihr, present tense"
+      ]
+    },
+    {
+      "word": "BLEIBEN",
+      "clues": [
+        "bleiben (to stay) — wir, present tense",
+        "bleiben (to stay) — sie/Sie, present tense"
+      ]
+    },
+    {
+      "word": "BLIEB",
+      "clues": [
+        "bleiben (to stay) — ich, simple past (Präteritum)"
+      ]
+    },
+    {
+      "word": "GEBLIEBEN",
+      "clues": [
+        "bleiben (to stay) — past participle"
+      ]
+    },
+    {
+      "word": "SCHREIBE",
+      "clues": [
+        "schreiben (to write) — ich, present tense"
+      ]
+    },
+    {
+      "word": "SCHREIBST",
+      "clues": [
+        "schreiben (to write) — du, present tense"
+      ]
+    },
+    {
+      "word": "SCHREIBT",
+      "clues": [
+        "schreiben (to write) — er/sie/es, present tense",
+        "schreiben (to write) — ihr, present tense"
+      ]
+    },
+    {
+      "word": "SCHREIBEN",
+      "clues": [
+        "schreiben (to write) — wir, present tense",
+        "schreiben (to write) — sie/Sie, present tense"
+      ]
+    },
+    {
+      "word": "SCHRIEB",
+      "clues": [
+        "schreiben (to write) — ich, simple past (Präteritum)"
+      ]
+    },
+    {
+      "word": "GESCHRIEBEN",
+      "clues": [
+        "schreiben (to write) — past participle"
+      ]
+    },
+    {
+      "word": "FLIEGE",
+      "clues": [
+        "fliegen (to fly) — ich, present tense"
+      ]
+    },
+    {
+      "word": "FLIEGST",
+      "clues": [
+        "fliegen (to fly) — du, present tense"
+      ]
+    },
+    {
+      "word": "FLIEGT",
+      "clues": [
+        "fliegen (to fly) — er/sie/es, present tense",
+        "fliegen (to fly) — ihr, present tense"
+      ]
+    },
+    {
+      "word": "FLIEGEN",
+      "clues": [
+        "fliegen (to fly) — wir, present tense",
+        "fliegen (to fly) — sie/Sie, present tense"
+      ]
+    },
+    {
+      "word": "FLOG",
+      "clues": [
+        "fliegen (to fly) — ich, simple past (Präteritum)"
+      ]
+    },
+    {
+      "word": "GEFLOGEN",
+      "clues": [
+        "fliegen (to fly) — past participle"
+      ]
+    },
+    {
+      "word": "ZIEHE",
+      "clues": [
+        "ziehen (to pull/move) — ich, present tense"
+      ]
+    },
+    {
+      "word": "ZIEHST",
+      "clues": [
+        "ziehen (to pull/move) — du, present tense"
+      ]
+    },
+    {
+      "word": "ZIEHT",
+      "clues": [
+        "ziehen (to pull/move) — er/sie/es, present tense",
+        "ziehen (to pull/move) — ihr, present tense"
+      ]
+    },
+    {
+      "word": "ZIEHEN",
+      "clues": [
+        "ziehen (to pull/move) — wir, present tense",
+        "ziehen (to pull/move) — sie/Sie, present tense"
+      ]
+    },
+    {
+      "word": "ZOG",
+      "clues": [
+        "ziehen (to pull/move) — ich, simple past (Präteritum)"
+      ]
+    },
+    {
+      "word": "GEZOGEN",
+      "clues": [
+        "ziehen (to pull/move) — past participle"
+      ]
+    },
+    {
+      "word": "GEWINNE",
+      "clues": [
+        "gewinnen (to win) — ich, present tense"
+      ]
+    },
+    {
+      "word": "GEWINNST",
+      "clues": [
+        "gewinnen (to win) — du, present tense"
+      ]
+    },
+    {
+      "word": "GEWINNT",
+      "clues": [
+        "gewinnen (to win) — er/sie/es, present tense",
+        "gewinnen (to win) — ihr, present tense"
+      ]
+    },
+    {
+      "word": "GEWINNEN",
+      "clues": [
+        "gewinnen (to win) — wir, present tense",
+        "gewinnen (to win) — sie/Sie, present tense"
+      ]
+    },
+    {
+      "word": "GEWANN",
+      "clues": [
+        "gewinnen (to win) — ich, simple past (Präteritum)"
+      ]
     }
   ]
 }
