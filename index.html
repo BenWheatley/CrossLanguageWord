@@ -526,7 +526,7 @@
 
   function attemptPlacement(candidates, target){
     const grid = new Map(); // key -> letter
-    const placements = []; // {word, row, col, dir}
+    const placements = []; // {word, row, col, dir, letters}
     const first = candidates[0];
     const firstLetters = graphemes(first.answer);
     for(let i=0;i<firstLetters.length;i++) grid.set(key(0,i), firstLetters[i]);
@@ -534,32 +534,33 @@
 
     let remaining = candidates.slice(1);
 
-    function canPlace(letters, row, col, dir){
+    // Returns the number of crossing letters for this placement, or null if invalid.
+    function evalPlacement(letters, row, col, dir){
       const len = letters.length;
       if(dir === 'across'){
-        if(grid.has(key(row, col-1))) return false;
-        if(grid.has(key(row, col+len))) return false;
+        if(grid.has(key(row, col-1))) return null;
+        if(grid.has(key(row, col+len))) return null;
       } else {
-        if(grid.has(key(row-1, col))) return false;
-        if(grid.has(key(row+len, col))) return false;
+        if(grid.has(key(row-1, col))) return null;
+        if(grid.has(key(row+len, col))) return null;
       }
-      let hasCrossing = false;
+      let crossCount = 0;
       for(let i=0;i<len;i++){
         const r = dir==='across' ? row : row+i;
         const c = dir==='across' ? col+i : col;
         const existing = grid.get(key(r,c));
         if(existing !== undefined){
-          if(existing !== letters[i]) return false;
-          hasCrossing = true;
+          if(existing !== letters[i]) return null;
+          crossCount++;
         } else {
           if(dir === 'across'){
-            if(grid.has(key(r-1,c)) || grid.has(key(r+1,c))) return false;
+            if(grid.has(key(r-1,c)) || grid.has(key(r+1,c))) return null;
           } else {
-            if(grid.has(key(r,c-1)) || grid.has(key(r,c+1))) return false;
+            if(grid.has(key(r,c-1)) || grid.has(key(r,c+1))) return null;
           }
         }
       }
-      return hasCrossing;
+      return crossCount > 0 ? crossCount : null;
     }
 
     function place(letters, row, col, dir){
@@ -576,30 +577,38 @@
       for(let idx=0; idx<remaining.length; idx++){
         const cand = remaining[idx];
         const letters = graphemes(cand.answer);
-        let done = false;
-        // scan existing grid cells for a matching letter to cross through
+        // Scan every existing letter in the grid for a possible crossing, but instead of taking
+        // the first valid spot, keep the one with the most crossing letters (a denser fit).
+        let bestSpot = null; // {row, col, dir, crossCount}
+        const tried = new Set();
         for(const [k, existingLetter] of grid){
-          if(done) break;
           const [rStr,cStr] = k.split(',');
           const r0 = parseInt(rStr,10), c0 = parseInt(cStr,10);
-          for(let i=0;i<letters.length && !done;i++){
+          for(let i=0;i<letters.length;i++){
             if(letters[i] !== existingLetter) continue;
-            // try across: this letter lands at (r0, c0), word start col = c0-i
             const acrossRow = r0, acrossCol = c0-i;
-            if(canPlace(letters, acrossRow, acrossCol, 'across')){
-              place(letters, acrossRow, acrossCol, 'across');
-              placements.push({word:cand, row:acrossRow, col:acrossCol, dir:'across', letters});
-              done = true; break;
+            const aKey = 'A:'+acrossRow+','+acrossCol;
+            if(!tried.has(aKey)){
+              tried.add(aKey);
+              const cc = evalPlacement(letters, acrossRow, acrossCol, 'across');
+              if(cc !== null && (!bestSpot || cc > bestSpot.crossCount)){
+                bestSpot = {row:acrossRow, col:acrossCol, dir:'across', crossCount:cc};
+              }
             }
             const downRow = r0-i, downCol = c0;
-            if(canPlace(letters, downRow, downCol, 'down')){
-              place(letters, downRow, downCol, 'down');
-              placements.push({word:cand, row:downRow, col:downCol, dir:'down', letters});
-              done = true; break;
+            const dKey = 'D:'+downRow+','+downCol;
+            if(!tried.has(dKey)){
+              tried.add(dKey);
+              const cc = evalPlacement(letters, downRow, downCol, 'down');
+              if(cc !== null && (!bestSpot || cc > bestSpot.crossCount)){
+                bestSpot = {row:downRow, col:downCol, dir:'down', crossCount:cc};
+              }
             }
           }
         }
-        if(done){
+        if(bestSpot){
+          place(letters, bestSpot.row, bestSpot.col, bestSpot.dir);
+          placements.push({word:cand, row:bestSpot.row, col:bestSpot.col, dir:bestSpot.dir, letters});
           remaining.splice(idx,1);
           idx--;
           changed = true;
@@ -610,20 +619,63 @@
     return { placements, grid };
   }
 
+  // Counts how many grid cells are shared between an across word and a down word —
+  // a rough measure of how "interlocked" (vs. tree-like/sparse) the puzzle is.
+  function countCrossings(result){
+    const coverage = new Map();
+    for(const p of result.placements){
+      for(let i=0;i<p.letters.length;i++){
+        const r = p.dir==='across' ? p.row : p.row+i;
+        const c = p.dir==='across' ? p.col+i : p.col;
+        const k = key(r,c);
+        coverage.set(k, (coverage.get(k)||0) + 1);
+      }
+    }
+    let crossings = 0;
+    for(const v of coverage.values()) if(v >= 2) crossings++;
+    return crossings;
+  }
+
+  // Builds a candidate pool for one attempt that mirrors a healthy crossword's length
+  // distribution — mostly short/medium words with only a small share of long ones — so long
+  // compound words (common in languages like German) don't dominate the grid or starve it of crossings.
+  const LONG_WORD_THRESHOLD = 9; // letters
+  function pickBalancedPool(bank, target){
+    const shortMed = bank.filter(w => graphemes(w.answer).length <= LONG_WORD_THRESHOLD);
+    const long = bank.filter(w => graphemes(w.answer).length > LONG_WORD_THRESHOLD);
+    let desiredLong = Math.min(Math.floor(target * 0.12), long.length);
+    let desiredShort = target - desiredLong;
+    if(desiredShort > shortMed.length){
+      const deficit = desiredShort - shortMed.length;
+      desiredShort = shortMed.length;
+      desiredLong = Math.min(long.length, desiredLong + deficit);
+    }
+    let pool = shuffle(shortMed).slice(0, desiredShort).concat(shuffle(long).slice(0, desiredLong));
+    // Add reserve short/medium words beyond the target size, so the algorithm has alternatives
+    // to reach for if some of the initially-picked words don't fit well.
+    const already = new Set(pool);
+    const extraNeeded = Math.max(0, Math.round(target * 0.5));
+    const reserve = shuffle(bank.filter(w => !already.has(w) && graphemes(w.answer).length <= LONG_WORD_THRESHOLD)).slice(0, extraNeeded);
+    return pool.concat(reserve);
+  }
+
   function buildCrossword(bank, targetCount){
     const target = Math.min(targetCount, bank.length);
-    let best = null;
-    const attempts = 45;
+    let best = null, bestCrossings = -1;
+    const attempts = 60;
     for(let a=0; a<attempts; a++){
-      let pool = shuffle(bank);
-      // bias toward longer words first for a sturdier scaffold, with randomness preserved among ties
+      let pool = pickBalancedPool(bank, target);
+      pool = shuffle(pool);
+      // among same-length words, order is already randomized above; sorting longest-first here
+      // just gives the greedy placer a sturdier scaffold to start from.
       pool.sort((x,y) => graphemes(y.answer).length - graphemes(x.answer).length);
-      // re-shuffle small groups of equal length to vary structure between attempts
       const result = attemptPlacement(pool, target);
-      if(!best || result.placements.length > best.placements.length){
-        best = result;
-      }
-      if(best.placements.length >= target) break;
+      const crossings = countCrossings(result);
+      const better = !best
+        || result.placements.length > best.placements.length
+        || (result.placements.length === best.placements.length && crossings > bestCrossings);
+      if(better){ best = result; bestCrossings = crossings; }
+      if(best.placements.length >= target && bestCrossings >= target * 1.2) break;
     }
     return best;
   }
