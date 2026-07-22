@@ -114,6 +114,20 @@
     -webkit-appearance:none;
     cursor:pointer;
   }
+  .file-trigger-label{
+    display:inline-block;
+    margin-top:6px;
+    padding:6px 12px;
+    border:1.5px dashed var(--accent);
+    border-radius:4px;
+    font-family:'Inter',sans-serif;
+    font-weight:600;
+    font-size:12.5px;
+    color:var(--accent);
+    cursor:pointer;
+    background:#eef3f6;
+  }
+  .file-trigger-label:hover{ background:#e2ecf1; }
   input[type="number"]{
     width:80px;
     padding:7px 8px;
@@ -229,26 +243,63 @@
     100%{ transform:scale(1); background:var(--highlight-word); box-shadow:none; }
   }
 
-  #successToast{
-    position:absolute;
-    top:-14px;
-    left:50%;
-    transform:translate(-50%,-100%);
-    background:var(--ink);
-    color:var(--accent-ink);
-    font-family:'IBM Plex Mono',monospace;
-    font-size:13px;
-    padding:9px 16px;
-    border-radius:5px;
-    white-space:nowrap;
+  #celebrateOverlay{
+    position:fixed;
+    inset:0;
+    background:rgba(20,18,14,0.55);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:100;
     opacity:0;
-    pointer-events:none;
-    transition:opacity .35s ease, transform .35s ease;
-    z-index:30;
+    transition:opacity .25s ease;
   }
-  #successToast.show{
+  #celebrateOverlay.show{ display:flex; opacity:1; }
+  #fireworksCanvas{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+  }
+  #celebrateCard{
+    position:relative;
+    background:var(--panel);
+    border-radius:10px;
+    padding:32px 40px;
+    text-align:center;
+    box-shadow:0 20px 60px rgba(0,0,0,0.45);
+    transform:scale(0.85) translateY(10px);
+    opacity:0;
+    transition:transform .35s cubic-bezier(.2,1.4,.4,1), opacity .3s ease;
+  }
+  #celebrateOverlay.show #celebrateCard{
+    transform:scale(1) translateY(0);
     opacity:1;
-    transform:translate(-50%,0);
+  }
+  #celebrateHeadline{
+    font-family:'Fraunces',serif;
+    font-weight:700;
+    font-size:32px;
+    color:var(--ink);
+  }
+  #celebrateTime{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:44px;
+    font-weight:600;
+    color:var(--highlight-cell-border);
+    margin:6px 0 2px;
+  }
+  #celebrateSub{
+    font-family:'IBM Plex Mono',monospace;
+    font-size:12.5px;
+    color:var(--ink-soft);
+    min-height:16px;
+    margin-bottom:18px;
+  }
+  #celebrateActions{
+    display:flex;
+    gap:10px;
+    justify-content:center;
   }
 
   #dirPopup{
@@ -320,16 +371,57 @@
   }
 
   @media print{
+    *{ -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; color-adjust:exact !important; }
     body{background:#fff;}
     .no-print{display:none !important;}
     .wrap{max-width:none;padding:0;margin:0;}
     header.app-head{border-bottom:2px solid #000;margin-bottom:14px;}
     .board-area{display:block;}
     #gridHost{margin-bottom:20px;}
-    .cell input{color:transparent;}
-    body.print-answers .cell input{color:#000;}
-    .cell.in-word input, .cell.active input{background:transparent;box-shadow:none;}
-    .clues{display:flex;gap:30px;}
+    #grid{ background:transparent; border:2px solid #000; gap:0; }
+    .cell{ width:26px; height:26px; background:#fff; border:1px solid #000; }
+    .cell.block{ background:#000 !important; }
+    .cell .num{ color:#000; font-size:8px; }
+    .cell input{ color:transparent; font-size:13px; }
+    body.print-answers .cell input{ color:#000; }
+    .cell.in-word input, .cell.active input{ background:transparent; box-shadow:none; }
+    .clues{ display:flex; gap:30px; }
+    .clue-list{ font-size:11px; }
+    #printAnswerKey{ display:block !important; }
+  }
+
+  #printAnswerKey{ display:none; }
+  @media print{
+    #printAnswerKey{
+      margin-top:30px;
+      padding-top:12px;
+      border-top:1px dashed #ccc;
+      transform:rotate(180deg);
+      page-break-inside:avoid;
+    }
+    #printAnswerKey .key-heading{
+      font-family:'IBM Plex Mono',monospace;
+      font-size:8px;
+      color:#c9c2b2;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      text-align:center;
+      margin-bottom:6px;
+    }
+    #printAnswerKey .key-cols{
+      display:flex;
+      justify-content:center;
+      gap:26px;
+    }
+    #printAnswerKey ol{
+      list-style:none;
+      margin:0;
+      padding:0;
+      font-family:'IBM Plex Mono',monospace;
+      font-size:7.5px;
+      line-height:1.6;
+      color:#c9c2b2;
+    }
   }
 
   @media (max-width:640px){
@@ -357,6 +449,7 @@
         <option value="german">Deutsch B1</option>
       </select>
       <input type="file" id="fileInput" accept="application/json,.json" class="visually-hidden">
+      <label for="fileInput" id="fileTriggerLabel" class="file-trigger-label" style="display:none;">Choose file…</label>
     </div>
     <div class="field">
       <label for="wordCount">Words in puzzle</label>
@@ -374,7 +467,6 @@
 
   <div class="board-area">
     <div id="gridHost">
-      <div id="successToast" class="no-print">✓ All words are correct</div>
       <div id="grid"></div>
       <div id="dirPopup">
         <button data-dir="across">→ Across</button>
@@ -389,6 +481,27 @@
       <div class="clue-col">
         <h2>Down</h2>
         <ul class="clue-list" id="downList"></ul>
+      </div>
+    </div>
+  </div>
+
+  <div id="printAnswerKey">
+    <div class="key-heading">Answer key (flip the page)</div>
+    <div class="key-cols">
+      <ol id="printAnswerAcross"></ol>
+      <ol id="printAnswerDown"></ol>
+    </div>
+  </div>
+
+  <div id="celebrateOverlay" class="no-print">
+    <canvas id="fireworksCanvas"></canvas>
+    <div id="celebrateCard">
+      <div id="celebrateHeadline">Solved!</div>
+      <div id="celebrateTime">0:00</div>
+      <div id="celebrateSub"></div>
+      <div id="celebrateActions">
+        <button id="celebrateNewBtn">New puzzle</button>
+        <button id="celebrateCloseBtn" class="secondary">Keep looking at it</button>
       </div>
     </div>
   </div>
@@ -412,10 +525,18 @@
   let currentDir = 'across';
   let currentWordKey = null; // e.g. "across-3"
   let celebrated = false;
+  let puzzleStartTime = null;
+  let bestTimeSeconds = null; // best solve time this session (not persisted)
 
   const fileInput = document.getElementById('fileInput');
   const wordListSelect = document.getElementById('wordListSelect');
-  const successToast = document.getElementById('successToast');
+  const fileTriggerLabel = document.getElementById('fileTriggerLabel');
+  const celebrateOverlay = document.getElementById('celebrateOverlay');
+  const celebrateTime = document.getElementById('celebrateTime');
+  const celebrateSub = document.getElementById('celebrateSub');
+  const celebrateNewBtn = document.getElementById('celebrateNewBtn');
+  const celebrateCloseBtn = document.getElementById('celebrateCloseBtn');
+  const fireworksCanvas = document.getElementById('fireworksCanvas');
   const wordCountInput = document.getElementById('wordCount');
   const generateBtn = document.getElementById('generateBtn');
   const regenBtn = document.getElementById('regenBtn');
@@ -448,9 +569,15 @@
     const v = wordListSelect.value;
     if(v === 'load'){
       wordListSelect.value = '';
-      fileInput.click();
+      // Try opening the picker directly (works instantly in Chrome/Firefox). Safari doesn't
+      // reliably honor .click() on a file input triggered from a <select>'s change event, so
+      // we also reveal a real <label for="fileInput"> button as a guaranteed-to-work fallback —
+      // a genuine label click always opens the native file picker, in every browser.
+      try{ fileInput.click(); }catch(e){ /* ignore */ }
+      fileTriggerLabel.style.display = 'inline-block';
       return;
     }
+    fileTriggerLabel.style.display = 'none';
     if(v === 'english') fetchWordList('example.json', 'English');
     else if(v === 'german') fetchWordList('german.json', 'Deutsch B1');
   });
@@ -466,6 +593,7 @@
   }
 
   fileInput.addEventListener('change', function(e){
+    fileTriggerLabel.style.display = 'none';
     const file = e.target.files[0];
     if(!file) return;
     const reader = new FileReader();
@@ -727,7 +855,6 @@
   function renderGrid(built, numbering){
     celebrated = false;
     gridEl.classList.remove('solved');
-    successToast.classList.remove('show');
     rows = built.rows; cols = built.cols;
     gridData = built.grid;
     placedWords = numbering.placements.sort((a,b) => a.number-b.number || (a.dir>b.dir?1:-1));
@@ -808,6 +935,19 @@
       li.addEventListener('click', () => selectWord(w.dir, w.number, true));
       (w.dir==='across' ? acrossListEl : downListEl).appendChild(li);
     }
+    renderPrintAnswerKey();
+  }
+
+  function renderPrintAnswerKey(){
+    const acrossEl = document.getElementById('printAnswerAcross');
+    const downEl = document.getElementById('printAnswerDown');
+    acrossEl.innerHTML = '';
+    downEl.innerHTML = '';
+    for(const w of placedWords){
+      const li = document.createElement('li');
+      li.textContent = w.number + '. ' + w.answer;
+      (w.dir==='across' ? acrossEl : downEl).appendChild(li);
+    }
   }
 
   // ---------- interaction ----------
@@ -844,7 +984,7 @@
       cellEls[r][c].wrap.classList.add('in-word');
     }
     const li = document.querySelector(`.clue-list li[data-wid="${wid}"]`);
-    if(li){ li.classList.add('active'); li.scrollIntoView({block:'nearest'}); }
+    if(li){ li.classList.add('active'); if(typeof li.scrollIntoView === 'function') li.scrollIntoView({block:'nearest'}); }
   }
 
   function focusCell(r,c,dir){
@@ -975,18 +1115,146 @@
       if(!celebrated){
         celebrated = true;
         gridEl.classList.remove('solved');
-        void gridEl.offsetWidth; // force reflow so the animation can replay
+        void gridEl.offsetWidth; // force reflow so the pop animation can replay
         gridEl.classList.add('solved');
-        successToast.classList.add('show');
-        clearTimeout(checkAndCelebrate._t);
-        checkAndCelebrate._t = setTimeout(() => successToast.classList.remove('show'), 3200);
+        openCelebration();
       }
     } else if(celebrated){
       celebrated = false;
       gridEl.classList.remove('solved');
-      successToast.classList.remove('show');
     }
   }
+
+  function formatTime(totalSeconds){
+    const m = Math.floor(totalSeconds / 60);
+    const s = totalSeconds % 60;
+    return m + ':' + String(s).padStart(2,'0');
+  }
+
+  function openCelebration(){
+    const elapsedSeconds = puzzleStartTime ? Math.max(0, Math.round((Date.now() - puzzleStartTime)/1000)) : 0;
+    celebrateTime.textContent = formatTime(elapsedSeconds);
+    let sub = '';
+    if(bestTimeSeconds === null || elapsedSeconds < bestTimeSeconds){
+      if(bestTimeSeconds !== null) sub = 'New best — previously ' + formatTime(bestTimeSeconds);
+      bestTimeSeconds = elapsedSeconds;
+    } else {
+      sub = 'Best this session: ' + formatTime(bestTimeSeconds);
+    }
+    celebrateSub.textContent = sub;
+    celebrateOverlay.classList.add('show');
+    startFireworks();
+  }
+
+  function closeCelebration(){
+    celebrateOverlay.classList.remove('show');
+    stopFireworks();
+  }
+
+  // ---------- fireworks (small canvas particle system, no external libs) ----------
+  let fwCtx = null, fwRAF = null, fwParticles = [], fwRockets = [], fwLastLaunch = 0, fwRunning = false;
+  const FW_COLORS = ['#F3C13B','#3B6E8F','#C1440E','#5B8A3A','#B24C9E','#E0574C'];
+
+  function fwResize(){
+    fireworksCanvas.width = fireworksCanvas.clientWidth * devicePixelRatio;
+    fireworksCanvas.height = fireworksCanvas.clientHeight * devicePixelRatio;
+  }
+
+  function fwLaunchRocket(){
+    const w = fireworksCanvas.clientWidth, h = fireworksCanvas.clientHeight;
+    fwRockets.push({
+      x: w * (0.2 + Math.random()*0.6),
+      y: h,
+      targetY: h * (0.15 + Math.random()*0.35),
+      vy: -(h*0.012 + Math.random()*3),
+      color: FW_COLORS[Math.floor(Math.random()*FW_COLORS.length)]
+    });
+  }
+
+  function fwExplode(x, y, color){
+    const count = 34 + Math.floor(Math.random()*14);
+    for(let i=0;i<count;i++){
+      const angle = (Math.PI*2*i/count) + Math.random()*0.3;
+      const speed = 1.6 + Math.random()*3.2;
+      fwParticles.push({
+        x, y,
+        vx: Math.cos(angle)*speed,
+        vy: Math.sin(angle)*speed,
+        life: 1,
+        decay: 0.012 + Math.random()*0.014,
+        color
+      });
+    }
+  }
+
+  function fwStep(){
+    if(!fwRunning) return;
+    const w = fireworksCanvas.clientWidth, h = fireworksCanvas.clientHeight;
+    fwCtx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);
+    fwCtx.clearRect(0,0,w,h);
+
+    const now = performance.now();
+    if(now - fwLastLaunch > 480 && fwRockets.length < 4){
+      fwLaunchRocket();
+      fwLastLaunch = now;
+    }
+
+    for(let i=fwRockets.length-1;i>=0;i--){
+      const r = fwRockets[i];
+      r.y += r.vy;
+      r.vy += 0.05;
+      fwCtx.beginPath();
+      fwCtx.arc(r.x, r.y, 2.2, 0, Math.PI*2);
+      fwCtx.fillStyle = r.color;
+      fwCtx.fill();
+      if(r.vy >= 0 || r.y <= r.targetY){
+        fwExplode(r.x, r.y, r.color);
+        fwRockets.splice(i,1);
+      }
+    }
+
+    for(let i=fwParticles.length-1;i>=0;i--){
+      const p = fwParticles[i];
+      p.x += p.vx;
+      p.y += p.vy;
+      p.vy += 0.045;
+      p.vx *= 0.985;
+      p.life -= p.decay;
+      if(p.life <= 0){ fwParticles.splice(i,1); continue; }
+      fwCtx.globalAlpha = Math.max(0, p.life);
+      fwCtx.beginPath();
+      fwCtx.arc(p.x, p.y, 2.4, 0, Math.PI*2);
+      fwCtx.fillStyle = p.color;
+      fwCtx.fill();
+      fwCtx.globalAlpha = 1;
+    }
+
+    fwRAF = requestAnimationFrame(fwStep);
+  }
+
+  function startFireworks(){
+    if(!fwCtx) fwCtx = fireworksCanvas.getContext('2d');
+    fwResize();
+    fwParticles = [];
+    fwRockets = [];
+    fwLastLaunch = 0;
+    fwRunning = true;
+    fwLaunchRocket();
+    if(fwRAF) cancelAnimationFrame(fwRAF);
+    fwStep();
+    clearTimeout(startFireworks._stopTimer);
+    startFireworks._stopTimer = setTimeout(() => { fwRunning = false; }, 4200);
+  }
+
+  function stopFireworks(){
+    fwRunning = false;
+    if(fwRAF) cancelAnimationFrame(fwRAF);
+    fwParticles = [];
+    fwRockets = [];
+    if(fwCtx) fwCtx.clearRect(0,0,fireworksCanvas.width,fireworksCanvas.height);
+  }
+
+  window.addEventListener('resize', () => { if(celebrateOverlay.classList.contains('show')) fwResize(); });
 
   function onKeyDown(e,r,c){
     const cell = cellAt(r,c);
@@ -1019,10 +1287,12 @@
   function generate(){
     const n = Math.max(2, Math.min(parseInt(wordCountInput.value,10)||2, wordBank.length));
     setStatus('Building puzzle…');
+    closeCelebration();
     const result = buildCrossword(wordBank, n);
     const built = trimAndIndex(result);
     const numbering = numberGrid(built);
     renderGrid(built, numbering);
+    puzzleStartTime = Date.now();
     regenBtn.disabled = false;
     printBtn.disabled = false;
     if(numbering.placements.length < n){
@@ -1038,6 +1308,9 @@
   printAnswersCk.addEventListener('change', () => {
     document.body.classList.toggle('print-answers', printAnswersCk.checked);
   });
+  celebrateNewBtn.addEventListener('click', generate);
+  celebrateCloseBtn.addEventListener('click', closeCelebration);
+  celebrateOverlay.addEventListener('click', (e) => { if(e.target === celebrateOverlay) closeCelebration(); });
 
 })();
 </script>
