@@ -189,7 +189,9 @@
     flex:0 0 auto;
   }
   #grid{
+    --cell-size:38px;
     display:grid;
+    grid-template-columns: repeat(var(--cols), var(--cell-size));
     border:2px solid var(--ink);
     background:var(--ink);
     gap:1px;
@@ -197,8 +199,8 @@
   }
   .cell{
     position:relative;
-    width:38px;
-    height:38px;
+    width:var(--cell-size);
+    height:var(--cell-size);
     background:var(--panel);
   }
   .cell.block{
@@ -376,10 +378,11 @@
     .no-print{display:none !important;}
     .wrap{max-width:none;padding:0;margin:0;}
     header.app-head{border-bottom:2px solid #000;margin-bottom:14px;}
+    #pageTagline{display:none;}
     .board-area{display:block;}
-    #gridHost{margin-bottom:20px;}
-    #grid{ background:transparent; border:2px solid #000; gap:0; }
-    .cell{ width:26px; height:26px; background:#fff; border:1px solid #000; }
+    #gridHost{margin:0 auto 20px; width:max-content;}
+    #grid{ --cell-size:26px; background:transparent; border:2px solid #000; gap:0; }
+    .cell{ background:#fff; border:1px solid #000; }
     .cell.block{ background:#000 !important; }
     .cell .num{ color:#000; font-size:8px; }
     .cell input{ color:transparent; font-size:13px; }
@@ -387,6 +390,7 @@
     .cell.in-word input, .cell.active input{ background:transparent; box-shadow:none; }
     .clues{ display:flex; gap:30px; }
     .clue-list{ font-size:11px; }
+    .clue-list li.active{ background:transparent; }
     #printAnswerKey{ display:block !important; }
   }
 
@@ -425,7 +429,7 @@
   }
 
   @media (max-width:640px){
-    .cell{width:30px;height:30px;}
+    #grid{ --cell-size:30px; }
     .cell input{font-size:14px;}
   }
 </style>
@@ -455,8 +459,7 @@
       <label for="wordCount">Words in puzzle</label>
       <input type="number" id="wordCount" min="2" value="15">
     </div>
-    <button id="generateBtn" disabled>Generate puzzle</button>
-    <button id="regenBtn" class="secondary" disabled>Shuffle layout</button>
+    <button id="generateBtn" disabled>New crossword</button>
     <button id="printBtn" class="secondary" disabled>Print</button>
     <label class="check-field">
       <input type="checkbox" id="printAnswers"> print filled answers
@@ -539,7 +542,6 @@
   const fireworksCanvas = document.getElementById('fireworksCanvas');
   const wordCountInput = document.getElementById('wordCount');
   const generateBtn = document.getElementById('generateBtn');
-  const regenBtn = document.getElementById('regenBtn');
   const printBtn = document.getElementById('printBtn');
   const printAnswersCk = document.getElementById('printAnswers');
   const statusEl = document.getElementById('status');
@@ -638,6 +640,7 @@
     if(Number(wordCountInput.value) > wordBank.length) wordCountInput.value = wordBank.length;
     generateBtn.disabled = false;
     setStatus('');
+    generate();
   }
 
   // ---------- crossword generation ----------
@@ -749,21 +752,6 @@
 
   // Counts how many grid cells are shared between an across word and a down word —
   // a rough measure of how "interlocked" (vs. tree-like/sparse) the puzzle is.
-  function countCrossings(result){
-    const coverage = new Map();
-    for(const p of result.placements){
-      for(let i=0;i<p.letters.length;i++){
-        const r = p.dir==='across' ? p.row : p.row+i;
-        const c = p.dir==='across' ? p.col+i : p.col;
-        const k = key(r,c);
-        coverage.set(k, (coverage.get(k)||0) + 1);
-      }
-    }
-    let crossings = 0;
-    for(const v of coverage.values()) if(v >= 2) crossings++;
-    return crossings;
-  }
-
   // Builds a candidate pool for one attempt that mirrors a healthy crossword's length
   // distribution — mostly short/medium words with only a small share of long ones — so long
   // compound words (common in languages like German) don't dominate the grid or starve it of crossings.
@@ -787,10 +775,24 @@
     return pool.concat(reserve);
   }
 
+  // Shared bounding-box calculation, used both to size the final grid and to compare
+  // candidate layouts by area.
+  function computeBounds(placements){
+    let minR=Infinity, minC=Infinity, maxR=-Infinity, maxC=-Infinity;
+    for(const p of placements){
+      const len = p.letters.length;
+      const endR = p.dir==='down' ? p.row+len-1 : p.row;
+      const endC = p.dir==='across' ? p.col+len-1 : p.col;
+      minR = Math.min(minR, p.row); maxR = Math.max(maxR, endR);
+      minC = Math.min(minC, p.col); maxC = Math.max(maxC, endC);
+    }
+    return { minR, minC, rows: maxR-minR+1, cols: maxC-minC+1 };
+  }
+
   function buildCrossword(bank, targetCount){
     const target = Math.min(targetCount, bank.length);
-    let best = null, bestCrossings = -1;
-    const attempts = 60;
+    const attempts = 10;
+    let best = null, bestArea = Infinity, bestPlacedCount = -1;
     for(let a=0; a<attempts; a++){
       let pool = pickBalancedPool(bank, target);
       pool = shuffle(pool);
@@ -798,26 +800,21 @@
       // just gives the greedy placer a sturdier scaffold to start from.
       pool.sort((x,y) => graphemes(y.answer).length - graphemes(x.answer).length);
       const result = attemptPlacement(pool, target);
-      const crossings = countCrossings(result);
+      const bounds = computeBounds(result.placements);
+      const area = bounds.rows * bounds.cols;
+      const placedCount = result.placements.length;
+      // Prefer placing as many of the requested words as possible; among candidates that tie
+      // on word count, prefer the smallest (most compact) grid.
       const better = !best
-        || result.placements.length > best.placements.length
-        || (result.placements.length === best.placements.length && crossings > bestCrossings);
-      if(better){ best = result; bestCrossings = crossings; }
-      if(best.placements.length >= target && bestCrossings >= target * 1.2) break;
+        || placedCount > bestPlacedCount
+        || (placedCount === bestPlacedCount && area < bestArea);
+      if(better){ best = result; bestArea = area; bestPlacedCount = placedCount; }
     }
     return best;
   }
 
   function trimAndIndex(result){
-    let minR=Infinity, minC=Infinity, maxR=-Infinity, maxC=-Infinity;
-    for(const p of result.placements){
-      const len = p.letters.length;
-      const endR = p.dir==='down' ? p.row+len-1 : p.row;
-      const endC = p.dir==='across' ? p.col+len-1 : p.col;
-      minR = Math.min(minR, p.row); maxR = Math.max(maxR, endR);
-      minC = Math.min(minC, p.col); maxC = Math.max(maxC, endC);
-    }
-    const R = maxR-minR+1, C = maxC-minC+1;
+    const { minR, minC, rows: R, cols: C } = computeBounds(result.placements);
     const g = [];
     for(let r=0;r<R;r++){ g.push(new Array(C).fill(null)); }
     for(const [k, letter] of result.grid){
@@ -859,7 +856,7 @@
     gridData = built.grid;
     placedWords = numbering.placements.sort((a,b) => a.number-b.number || (a.dir>b.dir?1:-1));
 
-    gridEl.style.gridTemplateColumns = `repeat(${cols}, 38px)`;
+    gridEl.style.setProperty('--cols', cols);
     gridEl.innerHTML = '';
     cellEls = [];
     for(let r=0;r<rows;r++){
@@ -1283,8 +1280,12 @@
     }
   }
 
-  // ---------- generate / regenerate ----------
+  // ---------- generate ----------
   function generate(){
+    if(!wordBank.length){
+      setStatus('Load a word list first.', true);
+      return;
+    }
     const n = Math.max(2, Math.min(parseInt(wordCountInput.value,10)||2, wordBank.length));
     setStatus('Building puzzle…');
     closeCelebration();
@@ -1293,17 +1294,15 @@
     const numbering = numberGrid(built);
     renderGrid(built, numbering);
     puzzleStartTime = Date.now();
-    regenBtn.disabled = false;
     printBtn.disabled = false;
     if(numbering.placements.length < n){
-      setStatus(`Placed ${numbering.placements.length} of ${n} requested words (the rest didn't fit this layout). Try "Shuffle layout" for another attempt.`, true);
+      setStatus(`Placed ${numbering.placements.length} of ${n} requested words (the rest didn't fit this layout). Click "New crossword" for another attempt.`, true);
     } else {
       setStatus(`Placed all ${numbering.placements.length} words.`);
     }
   }
 
   generateBtn.addEventListener('click', generate);
-  regenBtn.addEventListener('click', generate);
   printBtn.addEventListener('click', () => window.print());
   printAnswersCk.addEventListener('change', () => {
     document.body.classList.toggle('print-answers', printAnswersCk.checked);
@@ -1311,6 +1310,25 @@
   celebrateNewBtn.addEventListener('click', generate);
   celebrateCloseBtn.addEventListener('click', closeCelebration);
   celebrateOverlay.addEventListener('click', (e) => { if(e.target === celebrateOverlay) closeCelebration(); });
+
+  // Regenerate automatically whenever the requested word count changes (a new list already
+  // triggers generation itself, from within loadWordBank).
+  wordCountInput.addEventListener('change', () => { if(wordBank.length) generate(); });
+
+  // ---------- initial load: read ?list= and ?words= from the URL so the page is never blank ----------
+  (function initFromUrl(){
+    const params = new URLSearchParams(window.location.search);
+    const listParam = params.get('list');
+    const wordsParam = parseInt(params.get('words'), 10);
+
+    const list = (listParam === 'english' || listParam === 'german') ? listParam : 'german';
+    const words = (Number.isFinite(wordsParam) && wordsParam >= 2) ? wordsParam : 15;
+
+    wordCountInput.value = words;
+    wordListSelect.value = list;
+    if(list === 'english') fetchWordList('example.json', 'English');
+    else fetchWordList('german.json', 'Deutsch B1');
+  })();
 
 })();
 </script>
