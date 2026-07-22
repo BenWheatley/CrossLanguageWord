@@ -91,6 +91,15 @@
     font-family:'Inter',sans-serif;
     font-size:13.5px;
   }
+  .visually-hidden{
+    position:absolute;
+    width:1px;height:1px;
+    padding:0;margin:-1px;
+    overflow:hidden;
+    clip:rect(0,0,0,0);
+    white-space:nowrap;
+    border:0;
+  }
   select#wordListSelect{
     padding:7px 30px 7px 10px;
     border:1.5px solid var(--ink);
@@ -347,7 +356,7 @@
         <option value="english">English</option>
         <option value="german">Deutsch B1</option>
       </select>
-      <input type="file" id="fileInput" accept="application/json,.json" style="display:none">
+      <input type="file" id="fileInput" accept="application/json,.json" class="visually-hidden">
     </div>
     <div class="field">
       <label for="wordCount">Words in puzzle</label>
