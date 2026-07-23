@@ -791,26 +791,39 @@
 
   function buildCrossword(bank, targetCount){
     const target = Math.min(targetCount, bank.length);
-    const attempts = 10;
-    let best = null, bestArea = Infinity, bestPlacedCount = -1;
-    for(let a=0; a<attempts; a++){
-      let pool = pickBalancedPool(bank, target);
+    let candidates = []; // {result, placedCount, area}
+
+    function tryAttempt(pool){
       pool = shuffle(pool);
       // among same-length words, order is already randomized above; sorting longest-first here
       // just gives the greedy placer a sturdier scaffold to start from.
       pool.sort((x,y) => graphemes(y.answer).length - graphemes(x.answer).length);
       const result = attemptPlacement(pool, target);
       const bounds = computeBounds(result.placements);
-      const area = bounds.rows * bounds.cols;
-      const placedCount = result.placements.length;
-      // Prefer placing as many of the requested words as possible; among candidates that tie
-      // on word count, prefer the smallest (most compact) grid.
-      const better = !best
-        || placedCount > bestPlacedCount
-        || (placedCount === bestPlacedCount && area < bestArea);
-      if(better){ best = result; bestArea = area; bestPlacedCount = placedCount; }
+      candidates.push({ result, placedCount: result.placements.length, area: bounds.rows*bounds.cols });
+      return result.placements.length >= target;
     }
-    return best;
+
+    // Phase 1: length-balanced pool, purely for a nicer-looking grid (avoids long compound
+    // words dominating). This is the common case and usually reaches the full requested count.
+    let reachedTarget = false;
+    for(let a=0; a<10; a++){
+      if(tryAttempt(pickBalancedPool(bank, target))) reachedTarget = true;
+    }
+
+    // Phase 2: guaranteed fallback. If the balanced pool couldn't fit every requested word,
+    // hitting the actual requested count matters more than the length aesthetic, so retry using
+    // every word in the bank (no restriction) until we succeed — the full bank always has at
+    // least as much crossing potential as any restricted subset of it.
+    if(!reachedTarget){
+      let successes = 0;
+      for(let a=0; a<40 && successes<5; a++){
+        if(tryAttempt(bank.slice())) successes++;
+      }
+    }
+
+    candidates.sort((a,b) => b.placedCount - a.placedCount || a.area - b.area);
+    return candidates[0].result;
   }
 
   function trimAndIndex(result){
