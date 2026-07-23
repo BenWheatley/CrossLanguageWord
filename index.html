@@ -455,6 +455,7 @@
         <option value="load">Load…</option>
         <option value="english">English</option>
         <option value="german">Deutsch B1</option>
+        <option value="german_a2">Deutsch A2</option>
       </select>
       <input type="file" id="fileInput" accept="application/json,.json" class="visually-hidden">
       <label for="fileInput" id="fileTriggerLabel" class="file-trigger-label" style="display:none;">Choose file…</label>
@@ -589,6 +590,7 @@
     fileTriggerLabel.style.display = 'none';
     if(v === 'english'){ currentListId = 'english'; fetchWordList('example.json', 'English'); }
     else if(v === 'german'){ currentListId = 'german'; fetchWordList('german.json', 'Deutsch B1'); }
+    else if(v === 'german_a2'){ currentListId = 'german_a2'; fetchWordList('Deutsch-A2.json', 'Deutsch A2'); }
   });
 
   function fetchWordList(path, label){
@@ -930,7 +932,18 @@
         const cell = cellEls[r][c];
         if(!cell) continue;
         cell.input.addEventListener('mousedown', () => onCellMouseDown(r,c));
-        cell.input.addEventListener('keydown', (e) => onKeyDown(e,r,c));
+        cell.input.addEventListener('keydown', (e) => {
+          cell.input.dataset.keyDown = 'true';
+          onKeyDown(e,r,c);
+        });
+        cell.input.addEventListener('keyup', () => {
+          cell.input.dataset.keyDown = 'false';
+          if(cell.input.dataset.pendingAdvance === 'true'){
+            cell.input.dataset.pendingAdvance = 'false';
+            clearTimeout(cell.input._advanceFallback);
+            advanceAfterInput(r,c);
+          }
+        });
         // Composing (dead-key accents like ¨+u→ü, or IME input) fires interim 'input' events
         // mid-sequence. If we react to those immediately and advance focus, the composition gets
         // cut short — the diacritic ends up stranded in the cell it started in. So: ignore 'input'
@@ -1121,7 +1134,28 @@
     const ch = g.length ? toUpperGrapheme(g[g.length-1]) : '';
     cell.input.value = ch;
     cell.wrap.classList.remove('check-correct', 'check-incorrect');
-    if(ch) advanceAfterInput(r,c);
+    if(ch){
+      if(cell.input.dataset.keyDown === 'true'){
+        // The key that produced this character is still physically held down. On macOS (and
+        // some mobile keyboards), holding a letter key opens a native accent-variant popup
+        // (e.g. holding "u" offers ü/ú/ù...) that doesn't fire composition events, so we can't
+        // detect it that way. If we advance focus immediately, that popup ends up targeting the
+        // wrong cell once a variant is picked. Instead, wait for the key to actually be released
+        // (see the 'keyup' listener) before moving on — for a normal quick tap this resolves
+        // almost instantly, so it isn't noticeable, but it gives a held key (and any popup
+        // interaction that follows) room to finish in the cell it started in.
+        cell.input.dataset.pendingAdvance = 'true';
+        clearTimeout(cell.input._advanceFallback);
+        cell.input._advanceFallback = setTimeout(() => {
+          if(cell.input.dataset.pendingAdvance === 'true'){
+            cell.input.dataset.pendingAdvance = 'false';
+            advanceAfterInput(r,c);
+          }
+        }, 1200); // safety net in case keyup never arrives for some reason
+      } else {
+        advanceAfterInput(r,c);
+      }
+    }
     checkAndCelebrate();
   }
 
@@ -1391,13 +1425,15 @@
     const listParam = params.get('list');
     const wordsParam = parseInt(params.get('words'), 10);
 
-    const list = (listParam === 'english' || listParam === 'german') ? listParam : 'german';
+    const validLists = ['english', 'german', 'german_a2'];
+    const list = validLists.includes(listParam) ? listParam : 'german';
     const words = (Number.isFinite(wordsParam) && wordsParam >= 2) ? wordsParam : 15;
 
     wordCountInput.value = words;
     wordListSelect.value = list;
     currentListId = list;
     if(list === 'english') fetchWordList('example.json', 'English');
+    else if(list === 'german_a2') fetchWordList('Deutsch-A2.json', 'Deutsch A2');
     else fetchWordList('german.json', 'Deutsch B1');
   })();
 
