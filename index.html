@@ -931,7 +931,16 @@
         if(!cell) continue;
         cell.input.addEventListener('mousedown', () => onCellMouseDown(r,c));
         cell.input.addEventListener('keydown', (e) => onKeyDown(e,r,c));
-        cell.input.addEventListener('input', (e) => onInput(e,r,c));
+        // Composing (dead-key accents like ¨+u→ü, or IME input) fires interim 'input' events
+        // mid-sequence. If we react to those immediately and advance focus, the composition gets
+        // cut short — the diacritic ends up stranded in the cell it started in. So: ignore 'input'
+        // events while composing, and only process the result once composition actually finishes.
+        cell.input.addEventListener('compositionstart', () => { cell.input.dataset.composing = 'true'; });
+        cell.input.addEventListener('compositionend', (e) => { cell.input.dataset.composing = 'false'; onInput(e,r,c); });
+        cell.input.addEventListener('input', (e) => {
+          if(cell.input.dataset.composing === 'true') return;
+          onInput(e,r,c);
+        });
       }
     }
 
@@ -1107,7 +1116,7 @@
 
   function onInput(e,r,c){
     const cell = cellAt(r,c);
-    const raw = e.target.value;
+    const raw = e.target.value.normalize('NFC');
     const g = graphemes(raw);
     const ch = g.length ? toUpperGrapheme(g[g.length-1]) : '';
     cell.input.value = ch;
