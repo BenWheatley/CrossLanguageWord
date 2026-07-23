@@ -233,6 +233,8 @@
   .cell input:focus{outline:none;}
   .cell.in-word input{background:var(--highlight-word);}
   .cell.active input{background:var(--highlight-cell);box-shadow:inset 0 0 0 2px var(--highlight-cell-border);}
+  .cell.check-correct input{background:#4CAF50 !important; color:#fff;}
+  .cell.check-incorrect input{box-shadow:inset 0 0 0 2px #D6382D !important;}
   .cell input:focus-visible{box-shadow:inset 0 0 0 2px var(--accent);}
 
   #grid.solved .cell:not(.block) input{
@@ -388,6 +390,8 @@
     .cell input{ color:transparent; font-size:13px; }
     body.print-answers .cell input{ color:#000; }
     .cell.in-word input, .cell.active input{ background:transparent; box-shadow:none; }
+    .cell.check-correct input{ background:transparent !important; color:transparent; }
+    .cell.check-incorrect input{ box-shadow:none !important; }
     .clues{ display:flex; gap:30px; }
     .clue-list{ font-size:11px; }
     .clue-list li.active{ background:transparent; }
@@ -460,6 +464,7 @@
       <input type="number" id="wordCount" min="2" value="15">
     </div>
     <button id="generateBtn" disabled>New crossword</button>
+    <button id="checkBtn" class="secondary" disabled>Check answers</button>
     <button id="printBtn" class="secondary" disabled>Print</button>
     <label class="check-field">
       <input type="checkbox" id="printAnswers"> print filled answers
@@ -530,6 +535,7 @@
   let celebrated = false;
   let puzzleStartTime = null;
   let bestTimeSeconds = null; // best solve time this session (not persisted)
+  let currentListId = null; // 'english' | 'german' | null (custom file has no URL representation)
 
   const fileInput = document.getElementById('fileInput');
   const wordListSelect = document.getElementById('wordListSelect');
@@ -543,6 +549,7 @@
   const wordCountInput = document.getElementById('wordCount');
   const generateBtn = document.getElementById('generateBtn');
   const printBtn = document.getElementById('printBtn');
+  const checkBtn = document.getElementById('checkBtn');
   const printAnswersCk = document.getElementById('printAnswers');
   const statusEl = document.getElementById('status');
   const gridEl = document.getElementById('grid');
@@ -580,8 +587,8 @@
       return;
     }
     fileTriggerLabel.style.display = 'none';
-    if(v === 'english') fetchWordList('example.json', 'English');
-    else if(v === 'german') fetchWordList('german.json', 'Deutsch B1');
+    if(v === 'english'){ currentListId = 'english'; fetchWordList('example.json', 'English'); }
+    else if(v === 'german'){ currentListId = 'german'; fetchWordList('german.json', 'Deutsch B1'); }
   });
 
   function fetchWordList(path, label){
@@ -602,6 +609,7 @@
     reader.onload = function(ev){
       try{
         const data = JSON.parse(ev.target.result);
+        currentListId = null;
         loadWordBank(data);
       }catch(err){
         setStatus('Could not parse that file: ' + err.message, true);
@@ -1103,8 +1111,27 @@
     const g = graphemes(raw);
     const ch = g.length ? toUpperGrapheme(g[g.length-1]) : '';
     cell.input.value = ch;
+    cell.wrap.classList.remove('check-correct', 'check-incorrect');
     if(ch) advanceAfterInput(r,c);
     checkAndCelebrate();
+  }
+
+  function checkAnswers(){
+    for(let r=0;r<rows;r++){
+      for(let c=0;c<cols;c++){
+        const cell = cellAt(r,c);
+        if(!cell) continue;
+        cell.wrap.classList.remove('check-correct', 'check-incorrect');
+        const val = cell.input.value;
+        if(!val) continue; // only mark cells the user actually filled in
+        const letter = gridData[r][c];
+        if(toUpperGrapheme(val) === letter){
+          cell.wrap.classList.add('check-correct');
+        } else {
+          cell.wrap.classList.add('check-incorrect');
+        }
+      }
+    }
   }
 
   function isSolved(){
@@ -1277,23 +1304,41 @@
         e.preventDefault();
         if(cell.input.value){
           cell.input.value = '';
+          cell.wrap.classList.remove('check-correct', 'check-incorrect');
         } else {
           const prev = nextCellInWord(r,c,currentDir,-1);
           if(prev){
             focusCell(prev.r, prev.c, currentDir);
-            cellAt(prev.r,prev.c).input.value = '';
+            const prevCell = cellAt(prev.r,prev.c);
+            prevCell.input.value = '';
+            prevCell.wrap.classList.remove('check-correct', 'check-incorrect');
           }
         }
         checkAndCelebrate();
         break;
       }
-      case 'Delete': e.preventDefault(); cell.input.value=''; checkAndCelebrate(); break;
+      case 'Delete':
+        e.preventDefault();
+        cell.input.value='';
+        cell.wrap.classList.remove('check-correct', 'check-incorrect');
+        checkAndCelebrate();
+        break;
       case ' ': e.preventDefault(); onCellMouseDown(r,c); break;
       default: break;
     }
   }
 
   // ---------- generate ----------
+  function updateUrlParams(){
+    const params = new URLSearchParams(window.location.search);
+    if(currentListId) params.set('list', currentListId);
+    else params.delete('list'); // a custom-loaded file has no URL representation
+    params.set('words', wordCountInput.value);
+    const query = params.toString();
+    const newUrl = window.location.pathname + (query ? '?' + query : '');
+    history.replaceState(null, '', newUrl);
+  }
+
   function generate(){
     if(!wordBank.length){
       setStatus('Load a word list first.', true);
@@ -1308,6 +1353,8 @@
     renderGrid(built, numbering);
     puzzleStartTime = Date.now();
     printBtn.disabled = false;
+    checkBtn.disabled = false;
+    updateUrlParams();
     if(numbering.placements.length < n){
       setStatus(`Placed ${numbering.placements.length} of ${n} requested words (the rest didn't fit this layout). Click "New crossword" for another attempt.`, true);
     } else {
@@ -1316,6 +1363,7 @@
   }
 
   generateBtn.addEventListener('click', generate);
+  checkBtn.addEventListener('click', checkAnswers);
   printBtn.addEventListener('click', () => window.print());
   printAnswersCk.addEventListener('change', () => {
     document.body.classList.toggle('print-answers', printAnswersCk.checked);
@@ -1339,6 +1387,7 @@
 
     wordCountInput.value = words;
     wordListSelect.value = list;
+    currentListId = list;
     if(list === 'english') fetchWordList('example.json', 'English');
     else fetchWordList('german.json', 'Deutsch B1');
   })();
