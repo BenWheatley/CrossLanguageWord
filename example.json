@@ -1,191 +1,2213 @@
 {
   "metadata": {
-    "title": "Example",
+    "title": "English Vocabulary",
     "language": "en",
     "version": 1
   },
   "words": [
     {
-      "word":"APPLE",
-      "clues":[
-        "Common red or green fruit",
-        "Keeps the doctor away"
+      "word": "HOUSE",
+      "clues": [
+        "A building where a family lives"
       ]
     },
     {
-      "word":"BANANA",
-      "clues":[
-        "Yellow curved fruit",
-        "Monkey stereotype food"
+      "word": "APARTMENT",
+      "clues": [
+        "A rented set of rooms in a larger building"
       ]
     },
     {
-      "word":"ORANGE",
-      "clues":[
-        "Citrus fruit",
-        "Also a colour"
+      "word": "KITCHEN",
+      "clues": [
+        "The room where you cook"
       ]
     },
     {
-      "word":"PEAR",
-      "clues":[
-        "Bell-shaped fruit"
+      "word": "BATHROOM",
+      "clues": [
+        "The room with the shower and toilet"
       ]
     },
     {
-      "word":"PEACH",
-      "clues":[
-        "Soft fruit with a stone"
+      "word": "BEDROOM",
+      "clues": [
+        "The room where you sleep"
       ]
     },
     {
-      "word":"GRAPE",
-      "clues":[
-        "Fruit used for wine"
+      "word": "GARDEN",
+      "clues": [
+        "A patch of land for growing plants, behind a house"
       ]
     },
     {
-      "word":"CHERRY",
-      "clues":[
-        "Small red stone fruit"
+      "word": "TABLE",
+      "clues": [
+        "Furniture you eat or write at"
       ]
     },
     {
-      "word":"PLUM",
-      "clues":[
-        "Purple stone fruit"
+      "word": "CHAIR",
+      "clues": [
+        "A single seat with a back, no arms"
       ]
     },
     {
-      "word":"MELON",
-      "clues":[
-        "Large sweet fruit"
+      "word": "SOFA",
+      "clues": [
+        "A long, cushioned seat for more than one person"
       ]
     },
     {
-      "word":"LEMON",
-      "clues":[
-        "Very sour citrus"
+      "word": "BED",
+      "clues": [
+        "Where you sleep at night"
       ]
     },
     {
-      "word":"HOUSE",
-      "clues":[
-        "Place where people live"
+      "word": "WARDROBE",
+      "clues": [
+        "Tall furniture for storing clothes",
+        "A collection of clothes someone owns"
       ]
     },
     {
-      "word":"WINDOW",
-      "clues":[
+      "word": "WINDOW",
+      "clues": [
         "Lets light into a room"
       ]
     },
     {
-      "word":"DOOR",
-      "clues":[
-        "Entrance to a room"
+      "word": "DOOR",
+      "clues": [
+        "You open this to enter a room"
       ]
     },
     {
-      "word":"TABLE",
-      "clues":[
-        "Furniture with legs"
+      "word": "KEY",
+      "clues": [
+        "Turns in a lock"
       ]
     },
     {
-      "word":"CHAIR",
-      "clues":[
-        "Furniture for sitting"
+      "word": "RENT",
+      "clues": [
+        "Monthly payment to a landlord"
       ]
     },
     {
-      "word":"BOOK",
-      "clues":[
+      "word": "LANDLORD",
+      "clues": [
+        "The person you pay rent to"
+      ]
+    },
+    {
+      "word": "TENANT",
+      "clues": [
+        "Someone who rents a home instead of owning it"
+      ]
+    },
+    {
+      "word": "NEIGHBOR",
+      "clues": [
+        "Lives in the house or flat next door"
+      ]
+    },
+    {
+      "word": "STREET",
+      "clues": [
+        "Cars and bikes drive along it"
+      ]
+    },
+    {
+      "word": "CITY",
+      "clues": [
+        "A large town with many streets"
+      ]
+    },
+    {
+      "word": "VILLAGE",
+      "clues": [
+        "A small settlement, smaller than a town"
+      ]
+    },
+    {
+      "word": "ADDRESS",
+      "clues": [
+        "Street, number, and city — where mail goes"
+      ]
+    },
+    {
+      "word": "CEILING",
+      "clues": [
+        "The surface above your head indoors"
+      ]
+    },
+    {
+      "word": "BASEMENT",
+      "clues": [
+        "The floor of a building below ground level"
+      ]
+    },
+    {
+      "word": "ATTIC",
+      "clues": [
+        "Storage space right under the roof"
+      ]
+    },
+    {
+      "word": "FENCE",
+      "clues": [
+        "A barrier marking the edge of a yard"
+      ]
+    },
+    {
+      "word": "DRIVEWAY",
+      "clues": [
+        "Where you park a car beside a house"
+      ]
+    },
+    {
+      "word": "FURNITURE",
+      "clues": [
+        "Chairs, tables, and beds, collectively"
+      ]
+    },
+    {
+      "word": "MORTGAGE",
+      "clues": [
+        "A long-term loan used to buy a home"
+      ]
+    },
+    {
+      "word": "LEASE",
+      "clues": [
+        "A signed agreement to rent a property"
+      ]
+    },
+    {
+      "word": "JOB",
+      "clues": [
+        "What you do for a paycheck"
+      ]
+    },
+    {
+      "word": "WORKPLACE",
+      "clues": [
+        "Where you do your job"
+      ]
+    },
+    {
+      "word": "UNEMPLOYMENT",
+      "clues": [
+        "Having no job"
+      ]
+    },
+    {
+      "word": "RESUME",
+      "clues": [
+        "A document listing your work history"
+      ]
+    },
+    {
+      "word": "CONTRACT",
+      "clues": [
+        "A signed legal agreement"
+      ]
+    },
+    {
+      "word": "SALARY",
+      "clues": [
+        "Regular pay from an employer"
+      ]
+    },
+    {
+      "word": "COLLEAGUE",
+      "clues": [
+        "Someone you work alongside"
+      ]
+    },
+    {
+      "word": "BOSS",
+      "clues": [
+        "The person in charge of your work"
+      ]
+    },
+    {
+      "word": "OFFICE",
+      "clues": [
+        "Where desk-based work gets done"
+      ]
+    },
+    {
+      "word": "MEETING",
+      "clues": [
+        "A scheduled work discussion"
+      ]
+    },
+    {
+      "word": "DEADLINE",
+      "clues": [
+        "The latest moment something is due"
+      ]
+    },
+    {
+      "word": "INTERVIEW",
+      "clues": [
+        "A formal conversation to assess a job candidate"
+      ]
+    },
+    {
+      "word": "PROMOTION",
+      "clues": [
+        "Being moved up to a higher position at work"
+      ]
+    },
+    {
+      "word": "OVERTIME",
+      "clues": [
+        "Extra hours worked beyond the usual schedule"
+      ]
+    },
+    {
+      "word": "INTERNSHIP",
+      "clues": [
+        "A short, often unpaid, work placement"
+      ]
+    },
+    {
+      "word": "FREELANCER",
+      "clues": [
+        "Someone who works for several clients, not one employer"
+      ]
+    },
+    {
+      "word": "PENSION",
+      "clues": [
+        "Income received after retirement"
+      ]
+    },
+    {
+      "word": "RESIGNATION",
+      "clues": [
+        "Formally quitting a job"
+      ]
+    },
+    {
+      "word": "RECRUITER",
+      "clues": [
+        "Someone whose job is finding candidates for open roles"
+      ]
+    },
+    {
+      "word": "WAREHOUSE",
+      "clues": [
+        "A large building for storing goods"
+      ]
+    },
+    {
+      "word": "FACTORY",
+      "clues": [
+        "A building where goods are manufactured"
+      ]
+    },
+    {
+      "word": "UNION",
+      "clues": [
+        "An organized group of workers advocating together"
+      ]
+    },
+    {
+      "word": "BANK",
+      "clues": [
+        "Where you keep your savings"
+      ]
+    },
+    {
+      "word": "ACCOUNT",
+      "clues": [
+        "Holds your money at a bank"
+      ]
+    },
+    {
+      "word": "COIN",
+      "clues": [
+        "A round piece of metal money"
+      ]
+    },
+    {
+      "word": "INVOICE",
+      "clues": [
+        "A bill you need to pay"
+      ]
+    },
+    {
+      "word": "RECEIPT",
+      "clues": [
+        "Proof that you paid"
+      ]
+    },
+    {
+      "word": "PRICE",
+      "clues": [
+        "What something costs"
+      ]
+    },
+    {
+      "word": "DISCOUNT",
+      "clues": [
+        "A price reduction"
+      ]
+    },
+    {
+      "word": "DEBT",
+      "clues": [
+        "Money you owe"
+      ]
+    },
+    {
+      "word": "LOAN",
+      "clues": [
+        "Borrowed money to be paid back"
+      ]
+    },
+    {
+      "word": "SAVINGS",
+      "clues": [
+        "Money set aside for later"
+      ]
+    },
+    {
+      "word": "BUDGET",
+      "clues": [
+        "A plan for how to spend money"
+      ]
+    },
+    {
+      "word": "CURRENCY",
+      "clues": [
+        "The money system used in a country"
+      ]
+    },
+    {
+      "word": "INTEREST",
+      "clues": [
+        "Extra money charged or earned on a loan or savings"
+      ]
+    },
+    {
+      "word": "INSURANCE",
+      "clues": [
+        "Pays out if something goes wrong"
+      ]
+    },
+    {
+      "word": "TAX",
+      "clues": [
+        "Money owed to the government from income"
+      ]
+    },
+    {
+      "word": "WALLET",
+      "clues": [
+        "A small case for carrying cash and cards"
+      ]
+    },
+    {
+      "word": "INVESTMENT",
+      "clues": [
+        "Money put into something hoping it grows"
+      ]
+    },
+    {
+      "word": "BANKRUPT",
+      "clues": [
+        "Legally unable to pay one's debts"
+      ]
+    },
+    {
+      "word": "WITHDRAWAL",
+      "clues": [
+        "Taking money out of an account"
+      ]
+    },
+    {
+      "word": "INFLATION",
+      "clues": [
+        "A general rise in prices over time"
+      ]
+    },
+    {
+      "word": "HEALTH",
+      "clues": [
+        "The state of being well"
+      ]
+    },
+    {
+      "word": "ILLNESS",
+      "clues": [
+        "A medical condition that makes you unwell"
+      ]
+    },
+    {
+      "word": "DOCTOR",
+      "clues": [
+        "Treats illness and injury professionally"
+      ]
+    },
+    {
+      "word": "HOSPITAL",
+      "clues": [
+        "Where you go for serious medical treatment"
+      ]
+    },
+    {
+      "word": "PHARMACY",
+      "clues": [
+        "Where prescriptions get filled"
+      ]
+    },
+    {
+      "word": "MEDICINE",
+      "clues": [
+        "Something a doctor prescribes to treat illness"
+      ]
+    },
+    {
+      "word": "FEVER",
+      "clues": [
+        "A raised body temperature when you're sick"
+      ]
+    },
+    {
+      "word": "HEADACHE",
+      "clues": [
+        "Pain felt inside the skull"
+      ]
+    },
+    {
+      "word": "INJURY",
+      "clues": [
+        "Physical harm from an accident"
+      ]
+    },
+    {
+      "word": "SURGERY",
+      "clues": [
+        "An operation performed to treat a condition"
+      ]
+    },
+    {
+      "word": "NURSE",
+      "clues": [
+        "Cares for patients under a doctor's supervision"
+      ]
+    },
+    {
+      "word": "VACCINE",
+      "clues": [
+        "A shot that trains the body to fight a disease"
+      ]
+    },
+    {
+      "word": "DIAGNOSIS",
+      "clues": [
+        "A doctor's identification of what's wrong"
+      ]
+    },
+    {
+      "word": "SYMPTOM",
+      "clues": [
+        "A sign that something is medically wrong"
+      ]
+    },
+    {
+      "word": "ALLERGY",
+      "clues": [
+        "An overreaction of the body to something harmless"
+      ]
+    },
+    {
+      "word": "EXERCISE",
+      "clues": [
+        "Physical activity done to stay fit"
+      ]
+    },
+    {
+      "word": "NUTRITION",
+      "clues": [
+        "The study of food and how it nourishes the body"
+      ]
+    },
+    {
+      "word": "THERAPY",
+      "clues": [
+        "Ongoing treatment for a physical or mental condition"
+      ]
+    },
+    {
+      "word": "WHEELCHAIR",
+      "clues": [
+        "A chair on wheels for someone who can't walk"
+      ]
+    },
+    {
+      "word": "BANDAGE",
+      "clues": [
+        "Wrapped around a wound to protect it"
+      ]
+    },
+    {
+      "word": "STETHOSCOPE",
+      "clues": [
+        "A doctor's tool for listening to your heartbeat"
+      ]
+    },
+    {
+      "word": "SKELETON",
+      "clues": [
+        "The framework of bones inside a body"
+      ]
+    },
+    {
+      "word": "MUSCLE",
+      "clues": [
+        "Tissue that contracts to produce movement"
+      ]
+    },
+    {
+      "word": "FAMILY",
+      "clues": [
+        "Parents, children, and relatives together"
+      ]
+    },
+    {
+      "word": "PARENT",
+      "clues": [
+        "A mother or father"
+      ]
+    },
+    {
+      "word": "SIBLING",
+      "clues": [
+        "A brother or sister"
+      ]
+    },
+    {
+      "word": "COUSIN",
+      "clues": [
+        "A child of your aunt or uncle"
+      ]
+    },
+    {
+      "word": "SPOUSE",
+      "clues": [
+        "A husband or wife"
+      ]
+    },
+    {
+      "word": "WIDOW",
+      "clues": [
+        "A woman whose husband has died"
+      ]
+    },
+    {
+      "word": "ORPHAN",
+      "clues": [
+        "A child whose parents have both died"
+      ]
+    },
+    {
+      "word": "GRANDPARENT",
+      "clues": [
+        "Your parent's parent"
+      ]
+    },
+    {
+      "word": "TODDLER",
+      "clues": [
+        "A young child just learning to walk"
+      ]
+    },
+    {
+      "word": "INFANT",
+      "clues": [
+        "A very young baby"
+      ]
+    },
+    {
+      "word": "ADOLESCENT",
+      "clues": [
+        "Someone in the teenage years, between child and adult"
+      ]
+    },
+    {
+      "word": "FRIENDSHIP",
+      "clues": [
+        "The bond between close friends"
+      ]
+    },
+    {
+      "word": "MARRIAGE",
+      "clues": [
+        "The legal union of two people"
+      ]
+    },
+    {
+      "word": "DIVORCE",
+      "clues": [
+        "The legal ending of a marriage"
+      ]
+    },
+    {
+      "word": "WEDDING",
+      "clues": [
+        "The ceremony where two people marry"
+      ]
+    },
+    {
+      "word": "ANNIVERSARY",
+      "clues": [
+        "The yearly date something important happened"
+      ]
+    },
+    {
+      "word": "BIRTHDAY",
+      "clues": [
+        "The yearly anniversary of the day you were born"
+      ]
+    },
+    {
+      "word": "REUNION",
+      "clues": [
+        "A gathering of people who haven't met in a while"
+      ]
+    },
+    {
+      "word": "STRANGER",
+      "clues": [
+        "Someone you don't know"
+      ]
+    },
+    {
+      "word": "ACQUAINTANCE",
+      "clues": [
+        "Someone you know only slightly"
+      ]
+    },
+    {
+      "word": "SCHOOL",
+      "clues": [
+        "Where children go to learn"
+      ]
+    },
+    {
+      "word": "TEACHER",
+      "clues": [
+        "Someone who instructs students"
+      ]
+    },
+    {
+      "word": "STUDENT",
+      "clues": [
+        "Someone enrolled to learn"
+      ]
+    },
+    {
+      "word": "CLASSROOM",
+      "clues": [
+        "Where lessons are taught"
+      ]
+    },
+    {
+      "word": "HOMEWORK",
+      "clues": [
+        "School work done at home"
+      ]
+    },
+    {
+      "word": "EXAM",
+      "clues": [
+        "A test you can pass or fail"
+      ]
+    },
+    {
+      "word": "GRADE",
+      "clues": [
+        "A letter or number score for schoolwork"
+      ]
+    },
+    {
+      "word": "UNIVERSITY",
+      "clues": [
+        "Where students go after secondary school"
+      ]
+    },
+    {
+      "word": "DEGREE",
+      "clues": [
+        "A qualification earned after university study"
+      ]
+    },
+    {
+      "word": "LECTURE",
+      "clues": [
+        "A university class where a professor talks and students listen"
+      ]
+    },
+    {
+      "word": "LIBRARY",
+      "clues": [
+        "A quiet building full of books to borrow"
+      ]
+    },
+    {
+      "word": "SCHOLARSHIP",
+      "clues": [
+        "Money awarded to help pay for study"
+      ]
+    },
+    {
+      "word": "CURRICULUM",
+      "clues": [
+        "The set subjects taught in a course"
+      ]
+    },
+    {
+      "word": "TEXTBOOK",
+      "clues": [
+        "A book used to teach a school subject"
+      ]
+    },
+    {
+      "word": "GRADUATION",
+      "clues": [
+        "The ceremony marking the end of a course of study"
+      ]
+    },
+    {
+      "word": "TUITION",
+      "clues": [
+        "Money paid for instruction, especially at university"
+      ]
+    },
+    {
+      "word": "ALPHABET",
+      "clues": [
+        "The full set of letters used to write a language"
+      ]
+    },
+    {
+      "word": "VOCABULARY",
+      "clues": [
+        "The words someone knows or uses"
+      ]
+    },
+    {
+      "word": "DICTIONARY",
+      "clues": [
+        "A book that defines words"
+      ]
+    },
+    {
+      "word": "KINDERGARTEN",
+      "clues": [
+        "School for the youngest children, before first grade"
+      ]
+    },
+    {
+      "word": "ENVIRONMENT",
+      "clues": [
+        "Nature and surroundings we should protect"
+      ]
+    },
+    {
+      "word": "CLIMATE",
+      "clues": [
+        "The typical weather pattern of a region over time"
+      ]
+    },
+    {
+      "word": "POLLUTION",
+      "clues": [
+        "Dirt or waste harming the environment"
+      ]
+    },
+    {
+      "word": "RECYCLING",
+      "clues": [
+        "Turning old materials into new ones"
+      ]
+    },
+    {
+      "word": "ENERGY",
+      "clues": [
+        "Powers lights, machines, and engines"
+      ]
+    },
+    {
+      "word": "ELECTRICITY",
+      "clues": [
+        "Flows through wires to power devices"
+      ]
+    },
+    {
+      "word": "SOLAR",
+      "clues": [
+        "Powered by sunlight"
+      ]
+    },
+    {
+      "word": "WATER",
+      "clues": [
+        "You drink it and swim in it"
+      ]
+    },
+    {
+      "word": "FOREST",
+      "clues": [
+        "A large area covered in trees"
+      ]
+    },
+    {
+      "word": "OCEAN",
+      "clues": [
+        "The largest body of salt water"
+      ]
+    },
+    {
+      "word": "MOUNTAIN",
+      "clues": [
+        "A very tall landform"
+      ]
+    },
+    {
+      "word": "DESERT",
+      "clues": [
+        "A very dry region with little rainfall"
+      ]
+    },
+    {
+      "word": "ISLAND",
+      "clues": [
+        "Land completely surrounded by water"
+      ]
+    },
+    {
+      "word": "VOLCANO",
+      "clues": [
+        "A mountain that can erupt with lava"
+      ]
+    },
+    {
+      "word": "EARTHQUAKE",
+      "clues": [
+        "A sudden shaking of the ground"
+      ]
+    },
+    {
+      "word": "DROUGHT",
+      "clues": [
+        "A long period without enough rain"
+      ]
+    },
+    {
+      "word": "WILDLIFE",
+      "clues": [
+        "Wild animals living in their natural habitat"
+      ]
+    },
+    {
+      "word": "HABITAT",
+      "clues": [
+        "The natural home of a plant or animal"
+      ]
+    },
+    {
+      "word": "EXTINCT",
+      "clues": [
+        "No longer existing as a species"
+      ]
+    },
+    {
+      "word": "ECOSYSTEM",
+      "clues": [
+        "A community of living things and their environment"
+      ]
+    },
+    {
+      "word": "RAINFOREST",
+      "clues": [
+        "A dense, tropical forest with heavy rainfall"
+      ]
+    },
+    {
+      "word": "GLACIER",
+      "clues": [
+        "A huge, slow-moving mass of ice"
+      ]
+    },
+    {
+      "word": "TRAFFIC",
+      "clues": [
+        "Cars and buses moving through a city"
+      ]
+    },
+    {
+      "word": "AIRPORT",
+      "clues": [
+        "Where planes take off and land"
+      ]
+    },
+    {
+      "word": "STATION",
+      "clues": [
+        "Where you catch a train"
+      ]
+    },
+    {
+      "word": "TICKET",
+      "clues": [
+        "You show this to board a train or plane"
+      ]
+    },
+    {
+      "word": "TIMETABLE",
+      "clues": [
+        "Lists when trains or buses depart"
+      ]
+    },
+    {
+      "word": "DELAY",
+      "clues": [
+        "Arriving later than scheduled"
+      ]
+    },
+    {
+      "word": "PASSENGER",
+      "clues": [
+        "Someone riding in a vehicle, not driving it"
+      ]
+    },
+    {
+      "word": "LUGGAGE",
+      "clues": [
+        "What you pack and carry when traveling"
+      ]
+    },
+    {
+      "word": "SUITCASE",
+      "clues": [
+        "A case for packing clothes when traveling"
+      ]
+    },
+    {
+      "word": "PASSPORT",
+      "clues": [
+        "Needed to cross international borders"
+      ]
+    },
+    {
+      "word": "JOURNEY",
+      "clues": [
+        "A trip somewhere"
+      ]
+    },
+    {
+      "word": "DESTINATION",
+      "clues": [
+        "Where a journey ends"
+      ]
+    },
+    {
+      "word": "ITINERARY",
+      "clues": [
+        "A planned schedule for a trip"
+      ]
+    },
+    {
+      "word": "SOUVENIR",
+      "clues": [
+        "Something bought to remember a trip by"
+      ]
+    },
+    {
+      "word": "HIGHWAY",
+      "clues": [
+        "A major road for fast travel between places"
+      ]
+    },
+    {
+      "word": "BICYCLE",
+      "clues": [
+        "A two-wheeled vehicle you pedal"
+      ]
+    },
+    {
+      "word": "MOTORCYCLE",
+      "clues": [
+        "A two-wheeled motor vehicle"
+      ]
+    },
+    {
+      "word": "SUBMARINE",
+      "clues": [
+        "A vessel that travels underwater"
+      ]
+    },
+    {
+      "word": "HELICOPTER",
+      "clues": [
+        "An aircraft with spinning overhead blades"
+      ]
+    },
+    {
+      "word": "COMPASS",
+      "clues": [
+        "A tool that points toward magnetic north"
+      ]
+    },
+    {
+      "word": "BREAKFAST",
+      "clues": [
+        "The first meal of the day"
+      ]
+    },
+    {
+      "word": "RECIPE",
+      "clues": [
+        "Step-by-step instructions for cooking a dish"
+      ]
+    },
+    {
+      "word": "INGREDIENT",
+      "clues": [
+        "One item used in a recipe"
+      ]
+    },
+    {
+      "word": "VEGETABLE",
+      "clues": [
+        "Carrots, potatoes, and the like"
+      ]
+    },
+    {
+      "word": "BREAD",
+      "clues": [
+        "Baked from flour, sliced for sandwiches"
+      ]
+    },
+    {
+      "word": "CHEESE",
+      "clues": [
+        "Made from milk, often sliced onto bread"
+      ]
+    },
+    {
+      "word": "RESTAURANT",
+      "clues": [
+        "Where you pay to eat a prepared meal"
+      ]
+    },
+    {
+      "word": "WAITER",
+      "clues": [
+        "Brings your food to the table"
+      ]
+    },
+    {
+      "word": "MENU",
+      "clues": [
+        "Lists what a restaurant serves"
+      ]
+    },
+    {
+      "word": "APPETITE",
+      "clues": [
+        "A desire to eat"
+      ]
+    },
+    {
+      "word": "LEFTOVERS",
+      "clues": [
+        "Food saved after a meal to eat later"
+      ]
+    },
+    {
+      "word": "SEASONING",
+      "clues": [
+        "Salt, herbs, or spices added to flavor food"
+      ]
+    },
+    {
+      "word": "VEGETARIAN",
+      "clues": [
+        "Someone who doesn't eat meat"
+      ]
+    },
+    {
+      "word": "DESSERT",
+      "clues": [
+        "A sweet course served at the end of a meal"
+      ]
+    },
+    {
+      "word": "BEVERAGE",
+      "clues": [
+        "Any drink"
+      ]
+    },
+    {
+      "word": "GROCERY",
+      "clues": [
+        "Food and household items bought at a store"
+      ]
+    },
+    {
+      "word": "REFRIGERATOR",
+      "clues": [
+        "Keeps food cold to preserve it"
+      ]
+    },
+    {
+      "word": "CASSEROLE",
+      "clues": [
+        "A dish slow-cooked in one deep pan"
+      ]
+    },
+    {
+      "word": "MARINATE",
+      "clues": [
+        "To soak food in a flavorful liquid before cooking"
+      ]
+    },
+    {
+      "word": "BARBECUE",
+      "clues": [
+        "Cooking food over an open flame outdoors"
+      ]
+    },
+    {
+      "word": "COMPUTER",
+      "clues": [
+        "A machine for processing data"
+      ]
+    },
+    {
+      "word": "INTERNET",
+      "clues": [
+        "The global network connecting computers"
+      ]
+    },
+    {
+      "word": "PASSWORD",
+      "clues": [
+        "Secret text needed to log in"
+      ]
+    },
+    {
+      "word": "SOFTWARE",
+      "clues": [
+        "The programs that run on a computer"
+      ]
+    },
+    {
+      "word": "KEYBOARD",
+      "clues": [
+        "You type on this"
+      ]
+    },
+    {
+      "word": "SCREEN",
+      "clues": [
+        "Where you see the picture on a device"
+      ]
+    },
+    {
+      "word": "BATTERY",
+      "clues": [
+        "Powers a phone when it's unplugged"
+      ]
+    },
+    {
+      "word": "SMARTPHONE",
+      "clues": [
+        "A mobile phone that runs apps"
+      ]
+    },
+    {
+      "word": "DOWNLOAD",
+      "clues": [
+        "To copy a file from the internet onto your device"
+      ]
+    },
+    {
+      "word": "UPLOAD",
+      "clues": [
+        "To send a file from your device to the internet"
+      ]
+    },
+    {
+      "word": "WEBSITE",
+      "clues": [
+        "A page or set of pages viewable online"
+      ]
+    },
+    {
+      "word": "FIREWALL",
+      "clues": [
+        "Software that blocks unwanted network access"
+      ]
+    },
+    {
+      "word": "ALGORITHM",
+      "clues": [
+        "A set of steps a computer follows to solve a problem"
+      ]
+    },
+    {
+      "word": "DATABASE",
+      "clues": [
+        "An organized collection of stored data"
+      ]
+    },
+    {
+      "word": "BLUETOOTH",
+      "clues": [
+        "A short-range wireless technology for connecting devices"
+      ]
+    },
+    {
+      "word": "MALWARE",
+      "clues": [
+        "Software designed to cause harm to a device"
+      ]
+    },
+    {
+      "word": "ENCRYPTION",
+      "clues": [
+        "Scrambling data so only authorized people can read it"
+      ]
+    },
+    {
+      "word": "BANDWIDTH",
+      "clues": [
+        "The amount of data a connection can carry"
+      ]
+    },
+    {
+      "word": "CURSOR",
+      "clues": [
+        "The blinking marker showing where you'll type next"
+      ]
+    },
+    {
+      "word": "NOTIFICATION",
+      "clues": [
+        "An alert that pops up on a device"
+      ]
+    },
+    {
+      "word": "NEWSPAPER",
+      "clues": [
+        "Printed daily news on paper"
+      ]
+    },
+    {
+      "word": "TELEVISION",
+      "clues": [
+        "A screen used for entertainment or news"
+      ]
+    },
+    {
+      "word": "BROADCAST",
+      "clues": [
+        "To transmit a program to many viewers or listeners"
+      ]
+    },
+    {
+      "word": "ADVERTISEMENT",
+      "clues": [
+        "A paid message trying to sell you something"
+      ]
+    },
+    {
+      "word": "JOURNALIST",
+      "clues": [
+        "Someone who writes or reports the news"
+      ]
+    },
+    {
+      "word": "HEADLINE",
+      "clues": [
+        "The large title at the top of a news article"
+      ]
+    },
+    {
+      "word": "EDITOR",
+      "clues": [
+        "Someone who reviews and revises written work"
+      ]
+    },
+    {
+      "word": "AUDIENCE",
+      "clues": [
+        "People watching, reading, or listening to something",
+        "The people watching a performance"
+      ]
+    },
+    {
+      "word": "CELEBRITY",
+      "clues": [
+        "A famous, well-known person"
+      ]
+    },
+    {
+      "word": "OPINION",
+      "clues": [
+        "What someone personally thinks about something"
+      ]
+    },
+    {
+      "word": "SOCIETY",
+      "clues": [
+        "People living together in a community"
+      ]
+    },
+    {
+      "word": "GOVERNMENT",
+      "clues": [
+        "The group in charge of running a country"
+      ]
+    },
+    {
+      "word": "ELECTION",
+      "clues": [
+        "Citizens choosing their leaders"
+      ]
+    },
+    {
+      "word": "CITIZEN",
+      "clues": [
+        "A legally recognized member of a country"
+      ]
+    },
+    {
+      "word": "LAW",
+      "clues": [
+        "A rule enforced by the state"
+      ]
+    },
+    {
+      "word": "JUSTICE",
+      "clues": [
+        "Fair treatment according to the law"
+      ]
+    },
+    {
+      "word": "COMMUNITY",
+      "clues": [
+        "A group of people living in the same area"
+      ]
+    },
+    {
+      "word": "CULTURE",
+      "clues": [
+        "The customs and beliefs shared by a group of people"
+      ]
+    },
+    {
+      "word": "TRADITION",
+      "clues": [
+        "A custom passed down through generations"
+      ]
+    },
+    {
+      "word": "CHARITY",
+      "clues": [
+        "An organization that helps people in need"
+      ]
+    },
+    {
+      "word": "VOLUNTEER",
+      "clues": [
+        "Someone who works without being paid, to help others"
+      ]
+    },
+    {
+      "word": "PROTEST",
+      "clues": [
+        "A public show of disagreement with something"
+      ]
+    },
+    {
+      "word": "EMOTION",
+      "clues": [
+        "A feeling, like joy or anger"
+      ]
+    },
+    {
+      "word": "HAPPINESS",
+      "clues": [
+        "The feeling of being glad or content"
+      ]
+    },
+    {
+      "word": "SADNESS",
+      "clues": [
+        "The feeling of sorrow"
+      ]
+    },
+    {
+      "word": "ANGER",
+      "clues": [
+        "Feeling annoyed or upset"
+      ]
+    },
+    {
+      "word": "FEAR",
+      "clues": [
+        "The feeling before something scary"
+      ]
+    },
+    {
+      "word": "ANXIETY",
+      "clues": [
+        "A persistent feeling of worry or unease"
+      ]
+    },
+    {
+      "word": "CONFIDENCE",
+      "clues": [
+        "Belief in your own abilities"
+      ]
+    },
+    {
+      "word": "JEALOUSY",
+      "clues": [
+        "Resentment over someone else's advantage"
+      ]
+    },
+    {
+      "word": "CURIOSITY",
+      "clues": [
+        "A strong desire to learn or know something"
+      ]
+    },
+    {
+      "word": "GRATITUDE",
+      "clues": [
+        "Feeling thankful"
+      ]
+    },
+    {
+      "word": "PATIENCE",
+      "clues": [
+        "Staying calm while waiting"
+      ]
+    },
+    {
+      "word": "COURAGE",
+      "clues": [
+        "Doing something despite being afraid"
+      ]
+    },
+    {
+      "word": "LONELINESS",
+      "clues": [
+        "The feeling of having no company"
+      ]
+    },
+    {
+      "word": "EXCITEMENT",
+      "clues": [
+        "A lively feeling of eager anticipation"
+      ]
+    },
+    {
+      "word": "EMBARRASSMENT",
+      "clues": [
+        "Feeling awkward or self-conscious"
+      ]
+    },
+    {
+      "word": "SYMPATHY",
+      "clues": [
+        "Feeling sorry for someone else's misfortune"
+      ]
+    },
+    {
+      "word": "OPTIMISM",
+      "clues": [
+        "A tendency to expect good outcomes"
+      ]
+    },
+    {
+      "word": "STUBBORN",
+      "clues": [
+        "Refusing to change one's mind"
+      ]
+    },
+    {
+      "word": "GENEROUS",
+      "clues": [
+        "Willing to give freely"
+      ]
+    },
+    {
+      "word": "HUMBLE",
+      "clues": [
+        "Not proud or boastful about oneself"
+      ]
+    },
+    {
+      "word": "CLOTHING",
+      "clues": [
+        "Everything you wear, collectively"
+      ]
+    },
+    {
+      "word": "JACKET",
+      "clues": [
+        "A layer worn over a shirt, outdoors"
+      ]
+    },
+    {
+      "word": "TROUSERS",
+      "clues": [
+        "Covers both legs separately"
+      ]
+    },
+    {
+      "word": "UMBRELLA",
+      "clues": [
+        "Keeps you dry in the rain"
+      ]
+    },
+    {
+      "word": "WEATHER",
+      "clues": [
+        "What the sky and temperature are doing today"
+      ]
+    },
+    {
+      "word": "RAIN",
+      "clues": [
+        "Water falling from clouds",
+        "Falls from clouds during a storm"
+      ]
+    },
+    {
+      "word": "SNOW",
+      "clues": [
+        "White and cold, falls in winter"
+      ]
+    },
+    {
+      "word": "THUNDER",
+      "clues": [
+        "The loud sound that follows lightning"
+      ]
+    },
+    {
+      "word": "LIGHTNING",
+      "clues": [
+        "A sudden bright flash during a storm"
+      ]
+    },
+    {
+      "word": "HUMIDITY",
+      "clues": [
+        "The amount of moisture in the air"
+      ]
+    },
+    {
+      "word": "TEMPERATURE",
+      "clues": [
+        "How hot or cold it is, in degrees"
+      ]
+    },
+    {
+      "word": "FORECAST",
+      "clues": [
+        "A prediction of future weather"
+      ]
+    },
+    {
+      "word": "BLIZZARD",
+      "clues": [
+        "A severe snowstorm with strong winds"
+      ]
+    },
+    {
+      "word": "SUNSCREEN",
+      "clues": [
+        "Lotion that protects skin from sunburn"
+      ]
+    },
+    {
+      "word": "UNIFORM",
+      "clues": [
+        "Matching clothing worn by members of a group"
+      ]
+    },
+    {
+      "word": "IMPORTANT",
+      "clues": [
+        "Deserving serious attention"
+      ]
+    },
+    {
+      "word": "DIFFICULT",
+      "clues": [
+        "Hard to do"
+      ]
+    },
+    {
+      "word": "POSSIBLE",
+      "clues": [
+        "Able to happen"
+      ]
+    },
+    {
+      "word": "NECESSARY",
+      "clues": [
+        "Required, can't be skipped"
+      ]
+    },
+    {
+      "word": "APPROXIMATELY",
+      "clues": [
+        "Roughly, not an exact number"
+      ]
+    },
+    {
+      "word": "RELIABLE",
+      "clues": [
+        "Always does what they say they will"
+      ]
+    },
+    {
+      "word": "PUNCTUAL",
+      "clues": [
+        "Never late"
+      ]
+    },
+    {
+      "word": "INDEPENDENT",
+      "clues": [
+        "Not relying on others"
+      ]
+    },
+    {
+      "word": "COMFORTABLE",
+      "clues": [
+        "Cozy and easy to relax in"
+      ]
+    },
+    {
+      "word": "PRACTICAL",
+      "clues": [
+        "Useful in everyday situations"
+      ]
+    },
+    {
+      "word": "ANCIENT",
+      "clues": [
+        "Extremely old, from a distant past"
+      ]
+    },
+    {
+      "word": "FRAGILE",
+      "clues": [
+        "Easily broken"
+      ]
+    },
+    {
+      "word": "ENORMOUS",
+      "clues": [
+        "Extremely large"
+      ]
+    },
+    {
+      "word": "RIDICULOUS",
+      "clues": [
+        "So unreasonable it's laughable"
+      ]
+    },
+    {
+      "word": "MYSTERIOUS",
+      "clues": [
+        "Difficult to understand or explain"
+      ]
+    },
+    {
+      "word": "PECULIAR",
+      "clues": [
+        "Strange or unusual"
+      ]
+    },
+    {
+      "word": "RELUCTANT",
+      "clues": [
+        "Unwilling and hesitant"
+      ]
+    },
+    {
+      "word": "SPONTANEOUS",
+      "clues": [
+        "Done without planning"
+      ]
+    },
+    {
+      "word": "THOROUGH",
+      "clues": [
+        "Complete and careful in every detail"
+      ]
+    },
+    {
+      "word": "VERSATILE",
+      "clues": [
+        "Able to adapt to many different uses"
+      ]
+    },
+    {
+      "word": "AMBIGUOUS",
+      "clues": [
+        "Open to more than one interpretation"
+      ]
+    },
+    {
+      "word": "METICULOUS",
+      "clues": [
+        "Extremely careful and precise"
+      ]
+    },
+    {
+      "word": "PERSISTENT",
+      "clues": [
+        "Continuing firmly despite difficulty"
+      ]
+    },
+    {
+      "word": "GENUINE",
+      "clues": [
+        "Real, not fake"
+      ]
+    },
+    {
+      "word": "EFFICIENT",
+      "clues": [
+        "Achieving results without wasted effort"
+      ]
+    },
+    {
+      "word": "ANIMAL",
+      "clues": [
+        "A living creature, not a plant"
+      ]
+    },
+    {
+      "word": "INSECT",
+      "clues": [
+        "A small creature with six legs, like an ant"
+      ]
+    },
+    {
+      "word": "MAMMAL",
+      "clues": [
+        "A warm-blooded animal that nurses its young"
+      ]
+    },
+    {
+      "word": "REPTILE",
+      "clues": [
+        "A cold-blooded animal with scales, like a snake"
+      ]
+    },
+    {
+      "word": "PREDATOR",
+      "clues": [
+        "An animal that hunts others for food"
+      ]
+    },
+    {
+      "word": "MIGRATION",
+      "clues": [
+        "Seasonal travel by animals between regions"
+      ]
+    },
+    {
+      "word": "GRAVITY",
+      "clues": [
+        "The force that pulls objects toward the ground"
+      ]
+    },
+    {
+      "word": "MOLECULE",
+      "clues": [
+        "The smallest unit a compound can be divided into"
+      ]
+    },
+    {
+      "word": "TELESCOPE",
+      "clues": [
+        "A tool for viewing distant objects, like stars"
+      ]
+    },
+    {
+      "word": "MICROSCOPE",
+      "clues": [
+        "A tool for viewing very small objects up close"
+      ]
+    },
+    {
+      "word": "EXPERIMENT",
+      "clues": [
+        "A test done to discover something scientifically"
+      ]
+    },
+    {
+      "word": "HYPOTHESIS",
+      "clues": [
+        "An educated guess to be tested"
+      ]
+    },
+    {
+      "word": "EVOLUTION",
+      "clues": [
+        "The gradual change of species over generations"
+      ]
+    },
+    {
+      "word": "GALAXY",
+      "clues": [
+        "A huge system of stars, like the Milky Way"
+      ]
+    },
+    {
+      "word": "ASTRONAUT",
+      "clues": [
+        "A person trained to travel into space"
+      ]
+    },
+    {
+      "word": "PLANET",
+      "clues": [
+        "A large body that orbits a star, like Earth"
+      ]
+    },
+    {
+      "word": "ATMOSPHERE",
+      "clues": [
+        "The layer of gases surrounding a planet"
+      ]
+    },
+    {
+      "word": "CHEMICAL",
+      "clues": [
+        "A substance with a distinct composition"
+      ]
+    },
+    {
+      "word": "LABORATORY",
+      "clues": [
+        "A room equipped for scientific experiments"
+      ]
+    },
+    {
+      "word": "PHOTOSYNTHESIS",
+      "clues": [
+        "How plants convert sunlight into energy"
+      ]
+    },
+    {
+      "word": "MUSEUM",
+      "clues": [
+        "A building displaying art or historical objects"
+      ]
+    },
+    {
+      "word": "PAINTING",
+      "clues": [
+        "A picture made with paint"
+      ]
+    },
+    {
+      "word": "SCULPTURE",
+      "clues": [
+        "A three-dimensional work of art"
+      ]
+    },
+    {
+      "word": "ORCHESTRA",
+      "clues": [
+        "A large group of musicians playing together"
+      ]
+    },
+    {
+      "word": "INSTRUMENT",
+      "clues": [
+        "A device used to make music"
+      ]
+    },
+    {
+      "word": "REHEARSAL",
+      "clues": [
+        "Practicing a performance before the real one"
+      ]
+    },
+    {
+      "word": "STADIUM",
+      "clues": [
+        "A large venue for sporting events"
+      ]
+    },
+    {
+      "word": "REFEREE",
+      "clues": [
+        "Enforces the rules during a sports match"
+      ]
+    },
+    {
+      "word": "CHAMPION",
+      "clues": [
+        "The winner of a competition"
+      ]
+    },
+    {
+      "word": "TOURNAMENT",
+      "clues": [
+        "A series of contests to find an overall winner"
+      ]
+    },
+    {
+      "word": "MARATHON",
+      "clues": [
+        "A long-distance running race"
+      ]
+    },
+    {
+      "word": "GYMNASIUM",
+      "clues": [
+        "A building equipped for exercise"
+      ]
+    },
+    {
+      "word": "CHOREOGRAPHY",
+      "clues": [
+        "The planned sequence of steps in a dance"
+      ]
+    },
+    {
+      "word": "NOVELIST",
+      "clues": [
+        "Someone who writes novels"
+      ]
+    },
+    {
+      "word": "PLAYWRIGHT",
+      "clues": [
+        "Someone who writes plays"
+      ]
+    },
+    {
+      "word": "SCULPTOR",
+      "clues": [
+        "An artist who creates three-dimensional works"
+      ]
+    },
+    {
+      "word": "PHOTOGRAPHY",
+      "clues": [
+        "The art of taking pictures"
+      ]
+    },
+    {
+      "word": "LITERATURE",
+      "clues": [
+        "Written works valued for their artistic merit"
+      ]
+    },
+    {
+      "word": "ARCHITECTURE",
+      "clues": [
+        "The design of buildings"
+      ]
+    },
+    {
+      "word": "CAT",
+      "clues": [
+        "A small furry pet that meows"
+      ]
+    },
+    {
+      "word": "DOG",
+      "clues": [
+        "A loyal furry pet that barks"
+      ]
+    },
+    {
+      "word": "SUN",
+      "clues": [
+        "The star that lights our days"
+      ]
+    },
+    {
+      "word": "MOON",
+      "clues": [
+        "Orbits the Earth and lights up the night"
+      ]
+    },
+    {
+      "word": "STAR",
+      "clues": [
+        "A distant glowing ball of gas visible at night"
+      ]
+    },
+    {
+      "word": "TREE",
+      "clues": [
+        "A tall plant with a trunk and branches"
+      ]
+    },
+    {
+      "word": "BOOK",
+      "clues": [
         "Something you read"
       ]
     },
     {
-      "word":"PENCIL",
-      "clues":[
-        "Used for writing"
+      "word": "PEN",
+      "clues": [
+        "Used for writing in ink"
       ]
     },
     {
-      "word":"PAPER",
-      "clues":[
-        "Thin writing material"
+      "word": "CUP",
+      "clues": [
+        "Used for drinking hot beverages"
       ]
     },
     {
-      "word":"CLOCK",
-      "clues":[
-        "Shows the time"
+      "word": "BAG",
+      "clues": [
+        "Used to carry belongings"
       ]
     },
     {
-      "word":"GARDEN",
-      "clues":[
-        "Area where plants grow"
+      "word": "MAP",
+      "clues": [
+        "Shows you how to get somewhere"
       ]
     },
     {
-      "word":"FLOWER",
-      "clues":[
-        "Colourful part of many plants"
+      "word": "BOX",
+      "clues": [
+        "A container with straight sides, usually square"
       ]
     },
     {
-      "word":"RIVER",
-      "clues":[
-        "Natural flowing water"
+      "word": "EGG",
+      "clues": [
+        "Laid by a bird, often eaten for breakfast"
       ]
     },
     {
-      "word":"MOUNTAIN",
-      "clues":[
-        "Very high landform"
+      "word": "MILK",
+      "clues": [
+        "A white liquid from cows, often drunk at breakfast"
       ]
     },
     {
-      "word":"FOREST",
-      "clues":[
-        "Large area of trees"
+      "word": "SALT",
+      "clues": [
+        "A white seasoning that makes food less bland"
       ]
     },
     {
-      "word":"OCEAN",
-      "clues":[
-        "Largest body of salt water"
+      "word": "RICE",
+      "clues": [
+        "A staple grain eaten around the world"
       ]
     },
     {
-      "word":"TRAIN",
-      "clues":[
-        "Travels on rails"
+      "word": "FISH",
+      "clues": [
+        "A creature that swims and breathes through gills"
       ]
     },
     {
-      "word":"BICYCLE",
-      "clues":[
-        "Two-wheeled vehicle"
+      "word": "BIRD",
+      "clues": [
+        "A feathered creature that can usually fly"
       ]
     },
     {
-      "word":"COMPUTER",
-      "clues":[
-        "Electronic machine"
+      "word": "WIND",
+      "clues": [
+        "Moving air"
       ]
     },
     {
-      "word":"KEYBOARD",
-      "clues":[
-        "Used for typing"
+      "word": "ROAD",
+      "clues": [
+        "A route cars travel along"
       ]
     },
     {
-      "word":"SCREEN",
-      "clues":[
-        "Displays images"
+      "word": "SHIP",
+      "clues": [
+        "A large vessel that sails the sea"
+      ]
+    },
+    {
+      "word": "COAT",
+      "clues": [
+        "A long, heavy piece of outerwear"
+      ]
+    },
+    {
+      "word": "RING",
+      "clues": [
+        "Worn on a finger, often for marriage"
+      ]
+    },
+    {
+      "word": "SONG",
+      "clues": [
+        "A piece of music with lyrics"
+      ]
+    },
+    {
+      "word": "TEAM",
+      "clues": [
+        "A group working together toward a goal"
+      ]
+    },
+    {
+      "word": "GAME",
+      "clues": [
+        "A structured activity played for fun or competition"
+      ]
+    },
+    {
+      "word": "NEWS",
+      "clues": [
+        "Reports on current events"
+      ]
+    },
+    {
+      "word": "TIME",
+      "clues": [
+        "Measured in seconds, minutes, and hours"
+      ]
+    },
+    {
+      "word": "IDEA",
+      "clues": [
+        "A thought or suggestion"
       ]
     }
   ]
