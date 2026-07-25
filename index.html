@@ -456,6 +456,7 @@
         <option value="english">English</option>
         <option value="german_a2">Deutsch A2</option>
         <option value="german">Deutsch B1</option>
+        <option value="german_to_english">Deutsch B1 → Englisch</option>
       </select>
       <input type="file" id="fileInput" accept="application/json,.json" class="visually-hidden">
       <label for="fileInput" id="fileTriggerLabel" class="file-trigger-label" style="display:none;">Choose file…</label>
@@ -469,6 +470,9 @@
     <button id="printBtn" class="secondary" disabled>Print</button>
     <label class="check-field">
       <input type="checkbox" id="printAnswers"> print filled answers
+    </label>
+    <label class="check-field" title="Waits for a held key to be released before moving to the next cell — needed for macOS's press-and-hold accent-variant popup (ü, é, ñ...), but adds a slight delay so very fast typing may feel less snappy.">
+      <input type="checkbox" id="holdKeyMode"> optimize for holding keys (accents)
     </label>
   </div>
 
@@ -552,6 +556,8 @@
   const printBtn = document.getElementById('printBtn');
   const checkBtn = document.getElementById('checkBtn');
   const printAnswersCk = document.getElementById('printAnswers');
+  const holdKeyModeCk = document.getElementById('holdKeyMode');
+  let holdKeyMode = false;
   const statusEl = document.getElementById('status');
   const gridEl = document.getElementById('grid');
   const dirPopup = document.getElementById('dirPopup');
@@ -591,6 +597,7 @@
     if(v === 'english'){ currentListId = 'english'; fetchWordList('example.json', 'English'); }
     else if(v === 'german'){ currentListId = 'german'; fetchWordList('german.json', 'Deutsch B1'); }
     else if(v === 'german_a2'){ currentListId = 'german_a2'; fetchWordList('Deutsch-A2.json', 'Deutsch A2'); }
+    else if(v === 'german_to_english'){ currentListId = 'german_to_english'; fetchWordList('deutsch-fragen-english.json', 'Deutsch B1 → Englisch'); }
   });
 
   function fetchWordList(path, label){
@@ -931,8 +938,19 @@
       for(let c=0;c<cols;c++){
         const cell = cellEls[r][c];
         if(!cell) continue;
-        cell.input.addEventListener('mousedown', () => onCellMouseDown(r,c));
-        cell.input.addEventListener('keydown', (e) => onKeyDown(e,r,c));
+        cell.input.addEventListener('mousedown', (e) => { e.preventDefault(); onCellMouseDown(r,c); });
+        cell.input.addEventListener('keydown', (e) => {
+          cell.input.dataset.keyDown = 'true';
+          onKeyDown(e,r,c);
+        });
+        cell.input.addEventListener('keyup', () => {
+          cell.input.dataset.keyDown = 'false';
+          if(cell.input.dataset.pendingAdvance === 'true'){
+            cell.input.dataset.pendingAdvance = 'false';
+            clearTimeout(cell.input._advanceFallback);
+            advanceAfterInput(r,c);
+          }
+        });
         // Composing (dead-key accents like ¨+u→ü, or IME input) fires interim 'input' events
         // mid-sequence. If we react to those immediately and advance focus, the composition gets
         // cut short — the diacritic ends up stranded in the cell it started in. So: ignore 'input'
@@ -1123,7 +1141,25 @@
     const ch = g.length ? toUpperGrapheme(g[g.length-1]) : '';
     cell.input.value = ch;
     cell.wrap.classList.remove('check-correct', 'check-incorrect');
-    if(ch) advanceAfterInput(r,c);
+    if(ch){
+      if(holdKeyMode && cell.input.dataset.keyDown === 'true'){
+        // The key that produced this character is still physically held down. Waiting for it
+        // to be released before advancing gives a native accent-variant popup (macOS's
+        // press-and-hold ü/é/ñ picker, which doesn't fire composition events we could otherwise
+        // detect) room to finish targeting this same cell. Off by default because it adds a
+        // small delay to every keystroke, which can drop letters during fast/rollover typing.
+        cell.input.dataset.pendingAdvance = 'true';
+        clearTimeout(cell.input._advanceFallback);
+        cell.input._advanceFallback = setTimeout(() => {
+          if(cell.input.dataset.pendingAdvance === 'true'){
+            cell.input.dataset.pendingAdvance = 'false';
+            advanceAfterInput(r,c);
+          }
+        }, 1200); // safety net in case keyup never arrives for some reason
+      } else {
+        advanceAfterInput(r,c);
+      }
+    }
     checkAndCelebrate();
   }
 
@@ -1379,6 +1415,7 @@
   printAnswersCk.addEventListener('change', () => {
     document.body.classList.toggle('print-answers', printAnswersCk.checked);
   });
+  holdKeyModeCk.addEventListener('change', () => { holdKeyMode = holdKeyModeCk.checked; });
   celebrateNewBtn.addEventListener('click', generate);
   celebrateCloseBtn.addEventListener('click', closeCelebration);
   celebrateOverlay.addEventListener('click', (e) => { if(e.target === celebrateOverlay) closeCelebration(); });
@@ -1393,7 +1430,7 @@
     const listParam = params.get('list');
     const wordsParam = parseInt(params.get('words'), 10);
 
-    const validLists = ['english', 'german', 'german_a2'];
+    const validLists = ['english', 'german', 'german_a2', 'german_to_english'];
     const list = validLists.includes(listParam) ? listParam : 'german';
     const words = (Number.isFinite(wordsParam) && wordsParam >= 2) ? wordsParam : 15;
 
@@ -1402,6 +1439,7 @@
     currentListId = list;
     if(list === 'english') fetchWordList('example.json', 'English');
     else if(list === 'german_a2') fetchWordList('Deutsch-A2.json', 'Deutsch A2');
+    else if(list === 'german_to_english') fetchWordList('deutsch-fragen-english.json', 'Deutsch B1 → Englisch');
     else fetchWordList('german.json', 'Deutsch B1');
   })();
 
