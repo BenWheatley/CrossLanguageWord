@@ -168,6 +168,56 @@
   }
   .check-field input{accent-color:var(--accent);}
 
+  .toolbar{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-bottom:18px;
+  }
+  .hamburger-wrap{ position:relative; }
+  .hamburger-btn{
+    width:40px;
+    height:38px;
+    padding:0;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:4px;
+    background:var(--panel);
+    color:var(--ink);
+  }
+  .hamburger-btn span{
+    display:block;
+    width:18px;
+    height:2px;
+    background:var(--ink);
+    border-radius:1px;
+  }
+  .hamburger-btn:hover{ background:#efe9d9; }
+  .options-menu{
+    position:absolute;
+    top:calc(100% + 8px);
+    left:0;
+    z-index:40;
+    background:var(--panel);
+    border:1.5px solid var(--ink);
+    border-radius:6px;
+    box-shadow:0 10px 28px rgba(0,0,0,0.18);
+    padding:16px;
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+    min-width:300px;
+  }
+  .options-menu[hidden]{ display:none; }
+  .options-menu .check-field{
+    align-items:flex-start;
+    line-height:1.4;
+  }
+  .options-menu .check-field input{ margin-top:2px; flex:0 0 auto; }
+
   #status{
     font-family:'IBM Plex Mono',monospace;
     font-size:12.5px;
@@ -447,33 +497,40 @@
     </div>
   </header>
 
-  <div class="panel no-print controls">
-    <div class="field">
-      <label for="wordListSelect">Word list</label>
-      <select id="wordListSelect">
-        <option value="" disabled selected>Choose word list…</option>
-        <option value="load">Load…</option>
-        <option value="english">English</option>
-        <option value="german_a2">Deutsch A2</option>
-        <option value="german">Deutsch B1</option>
-        <option value="german_to_english">Deutsch B1 → Englisch</option>
-      </select>
-      <input type="file" id="fileInput" accept="application/json,.json" class="visually-hidden">
-      <label for="fileInput" id="fileTriggerLabel" class="file-trigger-label" style="display:none;">Choose file…</label>
-    </div>
-    <div class="field">
-      <label for="wordCount">Words in puzzle</label>
-      <input type="number" id="wordCount" min="2" value="15">
+  <div class="toolbar no-print">
+    <div class="hamburger-wrap">
+      <button id="hamburgerBtn" class="secondary hamburger-btn" aria-label="Options" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <div id="optionsMenu" class="options-menu" hidden>
+        <div class="field">
+          <label for="wordListSelect">Word list</label>
+          <select id="wordListSelect">
+            <option value="" disabled selected>Choose word list…</option>
+            <option value="load">Load…</option>
+            <option value="english">English</option>
+            <option value="german_a2">Deutsch A2</option>
+            <option value="german">Deutsch B1</option>
+            <option value="german_to_english">Deutsch B1 → Englisch</option>
+          </select>
+          <input type="file" id="fileInput" accept="application/json,.json" class="visually-hidden">
+          <label for="fileInput" id="fileTriggerLabel" class="file-trigger-label" style="display:none;">Choose file…</label>
+        </div>
+        <div class="field">
+          <label for="wordCount">Words in puzzle</label>
+          <input type="number" id="wordCount" min="2" value="15">
+        </div>
+        <label class="check-field">
+          <input type="checkbox" id="printAnswers"> Show my typed answers when printing, instead of a blank puzzle
+        </label>
+        <label class="check-field">
+          <input type="checkbox" id="holdKeyMode"> Support press-and-hold accent popups (macOS ü/é/ñ, etc.) — can make fast typing feel slightly slower
+        </label>
+      </div>
     </div>
     <button id="generateBtn" disabled>New crossword</button>
     <button id="checkBtn" class="secondary" disabled>Check answers</button>
     <button id="printBtn" class="secondary" disabled>Print</button>
-    <label class="check-field">
-      <input type="checkbox" id="printAnswers"> print filled answers
-    </label>
-    <label class="check-field" title="Waits for a held key to be released before moving to the next cell — needed for macOS's press-and-hold accent-variant popup (ü, é, ñ...), but adds a slight delay so very fast typing may feel less snappy.">
-      <input type="checkbox" id="holdKeyMode"> optimize for holding keys (accents)
-    </label>
   </div>
 
   <div id="status" class="no-print"></div>
@@ -557,7 +614,15 @@
   const checkBtn = document.getElementById('checkBtn');
   const printAnswersCk = document.getElementById('printAnswers');
   const holdKeyModeCk = document.getElementById('holdKeyMode');
-  let holdKeyMode = false;
+  function looksLikeMac(){
+    const uaPlatform = (navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || '';
+    const ua = navigator.userAgent || '';
+    return /Mac/i.test(uaPlatform) || /Macintosh/i.test(ua);
+  }
+  let holdKeyMode = looksLikeMac();
+  holdKeyModeCk.checked = holdKeyMode;
+  const hamburgerBtn = document.getElementById('hamburgerBtn');
+  const optionsMenu = document.getElementById('optionsMenu');
   const statusEl = document.getElementById('status');
   const gridEl = document.getElementById('grid');
   const dirPopup = document.getElementById('dirPopup');
@@ -652,7 +717,7 @@
     wordBank = cleaned;
     const title = (data.metadata && data.metadata.title) ? data.metadata.title : 'Crossword Trainer';
     pageTitle.textContent = title;
-    pageTagline.textContent = wordBank.length + ' words loaded — choose how many to include';
+    pageTagline.textContent = wordBank.length + ' words available';
     wordCountInput.max = wordBank.length;
     if(Number(wordCountInput.value) > wordBank.length) wordCountInput.value = wordBank.length;
     generateBtn.disabled = false;
@@ -947,7 +1012,6 @@
           cell.input.dataset.keyDown = 'false';
           if(cell.input.dataset.pendingAdvance === 'true'){
             cell.input.dataset.pendingAdvance = 'false';
-            clearTimeout(cell.input._advanceFallback);
             advanceAfterInput(r,c);
           }
         });
@@ -1148,14 +1212,10 @@
         // press-and-hold ü/é/ñ picker, which doesn't fire composition events we could otherwise
         // detect) room to finish targeting this same cell. Off by default because it adds a
         // small delay to every keystroke, which can drop letters during fast/rollover typing.
+        // No fallback timer here: keyup is guaranteed to fire once the key is actually released,
+        // however long the popup interaction takes — an arbitrary timeout would just reintroduce
+        // the premature-advance bug this is meant to fix.
         cell.input.dataset.pendingAdvance = 'true';
-        clearTimeout(cell.input._advanceFallback);
-        cell.input._advanceFallback = setTimeout(() => {
-          if(cell.input.dataset.pendingAdvance === 'true'){
-            cell.input.dataset.pendingAdvance = 'false';
-            advanceAfterInput(r,c);
-          }
-        }, 1200); // safety net in case keyup never arrives for some reason
       } else {
         advanceAfterInput(r,c);
       }
@@ -1392,7 +1452,6 @@
       return;
     }
     const n = Math.max(2, Math.min(parseInt(wordCountInput.value,10)||2, wordBank.length));
-    setStatus('Building puzzle…');
     closeCelebration();
     const result = buildCrossword(wordBank, n);
     const built = trimAndIndex(result);
@@ -1405,20 +1464,48 @@
     if(numbering.placements.length < n){
       setStatus(`Placed ${numbering.placements.length} of ${n} requested words (the rest didn't fit this layout). Click "New crossword" for another attempt.`, true);
     } else {
-      setStatus(`Placed all ${numbering.placements.length} words.`);
+      setStatus('');
     }
   }
 
+  function restoreFocusToCurrentCell(){
+    if(focusedR >= 0 && focusedC >= 0 && cellAt(focusedR, focusedC)){
+      focusCell(focusedR, focusedC, currentDir);
+    }
+  }
+
+  function closeOptionsMenu(){
+    optionsMenu.hidden = true;
+    hamburgerBtn.setAttribute('aria-expanded', 'false');
+  }
+  function openOptionsMenu(){
+    optionsMenu.hidden = false;
+    hamburgerBtn.setAttribute('aria-expanded', 'true');
+  }
+  hamburgerBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if(optionsMenu.hidden) openOptionsMenu();
+    else { closeOptionsMenu(); restoreFocusToCurrentCell(); }
+  });
+  document.addEventListener('click', (e) => {
+    if(!optionsMenu.hidden && !optionsMenu.contains(e.target) && e.target !== hamburgerBtn){
+      closeOptionsMenu();
+      restoreFocusToCurrentCell();
+    }
+  });
+
   generateBtn.addEventListener('click', generate);
-  checkBtn.addEventListener('click', checkAnswers);
-  printBtn.addEventListener('click', () => window.print());
+  checkBtn.addEventListener('click', () => { checkAnswers(); restoreFocusToCurrentCell(); });
+  printBtn.addEventListener('click', () => { window.print(); restoreFocusToCurrentCell(); });
   printAnswersCk.addEventListener('change', () => {
     document.body.classList.toggle('print-answers', printAnswersCk.checked);
   });
-  holdKeyModeCk.addEventListener('change', () => { holdKeyMode = holdKeyModeCk.checked; });
+  holdKeyModeCk.addEventListener('change', () => {
+    holdKeyMode = holdKeyModeCk.checked;
+  });
   celebrateNewBtn.addEventListener('click', generate);
-  celebrateCloseBtn.addEventListener('click', closeCelebration);
-  celebrateOverlay.addEventListener('click', (e) => { if(e.target === celebrateOverlay) closeCelebration(); });
+  celebrateCloseBtn.addEventListener('click', () => { closeCelebration(); restoreFocusToCurrentCell(); });
+  celebrateOverlay.addEventListener('click', (e) => { if(e.target === celebrateOverlay){ closeCelebration(); restoreFocusToCurrentCell(); } });
 
   // Regenerate automatically whenever the requested word count changes (a new list already
   // triggers generation itself, from within loadWordBank).
