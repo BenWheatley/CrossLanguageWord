@@ -1,0 +1,3013 @@
+{
+  "metadata": {
+    "title": "Deutsch B1 → Englisch",
+    "language": "de-en",
+    "version": 1
+  },
+  "words": [
+    {
+      "word": "HOUSE",
+      "clues": [
+        "Ein Gebäude, in dem eine Familie wohnt"
+      ]
+    },
+    {
+      "word": "APARTMENT",
+      "clues": [
+        "Gemietete Zimmer in einem größeren Gebäude"
+      ]
+    },
+    {
+      "word": "KITCHEN",
+      "clues": [
+        "Der Raum, in dem man kocht"
+      ]
+    },
+    {
+      "word": "BATHROOM",
+      "clues": [
+        "Der Raum mit Dusche und Toilette"
+      ]
+    },
+    {
+      "word": "BEDROOM",
+      "clues": [
+        "Der Raum, in dem man schläft"
+      ]
+    },
+    {
+      "word": "GARDEN",
+      "clues": [
+        "Ein Stück Land hinter dem Haus, zum Pflanzenanbau"
+      ]
+    },
+    {
+      "word": "TABLE",
+      "clues": [
+        "Möbelstück, an dem man isst oder schreibt"
+      ]
+    },
+    {
+      "word": "CHAIR",
+      "clues": [
+        "Ein einzelner Sitz mit Lehne, ohne Armlehnen"
+      ]
+    },
+    {
+      "word": "SOFA",
+      "clues": [
+        "Ein langer, gepolsterter Sitz für mehrere Personen"
+      ]
+    },
+    {
+      "word": "BED",
+      "clues": [
+        "Hier schläft man nachts"
+      ]
+    },
+    {
+      "word": "WARDROBE",
+      "clues": [
+        "Hohes Möbelstück zum Aufbewahren von Kleidung"
+      ]
+    },
+    {
+      "word": "WINDOW",
+      "clues": [
+        "Lässt Licht in einen Raum"
+      ]
+    },
+    {
+      "word": "DOOR",
+      "clues": [
+        "Man öffnet sie, um einen Raum zu betreten"
+      ]
+    },
+    {
+      "word": "KEY",
+      "clues": [
+        "Passt in ein Schloss"
+      ]
+    },
+    {
+      "word": "RENT",
+      "clues": [
+        "Monatliche Zahlung an den Vermieter"
+      ]
+    },
+    {
+      "word": "LANDLORD",
+      "clues": [
+        "Die Person, der man Miete zahlt"
+      ]
+    },
+    {
+      "word": "TENANT",
+      "clues": [
+        "Jemand, der eine Wohnung mietet, statt sie zu besitzen"
+      ]
+    },
+    {
+      "word": "NEIGHBOR",
+      "clues": [
+        "Wohnt im Haus oder in der Wohnung nebenan"
+      ]
+    },
+    {
+      "word": "STREET",
+      "clues": [
+        "Autos und Fahrräder fahren darauf"
+      ]
+    },
+    {
+      "word": "CITY",
+      "clues": [
+        "Eine große Stadt mit vielen Straßen"
+      ]
+    },
+    {
+      "word": "VILLAGE",
+      "clues": [
+        "Eine kleine Siedlung, kleiner als eine Stadt"
+      ]
+    },
+    {
+      "word": "ADDRESS",
+      "clues": [
+        "Straße, Nummer und Stadt — wohin die Post geht"
+      ]
+    },
+    {
+      "word": "CEILING",
+      "clues": [
+        "Die Fläche über dem Kopf in einem Raum"
+      ]
+    },
+    {
+      "word": "BASEMENT",
+      "clues": [
+        "Das Geschoss eines Gebäudes unter der Erde"
+      ]
+    },
+    {
+      "word": "FENCE",
+      "clues": [
+        "Eine Barriere am Rand eines Grundstücks"
+      ]
+    },
+    {
+      "word": "FURNITURE",
+      "clues": [
+        "Stühle, Tische und Betten, zusammen genannt"
+      ]
+    },
+    {
+      "word": "JOB",
+      "clues": [
+        "Das, was man für Geld tut"
+      ]
+    },
+    {
+      "word": "WORKPLACE",
+      "clues": [
+        "Der Ort, an dem man arbeitet"
+      ]
+    },
+    {
+      "word": "UNEMPLOYMENT",
+      "clues": [
+        "Keine Arbeit haben"
+      ]
+    },
+    {
+      "word": "RESUME",
+      "clues": [
+        "Ein Dokument mit der beruflichen Vorgeschichte"
+      ]
+    },
+    {
+      "word": "CONTRACT",
+      "clues": [
+        "Eine unterschriebene, rechtliche Vereinbarung"
+      ]
+    },
+    {
+      "word": "SALARY",
+      "clues": [
+        "Regelmäßige Bezahlung durch einen Arbeitgeber"
+      ]
+    },
+    {
+      "word": "COLLEAGUE",
+      "clues": [
+        "Jemand, mit dem man zusammenarbeitet"
+      ]
+    },
+    {
+      "word": "BOSS",
+      "clues": [
+        "Die Person, die die Arbeit leitet"
+      ]
+    },
+    {
+      "word": "OFFICE",
+      "clues": [
+        "Wo Schreibtischarbeit erledigt wird"
+      ]
+    },
+    {
+      "word": "MEETING",
+      "clues": [
+        "Eine geplante Besprechung bei der Arbeit"
+      ]
+    },
+    {
+      "word": "DEADLINE",
+      "clues": [
+        "Der letzte Moment, zu dem etwas fertig sein muss"
+      ]
+    },
+    {
+      "word": "INTERVIEW",
+      "clues": [
+        "Ein formelles Gespräch, um einen Kandidaten zu prüfen"
+      ]
+    },
+    {
+      "word": "PROMOTION",
+      "clues": [
+        "Beruflicher Aufstieg in eine höhere Position"
+      ]
+    },
+    {
+      "word": "INTERNSHIP",
+      "clues": [
+        "Ein kurzes, oft unbezahltes Praktikum"
+      ]
+    },
+    {
+      "word": "PENSION",
+      "clues": [
+        "Einkommen nach der Pensionierung"
+      ]
+    },
+    {
+      "word": "RESIGNATION",
+      "clues": [
+        "Eine Arbeit offiziell kündigen"
+      ]
+    },
+    {
+      "word": "FACTORY",
+      "clues": [
+        "Ein Gebäude, in dem Waren hergestellt werden"
+      ]
+    },
+    {
+      "word": "BANK",
+      "clues": [
+        "Dort bewahrt man seine Ersparnisse auf"
+      ]
+    },
+    {
+      "word": "ACCOUNT",
+      "clues": [
+        "Enthält das Geld bei einer Bank"
+      ]
+    },
+    {
+      "word": "COIN",
+      "clues": [
+        "Ein rundes Geldstück aus Metall"
+      ]
+    },
+    {
+      "word": "INVOICE",
+      "clues": [
+        "Eine Rechnung, die man bezahlen muss"
+      ]
+    },
+    {
+      "word": "RECEIPT",
+      "clues": [
+        "Beweis, dass man bezahlt hat"
+      ]
+    },
+    {
+      "word": "PRICE",
+      "clues": [
+        "Das, was etwas kostet"
+      ]
+    },
+    {
+      "word": "DISCOUNT",
+      "clues": [
+        "Eine Preissenkung"
+      ]
+    },
+    {
+      "word": "DEBT",
+      "clues": [
+        "Geld, das man schuldet"
+      ]
+    },
+    {
+      "word": "LOAN",
+      "clues": [
+        "Geliehenes Geld, das zurückgezahlt werden muss"
+      ]
+    },
+    {
+      "word": "SAVINGS",
+      "clues": [
+        "Geld, das man für später zurücklegt"
+      ]
+    },
+    {
+      "word": "BUDGET",
+      "clues": [
+        "Ein Plan, wie man Geld ausgeben will"
+      ]
+    },
+    {
+      "word": "CURRENCY",
+      "clues": [
+        "Das Geldsystem eines Landes"
+      ]
+    },
+    {
+      "word": "INSURANCE",
+      "clues": [
+        "Zahlt, wenn etwas schiefgeht"
+      ]
+    },
+    {
+      "word": "TAX",
+      "clues": [
+        "Geld, das man dem Staat vom Einkommen schuldet"
+      ]
+    },
+    {
+      "word": "WALLET",
+      "clues": [
+        "Eine kleine Hülle für Bargeld und Karten",
+        "Eine kleine Hülle für Geld und Karten"
+      ]
+    },
+    {
+      "word": "INFLATION",
+      "clues": [
+        "Ein allgemeiner Preisanstieg über die Zeit"
+      ]
+    },
+    {
+      "word": "HEALTH",
+      "clues": [
+        "Der Zustand, gesund zu sein"
+      ]
+    },
+    {
+      "word": "ILLNESS",
+      "clues": [
+        "Eine Krankheit, die einen schwächt"
+      ]
+    },
+    {
+      "word": "DOCTOR",
+      "clues": [
+        "Behandelt Krankheiten und Verletzungen"
+      ]
+    },
+    {
+      "word": "HOSPITAL",
+      "clues": [
+        "Dort geht man bei ernsten medizinischen Problemen hin"
+      ]
+    },
+    {
+      "word": "PHARMACY",
+      "clues": [
+        "Dort werden Rezepte eingelöst"
+      ]
+    },
+    {
+      "word": "MEDICINE",
+      "clues": [
+        "Etwas, das ein Arzt zur Behandlung verschreibt"
+      ]
+    },
+    {
+      "word": "FEVER",
+      "clues": [
+        "Erhöhte Körpertemperatur bei Krankheit"
+      ]
+    },
+    {
+      "word": "HEADACHE",
+      "clues": [
+        "Schmerz im Kopf"
+      ]
+    },
+    {
+      "word": "INJURY",
+      "clues": [
+        "Körperlicher Schaden durch einen Unfall"
+      ]
+    },
+    {
+      "word": "SURGERY",
+      "clues": [
+        "Eine Operation zur Behandlung einer Krankheit"
+      ]
+    },
+    {
+      "word": "NURSE",
+      "clues": [
+        "Kümmert sich um Patienten, unter ärztlicher Aufsicht"
+      ]
+    },
+    {
+      "word": "VACCINE",
+      "clues": [
+        "Eine Spritze, die den Körper gegen eine Krankheit schützt"
+      ]
+    },
+    {
+      "word": "SYMPTOM",
+      "clues": [
+        "Ein Zeichen, dass medizinisch etwas nicht stimmt"
+      ]
+    },
+    {
+      "word": "ALLERGY",
+      "clues": [
+        "Eine Überreaktion des Körpers auf etwas Harmloses"
+      ]
+    },
+    {
+      "word": "EXERCISE",
+      "clues": [
+        "Körperliche Aktivität, um fit zu bleiben"
+      ]
+    },
+    {
+      "word": "BANDAGE",
+      "clues": [
+        "Wird um eine Wunde gewickelt, zum Schutz"
+      ]
+    },
+    {
+      "word": "MUSCLE",
+      "clues": [
+        "Gewebe, das sich zusammenzieht und Bewegung erzeugt"
+      ]
+    },
+    {
+      "word": "FAMILY",
+      "clues": [
+        "Eltern, Kinder und Verwandte zusammen"
+      ]
+    },
+    {
+      "word": "PARENT",
+      "clues": [
+        "Eine Mutter oder ein Vater"
+      ]
+    },
+    {
+      "word": "SIBLING",
+      "clues": [
+        "Ein Bruder oder eine Schwester"
+      ]
+    },
+    {
+      "word": "COUSIN",
+      "clues": [
+        "Das Kind der Tante oder des Onkels"
+      ]
+    },
+    {
+      "word": "SPOUSE",
+      "clues": [
+        "Ein Ehemann oder eine Ehefrau"
+      ]
+    },
+    {
+      "word": "WIDOW",
+      "clues": [
+        "Eine Frau, deren Ehemann gestorben ist"
+      ]
+    },
+    {
+      "word": "ORPHAN",
+      "clues": [
+        "Ein Kind, dessen Eltern beide gestorben sind"
+      ]
+    },
+    {
+      "word": "GRANDPARENT",
+      "clues": [
+        "Der Elternteil eines Elternteils"
+      ]
+    },
+    {
+      "word": "TODDLER",
+      "clues": [
+        "Ein kleines Kind, das gerade laufen lernt"
+      ]
+    },
+    {
+      "word": "INFANT",
+      "clues": [
+        "Ein sehr junges Baby"
+      ]
+    },
+    {
+      "word": "FRIENDSHIP",
+      "clues": [
+        "Die Verbindung zwischen engen Freunden"
+      ]
+    },
+    {
+      "word": "MARRIAGE",
+      "clues": [
+        "Die rechtliche Verbindung zweier Menschen"
+      ]
+    },
+    {
+      "word": "DIVORCE",
+      "clues": [
+        "Die rechtliche Beendigung einer Ehe"
+      ]
+    },
+    {
+      "word": "WEDDING",
+      "clues": [
+        "Die Zeremonie, bei der zwei Menschen heiraten"
+      ]
+    },
+    {
+      "word": "ANNIVERSARY",
+      "clues": [
+        "Der jährliche Tag, an dem etwas Wichtiges geschah"
+      ]
+    },
+    {
+      "word": "BIRTHDAY",
+      "clues": [
+        "Der jährliche Jahrestag der eigenen Geburt"
+      ]
+    },
+    {
+      "word": "STRANGER",
+      "clues": [
+        "Jemand, den man nicht kennt"
+      ]
+    },
+    {
+      "word": "SCHOOL",
+      "clues": [
+        "Dort lernen Kinder"
+      ]
+    },
+    {
+      "word": "TEACHER",
+      "clues": [
+        "Jemand, der Schüler unterrichtet"
+      ]
+    },
+    {
+      "word": "STUDENT",
+      "clues": [
+        "Jemand, der eingeschrieben ist, um zu lernen"
+      ]
+    },
+    {
+      "word": "CLASSROOM",
+      "clues": [
+        "Wo Unterricht stattfindet"
+      ]
+    },
+    {
+      "word": "HOMEWORK",
+      "clues": [
+        "Schulaufgaben, die zu Hause erledigt werden"
+      ]
+    },
+    {
+      "word": "EXAM",
+      "clues": [
+        "Ein Test, den man bestehen oder nicht bestehen kann"
+      ]
+    },
+    {
+      "word": "GRADE",
+      "clues": [
+        "Eine Buchstaben- oder Zahlennote für Schularbeiten"
+      ]
+    },
+    {
+      "word": "UNIVERSITY",
+      "clues": [
+        "Dort gehen Studenten nach der Schule hin"
+      ]
+    },
+    {
+      "word": "DEGREE",
+      "clues": [
+        "Ein Abschluss nach einem Universitätsstudium"
+      ]
+    },
+    {
+      "word": "LECTURE",
+      "clues": [
+        "Eine Uni-Veranstaltung, bei der ein Professor spricht"
+      ]
+    },
+    {
+      "word": "LIBRARY",
+      "clues": [
+        "Ein ruhiges Gebäude voller Bücher zum Ausleihen"
+      ]
+    },
+    {
+      "word": "SCHOLARSHIP",
+      "clues": [
+        "Geld, das das Studium finanziell unterstützt"
+      ]
+    },
+    {
+      "word": "TEXTBOOK",
+      "clues": [
+        "Ein Buch, das ein Schulfach lehrt"
+      ]
+    },
+    {
+      "word": "GRADUATION",
+      "clues": [
+        "Die Zeremonie zum Abschluss eines Studiums"
+      ]
+    },
+    {
+      "word": "ALPHABET",
+      "clues": [
+        "Alle Buchstaben, die zum Schreiben einer Sprache verwendet werden"
+      ]
+    },
+    {
+      "word": "VOCABULARY",
+      "clues": [
+        "Die Wörter, die jemand kennt oder benutzt"
+      ]
+    },
+    {
+      "word": "DICTIONARY",
+      "clues": [
+        "Ein Buch, das Wörter erklärt"
+      ]
+    },
+    {
+      "word": "ENVIRONMENT",
+      "clues": [
+        "Die Natur und Umgebung, die wir schützen sollten"
+      ]
+    },
+    {
+      "word": "CLIMATE",
+      "clues": [
+        "Das typische Wettermuster einer Region über die Zeit"
+      ]
+    },
+    {
+      "word": "POLLUTION",
+      "clues": [
+        "Schmutz oder Abfall, der die Umwelt schädigt"
+      ]
+    },
+    {
+      "word": "RECYCLING",
+      "clues": [
+        "Alte Materialien in neue umwandeln"
+      ]
+    },
+    {
+      "word": "ENERGY",
+      "clues": [
+        "Treibt Lichter, Maschinen und Motoren an"
+      ]
+    },
+    {
+      "word": "ELECTRICITY",
+      "clues": [
+        "Fließt durch Kabel, um Geräte anzutreiben"
+      ]
+    },
+    {
+      "word": "WATER",
+      "clues": [
+        "Man trinkt es und schwimmt darin"
+      ]
+    },
+    {
+      "word": "FOREST",
+      "clues": [
+        "Ein großes, mit Bäumen bedecktes Gebiet"
+      ]
+    },
+    {
+      "word": "OCEAN",
+      "clues": [
+        "Das größte Gewässer mit Salzwasser"
+      ]
+    },
+    {
+      "word": "MOUNTAIN",
+      "clues": [
+        "Eine sehr hohe Landform"
+      ]
+    },
+    {
+      "word": "DESERT",
+      "clues": [
+        "Eine sehr trockene Region mit wenig Regen"
+      ]
+    },
+    {
+      "word": "ISLAND",
+      "clues": [
+        "Land, das vollständig von Wasser umgeben ist"
+      ]
+    },
+    {
+      "word": "VOLCANO",
+      "clues": [
+        "Ein Berg, der ausbrechen kann"
+      ]
+    },
+    {
+      "word": "EARTHQUAKE",
+      "clues": [
+        "Ein plötzliches Erschüttern des Bodens"
+      ]
+    },
+    {
+      "word": "DROUGHT",
+      "clues": [
+        "Eine lange Zeit ohne genug Regen"
+      ]
+    },
+    {
+      "word": "WILDLIFE",
+      "clues": [
+        "Wilde Tiere in ihrem natürlichen Lebensraum"
+      ]
+    },
+    {
+      "word": "HABITAT",
+      "clues": [
+        "Der natürliche Lebensraum einer Pflanze oder eines Tieres"
+      ]
+    },
+    {
+      "word": "GLACIER",
+      "clues": [
+        "Eine riesige, sich langsam bewegende Eismasse"
+      ]
+    },
+    {
+      "word": "TRAFFIC",
+      "clues": [
+        "Autos und Busse, die sich durch eine Stadt bewegen"
+      ]
+    },
+    {
+      "word": "AIRPORT",
+      "clues": [
+        "Dort starten und landen Flugzeuge"
+      ]
+    },
+    {
+      "word": "STATION",
+      "clues": [
+        "Dort steigt man in einen Zug"
+      ]
+    },
+    {
+      "word": "TICKET",
+      "clues": [
+        "Man zeigt es, um in einen Zug oder ein Flugzeug einzusteigen"
+      ]
+    },
+    {
+      "word": "TIMETABLE",
+      "clues": [
+        "Zeigt an, wann Züge oder Busse abfahren"
+      ]
+    },
+    {
+      "word": "DELAY",
+      "clues": [
+        "Später als geplant ankommen"
+      ]
+    },
+    {
+      "word": "PASSENGER",
+      "clues": [
+        "Jemand, der in einem Fahrzeug mitfährt, aber nicht fährt"
+      ]
+    },
+    {
+      "word": "LUGGAGE",
+      "clues": [
+        "Das, was man auf Reisen packt und trägt"
+      ]
+    },
+    {
+      "word": "SUITCASE",
+      "clues": [
+        "Ein Koffer zum Packen von Kleidung"
+      ]
+    },
+    {
+      "word": "PASSPORT",
+      "clues": [
+        "Nötig, um internationale Grenzen zu überqueren"
+      ]
+    },
+    {
+      "word": "JOURNEY",
+      "clues": [
+        "Eine Reise irgendwohin"
+      ]
+    },
+    {
+      "word": "DESTINATION",
+      "clues": [
+        "Der Ort, an dem eine Reise endet"
+      ]
+    },
+    {
+      "word": "SOUVENIR",
+      "clues": [
+        "Etwas, das man kauft, um sich an eine Reise zu erinnern"
+      ]
+    },
+    {
+      "word": "HIGHWAY",
+      "clues": [
+        "Eine Hauptstraße für schnelles Reisen zwischen Orten"
+      ]
+    },
+    {
+      "word": "BICYCLE",
+      "clues": [
+        "Ein zweirädriges Fahrzeug, das man tritt"
+      ]
+    },
+    {
+      "word": "BREAKFAST",
+      "clues": [
+        "Die erste Mahlzeit des Tages"
+      ]
+    },
+    {
+      "word": "RECIPE",
+      "clues": [
+        "Schritt-für-Schritt-Anleitung zum Kochen eines Gerichts"
+      ]
+    },
+    {
+      "word": "INGREDIENT",
+      "clues": [
+        "Eine Zutat, die in einem Rezept verwendet wird"
+      ]
+    },
+    {
+      "word": "VEGETABLE",
+      "clues": [
+        "Karotten, Kartoffeln und Ähnliches"
+      ]
+    },
+    {
+      "word": "BREAD",
+      "clues": [
+        "Aus Mehl gebacken, für Sandwiches geschnitten"
+      ]
+    },
+    {
+      "word": "CHEESE",
+      "clues": [
+        "Aus Milch hergestellt, oft auf Brot"
+      ]
+    },
+    {
+      "word": "RESTAURANT",
+      "clues": [
+        "Dort bezahlt man für eine zubereitete Mahlzeit"
+      ]
+    },
+    {
+      "word": "WAITER",
+      "clues": [
+        "Bringt das Essen an den Tisch"
+      ]
+    },
+    {
+      "word": "MENU",
+      "clues": [
+        "Zeigt an, was ein Restaurant anbietet"
+      ]
+    },
+    {
+      "word": "APPETITE",
+      "clues": [
+        "Der Wunsch zu essen"
+      ]
+    },
+    {
+      "word": "SEASONING",
+      "clues": [
+        "Salz, Kräuter oder Gewürze zum Würzen von Essen"
+      ]
+    },
+    {
+      "word": "VEGETARIAN",
+      "clues": [
+        "Jemand, der kein Fleisch isst"
+      ]
+    },
+    {
+      "word": "DESSERT",
+      "clues": [
+        "Ein süßer Gang am Ende einer Mahlzeit"
+      ]
+    },
+    {
+      "word": "BEVERAGE",
+      "clues": [
+        "Irgendein Getränk"
+      ]
+    },
+    {
+      "word": "GROCERY",
+      "clues": [
+        "Lebensmittel, die im Laden gekauft werden"
+      ]
+    },
+    {
+      "word": "REFRIGERATOR",
+      "clues": [
+        "Hält Lebensmittel kalt, damit sie länger halten"
+      ]
+    },
+    {
+      "word": "COMPUTER",
+      "clues": [
+        "Eine Maschine zur Datenverarbeitung"
+      ]
+    },
+    {
+      "word": "INTERNET",
+      "clues": [
+        "Das globale Netzwerk, das Computer verbindet"
+      ]
+    },
+    {
+      "word": "PASSWORD",
+      "clues": [
+        "Geheimer Text, der zum Einloggen nötig ist"
+      ]
+    },
+    {
+      "word": "SOFTWARE",
+      "clues": [
+        "Die Programme, die auf einem Computer laufen"
+      ]
+    },
+    {
+      "word": "KEYBOARD",
+      "clues": [
+        "Darauf tippt man"
+      ]
+    },
+    {
+      "word": "SCREEN",
+      "clues": [
+        "Dort sieht man das Bild eines Geräts"
+      ]
+    },
+    {
+      "word": "BATTERY",
+      "clues": [
+        "Versorgt ein Telefon mit Strom, wenn es nicht angeschlossen ist"
+      ]
+    },
+    {
+      "word": "SMARTPHONE",
+      "clues": [
+        "Ein Mobiltelefon, auf dem Apps laufen"
+      ]
+    },
+    {
+      "word": "DOWNLOAD",
+      "clues": [
+        "Eine Datei aus dem Internet auf das eigene Gerät kopieren"
+      ]
+    },
+    {
+      "word": "WEBSITE",
+      "clues": [
+        "Eine Seite oder mehrere Seiten, die man online sieht"
+      ]
+    },
+    {
+      "word": "DATABASE",
+      "clues": [
+        "Eine organisierte Sammlung gespeicherter Daten"
+      ]
+    },
+    {
+      "word": "CURSOR",
+      "clues": [
+        "Der blinkende Punkt, der zeigt, wo man als Nächstes tippt"
+      ]
+    },
+    {
+      "word": "NEWSPAPER",
+      "clues": [
+        "Gedruckte, tägliche Nachrichten auf Papier"
+      ]
+    },
+    {
+      "word": "TELEVISION",
+      "clues": [
+        "Ein Bildschirm für Unterhaltung oder Nachrichten"
+      ]
+    },
+    {
+      "word": "ADVERTISEMENT",
+      "clues": [
+        "Eine bezahlte Nachricht, die einem etwas verkaufen will"
+      ]
+    },
+    {
+      "word": "JOURNALIST",
+      "clues": [
+        "Jemand, der Nachrichten schreibt oder berichtet"
+      ]
+    },
+    {
+      "word": "HEADLINE",
+      "clues": [
+        "Der große Titel oben in einem Zeitungsartikel"
+      ]
+    },
+    {
+      "word": "AUDIENCE",
+      "clues": [
+        "Menschen, die etwas anschauen, lesen oder anhören"
+      ]
+    },
+    {
+      "word": "CELEBRITY",
+      "clues": [
+        "Eine berühmte, bekannte Person"
+      ]
+    },
+    {
+      "word": "OPINION",
+      "clues": [
+        "Was jemand persönlich über etwas denkt"
+      ]
+    },
+    {
+      "word": "SOCIETY",
+      "clues": [
+        "Menschen, die zusammen in einer Gemeinschaft leben"
+      ]
+    },
+    {
+      "word": "GOVERNMENT",
+      "clues": [
+        "Die Gruppe, die ein Land regiert"
+      ]
+    },
+    {
+      "word": "ELECTION",
+      "clues": [
+        "Bürger wählen ihre Führung"
+      ]
+    },
+    {
+      "word": "CITIZEN",
+      "clues": [
+        "Ein rechtlich anerkanntes Mitglied eines Landes"
+      ]
+    },
+    {
+      "word": "LAW",
+      "clues": [
+        "Eine Regel, die vom Staat durchgesetzt wird"
+      ]
+    },
+    {
+      "word": "JUSTICE",
+      "clues": [
+        "Faire Behandlung nach dem Gesetz"
+      ]
+    },
+    {
+      "word": "COMMUNITY",
+      "clues": [
+        "Eine Gruppe von Menschen im selben Gebiet"
+      ]
+    },
+    {
+      "word": "CULTURE",
+      "clues": [
+        "Die Bräuche und Überzeugungen einer Gruppe"
+      ]
+    },
+    {
+      "word": "TRADITION",
+      "clues": [
+        "Ein Brauch, der über Generationen weitergegeben wird"
+      ]
+    },
+    {
+      "word": "CHARITY",
+      "clues": [
+        "Eine Organisation, die Menschen in Not hilft"
+      ]
+    },
+    {
+      "word": "VOLUNTEER",
+      "clues": [
+        "Jemand, der unbezahlt arbeitet, um anderen zu helfen"
+      ]
+    },
+    {
+      "word": "EMOTION",
+      "clues": [
+        "Ein Gefühl, wie Freude oder Wut"
+      ]
+    },
+    {
+      "word": "HAPPINESS",
+      "clues": [
+        "Das Gefühl, froh oder zufrieden zu sein"
+      ]
+    },
+    {
+      "word": "SADNESS",
+      "clues": [
+        "Das Gefühl der Traurigkeit"
+      ]
+    },
+    {
+      "word": "ANGER",
+      "clues": [
+        "Sich verärgert oder aufgebracht fühlen"
+      ]
+    },
+    {
+      "word": "FEAR",
+      "clues": [
+        "Das Gefühl vor etwas Beängstigendem"
+      ]
+    },
+    {
+      "word": "ANXIETY",
+      "clues": [
+        "Ein anhaltendes Gefühl von Sorge oder Unruhe"
+      ]
+    },
+    {
+      "word": "CONFIDENCE",
+      "clues": [
+        "Vertrauen in die eigenen Fähigkeiten"
+      ]
+    },
+    {
+      "word": "JEALOUSY",
+      "clues": [
+        "Groll über den Vorteil eines anderen"
+      ]
+    },
+    {
+      "word": "CURIOSITY",
+      "clues": [
+        "Ein starker Wunsch, etwas zu lernen oder zu wissen",
+        "Der Wunsch, mehr zu erfahren"
+      ]
+    },
+    {
+      "word": "GRATITUDE",
+      "clues": [
+        "Sich dankbar fühlen"
+      ]
+    },
+    {
+      "word": "PATIENCE",
+      "clues": [
+        "Ruhig bleiben, während man wartet"
+      ]
+    },
+    {
+      "word": "COURAGE",
+      "clues": [
+        "Etwas trotz Angst tun"
+      ]
+    },
+    {
+      "word": "LONELINESS",
+      "clues": [
+        "Das Gefühl, keine Gesellschaft zu haben"
+      ]
+    },
+    {
+      "word": "EXCITEMENT",
+      "clues": [
+        "Ein lebhaftes Gefühl freudiger Erwartung"
+      ]
+    },
+    {
+      "word": "SYMPATHY",
+      "clues": [
+        "Mitgefühl für das Unglück eines anderen"
+      ]
+    },
+    {
+      "word": "STUBBORN",
+      "clues": [
+        "Weigert sich, die eigene Meinung zu ändern"
+      ]
+    },
+    {
+      "word": "GENEROUS",
+      "clues": [
+        "Bereit, freigiebig zu geben"
+      ]
+    },
+    {
+      "word": "HUMBLE",
+      "clues": [
+        "Nicht stolz oder prahlerisch"
+      ]
+    },
+    {
+      "word": "CLOTHING",
+      "clues": [
+        "Alles, was man trägt, zusammen genannt"
+      ]
+    },
+    {
+      "word": "JACKET",
+      "clues": [
+        "Eine Schicht, die über einem Hemd getragen wird, draußen"
+      ]
+    },
+    {
+      "word": "TROUSERS",
+      "clues": [
+        "Bedeckt beide Beine getrennt"
+      ]
+    },
+    {
+      "word": "UMBRELLA",
+      "clues": [
+        "Hält einen bei Regen trocken",
+        "Schützt vor Regen"
+      ]
+    },
+    {
+      "word": "WEATHER",
+      "clues": [
+        "Was Himmel und Temperatur heute machen"
+      ]
+    },
+    {
+      "word": "RAIN",
+      "clues": [
+        "Wasser, das aus Wolken fällt"
+      ]
+    },
+    {
+      "word": "SNOW",
+      "clues": [
+        "Weiß und kalt, fällt im Winter"
+      ]
+    },
+    {
+      "word": "THUNDER",
+      "clues": [
+        "Das laute Geräusch nach einem Blitz"
+      ]
+    },
+    {
+      "word": "LIGHTNING",
+      "clues": [
+        "Ein plötzlicher heller Blitz während eines Gewitters"
+      ]
+    },
+    {
+      "word": "TEMPERATURE",
+      "clues": [
+        "Wie heiß oder kalt es ist, in Grad"
+      ]
+    },
+    {
+      "word": "FORECAST",
+      "clues": [
+        "Eine Vorhersage über zukünftiges Wetter"
+      ]
+    },
+    {
+      "word": "UNIFORM",
+      "clues": [
+        "Passende Kleidung, die von Mitgliedern einer Gruppe getragen wird"
+      ]
+    },
+    {
+      "word": "IMPORTANT",
+      "clues": [
+        "Verdient ernsthafte Aufmerksamkeit"
+      ]
+    },
+    {
+      "word": "DIFFICULT",
+      "clues": [
+        "Schwer zu tun"
+      ]
+    },
+    {
+      "word": "POSSIBLE",
+      "clues": [
+        "Fähig zu geschehen"
+      ]
+    },
+    {
+      "word": "NECESSARY",
+      "clues": [
+        "Erforderlich, kann nicht übersprungen werden"
+      ]
+    },
+    {
+      "word": "APPROXIMATELY",
+      "clues": [
+        "Ungefähr, keine genaue Zahl"
+      ]
+    },
+    {
+      "word": "RELIABLE",
+      "clues": [
+        "Tut immer das, was versprochen wurde"
+      ]
+    },
+    {
+      "word": "PUNCTUAL",
+      "clues": [
+        "Nie zu spät"
+      ]
+    },
+    {
+      "word": "INDEPENDENT",
+      "clues": [
+        "Nicht von anderen abhängig"
+      ]
+    },
+    {
+      "word": "COMFORTABLE",
+      "clues": [
+        "Gemütlich und leicht zum Entspannen"
+      ]
+    },
+    {
+      "word": "PRACTICAL",
+      "clues": [
+        "Nützlich im Alltag"
+      ]
+    },
+    {
+      "word": "ANCIENT",
+      "clues": [
+        "Extrem alt, aus ferner Vergangenheit"
+      ]
+    },
+    {
+      "word": "FRAGILE",
+      "clues": [
+        "Leicht zerbrechlich"
+      ]
+    },
+    {
+      "word": "ENORMOUS",
+      "clues": [
+        "Extrem groß"
+      ]
+    },
+    {
+      "word": "RIDICULOUS",
+      "clues": [
+        "So unvernünftig, dass es lächerlich ist"
+      ]
+    },
+    {
+      "word": "MYSTERIOUS",
+      "clues": [
+        "Schwer zu verstehen oder zu erklären"
+      ]
+    },
+    {
+      "word": "PECULIAR",
+      "clues": [
+        "Seltsam oder ungewöhnlich"
+      ]
+    },
+    {
+      "word": "RELUCTANT",
+      "clues": [
+        "Widerwillig und zögernd"
+      ]
+    },
+    {
+      "word": "GENUINE",
+      "clues": [
+        "Echt, nicht falsch"
+      ]
+    },
+    {
+      "word": "EFFICIENT",
+      "clues": [
+        "Erzielt Ergebnisse ohne verschwendeten Aufwand"
+      ]
+    },
+    {
+      "word": "ANIMAL",
+      "clues": [
+        "Ein Lebewesen, keine Pflanze"
+      ]
+    },
+    {
+      "word": "INSECT",
+      "clues": [
+        "Ein kleines Tier mit sechs Beinen, wie eine Ameise"
+      ]
+    },
+    {
+      "word": "MAMMAL",
+      "clues": [
+        "Ein warmblütiges Tier, das seine Jungen säugt"
+      ]
+    },
+    {
+      "word": "REPTILE",
+      "clues": [
+        "Ein kaltblütiges Tier mit Schuppen, wie eine Schlange"
+      ]
+    },
+    {
+      "word": "PREDATOR",
+      "clues": [
+        "Ein Tier, das andere zur Nahrung jagt"
+      ]
+    },
+    {
+      "word": "MIGRATION",
+      "clues": [
+        "Saisonale Wanderung von Tieren zwischen Regionen"
+      ]
+    },
+    {
+      "word": "GRAVITY",
+      "clues": [
+        "Die Kraft, die Objekte zum Boden zieht"
+      ]
+    },
+    {
+      "word": "TELESCOPE",
+      "clues": [
+        "Ein Werkzeug zur Betrachtung entfernter Objekte, wie Sterne"
+      ]
+    },
+    {
+      "word": "MICROSCOPE",
+      "clues": [
+        "Ein Werkzeug zur Betrachtung sehr kleiner Objekte"
+      ]
+    },
+    {
+      "word": "EXPERIMENT",
+      "clues": [
+        "Ein Test, um etwas wissenschaftlich zu entdecken"
+      ]
+    },
+    {
+      "word": "EVOLUTION",
+      "clues": [
+        "Die allmähliche Veränderung von Arten über Generationen"
+      ]
+    },
+    {
+      "word": "GALAXY",
+      "clues": [
+        "Ein riesiges Sternensystem, wie die Milchstraße"
+      ]
+    },
+    {
+      "word": "ASTRONAUT",
+      "clues": [
+        "Eine Person, die für Weltraumreisen ausgebildet ist"
+      ]
+    },
+    {
+      "word": "PLANET",
+      "clues": [
+        "Ein großer Körper, der einen Stern umkreist, wie die Erde"
+      ]
+    },
+    {
+      "word": "ATMOSPHERE",
+      "clues": [
+        "Die Gasschicht um einen Planeten"
+      ]
+    },
+    {
+      "word": "LABORATORY",
+      "clues": [
+        "Ein Raum, der für wissenschaftliche Experimente ausgestattet ist"
+      ]
+    },
+    {
+      "word": "MUSEUM",
+      "clues": [
+        "Ein Gebäude, das Kunst oder historische Objekte zeigt"
+      ]
+    },
+    {
+      "word": "PAINTING",
+      "clues": [
+        "Ein mit Farbe gemaltes Bild"
+      ]
+    },
+    {
+      "word": "SCULPTURE",
+      "clues": [
+        "Ein dreidimensionales Kunstwerk"
+      ]
+    },
+    {
+      "word": "ORCHESTRA",
+      "clues": [
+        "Eine große Gruppe von Musikern, die zusammen spielen"
+      ]
+    },
+    {
+      "word": "INSTRUMENT",
+      "clues": [
+        "Ein Gerät, mit dem man Musik macht"
+      ]
+    },
+    {
+      "word": "REHEARSAL",
+      "clues": [
+        "Eine Aufführung vor der eigentlichen Vorstellung üben"
+      ]
+    },
+    {
+      "word": "STADIUM",
+      "clues": [
+        "Ein großer Veranstaltungsort für Sportereignisse"
+      ]
+    },
+    {
+      "word": "REFEREE",
+      "clues": [
+        "Setzt die Regeln während eines Sportspiels durch"
+      ]
+    },
+    {
+      "word": "CHAMPION",
+      "clues": [
+        "Der Gewinner eines Wettbewerbs"
+      ]
+    },
+    {
+      "word": "TOURNAMENT",
+      "clues": [
+        "Eine Reihe von Wettbewerben, um einen Gesamtsieger zu finden"
+      ]
+    },
+    {
+      "word": "MARATHON",
+      "clues": [
+        "Ein Langstreckenlauf"
+      ]
+    },
+    {
+      "word": "GYMNASIUM",
+      "clues": [
+        "Ein Gebäude, das für Sport ausgestattet ist"
+      ]
+    },
+    {
+      "word": "NOVELIST",
+      "clues": [
+        "Jemand, der Romane schreibt"
+      ]
+    },
+    {
+      "word": "PHOTOGRAPHY",
+      "clues": [
+        "Die Kunst, Bilder aufzunehmen"
+      ]
+    },
+    {
+      "word": "LITERATURE",
+      "clues": [
+        "Geschriebene Werke von künstlerischem Wert"
+      ]
+    },
+    {
+      "word": "ARCHITECTURE",
+      "clues": [
+        "Die Gestaltung von Gebäuden"
+      ]
+    },
+    {
+      "word": "CAT",
+      "clues": [
+        "Ein kleines, pelziges Haustier, das miaut"
+      ]
+    },
+    {
+      "word": "DOG",
+      "clues": [
+        "Ein treues, pelziges Haustier, das bellt"
+      ]
+    },
+    {
+      "word": "SUN",
+      "clues": [
+        "Der Stern, der unsere Tage erhellt"
+      ]
+    },
+    {
+      "word": "MOON",
+      "clues": [
+        "Umkreist die Erde und leuchtet nachts"
+      ]
+    },
+    {
+      "word": "STAR",
+      "clues": [
+        "Eine ferne, leuchtende Gaskugel, nachts sichtbar"
+      ]
+    },
+    {
+      "word": "TREE",
+      "clues": [
+        "Eine hohe Pflanze mit Stamm und Ästen"
+      ]
+    },
+    {
+      "word": "BOOK",
+      "clues": [
+        "Etwas, das man liest"
+      ]
+    },
+    {
+      "word": "PEN",
+      "clues": [
+        "Damit schreibt man mit Tinte"
+      ]
+    },
+    {
+      "word": "CUP",
+      "clues": [
+        "Damit trinkt man heiße Getränke"
+      ]
+    },
+    {
+      "word": "BAG",
+      "clues": [
+        "Damit trägt man Sachen"
+      ]
+    },
+    {
+      "word": "MAP",
+      "clues": [
+        "Zeigt, wie man irgendwohin kommt"
+      ]
+    },
+    {
+      "word": "BOX",
+      "clues": [
+        "Ein Behälter mit geraden Seiten"
+      ]
+    },
+    {
+      "word": "EGG",
+      "clues": [
+        "Von einem Vogel gelegt, oft zum Frühstück gegessen"
+      ]
+    },
+    {
+      "word": "MILK",
+      "clues": [
+        "Eine weiße Flüssigkeit von Kühen"
+      ]
+    },
+    {
+      "word": "SALT",
+      "clues": [
+        "Ein weißes Gewürz, das Essen weniger fade macht"
+      ]
+    },
+    {
+      "word": "RICE",
+      "clues": [
+        "Ein Grundnahrungsmittel, weltweit gegessen"
+      ]
+    },
+    {
+      "word": "FISH",
+      "clues": [
+        "Ein Tier, das schwimmt und durch Kiemen atmet"
+      ]
+    },
+    {
+      "word": "BIRD",
+      "clues": [
+        "Ein gefiedertes Tier, das meist fliegen kann"
+      ]
+    },
+    {
+      "word": "ROAD",
+      "clues": [
+        "Eine Route, auf der Autos fahren"
+      ]
+    },
+    {
+      "word": "SHIP",
+      "clues": [
+        "Ein großes Wasserfahrzeug"
+      ]
+    },
+    {
+      "word": "COAT",
+      "clues": [
+        "Ein langes, schweres Kleidungsstück"
+      ]
+    },
+    {
+      "word": "RING",
+      "clues": [
+        "Wird am Finger getragen, oft zur Hochzeit"
+      ]
+    },
+    {
+      "word": "SONG",
+      "clues": [
+        "Ein Musikstück mit Text"
+      ]
+    },
+    {
+      "word": "TEAM",
+      "clues": [
+        "Eine Gruppe, die zusammen auf ein Ziel hinarbeitet"
+      ]
+    },
+    {
+      "word": "GAME",
+      "clues": [
+        "Eine strukturierte Aktivität, zum Spaß oder Wettbewerb gespielt"
+      ]
+    },
+    {
+      "word": "NEWS",
+      "clues": [
+        "Berichte über aktuelle Ereignisse"
+      ]
+    },
+    {
+      "word": "TIME",
+      "clues": [
+        "Gemessen in Sekunden, Minuten und Stunden"
+      ]
+    },
+    {
+      "word": "IDEA",
+      "clues": [
+        "Ein Gedanke oder Vorschlag"
+      ]
+    },
+    {
+      "word": "PLAN",
+      "clues": [
+        "Ein Vorhaben, wie man etwas tun will"
+      ]
+    },
+    {
+      "word": "GOAL",
+      "clues": [
+        "Das, was man erreichen möchte"
+      ]
+    },
+    {
+      "word": "RULE",
+      "clues": [
+        "Eine Richtlinie, an die man sich halten soll"
+      ]
+    },
+    {
+      "word": "DUTY",
+      "clues": [
+        "Etwas, wozu man verpflichtet ist"
+      ]
+    },
+    {
+      "word": "ENGINEER",
+      "clues": [
+        "Entwirft und baut Maschinen oder Bauwerke"
+      ]
+    },
+    {
+      "word": "LAWYER",
+      "clues": [
+        "Vertritt Menschen rechtlich vor Gericht"
+      ]
+    },
+    {
+      "word": "ARCHITECT",
+      "clues": [
+        "Entwirft Gebäude"
+      ]
+    },
+    {
+      "word": "ELECTRICIAN",
+      "clues": [
+        "Repariert elektrische Systeme"
+      ]
+    },
+    {
+      "word": "PLUMBER",
+      "clues": [
+        "Repariert Rohre und Wasserleitungen"
+      ]
+    },
+    {
+      "word": "MECHANIC",
+      "clues": [
+        "Repariert Autos und Maschinen"
+      ]
+    },
+    {
+      "word": "ACCOUNTANT",
+      "clues": [
+        "Verwaltet die Finanzen eines Unternehmens"
+      ]
+    },
+    {
+      "word": "SCIENTIST",
+      "clues": [
+        "Führt Experimente durch, um Neues zu entdecken"
+      ]
+    },
+    {
+      "word": "FARMER",
+      "clues": [
+        "Baut Nutzpflanzen an oder hält Tiere"
+      ]
+    },
+    {
+      "word": "CHEF",
+      "clues": [
+        "Leitet die Küche in einem Restaurant"
+      ]
+    },
+    {
+      "word": "PILOT",
+      "clues": [
+        "Steuert ein Flugzeug"
+      ]
+    },
+    {
+      "word": "FIREFIGHTER",
+      "clues": [
+        "Löscht Brände und rettet Menschen"
+      ]
+    },
+    {
+      "word": "LIBRARIAN",
+      "clues": [
+        "Verwaltet die Bücher in einer Bibliothek"
+      ]
+    },
+    {
+      "word": "PHOTOGRAPHER",
+      "clues": [
+        "Macht beruflich Fotos"
+      ]
+    },
+    {
+      "word": "TRANSLATOR",
+      "clues": [
+        "Überträgt Texte von einer Sprache in eine andere"
+      ]
+    },
+    {
+      "word": "CONTINENT",
+      "clues": [
+        "Ein riesiges Landgebiet, wie Europa oder Afrika"
+      ]
+    },
+    {
+      "word": "BORDER",
+      "clues": [
+        "Die Linie zwischen zwei Ländern"
+      ]
+    },
+    {
+      "word": "CAPITAL",
+      "clues": [
+        "Die Hauptstadt eines Landes"
+      ]
+    },
+    {
+      "word": "COAST",
+      "clues": [
+        "Das Land direkt am Meer"
+      ]
+    },
+    {
+      "word": "VALLEY",
+      "clues": [
+        "Tiefland zwischen zwei Bergen"
+      ]
+    },
+    {
+      "word": "HARBOR",
+      "clues": [
+        "Ein geschützter Bereich, in dem Schiffe anlegen"
+      ]
+    },
+    {
+      "word": "BRIDGE",
+      "clues": [
+        "Führt über einen Fluss oder eine Schlucht"
+      ]
+    },
+    {
+      "word": "TUNNEL",
+      "clues": [
+        "Ein Durchgang unter der Erde oder durch einen Berg"
+      ]
+    },
+    {
+      "word": "SUBURB",
+      "clues": [
+        "Ein Wohngebiet am Stadtrand"
+      ]
+    },
+    {
+      "word": "MARKET",
+      "clues": [
+        "Ein Ort, an dem Waren verkauft werden"
+      ]
+    },
+    {
+      "word": "CASTLE",
+      "clues": [
+        "Eine große, historische Festung"
+      ]
+    },
+    {
+      "word": "CHURCH",
+      "clues": [
+        "Ein Gebäude für christliche Gottesdienste"
+      ]
+    },
+    {
+      "word": "TEMPLE",
+      "clues": [
+        "Ein religiöses Gebäude, oft im asiatischen Kontext"
+      ]
+    },
+    {
+      "word": "CEMETERY",
+      "clues": [
+        "Ein Ort, an dem Tote begraben werden"
+      ]
+    },
+    {
+      "word": "SKYSCRAPER",
+      "clues": [
+        "Ein sehr hohes Gebäude in einer Stadt"
+      ]
+    },
+    {
+      "word": "RIVERBANK",
+      "clues": [
+        "Das Land direkt neben einem Fluss"
+      ]
+    },
+    {
+      "word": "MIRROR",
+      "clues": [
+        "Zeigt das eigene Spiegelbild"
+      ]
+    },
+    {
+      "word": "CANDLE",
+      "clues": [
+        "Brennt mit einer kleinen Flamme, aus Wachs"
+      ]
+    },
+    {
+      "word": "BLANKET",
+      "clues": [
+        "Wärmt einen im Bett"
+      ]
+    },
+    {
+      "word": "PILLOW",
+      "clues": [
+        "Stützt den Kopf beim Schlafen"
+      ]
+    },
+    {
+      "word": "TOWEL",
+      "clues": [
+        "Trocknet den Körper nach dem Duschen"
+      ]
+    },
+    {
+      "word": "BROOM",
+      "clues": [
+        "Damit fegt man den Boden"
+      ]
+    },
+    {
+      "word": "LADDER",
+      "clues": [
+        "Damit erreicht man hohe Stellen"
+      ]
+    },
+    {
+      "word": "HAMMER",
+      "clues": [
+        "Ein Werkzeug zum Einschlagen von Nägeln"
+      ]
+    },
+    {
+      "word": "SCISSORS",
+      "clues": [
+        "Ein Werkzeug zum Schneiden von Papier oder Stoff"
+      ]
+    },
+    {
+      "word": "ENVELOPE",
+      "clues": [
+        "Ein Brief wird darin verschickt"
+      ]
+    },
+    {
+      "word": "CALENDAR",
+      "clues": [
+        "Zeigt die Tage, Wochen und Monate an"
+      ]
+    },
+    {
+      "word": "NOTEBOOK",
+      "clues": [
+        "Ein kleines Buch zum Schreiben von Notizen"
+      ]
+    },
+    {
+      "word": "BACKPACK",
+      "clues": [
+        "Wird auf dem Rücken getragen, für Bücher oder Ausrüstung"
+      ]
+    },
+    {
+      "word": "FLASHLIGHT",
+      "clues": [
+        "Eine tragbare, batteriebetriebene Lichtquelle"
+      ]
+    },
+    {
+      "word": "BLENDER",
+      "clues": [
+        "Ein Küchengerät, das Zutaten mischt und zerkleinert"
+      ]
+    },
+    {
+      "word": "YESTERDAY",
+      "clues": [
+        "Der Tag vor heute"
+      ]
+    },
+    {
+      "word": "TOMORROW",
+      "clues": [
+        "Der Tag nach heute"
+      ]
+    },
+    {
+      "word": "WEEKEND",
+      "clues": [
+        "Samstag und Sonntag"
+      ]
+    },
+    {
+      "word": "CENTURY",
+      "clues": [
+        "Ein Zeitraum von hundert Jahren"
+      ]
+    },
+    {
+      "word": "DECADE",
+      "clues": [
+        "Ein Zeitraum von zehn Jahren"
+      ]
+    },
+    {
+      "word": "MOMENT",
+      "clues": [
+        "Ein sehr kurzer Zeitraum"
+      ]
+    },
+    {
+      "word": "SCHEDULE",
+      "clues": [
+        "Ein geplanter Zeitablauf für Termine"
+      ]
+    },
+    {
+      "word": "ROUTINE",
+      "clues": [
+        "Eine regelmäßig wiederholte Abfolge von Handlungen"
+      ]
+    },
+    {
+      "word": "OCCASIONALLY",
+      "clues": [
+        "Von Zeit zu Zeit, nicht oft"
+      ]
+    },
+    {
+      "word": "FREQUENTLY",
+      "clues": [
+        "Oft wiederholt"
+      ]
+    },
+    {
+      "word": "EVENTUALLY",
+      "clues": [
+        "Am Ende, nach einiger Zeit"
+      ]
+    },
+    {
+      "word": "IMMEDIATELY",
+      "clues": [
+        "Sofort, ohne Verzögerung"
+      ]
+    },
+    {
+      "word": "CURIOUS",
+      "clues": [
+        "Neugierig, wissbegierig"
+      ]
+    },
+    {
+      "word": "BRAVE",
+      "clues": [
+        "Mutig, furchtlos"
+      ]
+    },
+    {
+      "word": "HONEST",
+      "clues": [
+        "Ehrlich, aufrichtig"
+      ]
+    },
+    {
+      "word": "POLITE",
+      "clues": [
+        "Höflich"
+      ]
+    },
+    {
+      "word": "CARELESS",
+      "clues": [
+        "Nachlässig, unvorsichtig"
+      ]
+    },
+    {
+      "word": "SELFISH",
+      "clues": [
+        "Nur an sich selbst denkend"
+      ]
+    },
+    {
+      "word": "TALENTED",
+      "clues": [
+        "Begabt, mit natürlichem Können"
+      ]
+    },
+    {
+      "word": "WEALTHY",
+      "clues": [
+        "Reich, wohlhabend"
+      ]
+    },
+    {
+      "word": "POOR",
+      "clues": [
+        "Arm, ohne viel Geld"
+      ]
+    },
+    {
+      "word": "STRICT",
+      "clues": [
+        "Streng, wenig Nachsicht zeigend"
+      ]
+    },
+    {
+      "word": "FLEXIBLE",
+      "clues": [
+        "Anpassungsfähig, leicht veränderbar"
+      ]
+    },
+    {
+      "word": "LOYAL",
+      "clues": [
+        "Treu, beständig ergeben"
+      ]
+    },
+    {
+      "word": "RUDE",
+      "clues": [
+        "Unhöflich, respektlos"
+      ]
+    },
+    {
+      "word": "CHEERFUL",
+      "clues": [
+        "Fröhlich, gut gelaunt"
+      ]
+    },
+    {
+      "word": "NERVOUS",
+      "clues": [
+        "Ängstlich, angespannt"
+      ]
+    },
+    {
+      "word": "CALM",
+      "clues": [
+        "Ruhig, gelassen"
+      ]
+    },
+    {
+      "word": "BORING",
+      "clues": [
+        "Langweilig, uninteressant"
+      ]
+    },
+    {
+      "word": "EXCITING",
+      "clues": [
+        "Aufregend, spannend"
+      ]
+    },
+    {
+      "word": "DANGEROUS",
+      "clues": [
+        "Gefährlich, riskant"
+      ]
+    },
+    {
+      "word": "SAFE",
+      "clues": [
+        "Sicher, ungefährlich"
+      ]
+    },
+    {
+      "word": "EXPENSIVE",
+      "clues": [
+        "Teuer, hochpreisig"
+      ]
+    },
+    {
+      "word": "CHEAP",
+      "clues": [
+        "Billig, preiswert"
+      ]
+    },
+    {
+      "word": "CROWDED",
+      "clues": [
+        "Überfüllt, voller Menschen"
+      ]
+    },
+    {
+      "word": "EMPTY",
+      "clues": [
+        "Leer, ohne Inhalt"
+      ]
+    },
+    {
+      "word": "NARROW",
+      "clues": [
+        "Schmal, wenig breit"
+      ]
+    },
+    {
+      "word": "WIDE",
+      "clues": [
+        "Breit, weit ausgedehnt"
+      ]
+    },
+    {
+      "word": "DEEP",
+      "clues": [
+        "Tief"
+      ]
+    },
+    {
+      "word": "SHALLOW",
+      "clues": [
+        "Seicht, wenig tief"
+      ]
+    },
+    {
+      "word": "ROUGH",
+      "clues": [
+        "Rau, uneben"
+      ]
+    },
+    {
+      "word": "SMOOTH",
+      "clues": [
+        "Glatt, eben"
+      ]
+    },
+    {
+      "word": "BRIGHT",
+      "clues": [
+        "Hell, stark leuchtend"
+      ]
+    },
+    {
+      "word": "DARK",
+      "clues": [
+        "Dunkel, ohne Licht"
+      ]
+    },
+    {
+      "word": "LOUD",
+      "clues": [
+        "Laut, mit hoher Lautstärke"
+      ]
+    },
+    {
+      "word": "QUIET",
+      "clues": [
+        "Leise, ruhig"
+      ]
+    },
+    {
+      "word": "HEAVY",
+      "clues": [
+        "Schwer, mit hohem Gewicht"
+      ]
+    },
+    {
+      "word": "LIGHT",
+      "clues": [
+        "Leicht, mit geringem Gewicht"
+      ]
+    },
+    {
+      "word": "SHARP",
+      "clues": [
+        "Scharf, mit feiner Schneide"
+      ]
+    },
+    {
+      "word": "BLUNT",
+      "clues": [
+        "Stumpf, nicht scharf"
+      ]
+    },
+    {
+      "word": "STIFF",
+      "clues": [
+        "Steif, wenig biegsam"
+      ]
+    },
+    {
+      "word": "STICKY",
+      "clues": [
+        "Klebrig"
+      ]
+    },
+    {
+      "word": "OPPORTUNITY",
+      "clues": [
+        "Eine gute Gelegenheit, etwas zu tun"
+      ]
+    },
+    {
+      "word": "CHALLENGE",
+      "clues": [
+        "Eine schwierige Aufgabe, die Mühe erfordert"
+      ]
+    },
+    {
+      "word": "ACHIEVEMENT",
+      "clues": [
+        "Etwas erfolgreich Erreichtes"
+      ]
+    },
+    {
+      "word": "AMBITION",
+      "clues": [
+        "Ein starker Wunsch, etwas zu erreichen"
+      ]
+    },
+    {
+      "word": "INNOVATION",
+      "clues": [
+        "Eine neue Idee oder Methode"
+      ]
+    },
+    {
+      "word": "CONSEQUENCE",
+      "clues": [
+        "Das Ergebnis einer Handlung"
+      ]
+    },
+    {
+      "word": "ASSUMPTION",
+      "clues": [
+        "Etwas, das man ohne Beweis für wahr hält"
+      ]
+    },
+    {
+      "word": "PERSPECTIVE",
+      "clues": [
+        "Die Art und Weise, wie jemand etwas betrachtet"
+      ]
+    },
+    {
+      "word": "PRIORITY",
+      "clues": [
+        "Etwas, das zuerst behandelt werden sollte"
+      ]
+    },
+    {
+      "word": "STRATEGY",
+      "clues": [
+        "Ein Plan, um ein Ziel zu erreichen"
+      ]
+    },
+    {
+      "word": "REPUTATION",
+      "clues": [
+        "Was andere Menschen über jemanden denken"
+      ]
+    },
+    {
+      "word": "COMPROMISE",
+      "clues": [
+        "Eine Einigung, bei der beide Seiten nachgeben"
+      ]
+    },
+    {
+      "word": "NEGOTIATION",
+      "clues": [
+        "Ein Gespräch, um sich zu einigen"
+      ]
+    },
+    {
+      "word": "ENCOURAGEMENT",
+      "clues": [
+        "Worte oder Handlungen, die jemanden ermutigen"
+      ]
+    },
+    {
+      "word": "DISAPPOINTMENT",
+      "clues": [
+        "Das Gefühl, wenn etwas nicht wie erhofft läuft"
+      ]
+    },
+    {
+      "word": "FRUSTRATION",
+      "clues": [
+        "Das Gefühl, wenn etwas nicht gelingt"
+      ]
+    },
+    {
+      "word": "RECOGNITION",
+      "clues": [
+        "Anerkennung für eine Leistung"
+      ]
+    },
+    {
+      "word": "INDEPENDENCE",
+      "clues": [
+        "Freiheit von der Kontrolle durch andere"
+      ]
+    },
+    {
+      "word": "COOPERATION",
+      "clues": [
+        "Zusammenarbeit zwischen mehreren Parteien"
+      ]
+    },
+    {
+      "word": "COMPETITION",
+      "clues": [
+        "Ein Wettbewerb zwischen mehreren Teilnehmern"
+      ]
+    },
+    {
+      "word": "BALANCE",
+      "clues": [
+        "Das Gleichgewicht halten"
+      ]
+    },
+    {
+      "word": "SILENCE",
+      "clues": [
+        "Völlige Stille, keine Geräusche",
+        "Die Abwesenheit von Geräuschen"
+      ]
+    },
+    {
+      "word": "FREEDOM",
+      "clues": [
+        "Die Fähigkeit, frei zu handeln oder zu denken"
+      ]
+    },
+    {
+      "word": "WISDOM",
+      "clues": [
+        "Tiefes Verständnis, oft durch Erfahrung gewonnen"
+      ]
+    },
+    {
+      "word": "HONESTY",
+      "clues": [
+        "Die Eigenschaft, ehrlich zu sein"
+      ]
+    },
+    {
+      "word": "KINDNESS",
+      "clues": [
+        "Die Eigenschaft, freundlich und rücksichtsvoll zu sein"
+      ]
+    },
+    {
+      "word": "LOYALTY",
+      "clues": [
+        "Beständige Treue zu einer Person oder Sache"
+      ]
+    },
+    {
+      "word": "CREATIVITY",
+      "clues": [
+        "Die Fähigkeit, neue Ideen zu entwickeln"
+      ]
+    },
+    {
+      "word": "ADVENTURE",
+      "clues": [
+        "Eine aufregende, oft riskante Unternehmung"
+      ]
+    },
+    {
+      "word": "MYSTERY",
+      "clues": [
+        "Etwas Rätselhaftes, das man nicht versteht"
+      ]
+    },
+    {
+      "word": "MIRACLE",
+      "clues": [
+        "Ein unerklärliches, wunderbares Ereignis"
+      ]
+    },
+    {
+      "word": "FORTUNE",
+      "clues": [
+        "Großer Reichtum oder auch Glück"
+      ]
+    },
+    {
+      "word": "DESTINY",
+      "clues": [
+        "Das, was in der Zukunft für jemanden vorbestimmt ist"
+      ]
+    },
+    {
+      "word": "MEMORY",
+      "clues": [
+        "Etwas, das man sich aus der Vergangenheit merkt"
+      ]
+    },
+    {
+      "word": "IMAGINATION",
+      "clues": [
+        "Die Fähigkeit, sich Dinge vorzustellen"
+      ]
+    },
+    {
+      "word": "HARMONY",
+      "clues": [
+        "Ein Zustand friedlicher Übereinstimmung"
+      ]
+    },
+    {
+      "word": "CHAOS",
+      "clues": [
+        "Völlige Unordnung"
+      ]
+    },
+    {
+      "word": "WONDER",
+      "clues": [
+        "Ein Gefühl des Staunens"
+      ]
+    },
+    {
+      "word": "TRUST",
+      "clues": [
+        "Der Glaube, dass jemand zuverlässig ist"
+      ]
+    },
+    {
+      "word": "FAITH",
+      "clues": [
+        "Fester Glaube ohne Beweis"
+      ]
+    },
+    {
+      "word": "GOES",
+      "clues": [
+        "gehen — er/sie/es, Präsens"
+      ]
+    },
+    {
+      "word": "WENT",
+      "clues": [
+        "gehen — Simple Past"
+      ]
+    },
+    {
+      "word": "GONE",
+      "clues": [
+        "gehen — Partizip Perfekt (past participle)"
+      ]
+    },
+    {
+      "word": "EATS",
+      "clues": [
+        "essen — er/sie/es, Präsens"
+      ]
+    },
+    {
+      "word": "ATE",
+      "clues": [
+        "essen — Simple Past"
+      ]
+    },
+    {
+      "word": "EATEN",
+      "clues": [
+        "essen — Partizip Perfekt (past participle)"
+      ]
+    },
+    {
+      "word": "SEES",
+      "clues": [
+        "sehen — er/sie/es, Präsens"
+      ]
+    },
+    {
+      "word": "SAW",
+      "clues": [
+        "sehen — Simple Past"
+      ]
+    },
+    {
+      "word": "SEEN",
+      "clues": [
+        "sehen — Partizip Perfekt (past participle)"
+      ]
+    },
+    {
+      "word": "TAKES",
+      "clues": [
+        "nehmen — er/sie/es, Präsens"
+      ]
+    },
+    {
+      "word": "TOOK",
+      "clues": [
+        "nehmen — Simple Past"
+      ]
+    },
+    {
+      "word": "TAKEN",
+      "clues": [
+        "nehmen — Partizip Perfekt (past participle)"
+      ]
+    },
+    {
+      "word": "GIVES",
+      "clues": [
+        "geben — er/sie/es, Präsens"
+      ]
+    },
+    {
+      "word": "GAVE",
+      "clues": [
+        "geben — Simple Past"
+      ]
+    },
+    {
+      "word": "GIVEN",
+      "clues": [
+        "geben — Partizip Perfekt (past participle)"
+      ]
+    },
+    {
+      "word": "COMES",
+      "clues": [
+        "kommen — er/sie/es, Präsens"
+      ]
+    },
+    {
+      "word": "CAME",
+      "clues": [
+        "kommen — Simple Past"
+      ]
+    },
+    {
+      "word": "COME",
+      "clues": [
+        "kommen — Partizip Perfekt (past participle)"
+      ]
+    },
+    {
+      "word": "KNOWS",
+      "clues": [
+        "wissen/kennen — er/sie/es, Präsens"
+      ]
+    },
+    {
+      "word": "KNEW",
+      "clues": [
+        "wissen/kennen — Simple Past"
+      ]
+    },
+    {
+      "word": "KNOWN",
+      "clues": [
+        "wissen/kennen — Partizip Perfekt (past participle)"
+      ]
+    },
+    {
+      "word": "SPEAKS",
+      "clues": [
+        "sprechen — er/sie/es, Präsens"
+      ]
+    },
+    {
+      "word": "SPOKE",
+      "clues": [
+        "sprechen — Simple Past"
+      ]
+    },
+    {
+      "word": "SPOKEN",
+      "clues": [
+        "sprechen — Partizip Perfekt (past participle)"
+      ]
+    },
+    {
+      "word": "WRITES",
+      "clues": [
+        "schreiben — er/sie/es, Präsens"
+      ]
+    },
+    {
+      "word": "WROTE",
+      "clues": [
+        "schreiben — Simple Past"
+      ]
+    },
+    {
+      "word": "WRITTEN",
+      "clues": [
+        "schreiben — Partizip Perfekt (past participle)"
+      ]
+    },
+    {
+      "word": "READS",
+      "clues": [
+        "lesen — er/sie/es, Präsens"
+      ]
+    },
+    {
+      "word": "READ",
+      "clues": [
+        "lesen — Simple Past"
+      ]
+    },
+    {
+      "word": "DRINKS",
+      "clues": [
+        "trinken — er/sie/es, Präsens"
+      ]
+    },
+    {
+      "word": "DRANK",
+      "clues": [
+        "trinken — Simple Past"
+      ]
+    },
+    {
+      "word": "DRUNK",
+      "clues": [
+        "trinken — Partizip Perfekt (past participle)"
+      ]
+    },
+    {
+      "word": "SINGS",
+      "clues": [
+        "singen — er/sie/es, Präsens"
+      ]
+    },
+    {
+      "word": "SANG",
+      "clues": [
+        "singen — Simple Past"
+      ]
+    },
+    {
+      "word": "SUNG",
+      "clues": [
+        "singen — Partizip Perfekt (past participle)"
+      ]
+    },
+    {
+      "word": "RUNS",
+      "clues": [
+        "laufen/rennen — er/sie/es, Präsens"
+      ]
+    },
+    {
+      "word": "RAN",
+      "clues": [
+        "laufen/rennen — Simple Past"
+      ]
+    },
+    {
+      "word": "RUN",
+      "clues": [
+        "laufen/rennen — Partizip Perfekt (past participle)"
+      ]
+    },
+    {
+      "word": "SWIMS",
+      "clues": [
+        "schwimmen — er/sie/es, Präsens"
+      ]
+    },
+    {
+      "word": "SWAM",
+      "clues": [
+        "schwimmen — Simple Past"
+      ]
+    },
+    {
+      "word": "SWUM",
+      "clues": [
+        "schwimmen — Partizip Perfekt (past participle)"
+      ]
+    },
+    {
+      "word": "BEGINS",
+      "clues": [
+        "beginnen — er/sie/es, Präsens"
+      ]
+    },
+    {
+      "word": "BEGAN",
+      "clues": [
+        "beginnen — Simple Past"
+      ]
+    },
+    {
+      "word": "BEGUN",
+      "clues": [
+        "beginnen — Partizip Perfekt (past participle)"
+      ]
+    },
+    {
+      "word": "BREAKS",
+      "clues": [
+        "brechen — er/sie/es, Präsens"
+      ]
+    },
+    {
+      "word": "BROKE",
+      "clues": [
+        "brechen — Simple Past"
+      ]
+    },
+    {
+      "word": "BROKEN",
+      "clues": [
+        "brechen — Partizip Perfekt (past participle)"
+      ]
+    },
+    {
+      "word": "CHOOSES",
+      "clues": [
+        "wählen — er/sie/es, Präsens"
+      ]
+    },
+    {
+      "word": "CHOSE",
+      "clues": [
+        "wählen — Simple Past"
+      ]
+    },
+    {
+      "word": "CHOSEN",
+      "clues": [
+        "wählen — Partizip Perfekt (past participle)"
+      ]
+    },
+    {
+      "word": "FALLS",
+      "clues": [
+        "fallen — er/sie/es, Präsens"
+      ]
+    },
+    {
+      "word": "FELL",
+      "clues": [
+        "fallen — Simple Past"
+      ]
+    },
+    {
+      "word": "FALLEN",
+      "clues": [
+        "fallen — Partizip Perfekt (past participle)"
+      ]
+    },
+    {
+      "word": "FLIES",
+      "clues": [
+        "fliegen — er/sie/es, Präsens"
+      ]
+    },
+    {
+      "word": "FLEW",
+      "clues": [
+        "fliegen — Simple Past"
+      ]
+    },
+    {
+      "word": "FLOWN",
+      "clues": [
+        "fliegen — Partizip Perfekt (past participle)"
+      ]
+    },
+    {
+      "word": "GROWS",
+      "clues": [
+        "wachsen — er/sie/es, Präsens"
+      ]
+    },
+    {
+      "word": "GREW",
+      "clues": [
+        "wachsen — Simple Past"
+      ]
+    },
+    {
+      "word": "GROWN",
+      "clues": [
+        "wachsen — Partizip Perfekt (past participle)"
+      ]
+    }
+  ]
+}
