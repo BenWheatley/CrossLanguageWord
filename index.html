@@ -620,6 +620,7 @@
     return /Mac/i.test(uaPlatform) || /Macintosh/i.test(ua);
   }
   let holdKeyMode = looksLikeMac();
+  let lastAutoAdvance = null; // {r,c,dir} of the cell we just auto-advanced away from (hold-key mode only)
   holdKeyModeCk.checked = holdKeyMode;
   const hamburgerBtn = document.getElementById('hamburgerBtn');
   const optionsMenu = document.getElementById('optionsMenu');
@@ -1004,17 +1005,7 @@
         const cell = cellEls[r][c];
         if(!cell) continue;
         cell.input.addEventListener('mousedown', (e) => { e.preventDefault(); onCellMouseDown(r,c); });
-        cell.input.addEventListener('keydown', (e) => {
-          cell.input.dataset.keyDown = 'true';
-          onKeyDown(e,r,c);
-        });
-        cell.input.addEventListener('keyup', () => {
-          cell.input.dataset.keyDown = 'false';
-          if(cell.input.dataset.pendingAdvance === 'true'){
-            cell.input.dataset.pendingAdvance = 'false';
-            advanceAfterInput(r,c);
-          }
-        });
+        cell.input.addEventListener('keydown', (e) => onKeyDown(e,r,c));
         // Composing (dead-key accents like ¨+u→ü, or IME input) fires interim 'input' events
         // mid-sequence. If we react to those immediately and advance focus, the composition gets
         // cut short — the diacritic ends up stranded in the cell it started in. So: ignore 'input'
@@ -1109,6 +1100,7 @@
     currentWordKey = wid;
     highlightWord(wid);
     cell.wrap.classList.add('active');
+    lastAutoAdvance = null;
     cell.input.focus();
     cell.input.select();
   }
@@ -1188,13 +1180,19 @@
   }
 
   function advanceAfterInput(r,c){
+    const fromDir = currentDir;
     const next = nextCellInWord(r,c,currentDir,1);
-    if(next){ focusCell(next.r, next.c, currentDir); return; }
+    if(next){
+      focusCell(next.r, next.c, currentDir);
+      if(holdKeyMode) lastAutoAdvance = {r, c, dir: fromDir};
+      return;
+    }
     // reached end of word: jump to the next word in sequence (across list then down list)
     const idx = placedWords.findIndex(w => w.dir===currentDir && w.number === wordInfo(currentWordKey).number);
     if(idx >= 0){
       const nextWord = placedWords[(idx+1) % placedWords.length];
       focusCell(nextWord.row, nextWord.col, nextWord.dir);
+      if(holdKeyMode) lastAutoAdvance = {r, c, dir: fromDir};
     }
   }
 
@@ -1205,21 +1203,7 @@
     const ch = g.length ? toUpperGrapheme(g[g.length-1]) : '';
     cell.input.value = ch;
     cell.wrap.classList.remove('check-correct', 'check-incorrect');
-    if(ch){
-      if(holdKeyMode && cell.input.dataset.keyDown === 'true'){
-        // The key that produced this character is still physically held down. Waiting for it
-        // to be released before advancing gives a native accent-variant popup (macOS's
-        // press-and-hold ü/é/ñ picker, which doesn't fire composition events we could otherwise
-        // detect) room to finish targeting this same cell. Off by default because it adds a
-        // small delay to every keystroke, which can drop letters during fast/rollover typing.
-        // No fallback timer here: keyup is guaranteed to fire once the key is actually released,
-        // however long the popup interaction takes — an arbitrary timeout would just reintroduce
-        // the premature-advance bug this is meant to fix.
-        cell.input.dataset.pendingAdvance = 'true';
-      } else {
-        advanceAfterInput(r,c);
-      }
-    }
+    if(ch) advanceAfterInput(r,c);
     checkAndCelebrate();
   }
 
@@ -1402,6 +1386,28 @@
 
   function onKeyDown(e,r,c){
     const cell = cellAt(r,c);
+    if(!cell) return;
+    if(holdKeyMode && lastAutoAdvance){
+      const key = e.key;
+      const isDigit = key.length === 1 && /[0-9]/.test(key);
+      if(isDigit){
+        // We just auto-advanced after a plain letter, and the very next key is a digit — that
+        // matches macOS's press-and-hold accent popup (its variants are numbered), which can
+        // still be open even after the triggering key's own keyup already fired. Move focus
+        // back to the cell that letter came from *before* this digit's own effect applies, so
+        // whatever the popup does next (replacing that letter with the chosen variant) lands in
+        // the right place. We don't process this keydown as an ordinary keystroke here — it
+        // isn't meant to be typed, just consumed by the (real, native) popup.
+        const prev = lastAutoAdvance;
+        lastAutoAdvance = null;
+        focusCell(prev.r, prev.c, prev.dir);
+        return;
+      } else {
+        // Anything else (another letter, backspace, arrows...) means the advance was legitimate
+        // — nothing to undo.
+        lastAutoAdvance = null;
+      }
+    }
     switch(e.key){
       case 'ArrowLeft': e.preventDefault(); focusCell(r,c-1,'across'); break;
       case 'ArrowRight': e.preventDefault(); focusCell(r,c+1,'across'); break;
