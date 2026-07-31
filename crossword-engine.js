@@ -176,7 +176,15 @@
     return { minR, minC, rows: maxR-minR+1, cols: maxC-minC+1 };
   }
 
-  function buildCrossword(bank, targetCount){
+  /**
+   * @param {Array} bank - candidate words, each {answer, clue}
+   * @param {number} targetCount - how many words to try to place
+   * @param {number} phase1Attempts - how many length-balanced attempts to try before falling
+   *   back to the unrestricted phase (see below). Each attempt keeps the smallest-area result
+   *   that still places every requested word, so more attempts generally means a more compact
+   *   grid, with diminishing returns - see tests/index.html's performance table for numbers.
+   */
+  function buildCrossword(bank, targetCount, phase1Attempts = 10){
     const target = Math.min(targetCount, bank.length);
     let candidates = []; // {result, placedCount, area}
 
@@ -194,7 +202,7 @@
     // Phase 1: length-balanced pool, purely for a nicer-looking grid (avoids long compound
     // words dominating). This is the common case and usually reaches the full requested count.
     let reachedTarget = false;
-    for(let a=0; a<10; a++){
+    for(let a=0; a<phase1Attempts; a++){
       if(tryAttempt(pickBalancedPool(bank, target))) reachedTarget = true;
     }
 
