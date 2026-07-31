@@ -1,50 +1,53 @@
 /**
- * mini-test.js — a deliberately tiny test runner (no external framework needed beyond jsdom,
- * which is only required for tests/app.test.js). Supports sync and async test functions,
- * prints a clear pass/fail line per test, and exits with a non-zero code if anything failed
- * so this can be wired into CI later without changes.
- *
- * Exported as a factory (not a singleton) so each test file gets its own isolated registry —
- * otherwise, since Node caches modules, every file that requires this would share one `tests`
- * array, and running multiple test files from an orchestrator would double-count / re-run
- * each other's tests.
+ * mini-test.js — a tiny, dependency-free test framework that runs entirely in the browser
+ * and renders results to the page (no console needed, though it logs there too).
  *
  * Usage:
- *   const { test, run } = require('./mini-test')();
- *   test('does the thing', () => { assert.strictEqual(1+1, 2); });
- *   run(); // prints a summary and sets process.exitCode
+ *   const { test, run } = createRunner();
+ *   test('does the thing', () => { assertEqual(1+1, 2); });
+ *   run(document.getElementById('results'));
  */
+function assertEqual(actual, expected, msg){
+  if(actual !== expected){
+    throw new Error((msg ? msg + ': ' : '') + `expected ${JSON.stringify(expected)}, got ${JSON.stringify(actual)}`);
+  }
+}
+function assertTrue(cond, msg){
+  if(!cond) throw new Error(msg || 'expected a truthy value');
+}
+function assertNotEqual(actual, expected, msg){
+  if(actual === expected){
+    throw new Error((msg ? msg + ': ' : '') + `expected value to differ from ${JSON.stringify(expected)}`);
+  }
+}
+
 function createRunner(){
   const tests = [];
+  function test(name, fn){ tests.push({ name, fn }); }
 
-  function test(name, fn){
-    tests.push({ name, fn });
-  }
-
-  async function run(){
+  async function run(container){
     let passed = 0, failed = 0;
-    const failures = [];
     for(const { name, fn } of tests){
+      const row = document.createElement('li');
       try{
         await fn();
         passed++;
-        console.log(`  \x1b[32m✓\x1b[0m ${name}`);
+        row.className = 'pass';
+        row.textContent = '✓ ' + name;
       }catch(err){
         failed++;
-        failures.push({ name, err });
-        console.log(`  \x1b[31m✗\x1b[0m ${name}`);
-        console.log(`      ${err && err.message ? err.message : err}`);
+        row.className = 'fail';
+        row.textContent = '✗ ' + name;
+        const detail = document.createElement('div');
+        detail.className = 'detail';
+        detail.textContent = (err && err.message) ? err.message : String(err);
+        row.appendChild(detail);
+        console.error(name, err);
       }
+      if(container) container.appendChild(row);
     }
-    console.log('');
-    console.log(`${passed} passed, ${failed} failed (${tests.length} total)`);
-    if(failed > 0){
-      process.exitCode = 1;
-    }
-    return { passed, failed, total: tests.length, failures };
+    return { passed, failed, total: tests.length };
   }
 
   return { test, run };
 }
-
-module.exports = createRunner;
