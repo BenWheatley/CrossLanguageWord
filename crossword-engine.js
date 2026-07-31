@@ -63,8 +63,6 @@
     // how much it would grow the overall footprint, not just by how many letters it crosses.
     let minR = 0, maxR = 0, minC = 0, maxC = firstLetters.length - 1;
 
-    let remaining = candidates.slice(1);
-
     // Returns {crossCount, area} for this placement (area = the grid's bounding-box area *if*
     // this placement were added), or null if the placement is invalid.
     function evalPlacement(letters, row, col, dir){
@@ -127,12 +125,14 @@
       return a.area < b.area;
     }
 
-    function bestSpotFor(letters){
-      let best = null;
+    // Scans a specific set of grid cells (as [r,c,letter] triples) for crossing opportunities for
+    // this word, starting from (and possibly improving on) a known-so-far best spot. Used both
+    // for a full initial scan (all current grid cells) and for cheap incremental updates (only
+    // the cells a single newly-placed word just added).
+    function scanCellsForSpots(letters, cells, currentBest){
+      let best = currentBest;
       const tried = new Set();
-      for(const [k, existingLetter] of grid){
-        const [rStr,cStr] = k.split(',');
-        const r0 = parseInt(rStr,10), c0 = parseInt(cStr,10);
+      for(const [r0, c0, existingLetter] of cells){
         for(let i=0;i<letters.length;i++){
           if(letters[i] !== existingLetter) continue;
           const acrossRow = r0, acrossCol = c0-i;
@@ -154,28 +154,70 @@
       return best;
     }
 
-    let changed = true;
-    while(placements.length < target && remaining.length > 0 && changed){
-      changed = false;
-      // Rather than placing the first remaining candidate that has any workable spot, evaluate
-      // every remaining candidate's best possible spot this round and commit to whichever single
-      // (word, position) combination is best overall. This costs more per step but consistently
-      // produces smaller finished grids, since the greediest single move is chosen every time
-      // instead of whatever happened to come first in list order.
-      let bestOverall = null; // {idx, spot, letters}
-      for(let idx=0; idx<remaining.length; idx++){
-        const letters = graphemes(remaining[idx].answer);
-        const spot = bestSpotFor(letters);
-        if(spot && better(spot, bestOverall && bestOverall.spot)){
-          bestOverall = { idx, spot, letters };
+    function allGridCells(){
+      const out = [];
+      for(const [k, letter] of grid){
+        const [rStr,cStr] = k.split(',');
+        out.push([parseInt(rStr,10), parseInt(cStr,10), letter]);
+      }
+      return out;
+    }
+
+    // Each remaining candidate carries a cached best-known spot. A spot can only ever get better
+    // (or stay the same) as more letters go on the grid - cells only get added, never removed -
+    // so instead of rescanning every candidate against the whole grid at every step (expensive on
+    // larger puzzles), we scan once up front and afterward only check each candidate against the
+    // handful of cells the most recently placed word just added.
+    const remainingEntries = candidates.slice(1).map(w => ({ word: w, letters: graphemes(w.answer), bestSpot: null }));
+    {
+      const initialCells = allGridCells();
+      for(const entry of remainingEntries) entry.bestSpot = scanCellsForSpots(entry.letters, initialCells, null);
+    }
+
+    let placedCount = 1;
+    while(placedCount < target && remainingEntries.length > 0){
+      // Refresh each candidate's cached spot against the *current* grid before comparing. Area
+      // depends on the whole bounding box, so it goes stale after any placement at all, not just
+      // ones that share letters with this candidate - the incremental "newCells" update below
+      // wouldn't catch that on its own. Validity can go stale too (a neighboring cell may since
+      // have been filled, breaking the "isolated word" boundary rule); if so, fall back to a full
+      // rescan for just that one candidate so a still-good spot elsewhere isn't silently lost.
+      for(const entry of remainingEntries){
+        if(!entry.bestSpot) continue;
+        const fresh = evalPlacement(entry.letters, entry.bestSpot.row, entry.bestSpot.col, entry.bestSpot.dir);
+        if(fresh){
+          entry.bestSpot.crossCount = fresh.crossCount;
+          entry.bestSpot.area = fresh.area;
+        } else {
+          entry.bestSpot = scanCellsForSpots(entry.letters, allGridCells(), null);
         }
       }
-      if(bestOverall){
-        const { idx, spot, letters } = bestOverall;
-        place(letters, spot.row, spot.col, spot.dir);
-        placements.push({word:remaining[idx], row:spot.row, col:spot.col, dir:spot.dir, letters});
-        remaining.splice(idx,1);
-        changed = true;
+
+      let bestIdx = -1;
+      for(let i=0;i<remainingEntries.length;i++){
+        if(remainingEntries[i].bestSpot && better(remainingEntries[i].bestSpot, bestIdx===-1 ? null : remainingEntries[bestIdx].bestSpot)){
+          bestIdx = i;
+        }
+      }
+      if(bestIdx === -1) break; // no remaining candidate has any valid spot at all
+
+      const entry = remainingEntries[bestIdx];
+      const spot = entry.bestSpot;
+      place(entry.letters, spot.row, spot.col, spot.dir);
+      placements.push({word:entry.word, row:spot.row, col:spot.col, dir:spot.dir, letters:entry.letters});
+      remainingEntries.splice(bestIdx, 1);
+      placedCount++;
+
+      // Only the word just placed could unlock a new (or better) crossing for anyone else -
+      // no need to rescan the rest of the grid for them.
+      const newCells = [];
+      for(let i=0;i<entry.letters.length;i++){
+        const r = spot.dir==='across' ? spot.row : spot.row+i;
+        const c = spot.dir==='across' ? spot.col+i : spot.col;
+        newCells.push([r, c, entry.letters[i]]);
+      }
+      for(const other of remainingEntries){
+        other.bestSpot = scanCellsForSpots(other.letters, newCells, other.bestSpot);
       }
     }
     return { placements, grid };
@@ -228,7 +270,7 @@
    *   that still places every requested word, so more attempts generally means a more compact
    *   grid, with diminishing returns - see tests/index.html's performance table for numbers.
    */
-  function buildCrossword(bank, targetCount, phase1Attempts = 12){
+  function buildCrossword(bank, targetCount, phase1Attempts = 3){
     const target = Math.min(targetCount, bank.length);
     let candidates = []; // {result, placedCount, area}
 
