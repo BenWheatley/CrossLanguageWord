@@ -44,15 +44,29 @@
 
   function attemptPlacement(candidates, target){
     const grid = new Map(); // key -> letter
+    // Tracks which direction(s) already run through each occupied cell. A cell can legitimately
+    // belong to at most one across word AND at most one down word - if a new word's direction
+    // already has a claim on a cell it passes through, that's an invalid same-direction overlap
+    // (e.g. "RENT" running straight through the tail of "PARENT"), not a real crossing, even
+    // though the letters happen to match and it looks "free" by area/crossing count alone.
+    const dirsAt = new Map(); // key -> {across:bool, down:bool}
     const placements = []; // {word, row, col, dir, letters}
     const first = candidates[0];
     const firstLetters = graphemes(first.answer);
-    for(let i=0;i<firstLetters.length;i++) grid.set(key(0,i), firstLetters[i]);
+    for(let i=0;i<firstLetters.length;i++){
+      grid.set(key(0,i), firstLetters[i]);
+      dirsAt.set(key(0,i), { across:true, down:false });
+    }
     placements.push({word:first, row:0, col:0, dir:'across', letters:firstLetters});
+
+    // Track the grid's bounding box incrementally so each candidate placement can be scored by
+    // how much it would grow the overall footprint, not just by how many letters it crosses.
+    let minR = 0, maxR = 0, minC = 0, maxC = firstLetters.length - 1;
 
     let remaining = candidates.slice(1);
 
-    // Returns the number of crossing letters for this placement, or null if invalid.
+    // Returns {crossCount, area} for this placement (area = the grid's bounding-box area *if*
+    // this placement were added), or null if the placement is invalid.
     function evalPlacement(letters, row, col, dir){
       const len = letters.length;
       if(dir === 'across'){
@@ -69,6 +83,8 @@
         const existing = grid.get(key(r,c));
         if(existing !== undefined){
           if(existing !== letters[i]) return null;
+          const existingDirs = dirsAt.get(key(r,c));
+          if(existingDirs && existingDirs[dir]) return null; // same-direction overlap, not a real crossing
           crossCount++;
         } else {
           if(dir === 'across'){
@@ -78,7 +94,13 @@
           }
         }
       }
-      return crossCount > 0 ? crossCount : null;
+      if(crossCount === 0) return null;
+      const endR = dir==='down' ? row+len-1 : row;
+      const endC = dir==='across' ? col+len-1 : col;
+      const newMinR = Math.min(minR, row), newMaxR = Math.max(maxR, endR);
+      const newMinC = Math.min(minC, col), newMaxC = Math.max(maxC, endC);
+      const area = (newMaxR-newMinR+1) * (newMaxC-newMinC+1);
+      return { crossCount, area };
     }
 
     function place(letters, row, col, dir){
@@ -86,52 +108,74 @@
         const r = dir==='across' ? row : row+i;
         const c = dir==='across' ? col+i : col;
         grid.set(key(r,c), letters[i]);
+        const existingDirs = dirsAt.get(key(r,c)) || { across:false, down:false };
+        existingDirs[dir] = true;
+        dirsAt.set(key(r,c), existingDirs);
       }
+      const endR = dir==='down' ? row+letters.length-1 : row;
+      const endC = dir==='across' ? col+letters.length-1 : col;
+      minR = Math.min(minR, row); maxR = Math.max(maxR, endR);
+      minC = Math.min(minC, col); maxC = Math.max(maxC, endC);
+    }
+
+    // A placement beats another if it crosses more letters, or - for a tie on crossings -
+    // if it results in a smaller overall grid. Crossings come first because a denser, more
+    // interlocked grid also tends to end up more compact on its own; area only breaks ties.
+    function better(a, b){
+      if(!b) return true;
+      if(a.crossCount !== b.crossCount) return a.crossCount > b.crossCount;
+      return a.area < b.area;
+    }
+
+    function bestSpotFor(letters){
+      let best = null;
+      const tried = new Set();
+      for(const [k, existingLetter] of grid){
+        const [rStr,cStr] = k.split(',');
+        const r0 = parseInt(rStr,10), c0 = parseInt(cStr,10);
+        for(let i=0;i<letters.length;i++){
+          if(letters[i] !== existingLetter) continue;
+          const acrossRow = r0, acrossCol = c0-i;
+          const aKey = 'A:'+acrossRow+','+acrossCol;
+          if(!tried.has(aKey)){
+            tried.add(aKey);
+            const ev = evalPlacement(letters, acrossRow, acrossCol, 'across');
+            if(ev && better(ev, best)) best = {row:acrossRow, col:acrossCol, dir:'across', crossCount:ev.crossCount, area:ev.area};
+          }
+          const downRow = r0-i, downCol = c0;
+          const dKey = 'D:'+downRow+','+downCol;
+          if(!tried.has(dKey)){
+            tried.add(dKey);
+            const ev = evalPlacement(letters, downRow, downCol, 'down');
+            if(ev && better(ev, best)) best = {row:downRow, col:downCol, dir:'down', crossCount:ev.crossCount, area:ev.area};
+          }
+        }
+      }
+      return best;
     }
 
     let changed = true;
     while(placements.length < target && remaining.length > 0 && changed){
       changed = false;
+      // Rather than placing the first remaining candidate that has any workable spot, evaluate
+      // every remaining candidate's best possible spot this round and commit to whichever single
+      // (word, position) combination is best overall. This costs more per step but consistently
+      // produces smaller finished grids, since the greediest single move is chosen every time
+      // instead of whatever happened to come first in list order.
+      let bestOverall = null; // {idx, spot, letters}
       for(let idx=0; idx<remaining.length; idx++){
-        const cand = remaining[idx];
-        const letters = graphemes(cand.answer);
-        // Scan every existing letter in the grid for a possible crossing, but instead of taking
-        // the first valid spot, keep the one with the most crossing letters (a denser fit).
-        let bestSpot = null; // {row, col, dir, crossCount}
-        const tried = new Set();
-        for(const [k, existingLetter] of grid){
-          const [rStr,cStr] = k.split(',');
-          const r0 = parseInt(rStr,10), c0 = parseInt(cStr,10);
-          for(let i=0;i<letters.length;i++){
-            if(letters[i] !== existingLetter) continue;
-            const acrossRow = r0, acrossCol = c0-i;
-            const aKey = 'A:'+acrossRow+','+acrossCol;
-            if(!tried.has(aKey)){
-              tried.add(aKey);
-              const cc = evalPlacement(letters, acrossRow, acrossCol, 'across');
-              if(cc !== null && (!bestSpot || cc > bestSpot.crossCount)){
-                bestSpot = {row:acrossRow, col:acrossCol, dir:'across', crossCount:cc};
-              }
-            }
-            const downRow = r0-i, downCol = c0;
-            const dKey = 'D:'+downRow+','+downCol;
-            if(!tried.has(dKey)){
-              tried.add(dKey);
-              const cc = evalPlacement(letters, downRow, downCol, 'down');
-              if(cc !== null && (!bestSpot || cc > bestSpot.crossCount)){
-                bestSpot = {row:downRow, col:downCol, dir:'down', crossCount:cc};
-              }
-            }
-          }
+        const letters = graphemes(remaining[idx].answer);
+        const spot = bestSpotFor(letters);
+        if(spot && better(spot, bestOverall && bestOverall.spot)){
+          bestOverall = { idx, spot, letters };
         }
-        if(bestSpot){
-          place(letters, bestSpot.row, bestSpot.col, bestSpot.dir);
-          placements.push({word:cand, row:bestSpot.row, col:bestSpot.col, dir:bestSpot.dir, letters});
-          remaining.splice(idx,1);
-          idx--;
-          changed = true;
-          if(placements.length >= target) break;
-        }
+      }
+      if(bestOverall){
+        const { idx, spot, letters } = bestOverall;
+        place(letters, spot.row, spot.col, spot.dir);
+        placements.push({word:remaining[idx], row:spot.row, col:spot.col, dir:spot.dir, letters});
+        remaining.splice(idx,1);
+        changed = true;
       }
     }
     return { placements, grid };
@@ -184,7 +228,7 @@
    *   that still places every requested word, so more attempts generally means a more compact
    *   grid, with diminishing returns - see tests/index.html's performance table for numbers.
    */
-  function buildCrossword(bank, targetCount, phase1Attempts = 10){
+  function buildCrossword(bank, targetCount, phase1Attempts = 12){
     const target = Math.min(targetCount, bank.length);
     let candidates = []; // {result, placedCount, area}
 

@@ -321,6 +321,25 @@
         else byPos.set(k, p.number);
       }
     });
+
+    test('attemptPlacement() never lets one word run straight through another in the same direction (e.g. RENT over the tail of PARENT)', async () => {
+      const bank = await loadBank('example.json');
+      for(let trial = 0; trial < 30; trial++){
+        const result = engine.buildCrossword(bank, 15);
+        const dirsAt = new Map();
+        for(const p of result.placements){
+          for(let i = 0; i < p.letters.length; i++){
+            const r = p.dir === 'across' ? p.row : p.row + i;
+            const c = p.dir === 'across' ? p.col + i : p.col;
+            const k = r + ',' + c;
+            const existing = dirsAt.get(k) || { across: false, down: false };
+            assertTrue(!existing[p.dir], `${p.answer} (${p.dir}) overlaps another word in the same direction at ${k}`);
+            existing[p.dir] = true;
+            dirsAt.set(k, existing);
+          }
+        }
+      }
+    });
   }
 
   // ============================================================================================
@@ -545,7 +564,7 @@
     const data = await res.json();
     const bank = data.words.map((w) => ({ answer: engine.toUpperGrapheme(w.word), clue: w.clues[0] }));
     const target = 30;
-    const attemptValues = [1, 2, 5, 10, 20, 40, 80, 160, 320];
+    const attemptValues = [1, 2, 3, 5, 8, 12, 20, 30];
     const repeats = 3;
 
     for(const n of attemptValues){
