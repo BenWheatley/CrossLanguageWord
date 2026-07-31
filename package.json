@@ -1,0 +1,10 @@
+{
+  "name": "crossword-trainer",
+  "private": true,
+  "scripts": {
+    "test": "node tests/run-tests.js"
+  },
+  "devDependencies": {
+    "jsdom": "^29.0.0"
+  }
+}
