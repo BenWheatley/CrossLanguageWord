@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Crossword Trainer - Tests</title>
+<style>
+  body{
+    font-family: ui-monospace, 'SF Mono', 'IBM Plex Mono', monospace;
+    max-width: 760px;
+    margin: 40px auto;
+    padding: 0 20px;
+    color: #2B2A28;
+    background: #F3EFE6;
+  }
+  h1{ font-family: Georgia, serif; font-size: 24px; margin-bottom: 4px; }
+  h2{ font-size: 15px; text-transform: uppercase; letter-spacing: 0.06em; color: #6B6559;
+      border-bottom: 1px solid #D8D0BC; padding-bottom: 6px; margin-top: 32px; }
+  #note{ font-size: 13px; color: #6B6559; margin-bottom: 20px; }
+  #summary{
+    font-size: 15px; font-weight: 600; padding: 10px 14px; border-radius: 5px;
+    margin-bottom: 8px; display: inline-block;
+  }
+  #summary.ok{ background: #DCEFD8; color: #2B6B2B; }
+  #summary.bad{ background: #F6D8D3; color: #9A3B2E; }
+  #summary.pending{ background: #EDE7D3; color: #6B6559; }
+  ul{ list-style: none; padding: 0; margin: 0 0 20px; }
+  li{ padding: 4px 0 4px 22px; font-size: 13.5px; position: relative; }
+  li.pass{ color: #2B6B2B; }
+  li.fail{ color: #9A3B2E; font-weight: 600; }
+  li .detail{ font-weight: normal; color: #6B6559; font-size: 12px; margin: 2px 0 4px 0; white-space: pre-wrap; }
+  #appFrame{ display: none; }
+</style>
+</head>
+<body>
+  <h1>Crossword Trainer - Automated Tests</h1>
+  <p id="note">Runs entirely in this browser tab, no Node, no npm, no other files needed besides
+    this one and <code>../crossword-engine.js</code>. Must be served over http(s) (not opened as
+    a <code>file://</code> page) so <code>fetch()</code> can load the word list JSON files, same
+    requirement as the app itself.</p>
+  <div id="summary" class="pending">Running...</div>
+
+  <h2>crossword-engine.js - pure generation logic</h2>
+  <ul id="engineResults"></ul>
+
+  <h2>index.html - interactive app (via a hidden iframe)</h2>
+  <ul id="appResults"></ul>
+
+  <iframe id="appFrame" title="app under test"></iframe>
+
+  <script src="../crossword-engine.js"></script>
+  <script>
+  'use strict';
+
+  // ============================================================================================
+  // mini test framework
+  // ============================================================================================
+  function assertEqual(actual, expected, msg){
+    if(actual !== expected){
+      throw new Error((msg ? msg + ': ' : '') + `expected ${JSON.stringify(expected)}, got ${JSON.stringify(actual)}`);
+    }
+  }
+  function assertTrue(cond, msg){
+    if(!cond) throw new Error(msg || 'expected a truthy value');
+  }
+  function assertNotEqual(actual, expected, msg){
+    if(actual === expected){
+      throw new Error((msg ? msg + ': ' : '') + `expected value to differ from ${JSON.stringify(expected)}`);
+    }
+  }
+
+  function createRunner(){
+    const tests = [];
+    function test(name, fn){ tests.push({ name, fn }); }
+
+    async function run(container){
+      let passed = 0, failed = 0;
+      for(const { name, fn } of tests){
+        const row = document.createElement('li');
+        try{
+          await fn();
+          passed++;
+          row.className = 'pass';
+          row.textContent = '\u2713 ' + name;
+        }catch(err){
+          failed++;
+          row.className = 'fail';
+          row.textContent = '\u2717 ' + name;
+          const detail = document.createElement('div');
+          detail.className = 'detail';
+          detail.textContent = (err && err.message) ? err.message : String(err);
+          row.appendChild(detail);
+          console.error(name, err);
+        }
+        if(container) container.appendChild(row);
+      }
+      return { passed, failed, total: tests.length };
+    }
+
+    return { test, run };
+  }
+
+  // ============================================================================================
+  // helpers for driving the real app (../index.html) inside the hidden iframe
+  // ============================================================================================
+  function waitFor(predicate, timeout = 5000, interval = 20){
+    return new Promise((resolve) => {
+      const start = Date.now();
+      (function poll(){
+        if(predicate()) return resolve(true);
+        if(Date.now() - start >= timeout) return resolve(false);
+        setTimeout(poll, interval);
+      })();
+    });
+  }
+
+  function bootApp(query = ''){
+    return new Promise((resolve) => {
+      const iframe = document.getElementById('appFrame');
+      const target = '../index.html' + query;
+      function onLoad(){
+        iframe.removeEventListener('load', onLoad);
+        const win = iframe.contentWindow;
+        const doc = win.document;
+        const errors = [];
+        win.onerror = (msg) => errors.push(msg);
+        waitFor(() => doc.querySelectorAll('#grid .cell').length > 0).then((ready) => {
+          if(!ready && errors.length === 0) errors.push('app did not finish rendering a grid within the timeout');
+          resolve({ window: win, document: doc, errors });
+        });
+      }
+      iframe.addEventListener('load', onLoad);
+      if(iframe.src.endsWith(target)) iframe.src = 'about:blank';
+      iframe.src = target;
+    });
+  }
+
+  function clickCell(el, win){
+    el.dispatchEvent(new win.Event('mousedown', { bubbles: true }));
+  }
+
+  function typeInto(input, win, char){
+    input.dispatchEvent(new win.KeyboardEvent('keydown', { key: char, bubbles: true }));
+    input.value = char;
+    input.dispatchEvent(new win.Event('input', { bubbles: true }));
+  }
+
+  function gridIndex(doc){
+    const inputs = Array.from(doc.querySelectorAll('#grid .cell input'));
+    const byPos = {};
+    inputs.forEach((inp) => { byPos[inp.dataset.r + ',' + inp.dataset.c] = inp; });
+    function startOf(number){
+      const numSpans = Array.from(doc.querySelectorAll('#grid .cell .num'));
+      const span = numSpans.find((s) => s.textContent === String(number));
+      if(!span) return null;
+      const input = span.parentElement.querySelector('input');
+      return { r: parseInt(input.dataset.r, 10), c: parseInt(input.dataset.c, 10) };
+    }
+    return { byPos, startOf };
+  }
+
+  // ============================================================================================
+  // engine tests
+  // ============================================================================================
+  function registerEngineTests(test){
+    const engine = window.CrosswordEngine;
+
+    async function loadBank(filename){
+      const res = await fetch('../' + filename);
+      const data = await res.json();
+      return data.words.map((w) => ({
+        answer: engine.toUpperGrapheme(w.word),
+        clue: w.clues[0]
+      }));
+    }
+
+    test('graphemes() splits astral/surrogate-pair characters as single units', () => {
+      const result = engine.graphemes('a\uD835\uDD18b');
+      assertEqual(result.length, 3, `expected 3 graphemes, got ${JSON.stringify(result)}`);
+    });
+
+    test('graphemes() handles plain ASCII correctly', () => {
+      assertEqual(engine.graphemes('cat').join(','), 'c,a,t');
+    });
+
+    test('toUpperGrapheme() uppercases German umlauts correctly', () => {
+      assertEqual(engine.toUpperGrapheme('küche'), 'KÜCHE');
+    });
+
+    test('toUpperGrapheme() uppercases Greek letters correctly', () => {
+      assertEqual(engine.toUpperGrapheme('π'), 'Π');
+    });
+
+    test('attemptPlacement() places the first word across at the origin', () => {
+      const bank = [{ answer: 'HOUSE', clue: '' }];
+      const result = engine.attemptPlacement(bank, 1);
+      assertEqual(result.placements.length, 1);
+      const p = result.placements[0];
+      assertEqual(p.row, 0);
+      assertEqual(p.col, 0);
+      assertEqual(p.dir, 'across');
+    });
+
+    test('attemptPlacement() never places two different letters in the same cell', () => {
+      const bank = [
+        { answer: 'HOUSE', clue: '' }, { answer: 'OCEAN', clue: '' }, { answer: 'RIVER', clue: '' },
+        { answer: 'FOREST', clue: '' }, { answer: 'MOUNTAIN', clue: '' }
+      ];
+      const result = engine.attemptPlacement(bank, bank.length);
+      const grid = new Map();
+      for(const p of result.placements){
+        for(let i = 0; i < p.letters.length; i++){
+          const r = p.dir === 'across' ? p.row : p.row + i;
+          const c = p.dir === 'across' ? p.col + i : p.col;
+          const k = r + ',' + c;
+          if(grid.has(k)) assertEqual(grid.get(k), p.letters[i], `conflicting letters at cell ${k}`);
+          else grid.set(k, p.letters[i]);
+        }
+      }
+    });
+
+    test('computeBounds() computes a correct bounding box for a single across word', () => {
+      const bounds = engine.computeBounds([{ row: 0, col: 0, dir: 'across', letters: ['A','B','C'] }]);
+      assertEqual(bounds.rows, 1);
+      assertEqual(bounds.cols, 3);
+    });
+
+    test('computeBounds() computes a correct bounding box across mixed directions', () => {
+      const placements = [
+        { row: 0, col: 0, dir: 'across', letters: ['A','B','C'] },
+        { row: -2, col: 1, dir: 'down', letters: ['X','B','Y','Z'] }
+      ];
+      const bounds = engine.computeBounds(placements);
+      assertEqual(bounds.minR, -2);
+      assertEqual(bounds.rows, 4);
+    });
+
+    test('buildCrossword() places every requested word when the bank comfortably allows it', async () => {
+      const bank = await loadBank('example.json');
+      for(const n of [5, 10, 20]){
+        const result = engine.buildCrossword(bank, n);
+        assertEqual(result.placements.length, n, `target=${n} only placed ${result.placements.length}`);
+      }
+    });
+
+    test('buildCrossword() clamps to bank size when more words are requested than exist', async () => {
+      const bank = (await loadBank('example.json')).slice(0, 8);
+      const result = engine.buildCrossword(bank, 999);
+      assertTrue(result.placements.length <= bank.length);
+    });
+
+    test('buildCrossword() never places the same word object twice', async () => {
+      const bank = await loadBank('german.json');
+      const result = engine.buildCrossword(bank, 30);
+      const seen = new Set();
+      for(const p of result.placements){
+        assertTrue(!seen.has(p.word), 'a word object was placed more than once');
+        seen.add(p.word);
+      }
+    });
+
+    test('buildCrossword() keeps long compound words from dominating the grid (German B1 list)', async () => {
+      const bank = await loadBank('german.json');
+      const result = engine.buildCrossword(bank, 20);
+      const lens = result.placements.map((p) => p.letters.length);
+      const avg = lens.reduce((a,b) => a+b, 0) / lens.length;
+      assertTrue(avg < 10, `average placed-word length was ${avg.toFixed(2)}, expected well under 10`);
+    });
+
+    test('buildCrossword() reliably reaches the full requested count at various scales (all real lists)', async () => {
+      for(const file of ['german.json', 'example.json', 'deutsch-fragen-english.json']){
+        const bank = await loadBank(file);
+        for(const n of [10, 30, Math.min(100, bank.length)]){
+          const result = engine.buildCrossword(bank, n);
+          assertEqual(result.placements.length, n, `${file} target=${n} only placed ${result.placements.length}`);
+        }
+      }
+    });
+
+    test('buildCrossword() escapes a pathological length-imbalanced bank via its fallback phase', () => {
+      const fillerLetters = 'JQXYZ'.split('');
+      const fillers = [];
+      for(let i = 0; i < 50; i++){
+        fillers.push({ answer: fillerLetters[i % fillerLetters.length].repeat(3 + (i % 3)), clue: 'f' });
+      }
+      const realNetwork = [
+        'HOUSERIVER','RIVERMOUTH','MOUNTAINOUS','FORESTLAND','LANDSCAPED',
+        'GARDENPATH','PATHWAYSIDE','BRIDGEWORK','WORKBENCHES','BENCHMARKED',
+        'PALACEGATE','GATEKEEPER','KEEPERHOOD','WINDOWSILL','SILLYPUTTY'
+      ].map((w) => ({ answer: w, clue: w }));
+      const bank = fillers.concat(realNetwork);
+      const result = engine.buildCrossword(bank, realNetwork.length);
+      assertEqual(result.placements.length, realNetwork.length);
+    });
+
+    test('numberGrid() assigns a number to every placement, and shared start cells share one number', async () => {
+      const bank = await loadBank('example.json');
+      const result = engine.buildCrossword(bank, 15);
+      const built = engine.trimAndIndex(result);
+      const numbering = engine.numberGrid(built);
+      assertEqual(numbering.placements.length, built.placements.length);
+      const byPos = new Map();
+      for(const p of numbering.placements){
+        assertTrue(Number.isInteger(p.number) && p.number > 0, `placement ${p.answer} has an invalid number`);
+        const k = p.row + ',' + p.col;
+        if(byPos.has(k)) assertEqual(byPos.get(k), p.number, `cell ${k} has two different numbers`);
+        else byPos.set(k, p.number);
+      }
+    });
+  }
+
+  // ============================================================================================
+  // app (integration) tests
+  // ============================================================================================
+  function registerAppTests(test){
+
+    test('loads Deutsch B1 with 15 words by default when no URL params are given', async () => {
+      const app = await bootApp('');
+      assertEqual(app.document.getElementById('wordListSelect').value, 'german');
+      assertEqual(app.document.getElementById('wordCount').value, '15');
+      assertTrue(app.document.querySelectorAll('#grid .cell').length > 0, 'grid should be populated');
+      assertEqual(app.errors.length, 0, 'errors: ' + JSON.stringify(app.errors));
+    });
+
+    test('respects explicit list/words URL params', async () => {
+      const app = await bootApp('?list=english&words=12');
+      assertEqual(app.document.getElementById('wordListSelect').value, 'english');
+      assertEqual(app.document.getElementById('wordCount').value, '12');
+      const clueCount = app.document.querySelectorAll('#acrossList li, #downList li').length;
+      assertEqual(clueCount, 12);
+    });
+
+    test('falls back to defaults gracefully on garbage URL params', async () => {
+      const app = await bootApp('?list=not-a-real-list&words=not-a-number');
+      assertEqual(app.document.getElementById('wordListSelect').value, 'german');
+      assertEqual(app.document.getElementById('wordCount').value, '15');
+      assertEqual(app.errors.length, 0);
+    });
+
+    test('writes the current list/word-count back into the URL after generating', async () => {
+      const app = await bootApp('?bogus=1');
+      assertTrue(app.window.location.href.includes('list=german'));
+      assertTrue(app.window.location.href.includes('words=15'));
+      assertTrue(app.window.location.href.includes('bogus=1'), 'unrelated existing params should be preserved');
+    });
+
+    test('typing a letter fills the cell and advances focus to the next cell in the word', async () => {
+      const app = await bootApp('?list=german&words=10');
+      const { document, window } = app;
+      const first = document.activeElement;
+      typeInto(first, window, 'X');
+      assertEqual(first.value, 'X');
+      assertNotEqual(document.activeElement, first, 'focus should have advanced');
+    });
+
+    test('fast/rollover typing (next keydown before previous keyup) does not drop letters', async () => {
+      const app = await bootApp('?list=german&words=10');
+      const { document, window } = app;
+      const { byPos, startOf } = gridIndex(document);
+      const acrossKey = Array.from(document.querySelectorAll('#printAnswerAcross li')).map((li) => li.textContent);
+      const [numStr, ans] = acrossKey[0].split('. ');
+      const start = startOf(numStr);
+      document.querySelector(`.clue-list li[data-wid="across-${numStr}"]`)
+        .dispatchEvent(new window.Event('click', { bubbles: true }));
+
+      let prevInput = null;
+      for(let i = 0; i < ans.length; i++){
+        const active = document.activeElement;
+        active.dispatchEvent(new window.KeyboardEvent('keydown', { key: ans[i], bubbles: true }));
+        active.value = ans[i];
+        active.dispatchEvent(new window.Event('input', { bubbles: true }));
+        if(prevInput) prevInput.dispatchEvent(new window.KeyboardEvent('keyup', { key: 'x', bubbles: true }));
+        prevInput = active;
+      }
+      if(prevInput) prevInput.dispatchEvent(new window.KeyboardEvent('keyup', { key: 'x', bubbles: true }));
+
+      let landed = '';
+      for(let i = 0; i < ans.length; i++) landed += byPos[start.r + ',' + (start.c + i)].value;
+      assertEqual(landed, ans);
+    });
+
+    test('backspace on a filled cell clears it', async () => {
+      const app = await bootApp('?list=german&words=10');
+      const { document, window } = app;
+      const cell = document.activeElement;
+      typeInto(cell, window, 'X');
+      document.activeElement.dispatchEvent(new window.KeyboardEvent('keydown', { key: 'Backspace', bubbles: true }));
+      assertEqual(cell.value, '', 'original cell should be clear after backing up into it');
+    });
+
+    test('arrow keys move focus across the grid', async () => {
+      const app = await bootApp('?list=german&words=10');
+      const { document, window } = app;
+      const start = document.activeElement;
+      const activeLi = document.querySelector('.clue-list li.active');
+      const isDown = activeLi && activeLi.closest('#downList') !== null;
+      const key = isDown ? 'ArrowDown' : 'ArrowRight';
+      start.dispatchEvent(new window.KeyboardEvent('keydown', { key, bubbles: true }));
+      assertNotEqual(document.activeElement, start);
+    });
+
+    test('dead-key composition (¨+u\u2192ü) resolves correctly and then advances', async () => {
+      const app = await bootApp('?list=german&words=10');
+      const { document, window } = app;
+      const cell = document.activeElement;
+
+      cell.dispatchEvent(new window.CompositionEvent('compositionstart', { data: '' }));
+      cell.value = '¨';
+      cell.dispatchEvent(new window.Event('input', { bubbles: true }));
+      assertEqual(document.activeElement, cell, 'focus must not move during composition');
+
+      cell.value = 'ü';
+      cell.dispatchEvent(new window.CompositionEvent('compositionend', { data: 'ü' }));
+      assertEqual(cell.value, 'Ü');
+      assertNotEqual(document.activeElement, cell, 'focus should advance once composition ends');
+    });
+
+    test('clicking a filled cell selects its full text (so typing replaces it)', async () => {
+      const app = await bootApp('?list=german&words=10');
+      const { document, window } = app;
+      const inputs = Array.from(document.querySelectorAll('#grid .cell input'));
+      const cellA = inputs[0], cellB = inputs[1];
+      cellA.value = 'X';
+      clickCell(cellB, window);
+      clickCell(cellA, window);
+      assertEqual(document.activeElement, cellA);
+      assertEqual(cellA.selectionStart, 0);
+      assertEqual(cellA.selectionEnd, cellA.value.length);
+    });
+
+    test('Check answers marks correct/incorrect cells and leaves untouched cells alone', async () => {
+      const app = await bootApp('?list=german&words=10');
+      const { document, window } = app;
+      const { byPos, startOf } = gridIndex(document);
+      const acrossKey = Array.from(document.querySelectorAll('#printAnswerAcross li')).map((li) => li.textContent);
+      const [numStr, ans] = acrossKey[0].split('. ');
+      const start = startOf(numStr);
+
+      const wrongLetter = ans[0] === 'X' ? 'Y' : 'X';
+      byPos[start.r + ',' + start.c].value = wrongLetter;
+      byPos[start.r + ',' + start.c].dispatchEvent(new window.Event('input', { bubbles: true }));
+      for(let i = 1; i < ans.length; i++){
+        byPos[start.r + ',' + (start.c + i)].value = ans[i];
+        byPos[start.r + ',' + (start.c + i)].dispatchEvent(new window.Event('input', { bubbles: true }));
+      }
+
+      document.getElementById('checkBtn').dispatchEvent(new window.Event('click', { bubbles: true }));
+
+      const wrapAt = (r,c) => byPos[r + ',' + c].closest('.cell');
+      assertTrue(wrapAt(start.r, start.c).classList.contains('check-incorrect'));
+      assertTrue(!wrapAt(start.r, start.c).classList.contains('check-correct'));
+      assertTrue(wrapAt(start.r, start.c + 1).classList.contains('check-correct'));
+
+      byPos[start.r + ',' + start.c].value = ans[0];
+      byPos[start.r + ',' + start.c].dispatchEvent(new window.Event('input', { bubbles: true }));
+      assertTrue(!wrapAt(start.r, start.c).classList.contains('check-incorrect'));
+    });
+
+    test('solving the puzzle correctly triggers the celebration overlay', async () => {
+      const app = await bootApp('?list=english&words=2');
+      const { document, window } = app;
+      const acrossKey = Array.from(document.querySelectorAll('#printAnswerAcross li')).map((li) => li.textContent);
+      const downKey = Array.from(document.querySelectorAll('#printAnswerDown li')).map((li) => li.textContent);
+      if(acrossKey.length !== 1 || downKey.length !== 1) return;
+
+      const [acrossNum, acrossAns] = acrossKey[0].split('. ');
+      const [downNum, downAns] = downKey[0].split('. ');
+      const { byPos, startOf } = gridIndex(document);
+      const acrossStart = startOf(acrossNum);
+      const downStart = startOf(downNum);
+
+      function setCell(r, c, letter){
+        const inp = byPos[r + ',' + c];
+        inp.value = letter;
+        inp.dispatchEvent(new window.Event('input', { bubbles: true }));
+      }
+      for(let i = 0; i < acrossAns.length; i++) setCell(acrossStart.r, acrossStart.c + i, acrossAns[i]);
+      for(let i = 0; i < downAns.length; i++) setCell(downStart.r + i, downStart.c, downAns[i]);
+
+      assertTrue(document.getElementById('celebrateOverlay').classList.contains('show'));
+    });
+
+    test('the options menu opens and closes, and clicking outside closes it', async () => {
+      const app = await bootApp('?list=german&words=10');
+      const { document, window } = app;
+      const menu = document.getElementById('optionsMenu');
+      assertEqual(menu.hidden, true);
+      document.getElementById('hamburgerBtn').dispatchEvent(new window.Event('click', { bubbles: true }));
+      assertEqual(menu.hidden, false);
+      document.body.dispatchEvent(new window.Event('click', { bubbles: true }));
+      assertEqual(menu.hidden, true);
+    });
+
+    test('Check answers and Print return focus to a grid cell afterward', async () => {
+      const app = await bootApp('?list=german&words=10');
+      const { document, window } = app;
+      document.getElementById('checkBtn').dispatchEvent(new window.Event('click', { bubbles: true }));
+      assertEqual(document.activeElement.tagName, 'INPUT');
+
+      window.print = () => {};
+      document.getElementById('printBtn').dispatchEvent(new window.Event('click', { bubbles: true }));
+      assertEqual(document.activeElement.tagName, 'INPUT');
+    });
+
+    test('status is empty on a fully successful generation (no noisy success message)', async () => {
+      const app = await bootApp('?list=german&words=10');
+      assertEqual(app.document.getElementById('status').textContent, '');
+    });
+
+    test('subtitle no longer instructs users to "choose how many to include"', async () => {
+      const app = await bootApp('?list=german&words=10');
+      const tagline = app.document.getElementById('pageTagline').textContent.toLowerCase();
+      assertTrue(!tagline.includes('choose'));
+    });
+
+    test('the print answer key lists every placed word exactly once, split by direction', async () => {
+      const app = await bootApp('?list=german&words=12');
+      const { document } = app;
+      const across = document.querySelectorAll('#printAnswerAcross li').length;
+      const down = document.querySelectorAll('#printAnswerDown li').length;
+      assertEqual(across + down, 12);
+    });
+  }
+
+  // ============================================================================================
+  // run everything
+  // ============================================================================================
+  (async function(){
+    const summaryEl = document.getElementById('summary');
+
+    if(!window.CrosswordEngine){
+      summaryEl.textContent = 'Could not load ../crossword-engine.js - check it is in the parent folder of tests/.';
+      summaryEl.className = 'bad';
+      return;
+    }
+
+    const engineRunner = createRunner();
+    registerEngineTests(engineRunner.test);
+    const engineResult = await engineRunner.run(document.getElementById('engineResults'));
+
+    const appRunner = createRunner();
+    registerAppTests(appRunner.test);
+    const appResult = await appRunner.run(document.getElementById('appResults'));
+
+    const passed = engineResult.passed + appResult.passed;
+    const failed = engineResult.failed + appResult.failed;
+    const total = engineResult.total + appResult.total;
+
+    summaryEl.textContent = `${passed} passed, ${failed} failed (${total} total)`;
+    summaryEl.className = failed > 0 ? 'bad' : 'ok';
+  })();
+  </script>
+</body>
+</html>
