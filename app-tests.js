@@ -1,9 +1,9 @@
 /**
- * app-tests.js — integration tests for the interactive app, driven through a real iframe
+ * app-tests.js - integration tests for the interactive app, driven through a real iframe
  * (see app-helpers.js). Registered onto the shared runner created in tests/index.html.
  *
  * Requires the test page to be served over http(s) so the app's own fetch('german.json' etc.)
- * calls succeed — same requirement as the app itself.
+ * calls succeed - same requirement as the app itself.
  */
 function registerAppTests(test){
 

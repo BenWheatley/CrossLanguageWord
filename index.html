@@ -158,7 +158,7 @@
       wordListSelect.value = '';
       // Try opening the picker directly (works instantly in Chrome/Firefox). Safari doesn't
       // reliably honor .click() on a file input triggered from a <select>'s change event, so
-      // we also reveal a real <label for="fileInput"> button as a guaranteed-to-work fallback —
+      // we also reveal a real <label for="fileInput"> button as a guaranteed-to-work fallback -
       // a genuine label click always opens the native file picker, in every browser.
       try{ fileInput.click(); }catch(e){ /* ignore */ }
       fileTriggerLabel.style.display = 'inline-block';
@@ -177,7 +177,7 @@
       .then(r => { if(!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
       .then(loadWordBank)
       .catch(err => {
-        setStatus('Could not load ' + path + ' (' + err.message + '). This only works when the page is served over http(s) from the same folder as ' + path + ' — try "Load…" to pick a file instead.', true);
+        setStatus('Could not load ' + path + ' (' + err.message + '). This only works when the page is served over http(s) from the same folder as ' + path + ' - try "Load…" to pick a file instead.', true);
       });
   }
 
@@ -295,7 +295,7 @@
         cell.input.addEventListener('keydown', (e) => onKeyDown(e,r,c));
         // Composing (dead-key accents like ¨+u→ü, or IME input) fires interim 'input' events
         // mid-sequence. If we react to those immediately and advance focus, the composition gets
-        // cut short — the diacritic ends up stranded in the cell it started in. So: ignore 'input'
+        // cut short - the diacritic ends up stranded in the cell it started in. So: ignore 'input'
         // events while composing, and only process the result once composition actually finishes.
         cell.input.addEventListener('compositionstart', () => { cell.input.dataset.composing = 'true'; });
         cell.input.addEventListener('compositionend', (e) => { cell.input.dataset.composing = 'false'; onInput(e,r,c); });
@@ -544,7 +544,7 @@
     celebrateTime.textContent = formatTime(elapsedSeconds);
     let sub = '';
     if(bestTimeSeconds === null || elapsedSeconds < bestTimeSeconds){
-      if(bestTimeSeconds !== null) sub = 'New best — previously ' + formatTime(bestTimeSeconds);
+      if(bestTimeSeconds !== null) sub = 'New best - previously ' + formatTime(bestTimeSeconds);
       bestTimeSeconds = elapsedSeconds;
     } else {
       sub = 'Best this session: ' + formatTime(bestTimeSeconds);

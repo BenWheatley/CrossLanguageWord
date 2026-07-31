@@ -1,7 +1,7 @@
 /**
- * app-helpers.js — helpers for driving the real app (../index.html) inside an iframe, for use
+ * app-helpers.js - helpers for driving the real app (../index.html) inside an iframe, for use
  * by app-tests.js. Uses a genuine browser (whatever's running the test page), so fetch(),
- * <script src>, composition events, and focus all behave exactly as they do for a real user —
+ * <script src>, composition events, and focus all behave exactly as they do for a real user -
  * nothing here is mocked.
  *
  * Requires the test page to be served over http(s) for fetch('german.json' etc.) to work,

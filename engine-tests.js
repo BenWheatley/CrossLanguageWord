@@ -1,5 +1,5 @@
 /**
- * engine-tests.js — unit tests for crossword-engine.js (the pure generation logic), run in the
+ * engine-tests.js - unit tests for crossword-engine.js (the pure generation logic), run in the
  * browser against the same window.CrosswordEngine the app itself uses.
  *
  * Registered onto the shared runner created in tests/index.html.

@@ -2,8 +2,8 @@
  * crossword-engine.js
  *
  * The pure, DOM-independent crossword generation logic used by crossword-trainer.html.
- * No browser globals (document/window/DOM) are touched anywhere in this file — it's plain
- * data in, plain data out — which is what makes it possible to unit-test directly with Node,
+ * No browser globals (document/window/DOM) are touched anywhere in this file - it's plain
+ * data in, plain data out - which is what makes it possible to unit-test directly with Node,
  * without spinning up a fake browser (see tests/engine.test.js).
  *
  * Loaded two ways:
@@ -137,10 +137,10 @@
     return { placements, grid };
   }
 
-  // Counts how many grid cells are shared between an across word and a down word —
+  // Counts how many grid cells are shared between an across word and a down word -
   // a rough measure of how "interlocked" (vs. tree-like/sparse) the puzzle is.
   // Builds a candidate pool for one attempt that mirrors a healthy crossword's length
-  // distribution — mostly short/medium words with only a small share of long ones — so long
+  // distribution - mostly short/medium words with only a small share of long ones - so long
   // compound words (common in languages like German) don't dominate the grid or starve it of crossings.
   const LONG_WORD_THRESHOLD = 9; // letters
   function pickBalancedPool(bank, target){
@@ -200,7 +200,7 @@
 
     // Phase 2: guaranteed fallback. If the balanced pool couldn't fit every requested word,
     // hitting the actual requested count matters more than the length aesthetic, so retry using
-    // every word in the bank (no restriction) until we succeed — the full bank always has at
+    // every word in the bank (no restriction) until we succeed - the full bank always has at
     // least as much crossing potential as any restricted subset of it.
     if(!reachedTarget){
       let successes = 0;

@@ -1,5 +1,5 @@
 /**
- * mini-test.js — a tiny, dependency-free test framework that runs entirely in the browser
+ * mini-test.js - a tiny, dependency-free test framework that runs entirely in the browser
  * and renders results to the page (no console needed, though it logs there too).
  *
  * Usage:
