@@ -50,13 +50,14 @@
   <h2>index.html - interactive app (via a hidden iframe)</h2>
   <ul id="appResults"></ul>
 
-  <h2>buildCrossword() performance: phase-1 attempts vs grid size/time</h2>
-  <p id="perfNote">Each row runs <code>buildCrossword(bank, target, n)</code> a few times and
-    averages the results. Bigger <code>n</code> tries more randomized layouts before settling,
-    generally shrinking the grid, with diminishing returns as it goes. Watch where "avg area"
-    stops meaningfully improving relative to "avg time" to find a reasonable cutoff.</p>
+  <h2>buildCrossword() performance: time budget vs grid size</h2>
+  <p id="perfNote">Each row runs <code>buildCrossword(bank, target, timeBudgetMs)</code> a few
+    times and averages the results. A bigger budget tries more randomized layouts before
+    settling, generally shrinking the grid, with diminishing returns as it goes. Watch where
+    "avg area" stops meaningfully improving relative to the budget spent to judge whether the
+    current default (160ms) is a reasonable place to sit.</p>
   <table id="perfTable">
-    <thead><tr><th>attempts (n)</th><th>avg area</th><th>min area</th><th>avg time (ms)</th></tr></thead>
+    <thead><tr><th>time budget (ms)</th><th>avg area</th><th>min area</th><th>avg actual time (ms)</th></tr></thead>
     <tbody id="perfTableBody"></tbody>
   </table>
 
@@ -273,12 +274,55 @@
       }
     });
 
-    test('buildCrossword() keeps long compound words from dominating the grid (German B1 list)', async () => {
+    test('buildCrossword() selects words roughly uniformly at random across repeated generations (no bias toward easy-to-cross words)', async () => {
       const bank = await loadBank('german.json');
-      const result = engine.buildCrossword(bank, 20);
-      const lens = result.placements.map((p) => p.letters.length);
-      const avg = lens.reduce((a,b) => a+b, 0) / lens.length;
-      assertTrue(avg < 10, `average placed-word length was ${avg.toFixed(2)}, expected well under 10`);
+      const counts = new Map();
+      for(const w of bank) counts.set(w.answer, 0);
+      const trials = 40, target = 15;
+      for(let i = 0; i < trials; i++){
+        const result = engine.buildCrossword(bank, target, 20); // small time budget keeps this test fast
+        for(const p of result.placements) counts.set(p.word.answer, counts.get(p.word.answer) + 1);
+      }
+      const freqs = Array.from(counts.values());
+      const expected = (trials * target) / bank.length;
+      const mean = freqs.reduce((a,b) => a+b, 0) / freqs.length;
+      // Loose statistical check: shouldn't be wildly off from the theoretical expectation for
+      // uniform sampling. A tight check would make this test flaky by nature; this just guards
+      // against a gross, systematic bias reappearing (e.g. some words never getting picked).
+      assertTrue(Math.abs(mean - expected) < expected * 0.25, `mean selections ${mean.toFixed(2)} too far from expected ${expected.toFixed(2)}`);
+      const neverSelected = freqs.filter((f) => f === 0).length;
+      // For each word, P(never picked in one trial) = 1 - target/bank.length, so the expected
+      // count of never-selected words over `trials` independent draws is bank.length times that,
+      // raised to the trials power. The previous fixed-fraction threshold sat almost exactly on
+      // this expected value with no margin, so it flaked by design - give real headroom around it.
+      const expectedNeverSelected = bank.length * Math.pow(1 - target / bank.length, trials);
+      assertTrue(neverSelected < expectedNeverSelected * 1.3, `${neverSelected} of ${bank.length} words were never selected across ${trials} trials (expected around ${expectedNeverSelected.toFixed(0)})`);
+    });
+
+    test('pickRandomSubset() returns the requested number of unique words', async () => {
+      const bank = await loadBank('german.json');
+      const subset = engine.pickRandomSubset(bank, 25, Infinity);
+      assertEqual(subset.length, 25);
+      assertEqual(new Set(subset.map((w) => w.answer)).size, 25);
+    });
+
+    test('pickRandomSubset() ensures at least one word fits within a tight maxCols', async () => {
+      const bank = await loadBank('german.json');
+      for(let trial = 0; trial < 20; trial++){
+        const subset = engine.pickRandomSubset(bank, 15, 6);
+        assertTrue(subset.some((w) => engine.graphemes(w.answer).length <= 6), 'no word in the subset fits within maxCols=6');
+      }
+    });
+
+    test('buildCrossword() respects its time budget (does not run drastically longer than requested)', async () => {
+      const bank = await loadBank('german.json');
+      const budgetMs = 50;
+      const t0 = performance.now();
+      engine.buildCrossword(bank, 20, budgetMs);
+      const elapsed = performance.now() - t0;
+      // Generous slack (a single in-flight attempt can finish after the deadline passes) - this
+      // is a sanity check against runaway behavior, not a tight timing guarantee.
+      assertTrue(elapsed < budgetMs * 5, `took ${elapsed.toFixed(0)}ms for a ${budgetMs}ms budget`);
     });
 
     test('buildCrossword() reliably reaches the full requested count at various scales (all real lists)', async () => {
@@ -291,20 +335,19 @@
       }
     });
 
-    test('buildCrossword() escapes a pathological length-imbalanced bank via its fallback phase', () => {
+    test('buildCrossword() places every word even in a pathological, poorly-connected bank (via disjoint regions)', () => {
       const fillerLetters = 'JQXYZ'.split('');
       const fillers = [];
-      for(let i = 0; i < 50; i++){
+      for(let i = 0; i < 20; i++){
         fillers.push({ answer: fillerLetters[i % fillerLetters.length].repeat(3 + (i % 3)), clue: 'f' });
       }
-      const realNetwork = [
-        'HOUSERIVER','RIVERMOUTH','MOUNTAINOUS','FORESTLAND','LANDSCAPED',
-        'GARDENPATH','PATHWAYSIDE','BRIDGEWORK','WORKBENCHES','BENCHMARKED',
-        'PALACEGATE','GATEKEEPER','KEEPERHOOD','WINDOWSILL','SILLYPUTTY'
-      ].map((w) => ({ answer: w, clue: w }));
+      const realNetwork = ['HOUSERIVER','RIVERMOUTH','MOUNTAINOUS','FORESTLAND','LANDSCAPED']
+        .map((w) => ({ answer: w, clue: w }));
       const bank = fillers.concat(realNetwork);
-      const result = engine.buildCrossword(bank, realNetwork.length);
-      assertEqual(result.placements.length, realNetwork.length);
+      // target = the whole bank, so nothing gets left out of the random subset - this specifically
+      // exercises the disjoint-region fallback on a set that can't all interlock into one cluster.
+      const result = engine.buildCrossword(bank, bank.length);
+      assertEqual(result.placements.length, bank.length);
     });
 
     test('buildCrossword() never exceeds a given maxCols, even when the longest word (the usual anchor) is itself wider than the budget', async () => {
@@ -567,7 +610,7 @@
   }
 
   // ============================================================================================
-  // performance benchmark: phase-1 attempts (n) vs resulting grid area and time taken
+  // performance benchmark: time budget vs resulting grid area
   // ============================================================================================
   async function runPerformanceBenchmark(tbody){
     const engine = window.CrosswordEngine;
@@ -575,15 +618,15 @@
     const data = await res.json();
     const bank = data.words.map((w) => ({ answer: engine.toUpperGrapheme(w.word), clue: w.clues[0] }));
     const target = 30;
-    const attemptValues = [1, 2, 3, 5, 8, 12, 20, 30];
+    const budgetValues = [10, 25, 50, 100, 160, 250, 400, 600];
     const repeats = 3;
 
-    for(const n of attemptValues){
+    for(const budgetMs of budgetValues){
       const areas = [];
       const times = [];
       for(let i = 0; i < repeats; i++){
         const t0 = performance.now();
-        const result = engine.buildCrossword(bank, target, n);
+        const result = engine.buildCrossword(bank, target, budgetMs);
         const t1 = performance.now();
         const bounds = engine.computeBounds(result.placements);
         areas.push(bounds.rows * bounds.cols);
@@ -593,7 +636,7 @@
       const minArea = Math.min(...areas);
       const avgTime = times.reduce((a,b) => a+b, 0) / times.length;
       const tr = document.createElement('tr');
-      tr.innerHTML = `<td>${n}</td><td>${avgArea.toFixed(1)}</td><td>${minArea}</td><td>${avgTime.toFixed(1)}</td>`;
+      tr.innerHTML = `<td>${budgetMs}</td><td>${avgArea.toFixed(1)}</td><td>${minArea}</td><td>${avgTime.toFixed(1)}</td>`;
       tbody.appendChild(tr);
       // Let the browser paint each row as it completes rather than freezing until the whole
       // benchmark (which can take a little while at the largest n) is done.

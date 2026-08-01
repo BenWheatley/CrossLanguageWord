@@ -40,7 +40,14 @@
     return a;
   }
 
-  function key(r,c){ return r+','+c; }
+  // Numeric encoding instead of string concatenation ("r,c") - Map operations with numeric keys
+  // are meaningfully faster than with string keys, and this is the hottest of hot paths (called
+  // many times per candidate placement check). OFFSET is comfortably larger than any real grid
+  // could need (rows/cols stay well under a few hundred in practice), so there's no collision risk,
+  // and the resulting values stay far inside JS's safe integer range.
+  const KEY_OFFSET = 100000;
+  function key(r,c){ return (r+KEY_OFFSET)*1000000 + (c+KEY_OFFSET); }
+  function unkey(k){ return [Math.floor(k/1000000)-KEY_OFFSET, (k%1000000)-KEY_OFFSET]; }
 
   /**
    * @param {number} maxCols - if given, any placement that would make the grid's column span
@@ -170,8 +177,8 @@
     function allGridCells(){
       const out = [];
       for(const [k, letter] of grid){
-        const [rStr,cStr] = k.split(',');
-        out.push([parseInt(rStr,10), parseInt(cStr,10), letter]);
+        const [r, c] = unkey(k);
+        out.push([r, c, letter]);
       }
       return out;
     }
@@ -188,6 +195,8 @@
     }
 
     let placedCount = 1;
+    let regionCount = 1; // how many disjoint regions have been started (the initial anchor is #1)
+    const diagonalStep = 3;
     while(placedCount < target && remainingEntries.length > 0){
       // Refresh each candidate's cached spot against the *current* grid before comparing. Area
       // depends on the whole bounding box, so it goes stale after any placement at all, not just
@@ -212,13 +221,42 @@
           bestIdx = i;
         }
       }
-      if(bestIdx === -1) break; // no remaining candidate has any valid spot at all
 
-      const entry = remainingEntries[bestIdx];
-      const spot = entry.bestSpot;
+      let spot, entry;
+      if(bestIdx === -1){
+        // No remaining word can cross anything already on the grid. Crosswords can legitimately
+        // have more than one disjoint block of words, so start a new region instead of stopping
+        // here and leaving words unplaced - staggered diagonally off the existing content (rather
+        // than just stacked straight underneath) so multiple regions pack together reasonably.
+        entry = remainingEntries.shift();
+        const letters = entry.letters;
+        const row = maxR + 2;
+        let dir, col;
+        if(letters.length > maxCols){
+          dir = 'down';
+          col = minC + (regionCount % Math.max(1, maxCols));
+        } else {
+          dir = 'across';
+          const span = Math.max(1, maxCols - letters.length + 1);
+          col = minC + ((regionCount * diagonalStep) % span);
+          // The offset above is safe on its own, but combined with the grid's *existing* bounds
+          // (which can extend further left/right than this new region alone) it could still push
+          // the overall width past maxCols - fall back to flush-with-minC, which is always safe:
+          // existing width is already <= maxCols, and this word's own length is <= maxCols too.
+          const wouldBeMaxC = Math.max(maxC, col + letters.length - 1);
+          const wouldBeMinC = Math.min(minC, col);
+          if(wouldBeMaxC - wouldBeMinC + 1 > maxCols) col = minC;
+        }
+        regionCount++;
+        spot = { row, col, dir };
+      } else {
+        entry = remainingEntries[bestIdx];
+        spot = entry.bestSpot;
+        remainingEntries.splice(bestIdx, 1);
+      }
+
       place(entry.letters, spot.row, spot.col, spot.dir);
       placements.push({word:entry.word, row:spot.row, col:spot.col, dir:spot.dir, letters:entry.letters});
-      remainingEntries.splice(bestIdx, 1);
       placedCount++;
 
       // Only the word just placed could unlock a new (or better) crossing for anyone else -
@@ -236,29 +274,27 @@
     return { placements, grid };
   }
 
-  // Counts how many grid cells are shared between an across word and a down word -
-  // a rough measure of how "interlocked" (vs. tree-like/sparse) the puzzle is.
-  // Builds a candidate pool for one attempt that mirrors a healthy crossword's length
-  // distribution - mostly short/medium words with only a small share of long ones - so long
-  // compound words (common in languages like German) don't dominate the grid or starve it of crossings.
-  const LONG_WORD_THRESHOLD = 9; // letters
-  function pickBalancedPool(bank, target){
-    const shortMed = bank.filter(w => graphemes(w.answer).length <= LONG_WORD_THRESHOLD);
-    const long = bank.filter(w => graphemes(w.answer).length > LONG_WORD_THRESHOLD);
-    let desiredLong = Math.min(Math.floor(target * 0.12), long.length);
-    let desiredShort = target - desiredLong;
-    if(desiredShort > shortMed.length){
-      const deficit = desiredShort - shortMed.length;
-      desiredShort = shortMed.length;
-      desiredLong = Math.min(long.length, desiredLong + deficit);
+  // Which words end up in the puzzle should be as random as possible - not biased toward
+  // whichever ones happen to be easier to interlock, or certain vocabulary would get shown far
+  // more often than the rest across repeated generations. The only constraint is basic
+  // feasibility: at least one word needs to fit within maxCols so there's a valid starting point.
+  function pickRandomSubset(bank, target, maxCols){
+    const pool = shuffle(bank);
+    const subset = pool.slice(0, Math.min(target, pool.length));
+    if(Number.isFinite(maxCols)){
+      const fits = w => graphemes(w.answer).length <= maxCols;
+      if(!subset.some(fits)){
+        const replacement = pool.slice(subset.length).find(fits);
+        if(replacement){
+          let longestIdx = 0;
+          for(let i=1;i<subset.length;i++){
+            if(graphemes(subset[i].answer).length > graphemes(subset[longestIdx].answer).length) longestIdx = i;
+          }
+          subset[longestIdx] = replacement;
+        }
+      }
     }
-    let pool = shuffle(shortMed).slice(0, desiredShort).concat(shuffle(long).slice(0, desiredLong));
-    // Add reserve short/medium words beyond the target size, so the algorithm has alternatives
-    // to reach for if some of the initially-picked words don't fit well.
-    const already = new Set(pool);
-    const extraNeeded = Math.max(0, Math.round(target * 0.5));
-    const reserve = shuffle(bank.filter(w => !already.has(w) && graphemes(w.answer).length <= LONG_WORD_THRESHOLD)).slice(0, extraNeeded);
-    return pool.concat(reserve);
+    return subset;
   }
 
   // Shared bounding-box calculation, used both to size the final grid and to compare
@@ -278,48 +314,37 @@
   /**
    * @param {Array} bank - candidate words, each {answer, clue}
    * @param {number} targetCount - how many words to try to place
-   * @param {number} phase1Attempts - how many length-balanced attempts to try before falling
-   *   back to the unrestricted phase (see below). Each attempt keeps the smallest-area result
-   *   that still places every requested word, so more attempts generally means a more compact
-   *   grid, with diminishing returns - see tests/index.html's performance table for numbers.
+   * @param {number} timeBudgetMs - keep trying different arrangements of the same randomly
+   *   chosen word subset for about this many milliseconds, keeping whichever arrangement came
+   *   out smallest. Always runs at least one attempt regardless of the budget. Bigger puzzles
+   *   naturally get fewer attempts (each one costs more), smaller puzzles get more - this adapts
+   *   automatically rather than needing a fixed count tuned for one size.
    * @param {number} maxCols - if given, caps how many columns wide the finished grid can be
    *   (no cap on rows). The grid grows taller instead of wider once this limit is reached.
    */
-  function buildCrossword(bank, targetCount, phase1Attempts = 3, maxCols = Infinity){
+  function buildCrossword(bank, targetCount, timeBudgetMs = 160, maxCols = Infinity){
     const target = Math.min(targetCount, bank.length);
-    let candidates = []; // {result, placedCount, area}
+    // Which words appear is decided once, uniformly at random - not re-rolled per attempt, or
+    // whichever random sample happens to be easier to interlock would win more often, silently
+    // favoring some vocabulary over the rest across repeated generations.
+    const subset = pickRandomSubset(bank, target, maxCols);
 
-    function tryAttempt(pool){
-      pool = shuffle(pool);
-      // among same-length words, order is already randomized above; sorting longest-first here
-      // just gives the greedy placer a sturdier scaffold to start from.
-      pool.sort((x,y) => graphemes(y.answer).length - graphemes(x.answer).length);
-      const result = attemptPlacement(pool, target, maxCols);
+    let best = null, bestArea = Infinity, bestPlacedCount = -1;
+    const deadline = Date.now() + timeBudgetMs;
+    do {
+      // What varies between attempts is purely the processing order of this same fixed subset -
+      // attemptPlacement's disjoint-region fallback means the whole subset gets placed regardless
+      // of order, so different shuffles just explore different resulting layouts.
+      const result = attemptPlacement(shuffle(subset), target, maxCols);
       const bounds = computeBounds(result.placements);
-      candidates.push({ result, placedCount: result.placements.length, area: bounds.rows*bounds.cols });
-      return result.placements.length >= target;
-    }
-
-    // Phase 1: length-balanced pool, purely for a nicer-looking grid (avoids long compound
-    // words dominating). This is the common case and usually reaches the full requested count.
-    let reachedTarget = false;
-    for(let a=0; a<phase1Attempts; a++){
-      if(tryAttempt(pickBalancedPool(bank, target))) reachedTarget = true;
-    }
-
-    // Phase 2: guaranteed fallback. If the balanced pool couldn't fit every requested word,
-    // hitting the actual requested count matters more than the length aesthetic, so retry using
-    // every word in the bank (no restriction) until we succeed - the full bank always has at
-    // least as much crossing potential as any restricted subset of it.
-    if(!reachedTarget){
-      let successes = 0;
-      for(let a=0; a<40 && successes<5; a++){
-        if(tryAttempt(bank.slice())) successes++;
+      const placedCount = result.placements.length;
+      const area = bounds.rows * bounds.cols;
+      if(!best || placedCount > bestPlacedCount || (placedCount === bestPlacedCount && area < bestArea)){
+        best = result; bestPlacedCount = placedCount; bestArea = area;
       }
-    }
+    } while(Date.now() < deadline);
 
-    candidates.sort((a,b) => b.placedCount - a.placedCount || a.area - b.area);
-    return candidates[0].result;
+    return best;
   }
 
   function trimAndIndex(result){
@@ -327,8 +352,8 @@
     const g = [];
     for(let r=0;r<R;r++){ g.push(new Array(C).fill(null)); }
     for(const [k, letter] of result.grid){
-      const [rStr,cStr] = k.split(',');
-      const r = parseInt(rStr,10)-minR, c = parseInt(cStr,10)-minC;
+      const [kr, kc] = unkey(k);
+      const r = kr-minR, c = kc-minC;
       if(r>=0 && r<R && c>=0 && c<C) g[r][c] = letter;
     }
     const placements = result.placements.map(p => ({
@@ -364,11 +389,10 @@
     shuffle,
     key,
     attemptPlacement,
-    pickBalancedPool,
+    pickRandomSubset,
     computeBounds,
     buildCrossword,
     trimAndIndex,
-    numberGrid,
-    LONG_WORD_THRESHOLD
+    numberGrid
   };
 });
