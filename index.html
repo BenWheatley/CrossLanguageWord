@@ -308,22 +308,6 @@
 
     renderClueLists();
     focusFirstCell();
-    fitGridWidth();
-  }
-
-  // Keeps the puzzle from ever rendering wider (in pixels) than the horizontal bar under the
-  // title, by shrinking --cell-size just enough to fit if the natural size would overflow it.
-  // Never grows cells beyond their normal CSS-defined size, only shrinks when needed.
-  function fitGridWidth(){
-    gridEl.style.removeProperty('--cell-size'); // fall back to the CSS default for this context first
-    const header = document.querySelector('header.app-head');
-    if(!header || !cols) return;
-    const targetWidth = header.getBoundingClientRect().width;
-    const naturalWidth = gridEl.getBoundingClientRect().width;
-    if(targetWidth <= 0 || naturalWidth <= targetWidth) return;
-    const gap = 1, borderTotal = 4; // matches #grid's screen CSS: gap:1px, border:2px each side
-    const maxCellSize = Math.floor((targetWidth - (cols-1)*gap - borderTotal) / cols);
-    gridEl.style.setProperty('--cell-size', Math.max(12, maxCellSize) + 'px');
   }
 
   function renderClueLists(){
@@ -680,16 +664,6 @@
 
   window.addEventListener('resize', () => { if(celebrateOverlay.classList.contains('show')) fwResize(); });
 
-  let resizeFitTimer = null;
-  window.addEventListener('resize', () => {
-    clearTimeout(resizeFitTimer);
-    resizeFitTimer = setTimeout(fitGridWidth, 100);
-  });
-  // Print uses its own fixed cell size, defined in the print stylesheet - make sure a screen-time
-  // inline override never leaks in there (inline styles otherwise beat print's media-query rule).
-  window.addEventListener('beforeprint', () => gridEl.style.removeProperty('--cell-size'));
-  window.addEventListener('afterprint', fitGridWidth);
-
   function onKeyDown(e,r,c){
     const cell = cellAt(r,c);
     if(!cell) return;
@@ -737,6 +711,21 @@
     history.replaceState(null, '', newUrl);
   }
 
+  // How many columns wide the grid is allowed to be, based on the header bar's actual current
+  // width and the (unchanged, fixed) cell size - so the puzzle never needs to render wider than
+  // that bar, growing taller instead once this is reached. Recomputed at generation time.
+  function computeMaxCols(){
+    const header = document.querySelector('header.app-head');
+    if(!header) return Infinity;
+    const targetWidth = header.getBoundingClientRect().width;
+    if(targetWidth <= 0) return Infinity;
+    const cellSizeStr = getComputedStyle(gridEl).getPropertyValue('--cell-size').trim();
+    const cellSize = parseFloat(cellSizeStr) || 38;
+    const gap = 1, borderTotal = 4; // matches #grid's screen CSS: gap:1px, border:2px each side
+    const maxCols = Math.floor((targetWidth - borderTotal + gap) / (cellSize + gap));
+    return Math.max(3, maxCols);
+  }
+
   function generate(){
     if(!wordBank.length){
       setStatus('Load a word list first.', true);
@@ -744,7 +733,7 @@
     }
     const n = Math.max(2, Math.min(parseInt(wordCountInput.value,10)||2, wordBank.length));
     closeCelebration();
-    const result = buildCrossword(wordBank, n);
+    const result = buildCrossword(wordBank, n, undefined, computeMaxCols());
     const built = trimAndIndex(result);
     const numbering = numberGrid(built);
     renderGrid(built, numbering);

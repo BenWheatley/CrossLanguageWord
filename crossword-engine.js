@@ -42,7 +42,12 @@
 
   function key(r,c){ return r+','+c; }
 
-  function attemptPlacement(candidates, target){
+  /**
+   * @param {number} maxCols - if given, any placement that would make the grid's column span
+   *   exceed this is rejected outright, so the finished grid never needs more columns than this,
+   *   however tall it ends up needing to grow instead. No cap on rows.
+   */
+  function attemptPlacement(candidates, target, maxCols = Infinity){
     const grid = new Map(); // key -> letter
     // Tracks which direction(s) already run through each occupied cell. A cell can legitimately
     // belong to at most one across word AND at most one down word - if a new word's direction
@@ -53,15 +58,22 @@
     const placements = []; // {word, row, col, dir, letters}
     const first = candidates[0];
     const firstLetters = graphemes(first.answer);
+    // If the anchor word is itself longer than the column budget, lay it out vertically instead
+    // (rows aren't capped) rather than immediately breaking the width constraint before anything
+    // else is even placed.
+    const firstDir = firstLetters.length > maxCols ? 'down' : 'across';
     for(let i=0;i<firstLetters.length;i++){
-      grid.set(key(0,i), firstLetters[i]);
-      dirsAt.set(key(0,i), { across:true, down:false });
+      const r = firstDir==='down' ? i : 0;
+      const c = firstDir==='down' ? 0 : i;
+      grid.set(key(r,c), firstLetters[i]);
+      dirsAt.set(key(r,c), { across: firstDir==='across', down: firstDir==='down' });
     }
-    placements.push({word:first, row:0, col:0, dir:'across', letters:firstLetters});
+    placements.push({word:first, row:0, col:0, dir:firstDir, letters:firstLetters});
 
     // Track the grid's bounding box incrementally so each candidate placement can be scored by
     // how much it would grow the overall footprint, not just by how many letters it crosses.
-    let minR = 0, maxR = 0, minC = 0, maxC = firstLetters.length - 1;
+    let minR = 0, maxR = firstDir==='down' ? firstLetters.length - 1 : 0;
+    let minC = 0, maxC = firstDir==='across' ? firstLetters.length - 1 : 0;
 
     // Returns {crossCount, area} for this placement (area = the grid's bounding-box area *if*
     // this placement were added), or null if the placement is invalid.
@@ -97,6 +109,7 @@
       const endC = dir==='across' ? col+len-1 : col;
       const newMinR = Math.min(minR, row), newMaxR = Math.max(maxR, endR);
       const newMinC = Math.min(minC, col), newMaxC = Math.max(maxC, endC);
+      if(newMaxC - newMinC + 1 > maxCols) return null; // would make the grid too wide
       const area = (newMaxR-newMinR+1) * (newMaxC-newMinC+1);
       return { crossCount, area };
     }
@@ -269,8 +282,10 @@
    *   back to the unrestricted phase (see below). Each attempt keeps the smallest-area result
    *   that still places every requested word, so more attempts generally means a more compact
    *   grid, with diminishing returns - see tests/index.html's performance table for numbers.
+   * @param {number} maxCols - if given, caps how many columns wide the finished grid can be
+   *   (no cap on rows). The grid grows taller instead of wider once this limit is reached.
    */
-  function buildCrossword(bank, targetCount, phase1Attempts = 3){
+  function buildCrossword(bank, targetCount, phase1Attempts = 3, maxCols = Infinity){
     const target = Math.min(targetCount, bank.length);
     let candidates = []; // {result, placedCount, area}
 
@@ -279,7 +294,7 @@
       // among same-length words, order is already randomized above; sorting longest-first here
       // just gives the greedy placer a sturdier scaffold to start from.
       pool.sort((x,y) => graphemes(y.answer).length - graphemes(x.answer).length);
-      const result = attemptPlacement(pool, target);
+      const result = attemptPlacement(pool, target, maxCols);
       const bounds = computeBounds(result.placements);
       candidates.push({ result, placedCount: result.placements.length, area: bounds.rows*bounds.cols });
       return result.placements.length >= target;

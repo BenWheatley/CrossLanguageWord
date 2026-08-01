@@ -307,6 +307,17 @@
       assertEqual(result.placements.length, realNetwork.length);
     });
 
+    test('buildCrossword() never exceeds a given maxCols, even when the longest word (the usual anchor) is itself wider than the budget', async () => {
+      const bank = await loadBank('german.json');
+      for(const maxCols of [7, 10, 15, 20]){
+        for(let trial = 0; trial < 5; trial++){
+          const result = engine.buildCrossword(bank, 20, undefined, maxCols);
+          const bounds = engine.computeBounds(result.placements);
+          assertTrue(bounds.cols <= maxCols, `maxCols=${maxCols} but grid came out ${bounds.cols} columns wide`);
+        }
+      }
+    });
+
     test('numberGrid() assigns a number to every placement, and shared start cells share one number', async () => {
       const bank = await loadBank('example.json');
       const result = engine.buildCrossword(bank, 15);
