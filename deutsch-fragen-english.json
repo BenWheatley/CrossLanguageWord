@@ -2,3011 +2,7288 @@
   "metadata": {
     "title": "Deutsch B1: Fragen auf Deutsch, Antworten auf Englisch",
     "language": "de-en",
-    "version": 1
+    "version": 2
   },
   "words": [
     {
       "word": "HOUSE",
       "clues": [
-        "Ein Gebäude, in dem eine Familie wohnt"
+        "Ein Gebäude, in dem eine Familie wohnt",
+        "Kategorie: Wohnen & Zuhause"
       ]
     },
     {
       "word": "APARTMENT",
       "clues": [
-        "Gemietete Zimmer in einem größeren Gebäude"
+        "Gemietete Zimmer in einem größeren Gebäude",
+        "Kategorie: Wohnen & Zuhause"
       ]
     },
     {
       "word": "KITCHEN",
       "clues": [
-        "Der Raum, in dem man kocht"
+        "Der Raum, in dem man kocht",
+        "Kategorie: Wohnen & Zuhause"
       ]
     },
     {
       "word": "BATHROOM",
       "clues": [
-        "Der Raum mit Dusche und Toilette"
+        "Der Raum mit Dusche und Toilette",
+        "Kategorie: Wohnen & Zuhause"
       ]
     },
     {
       "word": "BEDROOM",
       "clues": [
-        "Der Raum, in dem man schläft"
+        "Der Raum, in dem man schläft",
+        "Kategorie: Wohnen & Zuhause"
       ]
     },
     {
       "word": "GARDEN",
       "clues": [
-        "Ein Stück Land hinter dem Haus, zum Pflanzenanbau"
+        "Ein Stück Land hinter dem Haus, zum Pflanzenanbau",
+        "Kategorie: Wohnen & Zuhause"
       ]
     },
     {
       "word": "TABLE",
       "clues": [
-        "Möbelstück, an dem man isst oder schreibt"
+        "Möbelstück, an dem man isst oder schreibt",
+        "Kategorie: Wohnen & Zuhause"
       ]
     },
     {
       "word": "CHAIR",
       "clues": [
-        "Ein einzelner Sitz mit Lehne, ohne Armlehnen"
+        "Ein einzelner Sitz mit Lehne, ohne Armlehnen",
+        "Kategorie: Wohnen & Zuhause"
       ]
     },
     {
       "word": "SOFA",
       "clues": [
-        "Ein langer, gepolsterter Sitz für mehrere Personen"
+        "Ein langer, gepolsterter Sitz für mehrere Personen",
+        "Kategorie: Wohnen & Zuhause"
       ]
     },
     {
       "word": "BED",
       "clues": [
-        "Hier schläft man nachts"
+        "Hier schläft man nachts",
+        "Kategorie: Wohnen & Zuhause"
       ]
     },
     {
       "word": "WARDROBE",
       "clues": [
-        "Hohes Möbelstück zum Aufbewahren von Kleidung"
+        "Hohes Möbelstück zum Aufbewahren von Kleidung",
+        "Kategorie: Wohnen & Zuhause"
       ]
     },
     {
       "word": "WINDOW",
       "clues": [
-        "Lässt Licht in einen Raum"
+        "Lässt Licht in einen Raum",
+        "Kategorie: Wohnen & Zuhause"
       ]
     },
     {
       "word": "DOOR",
       "clues": [
-        "Man öffnet sie, um einen Raum zu betreten"
+        "Man öffnet sie, um einen Raum zu betreten",
+        "Kategorie: Wohnen & Zuhause"
       ]
     },
     {
       "word": "KEY",
       "clues": [
-        "Passt in ein Schloss"
+        "Passt in ein Schloss",
+        "Kategorie: Wohnen & Zuhause"
       ]
     },
     {
       "word": "RENT",
       "clues": [
-        "Monatliche Zahlung an den Vermieter"
+        "Monatliche Zahlung an den Vermieter",
+        "Kategorie: Wohnen & Zuhause"
       ]
     },
     {
       "word": "LANDLORD",
       "clues": [
-        "Die Person, der man Miete zahlt"
+        "Die Person, der man Miete zahlt",
+        "Kategorie: Wohnen & Zuhause",
+        "Kategorie: Haus und Garten (mehr)"
       ]
     },
     {
       "word": "TENANT",
       "clues": [
-        "Jemand, der eine Wohnung mietet, statt sie zu besitzen"
+        "Jemand, der eine Wohnung mietet, statt sie zu besitzen",
+        "Kategorie: Wohnen & Zuhause",
+        "Jemand, der eine Wohnung mietet",
+        "Kategorie: Haus und Garten (mehr)"
       ]
     },
     {
       "word": "NEIGHBOR",
       "clues": [
-        "Wohnt im Haus oder in der Wohnung nebenan"
+        "Wohnt im Haus oder in der Wohnung nebenan",
+        "Kategorie: Wohnen & Zuhause",
+        "Kategorie: Familie und Leben (mehr)"
       ]
     },
     {
       "word": "STREET",
       "clues": [
-        "Autos und Fahrräder fahren darauf"
+        "Autos und Fahrräder fahren darauf",
+        "Kategorie: Wohnen & Zuhause"
       ]
     },
     {
       "word": "CITY",
       "clues": [
-        "Eine große Stadt mit vielen Straßen"
+        "Eine große Stadt mit vielen Straßen",
+        "Kategorie: Wohnen & Zuhause"
       ]
     },
     {
       "word": "VILLAGE",
       "clues": [
-        "Eine kleine Siedlung, kleiner als eine Stadt"
+        "Eine kleine Siedlung, kleiner als eine Stadt",
+        "Kategorie: Wohnen & Zuhause"
       ]
     },
     {
       "word": "ADDRESS",
       "clues": [
-        "Straße, Nummer und Stadt: wohin die Post geht"
+        "Straße, Nummer und Stadt: wohin die Post geht",
+        "Kategorie: Wohnen & Zuhause"
       ]
     },
     {
       "word": "CEILING",
       "clues": [
-        "Die Fläche über dem Kopf in einem Raum"
+        "Die Fläche über dem Kopf in einem Raum",
+        "Kategorie: Wohnen & Zuhause"
       ]
     },
     {
       "word": "BASEMENT",
       "clues": [
-        "Das Geschoss eines Gebäudes unter der Erde"
+        "Das Geschoss eines Gebäudes unter der Erde",
+        "Kategorie: Wohnen & Zuhause",
+        "Der Lagerraum unter einem Haus"
       ]
     },
     {
       "word": "FENCE",
       "clues": [
-        "Eine Barriere am Rand eines Grundstücks"
+        "Eine Barriere am Rand eines Grundstücks",
+        "Kategorie: Wohnen & Zuhause",
+        "Ein Zaun am Rand eines Grundstücks",
+        "Kategorie: Haus und Garten (mehr)"
       ]
     },
     {
       "word": "FURNITURE",
       "clues": [
-        "Stühle, Tische und Betten, zusammen genannt"
+        "Stühle, Tische und Betten, zusammen genannt",
+        "Kategorie: Wohnen & Zuhause",
+        "Tische, Stühle und Betten, zusammen genannt"
+      ]
+    },
+    {
+      "word": "BALCONY",
+      "clues": [
+        "Eine kleine Plattform an einem oberen Stockwerk, im Freien",
+        "Kategorie: Wohnen & Zuhause"
+      ]
+    },
+    {
+      "word": "ROOF",
+      "clues": [
+        "Die oberste Abdeckung eines Gebäudes",
+        "Kategorie: Wohnen & Zuhause"
+      ]
+    },
+    {
+      "word": "WALL",
+      "clues": [
+        "Eine senkrechte Fläche in einem Raum",
+        "Kategorie: Wohnen & Zuhause"
+      ]
+    },
+    {
+      "word": "FLOOR",
+      "clues": [
+        "Worauf man in einem Raum geht",
+        "Kategorie: Wohnen & Zuhause"
+      ]
+    },
+    {
+      "word": "STAIRS",
+      "clues": [
+        "Stufen zwischen den Stockwerken eines Gebäudes",
+        "Kategorie: Wohnen & Zuhause"
+      ]
+    },
+    {
+      "word": "ELEVATOR",
+      "clues": [
+        "Bringt Menschen zwischen Stockwerken, ohne Treppen",
+        "Kategorie: Wohnen & Zuhause"
+      ]
+    },
+    {
+      "word": "CURTAIN",
+      "clues": [
+        "Hängt vor einem Fenster, um Licht abzuhalten",
+        "Kategorie: Wohnen & Zuhause"
+      ]
+    },
+    {
+      "word": "LAMP",
+      "clues": [
+        "Gibt Licht in einem Raum",
+        "Kategorie: Wohnen & Zuhause"
+      ]
+    },
+    {
+      "word": "MIRROR",
+      "clues": [
+        "Zeigt das eigene Spiegelbild",
+        "Kategorie: Wohnen & Zuhause",
+        "Kategorie: Alltag & Objekte",
+        "Kategorie: Haushalt (Erweiterung)"
+      ]
+    },
+    {
+      "word": "CARPET",
+      "clues": [
+        "Ein weicher Bodenbelag",
+        "Kategorie: Wohnen & Zuhause"
+      ]
+    },
+    {
+      "word": "MOVING",
+      "clues": [
+        "Von einem Zuhause in ein anderes ziehen",
+        "Kategorie: Wohnen & Zuhause"
       ]
     },
     {
       "word": "JOB",
       "clues": [
-        "Das, was man für Geld tut"
+        "Das, was man für Geld tut",
+        "Kategorie: Arbeit & Beruf"
       ]
     },
     {
       "word": "WORKPLACE",
       "clues": [
-        "Der Ort, an dem man arbeitet"
+        "Der Ort, an dem man arbeitet",
+        "Kategorie: Arbeit & Beruf"
       ]
     },
     {
       "word": "UNEMPLOYMENT",
       "clues": [
-        "Keine Arbeit haben"
+        "Keine Arbeit haben",
+        "Kategorie: Arbeit & Beruf"
       ]
     },
     {
       "word": "RESUME",
       "clues": [
-        "Ein Dokument mit der beruflichen Vorgeschichte"
+        "Ein Dokument mit der beruflichen Vorgeschichte",
+        "Kategorie: Arbeit & Beruf"
       ]
     },
     {
       "word": "CONTRACT",
       "clues": [
-        "Eine unterschriebene, rechtliche Vereinbarung"
+        "Eine unterschriebene, rechtliche Vereinbarung",
+        "Kategorie: Arbeit & Beruf",
+        "Kategorie: Buerokratie und Recht"
       ]
     },
     {
       "word": "SALARY",
       "clues": [
-        "Regelmäßige Bezahlung durch einen Arbeitgeber"
+        "Regelmäßige Bezahlung durch einen Arbeitgeber",
+        "Kategorie: Arbeit & Beruf"
       ]
     },
     {
       "word": "COLLEAGUE",
       "clues": [
-        "Jemand, mit dem man zusammenarbeitet"
+        "Jemand, mit dem man zusammenarbeitet",
+        "Kategorie: Arbeit & Beruf"
       ]
     },
     {
       "word": "BOSS",
       "clues": [
-        "Die Person, die die Arbeit leitet"
+        "Die Person, die die Arbeit leitet",
+        "Kategorie: Arbeit & Beruf"
       ]
     },
     {
       "word": "OFFICE",
       "clues": [
-        "Wo Schreibtischarbeit erledigt wird"
+        "Wo Schreibtischarbeit erledigt wird",
+        "Kategorie: Arbeit & Beruf"
       ]
     },
     {
       "word": "MEETING",
       "clues": [
-        "Eine geplante Besprechung bei der Arbeit"
+        "Eine geplante Besprechung bei der Arbeit",
+        "Kategorie: Arbeit & Beruf",
+        "Ein geplantes Treffen zur Arbeit",
+        "Kategorie: Buero weiter"
       ]
     },
     {
       "word": "DEADLINE",
       "clues": [
-        "Der letzte Moment, zu dem etwas fertig sein muss"
+        "Der letzte Moment, zu dem etwas fertig sein muss",
+        "Kategorie: Arbeit & Beruf",
+        "Der letzte Termin, bis zu dem etwas fertig sein muss",
+        "Kategorie: Buerokratie und Recht",
+        "Der letzte Termin für eine Aufgabe",
+        "Kategorie: Buero weiter",
+        "Ein Termin, bis zu dem etwas fertig sein muss"
       ]
     },
     {
       "word": "INTERVIEW",
       "clues": [
-        "Ein formelles Gespräch, um einen Kandidaten zu prüfen"
+        "Ein formelles Gespräch, um einen Kandidaten zu prüfen",
+        "Kategorie: Arbeit & Beruf",
+        "Ein formelles Gespräch, oft für einen Job",
+        "Kategorie: Buero weiter"
       ]
     },
     {
       "word": "PROMOTION",
       "clues": [
-        "Beruflicher Aufstieg in eine höhere Position"
+        "Beruflicher Aufstieg in eine höhere Position",
+        "Kategorie: Arbeit & Beruf",
+        "Ein Aufstieg in eine höhere Position",
+        "Kategorie: Buero weiter"
       ]
     },
     {
       "word": "INTERNSHIP",
       "clues": [
-        "Ein kurzes, oft unbezahltes Praktikum"
+        "Ein kurzes, oft unbezahltes Praktikum",
+        "Kategorie: Arbeit & Beruf"
       ]
     },
     {
       "word": "PENSION",
       "clues": [
-        "Einkommen nach der Pensionierung"
+        "Einkommen nach der Pensionierung",
+        "Kategorie: Arbeit & Beruf"
       ]
     },
     {
       "word": "RESIGNATION",
       "clues": [
-        "Eine Arbeit offiziell kündigen"
+        "Eine Arbeit offiziell kündigen",
+        "Kategorie: Arbeit & Beruf"
       ]
     },
     {
       "word": "FACTORY",
       "clues": [
-        "Ein Gebäude, in dem Waren hergestellt werden"
+        "Ein Gebäude, in dem Waren hergestellt werden",
+        "Kategorie: Arbeit & Beruf"
+      ]
+    },
+    {
+      "word": "DISMISSAL",
+      "clues": [
+        "Vom Arbeitsplatz entlassen werden",
+        "Kategorie: Arbeit & Beruf"
+      ]
+    },
+    {
+      "word": "OVERTIME",
+      "clues": [
+        "Zusätzliche Stunden über die normale Schicht hinaus",
+        "Kategorie: Arbeit & Beruf"
+      ]
+    },
+    {
+      "word": "UNION",
+      "clues": [
+        "Eine organisierte Gruppe von Arbeitern",
+        "Kategorie: Arbeit & Beruf"
+      ]
+    },
+    {
+      "word": "COMPANY",
+      "clues": [
+        "Ein Geschäft oder Unternehmen",
+        "Kategorie: Arbeit & Beruf"
+      ]
+    },
+    {
+      "word": "EMPLOYEE",
+      "clues": [
+        "Jemand, der bei einer Firma angestellt ist",
+        "Kategorie: Arbeit & Beruf"
+      ]
+    },
+    {
+      "word": "SHIFT",
+      "clues": [
+        "Ein festgelegter Arbeitszeitraum, wie eine Nachtschicht",
+        "Kategorie: Arbeit & Beruf"
+      ]
+    },
+    {
+      "word": "TASK",
+      "clues": [
+        "Eine Aufgabe, die jemand erledigen muss",
+        "Kategorie: Arbeit & Beruf"
+      ]
+    },
+    {
+      "word": "PROJECT",
+      "clues": [
+        "Eine geplante Arbeit mit einem Ziel",
+        "Kategorie: Arbeit & Beruf"
+      ]
+    },
+    {
+      "word": "SUCCESS",
+      "clues": [
+        "Etwas Beabsichtigtes erreichen",
+        "Kategorie: Arbeit & Beruf"
       ]
     },
     {
       "word": "BANK",
       "clues": [
-        "Dort bewahrt man seine Ersparnisse auf"
+        "Dort bewahrt man seine Ersparnisse auf",
+        "Kategorie: Geld & Finanzen"
       ]
     },
     {
       "word": "ACCOUNT",
       "clues": [
-        "Enthält das Geld bei einer Bank"
+        "Enthält das Geld bei einer Bank",
+        "Kategorie: Geld & Finanzen"
       ]
     },
     {
       "word": "COIN",
       "clues": [
-        "Ein rundes Geldstück aus Metall"
+        "Ein rundes Geldstück aus Metall",
+        "Kategorie: Geld & Finanzen"
       ]
     },
     {
       "word": "INVOICE",
       "clues": [
-        "Eine Rechnung, die man bezahlen muss"
+        "Eine Rechnung, die man bezahlen muss",
+        "Kategorie: Geld & Finanzen"
       ]
     },
     {
       "word": "RECEIPT",
       "clues": [
-        "Beweis, dass man bezahlt hat"
+        "Beweis, dass man bezahlt hat",
+        "Kategorie: Geld & Finanzen"
       ]
     },
     {
       "word": "PRICE",
       "clues": [
-        "Das, was etwas kostet"
+        "Das, was etwas kostet",
+        "Kategorie: Geld & Finanzen"
       ]
     },
     {
       "word": "DISCOUNT",
       "clues": [
-        "Eine Preissenkung"
+        "Eine Preissenkung",
+        "Kategorie: Geld & Finanzen"
       ]
     },
     {
       "word": "DEBT",
       "clues": [
-        "Geld, das man schuldet"
+        "Geld, das man schuldet",
+        "Kategorie: Geld & Finanzen"
       ]
     },
     {
       "word": "LOAN",
       "clues": [
-        "Geliehenes Geld, das zurückgezahlt werden muss"
+        "Geliehenes Geld, das zurückgezahlt werden muss",
+        "Kategorie: Geld & Finanzen"
       ]
     },
     {
       "word": "SAVINGS",
       "clues": [
-        "Geld, das man für später zurücklegt"
+        "Geld, das man für später zurücklegt",
+        "Kategorie: Geld & Finanzen"
       ]
     },
     {
       "word": "BUDGET",
       "clues": [
-        "Ein Plan, wie man Geld ausgeben will"
+        "Ein Plan, wie man Geld ausgeben will",
+        "Kategorie: Geld & Finanzen"
       ]
     },
     {
       "word": "CURRENCY",
       "clues": [
-        "Das Geldsystem eines Landes"
+        "Das Geldsystem eines Landes",
+        "Kategorie: Geld & Finanzen",
+        "Kategorie: Reisen weiter"
       ]
     },
     {
       "word": "INSURANCE",
       "clues": [
-        "Zahlt, wenn etwas schiefgeht"
+        "Zahlt, wenn etwas schiefgeht",
+        "Kategorie: Geld & Finanzen",
+        "Zahlt aus, wenn etwas schiefgeht",
+        "Kategorie: Buerokratie und Recht"
       ]
     },
     {
       "word": "TAX",
       "clues": [
-        "Geld, das man dem Staat vom Einkommen schuldet"
+        "Geld, das man dem Staat vom Einkommen schuldet",
+        "Kategorie: Geld & Finanzen"
       ]
     },
     {
       "word": "WALLET",
       "clues": [
         "Eine kleine Hülle für Bargeld und Karten",
-        "Eine kleine Hülle für Geld und Karten"
+        "Kategorie: Geld & Finanzen",
+        "Eine kleine Hülle für Geld und Karten",
+        "Kategorie: Alltag & Objekte",
+        "Kategorie: Objekte und Werkzeuge (mehr)"
       ]
     },
     {
       "word": "INFLATION",
       "clues": [
-        "Ein allgemeiner Preisanstieg über die Zeit"
+        "Ein allgemeiner Preisanstieg über die Zeit",
+        "Kategorie: Geld & Finanzen"
+      ]
+    },
+    {
+      "word": "PAYMENT",
+      "clues": [
+        "Geld, das für etwas gezahlt wird",
+        "Kategorie: Geld & Finanzen"
+      ]
+    },
+    {
+      "word": "EXPENSE",
+      "clues": [
+        "Geld, das für etwas ausgegeben wird",
+        "Kategorie: Geld & Finanzen"
+      ]
+    },
+    {
+      "word": "INCOME",
+      "clues": [
+        "Geld, das man verdient oder erhält",
+        "Kategorie: Geld & Finanzen"
+      ]
+    },
+    {
+      "word": "TRANSFER",
+      "clues": [
+        "Geld von einem Konto auf ein anderes bewegen",
+        "Kategorie: Geld & Finanzen"
+      ]
+    },
+    {
+      "word": "CASH",
+      "clues": [
+        "Physisches Geld, keine elektronische Zahlung",
+        "Kategorie: Geld & Finanzen"
       ]
     },
     {
       "word": "HEALTH",
       "clues": [
-        "Der Zustand, gesund zu sein"
+        "Der Zustand, gesund zu sein",
+        "Kategorie: Gesundheit & Körper"
       ]
     },
     {
       "word": "ILLNESS",
       "clues": [
-        "Eine Krankheit, die einen schwächt"
+        "Eine Krankheit, die einen schwächt",
+        "Kategorie: Gesundheit & Körper"
       ]
     },
     {
       "word": "DOCTOR",
       "clues": [
-        "Behandelt Krankheiten und Verletzungen"
+        "Behandelt Krankheiten und Verletzungen",
+        "Kategorie: Gesundheit & Körper"
       ]
     },
     {
       "word": "HOSPITAL",
       "clues": [
-        "Dort geht man bei ernsten medizinischen Problemen hin"
+        "Dort geht man bei ernsten medizinischen Problemen hin",
+        "Kategorie: Gesundheit & Körper"
       ]
     },
     {
       "word": "PHARMACY",
       "clues": [
-        "Dort werden Rezepte eingelöst"
+        "Dort werden Rezepte eingelöst",
+        "Kategorie: Gesundheit & Körper"
       ]
     },
     {
       "word": "MEDICINE",
       "clues": [
-        "Etwas, das ein Arzt zur Behandlung verschreibt"
+        "Etwas, das ein Arzt zur Behandlung verschreibt",
+        "Kategorie: Gesundheit & Körper"
       ]
     },
     {
       "word": "FEVER",
       "clues": [
-        "Erhöhte Körpertemperatur bei Krankheit"
+        "Erhöhte Körpertemperatur bei Krankheit",
+        "Kategorie: Gesundheit & Körper"
       ]
     },
     {
       "word": "HEADACHE",
       "clues": [
-        "Schmerz im Kopf"
+        "Schmerz im Kopf",
+        "Kategorie: Gesundheit & Körper"
       ]
     },
     {
       "word": "INJURY",
       "clues": [
-        "Körperlicher Schaden durch einen Unfall"
+        "Körperlicher Schaden durch einen Unfall",
+        "Kategorie: Gesundheit & Körper"
       ]
     },
     {
       "word": "SURGERY",
       "clues": [
-        "Eine Operation zur Behandlung einer Krankheit"
+        "Eine Operation zur Behandlung einer Krankheit",
+        "Kategorie: Gesundheit & Körper"
       ]
     },
     {
       "word": "NURSE",
       "clues": [
-        "Kümmert sich um Patienten, unter ärztlicher Aufsicht"
+        "Kümmert sich um Patienten, unter ärztlicher Aufsicht",
+        "Kategorie: Gesundheit & Körper",
+        "Kategorie: Berufe (Erweiterung)"
       ]
     },
     {
       "word": "VACCINE",
       "clues": [
-        "Eine Spritze, die den Körper gegen eine Krankheit schützt"
+        "Eine Spritze, die den Körper gegen eine Krankheit schützt",
+        "Kategorie: Gesundheit & Körper"
       ]
     },
     {
       "word": "SYMPTOM",
       "clues": [
-        "Ein Zeichen, dass medizinisch etwas nicht stimmt"
+        "Ein Zeichen, dass medizinisch etwas nicht stimmt",
+        "Kategorie: Gesundheit & Körper"
       ]
     },
     {
       "word": "ALLERGY",
       "clues": [
-        "Eine Überreaktion des Körpers auf etwas Harmloses"
+        "Eine Überreaktion des Körpers auf etwas Harmloses",
+        "Kategorie: Gesundheit & Körper"
       ]
     },
     {
       "word": "EXERCISE",
       "clues": [
-        "Körperliche Aktivität, um fit zu bleiben"
+        "Körperliche Aktivität, um fit zu bleiben",
+        "Kategorie: Gesundheit & Körper"
       ]
     },
     {
       "word": "BANDAGE",
       "clues": [
-        "Wird um eine Wunde gewickelt, zum Schutz"
+        "Wird um eine Wunde gewickelt, zum Schutz",
+        "Kategorie: Gesundheit & Körper",
+        "Wird um eine Wunde gewickelt",
+        "Kategorie: Gesundheit im Detail"
       ]
     },
     {
       "word": "MUSCLE",
       "clues": [
-        "Gewebe, das sich zusammenzieht und Bewegung erzeugt"
+        "Gewebe, das sich zusammenzieht und Bewegung erzeugt",
+        "Kategorie: Gesundheit & Körper",
+        "Bewegt Körperteile durch Zusammenziehen",
+        "Kategorie: Koerper weiter"
+      ]
+    },
+    {
+      "word": "DIAGNOSIS",
+      "clues": [
+        "Die Feststellung eines Arztes, was nicht stimmt",
+        "Kategorie: Gesundheit & Körper"
+      ]
+    },
+    {
+      "word": "DENTIST",
+      "clues": [
+        "Ein Arzt für Zähne",
+        "Kategorie: Gesundheit & Körper",
+        "Kategorie: Mehr Berufe"
+      ]
+    },
+    {
+      "word": "PRESCRIPTION",
+      "clues": [
+        "Eine schriftliche Anweisung eines Arztes für Medizin",
+        "Kategorie: Gesundheit & Körper"
+      ]
+    },
+    {
+      "word": "NUTRITION",
+      "clues": [
+        "Was und wie man isst",
+        "Kategorie: Gesundheit & Körper"
+      ]
+    },
+    {
+      "word": "HEAD",
+      "clues": [
+        "Der oberste Teil des Körpers, mit dem Gehirn",
+        "Kategorie: Gesundheit & Körper"
+      ]
+    },
+    {
+      "word": "HAND",
+      "clues": [
+        "Wird zum Greifen und Halten benutzt",
+        "Kategorie: Gesundheit & Körper"
+      ]
+    },
+    {
+      "word": "FOOT",
+      "clues": [
+        "Wird zum Stehen und Gehen benutzt",
+        "Kategorie: Gesundheit & Körper"
+      ]
+    },
+    {
+      "word": "HEART",
+      "clues": [
+        "Pumpt Blut durch den Körper",
+        "Kategorie: Gesundheit & Körper"
+      ]
+    },
+    {
+      "word": "SKIN",
+      "clues": [
+        "Bedeckt die Aussenseite des Körpers",
+        "Kategorie: Gesundheit & Körper"
       ]
     },
     {
       "word": "FAMILY",
       "clues": [
-        "Eltern, Kinder und Verwandte zusammen"
+        "Eltern, Kinder und Verwandte zusammen",
+        "Kategorie: Familie & Beziehungen"
       ]
     },
     {
       "word": "PARENT",
       "clues": [
-        "Eine Mutter oder ein Vater"
+        "Eine Mutter oder ein Vater",
+        "Kategorie: Familie & Beziehungen"
       ]
     },
     {
       "word": "SIBLING",
       "clues": [
-        "Ein Bruder oder eine Schwester"
+        "Ein Bruder oder eine Schwester",
+        "Kategorie: Familie & Beziehungen"
       ]
     },
     {
       "word": "COUSIN",
       "clues": [
-        "Das Kind der Tante oder des Onkels"
+        "Das Kind der Tante oder des Onkels",
+        "Kategorie: Familie & Beziehungen",
+        "Das Kind von Onkel oder Tante"
       ]
     },
     {
       "word": "SPOUSE",
       "clues": [
-        "Ein Ehemann oder eine Ehefrau"
+        "Ein Ehemann oder eine Ehefrau",
+        "Kategorie: Familie & Beziehungen"
       ]
     },
     {
       "word": "WIDOW",
       "clues": [
-        "Eine Frau, deren Ehemann gestorben ist"
+        "Eine Frau, deren Ehemann gestorben ist",
+        "Kategorie: Familie & Beziehungen"
       ]
     },
     {
       "word": "ORPHAN",
       "clues": [
-        "Ein Kind, dessen Eltern beide gestorben sind"
+        "Ein Kind, dessen Eltern beide gestorben sind",
+        "Kategorie: Familie & Beziehungen"
       ]
     },
     {
       "word": "GRANDPARENT",
       "clues": [
-        "Der Elternteil eines Elternteils"
+        "Der Elternteil eines Elternteils",
+        "Kategorie: Familie & Beziehungen"
       ]
     },
     {
       "word": "TODDLER",
       "clues": [
-        "Ein kleines Kind, das gerade laufen lernt"
+        "Ein kleines Kind, das gerade laufen lernt",
+        "Kategorie: Familie & Beziehungen"
       ]
     },
     {
       "word": "INFANT",
       "clues": [
-        "Ein sehr junges Baby"
+        "Ein sehr junges Baby",
+        "Kategorie: Familie & Beziehungen"
       ]
     },
     {
       "word": "FRIENDSHIP",
       "clues": [
-        "Die Verbindung zwischen engen Freunden"
+        "Die Verbindung zwischen engen Freunden",
+        "Kategorie: Familie & Beziehungen"
       ]
     },
     {
       "word": "MARRIAGE",
       "clues": [
-        "Die rechtliche Verbindung zweier Menschen"
+        "Die rechtliche Verbindung zweier Menschen",
+        "Kategorie: Familie & Beziehungen"
       ]
     },
     {
       "word": "DIVORCE",
       "clues": [
-        "Die rechtliche Beendigung einer Ehe"
+        "Die rechtliche Beendigung einer Ehe",
+        "Kategorie: Familie & Beziehungen"
       ]
     },
     {
       "word": "WEDDING",
       "clues": [
-        "Die Zeremonie, bei der zwei Menschen heiraten"
+        "Die Zeremonie, bei der zwei Menschen heiraten",
+        "Kategorie: Familie & Beziehungen"
       ]
     },
     {
       "word": "ANNIVERSARY",
       "clues": [
-        "Der jährliche Tag, an dem etwas Wichtiges geschah"
+        "Der jährliche Tag, an dem etwas Wichtiges geschah",
+        "Kategorie: Familie & Beziehungen"
       ]
     },
     {
       "word": "BIRTHDAY",
       "clues": [
-        "Der jährliche Jahrestag der eigenen Geburt"
+        "Der jährliche Jahrestag der eigenen Geburt",
+        "Kategorie: Familie & Beziehungen"
       ]
     },
     {
       "word": "STRANGER",
       "clues": [
-        "Jemand, den man nicht kennt"
+        "Jemand, den man nicht kennt",
+        "Kategorie: Familie & Beziehungen",
+        "Kategorie: Familie und Leben (mehr)"
+      ]
+    },
+    {
+      "word": "UNCLE",
+      "clues": [
+        "Der Bruder eines Elternteils",
+        "Kategorie: Familie & Beziehungen"
+      ]
+    },
+    {
+      "word": "AUNT",
+      "clues": [
+        "Die Schwester eines Elternteils",
+        "Kategorie: Familie & Beziehungen"
+      ]
+    },
+    {
+      "word": "BABY",
+      "clues": [
+        "Ein sehr junges Kind",
+        "Kategorie: Familie & Beziehungen"
+      ]
+    },
+    {
+      "word": "TEENAGER",
+      "clues": [
+        "Ein Jugendlicher",
+        "Kategorie: Familie & Beziehungen"
+      ]
+    },
+    {
+      "word": "ADULT",
+      "clues": [
+        "Eine erwachsene Person",
+        "Kategorie: Familie & Beziehungen"
+      ]
+    },
+    {
+      "word": "ENGAGEMENT",
+      "clues": [
+        "Ein Versprechen zu heiraten, vor der Hochzeit",
+        "Kategorie: Familie & Beziehungen"
       ]
     },
     {
       "word": "SCHOOL",
       "clues": [
-        "Dort lernen Kinder"
+        "Dort lernen Kinder",
+        "Kategorie: Bildung"
       ]
     },
     {
       "word": "TEACHER",
       "clues": [
-        "Jemand, der Schüler unterrichtet"
+        "Jemand, der Schüler unterrichtet",
+        "Kategorie: Bildung"
       ]
     },
     {
       "word": "STUDENT",
       "clues": [
-        "Jemand, der eingeschrieben ist, um zu lernen"
+        "Jemand, der eingeschrieben ist, um zu lernen",
+        "Kategorie: Bildung"
       ]
     },
     {
       "word": "CLASSROOM",
       "clues": [
-        "Wo Unterricht stattfindet"
+        "Wo Unterricht stattfindet",
+        "Kategorie: Bildung",
+        "Der Raum, in dem Unterricht stattfindet",
+        "Kategorie: Buero und Schule"
       ]
     },
     {
       "word": "HOMEWORK",
       "clues": [
-        "Schulaufgaben, die zu Hause erledigt werden"
+        "Schulaufgaben, die zu Hause erledigt werden",
+        "Kategorie: Bildung",
+        "Kategorie: Bildung und Wissen (mehr)"
       ]
     },
     {
       "word": "EXAM",
       "clues": [
-        "Ein Test, den man bestehen oder nicht bestehen kann"
+        "Ein Test, den man bestehen oder nicht bestehen kann",
+        "Kategorie: Bildung",
+        "Kategorie: Bildung und Wissen (mehr)"
       ]
     },
     {
       "word": "GRADE",
       "clues": [
-        "Eine Buchstaben- oder Zahlennote für Schularbeiten"
+        "Eine Buchstaben- oder Zahlennote für Schularbeiten",
+        "Kategorie: Bildung",
+        "Kategorie: Bildung und Wissen (mehr)"
       ]
     },
     {
       "word": "UNIVERSITY",
       "clues": [
-        "Dort gehen Studenten nach der Schule hin"
+        "Dort gehen Studenten nach der Schule hin",
+        "Kategorie: Bildung"
       ]
     },
     {
       "word": "DEGREE",
       "clues": [
-        "Ein Abschluss nach einem Universitätsstudium"
+        "Ein Abschluss nach einem Universitätsstudium",
+        "Kategorie: Bildung",
+        "Ein Abschluss nach einem Studium"
       ]
     },
     {
       "word": "LECTURE",
       "clues": [
-        "Eine Uni-Veranstaltung, bei der ein Professor spricht"
+        "Eine Uni-Veranstaltung, bei der ein Professor spricht",
+        "Kategorie: Bildung",
+        "Kategorie: Bildung und Wissen (mehr)"
       ]
     },
     {
       "word": "LIBRARY",
       "clues": [
-        "Ein ruhiges Gebäude voller Bücher zum Ausleihen"
+        "Ein ruhiges Gebäude voller Bücher zum Ausleihen",
+        "Kategorie: Bildung"
       ]
     },
     {
       "word": "SCHOLARSHIP",
       "clues": [
-        "Geld, das das Studium finanziell unterstützt"
+        "Geld, das das Studium finanziell unterstützt",
+        "Kategorie: Bildung",
+        "Kategorie: Bildung und Wissen (mehr)"
       ]
     },
     {
       "word": "TEXTBOOK",
       "clues": [
-        "Ein Buch, das ein Schulfach lehrt"
+        "Ein Buch, das ein Schulfach lehrt",
+        "Kategorie: Bildung",
+        "Kategorie: Bildung und Wissen (mehr)"
       ]
     },
     {
       "word": "GRADUATION",
       "clues": [
-        "Die Zeremonie zum Abschluss eines Studiums"
+        "Die Zeremonie zum Abschluss eines Studiums",
+        "Kategorie: Bildung"
       ]
     },
     {
       "word": "ALPHABET",
       "clues": [
-        "Alle Buchstaben, die zum Schreiben einer Sprache verwendet werden"
+        "Alle Buchstaben, die zum Schreiben einer Sprache verwendet werden",
+        "Kategorie: Bildung"
       ]
     },
     {
       "word": "VOCABULARY",
       "clues": [
-        "Die Wörter, die jemand kennt oder benutzt"
+        "Die Wörter, die jemand kennt oder benutzt",
+        "Kategorie: Bildung"
       ]
     },
     {
       "word": "DICTIONARY",
       "clues": [
-        "Ein Buch, das Wörter erklärt"
+        "Ein Buch, das Wörter erklärt",
+        "Kategorie: Bildung",
+        "Kategorie: Bildung und Wissen (mehr)"
+      ]
+    },
+    {
+      "word": "KINDERGARTEN",
+      "clues": [
+        "Schule für die jüngsten Kinder, vor der ersten Klasse",
+        "Kategorie: Bildung"
+      ]
+    },
+    {
+      "word": "SUBJECT",
+      "clues": [
+        "Ein bestimmtes Schulfach",
+        "Kategorie: Bildung"
+      ]
+    },
+    {
+      "word": "COURSE",
+      "clues": [
+        "Eine strukturierte Reihe von Unterrichtsstunden",
+        "Kategorie: Bildung"
+      ]
+    },
+    {
+      "word": "TUITION",
+      "clues": [
+        "Geld, das für Unterricht bezahlt wird",
+        "Kategorie: Bildung"
       ]
     },
     {
       "word": "ENVIRONMENT",
       "clues": [
-        "Die Natur und Umgebung, die wir schützen sollten"
+        "Die Natur und Umgebung, die wir schützen sollten",
+        "Kategorie: Umwelt & Natur"
       ]
     },
     {
       "word": "CLIMATE",
       "clues": [
-        "Das typische Wettermuster einer Region über die Zeit"
+        "Das typische Wettermuster einer Region über die Zeit",
+        "Kategorie: Umwelt & Natur"
       ]
     },
     {
       "word": "POLLUTION",
       "clues": [
-        "Schmutz oder Abfall, der die Umwelt schädigt"
+        "Schmutz oder Abfall, der die Umwelt schädigt",
+        "Kategorie: Umwelt & Natur"
       ]
     },
     {
       "word": "RECYCLING",
       "clues": [
-        "Alte Materialien in neue umwandeln"
+        "Alte Materialien in neue umwandeln",
+        "Kategorie: Umwelt & Natur"
       ]
     },
     {
       "word": "ENERGY",
       "clues": [
-        "Treibt Lichter, Maschinen und Motoren an"
+        "Treibt Lichter, Maschinen und Motoren an",
+        "Kategorie: Umwelt & Natur"
       ]
     },
     {
       "word": "ELECTRICITY",
       "clues": [
-        "Fließt durch Kabel, um Geräte anzutreiben"
+        "Fließt durch Kabel, um Geräte anzutreiben",
+        "Kategorie: Umwelt & Natur"
       ]
     },
     {
       "word": "WATER",
       "clues": [
-        "Man trinkt es und schwimmt darin"
+        "Man trinkt es und schwimmt darin",
+        "Kategorie: Umwelt & Natur"
       ]
     },
     {
       "word": "FOREST",
       "clues": [
-        "Ein großes, mit Bäumen bedecktes Gebiet"
+        "Ein großes, mit Bäumen bedecktes Gebiet",
+        "Kategorie: Umwelt & Natur",
+        "Ein grosses, mit Bäumen bedecktes Gebiet",
+        "Kategorie: Natur und Tiere (Erweiterung)"
       ]
     },
     {
       "word": "OCEAN",
       "clues": [
-        "Das größte Gewässer mit Salzwasser"
+        "Das größte Gewässer mit Salzwasser",
+        "Kategorie: Umwelt & Natur",
+        "Das grösste Gewässer mit Salzwasser",
+        "Kategorie: Natur und Tiere (Erweiterung)"
       ]
     },
     {
       "word": "MOUNTAIN",
       "clues": [
-        "Eine sehr hohe Landform"
+        "Eine sehr hohe Landform",
+        "Kategorie: Umwelt & Natur",
+        "Kategorie: Natur und Tiere (Erweiterung)"
       ]
     },
     {
       "word": "DESERT",
       "clues": [
-        "Eine sehr trockene Region mit wenig Regen"
+        "Eine sehr trockene Region mit wenig Regen",
+        "Kategorie: Umwelt & Natur"
       ]
     },
     {
       "word": "ISLAND",
       "clues": [
-        "Land, das vollständig von Wasser umgeben ist"
+        "Land, das vollständig von Wasser umgeben ist",
+        "Kategorie: Umwelt & Natur",
+        "Kategorie: Natur und Tiere (Erweiterung)"
       ]
     },
     {
       "word": "VOLCANO",
       "clues": [
-        "Ein Berg, der ausbrechen kann"
+        "Ein Berg, der ausbrechen kann",
+        "Kategorie: Umwelt & Natur",
+        "Ein Berg, aus dem Lava ausbrechen kann",
+        "Kategorie: Natur weiter"
       ]
     },
     {
       "word": "EARTHQUAKE",
       "clues": [
-        "Ein plötzliches Erschüttern des Bodens"
+        "Ein plötzliches Erschüttern des Bodens",
+        "Kategorie: Umwelt & Natur",
+        "Ein plötzliches Beben der Erde",
+        "Kategorie: Natur weiter"
       ]
     },
     {
       "word": "DROUGHT",
       "clues": [
-        "Eine lange Zeit ohne genug Regen"
+        "Eine lange Zeit ohne genug Regen",
+        "Kategorie: Umwelt & Natur",
+        "Kategorie: Wetter und Jahreszeiten (mehr)"
       ]
     },
     {
       "word": "WILDLIFE",
       "clues": [
-        "Wilde Tiere in ihrem natürlichen Lebensraum"
+        "Wilde Tiere in ihrem natürlichen Lebensraum",
+        "Kategorie: Umwelt & Natur"
       ]
     },
     {
       "word": "HABITAT",
       "clues": [
-        "Der natürliche Lebensraum einer Pflanze oder eines Tieres"
+        "Der natürliche Lebensraum einer Pflanze oder eines Tieres",
+        "Kategorie: Umwelt & Natur"
       ]
     },
     {
       "word": "GLACIER",
       "clues": [
-        "Eine riesige, sich langsam bewegende Eismasse"
+        "Eine riesige, sich langsam bewegende Eismasse",
+        "Kategorie: Umwelt & Natur"
+      ]
+    },
+    {
+      "word": "SOLAR",
+      "clues": [
+        "Von der Sonne angetrieben",
+        "Kategorie: Umwelt & Natur"
+      ]
+    },
+    {
+      "word": "EXTINCT",
+      "clues": [
+        "Nicht mehr existierend als Art",
+        "Kategorie: Umwelt & Natur"
+      ]
+    },
+    {
+      "word": "ECOSYSTEM",
+      "clues": [
+        "Eine Gemeinschaft von Lebewesen und ihrer Umgebung",
+        "Kategorie: Umwelt & Natur"
+      ]
+    },
+    {
+      "word": "RAINFOREST",
+      "clues": [
+        "Ein dichter, tropischer Wald mit viel Regen",
+        "Kategorie: Umwelt & Natur"
       ]
     },
     {
       "word": "TRAFFIC",
       "clues": [
-        "Autos und Busse, die sich durch eine Stadt bewegen"
+        "Autos und Busse, die sich durch eine Stadt bewegen",
+        "Kategorie: Verkehr & Reisen",
+        "Kategorie: Reisen und Verkehr (mehr)"
       ]
     },
     {
       "word": "AIRPORT",
       "clues": [
-        "Dort starten und landen Flugzeuge"
+        "Dort starten und landen Flugzeuge",
+        "Kategorie: Verkehr & Reisen",
+        "Wo Flugzeuge starten und landen",
+        "Kategorie: Reisen und Verkehr (mehr)"
       ]
     },
     {
       "word": "STATION",
       "clues": [
-        "Dort steigt man in einen Zug"
+        "Dort steigt man in einen Zug",
+        "Kategorie: Verkehr & Reisen",
+        "Wo man in einen Zug einsteigt",
+        "Kategorie: Reisen und Verkehr (mehr)"
       ]
     },
     {
       "word": "TICKET",
       "clues": [
-        "Man zeigt es, um in einen Zug oder ein Flugzeug einzusteigen"
+        "Man zeigt es, um in einen Zug oder ein Flugzeug einzusteigen",
+        "Kategorie: Verkehr & Reisen",
+        "Kategorie: Reisen und Verkehr (mehr)"
       ]
     },
     {
       "word": "TIMETABLE",
       "clues": [
-        "Zeigt an, wann Züge oder Busse abfahren"
+        "Zeigt an, wann Züge oder Busse abfahren",
+        "Kategorie: Verkehr & Reisen"
       ]
     },
     {
       "word": "DELAY",
       "clues": [
-        "Später als geplant ankommen"
+        "Später als geplant ankommen",
+        "Kategorie: Verkehr & Reisen",
+        "Kategorie: Reisen und Verkehr (mehr)"
       ]
     },
     {
       "word": "PASSENGER",
       "clues": [
-        "Jemand, der in einem Fahrzeug mitfährt, aber nicht fährt"
+        "Jemand, der in einem Fahrzeug mitfährt, aber nicht fährt",
+        "Kategorie: Verkehr & Reisen"
       ]
     },
     {
       "word": "LUGGAGE",
       "clues": [
-        "Das, was man auf Reisen packt und trägt"
+        "Das, was man auf Reisen packt und trägt",
+        "Kategorie: Verkehr & Reisen"
       ]
     },
     {
       "word": "SUITCASE",
       "clues": [
-        "Ein Koffer zum Packen von Kleidung"
+        "Ein Koffer zum Packen von Kleidung",
+        "Kategorie: Verkehr & Reisen",
+        "Kategorie: Reisen und Verkehr (mehr)"
       ]
     },
     {
       "word": "PASSPORT",
       "clues": [
-        "Nötig, um internationale Grenzen zu überqueren"
+        "Nötig, um internationale Grenzen zu überqueren",
+        "Kategorie: Verkehr & Reisen"
       ]
     },
     {
       "word": "JOURNEY",
       "clues": [
-        "Eine Reise irgendwohin"
+        "Eine Reise irgendwohin",
+        "Kategorie: Verkehr & Reisen"
       ]
     },
     {
       "word": "DESTINATION",
       "clues": [
-        "Der Ort, an dem eine Reise endet"
+        "Der Ort, an dem eine Reise endet",
+        "Kategorie: Verkehr & Reisen"
       ]
     },
     {
       "word": "SOUVENIR",
       "clues": [
-        "Etwas, das man kauft, um sich an eine Reise zu erinnern"
+        "Etwas, das man kauft, um sich an eine Reise zu erinnern",
+        "Kategorie: Verkehr & Reisen"
       ]
     },
     {
       "word": "HIGHWAY",
       "clues": [
-        "Eine Hauptstraße für schnelles Reisen zwischen Orten"
+        "Eine Hauptstraße für schnelles Reisen zwischen Orten",
+        "Kategorie: Verkehr & Reisen"
       ]
     },
     {
       "word": "BICYCLE",
       "clues": [
-        "Ein zweirädriges Fahrzeug, das man tritt"
+        "Ein zweirädriges Fahrzeug, das man tritt",
+        "Kategorie: Verkehr & Reisen",
+        "Ein Fahrzeug mit zwei Rädern, das man tritt",
+        "Kategorie: Sportgeraete"
       ]
     },
     {
       "word": "BREAKFAST",
       "clues": [
-        "Die erste Mahlzeit des Tages"
+        "Die erste Mahlzeit des Tages",
+        "Kategorie: Essen & Kochen"
       ]
     },
     {
       "word": "RECIPE",
       "clues": [
-        "Schritt-für-Schritt-Anleitung zum Kochen eines Gerichts"
+        "Schritt-für-Schritt-Anleitung zum Kochen eines Gerichts",
+        "Kategorie: Essen & Kochen"
       ]
     },
     {
       "word": "INGREDIENT",
       "clues": [
-        "Eine Zutat, die in einem Rezept verwendet wird"
+        "Eine Zutat, die in einem Rezept verwendet wird",
+        "Kategorie: Essen & Kochen"
       ]
     },
     {
       "word": "VEGETABLE",
       "clues": [
-        "Karotten, Kartoffeln und Ähnliches"
+        "Karotten, Kartoffeln und Ähnliches",
+        "Kategorie: Essen & Kochen"
       ]
     },
     {
       "word": "BREAD",
       "clues": [
-        "Aus Mehl gebacken, für Sandwiches geschnitten"
+        "Aus Mehl gebacken, für Sandwiches geschnitten",
+        "Kategorie: Essen & Kochen"
       ]
     },
     {
       "word": "CHEESE",
       "clues": [
-        "Aus Milch hergestellt, oft auf Brot"
+        "Aus Milch hergestellt, oft auf Brot",
+        "Kategorie: Essen & Kochen"
       ]
     },
     {
       "word": "RESTAURANT",
       "clues": [
-        "Dort bezahlt man für eine zubereitete Mahlzeit"
+        "Dort bezahlt man für eine zubereitete Mahlzeit",
+        "Kategorie: Essen & Kochen"
       ]
     },
     {
       "word": "WAITER",
       "clues": [
-        "Bringt das Essen an den Tisch"
+        "Bringt das Essen an den Tisch",
+        "Kategorie: Essen & Kochen",
+        "Bringt in einem Restaurant das Essen",
+        "Kategorie: Berufe im Detail"
       ]
     },
     {
       "word": "MENU",
       "clues": [
-        "Zeigt an, was ein Restaurant anbietet"
+        "Zeigt an, was ein Restaurant anbietet",
+        "Kategorie: Essen & Kochen"
       ]
     },
     {
       "word": "APPETITE",
       "clues": [
-        "Der Wunsch zu essen"
+        "Der Wunsch zu essen",
+        "Kategorie: Essen & Kochen"
       ]
     },
     {
       "word": "SEASONING",
       "clues": [
-        "Salz, Kräuter oder Gewürze zum Würzen von Essen"
+        "Salz, Kräuter oder Gewürze zum Würzen von Essen",
+        "Kategorie: Essen & Kochen"
       ]
     },
     {
       "word": "VEGETARIAN",
       "clues": [
-        "Jemand, der kein Fleisch isst"
+        "Jemand, der kein Fleisch isst",
+        "Kategorie: Essen & Kochen"
       ]
     },
     {
       "word": "DESSERT",
       "clues": [
-        "Ein süßer Gang am Ende einer Mahlzeit"
+        "Ein süßer Gang am Ende einer Mahlzeit",
+        "Kategorie: Essen & Kochen"
       ]
     },
     {
       "word": "BEVERAGE",
       "clues": [
-        "Irgendein Getränk"
+        "Irgendein Getränk",
+        "Kategorie: Essen & Kochen"
       ]
     },
     {
       "word": "GROCERY",
       "clues": [
-        "Lebensmittel, die im Laden gekauft werden"
+        "Lebensmittel, die im Laden gekauft werden",
+        "Kategorie: Essen & Kochen"
       ]
     },
     {
       "word": "REFRIGERATOR",
       "clues": [
-        "Hält Lebensmittel kalt, damit sie länger halten"
+        "Hält Lebensmittel kalt, damit sie länger halten",
+        "Kategorie: Essen & Kochen",
+        "Kategorie: Haushalt (Erweiterung)"
+      ]
+    },
+    {
+      "word": "LEFTOVERS",
+      "clues": [
+        "Essen, das nach einer Mahlzeit übrig bleibt",
+        "Kategorie: Essen & Kochen"
       ]
     },
     {
       "word": "COMPUTER",
       "clues": [
-        "Eine Maschine zur Datenverarbeitung"
+        "Eine Maschine zur Datenverarbeitung",
+        "Kategorie: Technologie"
       ]
     },
     {
       "word": "INTERNET",
       "clues": [
-        "Das globale Netzwerk, das Computer verbindet"
+        "Das globale Netzwerk, das Computer verbindet",
+        "Kategorie: Technologie"
       ]
     },
     {
       "word": "PASSWORD",
       "clues": [
-        "Geheimer Text, der zum Einloggen nötig ist"
+        "Geheimer Text, der zum Einloggen nötig ist",
+        "Kategorie: Technologie"
       ]
     },
     {
       "word": "SOFTWARE",
       "clues": [
-        "Die Programme, die auf einem Computer laufen"
+        "Die Programme, die auf einem Computer laufen",
+        "Kategorie: Technologie"
       ]
     },
     {
       "word": "KEYBOARD",
       "clues": [
-        "Darauf tippt man"
+        "Darauf tippt man",
+        "Kategorie: Technologie",
+        "Damit tippt man auf einem Computer",
+        "Kategorie: Technik im Alltag"
       ]
     },
     {
       "word": "SCREEN",
       "clues": [
-        "Dort sieht man das Bild eines Geräts"
+        "Dort sieht man das Bild eines Geräts",
+        "Kategorie: Technologie",
+        "Der Teil eines Geräts, auf dem man das Bild sieht",
+        "Kategorie: Technik im Alltag"
       ]
     },
     {
       "word": "BATTERY",
       "clues": [
-        "Versorgt ein Telefon mit Strom, wenn es nicht angeschlossen ist"
+        "Versorgt ein Telefon mit Strom, wenn es nicht angeschlossen ist",
+        "Kategorie: Technologie",
+        "Versorgt ein Gerät mit Strom, ohne Kabel",
+        "Kategorie: Objekte und Werkzeuge (mehr)"
       ]
     },
     {
       "word": "SMARTPHONE",
       "clues": [
-        "Ein Mobiltelefon, auf dem Apps laufen"
+        "Ein Mobiltelefon, auf dem Apps laufen",
+        "Kategorie: Technologie"
       ]
     },
     {
       "word": "DOWNLOAD",
       "clues": [
-        "Eine Datei aus dem Internet auf das eigene Gerät kopieren"
+        "Eine Datei aus dem Internet auf das eigene Gerät kopieren",
+        "Kategorie: Technologie"
       ]
     },
     {
       "word": "WEBSITE",
       "clues": [
-        "Eine Seite oder mehrere Seiten, die man online sieht"
+        "Eine Seite oder mehrere Seiten, die man online sieht",
+        "Kategorie: Technologie"
       ]
     },
     {
       "word": "DATABASE",
       "clues": [
-        "Eine organisierte Sammlung gespeicherter Daten"
+        "Eine organisierte Sammlung gespeicherter Daten",
+        "Kategorie: Technologie"
       ]
     },
     {
       "word": "CURSOR",
       "clues": [
-        "Der blinkende Punkt, der zeigt, wo man als Nächstes tippt"
+        "Der blinkende Punkt, der zeigt, wo man als Nächstes tippt",
+        "Kategorie: Technologie"
+      ]
+    },
+    {
+      "word": "BANDWIDTH",
+      "clues": [
+        "Die Datenmenge, die eine Verbindung übertragen kann",
+        "Kategorie: Technologie"
+      ]
+    },
+    {
+      "word": "ENCRYPTION",
+      "clues": [
+        "Daten so verschlüsseln, dass nur Befugte sie lesen können",
+        "Kategorie: Technologie"
       ]
     },
     {
       "word": "NEWSPAPER",
       "clues": [
-        "Gedruckte, tägliche Nachrichten auf Papier"
+        "Gedruckte, tägliche Nachrichten auf Papier",
+        "Kategorie: Medien & Gesellschaft"
       ]
     },
     {
       "word": "TELEVISION",
       "clues": [
-        "Ein Bildschirm für Unterhaltung oder Nachrichten"
+        "Ein Bildschirm für Unterhaltung oder Nachrichten",
+        "Kategorie: Medien & Gesellschaft"
       ]
     },
     {
       "word": "ADVERTISEMENT",
       "clues": [
-        "Eine bezahlte Nachricht, die einem etwas verkaufen will"
+        "Eine bezahlte Nachricht, die einem etwas verkaufen will",
+        "Kategorie: Medien & Gesellschaft"
       ]
     },
     {
       "word": "JOURNALIST",
       "clues": [
-        "Jemand, der Nachrichten schreibt oder berichtet"
+        "Jemand, der Nachrichten schreibt oder berichtet",
+        "Kategorie: Medien & Gesellschaft"
       ]
     },
     {
       "word": "HEADLINE",
       "clues": [
-        "Der große Titel oben in einem Zeitungsartikel"
+        "Der große Titel oben in einem Zeitungsartikel",
+        "Kategorie: Medien & Gesellschaft"
       ]
     },
     {
       "word": "AUDIENCE",
       "clues": [
-        "Menschen, die etwas anschauen, lesen oder anhören"
+        "Menschen, die etwas anschauen, lesen oder anhören",
+        "Kategorie: Medien & Gesellschaft"
       ]
     },
     {
       "word": "CELEBRITY",
       "clues": [
-        "Eine berühmte, bekannte Person"
+        "Eine berühmte, bekannte Person",
+        "Kategorie: Medien & Gesellschaft"
       ]
     },
     {
       "word": "OPINION",
       "clues": [
-        "Was jemand persönlich über etwas denkt"
+        "Was jemand persönlich über etwas denkt",
+        "Kategorie: Medien & Gesellschaft"
       ]
     },
     {
       "word": "SOCIETY",
       "clues": [
-        "Menschen, die zusammen in einer Gemeinschaft leben"
+        "Menschen, die zusammen in einer Gemeinschaft leben",
+        "Kategorie: Medien & Gesellschaft"
       ]
     },
     {
       "word": "GOVERNMENT",
       "clues": [
-        "Die Gruppe, die ein Land regiert"
+        "Die Gruppe, die ein Land regiert",
+        "Kategorie: Medien & Gesellschaft",
+        "Kategorie: Gesellschaft und Politik (mehr)"
       ]
     },
     {
       "word": "ELECTION",
       "clues": [
-        "Bürger wählen ihre Führung"
+        "Bürger wählen ihre Führung",
+        "Kategorie: Medien & Gesellschaft",
+        "Kategorie: Gesellschaft und Politik (mehr)"
       ]
     },
     {
       "word": "CITIZEN",
       "clues": [
-        "Ein rechtlich anerkanntes Mitglied eines Landes"
+        "Ein rechtlich anerkanntes Mitglied eines Landes",
+        "Kategorie: Medien & Gesellschaft",
+        "Kategorie: Gesellschaft und Politik (mehr)"
       ]
     },
     {
       "word": "LAW",
       "clues": [
-        "Eine Regel, die vom Staat durchgesetzt wird"
+        "Eine Regel, die vom Staat durchgesetzt wird",
+        "Kategorie: Medien & Gesellschaft",
+        "Kategorie: Gesellschaft und Politik (mehr)"
       ]
     },
     {
       "word": "JUSTICE",
       "clues": [
-        "Faire Behandlung nach dem Gesetz"
+        "Faire Behandlung nach dem Gesetz",
+        "Kategorie: Medien & Gesellschaft"
       ]
     },
     {
       "word": "COMMUNITY",
       "clues": [
-        "Eine Gruppe von Menschen im selben Gebiet"
+        "Eine Gruppe von Menschen im selben Gebiet",
+        "Kategorie: Medien & Gesellschaft"
       ]
     },
     {
       "word": "CULTURE",
       "clues": [
-        "Die Bräuche und Überzeugungen einer Gruppe"
+        "Die Bräuche und Überzeugungen einer Gruppe",
+        "Kategorie: Medien & Gesellschaft",
+        "Kategorie: Reisen und Kultur"
       ]
     },
     {
       "word": "TRADITION",
       "clues": [
-        "Ein Brauch, der über Generationen weitergegeben wird"
+        "Ein Brauch, der über Generationen weitergegeben wird",
+        "Kategorie: Medien & Gesellschaft",
+        "Ein von Generation zu Generation weitergegebener Brauch",
+        "Kategorie: Reisen und Kultur"
       ]
     },
     {
       "word": "CHARITY",
       "clues": [
-        "Eine Organisation, die Menschen in Not hilft"
+        "Eine Organisation, die Menschen in Not hilft",
+        "Kategorie: Medien & Gesellschaft"
       ]
     },
     {
       "word": "VOLUNTEER",
       "clues": [
-        "Jemand, der unbezahlt arbeitet, um anderen zu helfen"
+        "Jemand, der unbezahlt arbeitet, um anderen zu helfen",
+        "Kategorie: Medien & Gesellschaft"
       ]
     },
     {
       "word": "EMOTION",
       "clues": [
-        "Ein Gefühl, wie Freude oder Wut"
+        "Ein Gefühl, wie Freude oder Wut",
+        "Kategorie: Gefühle & Persönlichkeit"
       ]
     },
     {
       "word": "HAPPINESS",
       "clues": [
-        "Das Gefühl, froh oder zufrieden zu sein"
+        "Das Gefühl, froh oder zufrieden zu sein",
+        "Kategorie: Gefühle & Persönlichkeit"
       ]
     },
     {
       "word": "SADNESS",
       "clues": [
-        "Das Gefühl der Traurigkeit"
+        "Das Gefühl der Traurigkeit",
+        "Kategorie: Gefühle & Persönlichkeit"
       ]
     },
     {
       "word": "ANGER",
       "clues": [
-        "Sich verärgert oder aufgebracht fühlen"
+        "Sich verärgert oder aufgebracht fühlen",
+        "Kategorie: Gefühle & Persönlichkeit",
+        "Sich verärgert oder wütend fühlen",
+        "Kategorie: Emotionen und Charakter (mehr)"
       ]
     },
     {
       "word": "FEAR",
       "clues": [
-        "Das Gefühl vor etwas Beängstigendem"
+        "Das Gefühl vor etwas Beängstigendem",
+        "Kategorie: Gefühle & Persönlichkeit",
+        "Kategorie: Emotionen und Charakter (mehr)"
       ]
     },
     {
       "word": "ANXIETY",
       "clues": [
-        "Ein anhaltendes Gefühl von Sorge oder Unruhe"
+        "Ein anhaltendes Gefühl von Sorge oder Unruhe",
+        "Kategorie: Gefühle & Persönlichkeit",
+        "Anhaltende Angst oder Sorge",
+        "Kategorie: Emotionen im Alltag"
       ]
     },
     {
       "word": "CONFIDENCE",
       "clues": [
-        "Vertrauen in die eigenen Fähigkeiten"
+        "Vertrauen in die eigenen Fähigkeiten",
+        "Kategorie: Gefühle & Persönlichkeit"
       ]
     },
     {
       "word": "JEALOUSY",
       "clues": [
-        "Groll über den Vorteil eines anderen"
+        "Groll über den Vorteil eines anderen",
+        "Kategorie: Gefühle & Persönlichkeit"
       ]
     },
     {
       "word": "CURIOSITY",
       "clues": [
         "Ein starker Wunsch, etwas zu lernen oder zu wissen",
-        "Der Wunsch, mehr zu erfahren"
+        "Kategorie: Gefühle & Persönlichkeit",
+        "Der Wunsch, mehr zu erfahren",
+        "Kategorie: Letzte Ergänzungen"
       ]
     },
     {
       "word": "GRATITUDE",
       "clues": [
-        "Sich dankbar fühlen"
+        "Sich dankbar fühlen",
+        "Kategorie: Gefühle & Persönlichkeit"
       ]
     },
     {
       "word": "PATIENCE",
       "clues": [
-        "Ruhig bleiben, während man wartet"
+        "Ruhig bleiben, während man wartet",
+        "Kategorie: Gefühle & Persönlichkeit",
+        "Kategorie: Emotionen und Charakter (mehr)"
       ]
     },
     {
       "word": "COURAGE",
       "clues": [
-        "Etwas trotz Angst tun"
+        "Etwas trotz Angst tun",
+        "Kategorie: Gefühle & Persönlichkeit",
+        "Kategorie: Emotionen und Charakter (mehr)"
       ]
     },
     {
       "word": "LONELINESS",
       "clues": [
-        "Das Gefühl, keine Gesellschaft zu haben"
+        "Das Gefühl, keine Gesellschaft zu haben",
+        "Kategorie: Gefühle & Persönlichkeit"
       ]
     },
     {
       "word": "EXCITEMENT",
       "clues": [
-        "Ein lebhaftes Gefühl freudiger Erwartung"
+        "Ein lebhaftes Gefühl freudiger Erwartung",
+        "Kategorie: Gefühle & Persönlichkeit"
       ]
     },
     {
       "word": "SYMPATHY",
       "clues": [
-        "Mitgefühl für das Unglück eines anderen"
+        "Mitgefühl für das Unglück eines anderen",
+        "Kategorie: Gefühle & Persönlichkeit"
       ]
     },
     {
       "word": "STUBBORN",
       "clues": [
-        "Weigert sich, die eigene Meinung zu ändern"
+        "Weigert sich, die eigene Meinung zu ändern",
+        "Kategorie: Gefühle & Persönlichkeit"
       ]
     },
     {
       "word": "GENEROUS",
       "clues": [
-        "Bereit, freigiebig zu geben"
+        "Bereit, freigiebig zu geben",
+        "Kategorie: Gefühle & Persönlichkeit"
       ]
     },
     {
       "word": "HUMBLE",
       "clues": [
-        "Nicht stolz oder prahlerisch"
+        "Nicht stolz oder prahlerisch",
+        "Kategorie: Gefühle & Persönlichkeit"
       ]
     },
     {
       "word": "CLOTHING",
       "clues": [
-        "Alles, was man trägt, zusammen genannt"
+        "Alles, was man trägt, zusammen genannt",
+        "Kategorie: Kleidung & Wetter"
       ]
     },
     {
       "word": "JACKET",
       "clues": [
-        "Eine Schicht, die über einem Hemd getragen wird, draußen"
+        "Eine Schicht, die über einem Hemd getragen wird, draußen",
+        "Kategorie: Kleidung & Wetter"
       ]
     },
     {
       "word": "TROUSERS",
       "clues": [
-        "Bedeckt beide Beine getrennt"
+        "Bedeckt beide Beine getrennt",
+        "Kategorie: Kleidung & Wetter"
       ]
     },
     {
       "word": "UMBRELLA",
       "clues": [
         "Hält einen bei Regen trocken",
-        "Schützt vor Regen"
+        "Kategorie: Kleidung & Wetter",
+        "Schützt vor Regen",
+        "Kategorie: Letzte Ergänzungen",
+        "Kategorie: Objekte und Werkzeuge (mehr)"
       ]
     },
     {
       "word": "WEATHER",
       "clues": [
-        "Was Himmel und Temperatur heute machen"
+        "Was Himmel und Temperatur heute machen",
+        "Kategorie: Kleidung & Wetter"
       ]
     },
     {
       "word": "RAIN",
       "clues": [
-        "Wasser, das aus Wolken fällt"
+        "Wasser, das aus Wolken fällt",
+        "Kategorie: Kleidung & Wetter"
       ]
     },
     {
       "word": "SNOW",
       "clues": [
-        "Weiß und kalt, fällt im Winter"
+        "Weiß und kalt, fällt im Winter",
+        "Kategorie: Kleidung & Wetter"
       ]
     },
     {
       "word": "THUNDER",
       "clues": [
-        "Das laute Geräusch nach einem Blitz"
+        "Das laute Geräusch nach einem Blitz",
+        "Kategorie: Kleidung & Wetter"
       ]
     },
     {
       "word": "LIGHTNING",
       "clues": [
-        "Ein plötzlicher heller Blitz während eines Gewitters"
+        "Ein plötzlicher heller Blitz während eines Gewitters",
+        "Kategorie: Kleidung & Wetter"
       ]
     },
     {
       "word": "TEMPERATURE",
       "clues": [
-        "Wie heiß oder kalt es ist, in Grad"
+        "Wie heiß oder kalt es ist, in Grad",
+        "Kategorie: Kleidung & Wetter"
       ]
     },
     {
       "word": "FORECAST",
       "clues": [
-        "Eine Vorhersage über zukünftiges Wetter"
+        "Eine Vorhersage über zukünftiges Wetter",
+        "Kategorie: Kleidung & Wetter"
       ]
     },
     {
       "word": "UNIFORM",
       "clues": [
-        "Passende Kleidung, die von Mitgliedern einer Gruppe getragen wird"
+        "Passende Kleidung, die von Mitgliedern einer Gruppe getragen wird",
+        "Kategorie: Kleidung & Wetter",
+        "Passende Kleidung, die von einer Gruppe getragen wird"
+      ]
+    },
+    {
+      "word": "HUMIDITY",
+      "clues": [
+        "Die Feuchtigkeit in der Luft",
+        "Kategorie: Kleidung & Wetter"
       ]
     },
     {
       "word": "IMPORTANT",
       "clues": [
-        "Verdient ernsthafte Aufmerksamkeit"
+        "Verdient ernsthafte Aufmerksamkeit",
+        "Kategorie: Allgemeine Adjektive & Adverbien"
       ]
     },
     {
       "word": "DIFFICULT",
       "clues": [
-        "Schwer zu tun"
+        "Schwer zu tun",
+        "Kategorie: Allgemeine Adjektive & Adverbien"
       ]
     },
     {
       "word": "POSSIBLE",
       "clues": [
-        "Fähig zu geschehen"
+        "Fähig zu geschehen",
+        "Kategorie: Allgemeine Adjektive & Adverbien"
       ]
     },
     {
       "word": "NECESSARY",
       "clues": [
-        "Erforderlich, kann nicht übersprungen werden"
+        "Erforderlich, kann nicht übersprungen werden",
+        "Kategorie: Allgemeine Adjektive & Adverbien"
       ]
     },
     {
       "word": "APPROXIMATELY",
       "clues": [
-        "Ungefähr, keine genaue Zahl"
+        "Ungefähr, keine genaue Zahl",
+        "Kategorie: Allgemeine Adjektive & Adverbien"
       ]
     },
     {
       "word": "RELIABLE",
       "clues": [
-        "Tut immer das, was versprochen wurde"
+        "Tut immer das, was versprochen wurde",
+        "Kategorie: Allgemeine Adjektive & Adverbien"
       ]
     },
     {
       "word": "PUNCTUAL",
       "clues": [
-        "Nie zu spät"
+        "Nie zu spät",
+        "Kategorie: Allgemeine Adjektive & Adverbien",
+        "Kategorie: Zeit (Erweiterung)"
       ]
     },
     {
       "word": "INDEPENDENT",
       "clues": [
-        "Nicht von anderen abhängig"
+        "Nicht von anderen abhängig",
+        "Kategorie: Allgemeine Adjektive & Adverbien"
       ]
     },
     {
       "word": "COMFORTABLE",
       "clues": [
-        "Gemütlich und leicht zum Entspannen"
+        "Gemütlich und leicht zum Entspannen",
+        "Kategorie: Allgemeine Adjektive & Adverbien"
       ]
     },
     {
       "word": "PRACTICAL",
       "clues": [
-        "Nützlich im Alltag"
+        "Nützlich im Alltag",
+        "Kategorie: Allgemeine Adjektive & Adverbien"
       ]
     },
     {
       "word": "ANCIENT",
       "clues": [
-        "Extrem alt, aus ferner Vergangenheit"
+        "Extrem alt, aus ferner Vergangenheit",
+        "Kategorie: Allgemeine Adjektive & Adverbien",
+        "Kategorie: Mehr Adjektive"
       ]
     },
     {
       "word": "FRAGILE",
       "clues": [
-        "Leicht zerbrechlich"
+        "Leicht zerbrechlich",
+        "Kategorie: Allgemeine Adjektive & Adverbien",
+        "Kategorie: Mehr Adjektive"
       ]
     },
     {
       "word": "ENORMOUS",
       "clues": [
-        "Extrem groß"
+        "Extrem groß",
+        "Kategorie: Allgemeine Adjektive & Adverbien",
+        "Extrem gross",
+        "Kategorie: Mehr Adjektive"
       ]
     },
     {
       "word": "RIDICULOUS",
       "clues": [
-        "So unvernünftig, dass es lächerlich ist"
+        "So unvernünftig, dass es lächerlich ist",
+        "Kategorie: Allgemeine Adjektive & Adverbien"
       ]
     },
     {
       "word": "MYSTERIOUS",
       "clues": [
-        "Schwer zu verstehen oder zu erklären"
+        "Schwer zu verstehen oder zu erklären",
+        "Kategorie: Allgemeine Adjektive & Adverbien",
+        "Kategorie: Mehr Adjektive"
       ]
     },
     {
       "word": "PECULIAR",
       "clues": [
-        "Seltsam oder ungewöhnlich"
+        "Seltsam oder ungewöhnlich",
+        "Kategorie: Allgemeine Adjektive & Adverbien",
+        "Kategorie: Mehr Adjektive"
       ]
     },
     {
       "word": "RELUCTANT",
       "clues": [
-        "Widerwillig und zögernd"
+        "Widerwillig und zögernd",
+        "Kategorie: Allgemeine Adjektive & Adverbien",
+        "Kategorie: Mehr Adjektive"
       ]
     },
     {
       "word": "GENUINE",
       "clues": [
-        "Echt, nicht falsch"
+        "Echt, nicht falsch",
+        "Kategorie: Allgemeine Adjektive & Adverbien",
+        "Kategorie: Mehr Adjektive"
       ]
     },
     {
       "word": "EFFICIENT",
       "clues": [
-        "Erzielt Ergebnisse ohne verschwendeten Aufwand"
+        "Erzielt Ergebnisse ohne verschwendeten Aufwand",
+        "Kategorie: Allgemeine Adjektive & Adverbien",
+        "Kategorie: Mehr Adjektive"
       ]
     },
     {
       "word": "ANIMAL",
       "clues": [
-        "Ein Lebewesen, keine Pflanze"
+        "Ein Lebewesen, keine Pflanze",
+        "Kategorie: Natur, Tiere & Wissenschaft"
       ]
     },
     {
       "word": "INSECT",
       "clues": [
-        "Ein kleines Tier mit sechs Beinen, wie eine Ameise"
+        "Ein kleines Tier mit sechs Beinen, wie eine Ameise",
+        "Kategorie: Natur, Tiere & Wissenschaft",
+        "Kategorie: Natur und Tiere (Erweiterung)"
       ]
     },
     {
       "word": "MAMMAL",
       "clues": [
-        "Ein warmblütiges Tier, das seine Jungen säugt"
+        "Ein warmblütiges Tier, das seine Jungen säugt",
+        "Kategorie: Natur, Tiere & Wissenschaft"
       ]
     },
     {
       "word": "REPTILE",
       "clues": [
-        "Ein kaltblütiges Tier mit Schuppen, wie eine Schlange"
+        "Ein kaltblütiges Tier mit Schuppen, wie eine Schlange",
+        "Kategorie: Natur, Tiere & Wissenschaft"
       ]
     },
     {
       "word": "PREDATOR",
       "clues": [
-        "Ein Tier, das andere zur Nahrung jagt"
+        "Ein Tier, das andere zur Nahrung jagt",
+        "Kategorie: Natur, Tiere & Wissenschaft"
       ]
     },
     {
       "word": "MIGRATION",
       "clues": [
-        "Saisonale Wanderung von Tieren zwischen Regionen"
+        "Saisonale Wanderung von Tieren zwischen Regionen",
+        "Kategorie: Natur, Tiere & Wissenschaft"
       ]
     },
     {
       "word": "GRAVITY",
       "clues": [
-        "Die Kraft, die Objekte zum Boden zieht"
+        "Die Kraft, die Objekte zum Boden zieht",
+        "Kategorie: Natur, Tiere & Wissenschaft"
       ]
     },
     {
       "word": "TELESCOPE",
       "clues": [
-        "Ein Werkzeug zur Betrachtung entfernter Objekte, wie Sterne"
+        "Ein Werkzeug zur Betrachtung entfernter Objekte, wie Sterne",
+        "Kategorie: Natur, Tiere & Wissenschaft"
       ]
     },
     {
       "word": "MICROSCOPE",
       "clues": [
-        "Ein Werkzeug zur Betrachtung sehr kleiner Objekte"
+        "Ein Werkzeug zur Betrachtung sehr kleiner Objekte",
+        "Kategorie: Natur, Tiere & Wissenschaft",
+        "Kategorie: Wissenschaft und Technik (mehr)"
       ]
     },
     {
       "word": "EXPERIMENT",
       "clues": [
-        "Ein Test, um etwas wissenschaftlich zu entdecken"
+        "Ein Test, um etwas wissenschaftlich zu entdecken",
+        "Kategorie: Natur, Tiere & Wissenschaft",
+        "Kategorie: Wissenschaft und Technik (mehr)"
       ]
     },
     {
       "word": "EVOLUTION",
       "clues": [
-        "Die allmähliche Veränderung von Arten über Generationen"
+        "Die allmähliche Veränderung von Arten über Generationen",
+        "Kategorie: Natur, Tiere & Wissenschaft",
+        "Kategorie: Wissenschaft und Technik (mehr)"
       ]
     },
     {
       "word": "GALAXY",
       "clues": [
-        "Ein riesiges Sternensystem, wie die Milchstraße"
+        "Ein riesiges Sternensystem, wie die Milchstraße",
+        "Kategorie: Natur, Tiere & Wissenschaft",
+        "Ein riesiges Sternensystem, wie die Milchstrasse",
+        "Kategorie: Wissenschaft und Technik (mehr)"
       ]
     },
     {
       "word": "ASTRONAUT",
       "clues": [
-        "Eine Person, die für Weltraumreisen ausgebildet ist"
+        "Eine Person, die für Weltraumreisen ausgebildet ist",
+        "Kategorie: Natur, Tiere & Wissenschaft"
       ]
     },
     {
       "word": "PLANET",
       "clues": [
-        "Ein großer Körper, der einen Stern umkreist, wie die Erde"
+        "Ein großer Körper, der einen Stern umkreist, wie die Erde",
+        "Kategorie: Natur, Tiere & Wissenschaft",
+        "Ein grosser Körper, der einen Stern umkreist",
+        "Kategorie: Wissenschaft und Technik (mehr)"
       ]
     },
     {
       "word": "ATMOSPHERE",
       "clues": [
-        "Die Gasschicht um einen Planeten"
+        "Die Gasschicht um einen Planeten",
+        "Kategorie: Natur, Tiere & Wissenschaft"
       ]
     },
     {
       "word": "LABORATORY",
       "clues": [
-        "Ein Raum, der für wissenschaftliche Experimente ausgestattet ist"
+        "Ein Raum, der für wissenschaftliche Experimente ausgestattet ist",
+        "Kategorie: Natur, Tiere & Wissenschaft",
+        "Ein Raum, ausgestattet für wissenschaftliche Experimente",
+        "Kategorie: Wissenschaft und Technik (mehr)"
       ]
     },
     {
       "word": "MUSEUM",
       "clues": [
-        "Ein Gebäude, das Kunst oder historische Objekte zeigt"
+        "Ein Gebäude, das Kunst oder historische Objekte zeigt",
+        "Kategorie: Kunst, Sport & Freizeit",
+        "Ein Gebäude, das Kunst oder Geschichte ausstellt",
+        "Kategorie: Kunst und Literatur"
       ]
     },
     {
       "word": "PAINTING",
       "clues": [
-        "Ein mit Farbe gemaltes Bild"
+        "Ein mit Farbe gemaltes Bild",
+        "Kategorie: Kunst, Sport & Freizeit",
+        "Ein Kunstwerk, mit Farbe gemalt",
+        "Kategorie: Kunst und Literatur",
+        "Mit Farbe ein Bild erschaffen, als Hobby",
+        "Kategorie: Freizeit weiter"
       ]
     },
     {
       "word": "SCULPTURE",
       "clues": [
-        "Ein dreidimensionales Kunstwerk"
+        "Ein dreidimensionales Kunstwerk",
+        "Kategorie: Kunst, Sport & Freizeit",
+        "Ein Kunstwerk, aus Material geformt",
+        "Kategorie: Kunst und Literatur"
       ]
     },
     {
       "word": "ORCHESTRA",
       "clues": [
-        "Eine große Gruppe von Musikern, die zusammen spielen"
+        "Eine große Gruppe von Musikern, die zusammen spielen",
+        "Kategorie: Kunst, Sport & Freizeit",
+        "Eine grosse Gruppe von Musikern zusammen",
+        "Kategorie: Musik und Instrumente"
       ]
     },
     {
       "word": "INSTRUMENT",
       "clues": [
-        "Ein Gerät, mit dem man Musik macht"
+        "Ein Gerät, mit dem man Musik macht",
+        "Kategorie: Kunst, Sport & Freizeit"
       ]
     },
     {
       "word": "REHEARSAL",
       "clues": [
-        "Eine Aufführung vor der eigentlichen Vorstellung üben"
+        "Eine Aufführung vor der eigentlichen Vorstellung üben",
+        "Kategorie: Kunst, Sport & Freizeit"
       ]
     },
     {
       "word": "STADIUM",
       "clues": [
-        "Ein großer Veranstaltungsort für Sportereignisse"
+        "Ein großer Veranstaltungsort für Sportereignisse",
+        "Kategorie: Kunst, Sport & Freizeit"
       ]
     },
     {
       "word": "REFEREE",
       "clues": [
-        "Setzt die Regeln während eines Sportspiels durch"
+        "Setzt die Regeln während eines Sportspiels durch",
+        "Kategorie: Kunst, Sport & Freizeit"
       ]
     },
     {
       "word": "CHAMPION",
       "clues": [
-        "Der Gewinner eines Wettbewerbs"
+        "Der Gewinner eines Wettbewerbs",
+        "Kategorie: Kunst, Sport & Freizeit"
       ]
     },
     {
       "word": "TOURNAMENT",
       "clues": [
-        "Eine Reihe von Wettbewerben, um einen Gesamtsieger zu finden"
+        "Eine Reihe von Wettbewerben, um einen Gesamtsieger zu finden",
+        "Kategorie: Kunst, Sport & Freizeit",
+        "Eine Serie von Wettbewerben, um einen Gesamtsieger zu finden"
       ]
     },
     {
       "word": "MARATHON",
       "clues": [
-        "Ein Langstreckenlauf"
+        "Ein Langstreckenlauf",
+        "Kategorie: Kunst, Sport & Freizeit"
       ]
     },
     {
       "word": "GYMNASIUM",
       "clues": [
-        "Ein Gebäude, das für Sport ausgestattet ist"
+        "Ein Gebäude, das für Sport ausgestattet ist",
+        "Kategorie: Kunst, Sport & Freizeit"
       ]
     },
     {
       "word": "NOVELIST",
       "clues": [
-        "Jemand, der Romane schreibt"
+        "Jemand, der Romane schreibt",
+        "Kategorie: Kunst, Sport & Freizeit"
       ]
     },
     {
       "word": "PHOTOGRAPHY",
       "clues": [
-        "Die Kunst, Bilder aufzunehmen"
+        "Die Kunst, Bilder aufzunehmen",
+        "Kategorie: Kunst, Sport & Freizeit"
       ]
     },
     {
       "word": "LITERATURE",
       "clues": [
-        "Geschriebene Werke von künstlerischem Wert"
+        "Geschriebene Werke von künstlerischem Wert",
+        "Kategorie: Kunst, Sport & Freizeit"
       ]
     },
     {
       "word": "ARCHITECTURE",
       "clues": [
-        "Die Gestaltung von Gebäuden"
+        "Die Gestaltung von Gebäuden",
+        "Kategorie: Kunst, Sport & Freizeit"
       ]
     },
     {
       "word": "CAT",
       "clues": [
-        "Ein kleines, pelziges Haustier, das miaut"
+        "Ein kleines, pelziges Haustier, das miaut",
+        "Kategorie: Kurze Wörter (für die Gitterstruktur)",
+        "Ein häufiges, pelziges Haustier, das miaut",
+        "Kategorie: Natur und Tiere (Erweiterung)"
       ]
     },
     {
       "word": "DOG",
       "clues": [
-        "Ein treues, pelziges Haustier, das bellt"
+        "Ein treues, pelziges Haustier, das bellt",
+        "Kategorie: Kurze Wörter (für die Gitterstruktur)",
+        "Ein häufiges, pelziges Haustier, das bellt",
+        "Kategorie: Natur und Tiere (Erweiterung)"
       ]
     },
     {
       "word": "SUN",
       "clues": [
-        "Der Stern, der unsere Tage erhellt"
+        "Der Stern, der unsere Tage erhellt",
+        "Kategorie: Kurze Wörter (für die Gitterstruktur)",
+        "Kategorie: Kurze Woerter (Erweiterung)"
       ]
     },
     {
       "word": "MOON",
       "clues": [
-        "Umkreist die Erde und leuchtet nachts"
+        "Umkreist die Erde und leuchtet nachts",
+        "Kategorie: Kurze Wörter (für die Gitterstruktur)",
+        "Kategorie: Natur und Tiere (Erweiterung)"
       ]
     },
     {
       "word": "STAR",
       "clues": [
-        "Eine ferne, leuchtende Gaskugel, nachts sichtbar"
+        "Eine ferne, leuchtende Gaskugel, nachts sichtbar",
+        "Kategorie: Kurze Wörter (für die Gitterstruktur)",
+        "Ein ferner, leuchtender Punkt, nachts sichtbar",
+        "Kategorie: Natur und Tiere (Erweiterung)"
       ]
     },
     {
       "word": "TREE",
       "clues": [
-        "Eine hohe Pflanze mit Stamm und Ästen"
+        "Eine hohe Pflanze mit Stamm und Ästen",
+        "Kategorie: Kurze Wörter (für die Gitterstruktur)",
+        "Kategorie: Natur und Tiere (Erweiterung)",
+        "Kategorie: Kurze Woerter (Erweiterung)"
       ]
     },
     {
       "word": "BOOK",
       "clues": [
-        "Etwas, das man liest"
+        "Etwas, das man liest",
+        "Kategorie: Kurze Wörter (für die Gitterstruktur)",
+        "Kategorie: Kurze Woerter (Erweiterung)"
       ]
     },
     {
       "word": "PEN",
       "clues": [
-        "Damit schreibt man mit Tinte"
+        "Damit schreibt man mit Tinte",
+        "Kategorie: Kurze Wörter (für die Gitterstruktur)",
+        "Kategorie: Kurze Woerter (Erweiterung)"
       ]
     },
     {
       "word": "CUP",
       "clues": [
-        "Damit trinkt man heiße Getränke"
+        "Damit trinkt man heiße Getränke",
+        "Kategorie: Kurze Wörter (für die Gitterstruktur)",
+        "Damit trinkt man heisse Getränke",
+        "Kategorie: Kurze Woerter (Erweiterung)"
       ]
     },
     {
       "word": "BAG",
       "clues": [
-        "Damit trägt man Sachen"
+        "Damit trägt man Sachen",
+        "Kategorie: Kurze Wörter (für die Gitterstruktur)",
+        "Kategorie: Kurze Woerter (Erweiterung)"
       ]
     },
     {
       "word": "MAP",
       "clues": [
-        "Zeigt, wie man irgendwohin kommt"
+        "Zeigt, wie man irgendwohin kommt",
+        "Kategorie: Kurze Wörter (für die Gitterstruktur)",
+        "Kategorie: Kurze Woerter (Erweiterung)",
+        "Kategorie: Reisen und Verkehr (mehr)"
       ]
     },
     {
       "word": "BOX",
       "clues": [
-        "Ein Behälter mit geraden Seiten"
+        "Ein Behälter mit geraden Seiten",
+        "Kategorie: Kurze Wörter (für die Gitterstruktur)",
+        "Kategorie: Kurze Woerter (Erweiterung)"
       ]
     },
     {
       "word": "EGG",
       "clues": [
-        "Von einem Vogel gelegt, oft zum Frühstück gegessen"
+        "Von einem Vogel gelegt, oft zum Frühstück gegessen",
+        "Kategorie: Kurze Wörter (für die Gitterstruktur)",
+        "Kategorie: Kurze Woerter (Erweiterung)"
       ]
     },
     {
       "word": "MILK",
       "clues": [
-        "Eine weiße Flüssigkeit von Kühen"
+        "Eine weiße Flüssigkeit von Kühen",
+        "Kategorie: Kurze Wörter (für die Gitterstruktur)",
+        "Eine weisse Flüssigkeit von Kühen",
+        "Kategorie: Kurze Woerter (Erweiterung)"
       ]
     },
     {
       "word": "SALT",
       "clues": [
-        "Ein weißes Gewürz, das Essen weniger fade macht"
+        "Ein weißes Gewürz, das Essen weniger fade macht",
+        "Kategorie: Kurze Wörter (für die Gitterstruktur)",
+        "Ein weisses Gewürz, das Essen weniger fade macht",
+        "Kategorie: Kurze Woerter (Erweiterung)"
       ]
     },
     {
       "word": "RICE",
       "clues": [
-        "Ein Grundnahrungsmittel, weltweit gegessen"
+        "Ein Grundnahrungsmittel, weltweit gegessen",
+        "Kategorie: Kurze Wörter (für die Gitterstruktur)",
+        "Kategorie: Kurze Woerter (Erweiterung)"
       ]
     },
     {
       "word": "FISH",
       "clues": [
-        "Ein Tier, das schwimmt und durch Kiemen atmet"
+        "Ein Tier, das schwimmt und durch Kiemen atmet",
+        "Kategorie: Kurze Wörter (für die Gitterstruktur)",
+        "Lebt und atmet im Wasser",
+        "Kategorie: Natur und Tiere (Erweiterung)"
       ]
     },
     {
       "word": "BIRD",
       "clues": [
-        "Ein gefiedertes Tier, das meist fliegen kann"
+        "Ein gefiedertes Tier, das meist fliegen kann",
+        "Kategorie: Kurze Wörter (für die Gitterstruktur)",
+        "Kategorie: Natur und Tiere (Erweiterung)"
       ]
     },
     {
       "word": "ROAD",
       "clues": [
-        "Eine Route, auf der Autos fahren"
+        "Eine Route, auf der Autos fahren",
+        "Kategorie: Kurze Wörter (für die Gitterstruktur)",
+        "Kategorie: Kurze Woerter (Erweiterung)"
       ]
     },
     {
       "word": "SHIP",
       "clues": [
-        "Ein großes Wasserfahrzeug"
+        "Ein großes Wasserfahrzeug",
+        "Kategorie: Kurze Wörter (für die Gitterstruktur)",
+        "Ein grosses Wasserfahrzeug",
+        "Kategorie: Kurze Woerter (Erweiterung)"
       ]
     },
     {
       "word": "COAT",
       "clues": [
-        "Ein langes, schweres Kleidungsstück"
+        "Ein langes, schweres Kleidungsstück",
+        "Kategorie: Kurze Wörter (für die Gitterstruktur)",
+        "Kategorie: Kurze Woerter (Erweiterung)"
       ]
     },
     {
       "word": "RING",
       "clues": [
-        "Wird am Finger getragen, oft zur Hochzeit"
+        "Wird am Finger getragen, oft zur Hochzeit",
+        "Kategorie: Kurze Wörter (für die Gitterstruktur)",
+        "Kategorie: Kurze Woerter (Erweiterung)"
       ]
     },
     {
       "word": "SONG",
       "clues": [
-        "Ein Musikstück mit Text"
+        "Ein Musikstück mit Text",
+        "Kategorie: Kurze Wörter (für die Gitterstruktur)",
+        "Kategorie: Kurze Woerter (Erweiterung)"
       ]
     },
     {
       "word": "TEAM",
       "clues": [
-        "Eine Gruppe, die zusammen auf ein Ziel hinarbeitet"
+        "Eine Gruppe, die zusammen auf ein Ziel hinarbeitet",
+        "Kategorie: Kurze Wörter (für die Gitterstruktur)",
+        "Eine Gruppe von Spielern",
+        "Kategorie: Sport und Freizeit (Erweiterung)"
       ]
     },
     {
       "word": "GAME",
       "clues": [
-        "Eine strukturierte Aktivität, zum Spaß oder Wettbewerb gespielt"
+        "Eine strukturierte Aktivität, zum Spaß oder Wettbewerb gespielt",
+        "Kategorie: Kurze Wörter (für die Gitterstruktur)",
+        "Kategorie: Sport und Freizeit (Erweiterung)"
       ]
     },
     {
       "word": "NEWS",
       "clues": [
-        "Berichte über aktuelle Ereignisse"
+        "Berichte über aktuelle Ereignisse",
+        "Kategorie: Kurze Wörter (für die Gitterstruktur)",
+        "Kategorie: Kurze Woerter (Erweiterung)"
       ]
     },
     {
       "word": "TIME",
       "clues": [
-        "Gemessen in Sekunden, Minuten und Stunden"
+        "Gemessen in Sekunden, Minuten und Stunden",
+        "Kategorie: Kurze Wörter (für die Gitterstruktur)",
+        "Kategorie: Kurze Woerter (Erweiterung)"
       ]
     },
     {
       "word": "IDEA",
       "clues": [
-        "Ein Gedanke oder Vorschlag"
+        "Ein Gedanke oder Vorschlag",
+        "Kategorie: Kurze Wörter (für die Gitterstruktur)",
+        "Kategorie: Kurze Woerter (Erweiterung)"
       ]
     },
     {
       "word": "PLAN",
       "clues": [
-        "Ein Vorhaben, wie man etwas tun will"
+        "Ein Vorhaben, wie man etwas tun will",
+        "Kategorie: Kurze Wörter (für die Gitterstruktur)",
+        "Kategorie: Kurze Woerter (Erweiterung)"
       ]
     },
     {
       "word": "GOAL",
       "clues": [
-        "Das, was man erreichen möchte"
+        "Das, was man erreichen möchte",
+        "Kategorie: Kurze Wörter (für die Gitterstruktur)",
+        "Kategorie: Kurze Woerter (Erweiterung)"
       ]
     },
     {
       "word": "RULE",
       "clues": [
-        "Eine Richtlinie, an die man sich halten soll"
+        "Eine Richtlinie, an die man sich halten soll",
+        "Kategorie: Kurze Wörter (für die Gitterstruktur)",
+        "Kategorie: Kurze Woerter (Erweiterung)"
       ]
     },
     {
       "word": "DUTY",
       "clues": [
-        "Etwas, wozu man verpflichtet ist"
+        "Etwas, wozu man verpflichtet ist",
+        "Kategorie: Kurze Wörter (für die Gitterstruktur)",
+        "Kategorie: Kurze Woerter (Erweiterung)"
       ]
     },
     {
       "word": "ENGINEER",
       "clues": [
-        "Entwirft und baut Maschinen oder Bauwerke"
+        "Entwirft und baut Maschinen oder Bauwerke",
+        "Kategorie: Berufe",
+        "Kategorie: Berufe (Erweiterung)"
       ]
     },
     {
       "word": "LAWYER",
       "clues": [
-        "Vertritt Menschen rechtlich vor Gericht"
+        "Vertritt Menschen rechtlich vor Gericht",
+        "Kategorie: Berufe",
+        "Kategorie: Berufe (Erweiterung)"
       ]
     },
     {
       "word": "ARCHITECT",
       "clues": [
-        "Entwirft Gebäude"
+        "Entwirft Gebäude",
+        "Kategorie: Berufe",
+        "Kategorie: Berufe (Erweiterung)"
       ]
     },
     {
       "word": "ELECTRICIAN",
       "clues": [
-        "Repariert elektrische Systeme"
+        "Repariert elektrische Systeme",
+        "Kategorie: Berufe"
       ]
     },
     {
       "word": "PLUMBER",
       "clues": [
-        "Repariert Rohre und Wasserleitungen"
+        "Repariert Rohre und Wasserleitungen",
+        "Kategorie: Berufe"
       ]
     },
     {
       "word": "MECHANIC",
       "clues": [
-        "Repariert Autos und Maschinen"
+        "Repariert Autos und Maschinen",
+        "Kategorie: Berufe"
       ]
     },
     {
       "word": "ACCOUNTANT",
       "clues": [
-        "Verwaltet die Finanzen eines Unternehmens"
+        "Verwaltet die Finanzen eines Unternehmens",
+        "Kategorie: Berufe"
       ]
     },
     {
       "word": "SCIENTIST",
       "clues": [
-        "Führt Experimente durch, um Neues zu entdecken"
+        "Führt Experimente durch, um Neues zu entdecken",
+        "Kategorie: Berufe",
+        "Kategorie: Berufe (Erweiterung)"
       ]
     },
     {
       "word": "FARMER",
       "clues": [
-        "Baut Nutzpflanzen an oder hält Tiere"
+        "Baut Nutzpflanzen an oder hält Tiere",
+        "Kategorie: Berufe"
       ]
     },
     {
       "word": "CHEF",
       "clues": [
-        "Leitet die Küche in einem Restaurant"
+        "Leitet die Küche in einem Restaurant",
+        "Kategorie: Berufe",
+        "Kategorie: Berufe (Erweiterung)"
       ]
     },
     {
       "word": "PILOT",
       "clues": [
-        "Steuert ein Flugzeug"
+        "Steuert ein Flugzeug",
+        "Kategorie: Berufe"
       ]
     },
     {
       "word": "FIREFIGHTER",
       "clues": [
-        "Löscht Brände und rettet Menschen"
+        "Löscht Brände und rettet Menschen",
+        "Kategorie: Berufe",
+        "Kategorie: Berufe (Erweiterung)"
       ]
     },
     {
       "word": "LIBRARIAN",
       "clues": [
-        "Verwaltet die Bücher in einer Bibliothek"
+        "Verwaltet die Bücher in einer Bibliothek",
+        "Kategorie: Berufe",
+        "Kategorie: Berufe (Erweiterung)"
       ]
     },
     {
       "word": "PHOTOGRAPHER",
       "clues": [
-        "Macht beruflich Fotos"
+        "Macht beruflich Fotos",
+        "Kategorie: Berufe"
       ]
     },
     {
       "word": "TRANSLATOR",
       "clues": [
-        "Überträgt Texte von einer Sprache in eine andere"
+        "Überträgt Texte von einer Sprache in eine andere",
+        "Kategorie: Berufe",
+        "Kategorie: Berufe (Erweiterung)"
       ]
     },
     {
       "word": "CONTINENT",
       "clues": [
-        "Ein riesiges Landgebiet, wie Europa oder Afrika"
+        "Ein riesiges Landgebiet, wie Europa oder Afrika",
+        "Kategorie: Orte & Geografie"
       ]
     },
     {
       "word": "BORDER",
       "clues": [
-        "Die Linie zwischen zwei Ländern"
+        "Die Linie zwischen zwei Ländern",
+        "Kategorie: Orte & Geografie"
       ]
     },
     {
       "word": "CAPITAL",
       "clues": [
-        "Die Hauptstadt eines Landes"
+        "Die Hauptstadt eines Landes",
+        "Kategorie: Orte & Geografie"
       ]
     },
     {
       "word": "COAST",
       "clues": [
-        "Das Land direkt am Meer"
+        "Das Land direkt am Meer",
+        "Kategorie: Orte & Geografie"
       ]
     },
     {
       "word": "VALLEY",
       "clues": [
-        "Tiefland zwischen zwei Bergen"
+        "Tiefland zwischen zwei Bergen",
+        "Kategorie: Orte & Geografie"
       ]
     },
     {
       "word": "HARBOR",
       "clues": [
-        "Ein geschützter Bereich, in dem Schiffe anlegen"
+        "Ein geschützter Bereich, in dem Schiffe anlegen",
+        "Kategorie: Orte & Geografie"
       ]
     },
     {
       "word": "BRIDGE",
       "clues": [
-        "Führt über einen Fluss oder eine Schlucht"
+        "Führt über einen Fluss oder eine Schlucht",
+        "Kategorie: Orte & Geografie",
+        "Kategorie: Stadt und Orte (Erweiterung)"
       ]
     },
     {
       "word": "TUNNEL",
       "clues": [
-        "Ein Durchgang unter der Erde oder durch einen Berg"
+        "Ein Durchgang unter der Erde oder durch einen Berg",
+        "Kategorie: Orte & Geografie",
+        "Kategorie: Stadt und Orte (Erweiterung)"
       ]
     },
     {
       "word": "SUBURB",
       "clues": [
-        "Ein Wohngebiet am Stadtrand"
+        "Ein Wohngebiet am Stadtrand",
+        "Kategorie: Orte & Geografie",
+        "Kategorie: Stadt und Orte (Erweiterung)"
       ]
     },
     {
       "word": "MARKET",
       "clues": [
-        "Ein Ort, an dem Waren verkauft werden"
+        "Ein Ort, an dem Waren verkauft werden",
+        "Kategorie: Orte & Geografie",
+        "Ein Ort, an dem Waren verkauft werden, oft im Freien",
+        "Kategorie: Stadt und Orte (Erweiterung)",
+        "Wo Waren gekauft und verkauft werden",
+        "Kategorie: Wirtschaft"
       ]
     },
     {
       "word": "CASTLE",
       "clues": [
-        "Eine große, historische Festung"
+        "Eine große, historische Festung",
+        "Kategorie: Orte & Geografie",
+        "Eine grosse, historische Festung",
+        "Kategorie: Stadt und Orte (Erweiterung)"
       ]
     },
     {
       "word": "CHURCH",
       "clues": [
-        "Ein Gebäude für christliche Gottesdienste"
+        "Ein Gebäude für christliche Gottesdienste",
+        "Kategorie: Orte & Geografie",
+        "Kategorie: Stadt und Orte (Erweiterung)"
       ]
     },
     {
       "word": "TEMPLE",
       "clues": [
-        "Ein religiöses Gebäude, oft im asiatischen Kontext"
+        "Ein religiöses Gebäude, oft im asiatischen Kontext",
+        "Kategorie: Orte & Geografie"
       ]
     },
     {
       "word": "CEMETERY",
       "clues": [
-        "Ein Ort, an dem Tote begraben werden"
+        "Ein Ort, an dem Tote begraben werden",
+        "Kategorie: Orte & Geografie",
+        "Kategorie: Stadt und Orte (Erweiterung)"
       ]
     },
     {
       "word": "SKYSCRAPER",
       "clues": [
-        "Ein sehr hohes Gebäude in einer Stadt"
+        "Ein sehr hohes Gebäude in einer Stadt",
+        "Kategorie: Orte & Geografie"
       ]
     },
     {
       "word": "RIVERBANK",
       "clues": [
-        "Das Land direkt neben einem Fluss"
-      ]
-    },
-    {
-      "word": "MIRROR",
-      "clues": [
-        "Zeigt das eigene Spiegelbild"
+        "Das Land direkt neben einem Fluss",
+        "Kategorie: Orte & Geografie"
       ]
     },
     {
       "word": "CANDLE",
       "clues": [
-        "Brennt mit einer kleinen Flamme, aus Wachs"
+        "Brennt mit einer kleinen Flamme, aus Wachs",
+        "Kategorie: Alltag & Objekte",
+        "Kategorie: Haushalt (Erweiterung)"
       ]
     },
     {
       "word": "BLANKET",
       "clues": [
-        "Wärmt einen im Bett"
+        "Wärmt einen im Bett",
+        "Kategorie: Alltag & Objekte",
+        "Kategorie: Haushalt (Erweiterung)"
       ]
     },
     {
       "word": "PILLOW",
       "clues": [
-        "Stützt den Kopf beim Schlafen"
+        "Stützt den Kopf beim Schlafen",
+        "Kategorie: Alltag & Objekte",
+        "Kategorie: Haushalt (Erweiterung)"
       ]
     },
     {
       "word": "TOWEL",
       "clues": [
-        "Trocknet den Körper nach dem Duschen"
+        "Trocknet den Körper nach dem Duschen",
+        "Kategorie: Alltag & Objekte",
+        "Kategorie: Haushalt (Erweiterung)"
       ]
     },
     {
       "word": "BROOM",
       "clues": [
-        "Damit fegt man den Boden"
+        "Damit fegt man den Boden",
+        "Kategorie: Alltag & Objekte",
+        "Kategorie: Haushalt (Erweiterung)"
       ]
     },
     {
       "word": "LADDER",
       "clues": [
-        "Damit erreicht man hohe Stellen"
+        "Damit erreicht man hohe Stellen",
+        "Kategorie: Alltag & Objekte",
+        "Wird benutzt, um hohe Stellen zu erreichen"
       ]
     },
     {
       "word": "HAMMER",
       "clues": [
-        "Ein Werkzeug zum Einschlagen von Nägeln"
+        "Ein Werkzeug zum Einschlagen von Nägeln",
+        "Kategorie: Alltag & Objekte",
+        "Kategorie: Haushalt (Erweiterung)"
       ]
     },
     {
       "word": "SCISSORS",
       "clues": [
-        "Ein Werkzeug zum Schneiden von Papier oder Stoff"
+        "Ein Werkzeug zum Schneiden von Papier oder Stoff",
+        "Kategorie: Alltag & Objekte"
       ]
     },
     {
       "word": "ENVELOPE",
       "clues": [
-        "Ein Brief wird darin verschickt"
+        "Ein Brief wird darin verschickt",
+        "Kategorie: Alltag & Objekte",
+        "Kategorie: Haushalt (Erweiterung)"
       ]
     },
     {
       "word": "CALENDAR",
       "clues": [
-        "Zeigt die Tage, Wochen und Monate an"
+        "Zeigt die Tage, Wochen und Monate an",
+        "Kategorie: Alltag & Objekte"
       ]
     },
     {
       "word": "NOTEBOOK",
       "clues": [
-        "Ein kleines Buch zum Schreiben von Notizen"
+        "Ein kleines Buch zum Schreiben von Notizen",
+        "Kategorie: Alltag & Objekte",
+        "Kategorie: Haushalt (Erweiterung)"
       ]
     },
     {
       "word": "BACKPACK",
       "clues": [
-        "Wird auf dem Rücken getragen, für Bücher oder Ausrüstung"
+        "Wird auf dem Rücken getragen, für Bücher oder Ausrüstung",
+        "Kategorie: Alltag & Objekte"
       ]
     },
     {
       "word": "FLASHLIGHT",
       "clues": [
-        "Eine tragbare, batteriebetriebene Lichtquelle"
+        "Eine tragbare, batteriebetriebene Lichtquelle",
+        "Kategorie: Alltag & Objekte",
+        "Kategorie: Haushalt (Erweiterung)"
       ]
     },
     {
       "word": "BLENDER",
       "clues": [
-        "Ein Küchengerät, das Zutaten mischt und zerkleinert"
+        "Ein Küchengerät, das Zutaten mischt und zerkleinert",
+        "Kategorie: Alltag & Objekte"
       ]
     },
     {
       "word": "YESTERDAY",
       "clues": [
-        "Der Tag vor heute"
+        "Der Tag vor heute",
+        "Kategorie: Zeit & Häufigkeit",
+        "Kategorie: Zeit (Erweiterung)"
       ]
     },
     {
       "word": "TOMORROW",
       "clues": [
-        "Der Tag nach heute"
+        "Der Tag nach heute",
+        "Kategorie: Zeit & Häufigkeit",
+        "Kategorie: Zeit (Erweiterung)"
       ]
     },
     {
       "word": "WEEKEND",
       "clues": [
-        "Samstag und Sonntag"
+        "Samstag und Sonntag",
+        "Kategorie: Zeit & Häufigkeit",
+        "Kategorie: Zeit (Erweiterung)"
       ]
     },
     {
       "word": "CENTURY",
       "clues": [
-        "Ein Zeitraum von hundert Jahren"
+        "Ein Zeitraum von hundert Jahren",
+        "Kategorie: Zeit & Häufigkeit"
       ]
     },
     {
       "word": "DECADE",
       "clues": [
-        "Ein Zeitraum von zehn Jahren"
+        "Ein Zeitraum von zehn Jahren",
+        "Kategorie: Zeit & Häufigkeit"
       ]
     },
     {
       "word": "MOMENT",
       "clues": [
-        "Ein sehr kurzer Zeitraum"
+        "Ein sehr kurzer Zeitraum",
+        "Kategorie: Zeit & Häufigkeit",
+        "Kategorie: Zeit (Erweiterung)"
       ]
     },
     {
       "word": "SCHEDULE",
       "clues": [
-        "Ein geplanter Zeitablauf für Termine"
+        "Ein geplanter Zeitablauf für Termine",
+        "Kategorie: Zeit & Häufigkeit"
       ]
     },
     {
       "word": "ROUTINE",
       "clues": [
-        "Eine regelmäßig wiederholte Abfolge von Handlungen"
+        "Eine regelmäßig wiederholte Abfolge von Handlungen",
+        "Kategorie: Zeit & Häufigkeit"
       ]
     },
     {
       "word": "OCCASIONALLY",
       "clues": [
-        "Von Zeit zu Zeit, nicht oft"
+        "Von Zeit zu Zeit, nicht oft",
+        "Kategorie: Zeit & Häufigkeit"
       ]
     },
     {
       "word": "FREQUENTLY",
       "clues": [
-        "Oft wiederholt"
+        "Oft wiederholt",
+        "Kategorie: Zeit & Häufigkeit",
+        "Kategorie: Zeit (Erweiterung)"
       ]
     },
     {
       "word": "EVENTUALLY",
       "clues": [
-        "Am Ende, nach einiger Zeit"
+        "Am Ende, nach einiger Zeit",
+        "Kategorie: Zeit & Häufigkeit",
+        "Kategorie: Zeit (Erweiterung)"
       ]
     },
     {
       "word": "IMMEDIATELY",
       "clues": [
-        "Sofort, ohne Verzögerung"
+        "Sofort, ohne Verzögerung",
+        "Kategorie: Zeit & Häufigkeit",
+        "Kategorie: Zeit (Erweiterung)"
       ]
     },
     {
       "word": "CURIOUS",
       "clues": [
-        "Neugierig, wissbegierig"
+        "Neugierig, wissbegierig",
+        "Kategorie: Mehr Adjektive & Adverbien",
+        "Kategorie: Mehr Adjektive"
       ]
     },
     {
       "word": "BRAVE",
       "clues": [
-        "Mutig, furchtlos"
+        "Mutig, furchtlos",
+        "Kategorie: Mehr Adjektive & Adverbien",
+        "Kategorie: Mehr Adjektive"
       ]
     },
     {
       "word": "HONEST",
       "clues": [
-        "Ehrlich, aufrichtig"
+        "Ehrlich, aufrichtig",
+        "Kategorie: Mehr Adjektive & Adverbien",
+        "Kategorie: Mehr Adjektive"
       ]
     },
     {
       "word": "POLITE",
       "clues": [
-        "Höflich"
+        "Höflich",
+        "Kategorie: Mehr Adjektive & Adverbien",
+        "Kategorie: Mehr Adjektive"
       ]
     },
     {
       "word": "CARELESS",
       "clues": [
-        "Nachlässig, unvorsichtig"
+        "Nachlässig, unvorsichtig",
+        "Kategorie: Mehr Adjektive & Adverbien",
+        "Kategorie: Mehr Adjektive"
       ]
     },
     {
       "word": "SELFISH",
       "clues": [
-        "Nur an sich selbst denkend"
+        "Nur an sich selbst denkend",
+        "Kategorie: Mehr Adjektive & Adverbien",
+        "Kategorie: Mehr Adjektive"
       ]
     },
     {
       "word": "TALENTED",
       "clues": [
-        "Begabt, mit natürlichem Können"
+        "Begabt, mit natürlichem Können",
+        "Kategorie: Mehr Adjektive & Adverbien",
+        "Kategorie: Mehr Adjektive"
       ]
     },
     {
       "word": "WEALTHY",
       "clues": [
-        "Reich, wohlhabend"
+        "Reich, wohlhabend",
+        "Kategorie: Mehr Adjektive & Adverbien",
+        "Kategorie: Mehr Adjektive"
       ]
     },
     {
       "word": "POOR",
       "clues": [
-        "Arm, ohne viel Geld"
+        "Arm, ohne viel Geld",
+        "Kategorie: Mehr Adjektive & Adverbien",
+        "Kategorie: Mehr Adjektive"
       ]
     },
     {
       "word": "STRICT",
       "clues": [
-        "Streng, wenig Nachsicht zeigend"
+        "Streng, wenig Nachsicht zeigend",
+        "Kategorie: Mehr Adjektive & Adverbien",
+        "Kategorie: Mehr Adjektive"
       ]
     },
     {
       "word": "FLEXIBLE",
       "clues": [
-        "Anpassungsfähig, leicht veränderbar"
+        "Anpassungsfähig, leicht veränderbar",
+        "Kategorie: Mehr Adjektive & Adverbien",
+        "Kategorie: Mehr Adjektive"
       ]
     },
     {
       "word": "LOYAL",
       "clues": [
-        "Treu, beständig ergeben"
+        "Treu, beständig ergeben",
+        "Kategorie: Mehr Adjektive & Adverbien",
+        "Kategorie: Mehr Adjektive"
       ]
     },
     {
       "word": "RUDE",
       "clues": [
-        "Unhöflich, respektlos"
+        "Unhöflich, respektlos",
+        "Kategorie: Mehr Adjektive & Adverbien",
+        "Kategorie: Mehr Adjektive"
       ]
     },
     {
       "word": "CHEERFUL",
       "clues": [
-        "Fröhlich, gut gelaunt"
+        "Fröhlich, gut gelaunt",
+        "Kategorie: Mehr Adjektive & Adverbien",
+        "Kategorie: Mehr Adjektive"
       ]
     },
     {
       "word": "NERVOUS",
       "clues": [
-        "Ängstlich, angespannt"
+        "Ängstlich, angespannt",
+        "Kategorie: Mehr Adjektive & Adverbien",
+        "Kategorie: Mehr Adjektive"
       ]
     },
     {
       "word": "CALM",
       "clues": [
-        "Ruhig, gelassen"
+        "Ruhig, gelassen",
+        "Kategorie: Mehr Adjektive & Adverbien",
+        "Kategorie: Mehr Adjektive"
       ]
     },
     {
       "word": "BORING",
       "clues": [
-        "Langweilig, uninteressant"
+        "Langweilig, uninteressant",
+        "Kategorie: Mehr Adjektive & Adverbien",
+        "Kategorie: Mehr Adjektive"
       ]
     },
     {
       "word": "EXCITING",
       "clues": [
-        "Aufregend, spannend"
+        "Aufregend, spannend",
+        "Kategorie: Mehr Adjektive & Adverbien",
+        "Kategorie: Mehr Adjektive"
       ]
     },
     {
       "word": "DANGEROUS",
       "clues": [
-        "Gefährlich, riskant"
+        "Gefährlich, riskant",
+        "Kategorie: Mehr Adjektive & Adverbien",
+        "Kategorie: Mehr Adjektive"
       ]
     },
     {
       "word": "SAFE",
       "clues": [
-        "Sicher, ungefährlich"
+        "Sicher, ungefährlich",
+        "Kategorie: Mehr Adjektive & Adverbien",
+        "Kategorie: Mehr Adjektive"
       ]
     },
     {
       "word": "EXPENSIVE",
       "clues": [
-        "Teuer, hochpreisig"
+        "Teuer, hochpreisig",
+        "Kategorie: Mehr Adjektive & Adverbien",
+        "Kategorie: Mehr Adjektive"
       ]
     },
     {
       "word": "CHEAP",
       "clues": [
-        "Billig, preiswert"
+        "Billig, preiswert",
+        "Kategorie: Mehr Adjektive & Adverbien",
+        "Kategorie: Mehr Adjektive"
       ]
     },
     {
       "word": "CROWDED",
       "clues": [
-        "Überfüllt, voller Menschen"
+        "Überfüllt, voller Menschen",
+        "Kategorie: Mehr Adjektive & Adverbien",
+        "Kategorie: Mehr Adjektive"
       ]
     },
     {
       "word": "EMPTY",
       "clues": [
-        "Leer, ohne Inhalt"
+        "Leer, ohne Inhalt",
+        "Kategorie: Mehr Adjektive & Adverbien",
+        "Kategorie: Mehr Adjektive"
       ]
     },
     {
       "word": "NARROW",
       "clues": [
-        "Schmal, wenig breit"
+        "Schmal, wenig breit",
+        "Kategorie: Mehr Adjektive & Adverbien",
+        "Kategorie: Mehr Adjektive"
       ]
     },
     {
       "word": "WIDE",
       "clues": [
-        "Breit, weit ausgedehnt"
+        "Breit, weit ausgedehnt",
+        "Kategorie: Mehr Adjektive & Adverbien",
+        "Kategorie: Mehr Adjektive"
       ]
     },
     {
       "word": "DEEP",
       "clues": [
-        "Tief"
+        "Tief",
+        "Kategorie: Mehr Adjektive & Adverbien",
+        "Kategorie: Mehr Adjektive"
       ]
     },
     {
       "word": "SHALLOW",
       "clues": [
-        "Seicht, wenig tief"
+        "Seicht, wenig tief",
+        "Kategorie: Mehr Adjektive & Adverbien",
+        "Kategorie: Mehr Adjektive"
       ]
     },
     {
       "word": "ROUGH",
       "clues": [
-        "Rau, uneben"
+        "Rau, uneben",
+        "Kategorie: Mehr Adjektive & Adverbien",
+        "Kategorie: Mehr Adjektive"
       ]
     },
     {
       "word": "SMOOTH",
       "clues": [
-        "Glatt, eben"
+        "Glatt, eben",
+        "Kategorie: Mehr Adjektive & Adverbien",
+        "Kategorie: Mehr Adjektive"
       ]
     },
     {
       "word": "BRIGHT",
       "clues": [
-        "Hell, stark leuchtend"
+        "Hell, stark leuchtend",
+        "Kategorie: Mehr Adjektive & Adverbien",
+        "Kategorie: Mehr Adjektive"
       ]
     },
     {
       "word": "DARK",
       "clues": [
-        "Dunkel, ohne Licht"
+        "Dunkel, ohne Licht",
+        "Kategorie: Mehr Adjektive & Adverbien",
+        "Kategorie: Mehr Adjektive"
       ]
     },
     {
       "word": "LOUD",
       "clues": [
-        "Laut, mit hoher Lautstärke"
+        "Laut, mit hoher Lautstärke",
+        "Kategorie: Mehr Adjektive & Adverbien",
+        "Kategorie: Mehr Adjektive"
       ]
     },
     {
       "word": "QUIET",
       "clues": [
-        "Leise, ruhig"
+        "Leise, ruhig",
+        "Kategorie: Mehr Adjektive & Adverbien",
+        "Kategorie: Mehr Adjektive"
       ]
     },
     {
       "word": "HEAVY",
       "clues": [
-        "Schwer, mit hohem Gewicht"
+        "Schwer, mit hohem Gewicht",
+        "Kategorie: Mehr Adjektive & Adverbien",
+        "Kategorie: Mehr Adjektive"
       ]
     },
     {
       "word": "LIGHT",
       "clues": [
-        "Leicht, mit geringem Gewicht"
+        "Leicht, mit geringem Gewicht",
+        "Kategorie: Mehr Adjektive & Adverbien",
+        "Kategorie: Mehr Adjektive"
       ]
     },
     {
       "word": "SHARP",
       "clues": [
-        "Scharf, mit feiner Schneide"
+        "Scharf, mit feiner Schneide",
+        "Kategorie: Mehr Adjektive & Adverbien",
+        "Kategorie: Mehr Adjektive"
       ]
     },
     {
       "word": "BLUNT",
       "clues": [
-        "Stumpf, nicht scharf"
+        "Stumpf, nicht scharf",
+        "Kategorie: Mehr Adjektive & Adverbien",
+        "Kategorie: Mehr Adjektive"
       ]
     },
     {
       "word": "STIFF",
       "clues": [
-        "Steif, wenig biegsam"
+        "Steif, wenig biegsam",
+        "Kategorie: Mehr Adjektive & Adverbien"
       ]
     },
     {
       "word": "STICKY",
       "clues": [
-        "Klebrig"
+        "Klebrig",
+        "Kategorie: Mehr Adjektive & Adverbien",
+        "Kategorie: Mehr Adjektive"
       ]
     },
     {
       "word": "OPPORTUNITY",
       "clues": [
-        "Eine gute Gelegenheit, etwas zu tun"
+        "Eine gute Gelegenheit, etwas zu tun",
+        "Kategorie: Weitere Substantive für mehr Vielfalt",
+        "Kategorie: Abstrakte Konzepte (Erweiterung)"
       ]
     },
     {
       "word": "CHALLENGE",
       "clues": [
-        "Eine schwierige Aufgabe, die Mühe erfordert"
+        "Eine schwierige Aufgabe, die Mühe erfordert",
+        "Kategorie: Weitere Substantive für mehr Vielfalt",
+        "Kategorie: Abstrakte Konzepte (Erweiterung)"
       ]
     },
     {
       "word": "ACHIEVEMENT",
       "clues": [
-        "Etwas erfolgreich Erreichtes"
+        "Etwas erfolgreich Erreichtes",
+        "Kategorie: Weitere Substantive für mehr Vielfalt",
+        "Kategorie: Abstrakte Konzepte (Erweiterung)"
       ]
     },
     {
       "word": "AMBITION",
       "clues": [
-        "Ein starker Wunsch, etwas zu erreichen"
+        "Ein starker Wunsch, etwas zu erreichen",
+        "Kategorie: Weitere Substantive für mehr Vielfalt",
+        "Kategorie: Abstrakte Konzepte (Erweiterung)"
       ]
     },
     {
       "word": "INNOVATION",
       "clues": [
-        "Eine neue Idee oder Methode"
+        "Eine neue Idee oder Methode",
+        "Kategorie: Weitere Substantive für mehr Vielfalt",
+        "Kategorie: Abstrakte Konzepte (Erweiterung)"
       ]
     },
     {
       "word": "CONSEQUENCE",
       "clues": [
-        "Das Ergebnis einer Handlung"
+        "Das Ergebnis einer Handlung",
+        "Kategorie: Weitere Substantive für mehr Vielfalt",
+        "Kategorie: Abstrakte Konzepte (Erweiterung)"
       ]
     },
     {
       "word": "ASSUMPTION",
       "clues": [
-        "Etwas, das man ohne Beweis für wahr hält"
+        "Etwas, das man ohne Beweis für wahr hält",
+        "Kategorie: Weitere Substantive für mehr Vielfalt"
       ]
     },
     {
       "word": "PERSPECTIVE",
       "clues": [
-        "Die Art und Weise, wie jemand etwas betrachtet"
+        "Die Art und Weise, wie jemand etwas betrachtet",
+        "Kategorie: Weitere Substantive für mehr Vielfalt",
+        "Kategorie: Abstrakte Konzepte (Erweiterung)"
       ]
     },
     {
       "word": "PRIORITY",
       "clues": [
-        "Etwas, das zuerst behandelt werden sollte"
+        "Etwas, das zuerst behandelt werden sollte",
+        "Kategorie: Weitere Substantive für mehr Vielfalt"
       ]
     },
     {
       "word": "STRATEGY",
       "clues": [
-        "Ein Plan, um ein Ziel zu erreichen"
+        "Ein Plan, um ein Ziel zu erreichen",
+        "Kategorie: Weitere Substantive für mehr Vielfalt"
       ]
     },
     {
       "word": "REPUTATION",
       "clues": [
-        "Was andere Menschen über jemanden denken"
+        "Was andere Menschen über jemanden denken",
+        "Kategorie: Weitere Substantive für mehr Vielfalt"
       ]
     },
     {
       "word": "COMPROMISE",
       "clues": [
-        "Eine Einigung, bei der beide Seiten nachgeben"
+        "Eine Einigung, bei der beide Seiten nachgeben",
+        "Kategorie: Weitere Substantive für mehr Vielfalt"
       ]
     },
     {
       "word": "NEGOTIATION",
       "clues": [
-        "Ein Gespräch, um sich zu einigen"
+        "Ein Gespräch, um sich zu einigen",
+        "Kategorie: Weitere Substantive für mehr Vielfalt"
       ]
     },
     {
       "word": "ENCOURAGEMENT",
       "clues": [
-        "Worte oder Handlungen, die jemanden ermutigen"
+        "Worte oder Handlungen, die jemanden ermutigen",
+        "Kategorie: Weitere Substantive für mehr Vielfalt",
+        "Worte, die jemanden ermutigen",
+        "Kategorie: Abstrakte Konzepte (Erweiterung)"
       ]
     },
     {
       "word": "DISAPPOINTMENT",
       "clues": [
-        "Das Gefühl, wenn etwas nicht wie erhofft läuft"
+        "Das Gefühl, wenn etwas nicht wie erhofft läuft",
+        "Kategorie: Weitere Substantive für mehr Vielfalt",
+        "Kategorie: Abstrakte Konzepte (Erweiterung)"
       ]
     },
     {
       "word": "FRUSTRATION",
       "clues": [
-        "Das Gefühl, wenn etwas nicht gelingt"
+        "Das Gefühl, wenn etwas nicht gelingt",
+        "Kategorie: Weitere Substantive für mehr Vielfalt",
+        "Kategorie: Abstrakte Konzepte (Erweiterung)"
       ]
     },
     {
       "word": "RECOGNITION",
       "clues": [
-        "Anerkennung für eine Leistung"
+        "Anerkennung für eine Leistung",
+        "Kategorie: Weitere Substantive für mehr Vielfalt",
+        "Kategorie: Abstrakte Konzepte (Erweiterung)"
       ]
     },
     {
       "word": "INDEPENDENCE",
       "clues": [
-        "Freiheit von der Kontrolle durch andere"
+        "Freiheit von der Kontrolle durch andere",
+        "Kategorie: Weitere Substantive für mehr Vielfalt",
+        "Kategorie: Abstrakte Konzepte (Erweiterung)"
       ]
     },
     {
       "word": "COOPERATION",
       "clues": [
-        "Zusammenarbeit zwischen mehreren Parteien"
+        "Zusammenarbeit zwischen mehreren Parteien",
+        "Kategorie: Weitere Substantive für mehr Vielfalt",
+        "Kategorie: Abstrakte Konzepte (Erweiterung)"
       ]
     },
     {
       "word": "COMPETITION",
       "clues": [
-        "Ein Wettbewerb zwischen mehreren Teilnehmern"
+        "Ein Wettbewerb zwischen mehreren Teilnehmern",
+        "Kategorie: Weitere Substantive für mehr Vielfalt",
+        "Kategorie: Abstrakte Konzepte (Erweiterung)"
       ]
     },
     {
       "word": "BALANCE",
       "clues": [
-        "Das Gleichgewicht halten"
+        "Das Gleichgewicht halten",
+        "Kategorie: Letzte Ergänzungen",
+        "Kategorie: Abstrakte Konzepte (Erweiterung)"
       ]
     },
     {
       "word": "SILENCE",
       "clues": [
         "Völlige Stille, keine Geräusche",
-        "Die Abwesenheit von Geräuschen"
+        "Kategorie: Letzte Ergänzungen",
+        "Die Abwesenheit von Geräuschen",
+        "Kategorie: Abstrakte Konzepte (Erweiterung)"
       ]
     },
     {
       "word": "FREEDOM",
       "clues": [
-        "Die Fähigkeit, frei zu handeln oder zu denken"
+        "Die Fähigkeit, frei zu handeln oder zu denken",
+        "Kategorie: Letzte Ergänzungen",
+        "Kategorie: Abstrakte Konzepte (Erweiterung)"
       ]
     },
     {
       "word": "WISDOM",
       "clues": [
-        "Tiefes Verständnis, oft durch Erfahrung gewonnen"
+        "Tiefes Verständnis, oft durch Erfahrung gewonnen",
+        "Kategorie: Letzte Ergänzungen",
+        "Kategorie: Abstrakte Konzepte (Erweiterung)"
       ]
     },
     {
       "word": "HONESTY",
       "clues": [
-        "Die Eigenschaft, ehrlich zu sein"
+        "Die Eigenschaft, ehrlich zu sein",
+        "Kategorie: Letzte Ergänzungen",
+        "Kategorie: Abstrakte Konzepte (Erweiterung)"
       ]
     },
     {
       "word": "KINDNESS",
       "clues": [
-        "Die Eigenschaft, freundlich und rücksichtsvoll zu sein"
+        "Die Eigenschaft, freundlich und rücksichtsvoll zu sein",
+        "Kategorie: Letzte Ergänzungen",
+        "Die Eigenschaft, freundlich zu sein",
+        "Kategorie: Abstrakte Konzepte (Erweiterung)"
       ]
     },
     {
       "word": "LOYALTY",
       "clues": [
-        "Beständige Treue zu einer Person oder Sache"
+        "Beständige Treue zu einer Person oder Sache",
+        "Kategorie: Letzte Ergänzungen"
       ]
     },
     {
       "word": "CREATIVITY",
       "clues": [
-        "Die Fähigkeit, neue Ideen zu entwickeln"
+        "Die Fähigkeit, neue Ideen zu entwickeln",
+        "Kategorie: Letzte Ergänzungen",
+        "Kategorie: Abstrakte Konzepte (Erweiterung)"
       ]
     },
     {
       "word": "ADVENTURE",
       "clues": [
-        "Eine aufregende, oft riskante Unternehmung"
+        "Eine aufregende, oft riskante Unternehmung",
+        "Kategorie: Letzte Ergänzungen",
+        "Kategorie: Abstrakte Konzepte (Erweiterung)"
       ]
     },
     {
       "word": "MYSTERY",
       "clues": [
-        "Etwas Rätselhaftes, das man nicht versteht"
+        "Etwas Rätselhaftes, das man nicht versteht",
+        "Kategorie: Letzte Ergänzungen",
+        "Kategorie: Abstrakte Konzepte (Erweiterung)"
       ]
     },
     {
       "word": "MIRACLE",
       "clues": [
-        "Ein unerklärliches, wunderbares Ereignis"
+        "Ein unerklärliches, wunderbares Ereignis",
+        "Kategorie: Letzte Ergänzungen"
       ]
     },
     {
       "word": "FORTUNE",
       "clues": [
-        "Großer Reichtum oder auch Glück"
+        "Großer Reichtum oder auch Glück",
+        "Kategorie: Letzte Ergänzungen"
       ]
     },
     {
       "word": "DESTINY",
       "clues": [
-        "Das, was in der Zukunft für jemanden vorbestimmt ist"
+        "Das, was in der Zukunft für jemanden vorbestimmt ist",
+        "Kategorie: Letzte Ergänzungen"
       ]
     },
     {
       "word": "MEMORY",
       "clues": [
-        "Etwas, das man sich aus der Vergangenheit merkt"
+        "Etwas, das man sich aus der Vergangenheit merkt",
+        "Kategorie: Letzte Ergänzungen",
+        "Kategorie: Abstrakte Konzepte (Erweiterung)"
       ]
     },
     {
       "word": "IMAGINATION",
       "clues": [
-        "Die Fähigkeit, sich Dinge vorzustellen"
+        "Die Fähigkeit, sich Dinge vorzustellen",
+        "Kategorie: Letzte Ergänzungen",
+        "Kategorie: Abstrakte Konzepte (Erweiterung)"
       ]
     },
     {
       "word": "HARMONY",
       "clues": [
-        "Ein Zustand friedlicher Übereinstimmung"
+        "Ein Zustand friedlicher Übereinstimmung",
+        "Kategorie: Letzte Ergänzungen",
+        "Kategorie: Abstrakte Konzepte (Erweiterung)"
       ]
     },
     {
       "word": "CHAOS",
       "clues": [
-        "Völlige Unordnung"
+        "Völlige Unordnung",
+        "Kategorie: Letzte Ergänzungen",
+        "Kategorie: Abstrakte Konzepte (Erweiterung)"
       ]
     },
     {
       "word": "WONDER",
       "clues": [
-        "Ein Gefühl des Staunens"
+        "Ein Gefühl des Staunens",
+        "Kategorie: Letzte Ergänzungen",
+        "Kategorie: Abstrakte Konzepte (Erweiterung)"
       ]
     },
     {
       "word": "TRUST",
       "clues": [
-        "Der Glaube, dass jemand zuverlässig ist"
+        "Der Glaube, dass jemand zuverlässig ist",
+        "Kategorie: Letzte Ergänzungen",
+        "Kategorie: Abstrakte Konzepte (Erweiterung)"
       ]
     },
     {
       "word": "FAITH",
       "clues": [
-        "Fester Glaube ohne Beweis"
+        "Fester Glaube ohne Beweis",
+        "Kategorie: Letzte Ergänzungen"
+      ]
+    },
+    {
+      "word": "EAR",
+      "clues": [
+        "Wird zum Hören benutzt",
+        "Kategorie: Neue Kategorie: Koerper und Zahlen"
+      ]
+    },
+    {
+      "word": "NOSE",
+      "clues": [
+        "Wird zum Riechen und Atmen benutzt",
+        "Kategorie: Neue Kategorie: Koerper und Zahlen"
+      ]
+    },
+    {
+      "word": "TOOTH",
+      "clues": [
+        "Wird zum Beissen und Kauen benutzt",
+        "Kategorie: Neue Kategorie: Koerper und Zahlen"
+      ]
+    },
+    {
+      "word": "FINGER",
+      "clues": [
+        "Einer von fünf an jeder Hand",
+        "Kategorie: Neue Kategorie: Koerper und Zahlen"
+      ]
+    },
+    {
+      "word": "MINUTE",
+      "clues": [
+        "Sechzig Sekunden",
+        "Kategorie: Neue Kategorie: Koerper und Zahlen"
+      ]
+    },
+    {
+      "word": "HOUR",
+      "clues": [
+        "Sechzig Minuten",
+        "Kategorie: Neue Kategorie: Koerper und Zahlen"
+      ]
+    },
+    {
+      "word": "SECOND",
+      "clues": [
+        "Eine sehr kurze Zeiteinheit",
+        "Kategorie: Neue Kategorie: Koerper und Zahlen"
+      ]
+    },
+    {
+      "word": "RIVER",
+      "clues": [
+        "Ein natürlicher, fliessender Wasserlauf",
+        "Kategorie: Natur und Tiere (Erweiterung)"
+      ]
+    },
+    {
+      "word": "LAKE",
+      "clues": [
+        "Ein grosses, stilles Gewässer, umgeben von Land",
+        "Kategorie: Natur und Tiere (Erweiterung)"
+      ]
+    },
+    {
+      "word": "HORSE",
+      "clues": [
+        "Ein grosses Tier, auf dem man reitet",
+        "Kategorie: Natur und Tiere (Erweiterung)"
+      ]
+    },
+    {
+      "word": "COW",
+      "clues": [
+        "Ein Nutztier, das Milch produziert",
+        "Kategorie: Natur und Tiere (Erweiterung)"
+      ]
+    },
+    {
+      "word": "PIG",
+      "clues": [
+        "Ein Nutztier, Quelle von Schweinefleisch",
+        "Kategorie: Natur und Tiere (Erweiterung)"
+      ]
+    },
+    {
+      "word": "CHICKEN",
+      "clues": [
+        "Ein Nutzvogel, der Eier legt",
+        "Kategorie: Natur und Tiere (Erweiterung)"
+      ]
+    },
+    {
+      "word": "BEE",
+      "clues": [
+        "Ein fliegendes Insekt, das Honig macht",
+        "Kategorie: Natur und Tiere (Erweiterung)"
+      ]
+    },
+    {
+      "word": "BUTTERFLY",
+      "clues": [
+        "Ein bunter, fliegender Insekt, beginnt als Raupe",
+        "Kategorie: Natur und Tiere (Erweiterung)"
+      ]
+    },
+    {
+      "word": "FLOWER",
+      "clues": [
+        "Eine bunte, blühende Pflanze",
+        "Kategorie: Natur und Tiere (Erweiterung)"
+      ]
+    },
+    {
+      "word": "LEAF",
+      "clues": [
+        "Wächst an einem Ast, meist grün",
+        "Kategorie: Natur und Tiere (Erweiterung)"
+      ]
+    },
+    {
+      "word": "SUNSET",
+      "clues": [
+        "Der Moment, in dem die Sonne am Horizont verschwindet",
+        "Kategorie: Natur und Tiere (Erweiterung)"
+      ]
+    },
+    {
+      "word": "SUNRISE",
+      "clues": [
+        "Der Moment, in dem die Sonne morgens erscheint",
+        "Kategorie: Natur und Tiere (Erweiterung)"
+      ]
+    },
+    {
+      "word": "RAINBOW",
+      "clues": [
+        "Ein bunter Bogen am Himmel nach dem Regen",
+        "Kategorie: Natur und Tiere (Erweiterung)"
+      ]
+    },
+    {
+      "word": "SNAKE",
+      "clues": [
+        "Ein langes Reptil ohne Beine",
+        "Kategorie: Natur und Tiere (Erweiterung)"
+      ]
+    },
+    {
+      "word": "SPORT",
+      "clues": [
+        "Körperliche Aktivität für Fitness oder Wettbewerb",
+        "Kategorie: Sport und Freizeit (Erweiterung)"
+      ]
+    },
+    {
+      "word": "TRAINING",
+      "clues": [
+        "Regelmässige Übung, um besser zu werden",
+        "Kategorie: Sport und Freizeit (Erweiterung)"
+      ]
+    },
+    {
+      "word": "GYM",
+      "clues": [
+        "Ein Fitnessstudio mit Geräten für Sport",
+        "Kategorie: Sport und Freizeit (Erweiterung)"
+      ]
+    },
+    {
+      "word": "FOOTBALL",
+      "clues": [
+        "Ein Sport, bei dem ein Ball ins Tor geschossen wird",
+        "Kategorie: Sport und Freizeit (Erweiterung)"
+      ]
+    },
+    {
+      "word": "MEMBER",
+      "clues": [
+        "Eine Person, die zu einem Verein gehört",
+        "Kategorie: Sport und Freizeit (Erweiterung)"
+      ]
+    },
+    {
+      "word": "CLUB",
+      "clues": [
+        "Eine organisierte Gruppe, oft für ein Hobby",
+        "Kategorie: Sport und Freizeit (Erweiterung)"
+      ]
+    },
+    {
+      "word": "HOBBY",
+      "clues": [
+        "Eine Aktivität, die man in der Freizeit gerne macht",
+        "Kategorie: Sport und Freizeit (Erweiterung)"
+      ]
+    },
+    {
+      "word": "MUSIC",
+      "clues": [
+        "Organisierter Klang, gespielt oder gesungen",
+        "Kategorie: Sport und Freizeit (Erweiterung)"
+      ]
+    },
+    {
+      "word": "CONCERT",
+      "clues": [
+        "Eine Live-Musikaufführung",
+        "Kategorie: Sport und Freizeit (Erweiterung)"
+      ]
+    },
+    {
+      "word": "CINEMA",
+      "clues": [
+        "Ein Ort, um Filme auf grosser Leinwand zu sehen",
+        "Kategorie: Sport und Freizeit (Erweiterung)"
+      ]
+    },
+    {
+      "word": "THEATER",
+      "clues": [
+        "Ein Ort, an dem Theaterstücke live aufgeführt werden",
+        "Kategorie: Sport und Freizeit (Erweiterung)"
+      ]
+    },
+    {
+      "word": "SALESPERSON",
+      "clues": [
+        "Verkauft Waren an Kunden",
+        "Kategorie: Berufe (Erweiterung)"
+      ]
+    },
+    {
+      "word": "SQUARE",
+      "clues": [
+        "Ein offener, öffentlicher Platz in einer Stadt",
+        "Kategorie: Stadt und Orte (Erweiterung)",
+        "Eine Form mit vier gleichen Seiten",
+        "Kategorie: Farben und Formen"
+      ]
+    },
+    {
+      "word": "MONUMENT",
+      "clues": [
+        "Ein Bauwerk zum Gedenken an eine Person oder ein Ereignis",
+        "Kategorie: Stadt und Orte (Erweiterung)"
+      ]
+    },
+    {
+      "word": "TOWNHALL",
+      "clues": [
+        "Das Gebäude, in dem die Stadtregierung sitzt",
+        "Kategorie: Stadt und Orte (Erweiterung)"
+      ]
+    },
+    {
+      "word": "DISHES",
+      "clues": [
+        "Teller, Schüsseln und Tassen zum Essen",
+        "Kategorie: Haushalt (Erweiterung)"
+      ]
+    },
+    {
+      "word": "EYE",
+      "clues": [
+        "Wird zum Sehen benutzt",
+        "Kategorie: Koerperteile"
+      ]
+    },
+    {
+      "word": "MOUTH",
+      "clues": [
+        "Wird zum Essen und Sprechen benutzt",
+        "Kategorie: Koerperteile"
+      ]
+    },
+    {
+      "word": "ARM",
+      "clues": [
+        "Verbindet die Hand mit der Schulter",
+        "Kategorie: Koerperteile"
+      ]
+    },
+    {
+      "word": "LEG",
+      "clues": [
+        "Verbindet den Fuss mit der Hüfte",
+        "Kategorie: Koerperteile"
+      ]
+    },
+    {
+      "word": "HAIR",
+      "clues": [
+        "Wächst auf dem Kopf",
+        "Kategorie: Koerperteile"
+      ]
+    },
+    {
+      "word": "BACK",
+      "clues": [
+        "Der hintere Teil des Körpers",
+        "Kategorie: Koerperteile"
+      ]
+    },
+    {
+      "word": "COFFEE",
+      "clues": [
+        "Ein heisses, koffeinhaltiges Getränk",
+        "Kategorie: Essen und Trinken (mehr)"
+      ]
+    },
+    {
+      "word": "TEA",
+      "clues": [
+        "Ein heisses Getränk aus aufgegossenen Blättern",
+        "Kategorie: Essen und Trinken (mehr)"
+      ]
+    },
+    {
+      "word": "JUICE",
+      "clues": [
+        "Ein Getränk aus gepresstem Obst",
+        "Kategorie: Essen und Trinken (mehr)"
+      ]
+    },
+    {
+      "word": "SUGAR",
+      "clues": [
+        "Ein süsses, weisses Gewürz",
+        "Kategorie: Essen und Trinken (mehr)"
+      ]
+    },
+    {
+      "word": "PEPPER",
+      "clues": [
+        "Ein scharfes, dunkles Gewürz",
+        "Kategorie: Essen und Trinken (mehr)"
+      ]
+    },
+    {
+      "word": "BUTTER",
+      "clues": [
+        "Ein Fettprodukt aus Milch, oft auf Brot gestrichen",
+        "Kategorie: Essen und Trinken (mehr)"
+      ]
+    },
+    {
+      "word": "SANDWICH",
+      "clues": [
+        "Zwei Brotscheiben mit Belag dazwischen",
+        "Kategorie: Essen und Trinken (mehr)"
+      ]
+    },
+    {
+      "word": "PASTA",
+      "clues": [
+        "Ein italienisches Gericht aus Teig",
+        "Kategorie: Essen und Trinken (mehr)"
+      ]
+    },
+    {
+      "word": "PIZZA",
+      "clues": [
+        "Ein flaches, italienisches Gericht mit Belag",
+        "Kategorie: Essen und Trinken (mehr)"
+      ]
+    },
+    {
+      "word": "CHOCOLATE",
+      "clues": [
+        "Eine süsse Speise aus Kakao",
+        "Kategorie: Essen und Trinken (mehr)"
+      ]
+    },
+    {
+      "word": "HONEY",
+      "clues": [
+        "Eine süsse Substanz, von Bienen gemacht",
+        "Kategorie: Essen und Trinken (mehr)"
+      ]
+    },
+    {
+      "word": "YOGURT",
+      "clues": [
+        "Ein saures Milchprodukt",
+        "Kategorie: Essen und Trinken (mehr)"
+      ]
+    },
+    {
+      "word": "ONION",
+      "clues": [
+        "Ein scharfes Gemüse mit Schichten",
+        "Kategorie: Essen und Trinken (mehr)"
+      ]
+    },
+    {
+      "word": "POTATO",
+      "clues": [
+        "Ein häufiges Wurzelgemüse",
+        "Kategorie: Essen und Trinken (mehr)"
+      ]
+    },
+    {
+      "word": "TOMATO",
+      "clues": [
+        "Ein rotes, saftiges Gemüse",
+        "Kategorie: Essen und Trinken (mehr)"
+      ]
+    },
+    {
+      "word": "APPLE",
+      "clues": [
+        "Ein häufiges, rundes Obst",
+        "Kategorie: Essen und Trinken (mehr)"
+      ]
+    },
+    {
+      "word": "BANANA",
+      "clues": [
+        "Ein gelbes, gebogenes Obst",
+        "Kategorie: Essen und Trinken (mehr)"
+      ]
+    },
+    {
+      "word": "LEMON",
+      "clues": [
+        "Eine sehr saure, gelbe Zitrusfrucht",
+        "Kategorie: Essen und Trinken (mehr)"
+      ]
+    },
+    {
+      "word": "BAKERY",
+      "clues": [
+        "Ein Geschäft, das Brot und Kuchen verkauft",
+        "Kategorie: Essen und Trinken (mehr)"
+      ]
+    },
+    {
+      "word": "CAFE",
+      "clues": [
+        "Ein kleines Lokal für Kaffee und Snacks",
+        "Kategorie: Essen und Trinken (mehr)"
+      ]
+    },
+    {
+      "word": "DRIVEWAY",
+      "clues": [
+        "Wo man ein Auto neben einem Haus parkt",
+        "Kategorie: Haus und Garten (mehr)"
+      ]
+    },
+    {
+      "word": "MORTGAGE",
+      "clues": [
+        "Ein langfristiger Kredit, um ein Haus zu kaufen",
+        "Kategorie: Haus und Garten (mehr)"
+      ]
+    },
+    {
+      "word": "LEASE",
+      "clues": [
+        "Ein unterschriebener Mietvertrag",
+        "Kategorie: Haus und Garten (mehr)"
+      ]
+    },
+    {
+      "word": "GRASS",
+      "clues": [
+        "Grüne, niedrige Pflanzen auf dem Boden",
+        "Kategorie: Haus und Garten (mehr)"
+      ]
+    },
+    {
+      "word": "FIREPLACE",
+      "clues": [
+        "Ein Ort im Haus, an dem Feuer brennt",
+        "Kategorie: Haus und Garten (mehr)"
+      ]
+    },
+    {
+      "word": "ATTIC",
+      "clues": [
+        "Der Lagerraum direkt unter dem Dach",
+        "Kategorie: Haus und Garten (mehr)"
+      ]
+    },
+    {
+      "word": "CHIMNEY",
+      "clues": [
+        "Führt Rauch aus einem Haus nach draussen",
+        "Kategorie: Haus und Garten (mehr)"
+      ]
+    },
+    {
+      "word": "STORM",
+      "clues": [
+        "Ein heftiges Unwetter",
+        "Kategorie: Wetter und Jahreszeiten (mehr)"
+      ]
+    },
+    {
+      "word": "FOG",
+      "clues": [
+        "Eine dichte, niedrige Wolke, die die Sicht verringert",
+        "Kategorie: Wetter und Jahreszeiten (mehr)"
+      ]
+    },
+    {
+      "word": "ICE",
+      "clues": [
+        "Gefrorenes Wasser",
+        "Kategorie: Wetter und Jahreszeiten (mehr)"
+      ]
+    },
+    {
+      "word": "FLOOD",
+      "clues": [
+        "Wenn Wasser Land überschwemmt",
+        "Kategorie: Wetter und Jahreszeiten (mehr)"
+      ]
+    },
+    {
+      "word": "BREEZE",
+      "clues": [
+        "Ein sanfter Wind",
+        "Kategorie: Wetter und Jahreszeiten (mehr)"
+      ]
+    },
+    {
+      "word": "HYPOTHESIS",
+      "clues": [
+        "Eine begründete Vermutung, die getestet wird",
+        "Kategorie: Wissenschaft und Technik (mehr)"
+      ]
+    },
+    {
+      "word": "MOLECULE",
+      "clues": [
+        "Die kleinste Einheit einer chemischen Verbindung",
+        "Kategorie: Wissenschaft und Technik (mehr)"
+      ]
+    },
+    {
+      "word": "CHEMICAL",
+      "clues": [
+        "Ein Stoff mit einer bestimmten Zusammensetzung",
+        "Kategorie: Wissenschaft und Technik (mehr)"
+      ]
+    },
+    {
+      "word": "ROBOT",
+      "clues": [
+        "Eine Maschine, die automatisch Aufgaben ausführt",
+        "Kategorie: Wissenschaft und Technik (mehr)"
+      ]
+    },
+    {
+      "word": "VOTE",
+      "clues": [
+        "Eine offizielle Wahlentscheidung treffen",
+        "Kategorie: Gesellschaft und Politik (mehr)"
+      ]
+    },
+    {
+      "word": "DEBATE",
+      "clues": [
+        "Eine formelle Diskussion mit gegensätzlichen Ansichten",
+        "Kategorie: Gesellschaft und Politik (mehr)"
+      ]
+    },
+    {
+      "word": "PROTEST",
+      "clues": [
+        "Eine öffentliche Meinungsäusserung gegen etwas",
+        "Kategorie: Gesellschaft und Politik (mehr)"
+      ]
+    },
+    {
+      "word": "EQUALITY",
+      "clues": [
+        "Gleichbehandlung für alle",
+        "Kategorie: Gesellschaft und Politik (mehr)"
+      ]
+    },
+    {
+      "word": "DIVERSITY",
+      "clues": [
+        "Eine Vielfalt an unterschiedlichen Menschen oder Dingen",
+        "Kategorie: Gesellschaft und Politik (mehr)"
+      ]
+    },
+    {
+      "word": "IMMIGRATION",
+      "clues": [
+        "Der Umzug in ein anderes Land, um dort zu leben",
+        "Kategorie: Gesellschaft und Politik (mehr)"
+      ]
+    },
+    {
+      "word": "COMPASS",
+      "clues": [
+        "Ein Werkzeug, das nach Norden zeigt",
+        "Kategorie: Reisen und Verkehr (mehr)"
+      ]
+    },
+    {
+      "word": "MOTORCYCLE",
+      "clues": [
+        "Ein zweirädriges Motorfahrzeug",
+        "Kategorie: Reisen und Verkehr (mehr)"
+      ]
+    },
+    {
+      "word": "SUBMARINE",
+      "clues": [
+        "Ein Fahrzeug, das unter Wasser fährt",
+        "Kategorie: Reisen und Verkehr (mehr)"
+      ]
+    },
+    {
+      "word": "CURRICULUM",
+      "clues": [
+        "Die festgelegten Fächer eines Kurses",
+        "Kategorie: Bildung und Wissen (mehr)"
+      ]
+    },
+    {
+      "word": "PRIDE",
+      "clues": [
+        "Sich gut fühlen wegen einer Leistung",
+        "Kategorie: Emotionen und Charakter (mehr)"
+      ]
+    },
+    {
+      "word": "BOREDOM",
+      "clues": [
+        "Nichts Interessantes zu tun haben",
+        "Kategorie: Emotionen und Charakter (mehr)"
+      ]
+    },
+    {
+      "word": "STRESS",
+      "clues": [
+        "Druck, der einen anspannt",
+        "Kategorie: Emotionen und Charakter (mehr)"
+      ]
+    },
+    {
+      "word": "CALMNESS",
+      "clues": [
+        "Ruhe und Gelassenheit",
+        "Kategorie: Emotionen und Charakter (mehr)"
+      ]
+    },
+    {
+      "word": "HOPE",
+      "clues": [
+        "Sich etwas Gutes wünschen",
+        "Kategorie: Emotionen und Charakter (mehr)"
+      ]
+    },
+    {
+      "word": "SURPRISE",
+      "clues": [
+        "Etwas Unerwartetes",
+        "Kategorie: Emotionen und Charakter (mehr)"
+      ]
+    },
+    {
+      "word": "CHARGER",
+      "clues": [
+        "Wird angeschlossen, um ein Gerät aufzuladen",
+        "Kategorie: Objekte und Werkzeuge (mehr)"
+      ]
+    },
+    {
+      "word": "GLASSES",
+      "clues": [
+        "Werden getragen, um besser zu sehen",
+        "Kategorie: Objekte und Werkzeuge (mehr)"
+      ]
+    },
+    {
+      "word": "WATCH",
+      "clues": [
+        "Wird am Handgelenk getragen, zeigt die Zeit",
+        "Kategorie: Objekte und Werkzeuge (mehr)"
+      ]
+    },
+    {
+      "word": "CAMERA",
+      "clues": [
+        "Ein Gerät, mit dem man Fotos macht",
+        "Kategorie: Objekte und Werkzeuge (mehr)"
+      ]
+    },
+    {
+      "word": "PRINTER",
+      "clues": [
+        "Bringt Text oder Bilder von einem Computer auf Papier",
+        "Kategorie: Objekte und Werkzeuge (mehr)"
+      ]
+    },
+    {
+      "word": "ACQUAINTANCE",
+      "clues": [
+        "Jemand, den man nur flüchtig kennt",
+        "Kategorie: Familie und Leben (mehr)"
+      ]
+    },
+    {
+      "word": "GENERATION",
+      "clues": [
+        "Eine Gruppe von Menschen ähnlichen Alters",
+        "Kategorie: Familie und Leben (mehr)"
+      ]
+    },
+    {
+      "word": "CHILDHOOD",
+      "clues": [
+        "Die Zeit, in der man ein Kind ist",
+        "Kategorie: Familie und Leben (mehr)"
+      ]
+    },
+    {
+      "word": "RETIREMENT",
+      "clues": [
+        "Das Ende des Arbeitslebens, wegen des Alters",
+        "Kategorie: Familie und Leben (mehr)"
+      ]
+    },
+    {
+      "word": "RED",
+      "clues": [
+        "Die Farbe von Blut oder einer Tomate",
+        "Kategorie: Farben und Formen"
+      ]
+    },
+    {
+      "word": "BLUE",
+      "clues": [
+        "Die Farbe des Himmels an einem klaren Tag",
+        "Kategorie: Farben und Formen"
+      ]
+    },
+    {
+      "word": "GREEN",
+      "clues": [
+        "Die Farbe von Gras",
+        "Kategorie: Farben und Formen"
+      ]
+    },
+    {
+      "word": "YELLOW",
+      "clues": [
+        "Die Farbe der Sonne",
+        "Kategorie: Farben und Formen"
+      ]
+    },
+    {
+      "word": "BLACK",
+      "clues": [
+        "Die dunkelste Farbe, ohne Licht",
+        "Kategorie: Farben und Formen"
+      ]
+    },
+    {
+      "word": "WHITE",
+      "clues": [
+        "Die hellste Farbe, wie Schnee",
+        "Kategorie: Farben und Formen"
+      ]
+    },
+    {
+      "word": "ORANGE",
+      "clues": [
+        "Eine Farbe, benannt nach einer Frucht",
+        "Kategorie: Farben und Formen"
+      ]
+    },
+    {
+      "word": "PURPLE",
+      "clues": [
+        "Eine Mischung aus Rot und Blau",
+        "Kategorie: Farben und Formen"
+      ]
+    },
+    {
+      "word": "CIRCLE",
+      "clues": [
+        "Eine runde Form ohne Ecken",
+        "Kategorie: Farben und Formen"
+      ]
+    },
+    {
+      "word": "TRIANGLE",
+      "clues": [
+        "Eine Form mit drei Seiten",
+        "Kategorie: Farben und Formen"
+      ]
+    },
+    {
+      "word": "RECTANGLE",
+      "clues": [
+        "Eine Form mit vier rechten Winkeln",
+        "Kategorie: Farben und Formen"
+      ]
+    },
+    {
+      "word": "WOOD",
+      "clues": [
+        "Kommt von Bäumen, wird für Möbel benutzt",
+        "Kategorie: Materialien"
+      ]
+    },
+    {
+      "word": "METAL",
+      "clues": [
+        "Ein hartes, oft glänzendes Material",
+        "Kategorie: Materialien"
+      ]
+    },
+    {
+      "word": "GLASS",
+      "clues": [
+        "Durchsichtiges, zerbrechliches Material",
+        "Kategorie: Materialien"
+      ]
+    },
+    {
+      "word": "PLASTIC",
+      "clues": [
+        "Ein künstliches, formbares Material",
+        "Kategorie: Materialien"
+      ]
+    },
+    {
+      "word": "COTTON",
+      "clues": [
+        "Ein weiches, natürliches Material aus einer Pflanze",
+        "Kategorie: Materialien"
+      ]
+    },
+    {
+      "word": "LEATHER",
+      "clues": [
+        "Aus Tierhaut hergestelltes Material",
+        "Kategorie: Materialien"
+      ]
+    },
+    {
+      "word": "SILK",
+      "clues": [
+        "Ein glattes, teures Material von Seidenraupen",
+        "Kategorie: Materialien"
+      ]
+    },
+    {
+      "word": "STONE",
+      "clues": [
+        "Ein hartes, natürliches Material aus der Erde",
+        "Kategorie: Materialien"
+      ]
+    },
+    {
+      "word": "PAPER",
+      "clues": [
+        "Aus Holz hergestellt, zum Schreiben benutzt",
+        "Kategorie: Materialien"
+      ]
+    },
+    {
+      "word": "STEEL",
+      "clues": [
+        "Ein sehr starkes Metall",
+        "Kategorie: Materialien"
+      ]
+    },
+    {
+      "word": "NORTH",
+      "clues": [
+        "Die Richtung des Nordpols",
+        "Kategorie: Richtungen und Positionen"
+      ]
+    },
+    {
+      "word": "SOUTH",
+      "clues": [
+        "Die Richtung des Südpols",
+        "Kategorie: Richtungen und Positionen"
+      ]
+    },
+    {
+      "word": "EAST",
+      "clues": [
+        "Die Richtung, aus der die Sonne aufgeht",
+        "Kategorie: Richtungen und Positionen"
+      ]
+    },
+    {
+      "word": "WEST",
+      "clues": [
+        "Die Richtung, in der die Sonne untergeht",
+        "Kategorie: Richtungen und Positionen"
+      ]
+    },
+    {
+      "word": "ABOVE",
+      "clues": [
+        "Höher als etwas anderes",
+        "Kategorie: Richtungen und Positionen"
+      ]
+    },
+    {
+      "word": "BELOW",
+      "clues": [
+        "Tiefer als etwas anderes",
+        "Kategorie: Richtungen und Positionen"
+      ]
+    },
+    {
+      "word": "BETWEEN",
+      "clues": [
+        "In der Mitte von zwei Dingen",
+        "Kategorie: Richtungen und Positionen"
+      ]
+    },
+    {
+      "word": "BESIDE",
+      "clues": [
+        "Direkt neben etwas",
+        "Kategorie: Richtungen und Positionen"
+      ]
+    },
+    {
+      "word": "SPOON",
+      "clues": [
+        "Damit isst man Suppe",
+        "Kategorie: Kueche im Detail"
+      ]
+    },
+    {
+      "word": "FORK",
+      "clues": [
+        "Damit spiesst man Essen auf",
+        "Kategorie: Kueche im Detail"
+      ]
+    },
+    {
+      "word": "KNIFE",
+      "clues": [
+        "Damit schneidet man Essen",
+        "Kategorie: Kueche im Detail"
+      ]
+    },
+    {
+      "word": "PLATE",
+      "clues": [
+        "Essen wird darauf serviert",
+        "Kategorie: Kueche im Detail"
+      ]
+    },
+    {
+      "word": "BOWL",
+      "clues": [
+        "Eine runde Schale, für Suppe oder Müsli",
+        "Kategorie: Kueche im Detail"
+      ]
+    },
+    {
+      "word": "POT",
+      "clues": [
+        "Damit kocht man Suppe oder Nudeln",
+        "Kategorie: Kueche im Detail"
+      ]
+    },
+    {
+      "word": "PAN",
+      "clues": [
+        "Eine flache Pfanne zum Braten",
+        "Kategorie: Kueche im Detail"
+      ]
+    },
+    {
+      "word": "OVEN",
+      "clues": [
+        "Ein Gerät zum Backen von Essen",
+        "Kategorie: Kueche im Detail"
+      ]
+    },
+    {
+      "word": "STOVE",
+      "clues": [
+        "Ein Küchengerät zum Kochen von oben",
+        "Kategorie: Kueche im Detail"
+      ]
+    },
+    {
+      "word": "KETTLE",
+      "clues": [
+        "Damit kocht man Wasser",
+        "Kategorie: Kueche im Detail"
+      ]
+    },
+    {
+      "word": "TOOTHBRUSH",
+      "clues": [
+        "Damit putzt man die Zähne",
+        "Kategorie: Badezimmer"
+      ]
+    },
+    {
+      "word": "SOAP",
+      "clues": [
+        "Damit wäscht man sich sauber",
+        "Kategorie: Badezimmer"
+      ]
+    },
+    {
+      "word": "SHAMPOO",
+      "clues": [
+        "Damit wäscht man die Haare",
+        "Kategorie: Badezimmer"
+      ]
+    },
+    {
+      "word": "TOILET",
+      "clues": [
+        "Wo man die Notdurft verrichtet",
+        "Kategorie: Badezimmer"
+      ]
+    },
+    {
+      "word": "SHOWER",
+      "clues": [
+        "Wo man sich mit fliessendem Wasser wäscht",
+        "Kategorie: Badezimmer"
+      ]
+    },
+    {
+      "word": "BATHTUB",
+      "clues": [
+        "Eine Wanne, in der man badet",
+        "Kategorie: Badezimmer"
+      ]
+    },
+    {
+      "word": "RAZOR",
+      "clues": [
+        "Damit rasiert man sich",
+        "Kategorie: Badezimmer"
+      ]
+    },
+    {
+      "word": "PENCIL",
+      "clues": [
+        "Damit schreibt man, kann man ausradieren",
+        "Kategorie: Buero und Schule"
+      ]
+    },
+    {
+      "word": "ERASER",
+      "clues": [
+        "Damit löscht man Bleistiftschrift",
+        "Kategorie: Buero und Schule"
+      ]
+    },
+    {
+      "word": "RULER",
+      "clues": [
+        "Damit misst man Länge",
+        "Kategorie: Buero und Schule"
+      ]
+    },
+    {
+      "word": "STAPLER",
+      "clues": [
+        "Damit heftet man Papiere zusammen",
+        "Kategorie: Buero und Schule"
+      ]
+    },
+    {
+      "word": "FOLDER",
+      "clues": [
+        "Darin bewahrt man Papiere auf",
+        "Kategorie: Buero und Schule"
+      ]
+    },
+    {
+      "word": "WHITEBOARD",
+      "clues": [
+        "Eine weisse Tafel zum Beschreiben",
+        "Kategorie: Buero und Schule"
+      ]
+    },
+    {
+      "word": "BLACKBOARD",
+      "clues": [
+        "Eine dunkle Tafel, mit Kreide beschrieben",
+        "Kategorie: Buero und Schule"
+      ]
+    },
+    {
+      "word": "GUITAR",
+      "clues": [
+        "Ein Saiteninstrument, das man zupft",
+        "Kategorie: Musik und Instrumente"
+      ]
+    },
+    {
+      "word": "PIANO",
+      "clues": [
+        "Ein Tasteninstrument mit schwarzen und weissen Tasten",
+        "Kategorie: Musik und Instrumente"
+      ]
+    },
+    {
+      "word": "DRUM",
+      "clues": [
+        "Ein Schlaginstrument",
+        "Kategorie: Musik und Instrumente"
+      ]
+    },
+    {
+      "word": "VIOLIN",
+      "clues": [
+        "Ein kleines Streichinstrument, mit einem Bogen gespielt",
+        "Kategorie: Musik und Instrumente"
+      ]
+    },
+    {
+      "word": "SINGER",
+      "clues": [
+        "Jemand, der beruflich singt",
+        "Kategorie: Musik und Instrumente"
+      ]
+    },
+    {
+      "word": "MELODY",
+      "clues": [
+        "Eine Abfolge musikalischer Töne",
+        "Kategorie: Musik und Instrumente"
+      ]
+    },
+    {
+      "word": "RHYTHM",
+      "clues": [
+        "Das wiederkehrende Muster in der Musik",
+        "Kategorie: Musik und Instrumente"
+      ]
+    },
+    {
+      "word": "BALL",
+      "clues": [
+        "Rund, wird in vielen Sportarten benutzt",
+        "Kategorie: Sportgeraete"
+      ]
+    },
+    {
+      "word": "RACKET",
+      "clues": [
+        "Damit schlägt man einen Ball, z.B. im Tennis",
+        "Kategorie: Sportgeraete"
+      ]
+    },
+    {
+      "word": "HELMET",
+      "clues": [
+        "Schützt den Kopf bei gefährlichen Aktivitäten",
+        "Kategorie: Sportgeraete"
+      ]
+    },
+    {
+      "word": "SWIMMING",
+      "clues": [
+        "Sich im Wasser fortbewegen",
+        "Kategorie: Sportgeraete"
+      ]
+    },
+    {
+      "word": "SKIING",
+      "clues": [
+        "Sich mit Brettern über Schnee bewegen",
+        "Kategorie: Sportgeraete"
+      ]
+    },
+    {
+      "word": "LION",
+      "clues": [
+        "Ein grosses, wildes Raubtier, König der Tiere genannt",
+        "Kategorie: Mehr Tiere"
+      ]
+    },
+    {
+      "word": "ELEPHANT",
+      "clues": [
+        "Ein sehr grosses Tier mit einem Rüssel",
+        "Kategorie: Mehr Tiere"
+      ]
+    },
+    {
+      "word": "BEAR",
+      "clues": [
+        "Ein grosses, pelziges Waldtier",
+        "Kategorie: Mehr Tiere"
+      ]
+    },
+    {
+      "word": "WOLF",
+      "clues": [
+        "Ein wildes Tier, verwandt mit dem Hund",
+        "Kategorie: Mehr Tiere"
+      ]
+    },
+    {
+      "word": "RABBIT",
+      "clues": [
+        "Ein kleines Tier mit langen Ohren",
+        "Kategorie: Mehr Tiere"
+      ]
+    },
+    {
+      "word": "SHEEP",
+      "clues": [
+        "Ein Nutztier, Quelle von Wolle",
+        "Kategorie: Mehr Tiere"
+      ]
+    },
+    {
+      "word": "DUCK",
+      "clues": [
+        "Ein Wasservogel, der schwimmt und watschelt",
+        "Kategorie: Mehr Tiere"
+      ]
+    },
+    {
+      "word": "FROG",
+      "clues": [
+        "Ein Tier, das springt und im Wasser lebt",
+        "Kategorie: Mehr Tiere"
+      ]
+    },
+    {
+      "word": "SPIDER",
+      "clues": [
+        "Ein achtbeiniges Tier, das Netze webt",
+        "Kategorie: Mehr Tiere"
+      ]
+    },
+    {
+      "word": "TURTLE",
+      "clues": [
+        "Ein Tier mit einem harten Panzer",
+        "Kategorie: Mehr Tiere"
+      ]
+    },
+    {
+      "word": "CASHIER",
+      "clues": [
+        "Nimmt Geld an einer Kasse entgegen",
+        "Kategorie: Berufe im Detail"
+      ]
+    },
+    {
+      "word": "BARBER",
+      "clues": [
+        "Schneidet Männern die Haare",
+        "Kategorie: Berufe im Detail"
+      ]
+    },
+    {
+      "word": "TAILOR",
+      "clues": [
+        "Näht und ändert Kleidung",
+        "Kategorie: Berufe im Detail"
+      ]
+    },
+    {
+      "word": "BUTCHER",
+      "clues": [
+        "Verkauft Fleisch",
+        "Kategorie: Berufe im Detail"
+      ]
+    },
+    {
+      "word": "BAKER",
+      "clues": [
+        "Backt Brot und Kuchen",
+        "Kategorie: Berufe im Detail"
+      ]
+    },
+    {
+      "word": "JANITOR",
+      "clues": [
+        "Hält ein Gebäude sauber",
+        "Kategorie: Berufe im Detail"
+      ]
+    },
+    {
+      "word": "RECEPTIONIST",
+      "clues": [
+        "Empfängt Besucher an einem Empfangstisch",
+        "Kategorie: Berufe im Detail"
+      ]
+    },
+    {
+      "word": "ALWAYS",
+      "clues": [
+        "Zu jeder Zeit, ohne Ausnahme",
+        "Kategorie: Zeitausdruecke"
+      ]
+    },
+    {
+      "word": "NEVER",
+      "clues": [
+        "Zu keiner Zeit",
+        "Kategorie: Zeitausdruecke"
+      ]
+    },
+    {
+      "word": "SOMETIMES",
+      "clues": [
+        "Gelegentlich, nicht immer",
+        "Kategorie: Zeitausdruecke"
+      ]
+    },
+    {
+      "word": "OFTEN",
+      "clues": [
+        "Häufig wiederholt",
+        "Kategorie: Zeitausdruecke"
+      ]
+    },
+    {
+      "word": "RARELY",
+      "clues": [
+        "Sehr selten",
+        "Kategorie: Zeitausdruecke"
+      ]
+    },
+    {
+      "word": "RECENTLY",
+      "clues": [
+        "Vor kurzer Zeit",
+        "Kategorie: Zeitausdruecke"
+      ]
+    },
+    {
+      "word": "SOON",
+      "clues": [
+        "In naher Zukunft",
+        "Kategorie: Zeitausdruecke"
+      ]
+    },
+    {
+      "word": "ALREADY",
+      "clues": [
+        "Bereits, früher als erwartet",
+        "Kategorie: Zeitausdruecke"
+      ]
+    },
+    {
+      "word": "FESTIVAL",
+      "clues": [
+        "Eine öffentliche Feier oder ein Fest",
+        "Kategorie: Reisen und Kultur"
+      ]
+    },
+    {
+      "word": "CUSTOM",
+      "clues": [
+        "Eine traditionelle Praxis einer Gruppe",
+        "Kategorie: Reisen und Kultur"
+      ]
+    },
+    {
+      "word": "LANGUAGE",
+      "clues": [
+        "Ein System aus Wörtern zur Kommunikation",
+        "Kategorie: Reisen und Kultur"
+      ]
+    },
+    {
+      "word": "ACCENT",
+      "clues": [
+        "Die besondere Aussprache einer Region",
+        "Kategorie: Reisen und Kultur"
+      ]
+    },
+    {
+      "word": "ECONOMY",
+      "clues": [
+        "Das System von Produktion und Handel eines Landes",
+        "Kategorie: Wirtschaft"
+      ]
+    },
+    {
+      "word": "PRODUCT",
+      "clues": [
+        "Etwas, das hergestellt und verkauft wird",
+        "Kategorie: Wirtschaft"
+      ]
+    },
+    {
+      "word": "CUSTOMER",
+      "clues": [
+        "Jemand, der etwas kauft",
+        "Kategorie: Wirtschaft"
+      ]
+    },
+    {
+      "word": "SUPPLIER",
+      "clues": [
+        "Liefert Waren an ein Unternehmen",
+        "Kategorie: Wirtschaft"
+      ]
+    },
+    {
+      "word": "INDUSTRY",
+      "clues": [
+        "Ein Wirtschaftszweig, wie die Autoindustrie",
+        "Kategorie: Wirtschaft"
+      ]
+    },
+    {
+      "word": "THERMOMETER",
+      "clues": [
+        "Misst die Körpertemperatur",
+        "Kategorie: Gesundheit im Detail"
+      ]
+    },
+    {
+      "word": "WHEELCHAIR",
+      "clues": [
+        "Ein Stuhl auf Rädern für Menschen, die nicht laufen können",
+        "Kategorie: Gesundheit im Detail"
+      ]
+    },
+    {
+      "word": "CRUTCHES",
+      "clues": [
+        "Helfen beim Gehen mit einem verletzten Bein",
+        "Kategorie: Gesundheit im Detail"
+      ]
+    },
+    {
+      "word": "INJECTION",
+      "clues": [
+        "Eine Spritze, die Medizin in den Körper bringt",
+        "Kategorie: Gesundheit im Detail"
+      ]
+    },
+    {
+      "word": "THERAPY",
+      "clues": [
+        "Regelmässige Behandlung, körperlich oder seelisch",
+        "Kategorie: Gesundheit im Detail"
+      ]
+    },
+    {
+      "word": "RECOVERY",
+      "clues": [
+        "Der Prozess, wieder gesund zu werden",
+        "Kategorie: Gesundheit im Detail"
+      ]
+    },
+    {
+      "word": "INFECTION",
+      "clues": [
+        "Wenn Bakterien oder Viren den Körper befallen",
+        "Kategorie: Gesundheit im Detail"
+      ]
+    },
+    {
+      "word": "SIGNATURE",
+      "clues": [
+        "Der handgeschriebene Name, der etwas offiziell macht",
+        "Kategorie: Buerokratie und Recht"
+      ]
+    },
+    {
+      "word": "LICENSE",
+      "clues": [
+        "Ein Dokument, das eine Erlaubnis bestätigt",
+        "Kategorie: Buerokratie und Recht"
+      ]
+    },
+    {
+      "word": "APPLICATION",
+      "clues": [
+        "Ein formeller Antrag, z.B. für einen Job",
+        "Kategorie: Buerokratie und Recht"
+      ]
+    },
+    {
+      "word": "PERMIT",
+      "clues": [
+        "Eine offizielle Erlaubnis für etwas",
+        "Kategorie: Buerokratie und Recht"
+      ]
+    },
+    {
+      "word": "REGULATION",
+      "clues": [
+        "Eine offizielle Regel oder Vorschrift",
+        "Kategorie: Buerokratie und Recht"
+      ]
+    },
+    {
+      "word": "RELIEF",
+      "clues": [
+        "Die Erleichterung, wenn eine Sorge vorbei ist",
+        "Kategorie: Emotionen im Alltag"
+      ]
+    },
+    {
+      "word": "EMBARRASSMENT",
+      "clues": [
+        "Das unangenehme Gefühl, wenn man sich schämt",
+        "Kategorie: Emotionen im Alltag"
+      ]
+    },
+    {
+      "word": "SATISFACTION",
+      "clues": [
+        "Das Gefühl der Zufriedenheit",
+        "Kategorie: Emotionen im Alltag"
+      ]
+    },
+    {
+      "word": "ENTHUSIASM",
+      "clues": [
+        "Grosse Begeisterung für etwas",
+        "Kategorie: Emotionen im Alltag"
+      ]
+    },
+    {
+      "word": "REGRET",
+      "clues": [
+        "Bedauern über eine vergangene Entscheidung",
+        "Kategorie: Emotionen im Alltag"
+      ]
+    },
+    {
+      "word": "ROUTER",
+      "clues": [
+        "Verbindet Geräte mit dem Internet zu Hause",
+        "Kategorie: Technik im Alltag"
+      ]
+    },
+    {
+      "word": "SIGNAL",
+      "clues": [
+        "Ein übertragenes elektronisches Zeichen",
+        "Kategorie: Technik im Alltag"
+      ]
+    },
+    {
+      "word": "UPDATE",
+      "clues": [
+        "Eine neue, verbesserte Version von Software",
+        "Kategorie: Technik im Alltag"
+      ]
+    },
+    {
+      "word": "FILE",
+      "clues": [
+        "Ein einzelnes, gespeichertes Dokument",
+        "Kategorie: Technik im Alltag"
+      ]
+    },
+    {
+      "word": "WATERFALL",
+      "clues": [
+        "Wasser, das über eine steile Klippe fällt",
+        "Kategorie: Natur weiter"
+      ]
+    },
+    {
+      "word": "CAVE",
+      "clues": [
+        "Ein natürlicher Hohlraum im Fels",
+        "Kategorie: Natur weiter"
+      ]
+    },
+    {
+      "word": "CLIFF",
+      "clues": [
+        "Ein steiler Felsabhang",
+        "Kategorie: Natur weiter"
+      ]
+    },
+    {
+      "word": "SWAMP",
+      "clues": [
+        "Ein feuchtes, sumpfiges Gebiet",
+        "Kategorie: Natur weiter"
+      ]
+    },
+    {
+      "word": "NOVEL",
+      "clues": [
+        "Ein langes, erfundenes Buch",
+        "Kategorie: Kunst und Literatur"
+      ]
+    },
+    {
+      "word": "POEM",
+      "clues": [
+        "Ein kurzes, oft gereimtes literarisches Werk",
+        "Kategorie: Kunst und Literatur"
+      ]
+    },
+    {
+      "word": "AUTHOR",
+      "clues": [
+        "Jemand, der Bücher schreibt",
+        "Kategorie: Kunst und Literatur"
+      ]
+    },
+    {
+      "word": "SURGEON",
+      "clues": [
+        "Führt Operationen durch",
+        "Kategorie: Mehr Berufe"
+      ]
+    },
+    {
+      "word": "PSYCHOLOGIST",
+      "clues": [
+        "Hilft Menschen mit seelischen Problemen",
+        "Kategorie: Mehr Berufe"
+      ]
+    },
+    {
+      "word": "VETERINARIAN",
+      "clues": [
+        "Ein Arzt für Tiere",
+        "Kategorie: Mehr Berufe"
+      ]
+    },
+    {
+      "word": "CARPENTER",
+      "clues": [
+        "Arbeitet beruflich mit Holz",
+        "Kategorie: Mehr Berufe"
+      ]
+    },
+    {
+      "word": "EDITOR",
+      "clues": [
+        "Überprüft und verbessert geschriebene Texte",
+        "Kategorie: Mehr Berufe"
+      ]
+    },
+    {
+      "word": "MISTAKE",
+      "clues": [
+        "Ein Fehler",
+        "Kategorie: Alltag weiter"
+      ]
+    },
+    {
+      "word": "HABIT",
+      "clues": [
+        "Eine Angewohnheit, oft unbewusst wiederholt",
+        "Kategorie: Alltag weiter"
+      ]
+    },
+    {
+      "word": "CHOICE",
+      "clues": [
+        "Eine getroffene Wahl zwischen Optionen",
+        "Kategorie: Alltag weiter"
+      ]
+    },
+    {
+      "word": "EFFORT",
+      "clues": [
+        "Angestrengte Anstrengung, um etwas zu erreichen",
+        "Kategorie: Alltag weiter"
+      ]
+    },
+    {
+      "word": "ADVICE",
+      "clues": [
+        "Ein Vorschlag, was jemand tun sollte",
+        "Kategorie: Alltag weiter"
+      ]
+    },
+    {
+      "word": "EXCUSE",
+      "clues": [
+        "Ein Grund, den man für ein Fehlverhalten angibt",
+        "Kategorie: Alltag weiter"
+      ]
+    },
+    {
+      "word": "PROMISE",
+      "clues": [
+        "Ein Versprechen, etwas zu tun",
+        "Kategorie: Alltag weiter"
+      ]
+    },
+    {
+      "word": "SECRET",
+      "clues": [
+        "Etwas, das man niemandem erzählt",
+        "Kategorie: Alltag weiter"
+      ]
+    },
+    {
+      "word": "RUMOR",
+      "clues": [
+        "Eine unbestätigte Information, die sich verbreitet",
+        "Kategorie: Alltag weiter",
+        "Eine unbestätigte, weitergegebene Information",
+        "Kategorie: Kommunikation"
+      ]
+    },
+    {
+      "word": "GOSSIP",
+      "clues": [
+        "Geschwätz über andere Menschen",
+        "Kategorie: Alltag weiter"
+      ]
+    },
+    {
+      "word": "APOLOGY",
+      "clues": [
+        "Eine Entschuldigung für einen Fehler",
+        "Kategorie: Alltag weiter"
+      ]
+    },
+    {
+      "word": "WARNING",
+      "clues": [
+        "Ein Hinweis auf eine Gefahr",
+        "Kategorie: Alltag weiter"
+      ]
+    },
+    {
+      "word": "VOYAGE",
+      "clues": [
+        "Eine lange Reise, oft mit dem Schiff",
+        "Kategorie: Reisen weiter"
+      ]
+    },
+    {
+      "word": "ITINERARY",
+      "clues": [
+        "Ein detaillierter Reiseplan",
+        "Kategorie: Reisen weiter"
+      ]
+    },
+    {
+      "word": "DEPARTURE",
+      "clues": [
+        "Der Moment, in dem man abreist",
+        "Kategorie: Reisen weiter"
+      ]
+    },
+    {
+      "word": "ARRIVAL",
+      "clues": [
+        "Der Moment, in dem man ankommt",
+        "Kategorie: Reisen weiter"
+      ]
+    },
+    {
+      "word": "CUSTOMS",
+      "clues": [
+        "Die Grenzkontrolle, wo Gepäck geprüft wird",
+        "Kategorie: Reisen weiter"
+      ]
+    },
+    {
+      "word": "EMBASSY",
+      "clues": [
+        "Die offizielle Vertretung eines Landes im Ausland",
+        "Kategorie: Reisen weiter"
+      ]
+    },
+    {
+      "word": "TOURIST",
+      "clues": [
+        "Jemand, der zum Vergnügen reist",
+        "Kategorie: Reisen weiter"
+      ]
+    },
+    {
+      "word": "PRESENTATION",
+      "clues": [
+        "Ein Vortrag vor einer Gruppe",
+        "Kategorie: Buero weiter"
+      ]
+    },
+    {
+      "word": "CLIENT",
+      "clues": [
+        "Ein Kunde, der eine Dienstleistung kauft",
+        "Kategorie: Buero weiter"
+      ]
+    },
+    {
+      "word": "SUPERVISOR",
+      "clues": [
+        "Überwacht die Arbeit anderer",
+        "Kategorie: Buero weiter"
+      ]
+    },
+    {
+      "word": "HURRICANE",
+      "clues": [
+        "Ein extrem starker, tropischer Sturm",
+        "Kategorie: Wetter Naturkatastrophen"
+      ]
+    },
+    {
+      "word": "TORNADO",
+      "clues": [
+        "Ein sich drehender, zerstörerischer Windwirbel",
+        "Kategorie: Wetter Naturkatastrophen"
+      ]
+    },
+    {
+      "word": "BLIZZARD",
+      "clues": [
+        "Ein extrem starker Schneesturm",
+        "Kategorie: Wetter Naturkatastrophen"
+      ]
+    },
+    {
+      "word": "AVALANCHE",
+      "clues": [
+        "Eine plötzliche Schnee- oder Eislawine",
+        "Kategorie: Wetter Naturkatastrophen"
+      ]
+    },
+    {
+      "word": "BONE",
+      "clues": [
+        "Ein hartes Teil des Skeletts",
+        "Kategorie: Koerper weiter"
+      ]
+    },
+    {
+      "word": "BLOOD",
+      "clues": [
+        "Die rote Flüssigkeit, die im Körper zirkuliert",
+        "Kategorie: Koerper weiter"
+      ]
+    },
+    {
+      "word": "LUNG",
+      "clues": [
+        "Ein Organ zum Atmen",
+        "Kategorie: Koerper weiter"
+      ]
+    },
+    {
+      "word": "BRAIN",
+      "clues": [
+        "Das Organ, das Denken steuert",
+        "Kategorie: Koerper weiter"
+      ]
+    },
+    {
+      "word": "STOMACH",
+      "clues": [
+        "Das Organ, in dem Essen verdaut wird",
+        "Kategorie: Koerper weiter"
+      ]
+    },
+    {
+      "word": "SHOULDER",
+      "clues": [
+        "Verbindet den Arm mit dem Rumpf",
+        "Kategorie: Koerper weiter"
+      ]
+    },
+    {
+      "word": "ELBOW",
+      "clues": [
+        "Das mittlere Gelenk des Arms",
+        "Kategorie: Koerper weiter"
+      ]
+    },
+    {
+      "word": "KNEE",
+      "clues": [
+        "Das mittlere Gelenk des Beins",
+        "Kategorie: Koerper weiter"
+      ]
+    },
+    {
+      "word": "WRIST",
+      "clues": [
+        "Das Gelenk zwischen Hand und Arm",
+        "Kategorie: Koerper weiter"
+      ]
+    },
+    {
+      "word": "NUMBER",
+      "clues": [
+        "Ein mathematischer Wert, wie eins oder zwei",
+        "Kategorie: Zahlen und Mathematik"
+      ]
+    },
+    {
+      "word": "HALF",
+      "clues": [
+        "Die Hälfte von etwas",
+        "Kategorie: Zahlen und Mathematik"
+      ]
+    },
+    {
+      "word": "DOUBLE",
+      "clues": [
+        "Doppelt so viel wie etwas",
+        "Kategorie: Zahlen und Mathematik"
+      ]
+    },
+    {
+      "word": "TOTAL",
+      "clues": [
+        "Die Summe von allem zusammen",
+        "Kategorie: Zahlen und Mathematik"
+      ]
+    },
+    {
+      "word": "AVERAGE",
+      "clues": [
+        "Der typische, mittlere Wert einer Gruppe von Zahlen",
+        "Kategorie: Zahlen und Mathematik"
+      ]
+    },
+    {
+      "word": "PERCENTAGE",
+      "clues": [
+        "Ein Anteil, ausgedrückt in hundert Teilen",
+        "Kategorie: Zahlen und Mathematik"
+      ]
+    },
+    {
+      "word": "CALCULATOR",
+      "clues": [
+        "Ein Gerät, das mathematische Berechnungen durchführt",
+        "Kategorie: Zahlen und Mathematik"
+      ]
+    },
+    {
+      "word": "EQUATION",
+      "clues": [
+        "Ein mathematischer Ausdruck mit Gleichheitszeichen",
+        "Kategorie: Zahlen und Mathematik"
+      ]
+    },
+    {
+      "word": "CONVERSATION",
+      "clues": [
+        "Ein gesprochener Austausch zwischen Menschen",
+        "Kategorie: Kommunikation"
+      ]
+    },
+    {
+      "word": "ARGUMENT",
+      "clues": [
+        "Ein Streit oder eine Meinungsverschiedenheit",
+        "Kategorie: Kommunikation"
+      ]
+    },
+    {
+      "word": "QUESTION",
+      "clues": [
+        "Eine Frage, die eine Antwort erfordert",
+        "Kategorie: Kommunikation"
+      ]
+    },
+    {
+      "word": "STATEMENT",
+      "clues": [
+        "Eine ausgesprochene oder geschriebene Aussage",
+        "Kategorie: Kommunikation"
+      ]
+    },
+    {
+      "word": "ANNOUNCEMENT",
+      "clues": [
+        "Eine öffentliche Bekanntgabe",
+        "Kategorie: Kommunikation"
+      ]
+    },
+    {
+      "word": "INVITATION",
+      "clues": [
+        "Fordert jemanden auf, zu einem Ereignis zu kommen",
+        "Kategorie: Kommunikation"
+      ]
+    },
+    {
+      "word": "REPLY",
+      "clues": [
+        "Eine Antwort auf eine Nachricht",
+        "Kategorie: Kommunikation"
+      ]
+    },
+    {
+      "word": "PUZZLE",
+      "clues": [
+        "Ein Spiel, bei dem Teile zusammengesetzt werden",
+        "Kategorie: Freizeit weiter"
+      ]
+    },
+    {
+      "word": "CHESS",
+      "clues": [
+        "Ein Strategiespiel mit König und Königin",
+        "Kategorie: Freizeit weiter"
+      ]
+    },
+    {
+      "word": "CAMPING",
+      "clues": [
+        "Draussen übernachten, oft in einem Zelt",
+        "Kategorie: Freizeit weiter"
+      ]
+    },
+    {
+      "word": "FISHING",
+      "clues": [
+        "Fische mit einer Angel fangen",
+        "Kategorie: Freizeit weiter"
+      ]
+    },
+    {
+      "word": "GARDENING",
+      "clues": [
+        "Pflanzen im eigenen Garten pflegen",
+        "Kategorie: Freizeit weiter"
+      ]
+    },
+    {
+      "word": "COLLECTING",
+      "clues": [
+        "Systematisch Gegenstände sammeln, als Hobby",
+        "Kategorie: Freizeit weiter"
+      ]
+    },
+    {
+      "word": "KNITTING",
+      "clues": [
+        "Kleidung aus Wolle mit Nadeln herstellen",
+        "Kategorie: Freizeit weiter"
       ]
     },
     {
       "word": "GOES",
       "clues": [
-        "gehen: er/sie/es, Präsens"
+        "gehen: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
       ]
     },
     {
       "word": "WENT",
       "clues": [
-        "gehen: Simple Past"
+        "gehen: Simple Past",
+        "Kategorie: Verben (Konjugation)"
       ]
     },
     {
       "word": "GONE",
       "clues": [
-        "gehen: Partizip Perfekt (past participle)"
+        "gehen: Partizip Perfekt (past participle)",
+        "Kategorie: Verben (Konjugation)"
       ]
     },
     {
       "word": "EATS",
       "clues": [
-        "essen: er/sie/es, Präsens"
+        "essen: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
       ]
     },
     {
       "word": "ATE",
       "clues": [
-        "essen: Simple Past"
+        "essen: Simple Past",
+        "Kategorie: Verben (Konjugation)"
       ]
     },
     {
       "word": "EATEN",
       "clues": [
-        "essen: Partizip Perfekt (past participle)"
+        "essen: Partizip Perfekt (past participle)",
+        "Kategorie: Verben (Konjugation)"
       ]
     },
     {
       "word": "SEES",
       "clues": [
-        "sehen: er/sie/es, Präsens"
+        "sehen: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
       ]
     },
     {
       "word": "SAW",
       "clues": [
-        "sehen: Simple Past"
+        "sehen: Simple Past",
+        "Kategorie: Verben (Konjugation)"
       ]
     },
     {
       "word": "SEEN",
       "clues": [
-        "sehen: Partizip Perfekt (past participle)"
+        "sehen: Partizip Perfekt (past participle)",
+        "Kategorie: Verben (Konjugation)"
       ]
     },
     {
       "word": "TAKES",
       "clues": [
-        "nehmen: er/sie/es, Präsens"
+        "nehmen: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
       ]
     },
     {
       "word": "TOOK",
       "clues": [
-        "nehmen: Simple Past"
+        "nehmen: Simple Past",
+        "Kategorie: Verben (Konjugation)"
       ]
     },
     {
       "word": "TAKEN",
       "clues": [
-        "nehmen: Partizip Perfekt (past participle)"
+        "nehmen: Partizip Perfekt (past participle)",
+        "Kategorie: Verben (Konjugation)"
       ]
     },
     {
       "word": "GIVES",
       "clues": [
-        "geben: er/sie/es, Präsens"
+        "geben: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
       ]
     },
     {
       "word": "GAVE",
       "clues": [
-        "geben: Simple Past"
+        "geben: Simple Past",
+        "Kategorie: Verben (Konjugation)"
       ]
     },
     {
       "word": "GIVEN",
       "clues": [
-        "geben: Partizip Perfekt (past participle)"
+        "geben: Partizip Perfekt (past participle)",
+        "Kategorie: Verben (Konjugation)"
       ]
     },
     {
       "word": "COMES",
       "clues": [
-        "kommen: er/sie/es, Präsens"
+        "kommen: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
       ]
     },
     {
       "word": "CAME",
       "clues": [
-        "kommen: Simple Past"
+        "kommen: Simple Past",
+        "Kategorie: Verben (Konjugation)"
       ]
     },
     {
       "word": "COME",
       "clues": [
-        "kommen: Partizip Perfekt (past participle)"
+        "kommen: Partizip Perfekt (past participle)",
+        "Kategorie: Verben (Konjugation)"
       ]
     },
     {
       "word": "KNOWS",
       "clues": [
-        "wissen/kennen: er/sie/es, Präsens"
+        "wissen/kennen: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
       ]
     },
     {
       "word": "KNEW",
       "clues": [
-        "wissen/kennen: Simple Past"
+        "wissen/kennen: Simple Past",
+        "Kategorie: Verben (Konjugation)"
       ]
     },
     {
       "word": "KNOWN",
       "clues": [
-        "wissen/kennen: Partizip Perfekt (past participle)"
+        "wissen/kennen: Partizip Perfekt (past participle)",
+        "Kategorie: Verben (Konjugation)"
       ]
     },
     {
       "word": "SPEAKS",
       "clues": [
-        "sprechen: er/sie/es, Präsens"
+        "sprechen: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
       ]
     },
     {
       "word": "SPOKE",
       "clues": [
-        "sprechen: Simple Past"
+        "sprechen: Simple Past",
+        "Kategorie: Verben (Konjugation)"
       ]
     },
     {
       "word": "SPOKEN",
       "clues": [
-        "sprechen: Partizip Perfekt (past participle)"
+        "sprechen: Partizip Perfekt (past participle)",
+        "Kategorie: Verben (Konjugation)"
       ]
     },
     {
       "word": "WRITES",
       "clues": [
-        "schreiben: er/sie/es, Präsens"
+        "schreiben: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
       ]
     },
     {
       "word": "WROTE",
       "clues": [
-        "schreiben: Simple Past"
+        "schreiben: Simple Past",
+        "Kategorie: Verben (Konjugation)"
       ]
     },
     {
       "word": "WRITTEN",
       "clues": [
-        "schreiben: Partizip Perfekt (past participle)"
+        "schreiben: Partizip Perfekt (past participle)",
+        "Kategorie: Verben (Konjugation)"
       ]
     },
     {
       "word": "READS",
       "clues": [
-        "lesen: er/sie/es, Präsens"
+        "lesen: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
       ]
     },
     {
       "word": "READ",
       "clues": [
-        "lesen: Simple Past"
+        "lesen: Simple Past",
+        "Kategorie: Verben (Konjugation)"
       ]
     },
     {
       "word": "DRINKS",
       "clues": [
-        "trinken: er/sie/es, Präsens"
+        "trinken: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
       ]
     },
     {
       "word": "DRANK",
       "clues": [
-        "trinken: Simple Past"
+        "trinken: Simple Past",
+        "Kategorie: Verben (Konjugation)"
       ]
     },
     {
       "word": "DRUNK",
       "clues": [
-        "trinken: Partizip Perfekt (past participle)"
+        "trinken: Partizip Perfekt (past participle)",
+        "Kategorie: Verben (Konjugation)"
       ]
     },
     {
       "word": "SINGS",
       "clues": [
-        "singen: er/sie/es, Präsens"
+        "singen: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
       ]
     },
     {
       "word": "SANG",
       "clues": [
-        "singen: Simple Past"
+        "singen: Simple Past",
+        "Kategorie: Verben (Konjugation)"
       ]
     },
     {
       "word": "SUNG",
       "clues": [
-        "singen: Partizip Perfekt (past participle)"
+        "singen: Partizip Perfekt (past participle)",
+        "Kategorie: Verben (Konjugation)"
       ]
     },
     {
       "word": "RUNS",
       "clues": [
-        "laufen/rennen: er/sie/es, Präsens"
+        "laufen/rennen: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
       ]
     },
     {
       "word": "RAN",
       "clues": [
-        "laufen/rennen: Simple Past"
+        "laufen/rennen: Simple Past",
+        "Kategorie: Verben (Konjugation)"
       ]
     },
     {
       "word": "RUN",
       "clues": [
-        "laufen/rennen: Partizip Perfekt (past participle)"
+        "laufen/rennen: Partizip Perfekt (past participle)",
+        "Kategorie: Verben (Konjugation)"
       ]
     },
     {
       "word": "SWIMS",
       "clues": [
-        "schwimmen: er/sie/es, Präsens"
+        "schwimmen: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
       ]
     },
     {
       "word": "SWAM",
       "clues": [
-        "schwimmen: Simple Past"
+        "schwimmen: Simple Past",
+        "Kategorie: Verben (Konjugation)"
       ]
     },
     {
       "word": "SWUM",
       "clues": [
-        "schwimmen: Partizip Perfekt (past participle)"
+        "schwimmen: Partizip Perfekt (past participle)",
+        "Kategorie: Verben (Konjugation)"
       ]
     },
     {
       "word": "BEGINS",
       "clues": [
-        "beginnen: er/sie/es, Präsens"
+        "beginnen: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
       ]
     },
     {
       "word": "BEGAN",
       "clues": [
-        "beginnen: Simple Past"
+        "beginnen: Simple Past",
+        "Kategorie: Verben (Konjugation)"
       ]
     },
     {
       "word": "BEGUN",
       "clues": [
-        "beginnen: Partizip Perfekt (past participle)"
+        "beginnen: Partizip Perfekt (past participle)",
+        "Kategorie: Verben (Konjugation)"
       ]
     },
     {
       "word": "BREAKS",
       "clues": [
-        "brechen: er/sie/es, Präsens"
+        "brechen: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
       ]
     },
     {
       "word": "BROKE",
       "clues": [
-        "brechen: Simple Past"
+        "brechen: Simple Past",
+        "Kategorie: Verben (Konjugation)"
       ]
     },
     {
       "word": "BROKEN",
       "clues": [
-        "brechen: Partizip Perfekt (past participle)"
+        "brechen: Partizip Perfekt (past participle)",
+        "Kategorie: Verben (Konjugation)"
       ]
     },
     {
       "word": "CHOOSES",
       "clues": [
-        "wählen: er/sie/es, Präsens"
+        "wählen: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
       ]
     },
     {
       "word": "CHOSE",
       "clues": [
-        "wählen: Simple Past"
+        "wählen: Simple Past",
+        "Kategorie: Verben (Konjugation)"
       ]
     },
     {
       "word": "CHOSEN",
       "clues": [
-        "wählen: Partizip Perfekt (past participle)"
+        "wählen: Partizip Perfekt (past participle)",
+        "Kategorie: Verben (Konjugation)"
       ]
     },
     {
       "word": "FALLS",
       "clues": [
-        "fallen: er/sie/es, Präsens"
+        "fallen: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
       ]
     },
     {
       "word": "FELL",
       "clues": [
-        "fallen: Simple Past"
+        "fallen: Simple Past",
+        "Kategorie: Verben (Konjugation)"
       ]
     },
     {
       "word": "FALLEN",
       "clues": [
-        "fallen: Partizip Perfekt (past participle)"
+        "Partizip Perfekt des Verbs 'to fall' (herunterfallen)",
+        "Kategorie: Verben (Konjugation)"
       ]
     },
     {
       "word": "FLIES",
       "clues": [
-        "fliegen: er/sie/es, Präsens"
+        "fliegen: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
       ]
     },
     {
       "word": "FLEW",
       "clues": [
-        "fliegen: Simple Past"
+        "fliegen: Simple Past",
+        "Kategorie: Verben (Konjugation)"
       ]
     },
     {
       "word": "FLOWN",
       "clues": [
-        "fliegen: Partizip Perfekt (past participle)"
+        "fliegen: Partizip Perfekt (past participle)",
+        "Kategorie: Verben (Konjugation)"
       ]
     },
     {
       "word": "GROWS",
       "clues": [
-        "wachsen: er/sie/es, Präsens"
+        "wachsen: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
       ]
     },
     {
       "word": "GREW",
       "clues": [
-        "wachsen: Simple Past"
+        "wachsen: Simple Past",
+        "Kategorie: Verben (Konjugation)"
       ]
     },
     {
       "word": "GROWN",
       "clues": [
-        "wachsen: Partizip Perfekt (past participle)"
+        "wachsen: Partizip Perfekt (past participle)",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "WALKS",
+      "clues": [
+        "laufen (zu Fuss gehen): er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "WALKED",
+      "clues": [
+        "laufen (zu Fuss gehen): Simple Past",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "TALKS",
+      "clues": [
+        "reden: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "TALKED",
+      "clues": [
+        "reden: Simple Past",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "WORKS",
+      "clues": [
+        "arbeiten: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "WORKED",
+      "clues": [
+        "arbeiten: Simple Past",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "PLAYS",
+      "clues": [
+        "spielen: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "PLAYED",
+      "clues": [
+        "spielen: Simple Past",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "LOOKS",
+      "clues": [
+        "schauen: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "LOOKED",
+      "clues": [
+        "schauen: Simple Past",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "WANTS",
+      "clues": [
+        "wollen: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "WANTED",
+      "clues": [
+        "wollen: Simple Past",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "NEEDS",
+      "clues": [
+        "brauchen: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "NEEDED",
+      "clues": [
+        "brauchen: Simple Past",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "USES",
+      "clues": [
+        "benutzen: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "USED",
+      "clues": [
+        "benutzen: Simple Past",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "TRIES",
+      "clues": [
+        "versuchen: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "TRIED",
+      "clues": [
+        "versuchen: Simple Past",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "ASKS",
+      "clues": [
+        "fragen: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "ASKED",
+      "clues": [
+        "fragen: Simple Past",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "CALLS",
+      "clues": [
+        "anrufen (nennen): er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "CALLED",
+      "clues": [
+        "anrufen (nennen): Simple Past",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "MOVES",
+      "clues": [
+        "bewegen: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "MOVED",
+      "clues": [
+        "bewegen: Simple Past",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "LIVES",
+      "clues": [
+        "leben (wohnen): er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "LIVED",
+      "clues": [
+        "leben (wohnen): Simple Past",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "BELIEVES",
+      "clues": [
+        "glauben: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "BELIEVED",
+      "clues": [
+        "glauben: Simple Past",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "HAPPENS",
+      "clues": [
+        "passieren: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "HAPPENED",
+      "clues": [
+        "passieren: Simple Past",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "SEEMS",
+      "clues": [
+        "scheinen: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "SEEMED",
+      "clues": [
+        "scheinen: Simple Past",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "HELPS",
+      "clues": [
+        "helfen: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "HELPED",
+      "clues": [
+        "helfen: Simple Past",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "SHOWS",
+      "clues": [
+        "zeigen: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "SHOWED",
+      "clues": [
+        "zeigen: Simple Past",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "SHOWN",
+      "clues": [
+        "zeigen: Partizip Perfekt (past participle)",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "TURNS",
+      "clues": [
+        "drehen: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "TURNED",
+      "clues": [
+        "drehen: Simple Past",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "STARTS",
+      "clues": [
+        "anfangen (starten): er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "STARTED",
+      "clues": [
+        "anfangen (starten): Simple Past",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "HEARS",
+      "clues": [
+        "hören: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "HEARD",
+      "clues": [
+        "hören: Simple Past",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "WATCHES",
+      "clues": [
+        "beobachten (zuschauen): er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "WATCHED",
+      "clues": [
+        "beobachten (zuschauen): Simple Past",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "FOLLOWS",
+      "clues": [
+        "folgen: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "FOLLOWED",
+      "clues": [
+        "folgen: Simple Past",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "STOPS",
+      "clues": [
+        "anhalten (aufhören): er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "STOPPED",
+      "clues": [
+        "anhalten (aufhören): Simple Past",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "CREATES",
+      "clues": [
+        "erschaffen: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "CREATED",
+      "clues": [
+        "erschaffen: Simple Past",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "LEARNS",
+      "clues": [
+        "lernen: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "LEARNED",
+      "clues": [
+        "lernen: Simple Past",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "CHANGES",
+      "clues": [
+        "ändern (wechseln): er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "CHANGED",
+      "clues": [
+        "ändern (wechseln): Simple Past",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "COOKS",
+      "clues": [
+        "kochen: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "COOKED",
+      "clues": [
+        "kochen: Simple Past",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "CLEANS",
+      "clues": [
+        "putzen (reinigen): er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "CLEANED",
+      "clues": [
+        "putzen (reinigen): Simple Past",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "WASHES",
+      "clues": [
+        "waschen: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "WASHED",
+      "clues": [
+        "waschen: Simple Past",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "OPENS",
+      "clues": [
+        "öffnen: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "OPENED",
+      "clues": [
+        "öffnen: Simple Past",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "CLOSES",
+      "clues": [
+        "schliessen: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "CLOSED",
+      "clues": [
+        "schliessen: Simple Past",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "PUSHES",
+      "clues": [
+        "schieben (drücken): er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "PUSHED",
+      "clues": [
+        "schieben (drücken): Simple Past",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "PULLS",
+      "clues": [
+        "ziehen: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "PULLED",
+      "clues": [
+        "ziehen: Simple Past",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "CARRIES",
+      "clues": [
+        "tragen: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "CARRIED",
+      "clues": [
+        "tragen: Simple Past",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "WAITS",
+      "clues": [
+        "warten: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "WAITED",
+      "clues": [
+        "warten: Simple Past",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "VISITS",
+      "clues": [
+        "besuchen: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "VISITED",
+      "clues": [
+        "besuchen: Simple Past",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "TRAVELS",
+      "clues": [
+        "reisen: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "TRAVELED",
+      "clues": [
+        "reisen: Simple Past",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "ARRIVES",
+      "clues": [
+        "ankommen: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "ARRIVED",
+      "clues": [
+        "ankommen: Simple Past",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "DECIDES",
+      "clues": [
+        "entscheiden: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "DECIDED",
+      "clues": [
+        "entscheiden: Simple Past",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "REMEMBERS",
+      "clues": [
+        "sich erinnern: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "REMEMBERED",
+      "clues": [
+        "sich erinnern: Simple Past",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "FORGETS",
+      "clues": [
+        "vergessen: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "FORGOT",
+      "clues": [
+        "vergessen: Simple Past",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "FORGOTTEN",
+      "clues": [
+        "vergessen: Partizip Perfekt (past participle)",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "EXPLAINS",
+      "clues": [
+        "erklären: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "EXPLAINED",
+      "clues": [
+        "erklären: Simple Past",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "ANSWERS",
+      "clues": [
+        "antworten: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "ANSWERED",
+      "clues": [
+        "antworten: Simple Past",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "LISTENS",
+      "clues": [
+        "zuhören: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "LISTENED",
+      "clues": [
+        "zuhören: Simple Past",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "OFFERS",
+      "clues": [
+        "anbieten: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "OFFERED",
+      "clues": [
+        "anbieten: Simple Past",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "PLANS",
+      "clues": [
+        "planen: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "PLANNED",
+      "clues": [
+        "planen: Simple Past",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "BUILDS",
+      "clues": [
+        "bauen: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "BUILT",
+      "clues": [
+        "bauen: Simple Past",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "SENDS",
+      "clues": [
+        "senden (schicken): er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "SENT",
+      "clues": [
+        "senden (schicken): Simple Past",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "SPENDS",
+      "clues": [
+        "ausgeben (verbringen): er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "SPENT",
+      "clues": [
+        "ausgeben (verbringen): Simple Past",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "PAYS",
+      "clues": [
+        "bezahlen: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "PAID",
+      "clues": [
+        "bezahlen: Simple Past",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "BUYS",
+      "clues": [
+        "kaufen: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "BOUGHT",
+      "clues": [
+        "kaufen: Simple Past",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "SELLS",
+      "clues": [
+        "verkaufen: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "SOLD",
+      "clues": [
+        "verkaufen: Simple Past",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "TEACHES",
+      "clues": [
+        "unterrichten (lehren): er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "TAUGHT",
+      "clues": [
+        "unterrichten (lehren): Simple Past",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "CATCHES",
+      "clues": [
+        "fangen: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "CAUGHT",
+      "clues": [
+        "fangen: Simple Past",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "LOSES",
+      "clues": [
+        "verlieren: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "LOST",
+      "clues": [
+        "verlieren: Simple Past",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "WINS",
+      "clues": [
+        "gewinnen: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "WON",
+      "clues": [
+        "gewinnen: Simple Past",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "MEETS",
+      "clues": [
+        "treffen: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "MET",
+      "clues": [
+        "treffen: Simple Past",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "FEELS",
+      "clues": [
+        "fühlen: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "FELT",
+      "clues": [
+        "fühlen: Simple Past",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "KEEPS",
+      "clues": [
+        "behalten: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "KEPT",
+      "clues": [
+        "behalten: Simple Past",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "LEAVES",
+      "clues": [
+        "verlassen (weggehen): er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "LEFT",
+      "clues": [
+        "verlassen (weggehen): Simple Past",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "STANDS",
+      "clues": [
+        "stehen: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "STOOD",
+      "clues": [
+        "stehen: Simple Past",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "SITS",
+      "clues": [
+        "sitzen: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "SAT",
+      "clues": [
+        "sitzen: Simple Past",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "HOLDS",
+      "clues": [
+        "halten: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "HELD",
+      "clues": [
+        "halten: Simple Past",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "TELLS",
+      "clues": [
+        "erzählen: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "TOLD",
+      "clues": [
+        "erzählen: Simple Past",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "THINKS",
+      "clues": [
+        "denken: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "THOUGHT",
+      "clues": [
+        "denken: Simple Past",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "BRINGS",
+      "clues": [
+        "bringen: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "BROUGHT",
+      "clues": [
+        "bringen: Simple Past",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "UNDERSTANDS",
+      "clues": [
+        "verstehen: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "UNDERSTOOD",
+      "clues": [
+        "verstehen: Simple Past",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "FINDS",
+      "clues": [
+        "finden: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "FOUND",
+      "clues": [
+        "finden: Simple Past",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "PUTS",
+      "clues": [
+        "legen (stellen): er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "PUT",
+      "clues": [
+        "legen (stellen): Simple Past",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "CUTS",
+      "clues": [
+        "schneiden: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "CUT",
+      "clues": [
+        "schneiden: Simple Past",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "DRAWS",
+      "clues": [
+        "zeichnen: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "DREW",
+      "clues": [
+        "zeichnen: Simple Past",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "DRAWN",
+      "clues": [
+        "zeichnen: Partizip Perfekt (past participle)",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "DRIVES",
+      "clues": [
+        "fahren: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "DROVE",
+      "clues": [
+        "fahren: Simple Past",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "DRIVEN",
+      "clues": [
+        "fahren: Partizip Perfekt (past participle)",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "RIDES",
+      "clues": [
+        "reiten (fahren): er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "RODE",
+      "clues": [
+        "reiten (fahren): Simple Past",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "RIDDEN",
+      "clues": [
+        "reiten (fahren): Partizip Perfekt (past participle)",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "THROWS",
+      "clues": [
+        "werfen: er/sie/es, Praesens",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "THREW",
+      "clues": [
+        "werfen: Simple Past",
+        "Kategorie: Verben (Konjugation)"
+      ]
+    },
+    {
+      "word": "THROWN",
+      "clues": [
+        "werfen: Partizip Perfekt (past participle)",
+        "Kategorie: Verben (Konjugation)"
       ]
     }
   ]

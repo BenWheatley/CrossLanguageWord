@@ -1,2213 +1,7294 @@
 {
   "metadata": {
-    "title": "English Vocabulary",
+    "title": "English",
     "language": "en",
-    "version": 1
+    "version": 2
   },
   "words": [
     {
       "word": "HOUSE",
       "clues": [
-        "A building where a family lives"
+        "A building where a family lives",
+        "Category: Home & housing"
       ]
     },
     {
       "word": "APARTMENT",
       "clues": [
-        "A rented set of rooms in a larger building"
+        "A rented set of rooms in a larger building",
+        "Category: Home & housing"
       ]
     },
     {
       "word": "KITCHEN",
       "clues": [
-        "The room where you cook"
+        "The room where you cook",
+        "Category: Home & housing"
       ]
     },
     {
       "word": "BATHROOM",
       "clues": [
-        "The room with the shower and toilet"
+        "The room with the shower and toilet",
+        "Category: Home & housing"
       ]
     },
     {
       "word": "BEDROOM",
       "clues": [
-        "The room where you sleep"
+        "The room where you sleep",
+        "Category: Home & housing"
       ]
     },
     {
       "word": "GARDEN",
       "clues": [
-        "A patch of land for growing plants, behind a house"
+        "A patch of land for growing plants, behind a house",
+        "Category: Home & housing"
       ]
     },
     {
       "word": "TABLE",
       "clues": [
-        "Furniture you eat or write at"
+        "Furniture you eat or write at",
+        "Category: Home & housing"
       ]
     },
     {
       "word": "CHAIR",
       "clues": [
-        "A single seat with a back, no arms"
+        "A single seat with a back, no arms",
+        "Category: Home & housing"
       ]
     },
     {
       "word": "SOFA",
       "clues": [
-        "A long, cushioned seat for more than one person"
+        "A long, cushioned seat for more than one person",
+        "Category: Home & housing"
       ]
     },
     {
       "word": "BED",
       "clues": [
-        "Where you sleep at night"
+        "Where you sleep at night",
+        "Category: Home & housing"
       ]
     },
     {
       "word": "WARDROBE",
       "clues": [
         "Tall furniture for storing clothes",
-        "A collection of clothes someone owns"
+        "Category: Home & housing",
+        "A collection of clothes someone owns",
+        "Category: Clothing & weather"
       ]
     },
     {
       "word": "WINDOW",
       "clues": [
-        "Lets light into a room"
+        "Lets light into a room",
+        "Category: Home & housing"
       ]
     },
     {
       "word": "DOOR",
       "clues": [
-        "You open this to enter a room"
+        "You open this to enter a room",
+        "Category: Home & housing"
       ]
     },
     {
       "word": "KEY",
       "clues": [
-        "Turns in a lock"
+        "Turns in a lock",
+        "Category: Home & housing"
       ]
     },
     {
       "word": "RENT",
       "clues": [
-        "Monthly payment to a landlord"
+        "Monthly payment to a landlord",
+        "Category: Home & housing"
       ]
     },
     {
       "word": "LANDLORD",
       "clues": [
-        "The person you pay rent to"
+        "The person you pay rent to",
+        "Category: Home & housing",
+        "Category: Household"
       ]
     },
     {
       "word": "TENANT",
       "clues": [
-        "Someone who rents a home instead of owning it"
+        "Someone who rents a home instead of owning it",
+        "Category: Home & housing",
+        "Someone who rents an apartment",
+        "Category: Household"
       ]
     },
     {
       "word": "NEIGHBOR",
       "clues": [
-        "Lives in the house or flat next door"
+        "Lives in the house or flat next door",
+        "Category: Home & housing"
       ]
     },
     {
       "word": "STREET",
       "clues": [
-        "Cars and bikes drive along it"
+        "Cars and bikes drive along it",
+        "Category: Home & housing"
       ]
     },
     {
       "word": "CITY",
       "clues": [
-        "A large town with many streets"
+        "A large town with many streets",
+        "Category: Home & housing"
       ]
     },
     {
       "word": "VILLAGE",
       "clues": [
-        "A small settlement, smaller than a town"
+        "A small settlement, smaller than a town",
+        "Category: Home & housing"
       ]
     },
     {
       "word": "ADDRESS",
       "clues": [
-        "Street, number, and city: where mail goes"
+        "Street, number, and city: where mail goes",
+        "Category: Home & housing"
       ]
     },
     {
       "word": "CEILING",
       "clues": [
-        "The surface above your head indoors"
+        "The surface above your head indoors",
+        "Category: Home & housing"
       ]
     },
     {
       "word": "BASEMENT",
       "clues": [
-        "The floor of a building below ground level"
+        "The floor of a building below ground level",
+        "Category: Home & housing",
+        "The storage space below a house",
+        "Category: Top Up"
       ]
     },
     {
       "word": "ATTIC",
       "clues": [
-        "Storage space right under the roof"
+        "Storage space right under the roof",
+        "Category: Home & housing",
+        "The storage space right under the roof",
+        "Category: Household"
       ]
     },
     {
       "word": "FENCE",
       "clues": [
-        "A barrier marking the edge of a yard"
+        "A barrier marking the edge of a yard",
+        "Category: Home & housing",
+        "A barrier at the edge of a property",
+        "Category: Household"
       ]
     },
     {
       "word": "DRIVEWAY",
       "clues": [
-        "Where you park a car beside a house"
+        "Where you park a car beside a house",
+        "Category: Home & housing",
+        "Where a car is parked next to a house",
+        "Category: Household"
       ]
     },
     {
       "word": "FURNITURE",
       "clues": [
-        "Chairs, tables, and beds, collectively"
+        "Chairs, tables, and beds, collectively",
+        "Category: Home & housing"
       ]
     },
     {
       "word": "MORTGAGE",
       "clues": [
-        "A long-term loan used to buy a home"
+        "A long-term loan used to buy a home",
+        "Category: Home & housing"
       ]
     },
     {
       "word": "LEASE",
       "clues": [
-        "A signed agreement to rent a property"
+        "A signed agreement to rent a property",
+        "Category: Home & housing"
       ]
     },
     {
       "word": "JOB",
       "clues": [
-        "What you do for a paycheck"
+        "What you do for a paycheck",
+        "Category: Work & career"
       ]
     },
     {
       "word": "WORKPLACE",
       "clues": [
-        "Where you do your job"
+        "Where you do your job",
+        "Category: Work & career"
       ]
     },
     {
       "word": "UNEMPLOYMENT",
       "clues": [
-        "Having no job"
+        "Having no job",
+        "Category: Work & career"
       ]
     },
     {
       "word": "RESUME",
       "clues": [
-        "A document listing your work history"
+        "A document listing your work history",
+        "Category: Work & career"
       ]
     },
     {
       "word": "CONTRACT",
       "clues": [
-        "A signed legal agreement"
+        "A signed legal agreement",
+        "Category: Work & career"
       ]
     },
     {
       "word": "SALARY",
       "clues": [
-        "Regular pay from an employer"
+        "Regular pay from an employer",
+        "Category: Work & career"
       ]
     },
     {
       "word": "COLLEAGUE",
       "clues": [
-        "Someone you work alongside"
+        "Someone you work alongside",
+        "Category: Work & career"
       ]
     },
     {
       "word": "BOSS",
       "clues": [
-        "The person in charge of your work"
+        "The person in charge of your work",
+        "Category: Work & career"
       ]
     },
     {
       "word": "OFFICE",
       "clues": [
-        "Where desk-based work gets done"
+        "Where desk-based work gets done",
+        "Category: Work & career"
       ]
     },
     {
       "word": "MEETING",
       "clues": [
-        "A scheduled work discussion"
+        "A scheduled work discussion",
+        "Category: Work & career",
+        "A planned gathering for work",
+        "Category: Business"
       ]
     },
     {
       "word": "DEADLINE",
       "clues": [
-        "The latest moment something is due"
+        "The latest moment something is due",
+        "Category: Work & career",
+        "The final date something is due",
+        "Category: Legal and Official",
+        "The final date something must be finished by",
+        "Category: Last Few"
       ]
     },
     {
       "word": "INTERVIEW",
       "clues": [
-        "A formal conversation to assess a job candidate"
+        "A formal conversation to assess a job candidate",
+        "Category: Work & career",
+        "A formal conversation, often for a job",
+        "Category: Business"
       ]
     },
     {
       "word": "PROMOTION",
       "clues": [
-        "Being moved up to a higher position at work"
+        "Being moved up to a higher position at work",
+        "Category: Work & career",
+        "A move to a higher position",
+        "Category: Business"
       ]
     },
     {
       "word": "OVERTIME",
       "clues": [
-        "Extra hours worked beyond the usual schedule"
+        "Extra hours worked beyond the usual schedule",
+        "Category: Work & career"
       ]
     },
     {
       "word": "INTERNSHIP",
       "clues": [
-        "A short, often unpaid, work placement"
+        "A short, often unpaid, work placement",
+        "Category: Work & career"
       ]
     },
     {
       "word": "FREELANCER",
       "clues": [
-        "Someone who works for several clients, not one employer"
+        "Someone who works for several clients, not one employer",
+        "Category: Work & career"
       ]
     },
     {
       "word": "PENSION",
       "clues": [
-        "Income received after retirement"
+        "Income received after retirement",
+        "Category: Work & career"
       ]
     },
     {
       "word": "RESIGNATION",
       "clues": [
-        "Formally quitting a job"
+        "Formally quitting a job",
+        "Category: Work & career"
       ]
     },
     {
       "word": "RECRUITER",
       "clues": [
-        "Someone whose job is finding candidates for open roles"
+        "Someone whose job is finding candidates for open roles",
+        "Category: Work & career"
       ]
     },
     {
       "word": "WAREHOUSE",
       "clues": [
-        "A large building for storing goods"
+        "A large building for storing goods",
+        "Category: Work & career",
+        "Category: Last Few"
       ]
     },
     {
       "word": "FACTORY",
       "clues": [
-        "A building where goods are manufactured"
+        "A building where goods are manufactured",
+        "Category: Work & career"
       ]
     },
     {
       "word": "UNION",
       "clues": [
-        "An organized group of workers advocating together"
+        "An organized group of workers advocating together",
+        "Category: Work & career",
+        "An organized group of workers",
+        "Category: Groups and Structures"
       ]
     },
     {
       "word": "BANK",
       "clues": [
-        "Where you keep your savings"
+        "Where you keep your savings",
+        "Category: Money & finance"
       ]
     },
     {
       "word": "ACCOUNT",
       "clues": [
-        "Holds your money at a bank"
+        "Holds your money at a bank",
+        "Category: Money & finance"
       ]
     },
     {
       "word": "COIN",
       "clues": [
-        "A round piece of metal money"
+        "A round piece of metal money",
+        "Category: Money & finance"
       ]
     },
     {
       "word": "INVOICE",
       "clues": [
-        "A bill you need to pay"
+        "A bill you need to pay",
+        "Category: Money & finance"
       ]
     },
     {
       "word": "RECEIPT",
       "clues": [
-        "Proof that you paid"
+        "Proof that you paid",
+        "Category: Money & finance"
       ]
     },
     {
       "word": "PRICE",
       "clues": [
-        "What something costs"
+        "What something costs",
+        "Category: Money & finance"
       ]
     },
     {
       "word": "DISCOUNT",
       "clues": [
-        "A price reduction"
+        "A price reduction",
+        "Category: Money & finance",
+        "A reduction in price",
+        "Category: Last Few"
       ]
     },
     {
       "word": "DEBT",
       "clues": [
-        "Money you owe"
+        "Money you owe",
+        "Category: Money & finance"
       ]
     },
     {
       "word": "LOAN",
       "clues": [
-        "Borrowed money to be paid back"
+        "Borrowed money to be paid back",
+        "Category: Money & finance"
       ]
     },
     {
       "word": "SAVINGS",
       "clues": [
-        "Money set aside for later"
+        "Money set aside for later",
+        "Category: Money & finance"
       ]
     },
     {
       "word": "BUDGET",
       "clues": [
-        "A plan for how to spend money"
+        "A plan for how to spend money",
+        "Category: Money & finance"
       ]
     },
     {
       "word": "CURRENCY",
       "clues": [
-        "The money system used in a country"
+        "The money system used in a country",
+        "Category: Money & finance",
+        "A country's money system",
+        "Category: Travel More"
       ]
     },
     {
       "word": "INTEREST",
       "clues": [
-        "Extra money charged or earned on a loan or savings"
+        "Extra money charged or earned on a loan or savings",
+        "Category: Money & finance"
       ]
     },
     {
       "word": "INSURANCE",
       "clues": [
-        "Pays out if something goes wrong"
+        "Pays out if something goes wrong",
+        "Category: Money & finance"
       ]
     },
     {
       "word": "TAX",
       "clues": [
-        "Money owed to the government from income"
+        "Money owed to the government from income",
+        "Category: Money & finance"
       ]
     },
     {
       "word": "WALLET",
       "clues": [
-        "A small case for carrying cash and cards"
+        "A small case for carrying cash and cards",
+        "Category: Money & finance",
+        "A small case for cash and cards",
+        "Category: Everyday Objects"
       ]
     },
     {
       "word": "INVESTMENT",
       "clues": [
-        "Money put into something hoping it grows"
+        "Money put into something hoping it grows",
+        "Category: Money & finance"
       ]
     },
     {
       "word": "BANKRUPT",
       "clues": [
-        "Legally unable to pay one's debts"
+        "Legally unable to pay one's debts",
+        "Category: Money & finance"
       ]
     },
     {
       "word": "WITHDRAWAL",
       "clues": [
-        "Taking money out of an account"
+        "Taking money out of an account",
+        "Category: Money & finance"
       ]
     },
     {
       "word": "INFLATION",
       "clues": [
-        "A general rise in prices over time"
+        "A general rise in prices over time",
+        "Category: Money & finance"
       ]
     },
     {
       "word": "HEALTH",
       "clues": [
-        "The state of being well"
+        "The state of being well",
+        "Category: Health & body"
       ]
     },
     {
       "word": "ILLNESS",
       "clues": [
-        "A medical condition that makes you unwell"
+        "A medical condition that makes you unwell",
+        "Category: Health & body"
       ]
     },
     {
       "word": "DOCTOR",
       "clues": [
-        "Treats illness and injury professionally"
+        "Treats illness and injury professionally",
+        "Category: Health & body"
       ]
     },
     {
       "word": "HOSPITAL",
       "clues": [
-        "Where you go for serious medical treatment"
+        "Where you go for serious medical treatment",
+        "Category: Health & body"
       ]
     },
     {
       "word": "PHARMACY",
       "clues": [
-        "Where prescriptions get filled"
+        "Where prescriptions get filled",
+        "Category: Health & body"
       ]
     },
     {
       "word": "MEDICINE",
       "clues": [
-        "Something a doctor prescribes to treat illness"
+        "Something a doctor prescribes to treat illness",
+        "Category: Health & body"
       ]
     },
     {
       "word": "FEVER",
       "clues": [
-        "A raised body temperature when you're sick"
+        "A raised body temperature when you're sick",
+        "Category: Health & body"
       ]
     },
     {
       "word": "HEADACHE",
       "clues": [
-        "Pain felt inside the skull"
+        "Pain felt inside the skull",
+        "Category: Health & body"
       ]
     },
     {
       "word": "INJURY",
       "clues": [
-        "Physical harm from an accident"
+        "Physical harm from an accident",
+        "Category: Health & body"
       ]
     },
     {
       "word": "SURGERY",
       "clues": [
-        "An operation performed to treat a condition"
+        "An operation performed to treat a condition",
+        "Category: Health & body",
+        "An operation to treat a medical problem",
+        "Category: Final Additions"
       ]
     },
     {
       "word": "NURSE",
       "clues": [
-        "Cares for patients under a doctor's supervision"
+        "Cares for patients under a doctor's supervision",
+        "Category: Health & body"
       ]
     },
     {
       "word": "VACCINE",
       "clues": [
-        "A shot that trains the body to fight a disease"
+        "A shot that trains the body to fight a disease",
+        "Category: Health & body",
+        "A shot that protects against disease",
+        "Category: Final Additions"
       ]
     },
     {
       "word": "DIAGNOSIS",
       "clues": [
-        "A doctor's identification of what's wrong"
+        "A doctor's identification of what's wrong",
+        "Category: Health & body",
+        "A doctor's determination of what's wrong",
+        "Category: Final Additions",
+        "A medical determination of an illness"
       ]
     },
     {
       "word": "SYMPTOM",
       "clues": [
-        "A sign that something is medically wrong"
+        "A sign that something is medically wrong",
+        "Category: Health & body",
+        "Category: Final Additions"
       ]
     },
     {
       "word": "ALLERGY",
       "clues": [
-        "An overreaction of the body to something harmless"
+        "An overreaction of the body to something harmless",
+        "Category: Health & body"
       ]
     },
     {
       "word": "EXERCISE",
       "clues": [
-        "Physical activity done to stay fit"
+        "Physical activity done to stay fit",
+        "Category: Health & body"
       ]
     },
     {
       "word": "NUTRITION",
       "clues": [
-        "The study of food and how it nourishes the body"
+        "The study of food and how it nourishes the body",
+        "Category: Health & body",
+        "What and how a person eats",
+        "Category: Final Additions"
       ]
     },
     {
       "word": "THERAPY",
       "clues": [
-        "Ongoing treatment for a physical or mental condition"
+        "Ongoing treatment for a physical or mental condition",
+        "Category: Health & body",
+        "Regular treatment, physical or mental",
+        "Category: Health More"
       ]
     },
     {
       "word": "WHEELCHAIR",
       "clues": [
-        "A chair on wheels for someone who can't walk"
+        "A chair on wheels for someone who can't walk",
+        "Category: Health & body",
+        "A chair on wheels for people who can't walk",
+        "Category: Health More"
       ]
     },
     {
       "word": "BANDAGE",
       "clues": [
-        "Wrapped around a wound to protect it"
+        "Wrapped around a wound to protect it",
+        "Category: Health & body",
+        "Wrapped around a wound",
+        "Category: Health More"
       ]
     },
     {
       "word": "STETHOSCOPE",
       "clues": [
-        "A doctor's tool for listening to your heartbeat"
+        "A doctor's tool for listening to your heartbeat",
+        "Category: Health & body"
       ]
     },
     {
       "word": "SKELETON",
       "clues": [
-        "The framework of bones inside a body"
+        "The framework of bones inside a body",
+        "Category: Health & body"
       ]
     },
     {
       "word": "MUSCLE",
       "clues": [
-        "Tissue that contracts to produce movement"
+        "Tissue that contracts to produce movement",
+        "Category: Health & body",
+        "Moves body parts by contracting",
+        "Category: Body"
       ]
     },
     {
       "word": "FAMILY",
       "clues": [
-        "Parents, children, and relatives together"
+        "Parents, children, and relatives together",
+        "Category: Family & relationships"
       ]
     },
     {
       "word": "PARENT",
       "clues": [
-        "A mother or father"
+        "A mother or father",
+        "Category: Family & relationships"
       ]
     },
     {
       "word": "SIBLING",
       "clues": [
-        "A brother or sister"
+        "A brother or sister",
+        "Category: Family & relationships"
       ]
     },
     {
       "word": "COUSIN",
       "clues": [
-        "A child of your aunt or uncle"
+        "A child of your aunt or uncle",
+        "Category: Family & relationships"
       ]
     },
     {
       "word": "SPOUSE",
       "clues": [
-        "A husband or wife"
+        "A husband or wife",
+        "Category: Family & relationships"
       ]
     },
     {
       "word": "WIDOW",
       "clues": [
-        "A woman whose husband has died"
+        "A woman whose husband has died",
+        "Category: Family & relationships"
       ]
     },
     {
       "word": "ORPHAN",
       "clues": [
-        "A child whose parents have both died"
+        "A child whose parents have both died",
+        "Category: Family & relationships"
       ]
     },
     {
       "word": "GRANDPARENT",
       "clues": [
-        "Your parent's parent"
+        "Your parent's parent",
+        "Category: Family & relationships"
       ]
     },
     {
       "word": "TODDLER",
       "clues": [
-        "A young child just learning to walk"
+        "A young child just learning to walk",
+        "Category: Family & relationships"
       ]
     },
     {
       "word": "INFANT",
       "clues": [
-        "A very young baby"
+        "A very young baby",
+        "Category: Family & relationships"
       ]
     },
     {
       "word": "ADOLESCENT",
       "clues": [
-        "Someone in the teenage years, between child and adult"
+        "Someone in the teenage years, between child and adult",
+        "Category: Family & relationships"
       ]
     },
     {
       "word": "FRIENDSHIP",
       "clues": [
-        "The bond between close friends"
+        "The bond between close friends",
+        "Category: Family & relationships"
       ]
     },
     {
       "word": "MARRIAGE",
       "clues": [
-        "The legal union of two people"
+        "The legal union of two people",
+        "Category: Family & relationships"
       ]
     },
     {
       "word": "DIVORCE",
       "clues": [
-        "The legal ending of a marriage"
+        "The legal ending of a marriage",
+        "Category: Family & relationships"
       ]
     },
     {
       "word": "WEDDING",
       "clues": [
-        "The ceremony where two people marry"
+        "The ceremony where two people marry",
+        "Category: Family & relationships"
       ]
     },
     {
       "word": "ANNIVERSARY",
       "clues": [
-        "The yearly date something important happened"
+        "The yearly date something important happened",
+        "Category: Family & relationships",
+        "A yearly date marking a past event",
+        "Category: Last Few"
       ]
     },
     {
       "word": "BIRTHDAY",
       "clues": [
-        "The yearly anniversary of the day you were born"
+        "The yearly anniversary of the day you were born",
+        "Category: Family & relationships"
       ]
     },
     {
       "word": "REUNION",
       "clues": [
-        "A gathering of people who haven't met in a while"
+        "A gathering of people who haven't met in a while",
+        "Category: Family & relationships",
+        "Category: Last Few"
       ]
     },
     {
       "word": "STRANGER",
       "clues": [
-        "Someone you don't know"
+        "Someone you don't know",
+        "Category: Family & relationships",
+        "Category: People and Society"
       ]
     },
     {
       "word": "ACQUAINTANCE",
       "clues": [
-        "Someone you know only slightly"
+        "Someone you know only slightly",
+        "Category: Family & relationships",
+        "Someone known only slightly",
+        "Category: People and Society"
       ]
     },
     {
       "word": "SCHOOL",
       "clues": [
-        "Where children go to learn"
+        "Where children go to learn",
+        "Category: Education"
       ]
     },
     {
       "word": "TEACHER",
       "clues": [
-        "Someone who instructs students"
+        "Someone who instructs students",
+        "Category: Education"
       ]
     },
     {
       "word": "STUDENT",
       "clues": [
-        "Someone enrolled to learn"
+        "Someone enrolled to learn",
+        "Category: Education"
       ]
     },
     {
       "word": "CLASSROOM",
       "clues": [
-        "Where lessons are taught"
+        "Where lessons are taught",
+        "Category: Education",
+        "The room where lessons happen",
+        "Category: Office and School"
       ]
     },
     {
       "word": "HOMEWORK",
       "clues": [
-        "School work done at home"
+        "School work done at home",
+        "Category: Education"
       ]
     },
     {
       "word": "EXAM",
       "clues": [
-        "A test you can pass or fail"
+        "A test you can pass or fail",
+        "Category: Education"
       ]
     },
     {
       "word": "GRADE",
       "clues": [
-        "A letter or number score for schoolwork"
+        "A letter or number score for schoolwork",
+        "Category: Education"
       ]
     },
     {
       "word": "UNIVERSITY",
       "clues": [
-        "Where students go after secondary school"
+        "Where students go after secondary school",
+        "Category: Education"
       ]
     },
     {
       "word": "DEGREE",
       "clues": [
-        "A qualification earned after university study"
+        "A qualification earned after university study",
+        "Category: Education"
       ]
     },
     {
       "word": "LECTURE",
       "clues": [
-        "A university class where a professor talks and students listen"
+        "A university class where a professor talks and students listen",
+        "Category: Education",
+        "A university talk given by a professor",
+        "Category: Final Additions"
       ]
     },
     {
       "word": "LIBRARY",
       "clues": [
-        "A quiet building full of books to borrow"
+        "A quiet building full of books to borrow",
+        "Category: Education"
       ]
     },
     {
       "word": "SCHOLARSHIP",
       "clues": [
-        "Money awarded to help pay for study"
+        "Money awarded to help pay for study",
+        "Category: Education",
+        "Category: Final Additions"
       ]
     },
     {
       "word": "CURRICULUM",
       "clues": [
-        "The set subjects taught in a course"
+        "The set subjects taught in a course",
+        "Category: Education",
+        "The set subjects of a course",
+        "Category: Final Additions"
       ]
     },
     {
       "word": "TEXTBOOK",
       "clues": [
-        "A book used to teach a school subject"
+        "A book used to teach a school subject",
+        "Category: Education",
+        "Category: Office and School"
       ]
     },
     {
       "word": "GRADUATION",
       "clues": [
-        "The ceremony marking the end of a course of study"
+        "The ceremony marking the end of a course of study",
+        "Category: Education"
       ]
     },
     {
       "word": "TUITION",
       "clues": [
-        "Money paid for instruction, especially at university"
+        "Money paid for instruction, especially at university",
+        "Category: Education"
       ]
     },
     {
       "word": "ALPHABET",
       "clues": [
-        "The full set of letters used to write a language"
+        "The full set of letters used to write a language",
+        "Category: Education"
       ]
     },
     {
       "word": "VOCABULARY",
       "clues": [
-        "The words someone knows or uses"
+        "The words someone knows or uses",
+        "Category: Education"
       ]
     },
     {
       "word": "DICTIONARY",
       "clues": [
-        "A book that defines words"
+        "A book that defines words",
+        "Category: Education",
+        "A book that explains words",
+        "Category: Office and School"
       ]
     },
     {
       "word": "KINDERGARTEN",
       "clues": [
-        "School for the youngest children, before first grade"
+        "School for the youngest children, before first grade",
+        "Category: Education"
       ]
     },
     {
       "word": "ENVIRONMENT",
       "clues": [
-        "Nature and surroundings we should protect"
+        "Nature and surroundings we should protect",
+        "Category: Environment & nature"
       ]
     },
     {
       "word": "CLIMATE",
       "clues": [
-        "The typical weather pattern of a region over time"
+        "The typical weather pattern of a region over time",
+        "Category: Environment & nature"
       ]
     },
     {
       "word": "POLLUTION",
       "clues": [
-        "Dirt or waste harming the environment"
+        "Dirt or waste harming the environment",
+        "Category: Environment & nature"
       ]
     },
     {
       "word": "RECYCLING",
       "clues": [
-        "Turning old materials into new ones"
+        "Turning old materials into new ones",
+        "Category: Environment & nature"
       ]
     },
     {
       "word": "ENERGY",
       "clues": [
-        "Powers lights, machines, and engines"
+        "Powers lights, machines, and engines",
+        "Category: Environment & nature"
       ]
     },
     {
       "word": "ELECTRICITY",
       "clues": [
-        "Flows through wires to power devices"
+        "Flows through wires to power devices",
+        "Category: Environment & nature"
       ]
     },
     {
       "word": "SOLAR",
       "clues": [
-        "Powered by sunlight"
+        "Powered by sunlight",
+        "Category: Environment & nature"
       ]
     },
     {
       "word": "WATER",
       "clues": [
-        "You drink it and swim in it"
+        "You drink it and swim in it",
+        "Category: Environment & nature"
       ]
     },
     {
       "word": "FOREST",
       "clues": [
-        "A large area covered in trees"
+        "A large area covered in trees",
+        "Category: Environment & nature"
       ]
     },
     {
       "word": "OCEAN",
       "clues": [
-        "The largest body of salt water"
+        "The largest body of salt water",
+        "Category: Environment & nature"
       ]
     },
     {
       "word": "MOUNTAIN",
       "clues": [
-        "A very tall landform"
+        "A very tall landform",
+        "Category: Environment & nature"
       ]
     },
     {
       "word": "DESERT",
       "clues": [
-        "A very dry region with little rainfall"
+        "A very dry region with little rainfall",
+        "Category: Environment & nature",
+        "Category: Sound and Nature"
       ]
     },
     {
       "word": "ISLAND",
       "clues": [
-        "Land completely surrounded by water"
+        "Land completely surrounded by water",
+        "Category: Environment & nature"
       ]
     },
     {
       "word": "VOLCANO",
       "clues": [
-        "A mountain that can erupt with lava"
+        "A mountain that can erupt with lava",
+        "Category: Environment & nature",
+        "Category: Nature More"
       ]
     },
     {
       "word": "EARTHQUAKE",
       "clues": [
-        "A sudden shaking of the ground"
+        "A sudden shaking of the ground",
+        "Category: Environment & nature",
+        "Category: Nature More"
       ]
     },
     {
       "word": "DROUGHT",
       "clues": [
-        "A long period without enough rain"
+        "A long period without enough rain",
+        "Category: Environment & nature",
+        "Category: Weather and Disasters"
       ]
     },
     {
       "word": "WILDLIFE",
       "clues": [
-        "Wild animals living in their natural habitat"
+        "Wild animals living in their natural habitat",
+        "Category: Environment & nature"
       ]
     },
     {
       "word": "HABITAT",
       "clues": [
-        "The natural home of a plant or animal"
+        "The natural home of a plant or animal",
+        "Category: Environment & nature",
+        "Category: Nature More"
       ]
     },
     {
       "word": "EXTINCT",
       "clues": [
-        "No longer existing as a species"
+        "No longer existing as a species",
+        "Category: Environment & nature",
+        "Category: Sound and Nature"
       ]
     },
     {
       "word": "ECOSYSTEM",
       "clues": [
-        "A community of living things and their environment"
+        "A community of living things and their environment",
+        "Category: Environment & nature",
+        "Category: Sound and Nature"
       ]
     },
     {
       "word": "RAINFOREST",
       "clues": [
-        "A dense, tropical forest with heavy rainfall"
+        "A dense, tropical forest with heavy rainfall",
+        "Category: Environment & nature",
+        "A dense, tropical forest with heavy rain",
+        "Category: Sound and Nature"
       ]
     },
     {
       "word": "GLACIER",
       "clues": [
-        "A huge, slow-moving mass of ice"
+        "A huge, slow-moving mass of ice",
+        "Category: Environment & nature",
+        "A huge, slowly moving mass of ice",
+        "Category: Sound and Nature"
       ]
     },
     {
       "word": "TRAFFIC",
       "clues": [
-        "Cars and buses moving through a city"
+        "Cars and buses moving through a city",
+        "Category: Transportation & travel"
       ]
     },
     {
       "word": "AIRPORT",
       "clues": [
-        "Where planes take off and land"
+        "Where planes take off and land",
+        "Category: Transportation & travel"
       ]
     },
     {
       "word": "STATION",
       "clues": [
-        "Where you catch a train"
+        "Where you catch a train",
+        "Category: Transportation & travel"
       ]
     },
     {
       "word": "TICKET",
       "clues": [
-        "You show this to board a train or plane"
+        "You show this to board a train or plane",
+        "Category: Transportation & travel"
       ]
     },
     {
       "word": "TIMETABLE",
       "clues": [
-        "Lists when trains or buses depart"
+        "Lists when trains or buses depart",
+        "Category: Transportation & travel"
       ]
     },
     {
       "word": "DELAY",
       "clues": [
-        "Arriving later than scheduled"
+        "Arriving later than scheduled",
+        "Category: Transportation & travel",
+        "Arriving later than planned",
+        "Category: Final Additions"
       ]
     },
     {
       "word": "PASSENGER",
       "clues": [
-        "Someone riding in a vehicle, not driving it"
+        "Someone riding in a vehicle, not driving it",
+        "Category: Transportation & travel",
+        "Someone riding in a vehicle without driving it",
+        "Category: Final Additions"
       ]
     },
     {
       "word": "LUGGAGE",
       "clues": [
-        "What you pack and carry when traveling"
+        "What you pack and carry when traveling",
+        "Category: Transportation & travel"
       ]
     },
     {
       "word": "SUITCASE",
       "clues": [
-        "A case for packing clothes when traveling"
+        "A case for packing clothes when traveling",
+        "Category: Transportation & travel",
+        "A case for packing clothes",
+        "Category: Final Additions"
       ]
     },
     {
       "word": "PASSPORT",
       "clues": [
-        "Needed to cross international borders"
+        "Needed to cross international borders",
+        "Category: Transportation & travel"
       ]
     },
     {
       "word": "JOURNEY",
       "clues": [
-        "A trip somewhere"
+        "A trip somewhere",
+        "Category: Transportation & travel"
       ]
     },
     {
       "word": "DESTINATION",
       "clues": [
-        "Where a journey ends"
+        "Where a journey ends",
+        "Category: Transportation & travel"
       ]
     },
     {
       "word": "ITINERARY",
       "clues": [
-        "A planned schedule for a trip"
+        "A planned schedule for a trip",
+        "Category: Transportation & travel",
+        "A detailed travel plan",
+        "Category: Travel More"
       ]
     },
     {
       "word": "SOUVENIR",
       "clues": [
-        "Something bought to remember a trip by"
+        "Something bought to remember a trip by",
+        "Category: Transportation & travel"
       ]
     },
     {
       "word": "HIGHWAY",
       "clues": [
-        "A major road for fast travel between places"
+        "A major road for fast travel between places",
+        "Category: Transportation & travel"
       ]
     },
     {
       "word": "BICYCLE",
       "clues": [
-        "A two-wheeled vehicle you pedal"
+        "A two-wheeled vehicle you pedal",
+        "Category: Transportation & travel"
       ]
     },
     {
       "word": "MOTORCYCLE",
       "clues": [
-        "A two-wheeled motor vehicle"
+        "A two-wheeled motor vehicle",
+        "Category: Transportation & travel"
       ]
     },
     {
       "word": "SUBMARINE",
       "clues": [
-        "A vessel that travels underwater"
+        "A vessel that travels underwater",
+        "Category: Transportation & travel",
+        "Category: Final Additions"
       ]
     },
     {
       "word": "HELICOPTER",
       "clues": [
-        "An aircraft with spinning overhead blades"
+        "An aircraft with spinning overhead blades",
+        "Category: Transportation & travel"
       ]
     },
     {
       "word": "COMPASS",
       "clues": [
-        "A tool that points toward magnetic north"
+        "A tool that points toward magnetic north",
+        "Category: Transportation & travel",
+        "A tool that points north",
+        "Category: Final Additions"
       ]
     },
     {
       "word": "BREAKFAST",
       "clues": [
-        "The first meal of the day"
+        "The first meal of the day",
+        "Category: Food & cooking"
       ]
     },
     {
       "word": "RECIPE",
       "clues": [
-        "Step-by-step instructions for cooking a dish"
+        "Step-by-step instructions for cooking a dish",
+        "Category: Food & cooking"
       ]
     },
     {
       "word": "INGREDIENT",
       "clues": [
-        "One item used in a recipe"
+        "One item used in a recipe",
+        "Category: Food & cooking"
       ]
     },
     {
       "word": "VEGETABLE",
       "clues": [
-        "Carrots, potatoes, and the like"
+        "Carrots, potatoes, and the like",
+        "Category: Food & cooking"
       ]
     },
     {
       "word": "BREAD",
       "clues": [
-        "Baked from flour, sliced for sandwiches"
+        "Baked from flour, sliced for sandwiches",
+        "Category: Food & cooking"
       ]
     },
     {
       "word": "CHEESE",
       "clues": [
-        "Made from milk, often sliced onto bread"
+        "Made from milk, often sliced onto bread",
+        "Category: Food & cooking"
       ]
     },
     {
       "word": "RESTAURANT",
       "clues": [
-        "Where you pay to eat a prepared meal"
+        "Where you pay to eat a prepared meal",
+        "Category: Food & cooking"
       ]
     },
     {
       "word": "WAITER",
       "clues": [
-        "Brings your food to the table"
+        "Brings your food to the table",
+        "Category: Food & cooking",
+        "Brings food to your table at a restaurant",
+        "Category: Professions"
       ]
     },
     {
       "word": "MENU",
       "clues": [
-        "Lists what a restaurant serves"
+        "Lists what a restaurant serves",
+        "Category: Food & cooking"
       ]
     },
     {
       "word": "APPETITE",
       "clues": [
-        "A desire to eat"
+        "A desire to eat",
+        "Category: Food & cooking"
       ]
     },
     {
       "word": "LEFTOVERS",
       "clues": [
-        "Food saved after a meal to eat later"
+        "Food saved after a meal to eat later",
+        "Category: Food & cooking"
       ]
     },
     {
       "word": "SEASONING",
       "clues": [
-        "Salt, herbs, or spices added to flavor food"
+        "Salt, herbs, or spices added to flavor food",
+        "Category: Food & cooking"
       ]
     },
     {
       "word": "VEGETARIAN",
       "clues": [
-        "Someone who doesn't eat meat"
+        "Someone who doesn't eat meat",
+        "Category: Food & cooking"
       ]
     },
     {
       "word": "DESSERT",
       "clues": [
-        "A sweet course served at the end of a meal"
+        "A sweet course served at the end of a meal",
+        "Category: Food & cooking"
       ]
     },
     {
       "word": "BEVERAGE",
       "clues": [
-        "Any drink"
+        "Any drink",
+        "Category: Food & cooking"
       ]
     },
     {
       "word": "GROCERY",
       "clues": [
-        "Food and household items bought at a store"
+        "Food and household items bought at a store",
+        "Category: Food & cooking"
       ]
     },
     {
       "word": "REFRIGERATOR",
       "clues": [
-        "Keeps food cold to preserve it"
+        "Keeps food cold to preserve it",
+        "Category: Food & cooking",
+        "Category: Kitchen Items"
       ]
     },
     {
       "word": "CASSEROLE",
       "clues": [
-        "A dish slow-cooked in one deep pan"
+        "A dish slow-cooked in one deep pan",
+        "Category: Food & cooking"
       ]
     },
     {
       "word": "MARINATE",
       "clues": [
-        "To soak food in a flavorful liquid before cooking"
+        "To soak food in a flavorful liquid before cooking",
+        "Category: Food & cooking"
       ]
     },
     {
       "word": "BARBECUE",
       "clues": [
-        "Cooking food over an open flame outdoors"
+        "Cooking food over an open flame outdoors",
+        "Category: Food & cooking"
       ]
     },
     {
       "word": "COMPUTER",
       "clues": [
-        "A machine for processing data"
+        "A machine for processing data",
+        "Category: Technology"
       ]
     },
     {
       "word": "INTERNET",
       "clues": [
-        "The global network connecting computers"
+        "The global network connecting computers",
+        "Category: Technology"
       ]
     },
     {
       "word": "PASSWORD",
       "clues": [
-        "Secret text needed to log in"
+        "Secret text needed to log in",
+        "Category: Technology"
       ]
     },
     {
       "word": "SOFTWARE",
       "clues": [
-        "The programs that run on a computer"
+        "The programs that run on a computer",
+        "Category: Technology"
       ]
     },
     {
       "word": "KEYBOARD",
       "clues": [
-        "You type on this"
+        "You type on this",
+        "Category: Technology"
       ]
     },
     {
       "word": "SCREEN",
       "clues": [
-        "Where you see the picture on a device"
+        "Where you see the picture on a device",
+        "Category: Technology"
       ]
     },
     {
       "word": "BATTERY",
       "clues": [
-        "Powers a phone when it's unplugged"
+        "Powers a phone when it's unplugged",
+        "Category: Technology",
+        "Powers a device without a cable",
+        "Category: Everyday Objects"
       ]
     },
     {
       "word": "SMARTPHONE",
       "clues": [
-        "A mobile phone that runs apps"
+        "A mobile phone that runs apps",
+        "Category: Technology"
       ]
     },
     {
       "word": "DOWNLOAD",
       "clues": [
-        "To copy a file from the internet onto your device"
+        "To copy a file from the internet onto your device",
+        "Category: Technology"
       ]
     },
     {
       "word": "UPLOAD",
       "clues": [
-        "To send a file from your device to the internet"
+        "To send a file from your device to the internet",
+        "Category: Technology"
       ]
     },
     {
       "word": "WEBSITE",
       "clues": [
-        "A page or set of pages viewable online"
+        "A page or set of pages viewable online",
+        "Category: Technology",
+        "A page or pages viewed online",
+        "Category: Technology More"
       ]
     },
     {
       "word": "FIREWALL",
       "clues": [
-        "Software that blocks unwanted network access"
+        "Software that blocks unwanted network access",
+        "Category: Technology",
+        "Software that blocks unauthorized network access",
+        "Category: Tech Specifics"
       ]
     },
     {
       "word": "ALGORITHM",
       "clues": [
-        "A set of steps a computer follows to solve a problem"
+        "A set of steps a computer follows to solve a problem",
+        "Category: Technology"
       ]
     },
     {
       "word": "DATABASE",
       "clues": [
-        "An organized collection of stored data"
+        "An organized collection of stored data",
+        "Category: Technology",
+        "Category: Technology More"
       ]
     },
     {
       "word": "BLUETOOTH",
       "clues": [
-        "A short-range wireless technology for connecting devices"
+        "A short-range wireless technology for connecting devices",
+        "Category: Technology"
       ]
     },
     {
       "word": "MALWARE",
       "clues": [
-        "Software designed to cause harm to a device"
+        "Software designed to cause harm to a device",
+        "Category: Technology"
       ]
     },
     {
       "word": "ENCRYPTION",
       "clues": [
-        "Scrambling data so only authorized people can read it"
+        "Scrambling data so only authorized people can read it",
+        "Category: Technology"
       ]
     },
     {
       "word": "BANDWIDTH",
       "clues": [
-        "The amount of data a connection can carry"
+        "The amount of data a connection can carry",
+        "Category: Technology"
       ]
     },
     {
       "word": "CURSOR",
       "clues": [
-        "The blinking marker showing where you'll type next"
+        "The blinking marker showing where you'll type next",
+        "Category: Technology"
       ]
     },
     {
       "word": "NOTIFICATION",
       "clues": [
-        "An alert that pops up on a device"
+        "An alert that pops up on a device",
+        "Category: Technology"
       ]
     },
     {
       "word": "NEWSPAPER",
       "clues": [
-        "Printed daily news on paper"
+        "Printed daily news on paper",
+        "Category: Media & society"
       ]
     },
     {
       "word": "TELEVISION",
       "clues": [
-        "A screen used for entertainment or news"
+        "A screen used for entertainment or news",
+        "Category: Media & society"
       ]
     },
     {
       "word": "BROADCAST",
       "clues": [
-        "To transmit a program to many viewers or listeners"
+        "To transmit a program to many viewers or listeners",
+        "Category: Media & society"
       ]
     },
     {
       "word": "ADVERTISEMENT",
       "clues": [
-        "A paid message trying to sell you something"
+        "A paid message trying to sell you something",
+        "Category: Media & society"
       ]
     },
     {
       "word": "JOURNALIST",
       "clues": [
-        "Someone who writes or reports the news"
+        "Someone who writes or reports the news",
+        "Category: Media & society"
       ]
     },
     {
       "word": "HEADLINE",
       "clues": [
-        "The large title at the top of a news article"
+        "The large title at the top of a news article",
+        "Category: Media & society"
       ]
     },
     {
       "word": "EDITOR",
       "clues": [
-        "Someone who reviews and revises written work"
+        "Someone who reviews and revises written work",
+        "Category: Media & society",
+        "Reviews and improves written text",
+        "Category: Professions"
       ]
     },
     {
       "word": "AUDIENCE",
       "clues": [
         "People watching, reading, or listening to something",
-        "The people watching a performance"
+        "Category: Media & society",
+        "The people watching a performance",
+        "Category: Arts, sports & leisure",
+        "People watching or listening to something",
+        "Category: People and Society"
       ]
     },
     {
       "word": "CELEBRITY",
       "clues": [
-        "A famous, well-known person"
+        "A famous, well-known person",
+        "Category: Media & society"
       ]
     },
     {
       "word": "OPINION",
       "clues": [
-        "What someone personally thinks about something"
+        "What someone personally thinks about something",
+        "Category: Media & society"
       ]
     },
     {
       "word": "SOCIETY",
       "clues": [
-        "People living together in a community"
+        "People living together in a community",
+        "Category: Media & society"
       ]
     },
     {
       "word": "GOVERNMENT",
       "clues": [
-        "The group in charge of running a country"
+        "The group in charge of running a country",
+        "Category: Media & society"
       ]
     },
     {
       "word": "ELECTION",
       "clues": [
-        "Citizens choosing their leaders"
+        "Citizens choosing their leaders",
+        "Category: Media & society",
+        "When citizens choose their leaders",
+        "Category: Society and Politics"
       ]
     },
     {
       "word": "CITIZEN",
       "clues": [
-        "A legally recognized member of a country"
+        "A legally recognized member of a country",
+        "Category: Media & society",
+        "Category: Society and Politics"
       ]
     },
     {
       "word": "LAW",
       "clues": [
-        "A rule enforced by the state"
+        "A rule enforced by the state",
+        "Category: Media & society"
       ]
     },
     {
       "word": "JUSTICE",
       "clues": [
-        "Fair treatment according to the law"
+        "Fair treatment according to the law",
+        "Category: Media & society"
       ]
     },
     {
       "word": "COMMUNITY",
       "clues": [
-        "A group of people living in the same area"
+        "A group of people living in the same area",
+        "Category: Media & society"
       ]
     },
     {
       "word": "CULTURE",
       "clues": [
-        "The customs and beliefs shared by a group of people"
+        "The customs and beliefs shared by a group of people",
+        "Category: Media & society"
       ]
     },
     {
       "word": "TRADITION",
       "clues": [
-        "A custom passed down through generations"
+        "A custom passed down through generations",
+        "Category: Media & society"
       ]
     },
     {
       "word": "CHARITY",
       "clues": [
-        "An organization that helps people in need"
+        "An organization that helps people in need",
+        "Category: Media & society",
+        "Category: People and Society"
       ]
     },
     {
       "word": "VOLUNTEER",
       "clues": [
-        "Someone who works without being paid, to help others"
+        "Someone who works without being paid, to help others",
+        "Category: Media & society",
+        "Someone who works unpaid to help others",
+        "Category: People and Society"
       ]
     },
     {
       "word": "PROTEST",
       "clues": [
-        "A public show of disagreement with something"
+        "A public show of disagreement with something",
+        "Category: Media & society",
+        "A public expression of disagreement",
+        "Category: Society and Politics"
       ]
     },
     {
       "word": "EMOTION",
       "clues": [
-        "A feeling, like joy or anger"
+        "A feeling, like joy or anger",
+        "Category: Feelings & personality"
       ]
     },
     {
       "word": "HAPPINESS",
       "clues": [
-        "The feeling of being glad or content"
+        "The feeling of being glad or content",
+        "Category: Feelings & personality"
       ]
     },
     {
       "word": "SADNESS",
       "clues": [
-        "The feeling of sorrow"
+        "The feeling of sorrow",
+        "Category: Feelings & personality"
       ]
     },
     {
       "word": "ANGER",
       "clues": [
-        "Feeling annoyed or upset"
+        "Feeling annoyed or upset",
+        "Category: Feelings & personality"
       ]
     },
     {
       "word": "FEAR",
       "clues": [
-        "The feeling before something scary"
+        "The feeling before something scary",
+        "Category: Feelings & personality"
       ]
     },
     {
       "word": "ANXIETY",
       "clues": [
-        "A persistent feeling of worry or unease"
+        "A persistent feeling of worry or unease",
+        "Category: Feelings & personality",
+        "Ongoing fear or worry",
+        "Category: Feelings More"
       ]
     },
     {
       "word": "CONFIDENCE",
       "clues": [
-        "Belief in your own abilities"
+        "Belief in your own abilities",
+        "Category: Feelings & personality",
+        "Trust in one's own abilities",
+        "Category: Emotions and Character"
       ]
     },
     {
       "word": "JEALOUSY",
       "clues": [
-        "Resentment over someone else's advantage"
+        "Resentment over someone else's advantage",
+        "Category: Feelings & personality",
+        "Category: Emotions and Character"
       ]
     },
     {
       "word": "CURIOSITY",
       "clues": [
-        "A strong desire to learn or know something"
+        "A strong desire to learn or know something",
+        "Category: Feelings & personality"
       ]
     },
     {
       "word": "GRATITUDE",
       "clues": [
-        "Feeling thankful"
+        "Feeling thankful",
+        "Category: Feelings & personality",
+        "Category: Emotions and Character"
       ]
     },
     {
       "word": "PATIENCE",
       "clues": [
-        "Staying calm while waiting"
+        "Staying calm while waiting",
+        "Category: Feelings & personality"
       ]
     },
     {
       "word": "COURAGE",
       "clues": [
-        "Doing something despite being afraid"
+        "Doing something despite being afraid",
+        "Category: Feelings & personality"
       ]
     },
     {
       "word": "LONELINESS",
       "clues": [
-        "The feeling of having no company"
+        "The feeling of having no company",
+        "Category: Feelings & personality",
+        "Category: Emotions and Character"
       ]
     },
     {
       "word": "EXCITEMENT",
       "clues": [
-        "A lively feeling of eager anticipation"
+        "A lively feeling of eager anticipation",
+        "Category: Feelings & personality",
+        "A lively feeling of joyful anticipation",
+        "Category: Emotions and Character"
       ]
     },
     {
       "word": "EMBARRASSMENT",
       "clues": [
-        "Feeling awkward or self-conscious"
+        "Feeling awkward or self-conscious",
+        "Category: Feelings & personality",
+        "The uncomfortable feeling of shame",
+        "Category: Feelings More"
       ]
     },
     {
       "word": "SYMPATHY",
       "clues": [
-        "Feeling sorry for someone else's misfortune"
+        "Feeling sorry for someone else's misfortune",
+        "Category: Feelings & personality",
+        "Compassion for someone else's misfortune",
+        "Category: Emotions and Character"
       ]
     },
     {
       "word": "OPTIMISM",
       "clues": [
-        "A tendency to expect good outcomes"
+        "A tendency to expect good outcomes",
+        "Category: Feelings & personality"
       ]
     },
     {
       "word": "STUBBORN",
       "clues": [
-        "Refusing to change one's mind"
+        "Refusing to change one's mind",
+        "Category: Feelings & personality"
       ]
     },
     {
       "word": "GENEROUS",
       "clues": [
-        "Willing to give freely"
+        "Willing to give freely",
+        "Category: Feelings & personality"
       ]
     },
     {
       "word": "HUMBLE",
       "clues": [
-        "Not proud or boastful about oneself"
+        "Not proud or boastful about oneself",
+        "Category: Feelings & personality"
       ]
     },
     {
       "word": "CLOTHING",
       "clues": [
-        "Everything you wear, collectively"
+        "Everything you wear, collectively",
+        "Category: Clothing & weather"
       ]
     },
     {
       "word": "JACKET",
       "clues": [
-        "A layer worn over a shirt, outdoors"
+        "A layer worn over a shirt, outdoors",
+        "Category: Clothing & weather"
       ]
     },
     {
       "word": "TROUSERS",
       "clues": [
-        "Covers both legs separately"
+        "Covers both legs separately",
+        "Category: Clothing & weather"
       ]
     },
     {
       "word": "UMBRELLA",
       "clues": [
-        "Keeps you dry in the rain"
+        "Keeps you dry in the rain",
+        "Category: Clothing & weather",
+        "Category: Everyday Objects"
       ]
     },
     {
       "word": "WEATHER",
       "clues": [
-        "What the sky and temperature are doing today"
+        "What the sky and temperature are doing today",
+        "Category: Clothing & weather"
       ]
     },
     {
       "word": "RAIN",
       "clues": [
         "Water falling from clouds",
-        "Falls from clouds during a storm"
+        "Category: Clothing & weather",
+        "Falls from clouds during a storm",
+        "Category: Common short/connector words (for grid structure)"
       ]
     },
     {
       "word": "SNOW",
       "clues": [
-        "White and cold, falls in winter"
+        "White and cold, falls in winter",
+        "Category: Clothing & weather"
       ]
     },
     {
       "word": "THUNDER",
       "clues": [
-        "The loud sound that follows lightning"
+        "The loud sound that follows lightning",
+        "Category: Clothing & weather",
+        "The loud sound after lightning",
+        "Category: Sound and Nature"
       ]
     },
     {
       "word": "LIGHTNING",
       "clues": [
-        "A sudden bright flash during a storm"
+        "A sudden bright flash during a storm",
+        "Category: Clothing & weather",
+        "Category: Sound and Nature"
       ]
     },
     {
       "word": "HUMIDITY",
       "clues": [
-        "The amount of moisture in the air"
+        "The amount of moisture in the air",
+        "Category: Clothing & weather",
+        "The moisture in the air",
+        "Category: Sound and Nature"
       ]
     },
     {
       "word": "TEMPERATURE",
       "clues": [
-        "How hot or cold it is, in degrees"
+        "How hot or cold it is, in degrees",
+        "Category: Clothing & weather"
       ]
     },
     {
       "word": "FORECAST",
       "clues": [
-        "A prediction of future weather"
+        "A prediction of future weather",
+        "Category: Clothing & weather",
+        "A prediction about future weather",
+        "Category: Sound and Nature"
       ]
     },
     {
       "word": "BLIZZARD",
       "clues": [
-        "A severe snowstorm with strong winds"
+        "A severe snowstorm with strong winds",
+        "Category: Clothing & weather",
+        "An extremely severe snowstorm",
+        "Category: Weather and Disasters"
       ]
     },
     {
       "word": "SUNSCREEN",
       "clues": [
-        "Lotion that protects skin from sunburn"
+        "Lotion that protects skin from sunburn",
+        "Category: Clothing & weather"
       ]
     },
     {
       "word": "UNIFORM",
       "clues": [
-        "Matching clothing worn by members of a group"
+        "Matching clothing worn by members of a group",
+        "Category: Clothing & weather",
+        "Matching clothing worn by a group",
+        "Category: Clothing Detail"
       ]
     },
     {
       "word": "IMPORTANT",
       "clues": [
-        "Deserving serious attention"
+        "Deserving serious attention",
+        "Category: General adjectives & adverbs"
       ]
     },
     {
       "word": "DIFFICULT",
       "clues": [
-        "Hard to do"
+        "Hard to do",
+        "Category: General adjectives & adverbs"
       ]
     },
     {
       "word": "POSSIBLE",
       "clues": [
-        "Able to happen"
+        "Able to happen",
+        "Category: General adjectives & adverbs"
       ]
     },
     {
       "word": "NECESSARY",
       "clues": [
-        "Required, can't be skipped"
+        "Required, can't be skipped",
+        "Category: General adjectives & adverbs"
       ]
     },
     {
       "word": "APPROXIMATELY",
       "clues": [
-        "Roughly, not an exact number"
+        "Roughly, not an exact number",
+        "Category: General adjectives & adverbs"
       ]
     },
     {
       "word": "RELIABLE",
       "clues": [
-        "Always does what they say they will"
+        "Always does what they say they will",
+        "Category: General adjectives & adverbs"
       ]
     },
     {
       "word": "PUNCTUAL",
       "clues": [
-        "Never late"
+        "Never late",
+        "Category: General adjectives & adverbs",
+        "Category: Time More"
       ]
     },
     {
       "word": "INDEPENDENT",
       "clues": [
-        "Not relying on others"
+        "Not relying on others",
+        "Category: General adjectives & adverbs"
       ]
     },
     {
       "word": "COMFORTABLE",
       "clues": [
-        "Cozy and easy to relax in"
+        "Cozy and easy to relax in",
+        "Category: General adjectives & adverbs"
       ]
     },
     {
       "word": "PRACTICAL",
       "clues": [
-        "Useful in everyday situations"
+        "Useful in everyday situations",
+        "Category: General adjectives & adverbs"
       ]
     },
     {
       "word": "ANCIENT",
       "clues": [
-        "Extremely old, from a distant past"
+        "Extremely old, from a distant past",
+        "Category: General adjectives & adverbs",
+        "Category: More Adjectives"
       ]
     },
     {
       "word": "FRAGILE",
       "clues": [
-        "Easily broken"
+        "Easily broken",
+        "Category: General adjectives & adverbs",
+        "Category: More Adjectives",
+        "Category: Final Additions"
       ]
     },
     {
       "word": "ENORMOUS",
       "clues": [
-        "Extremely large"
+        "Extremely large",
+        "Category: General adjectives & adverbs",
+        "Category: More Adjectives"
       ]
     },
     {
       "word": "RIDICULOUS",
       "clues": [
-        "So unreasonable it's laughable"
+        "So unreasonable it's laughable",
+        "Category: General adjectives & adverbs"
       ]
     },
     {
       "word": "MYSTERIOUS",
       "clues": [
-        "Difficult to understand or explain"
+        "Difficult to understand or explain",
+        "Category: General adjectives & adverbs",
+        "Hard to understand or explain",
+        "Category: More Adjectives"
       ]
     },
     {
       "word": "PECULIAR",
       "clues": [
-        "Strange or unusual"
+        "Strange or unusual",
+        "Category: General adjectives & adverbs",
+        "Category: Final Additions"
       ]
     },
     {
       "word": "RELUCTANT",
       "clues": [
-        "Unwilling and hesitant"
+        "Unwilling and hesitant",
+        "Category: General adjectives & adverbs",
+        "Category: Final Additions"
       ]
     },
     {
       "word": "SPONTANEOUS",
       "clues": [
-        "Done without planning"
+        "Done without planning",
+        "Category: General adjectives & adverbs"
       ]
     },
     {
       "word": "THOROUGH",
       "clues": [
-        "Complete and careful in every detail"
+        "Complete and careful in every detail",
+        "Category: General adjectives & adverbs"
       ]
     },
     {
       "word": "VERSATILE",
       "clues": [
-        "Able to adapt to many different uses"
+        "Able to adapt to many different uses",
+        "Category: General adjectives & adverbs"
       ]
     },
     {
       "word": "AMBIGUOUS",
       "clues": [
-        "Open to more than one interpretation"
+        "Open to more than one interpretation",
+        "Category: General adjectives & adverbs"
       ]
     },
     {
       "word": "METICULOUS",
       "clues": [
-        "Extremely careful and precise"
+        "Extremely careful and precise",
+        "Category: General adjectives & adverbs"
       ]
     },
     {
       "word": "PERSISTENT",
       "clues": [
-        "Continuing firmly despite difficulty"
+        "Continuing firmly despite difficulty",
+        "Category: General adjectives & adverbs"
       ]
     },
     {
       "word": "GENUINE",
       "clues": [
-        "Real, not fake"
+        "Real, not fake",
+        "Category: General adjectives & adverbs",
+        "Category: More Adjectives"
       ]
     },
     {
       "word": "EFFICIENT",
       "clues": [
-        "Achieving results without wasted effort"
+        "Achieving results without wasted effort",
+        "Category: General adjectives & adverbs",
+        "Achieves results without wasted effort",
+        "Category: Final Additions"
       ]
     },
     {
       "word": "ANIMAL",
       "clues": [
-        "A living creature, not a plant"
+        "A living creature, not a plant",
+        "Category: Nature, animals & science"
       ]
     },
     {
       "word": "INSECT",
       "clues": [
-        "A small creature with six legs, like an ant"
+        "A small creature with six legs, like an ant",
+        "Category: Nature, animals & science"
       ]
     },
     {
       "word": "MAMMAL",
       "clues": [
-        "A warm-blooded animal that nurses its young"
+        "A warm-blooded animal that nurses its young",
+        "Category: Nature, animals & science"
       ]
     },
     {
       "word": "REPTILE",
       "clues": [
-        "A cold-blooded animal with scales, like a snake"
+        "A cold-blooded animal with scales, like a snake",
+        "Category: Nature, animals & science"
       ]
     },
     {
       "word": "PREDATOR",
       "clues": [
-        "An animal that hunts others for food"
+        "An animal that hunts others for food",
+        "Category: Nature, animals & science",
+        "Category: Nature More"
       ]
     },
     {
       "word": "MIGRATION",
       "clues": [
-        "Seasonal travel by animals between regions"
+        "Seasonal travel by animals between regions",
+        "Category: Nature, animals & science",
+        "Seasonal movement of animals between regions",
+        "Category: Nature More"
       ]
     },
     {
       "word": "GRAVITY",
       "clues": [
-        "The force that pulls objects toward the ground"
+        "The force that pulls objects toward the ground",
+        "Category: Nature, animals & science",
+        "Category: Science"
       ]
     },
     {
       "word": "MOLECULE",
       "clues": [
-        "The smallest unit a compound can be divided into"
+        "The smallest unit a compound can be divided into",
+        "Category: Nature, animals & science",
+        "The smallest unit of a chemical compound",
+        "Category: Science",
+        "Category: Final Additions"
       ]
     },
     {
       "word": "TELESCOPE",
       "clues": [
-        "A tool for viewing distant objects, like stars"
+        "A tool for viewing distant objects, like stars",
+        "Category: Nature, animals & science",
+        "A tool for viewing distant objects",
+        "Category: Science"
       ]
     },
     {
       "word": "MICROSCOPE",
       "clues": [
-        "A tool for viewing very small objects up close"
+        "A tool for viewing very small objects up close",
+        "Category: Nature, animals & science",
+        "A tool for viewing very small objects",
+        "Category: Science"
       ]
     },
     {
       "word": "EXPERIMENT",
       "clues": [
-        "A test done to discover something scientifically"
+        "A test done to discover something scientifically",
+        "Category: Nature, animals & science",
+        "Category: Science"
       ]
     },
     {
       "word": "HYPOTHESIS",
       "clues": [
-        "An educated guess to be tested"
+        "An educated guess to be tested",
+        "Category: Nature, animals & science",
+        "An educated guess that gets tested",
+        "Category: Science"
       ]
     },
     {
       "word": "EVOLUTION",
       "clues": [
-        "The gradual change of species over generations"
+        "The gradual change of species over generations",
+        "Category: Nature, animals & science",
+        "Gradual change in species over generations",
+        "Category: Science"
       ]
     },
     {
       "word": "GALAXY",
       "clues": [
-        "A huge system of stars, like the Milky Way"
+        "A huge system of stars, like the Milky Way",
+        "Category: Nature, animals & science",
+        "Category: Science"
       ]
     },
     {
       "word": "ASTRONAUT",
       "clues": [
-        "A person trained to travel into space"
+        "A person trained to travel into space",
+        "Category: Nature, animals & science",
+        "A person trained for space travel",
+        "Category: Final Additions"
       ]
     },
     {
       "word": "PLANET",
       "clues": [
-        "A large body that orbits a star, like Earth"
+        "A large body that orbits a star, like Earth",
+        "Category: Nature, animals & science",
+        "A large body that orbits a star",
+        "Category: Science"
       ]
     },
     {
       "word": "ATMOSPHERE",
       "clues": [
-        "The layer of gases surrounding a planet"
+        "The layer of gases surrounding a planet",
+        "Category: Nature, animals & science",
+        "The layer of gases around a planet",
+        "Category: Sound and Nature"
       ]
     },
     {
       "word": "CHEMICAL",
       "clues": [
-        "A substance with a distinct composition"
+        "A substance with a distinct composition",
+        "Category: Nature, animals & science",
+        "A substance with a specific composition",
+        "Category: Final Additions"
       ]
     },
     {
       "word": "LABORATORY",
       "clues": [
-        "A room equipped for scientific experiments"
+        "A room equipped for scientific experiments",
+        "Category: Nature, animals & science",
+        "Category: Science"
       ]
     },
     {
       "word": "PHOTOSYNTHESIS",
       "clues": [
-        "How plants convert sunlight into energy"
+        "How plants convert sunlight into energy",
+        "Category: Nature, animals & science"
       ]
     },
     {
       "word": "MUSEUM",
       "clues": [
-        "A building displaying art or historical objects"
+        "A building displaying art or historical objects",
+        "Category: Arts, sports & leisure",
+        "A building that displays art or history",
+        "Category: Art and Literature"
       ]
     },
     {
       "word": "PAINTING",
       "clues": [
-        "A picture made with paint"
+        "A picture made with paint",
+        "Category: Arts, sports & leisure",
+        "An artwork made with paint",
+        "Category: Art and Literature"
       ]
     },
     {
       "word": "SCULPTURE",
       "clues": [
-        "A three-dimensional work of art"
+        "A three-dimensional work of art",
+        "Category: Arts, sports & leisure",
+        "An artwork shaped from material",
+        "Category: Art and Literature"
       ]
     },
     {
       "word": "ORCHESTRA",
       "clues": [
-        "A large group of musicians playing together"
+        "A large group of musicians playing together",
+        "Category: Arts, sports & leisure",
+        "Category: Music and Instruments"
       ]
     },
     {
       "word": "INSTRUMENT",
       "clues": [
-        "A device used to make music"
+        "A device used to make music",
+        "Category: Arts, sports & leisure"
       ]
     },
     {
       "word": "REHEARSAL",
       "clues": [
-        "Practicing a performance before the real one"
+        "Practicing a performance before the real one",
+        "Category: Arts, sports & leisure"
       ]
     },
     {
       "word": "STADIUM",
       "clues": [
-        "A large venue for sporting events"
+        "A large venue for sporting events",
+        "Category: Arts, sports & leisure"
       ]
     },
     {
       "word": "REFEREE",
       "clues": [
-        "Enforces the rules during a sports match"
+        "Enforces the rules during a sports match",
+        "Category: Arts, sports & leisure",
+        "Enforces the rules during a sports game",
+        "Category: Sports Equipment"
       ]
     },
     {
       "word": "CHAMPION",
       "clues": [
-        "The winner of a competition"
+        "The winner of a competition",
+        "Category: Arts, sports & leisure",
+        "Category: Sports Equipment"
       ]
     },
     {
       "word": "TOURNAMENT",
       "clues": [
-        "A series of contests to find an overall winner"
+        "A series of contests to find an overall winner",
+        "Category: Arts, sports & leisure",
+        "Category: Sports Equipment"
       ]
     },
     {
       "word": "MARATHON",
       "clues": [
-        "A long-distance running race"
+        "A long-distance running race",
+        "Category: Arts, sports & leisure",
+        "A very long footrace",
+        "Category: Sports Equipment"
       ]
     },
     {
       "word": "GYMNASIUM",
       "clues": [
-        "A building equipped for exercise"
+        "A building equipped for exercise",
+        "Category: Arts, sports & leisure"
       ]
     },
     {
       "word": "CHOREOGRAPHY",
       "clues": [
-        "The planned sequence of steps in a dance"
+        "The planned sequence of steps in a dance",
+        "Category: Arts, sports & leisure"
       ]
     },
     {
       "word": "NOVELIST",
       "clues": [
-        "Someone who writes novels"
+        "Someone who writes novels",
+        "Category: Arts, sports & leisure"
       ]
     },
     {
       "word": "PLAYWRIGHT",
       "clues": [
-        "Someone who writes plays"
+        "Someone who writes plays",
+        "Category: Arts, sports & leisure"
       ]
     },
     {
       "word": "SCULPTOR",
       "clues": [
-        "An artist who creates three-dimensional works"
+        "An artist who creates three-dimensional works",
+        "Category: Arts, sports & leisure"
       ]
     },
     {
       "word": "PHOTOGRAPHY",
       "clues": [
-        "The art of taking pictures"
+        "The art of taking pictures",
+        "Category: Arts, sports & leisure",
+        "Category: Leisure"
       ]
     },
     {
       "word": "LITERATURE",
       "clues": [
-        "Written works valued for their artistic merit"
+        "Written works valued for their artistic merit",
+        "Category: Arts, sports & leisure"
       ]
     },
     {
       "word": "ARCHITECTURE",
       "clues": [
-        "The design of buildings"
+        "The design of buildings",
+        "Category: Arts, sports & leisure"
       ]
     },
     {
       "word": "CAT",
       "clues": [
-        "A small furry pet that meows"
+        "A small furry pet that meows",
+        "Category: Common short/connector words (for grid structure)"
       ]
     },
     {
       "word": "DOG",
       "clues": [
-        "A loyal furry pet that barks"
+        "A loyal furry pet that barks",
+        "Category: Common short/connector words (for grid structure)"
       ]
     },
     {
       "word": "SUN",
       "clues": [
-        "The star that lights our days"
+        "The star that lights our days",
+        "Category: Common short/connector words (for grid structure)",
+        "Category: Short Words"
       ]
     },
     {
       "word": "MOON",
       "clues": [
-        "Orbits the Earth and lights up the night"
+        "Orbits the Earth and lights up the night",
+        "Category: Common short/connector words (for grid structure)"
       ]
     },
     {
       "word": "STAR",
       "clues": [
-        "A distant glowing ball of gas visible at night"
+        "A distant glowing ball of gas visible at night",
+        "Category: Common short/connector words (for grid structure)"
       ]
     },
     {
       "word": "TREE",
       "clues": [
-        "A tall plant with a trunk and branches"
+        "A tall plant with a trunk and branches",
+        "Category: Common short/connector words (for grid structure)"
       ]
     },
     {
       "word": "BOOK",
       "clues": [
-        "Something you read"
+        "Something you read",
+        "Category: Common short/connector words (for grid structure)"
       ]
     },
     {
       "word": "PEN",
       "clues": [
-        "Used for writing in ink"
+        "Used for writing in ink",
+        "Category: Common short/connector words (for grid structure)"
       ]
     },
     {
       "word": "CUP",
       "clues": [
-        "Used for drinking hot beverages"
+        "Used for drinking hot beverages",
+        "Category: Common short/connector words (for grid structure)"
       ]
     },
     {
       "word": "BAG",
       "clues": [
-        "Used to carry belongings"
+        "Used to carry belongings",
+        "Category: Common short/connector words (for grid structure)"
       ]
     },
     {
       "word": "MAP",
       "clues": [
-        "Shows you how to get somewhere"
+        "Shows you how to get somewhere",
+        "Category: Common short/connector words (for grid structure)"
       ]
     },
     {
       "word": "BOX",
       "clues": [
-        "A container with straight sides, usually square"
+        "A container with straight sides, usually square",
+        "Category: Common short/connector words (for grid structure)"
       ]
     },
     {
       "word": "EGG",
       "clues": [
-        "Laid by a bird, often eaten for breakfast"
+        "Laid by a bird, often eaten for breakfast",
+        "Category: Common short/connector words (for grid structure)",
+        "Category: Short Words"
       ]
     },
     {
       "word": "MILK",
       "clues": [
-        "A white liquid from cows, often drunk at breakfast"
+        "A white liquid from cows, often drunk at breakfast",
+        "Category: Common short/connector words (for grid structure)",
+        "A white liquid from cows",
+        "Category: Short Words"
       ]
     },
     {
       "word": "SALT",
       "clues": [
-        "A white seasoning that makes food less bland"
+        "A white seasoning that makes food less bland",
+        "Category: Common short/connector words (for grid structure)",
+        "Category: Short Words"
       ]
     },
     {
       "word": "RICE",
       "clues": [
-        "A staple grain eaten around the world"
+        "A staple grain eaten around the world",
+        "Category: Common short/connector words (for grid structure)",
+        "A staple food eaten worldwide",
+        "Category: Short Words"
       ]
     },
     {
       "word": "FISH",
       "clues": [
-        "A creature that swims and breathes through gills"
+        "A creature that swims and breathes through gills",
+        "Category: Common short/connector words (for grid structure)"
       ]
     },
     {
       "word": "BIRD",
       "clues": [
-        "A feathered creature that can usually fly"
+        "A feathered creature that can usually fly",
+        "Category: Common short/connector words (for grid structure)"
       ]
     },
     {
       "word": "WIND",
       "clues": [
-        "Moving air"
+        "Moving air",
+        "Category: Common short/connector words (for grid structure)"
       ]
     },
     {
       "word": "ROAD",
       "clues": [
-        "A route cars travel along"
+        "A route cars travel along",
+        "Category: Common short/connector words (for grid structure)",
+        "A route cars travel on",
+        "Category: Short Words"
       ]
     },
     {
       "word": "SHIP",
       "clues": [
-        "A large vessel that sails the sea"
+        "A large vessel that sails the sea",
+        "Category: Common short/connector words (for grid structure)",
+        "A large water vessel",
+        "Category: Short Words"
       ]
     },
     {
       "word": "COAT",
       "clues": [
-        "A long, heavy piece of outerwear"
+        "A long, heavy piece of outerwear",
+        "Category: Common short/connector words (for grid structure)"
       ]
     },
     {
       "word": "RING",
       "clues": [
-        "Worn on a finger, often for marriage"
+        "Worn on a finger, often for marriage",
+        "Category: Common short/connector words (for grid structure)",
+        "Worn on a finger, often for a wedding",
+        "Category: Short Words"
       ]
     },
     {
       "word": "SONG",
       "clues": [
-        "A piece of music with lyrics"
+        "A piece of music with lyrics",
+        "Category: Common short/connector words (for grid structure)",
+        "Category: Short Words"
       ]
     },
     {
       "word": "TEAM",
       "clues": [
-        "A group working together toward a goal"
+        "A group working together toward a goal",
+        "Category: Common short/connector words (for grid structure)"
       ]
     },
     {
       "word": "GAME",
       "clues": [
-        "A structured activity played for fun or competition"
+        "A structured activity played for fun or competition",
+        "Category: Common short/connector words (for grid structure)"
       ]
     },
     {
       "word": "NEWS",
       "clues": [
-        "Reports on current events"
+        "Reports on current events",
+        "Category: Common short/connector words (for grid structure)"
       ]
     },
     {
       "word": "TIME",
       "clues": [
-        "Measured in seconds, minutes, and hours"
+        "Measured in seconds, minutes, and hours",
+        "Category: Common short/connector words (for grid structure)"
       ]
     },
     {
       "word": "IDEA",
       "clues": [
-        "A thought or suggestion"
+        "A thought or suggestion",
+        "Category: Common short/connector words (for grid structure)"
+      ]
+    },
+    {
+      "word": "ROOM",
+      "clues": [
+        "A single space inside a house, like a bedroom or kitchen",
+        "Category: Translated: Wohnen"
+      ]
+    },
+    {
+      "word": "CLOSET",
+      "clues": [
+        "Tall furniture for storing clothes",
+        "Category: Translated: Wohnen"
+      ]
+    },
+    {
+      "word": "NEIGHBORHOOD",
+      "clues": [
+        "The area right around your home",
+        "Category: Translated: Wohnen"
+      ]
+    },
+    {
+      "word": "COUNTRY",
+      "clues": [
+        "A nation with its own government and borders",
+        "Category: Translated: Wohnen"
+      ]
+    },
+    {
+      "word": "WORK",
+      "clues": [
+        "What you do for a paycheck",
+        "Category: Translated: Arbeit"
+      ]
+    },
+    {
+      "word": "APPLICATION",
+      "clues": [
+        "What you send to apply for a job",
+        "Category: Translated: Arbeit",
+        "A program built for a specific purpose",
+        "Category: Technology More"
+      ]
+    },
+    {
+      "word": "APPOINTMENT",
+      "clues": [
+        "A pre-arranged time to meet someone or see a professional",
+        "Category: Translated: Arbeit"
+      ]
+    },
+    {
+      "word": "BREAK",
+      "clues": [
+        "A short pause taken away from work",
+        "Category: Translated: Arbeit"
+      ]
+    },
+    {
+      "word": "VACATION",
+      "clues": [
+        "Time off taken for travel or rest",
+        "Category: Translated: Arbeit"
+      ]
+    },
+    {
+      "word": "TRAINING",
+      "clues": [
+        "Structured practice to prepare someone for a job or skill",
+        "Category: Translated: Arbeit"
+      ]
+    },
+    {
+      "word": "DISMISSAL",
+      "clues": [
+        "Being let go from a job, or quitting it",
+        "Category: Translated: Arbeit"
+      ]
+    },
+    {
+      "word": "COMPANY",
+      "clues": [
+        "A business that sells goods or services",
+        "Category: Translated: Arbeit"
+      ]
+    },
+    {
+      "word": "EMPLOYEE",
+      "clues": [
+        "Someone employed by a company",
+        "Category: Translated: Arbeit"
+      ]
+    },
+    {
+      "word": "SHIFT",
+      "clues": [
+        "A set block of working hours, like an overnight one",
+        "Category: Translated: Arbeit"
+      ]
+    },
+    {
+      "word": "TASK",
+      "clues": [
+        "A specific piece of work someone must finish",
+        "Category: Translated: Arbeit"
+      ]
+    },
+    {
+      "word": "PROJECT",
+      "clues": [
+        "A planned piece of work with a goal",
+        "Category: Translated: Arbeit"
+      ]
+    },
+    {
+      "word": "SUCCESS",
+      "clues": [
+        "Achieving what was intended",
+        "Category: Translated: Arbeit"
+      ]
+    },
+    {
+      "word": "AGENCY",
+      "clues": [
+        "A government office you deal with paperwork at",
+        "Category: Translated: Behoerden"
+      ]
+    },
+    {
+      "word": "FORM",
+      "clues": [
+        "A document with blanks to fill in",
+        "Category: Translated: Behoerden"
+      ]
+    },
+    {
+      "word": "SIGNATURE",
+      "clues": [
+        "Your name, written by hand, to make something official",
+        "Category: Translated: Behoerden",
+        "A handwritten name that makes something official",
+        "Category: Last Few"
+      ]
+    },
+    {
+      "word": "IDCARD",
+      "clues": [
+        "A card proving who you are",
+        "Category: Translated: Behoerden"
+      ]
+    },
+    {
+      "word": "LICENSE",
+      "clues": [
+        "Proves you're allowed to drive",
+        "Category: Translated: Behoerden",
+        "A document confirming permission",
+        "Category: Legal and Official"
+      ]
+    },
+    {
+      "word": "REGISTRATION",
+      "clues": [
+        "Officially registering your address with the city",
+        "Category: Translated: Behoerden"
+      ]
+    },
+    {
+      "word": "CERTIFICATE",
+      "clues": [
+        "An official document confirming something",
+        "Category: Translated: Behoerden"
+      ]
+    },
+    {
+      "word": "STAMP",
+      "clues": [
+        "A mark pressed onto a document to make it official",
+        "Category: Translated: Behoerden",
+        "Stuck on mail to pay for postage",
+        "Category: Last Few"
+      ]
+    },
+    {
+      "word": "FEE",
+      "clues": [
+        "Money charged for an official service",
+        "Category: Translated: Behoerden"
+      ]
+    },
+    {
+      "word": "PERMIT",
+      "clues": [
+        "Official permission for something",
+        "Category: Translated: Behoerden",
+        "Category: Legal and Official"
+      ]
+    },
+    {
+      "word": "EMBASSY",
+      "clues": [
+        "A country's official representation in another country",
+        "Category: Translated: Behoerden",
+        "A country's official representation abroad",
+        "Category: Places More"
+      ]
+    },
+    {
+      "word": "VISA",
+      "clues": [
+        "Official permission to enter a foreign country",
+        "Category: Translated: Behoerden"
+      ]
+    },
+    {
+      "word": "MONEY",
+      "clues": [
+        "Coins and notes",
+        "Category: Translated: Geld"
+      ]
+    },
+    {
+      "word": "BANKNOTE",
+      "clues": [
+        "A paper note of money",
+        "Category: Translated: Geld"
+      ]
+    },
+    {
+      "word": "BILL",
+      "clues": [
+        "A statement of money owed for goods or services",
+        "Category: Translated: Geld"
+      ]
+    },
+    {
+      "word": "EXPENSE",
+      "clues": [
+        "Money spent on something",
+        "Category: Translated: Geld"
+      ]
+    },
+    {
+      "word": "INCOME",
+      "clues": [
+        "Money received or earned",
+        "Category: Translated: Geld"
+      ]
+    },
+    {
+      "word": "TRANSFER",
+      "clues": [
+        "Moving money from one account to another",
+        "Category: Translated: Geld"
+      ]
+    },
+    {
+      "word": "CASH",
+      "clues": [
+        "Physical coins and notes, not electronic",
+        "Category: Translated: Geld"
+      ]
+    },
+    {
+      "word": "PAIN",
+      "clues": [
+        "What you feel when something hurts",
+        "Category: Translated: Gesundheit"
+      ]
+    },
+    {
+      "word": "COLD",
+      "clues": [
+        "A mild illness with a runny nose",
+        "Category: Translated: Gesundheit"
+      ]
+    },
+    {
+      "word": "ACCIDENT",
+      "clues": [
+        "A crash or mishap, often on the road",
+        "Category: Translated: Gesundheit"
+      ]
+    },
+    {
+      "word": "TREATMENT",
+      "clues": [
+        "What a doctor gives to treat you",
+        "Category: Translated: Gesundheit"
+      ]
+    },
+    {
+      "word": "DENTIST",
+      "clues": [
+        "A doctor for teeth",
+        "Category: Translated: Gesundheit"
+      ]
+    },
+    {
+      "word": "CARE",
+      "clues": [
+        "Ongoing support given to someone who is sick or elderly",
+        "Category: Translated: Gesundheit"
+      ]
+    },
+    {
+      "word": "PARENTS",
+      "clues": [
+        "Mother and father, together",
+        "Category: Translated: Familie"
+      ]
+    },
+    {
+      "word": "MOTHER",
+      "clues": [
+        "Your female parent",
+        "Category: Translated: Familie"
+      ]
+    },
+    {
+      "word": "FATHER",
+      "clues": [
+        "Your male parent",
+        "Category: Translated: Familie"
+      ]
+    },
+    {
+      "word": "CHILD",
+      "clues": [
+        "A young person, not yet an adult",
+        "Category: Translated: Familie"
+      ]
+    },
+    {
+      "word": "SIBLINGS",
+      "clues": [
+        "Brothers and sisters, collectively",
+        "Category: Translated: Familie"
+      ]
+    },
+    {
+      "word": "BROTHER",
+      "clues": [
+        "A male sibling",
+        "Category: Translated: Familie"
+      ]
+    },
+    {
+      "word": "SISTER",
+      "clues": [
+        "A female sibling",
+        "Category: Translated: Familie"
+      ]
+    },
+    {
+      "word": "GRANDPARENTS",
+      "clues": [
+        "Your parents' parents",
+        "Category: Translated: Familie"
+      ]
+    },
+    {
+      "word": "GRANDCHILD",
+      "clues": [
+        "Your child's child",
+        "Category: Translated: Familie"
+      ]
+    },
+    {
+      "word": "UNCLE",
+      "clues": [
+        "Your parent's brother",
+        "Category: Translated: Familie"
+      ]
+    },
+    {
+      "word": "AUNT",
+      "clues": [
+        "Your parent's sister",
+        "Category: Translated: Familie"
+      ]
+    },
+    {
+      "word": "BABY",
+      "clues": [
+        "A very young child",
+        "Category: Translated: Familie"
+      ]
+    },
+    {
+      "word": "ADULT",
+      "clues": [
+        "A fully grown person, no longer a child",
+        "Category: Translated: Familie"
+      ]
+    },
+    {
+      "word": "RELATIVE",
+      "clues": [
+        "Someone related to you by family",
+        "Category: Translated: Familie"
+      ]
+    },
+    {
+      "word": "RELATIONSHIP",
+      "clues": [
+        "A romantic or personal connection between two people",
+        "Category: Translated: Feiern"
+      ]
+    },
+    {
+      "word": "CELEBRATION",
+      "clues": [
+        "A gathering held to mark a happy occasion",
+        "Category: Translated: Feiern"
+      ]
+    },
+    {
+      "word": "INVITATION",
+      "clues": [
+        "Asks someone to come to an event",
+        "Category: Translated: Feiern",
+        "Asks someone to attend an event",
+        "Category: Communication"
+      ]
+    },
+    {
+      "word": "GIFT",
+      "clues": [
+        "Something wrapped and given on a birthday",
+        "Category: Translated: Feiern"
+      ]
+    },
+    {
+      "word": "SURPRISE",
+      "clues": [
+        "Something unexpected",
+        "Category: Translated: Feiern"
+      ]
+    },
+    {
+      "word": "ENGAGEMENT",
+      "clues": [
+        "A promise to marry, before the wedding",
+        "Category: Translated: Feiern"
+      ]
+    },
+    {
+      "word": "GRIEF",
+      "clues": [
+        "Deep sadness, often after a loss",
+        "Category: Translated: Feiern"
+      ]
+    },
+    {
+      "word": "GUEST",
+      "clues": [
+        "Someone invited to an event",
+        "Category: Translated: Feiern"
+      ]
+    },
+    {
+      "word": "LESSON",
+      "clues": [
+        "Time spent being taught in class",
+        "Category: Translated: Bildung"
+      ]
+    },
+    {
+      "word": "PUPIL",
+      "clues": [
+        "A student, especially a younger one in school",
+        "Category: Translated: Bildung"
+      ]
+    },
+    {
+      "word": "TRANSCRIPT",
+      "clues": [
+        "A document showing your school grades",
+        "Category: Translated: Bildung"
+      ]
+    },
+    {
+      "word": "STUDIES",
+      "clues": [
+        "Years spent studying at a university",
+        "Category: Translated: Bildung"
+      ]
+    },
+    {
+      "word": "KNOWLEDGE",
+      "clues": [
+        "What you know",
+        "Category: Translated: Bildung"
+      ]
+    },
+    {
+      "word": "EDUCATION",
+      "clues": [
+        "Schooling and learning in general",
+        "Category: Translated: Bildung"
+      ]
+    },
+    {
+      "word": "SUBJECT",
+      "clues": [
+        "A distinct area of study, like math or history",
+        "Category: Translated: Bildung"
+      ]
+    },
+    {
+      "word": "COURSE",
+      "clues": [
+        "A structured series of lessons",
+        "Category: Translated: Bildung"
+      ]
+    },
+    {
+      "word": "CLIMATECHANGE",
+      "clues": [
+        "Long-term warming of the planet",
+        "Category: Translated: Umwelt"
+      ]
+    },
+    {
+      "word": "TRASH",
+      "clues": [
+        "Things you throw away",
+        "Category: Translated: Umwelt"
+      ]
+    },
+    {
+      "word": "AIR",
+      "clues": [
+        "What you breathe",
+        "Category: Translated: Umwelt"
+      ]
+    },
+    {
+      "word": "NATURE",
+      "clues": [
+        "Forests, rivers, and mountains, collectively",
+        "Category: Translated: Umwelt"
+      ]
+    },
+    {
+      "word": "PLANT",
+      "clues": [
+        "Something green that grows from soil",
+        "Category: Translated: Umwelt"
+      ]
+    },
+    {
+      "word": "WINDPOWER",
+      "clues": [
+        "Power generated from moving air",
+        "Category: Translated: Umwelt"
+      ]
+    },
+    {
+      "word": "SUSTAINABILITY",
+      "clues": [
+        "Living in a way that doesn't harm the future",
+        "Category: Translated: Umwelt"
+      ]
+    },
+    {
+      "word": "RESOURCE",
+      "clues": [
+        "A natural material used to make or power things",
+        "Category: Translated: Umwelt"
+      ]
+    },
+    {
+      "word": "TRAINSTATION",
+      "clues": [
+        "Where you catch a train",
+        "Category: Translated: Verkehr"
+      ]
+    },
+    {
+      "word": "BUSSTOP",
+      "clues": [
+        "Where a bus or tram picks you up",
+        "Category: Translated: Verkehr"
+      ]
+    },
+    {
+      "word": "TRAFFICJAM",
+      "clues": [
+        "Cars stuck bumper to bumper",
+        "Category: Translated: Verkehr"
+      ]
+    },
+    {
+      "word": "CAR",
+      "clues": [
+        "A private four-wheeled vehicle",
+        "Category: Translated: Verkehr"
+      ]
+    },
+    {
+      "word": "BUS",
+      "clues": [
+        "A large road vehicle carrying many passengers",
+        "Category: Translated: Verkehr"
+      ]
+    },
+    {
+      "word": "TRAIN",
+      "clues": [
+        "Runs on rails between stations",
+        "Category: Translated: Verkehr"
+      ]
+    },
+    {
+      "word": "TRAM",
+      "clues": [
+        "A rail vehicle that runs along city streets",
+        "Category: Translated: Verkehr"
+      ]
+    },
+    {
+      "word": "TRAFFICLIGHT",
+      "clues": [
+        "Tells traffic when to stop and go",
+        "Category: Translated: Verkehr"
+      ]
+    },
+    {
+      "word": "INTERSECTION",
+      "clues": [
+        "Where two streets meet",
+        "Category: Translated: Verkehr"
+      ]
+    },
+    {
+      "word": "PARKINGLOT",
+      "clues": [
+        "A space for leaving a car",
+        "Category: Translated: Verkehr"
+      ]
+    },
+    {
+      "word": "PEDESTRIAN",
+      "clues": [
+        "A person walking, not driving",
+        "Category: Translated: Verkehr"
+      ]
+    },
+    {
+      "word": "GASSTATION",
+      "clues": [
+        "Where you fill a car with fuel",
+        "Category: Translated: Verkehr"
+      ]
+    },
+    {
+      "word": "TRIP",
+      "clues": [
+        "A journey somewhere",
+        "Category: Translated: Reisen"
+      ]
+    },
+    {
+      "word": "HOTEL",
+      "clues": [
+        "Where travelers pay to sleep for the night",
+        "Category: Translated: Reisen"
+      ]
+    },
+    {
+      "word": "ACCOMMODATION",
+      "clues": [
+        "Any place arranged to stay overnight",
+        "Category: Translated: Reisen"
+      ]
+    },
+    {
+      "word": "LANDMARK",
+      "clues": [
+        "A famous site tourists come to see",
+        "Category: Translated: Reisen"
+      ]
+    },
+    {
+      "word": "EXCURSION",
+      "clues": [
+        "A short trip, often for a day",
+        "Category: Translated: Reisen"
+      ]
+    },
+    {
+      "word": "BEACH",
+      "clues": [
+        "Sandy ground next to the sea",
+        "Category: Translated: Reisen"
+      ]
+    },
+    {
+      "word": "SEA",
+      "clues": [
+        "A large body of salt water",
+        "Category: Translated: Reisen"
+      ]
+    },
+    {
+      "word": "BORDER",
+      "clues": [
+        "The line dividing two countries",
+        "Category: Translated: Reisen",
+        "The line between two countries",
+        "Category: City and Geography"
+      ]
+    },
+    {
+      "word": "CAMPSITE",
+      "clues": [
+        "A place set aside for camping",
+        "Category: Translated: Reisen"
+      ]
+    },
+    {
+      "word": "HOLIDAYS",
+      "clues": [
+        "A long break from school or work, for travel or rest",
+        "Category: Translated: Reisen"
+      ]
+    },
+    {
+      "word": "FOOD",
+      "clues": [
+        "What you eat",
+        "Category: Translated: Essen"
+      ]
+    },
+    {
+      "word": "LUNCH",
+      "clues": [
+        "The midday meal",
+        "Category: Translated: Essen"
+      ]
+    },
+    {
+      "word": "DINNER",
+      "clues": [
+        "The evening meal",
+        "Category: Translated: Essen"
+      ]
+    },
+    {
+      "word": "FRUIT",
+      "clues": [
+        "Apples, bananas, and the like",
+        "Category: Translated: Essen"
+      ]
+    },
+    {
+      "word": "MEAT",
+      "clues": [
+        "Comes from an animal, cooked as food",
+        "Category: Translated: Essen"
+      ]
+    },
+    {
+      "word": "SUPERMARKET",
+      "clues": [
+        "A large shop for groceries",
+        "Category: Translated: Essen"
+      ]
+    },
+    {
+      "word": "SHOPPING",
+      "clues": [
+        "The act of buying things",
+        "Category: Translated: Essen"
+      ]
+    },
+    {
+      "word": "APPETIZER",
+      "clues": [
+        "A small dish served before the main course",
+        "Category: Translated: Essen"
+      ]
+    },
+    {
+      "word": "SOUP",
+      "clues": [
+        "A liquid food, often eaten hot with a spoon",
+        "Category: Translated: Essen"
+      ]
+    },
+    {
+      "word": "SALAD",
+      "clues": [
+        "A cold dish of mixed vegetables",
+        "Category: Translated: Essen"
+      ]
+    },
+    {
+      "word": "SPICE",
+      "clues": [
+        "Added in small amounts to flavor food",
+        "Category: Translated: Essen"
+      ]
+    },
+    {
+      "word": "OVEN",
+      "clues": [
+        "An appliance used to bake food",
+        "Category: Translated: Essen",
+        "Category: Kitchen Items"
+      ]
+    },
+    {
+      "word": "STOVE",
+      "clues": [
+        "A kitchen appliance used to cook food on top",
+        "Category: Translated: Essen",
+        "A kitchen appliance for cooking on top",
+        "Category: Kitchen Items"
+      ]
+    },
+    {
+      "word": "MEDIA",
+      "clues": [
+        "Newspapers, TV, and radio, collectively",
+        "Category: Translated: Medien"
+      ]
+    },
+    {
+      "word": "RADIO",
+      "clues": [
+        "A device that plays broadcast audio",
+        "Category: Translated: Medien"
+      ]
+    },
+    {
+      "word": "REPORT",
+      "clues": [
+        "A short piece of news coverage",
+        "Category: Translated: Medien"
+      ]
+    },
+    {
+      "word": "MAGAZINE",
+      "clues": [
+        "A periodical publication with articles and pictures",
+        "Category: Translated: Medien"
+      ]
+    },
+    {
+      "word": "POLITICS",
+      "clues": [
+        "Decisions made by a government",
+        "Category: Translated: Gesellschaft"
+      ]
+    },
+    {
+      "word": "RULE",
+      "clues": [
+        "A guideline you're expected to follow",
+        "Category: Translated: Gesellschaft",
+        "Category: Short Words"
+      ]
+    },
+    {
+      "word": "DUTY",
+      "clues": [
+        "Something you're obligated to do",
+        "Category: Translated: Gesellschaft",
+        "Category: Short Words"
+      ]
+    },
+    {
+      "word": "RIGHT",
+      "clues": [
+        "A legal entitlement",
+        "Category: Translated: Gesellschaft"
+      ]
+    },
+    {
+      "word": "RESPONSIBILITY",
+      "clues": [
+        "Being accountable for something",
+        "Category: Translated: Gesellschaft"
+      ]
+    },
+    {
+      "word": "DECISION",
+      "clues": [
+        "A choice that has been made",
+        "Category: Translated: Gesellschaft"
+      ]
+    },
+    {
+      "word": "COURT",
+      "clues": [
+        "Where legal cases are judged",
+        "Category: Translated: Gesellschaft",
+        "Category: Legal and Official"
+      ]
+    },
+    {
+      "word": "PARTY",
+      "clues": [
+        "An organized political group",
+        "Category: Translated: Gesellschaft"
+      ]
+    },
+    {
+      "word": "DEMOCRACY",
+      "clues": [
+        "A system where citizens vote for their leaders",
+        "Category: Translated: Gesellschaft"
+      ]
+    },
+    {
+      "word": "OPPORTUNITY",
+      "clues": [
+        "A good moment to do something",
+        "Category: Translated: Abstrakt",
+        "A good chance to do something",
+        "Category: Abstract Ideas"
+      ]
+    },
+    {
+      "word": "PROBLEM",
+      "clues": [
+        "A difficulty needing a solution",
+        "Category: Translated: Abstrakt"
+      ]
+    },
+    {
+      "word": "SOLUTION",
+      "clues": [
+        "How a problem gets fixed",
+        "Category: Translated: Abstrakt",
+        "A way of solving a problem",
+        "Category: Last Few"
+      ]
+    },
+    {
+      "word": "EXPERIENCE",
+      "clues": [
+        "What you gain from having done something before",
+        "Category: Translated: Abstrakt"
+      ]
+    },
+    {
+      "word": "HABIT",
+      "clues": [
+        "Something done so often it's automatic",
+        "Category: Translated: Abstrakt"
+      ]
+    },
+    {
+      "word": "FUTURE",
+      "clues": [
+        "Time that hasn't happened yet",
+        "Category: Translated: Abstrakt"
+      ]
+    },
+    {
+      "word": "PAST",
+      "clues": [
+        "Time that has already happened",
+        "Category: Translated: Abstrakt"
+      ]
+    },
+    {
+      "word": "PRESENT",
+      "clues": [
+        "Right now, this moment",
+        "Category: Translated: Abstrakt"
+      ]
+    },
+    {
+      "word": "GOAL",
+      "clues": [
+        "What you're aiming to achieve",
+        "Category: Translated: Abstrakt",
+        "What someone is trying to achieve",
+        "Category: Short Words"
+      ]
+    },
+    {
+      "word": "PLAN",
+      "clues": [
+        "An outline of what you intend to do",
+        "Category: Translated: Abstrakt"
+      ]
+    },
+    {
+      "word": "REASON",
+      "clues": [
+        "Why something happened",
+        "Category: Translated: Abstrakt"
+      ]
+    },
+    {
+      "word": "EXAMPLE",
+      "clues": [
+        "A single case used to illustrate a point",
+        "Category: Translated: Abstrakt"
+      ]
+    },
+    {
+      "word": "DIFFERENCE",
+      "clues": [
+        "How two things are not alike",
+        "Category: Translated: Abstrakt"
+      ]
+    },
+    {
+      "word": "SIMILARITY",
+      "clues": [
+        "How two things are alike",
+        "Category: Translated: Abstrakt"
+      ]
+    },
+    {
+      "word": "ADVANTAGE",
+      "clues": [
+        "A benefit something gives you",
+        "Category: Translated: Abstrakt"
+      ]
+    },
+    {
+      "word": "DISADVANTAGE",
+      "clues": [
+        "A downside something has",
+        "Category: Translated: Abstrakt"
+      ]
+    },
+    {
+      "word": "POSSIBILITY",
+      "clues": [
+        "A way something could be done",
+        "Category: Translated: Abstrakt"
+      ]
+    },
+    {
+      "word": "DIFFICULTY",
+      "clues": [
+        "Something that makes a task hard",
+        "Category: Translated: Abstrakt"
+      ]
+    },
+    {
+      "word": "COMPLAINT",
+      "clues": [
+        "A formal statement of dissatisfaction",
+        "Category: Translated: Abstrakt"
+      ]
+    },
+    {
+      "word": "CRITICISM",
+      "clues": [
+        "Negative feedback about something",
+        "Category: Translated: Abstrakt",
+        "Category: Last Few"
+      ]
+    },
+    {
+      "word": "TRUTH",
+      "clues": [
+        "What is actually true",
+        "Category: Translated: Abstrakt"
+      ]
+    },
+    {
+      "word": "MISTAKE",
+      "clues": [
+        "An unintentional error",
+        "Category: Translated: Abstrakt",
+        "An error",
+        "Category: Final Additions"
+      ]
+    },
+    {
+      "word": "INTENTION",
+      "clues": [
+        "What someone intends to do",
+        "Category: Translated: Abstrakt"
+      ]
+    },
+    {
+      "word": "CAUSE",
+      "clues": [
+        "The reason something happened",
+        "Category: Translated: Abstrakt"
+      ]
+    },
+    {
+      "word": "EFFECT",
+      "clues": [
+        "The result an action produces",
+        "Category: Translated: Abstrakt"
+      ]
+    },
+    {
+      "word": "FEELING",
+      "clues": [
+        "An emotion you experience",
+        "Category: Translated: Gefuehle"
+      ]
+    },
+    {
+      "word": "JOY",
+      "clues": [
+        "The feeling of being happy",
+        "Category: Translated: Gefuehle"
+      ]
+    },
+    {
+      "word": "ANNOYANCE",
+      "clues": [
+        "Feeling annoyed or upset",
+        "Category: Translated: Gefuehle"
+      ]
+    },
+    {
+      "word": "WORRY",
+      "clues": [
+        "Worrying about something",
+        "Category: Translated: Gefuehle"
+      ]
+    },
+    {
+      "word": "HOPE",
+      "clues": [
+        "Wanting something good to happen",
+        "Category: Translated: Gefuehle"
+      ]
+    },
+    {
+      "word": "PRIDE",
+      "clues": [
+        "Feeling good about an achievement",
+        "Category: Translated: Gefuehle"
+      ]
+    },
+    {
+      "word": "BOREDOM",
+      "clues": [
+        "Having nothing interesting to do",
+        "Category: Translated: Gefuehle"
+      ]
+    },
+    {
+      "word": "STRESS",
+      "clues": [
+        "Pressure that makes you tense",
+        "Category: Translated: Gefuehle"
+      ]
+    },
+    {
+      "word": "CALMNESS",
+      "clues": [
+        "Peace and quiet",
+        "Category: Translated: Gefuehle"
+      ]
+    },
+    {
+      "word": "SOUND",
+      "clues": [
+        "Something you hear",
+        "Category: Translated: Gefuehle"
+      ]
+    },
+    {
+      "word": "CELLPHONE",
+      "clues": [
+        "A mobile phone",
+        "Category: Translated: Technologie"
+      ]
+    },
+    {
+      "word": "MESSAGE",
+      "clues": [
+        "A short piece of written communication sent to someone",
+        "Category: Translated: Technologie"
+      ]
+    },
+    {
+      "word": "PHONECALL",
+      "clues": [
+        "Dialing someone's number to talk",
+        "Category: Translated: Technologie"
+      ]
+    },
+    {
+      "word": "CHARGER",
+      "clues": [
+        "Plugs in to recharge a device",
+        "Category: Translated: Technologie"
+      ]
+    },
+    {
+      "word": "DEVICE",
+      "clues": [
+        "Any piece of electronic equipment with a specific function",
+        "Category: Translated: Technologie"
+      ]
+    },
+    {
+      "word": "FILE",
+      "clues": [
+        "A single saved document on a computer",
+        "Category: Translated: Technologie",
+        "A single saved document",
+        "Category: Technology More"
+      ]
+    },
+    {
+      "word": "SAFETY",
+      "clues": [
+        "Being protected from danger or risk",
+        "Category: Translated: Technologie"
+      ]
+    },
+    {
+      "word": "NETWORK",
+      "clues": [
+        "A connected system of devices",
+        "Category: Translated: Technologie",
+        "Category: Technology More"
+      ]
+    },
+    {
+      "word": "CAMERA",
+      "clues": [
+        "A device used to take pictures",
+        "Category: Translated: Technologie"
+      ]
+    },
+    {
+      "word": "PRINTER",
+      "clues": [
+        "Puts text or images onto paper from a computer",
+        "Category: Translated: Technologie"
+      ]
+    },
+    {
+      "word": "SCREENTIME",
+      "clues": [
+        "Time spent looking at a screen",
+        "Category: Translated: Technologie"
+      ]
+    },
+    {
+      "word": "SHOE",
+      "clues": [
+        "Worn on a foot",
+        "Category: Translated: Kleidung"
+      ]
+    },
+    {
+      "word": "HAT",
+      "clues": [
+        "Worn on the head in cold weather",
+        "Category: Translated: Kleidung"
+      ]
+    },
+    {
+      "word": "SHIRT",
+      "clues": [
+        "A garment with sleeves and buttons, worn on the upper body",
+        "Category: Translated: Kleidung"
+      ]
+    },
+    {
+      "word": "DRESS",
+      "clues": [
+        "A one-piece garment worn by women",
+        "Category: Translated: Kleidung"
+      ]
+    },
+    {
+      "word": "SKIRT",
+      "clues": [
+        "A garment that hangs from the waist, worn by women",
+        "Category: Translated: Kleidung"
+      ]
+    },
+    {
+      "word": "SWEATER",
+      "clues": [
+        "A warm, knitted top pulled over the head",
+        "Category: Translated: Kleidung"
+      ]
+    },
+    {
+      "word": "GLOVE",
+      "clues": [
+        "Worn on a hand to keep it warm",
+        "Category: Translated: Kleidung"
+      ]
+    },
+    {
+      "word": "SOCK",
+      "clues": [
+        "Worn on a foot, under a shoe",
+        "Category: Translated: Kleidung"
+      ]
+    },
+    {
+      "word": "BELT",
+      "clues": [
+        "Worn around the waist to hold up trousers",
+        "Category: Translated: Kleidung"
+      ]
+    },
+    {
+      "word": "NECKTIE",
+      "clues": [
+        "A strip of fabric tied around the neck for formal wear",
+        "Category: Translated: Kleidung"
+      ]
+    },
+    {
+      "word": "CLOUD",
+      "clues": [
+        "Floats in the sky, can bring rain",
+        "Category: Translated: Wetter"
+      ]
+    },
+    {
+      "word": "SEASON",
+      "clues": [
+        "One of four yearly periods: spring, summer, autumn, winter",
+        "Category: Translated: Wetter"
+      ]
+    },
+    {
+      "word": "SPRING",
+      "clues": [
+        "The season after winter",
+        "Category: Translated: Wetter"
+      ]
+    },
+    {
+      "word": "SUMMER",
+      "clues": [
+        "The hottest season",
+        "Category: Translated: Wetter"
+      ]
+    },
+    {
+      "word": "AUTUMN",
+      "clues": [
+        "The season when leaves fall",
+        "Category: Translated: Wetter"
+      ]
+    },
+    {
+      "word": "WINTER",
+      "clues": [
+        "The coldest season",
+        "Category: Translated: Wetter"
+      ]
+    },
+    {
+      "word": "THUNDERSTORM",
+      "clues": [
+        "A storm with thunder and lightning",
+        "Category: Translated: Wetter",
+        "Category: Nature Specifics"
+      ]
+    },
+    {
+      "word": "FOG",
+      "clues": [
+        "A thick, low cloud that reduces visibility",
+        "Category: Translated: Wetter",
+        "Category: Weather and Disasters"
+      ]
+    },
+    {
+      "word": "HEAT",
+      "clues": [
+        "Very high temperature",
+        "Category: Translated: Wetter"
+      ]
+    },
+    {
+      "word": "COLDNESS",
+      "clues": [
+        "Very low temperature",
+        "Category: Translated: Wetter"
+      ]
+    },
+    {
+      "word": "RIVER",
+      "clues": [
+        "A large, natural stream of water",
+        "Category: Translated: Natur"
+      ]
+    },
+    {
+      "word": "LAKE",
+      "clues": [
+        "A large body of still water surrounded by land",
+        "Category: Translated: Natur"
+      ]
+    },
+    {
+      "word": "HORSE",
+      "clues": [
+        "A large animal people ride",
+        "Category: Translated: Natur"
+      ]
+    },
+    {
+      "word": "COW",
+      "clues": [
+        "A farm animal that produces milk",
+        "Category: Translated: Natur"
+      ]
+    },
+    {
+      "word": "PIG",
+      "clues": [
+        "A farm animal, source of pork",
+        "Category: Translated: Natur"
+      ]
+    },
+    {
+      "word": "CHICKEN",
+      "clues": [
+        "A farm bird that lays eggs",
+        "Category: Translated: Natur"
+      ]
+    },
+    {
+      "word": "BEE",
+      "clues": [
+        "A flying insect that makes honey",
+        "Category: Translated: Natur"
+      ]
+    },
+    {
+      "word": "BUTTERFLY",
+      "clues": [
+        "A colorful flying insect that starts as a caterpillar",
+        "Category: Translated: Natur"
+      ]
+    },
+    {
+      "word": "FLOWER",
+      "clues": [
+        "A colorful flowering plant",
+        "Category: Translated: Natur"
+      ]
+    },
+    {
+      "word": "LEAF",
+      "clues": [
+        "Grows on a tree branch, usually green",
+        "Category: Translated: Natur"
+      ]
+    },
+    {
+      "word": "ROOT",
+      "clues": [
+        "Grows underground, anchoring a plant",
+        "Category: Translated: Natur",
+        "Category: Nature Specifics"
+      ]
+    },
+    {
+      "word": "BRANCH",
+      "clues": [
+        "A woody limb extending from a tree's trunk",
+        "Category: Translated: Natur",
+        "A part of a tree growing from the trunk",
+        "Category: Nature Specifics"
+      ]
+    },
+    {
+      "word": "SUNSET",
+      "clues": [
+        "The moment the sun disappears below the horizon",
+        "Category: Translated: Natur"
+      ]
+    },
+    {
+      "word": "SUNRISE",
+      "clues": [
+        "The moment the sun first appears in the morning",
+        "Category: Translated: Natur"
+      ]
+    },
+    {
+      "word": "RAINBOW",
+      "clues": [
+        "A colorful arc appearing in the sky after rain",
+        "Category: Translated: Natur"
+      ]
+    },
+    {
+      "word": "SPORT",
+      "clues": [
+        "Physical activity done for fitness or competition",
+        "Category: Translated: Sport"
+      ]
+    },
+    {
+      "word": "CONTEST",
+      "clues": [
+        "A competition to decide a winner",
+        "Category: Translated: Sport"
+      ]
+    },
+    {
+      "word": "WINNER",
+      "clues": [
+        "The person who comes out on top in a competition",
+        "Category: Translated: Sport"
+      ]
+    },
+    {
+      "word": "LOSER",
+      "clues": [
+        "The one who doesn't win a competition",
+        "Category: Translated: Sport"
+      ]
+    },
+    {
+      "word": "SWIMMINGPOOL",
+      "clues": [
+        "A public pool for swimming",
+        "Category: Translated: Sport"
+      ]
+    },
+    {
+      "word": "GYM",
+      "clues": [
+        "A facility with equipment for physical exercise",
+        "Category: Translated: Sport"
+      ]
+    },
+    {
+      "word": "SOCCER",
+      "clues": [
+        "A sport played by kicking a ball into a goal",
+        "Category: Translated: Sport"
+      ]
+    },
+    {
+      "word": "MEMBER",
+      "clues": [
+        "A person who belongs to a club or group",
+        "Category: Translated: Sport"
+      ]
+    },
+    {
+      "word": "CLUB",
+      "clues": [
+        "A group of people who share an interest, meeting regularly",
+        "Category: Translated: Sport"
+      ]
+    },
+    {
+      "word": "HOBBY",
+      "clues": [
+        "An activity done for enjoyment in free time",
+        "Category: Translated: Sport"
+      ]
+    },
+    {
+      "word": "LEISURETIME",
+      "clues": [
+        "Time free from work or school",
+        "Category: Translated: Sport"
+      ]
+    },
+    {
+      "word": "MUSIC",
+      "clues": [
+        "Organized sound, played or sung",
+        "Category: Translated: Sport"
+      ]
+    },
+    {
+      "word": "CONCERT",
+      "clues": [
+        "A live musical performance",
+        "Category: Translated: Sport"
+      ]
+    },
+    {
+      "word": "CINEMA",
+      "clues": [
+        "A place to watch films on a big screen",
+        "Category: Translated: Sport"
+      ]
+    },
+    {
+      "word": "THEATER",
+      "clues": [
+        "A place where live plays are performed",
+        "Category: Translated: Sport"
+      ]
+    },
+    {
+      "word": "EXHIBITION",
+      "clues": [
+        "A public display of art or objects",
+        "Category: Translated: Sport"
+      ]
+    },
+    {
+      "word": "ENGINEER",
+      "clues": [
+        "Designs and builds machines or structures",
+        "Category: Translated: Berufe"
+      ]
+    },
+    {
+      "word": "LAWYER",
+      "clues": [
+        "Represents people legally in court",
+        "Category: Translated: Berufe"
+      ]
+    },
+    {
+      "word": "ARCHITECT",
+      "clues": [
+        "Designs buildings",
+        "Category: Translated: Berufe"
+      ]
+    },
+    {
+      "word": "ELECTRICIAN",
+      "clues": [
+        "Repairs electrical systems",
+        "Category: Translated: Berufe"
+      ]
+    },
+    {
+      "word": "PLUMBER",
+      "clues": [
+        "Repairs pipes and water systems",
+        "Category: Translated: Berufe"
+      ]
+    },
+    {
+      "word": "MECHANIC",
+      "clues": [
+        "Repairs cars and machines",
+        "Category: Translated: Berufe"
+      ]
+    },
+    {
+      "word": "ACCOUNTANT",
+      "clues": [
+        "Manages the finances of a business",
+        "Category: Translated: Berufe"
+      ]
+    },
+    {
+      "word": "SCIENTIST",
+      "clues": [
+        "Conducts experiments to discover new things",
+        "Category: Translated: Berufe"
+      ]
+    },
+    {
+      "word": "FARMER",
+      "clues": [
+        "Grows crops or raises animals",
+        "Category: Translated: Berufe"
+      ]
+    },
+    {
+      "word": "CHEF",
+      "clues": [
+        "Prepares food professionally in a kitchen",
+        "Category: Translated: Berufe"
+      ]
+    },
+    {
+      "word": "PILOT",
+      "clues": [
+        "Flies an airplane",
+        "Category: Translated: Berufe"
+      ]
+    },
+    {
+      "word": "FIREFIGHTER",
+      "clues": [
+        "Puts out fires and rescues people",
+        "Category: Translated: Berufe"
+      ]
+    },
+    {
+      "word": "POLICEOFFICER",
+      "clues": [
+        "Enforces the law and keeps order",
+        "Category: Translated: Berufe"
+      ]
+    },
+    {
+      "word": "LIBRARIAN",
+      "clues": [
+        "Manages the books in a library",
+        "Category: Translated: Berufe"
+      ]
+    },
+    {
+      "word": "PHOTOGRAPHER",
+      "clues": [
+        "Takes photographs professionally",
+        "Category: Translated: Berufe"
+      ]
+    },
+    {
+      "word": "TRANSLATOR",
+      "clues": [
+        "Converts text from one language to another",
+        "Category: Translated: Berufe"
+      ]
+    },
+    {
+      "word": "SALESPERSON",
+      "clues": [
+        "Sells goods to customers",
+        "Category: Translated: Berufe"
+      ]
+    },
+    {
+      "word": "CRAFTSMAN",
+      "clues": [
+        "Skilled manual worker, like a carpenter",
+        "Category: Translated: Berufe"
+      ]
+    },
+    {
+      "word": "CONTINENT",
+      "clues": [
+        "A huge landmass, like Europe or Africa",
+        "Category: Translated: StadtOrte",
+        "A huge landmass, like Africa or Asia",
+        "Category: Places More"
+      ]
+    },
+    {
+      "word": "CAPITAL",
+      "clues": [
+        "The main city of a country, where government is based",
+        "Category: Translated: StadtOrte",
+        "The main city of a country",
+        "Category: City and Geography"
+      ]
+    },
+    {
+      "word": "COAST",
+      "clues": [
+        "The land right next to the sea",
+        "Category: Translated: StadtOrte",
+        "Category: City and Geography"
+      ]
+    },
+    {
+      "word": "VALLEY",
+      "clues": [
+        "Low ground between two mountains",
+        "Category: Translated: StadtOrte",
+        "Category: City and Geography"
+      ]
+    },
+    {
+      "word": "HARBOR",
+      "clues": [
+        "A protected area where ships dock",
+        "Category: Translated: StadtOrte",
+        "Category: City and Geography"
+      ]
+    },
+    {
+      "word": "BRIDGE",
+      "clues": [
+        "Crosses a river or a valley",
+        "Category: Translated: StadtOrte",
+        "Category: City and Geography"
+      ]
+    },
+    {
+      "word": "TUNNEL",
+      "clues": [
+        "A passage under the ground or through a mountain",
+        "Category: Translated: StadtOrte",
+        "Category: City and Geography"
+      ]
+    },
+    {
+      "word": "SUBURB",
+      "clues": [
+        "A residential area at the edge of a city",
+        "Category: Translated: StadtOrte",
+        "Category: Places More"
+      ]
+    },
+    {
+      "word": "MARKET",
+      "clues": [
+        "A place where goods are sold, often outdoors",
+        "Category: Translated: StadtOrte"
+      ]
+    },
+    {
+      "word": "CASTLE",
+      "clues": [
+        "A large, historic fortress or palace",
+        "Category: Translated: StadtOrte"
+      ]
+    },
+    {
+      "word": "CHURCH",
+      "clues": [
+        "A building for Christian worship",
+        "Category: Translated: StadtOrte",
+        "Category: City and Geography"
+      ]
+    },
+    {
+      "word": "CEMETERY",
+      "clues": [
+        "A place where the dead are buried",
+        "Category: Translated: StadtOrte",
+        "Category: City and Geography"
+      ]
+    },
+    {
+      "word": "SKYSCRAPER",
+      "clues": [
+        "A very tall building in a city",
+        "Category: Translated: StadtOrte",
+        "Category: City and Geography"
+      ]
+    },
+    {
+      "word": "TOWNHALL",
+      "clues": [
+        "The building where city government is based",
+        "Category: Translated: StadtOrte",
+        "Category: Places More"
+      ]
+    },
+    {
+      "word": "FIREDEPARTMENT",
+      "clues": [
+        "The service that puts out fires",
+        "Category: Translated: StadtOrte"
+      ]
+    },
+    {
+      "word": "AMBULANCE",
+      "clues": [
+        "A vehicle that rushes sick people to hospital",
+        "Category: Translated: StadtOrte"
+      ]
+    },
+    {
+      "word": "SQUARE",
+      "clues": [
+        "An open paved area in the middle of a town",
+        "Category: Translated: StadtOrte",
+        "A shape with four equal sides",
+        "Category: Colors and Shapes",
+        "An open public area in a town",
+        "Category: Places More"
+      ]
+    },
+    {
+      "word": "MONUMENT",
+      "clues": [
+        "A structure built to remember a person or event",
+        "Category: Translated: StadtOrte",
+        "A structure built to honor a person or event",
+        "Category: Places More"
+      ]
+    },
+    {
+      "word": "CANDLE",
+      "clues": [
+        "Burns with a small flame, made of wax",
+        "Category: Translated: Kueche",
+        "Category: Everyday Objects"
+      ]
+    },
+    {
+      "word": "BLANKET",
+      "clues": [
+        "Warms you in bed",
+        "Category: Translated: Kueche",
+        "Category: Household",
+        "Category: Top Up"
+      ]
+    },
+    {
+      "word": "PILLOW",
+      "clues": [
+        "Supports the head while sleeping",
+        "Category: Translated: Kueche",
+        "Category: Household"
+      ]
+    },
+    {
+      "word": "TOWEL",
+      "clues": [
+        "Dries the body after a shower",
+        "Category: Translated: Kueche",
+        "Category: Everyday Objects"
+      ]
+    },
+    {
+      "word": "BROOM",
+      "clues": [
+        "Used to sweep the floor",
+        "Category: Translated: Kueche"
+      ]
+    },
+    {
+      "word": "LADDER",
+      "clues": [
+        "Used to reach high places",
+        "Category: Translated: Kueche",
+        "Category: Everyday Objects"
+      ]
+    },
+    {
+      "word": "HAMMER",
+      "clues": [
+        "A tool for driving in nails",
+        "Category: Translated: Kueche"
+      ]
+    },
+    {
+      "word": "SCISSORS",
+      "clues": [
+        "A tool for cutting paper or fabric",
+        "Category: Translated: Kueche",
+        "Category: Everyday Objects"
+      ]
+    },
+    {
+      "word": "ENVELOPE",
+      "clues": [
+        "A letter is sent inside this",
+        "Category: Translated: Kueche",
+        "A letter is mailed inside this",
+        "Category: Last Few"
+      ]
+    },
+    {
+      "word": "CALENDAR",
+      "clues": [
+        "Shows the days, weeks, and months",
+        "Category: Translated: Kueche",
+        "Category: Everyday Objects"
+      ]
+    },
+    {
+      "word": "NOTEBOOK",
+      "clues": [
+        "A small book for writing notes",
+        "Category: Translated: Kueche"
+      ]
+    },
+    {
+      "word": "BACKPACK",
+      "clues": [
+        "Worn on the back, for books or gear",
+        "Category: Translated: Kueche",
+        "Category: Everyday Objects"
+      ]
+    },
+    {
+      "word": "FLASHLIGHT",
+      "clues": [
+        "A portable, battery-powered light source",
+        "Category: Translated: Kueche",
+        "Category: Everyday Objects"
+      ]
+    },
+    {
+      "word": "WASHINGMACHINE",
+      "clues": [
+        "Cleans clothes using water and soap",
+        "Category: Translated: Kueche"
+      ]
+    },
+    {
+      "word": "DISHES",
+      "clues": [
+        "Plates, bowls, and cups used for eating",
+        "Category: Translated: Kueche"
+      ]
+    },
+    {
+      "word": "CUTLERY",
+      "clues": [
+        "Knives, forks, and spoons",
+        "Category: Translated: Kueche"
+      ]
+    },
+    {
+      "word": "YESTERDAY",
+      "clues": [
+        "The day before today",
+        "Category: Translated: ZahlenZeit"
+      ]
+    },
+    {
+      "word": "TOMORROW",
+      "clues": [
+        "The day after today",
+        "Category: Translated: ZahlenZeit"
+      ]
+    },
+    {
+      "word": "WEEKEND",
+      "clues": [
+        "Saturday and Sunday",
+        "Category: Translated: ZahlenZeit"
+      ]
+    },
+    {
+      "word": "CENTURY",
+      "clues": [
+        "A period of one hundred years",
+        "Category: Translated: ZahlenZeit",
+        "Category: Time More"
+      ]
+    },
+    {
+      "word": "DECADE",
+      "clues": [
+        "A period of ten years",
+        "Category: Translated: ZahlenZeit",
+        "Category: Time More"
+      ]
+    },
+    {
+      "word": "MOMENT",
+      "clues": [
+        "A very short period of time",
+        "Category: Translated: ZahlenZeit"
+      ]
+    },
+    {
+      "word": "SCHEDULE",
+      "clues": [
+        "A timetable listing when things are planned to happen",
+        "Category: Translated: ZahlenZeit",
+        "A planned timetable for tasks",
+        "Category: Time More"
+      ]
+    },
+    {
+      "word": "ROUTINE",
+      "clues": [
+        "A regularly repeated sequence of actions",
+        "Category: Translated: ZahlenZeit",
+        "Category: Time More"
+      ]
+    },
+    {
+      "word": "CLOCKTIME",
+      "clues": [
+        "The specific time shown on a clock",
+        "Category: Translated: ZahlenZeit"
+      ]
+    },
+    {
+      "word": "MINUTE",
+      "clues": [
+        "Sixty seconds",
+        "Category: Translated: ZahlenZeit"
+      ]
+    },
+    {
+      "word": "HOUR",
+      "clues": [
+        "Sixty minutes",
+        "Category: Translated: ZahlenZeit"
+      ]
+    },
+    {
+      "word": "SECOND",
+      "clues": [
+        "A very short unit of time",
+        "Category: Translated: ZahlenZeit"
+      ]
+    },
+    {
+      "word": "WEEK",
+      "clues": [
+        "Seven days",
+        "Category: Translated: ZahlenZeit"
+      ]
+    },
+    {
+      "word": "MONTH",
+      "clues": [
+        "About thirty days",
+        "Category: Translated: ZahlenZeit"
+      ]
+    },
+    {
+      "word": "YEAR",
+      "clues": [
+        "Twelve months",
+        "Category: Translated: ZahlenZeit"
+      ]
+    },
+    {
+      "word": "HEAD",
+      "clues": [
+        "The top part of the body, containing the brain",
+        "Category: Translated: Koerper"
+      ]
+    },
+    {
+      "word": "HAND",
+      "clues": [
+        "Used for grabbing and holding things",
+        "Category: Translated: Koerper"
+      ]
+    },
+    {
+      "word": "FOOT",
+      "clues": [
+        "Used for standing and walking",
+        "Category: Translated: Koerper"
+      ]
+    },
+    {
+      "word": "ARM",
+      "clues": [
+        "Connects the hand to the shoulder",
+        "Category: Translated: Koerper"
+      ]
+    },
+    {
+      "word": "LEG",
+      "clues": [
+        "Connects the foot to the hip",
+        "Category: Translated: Koerper"
+      ]
+    },
+    {
+      "word": "EYE",
+      "clues": [
+        "Used for seeing",
+        "Category: Translated: Koerper"
+      ]
+    },
+    {
+      "word": "EAR",
+      "clues": [
+        "Used for hearing",
+        "Category: Translated: Koerper"
+      ]
+    },
+    {
+      "word": "NOSE",
+      "clues": [
+        "Used for smelling and breathing",
+        "Category: Translated: Koerper"
+      ]
+    },
+    {
+      "word": "MOUTH",
+      "clues": [
+        "Used for eating and speaking",
+        "Category: Translated: Koerper"
+      ]
+    },
+    {
+      "word": "HEART",
+      "clues": [
+        "Pumps blood through the body",
+        "Category: Translated: Koerper"
+      ]
+    },
+    {
+      "word": "SKIN",
+      "clues": [
+        "Covers the outside of the body",
+        "Category: Translated: Koerper"
+      ]
+    },
+    {
+      "word": "HAIR",
+      "clues": [
+        "Grows on the head",
+        "Category: Translated: Koerper"
+      ]
+    },
+    {
+      "word": "TOOTH",
+      "clues": [
+        "Used for biting and chewing",
+        "Category: Translated: Koerper"
+      ]
+    },
+    {
+      "word": "FINGER",
+      "clues": [
+        "One of five on each hand",
+        "Category: Translated: Koerper"
+      ]
+    },
+    {
+      "word": "BACK",
+      "clues": [
+        "The rear surface of the human torso",
+        "Category: Translated: Koerper"
+      ]
+    },
+    {
+      "word": "RED",
+      "clues": [
+        "The color of blood or a tomato",
+        "Category: Colors and Shapes"
+      ]
+    },
+    {
+      "word": "BLUE",
+      "clues": [
+        "The color of the sky on a clear day",
+        "Category: Colors and Shapes"
+      ]
+    },
+    {
+      "word": "GREEN",
+      "clues": [
+        "The color of grass",
+        "Category: Colors and Shapes"
+      ]
+    },
+    {
+      "word": "YELLOW",
+      "clues": [
+        "The color of the sun",
+        "Category: Colors and Shapes"
+      ]
+    },
+    {
+      "word": "ORANGE",
+      "clues": [
+        "A color named after a fruit",
+        "Category: Colors and Shapes"
+      ]
+    },
+    {
+      "word": "PURPLE",
+      "clues": [
+        "A mix of red and blue",
+        "Category: Colors and Shapes"
+      ]
+    },
+    {
+      "word": "CIRCLE",
+      "clues": [
+        "A round shape with no corners",
+        "Category: Colors and Shapes"
+      ]
+    },
+    {
+      "word": "TRIANGLE",
+      "clues": [
+        "A shape with three sides",
+        "Category: Colors and Shapes"
+      ]
+    },
+    {
+      "word": "RECTANGLE",
+      "clues": [
+        "A shape with four right angles",
+        "Category: Colors and Shapes"
+      ]
+    },
+    {
+      "word": "OVAL",
+      "clues": [
+        "An elongated, egg-like shape",
+        "Category: Colors and Shapes"
+      ]
+    },
+    {
+      "word": "DIAMOND",
+      "clues": [
+        "A shape with four sides, like a tilted square",
+        "Category: Colors and Shapes"
+      ]
+    },
+    {
+      "word": "WOOD",
+      "clues": [
+        "Comes from trees, used for furniture",
+        "Category: Materials"
+      ]
+    },
+    {
+      "word": "METAL",
+      "clues": [
+        "A hard, often shiny material",
+        "Category: Materials"
+      ]
+    },
+    {
+      "word": "GLASS",
+      "clues": [
+        "A transparent, breakable material",
+        "Category: Materials"
+      ]
+    },
+    {
+      "word": "PLASTIC",
+      "clues": [
+        "A man-made, moldable material",
+        "Category: Materials"
+      ]
+    },
+    {
+      "word": "COTTON",
+      "clues": [
+        "A soft, natural material from a plant",
+        "Category: Materials"
+      ]
+    },
+    {
+      "word": "LEATHER",
+      "clues": [
+        "Material made from animal hide",
+        "Category: Materials"
+      ]
+    },
+    {
+      "word": "SILK",
+      "clues": [
+        "A smooth, expensive material from silkworms",
+        "Category: Materials"
+      ]
+    },
+    {
+      "word": "STONE",
+      "clues": [
+        "A hard, natural material from the earth",
+        "Category: Materials"
+      ]
+    },
+    {
+      "word": "STEEL",
+      "clues": [
+        "A very strong metal",
+        "Category: Materials"
+      ]
+    },
+    {
+      "word": "RUBBER",
+      "clues": [
+        "A stretchy, elastic material",
+        "Category: Materials"
+      ]
+    },
+    {
+      "word": "NORTH",
+      "clues": [
+        "The compass direction toward the top of most maps",
+        "Category: Directions"
+      ]
+    },
+    {
+      "word": "SOUTH",
+      "clues": [
+        "The compass direction toward the bottom of most maps",
+        "Category: Directions"
+      ]
+    },
+    {
+      "word": "EAST",
+      "clues": [
+        "The direction the sun rises from",
+        "Category: Directions"
+      ]
+    },
+    {
+      "word": "WEST",
+      "clues": [
+        "The direction the sun sets in",
+        "Category: Directions"
+      ]
+    },
+    {
+      "word": "ABOVE",
+      "clues": [
+        "Higher than something else",
+        "Category: Directions"
+      ]
+    },
+    {
+      "word": "BELOW",
+      "clues": [
+        "Lower than something else",
+        "Category: Directions"
+      ]
+    },
+    {
+      "word": "BETWEEN",
+      "clues": [
+        "In the middle of two things",
+        "Category: Directions"
+      ]
+    },
+    {
+      "word": "BESIDE",
+      "clues": [
+        "Right next to something",
+        "Category: Directions"
+      ]
+    },
+    {
+      "word": "SPOON",
+      "clues": [
+        "Used to eat soup",
+        "Category: Kitchen Items"
+      ]
+    },
+    {
+      "word": "FORK",
+      "clues": [
+        "Used to spear food",
+        "Category: Kitchen Items"
+      ]
+    },
+    {
+      "word": "KNIFE",
+      "clues": [
+        "Used to cut food",
+        "Category: Kitchen Items"
+      ]
+    },
+    {
+      "word": "PLATE",
+      "clues": [
+        "Food is served on this",
+        "Category: Kitchen Items"
+      ]
+    },
+    {
+      "word": "BOWL",
+      "clues": [
+        "A round dish, for soup or cereal",
+        "Category: Kitchen Items"
+      ]
+    },
+    {
+      "word": "POT",
+      "clues": [
+        "Used to cook soup or pasta",
+        "Category: Kitchen Items"
+      ]
+    },
+    {
+      "word": "PAN",
+      "clues": [
+        "A flat cooking vessel used for frying",
+        "Category: Kitchen Items"
+      ]
+    },
+    {
+      "word": "KETTLE",
+      "clues": [
+        "Used to boil water",
+        "Category: Kitchen Items"
+      ]
+    },
+    {
+      "word": "TOOTHBRUSH",
+      "clues": [
+        "Used to clean your teeth",
+        "Category: Bathroom"
+      ]
+    },
+    {
+      "word": "SOAP",
+      "clues": [
+        "Used to wash yourself clean",
+        "Category: Bathroom"
+      ]
+    },
+    {
+      "word": "SHAMPOO",
+      "clues": [
+        "Used to wash your hair",
+        "Category: Bathroom"
+      ]
+    },
+    {
+      "word": "TOILET",
+      "clues": [
+        "Where you relieve yourself",
+        "Category: Bathroom"
+      ]
+    },
+    {
+      "word": "SHOWER",
+      "clues": [
+        "Where you wash under running water",
+        "Category: Bathroom"
+      ]
+    },
+    {
+      "word": "BATHTUB",
+      "clues": [
+        "A tub in which you bathe",
+        "Category: Bathroom"
+      ]
+    },
+    {
+      "word": "RAZOR",
+      "clues": [
+        "Used to shave",
+        "Category: Bathroom"
+      ]
+    },
+    {
+      "word": "MIRROR",
+      "clues": [
+        "Shows your reflection",
+        "Category: Bathroom"
+      ]
+    },
+    {
+      "word": "PENCIL",
+      "clues": [
+        "You write with it, can be erased",
+        "Category: Office and School"
+      ]
+    },
+    {
+      "word": "ERASER",
+      "clues": [
+        "Removes pencil marks",
+        "Category: Office and School"
+      ]
+    },
+    {
+      "word": "RULER",
+      "clues": [
+        "Used to measure length",
+        "Category: Office and School"
+      ]
+    },
+    {
+      "word": "STAPLER",
+      "clues": [
+        "Fastens papers together",
+        "Category: Office and School"
+      ]
+    },
+    {
+      "word": "FOLDER",
+      "clues": [
+        "Papers are kept inside it",
+        "Category: Office and School"
+      ]
+    },
+    {
+      "word": "WHITEBOARD",
+      "clues": [
+        "A white board written on with markers",
+        "Category: Office and School"
+      ]
+    },
+    {
+      "word": "BLACKBOARD",
+      "clues": [
+        "A dark board written on with chalk",
+        "Category: Office and School"
+      ]
+    },
+    {
+      "word": "GUITAR",
+      "clues": [
+        "A stringed instrument, plucked or strummed",
+        "Category: Music and Instruments"
+      ]
+    },
+    {
+      "word": "PIANO",
+      "clues": [
+        "A keyboard instrument with black and white keys",
+        "Category: Music and Instruments"
+      ]
+    },
+    {
+      "word": "DRUM",
+      "clues": [
+        "A percussion instrument",
+        "Category: Music and Instruments"
+      ]
+    },
+    {
+      "word": "VIOLIN",
+      "clues": [
+        "A small stringed instrument played with a bow",
+        "Category: Music and Instruments"
+      ]
+    },
+    {
+      "word": "SINGER",
+      "clues": [
+        "Someone who sings professionally",
+        "Category: Music and Instruments"
+      ]
+    },
+    {
+      "word": "MELODY",
+      "clues": [
+        "A sequence of musical notes",
+        "Category: Music and Instruments"
+      ]
+    },
+    {
+      "word": "RHYTHM",
+      "clues": [
+        "The recurring pattern in music",
+        "Category: Music and Instruments"
+      ]
+    },
+    {
+      "word": "BALL",
+      "clues": [
+        "Round, used in many sports",
+        "Category: Sports Equipment"
+      ]
+    },
+    {
+      "word": "RACKET",
+      "clues": [
+        "Used to hit a ball, as in tennis",
+        "Category: Sports Equipment"
+      ]
+    },
+    {
+      "word": "HELMET",
+      "clues": [
+        "Protects the head during dangerous activities",
+        "Category: Sports Equipment"
+      ]
+    },
+    {
+      "word": "LION",
+      "clues": [
+        "A large, wild predator called the king of animals",
+        "Category: Animals"
+      ]
+    },
+    {
+      "word": "ELEPHANT",
+      "clues": [
+        "A very large animal with a trunk",
+        "Category: Animals"
+      ]
+    },
+    {
+      "word": "BEAR",
+      "clues": [
+        "A large, furry forest animal",
+        "Category: Animals"
+      ]
+    },
+    {
+      "word": "WOLF",
+      "clues": [
+        "A wild animal related to the dog",
+        "Category: Animals"
+      ]
+    },
+    {
+      "word": "RABBIT",
+      "clues": [
+        "A small animal with long ears",
+        "Category: Animals"
+      ]
+    },
+    {
+      "word": "SHEEP",
+      "clues": [
+        "A farm animal, source of wool",
+        "Category: Animals"
+      ]
+    },
+    {
+      "word": "DUCK",
+      "clues": [
+        "A water bird that swims and waddles",
+        "Category: Animals"
+      ]
+    },
+    {
+      "word": "FROG",
+      "clues": [
+        "An animal that hops and lives near water",
+        "Category: Animals"
+      ]
+    },
+    {
+      "word": "SPIDER",
+      "clues": [
+        "An eight-legged creature that spins webs",
+        "Category: Animals"
+      ]
+    },
+    {
+      "word": "TURTLE",
+      "clues": [
+        "An animal with a hard shell",
+        "Category: Animals"
+      ]
+    },
+    {
+      "word": "SNAKE",
+      "clues": [
+        "A long reptile without legs",
+        "Category: Animals"
+      ]
+    },
+    {
+      "word": "MONKEY",
+      "clues": [
+        "An agile, tree-climbing primate",
+        "Category: Animals"
+      ]
+    },
+    {
+      "word": "CASHIER",
+      "clues": [
+        "Takes payment at a register",
+        "Category: Professions"
+      ]
+    },
+    {
+      "word": "BARBER",
+      "clues": [
+        "Cuts men's hair",
+        "Category: Professions"
+      ]
+    },
+    {
+      "word": "TAILOR",
+      "clues": [
+        "Sews and alters clothing",
+        "Category: Professions"
+      ]
+    },
+    {
+      "word": "BUTCHER",
+      "clues": [
+        "Sells meat",
+        "Category: Professions"
+      ]
+    },
+    {
+      "word": "BAKER",
+      "clues": [
+        "Bakes bread and cakes",
+        "Category: Professions"
+      ]
+    },
+    {
+      "word": "JANITOR",
+      "clues": [
+        "Keeps a building clean",
+        "Category: Professions"
+      ]
+    },
+    {
+      "word": "RECEPTIONIST",
+      "clues": [
+        "Greets visitors at a front desk",
+        "Category: Professions"
+      ]
+    },
+    {
+      "word": "SURGEON",
+      "clues": [
+        "Performs operations",
+        "Category: Professions"
+      ]
+    },
+    {
+      "word": "VETERINARIAN",
+      "clues": [
+        "A doctor for animals",
+        "Category: Professions"
+      ]
+    },
+    {
+      "word": "CARPENTER",
+      "clues": [
+        "Works professionally with wood",
+        "Category: Professions"
+      ]
+    },
+    {
+      "word": "ALWAYS",
+      "clues": [
+        "At every time, without exception",
+        "Category: Time Expressions"
+      ]
+    },
+    {
+      "word": "NEVER",
+      "clues": [
+        "At no time",
+        "Category: Time Expressions"
+      ]
+    },
+    {
+      "word": "SOMETIMES",
+      "clues": [
+        "Occasionally, not always",
+        "Category: Time Expressions"
+      ]
+    },
+    {
+      "word": "OFTEN",
+      "clues": [
+        "Frequently repeated",
+        "Category: Time Expressions"
+      ]
+    },
+    {
+      "word": "RARELY",
+      "clues": [
+        "Very seldom",
+        "Category: Time Expressions"
+      ]
+    },
+    {
+      "word": "RECENTLY",
+      "clues": [
+        "A short time ago",
+        "Category: Time Expressions"
+      ]
+    },
+    {
+      "word": "SOON",
+      "clues": [
+        "In the near future",
+        "Category: Time Expressions"
+      ]
+    },
+    {
+      "word": "ALREADY",
+      "clues": [
+        "By this time, sooner than expected",
+        "Category: Time Expressions"
+      ]
+    },
+    {
+      "word": "VOTE",
+      "clues": [
+        "To make an official choice in an election",
+        "Category: Society and Politics"
+      ]
+    },
+    {
+      "word": "DEBATE",
+      "clues": [
+        "A formal discussion with opposing views",
+        "Category: Society and Politics"
+      ]
+    },
+    {
+      "word": "EQUALITY",
+      "clues": [
+        "Equal treatment for everyone",
+        "Category: Society and Politics"
+      ]
+    },
+    {
+      "word": "DIVERSITY",
+      "clues": [
+        "A variety of different people or things",
+        "Category: Society and Politics"
+      ]
+    },
+    {
+      "word": "IMMIGRATION",
+      "clues": [
+        "Moving to another country to live there",
+        "Category: Society and Politics"
+      ]
+    },
+    {
+      "word": "CURIOUS",
+      "clues": [
+        "Eager to learn or know something",
+        "Category: Emotions and Character"
+      ]
+    },
+    {
+      "word": "BRAVE",
+      "clues": [
+        "Showing courage",
+        "Category: Emotions and Character"
+      ]
+    },
+    {
+      "word": "HONEST",
+      "clues": [
+        "Truthful and sincere",
+        "Category: Emotions and Character"
+      ]
+    },
+    {
+      "word": "POLITE",
+      "clues": [
+        "Showing good manners",
+        "Category: Emotions and Character"
+      ]
+    },
+    {
+      "word": "WEALTHY",
+      "clues": [
+        "Having a lot of money",
+        "Category: More Adjectives"
+      ]
+    },
+    {
+      "word": "STRICT",
+      "clues": [
+        "Demanding obedience, showing little leniency",
+        "Category: More Adjectives"
+      ]
+    },
+    {
+      "word": "FLEXIBLE",
+      "clues": [
+        "Able to adapt easily",
+        "Category: More Adjectives"
+      ]
+    },
+    {
+      "word": "LOYAL",
+      "clues": [
+        "Faithful and devoted",
+        "Category: More Adjectives"
+      ]
+    },
+    {
+      "word": "CHEERFUL",
+      "clues": [
+        "Happy and in good spirits",
+        "Category: More Adjectives"
+      ]
+    },
+    {
+      "word": "NERVOUS",
+      "clues": [
+        "Anxious or tense",
+        "Category: More Adjectives"
+      ]
+    },
+    {
+      "word": "CROWDED",
+      "clues": [
+        "Full of many people",
+        "Category: More Adjectives"
+      ]
+    },
+    {
+      "word": "NARROW",
+      "clues": [
+        "Not wide",
+        "Category: More Adjectives"
+      ]
+    },
+    {
+      "word": "DEEP",
+      "clues": [
+        "Extending far down",
+        "Category: More Adjectives"
+      ]
+    },
+    {
+      "word": "SHALLOW",
+      "clues": [
+        "Not deep",
+        "Category: More Adjectives"
+      ]
+    },
+    {
+      "word": "SMOOTH",
+      "clues": [
+        "Even, without bumps",
+        "Category: More Adjectives"
+      ]
+    },
+    {
+      "word": "CHALLENGE",
+      "clues": [
+        "A difficult task requiring effort",
+        "Category: Abstract Ideas"
+      ]
+    },
+    {
+      "word": "ACHIEVEMENT",
+      "clues": [
+        "Something successfully accomplished",
+        "Category: Abstract Ideas"
+      ]
+    },
+    {
+      "word": "AMBITION",
+      "clues": [
+        "A strong desire to achieve something",
+        "Category: Abstract Ideas",
+        "Category: Final Additions"
+      ]
+    },
+    {
+      "word": "INNOVATION",
+      "clues": [
+        "A new idea or method",
+        "Category: Abstract Ideas",
+        "Category: Final Additions"
+      ]
+    },
+    {
+      "word": "CONSEQUENCE",
+      "clues": [
+        "The result of an action",
+        "Category: Abstract Ideas",
+        "Category: Final Additions"
+      ]
+    },
+    {
+      "word": "ENCOURAGEMENT",
+      "clues": [
+        "Words that motivate someone",
+        "Category: Abstract Ideas",
+        "Category: Final Additions"
+      ]
+    },
+    {
+      "word": "DISAPPOINTMENT",
+      "clues": [
+        "The feeling when something falls short of hope",
+        "Category: Abstract Ideas"
+      ]
+    },
+    {
+      "word": "RECOGNITION",
+      "clues": [
+        "Credit given for an accomplishment",
+        "Category: Abstract Ideas"
+      ]
+    },
+    {
+      "word": "INDEPENDENCE",
+      "clues": [
+        "Freedom from control by others",
+        "Category: Abstract Ideas"
+      ]
+    },
+    {
+      "word": "COOPERATION",
+      "clues": [
+        "Working together toward a goal",
+        "Category: Abstract Ideas"
+      ]
+    },
+    {
+      "word": "COMPETITION",
+      "clues": [
+        "A contest between multiple participants",
+        "Category: Abstract Ideas"
+      ]
+    },
+    {
+      "word": "COFFEE",
+      "clues": [
+        "A hot, caffeinated beverage",
+        "Category: Food and Drink"
+      ]
+    },
+    {
+      "word": "TEA",
+      "clues": [
+        "A hot beverage made from steeped leaves",
+        "Category: Food and Drink"
+      ]
+    },
+    {
+      "word": "JUICE",
+      "clues": [
+        "A drink made from pressed fruit",
+        "Category: Food and Drink"
+      ]
+    },
+    {
+      "word": "SUGAR",
+      "clues": [
+        "A sweet, white seasoning",
+        "Category: Food and Drink"
+      ]
+    },
+    {
+      "word": "PEPPER",
+      "clues": [
+        "A sharp, dark seasoning",
+        "Category: Food and Drink"
+      ]
+    },
+    {
+      "word": "BUTTER",
+      "clues": [
+        "A fatty dairy product often spread on bread",
+        "Category: Food and Drink"
+      ]
+    },
+    {
+      "word": "SANDWICH",
+      "clues": [
+        "Two slices of bread with filling in between",
+        "Category: Food and Drink"
+      ]
+    },
+    {
+      "word": "PASTA",
+      "clues": [
+        "An Italian dish made from dough",
+        "Category: Food and Drink"
+      ]
+    },
+    {
+      "word": "PIZZA",
+      "clues": [
+        "A flat Italian dish with toppings",
+        "Category: Food and Drink"
+      ]
+    },
+    {
+      "word": "CHOCOLATE",
+      "clues": [
+        "A sweet food made from cocoa",
+        "Category: Food and Drink"
+      ]
+    },
+    {
+      "word": "HONEY",
+      "clues": [
+        "A sweet substance made by bees",
+        "Category: Food and Drink"
+      ]
+    },
+    {
+      "word": "YOGURT",
+      "clues": [
+        "A soured dairy product",
+        "Category: Food and Drink"
+      ]
+    },
+    {
+      "word": "ONION",
+      "clues": [
+        "A sharp-tasting vegetable with layers",
+        "Category: Food and Drink"
+      ]
+    },
+    {
+      "word": "POTATO",
+      "clues": [
+        "A common root vegetable",
+        "Category: Food and Drink"
+      ]
+    },
+    {
+      "word": "TOMATO",
+      "clues": [
+        "A red, juicy vegetable",
+        "Category: Food and Drink"
+      ]
+    },
+    {
+      "word": "BANANA",
+      "clues": [
+        "A yellow, curved fruit",
+        "Category: Food and Drink"
+      ]
+    },
+    {
+      "word": "LEMON",
+      "clues": [
+        "A very sour, yellow citrus fruit",
+        "Category: Food and Drink"
+      ]
+    },
+    {
+      "word": "BAKERY",
+      "clues": [
+        "A shop that sells bread and cakes",
+        "Category: Food and Drink"
+      ]
+    },
+    {
+      "word": "GRASS",
+      "clues": [
+        "Green, low plants covering the ground",
+        "Category: Household"
+      ]
+    },
+    {
+      "word": "FIREPLACE",
+      "clues": [
+        "A place in a house where a fire burns",
+        "Category: Household"
+      ]
+    },
+    {
+      "word": "CHIMNEY",
+      "clues": [
+        "Carries smoke out of a house",
+        "Category: Household"
+      ]
+    },
+    {
+      "word": "STORM",
+      "clues": [
+        "A violent spell of bad weather",
+        "Category: Weather and Disasters"
+      ]
+    },
+    {
+      "word": "FLOOD",
+      "clues": [
+        "When water overwhelms land",
+        "Category: Weather and Disasters"
+      ]
+    },
+    {
+      "word": "BREEZE",
+      "clues": [
+        "A gentle wind",
+        "Category: Weather and Disasters"
+      ]
+    },
+    {
+      "word": "HURRICANE",
+      "clues": [
+        "An extremely powerful tropical storm",
+        "Category: Weather and Disasters"
+      ]
+    },
+    {
+      "word": "TORNADO",
+      "clues": [
+        "A spinning, destructive column of wind",
+        "Category: Weather and Disasters"
+      ]
+    },
+    {
+      "word": "BONE",
+      "clues": [
+        "A hard part of the skeleton",
+        "Category: Body"
+      ]
+    },
+    {
+      "word": "BLOOD",
+      "clues": [
+        "The red fluid that circulates in the body",
+        "Category: Body"
+      ]
+    },
+    {
+      "word": "LUNG",
+      "clues": [
+        "An organ used for breathing",
+        "Category: Body"
+      ]
+    },
+    {
+      "word": "BRAIN",
+      "clues": [
+        "The organ that controls thought",
+        "Category: Body"
+      ]
+    },
+    {
+      "word": "STOMACH",
+      "clues": [
+        "The organ where food is digested",
+        "Category: Body"
+      ]
+    },
+    {
+      "word": "SHOULDER",
+      "clues": [
+        "Connects the arm to the torso",
+        "Category: Body"
+      ]
+    },
+    {
+      "word": "ELBOW",
+      "clues": [
+        "The middle joint of the arm",
+        "Category: Body"
+      ]
+    },
+    {
+      "word": "KNEE",
+      "clues": [
+        "The middle joint of the leg",
+        "Category: Body"
+      ]
+    },
+    {
+      "word": "WRIST",
+      "clues": [
+        "The joint between the hand and arm",
+        "Category: Body"
+      ]
+    },
+    {
+      "word": "HALF",
+      "clues": [
+        "One of two equal parts of something",
+        "Category: Numbers and Math"
+      ]
+    },
+    {
+      "word": "DOUBLE",
+      "clues": [
+        "Twice as much as something",
+        "Category: Numbers and Math"
+      ]
+    },
+    {
+      "word": "TOTAL",
+      "clues": [
+        "The sum of everything combined",
+        "Category: Numbers and Math"
+      ]
+    },
+    {
+      "word": "AVERAGE",
+      "clues": [
+        "The typical, middle value of a set of numbers",
+        "Category: Numbers and Math"
+      ]
+    },
+    {
+      "word": "PERCENTAGE",
+      "clues": [
+        "A share expressed out of one hundred",
+        "Category: Numbers and Math"
+      ]
+    },
+    {
+      "word": "CALCULATOR",
+      "clues": [
+        "A device that performs math calculations",
+        "Category: Numbers and Math"
+      ]
+    },
+    {
+      "word": "EQUATION",
+      "clues": [
+        "A mathematical expression with an equals sign",
+        "Category: Numbers and Math"
+      ]
+    },
+    {
+      "word": "CONVERSATION",
+      "clues": [
+        "A spoken exchange between people",
+        "Category: Communication"
+      ]
+    },
+    {
+      "word": "ARGUMENT",
+      "clues": [
+        "A dispute or disagreement",
+        "Category: Communication"
+      ]
+    },
+    {
+      "word": "STATEMENT",
+      "clues": [
+        "A spoken or written declaration",
+        "Category: Communication"
+      ]
+    },
+    {
+      "word": "ANNOUNCEMENT",
+      "clues": [
+        "A public declaration",
+        "Category: Communication"
+      ]
+    },
+    {
+      "word": "REPLY",
+      "clues": [
+        "A response to a message",
+        "Category: Communication"
+      ]
+    },
+    {
+      "word": "RUMOR",
+      "clues": [
+        "An unconfirmed piece of information that spreads",
+        "Category: Communication",
+        "An unverified piece of spreading information",
+        "Category: Final Additions"
+      ]
+    },
+    {
+      "word": "GOSSIP",
+      "clues": [
+        "Idle talk about other people",
+        "Category: Communication"
+      ]
+    },
+    {
+      "word": "PUZZLE",
+      "clues": [
+        "A game where pieces are put together",
+        "Category: Leisure"
+      ]
+    },
+    {
+      "word": "CHESS",
+      "clues": [
+        "A strategy game with a king and queen",
+        "Category: Leisure"
+      ]
+    },
+    {
+      "word": "CAMPING",
+      "clues": [
+        "Sleeping outdoors, often in a tent",
+        "Category: Leisure"
+      ]
+    },
+    {
+      "word": "FISHING",
+      "clues": [
+        "Catching fish with a rod",
+        "Category: Leisure"
+      ]
+    },
+    {
+      "word": "GARDENING",
+      "clues": [
+        "Tending to plants in one's own garden",
+        "Category: Leisure"
+      ]
+    },
+    {
+      "word": "COLLECTING",
+      "clues": [
+        "Systematically gathering objects, as a hobby",
+        "Category: Leisure"
+      ]
+    },
+    {
+      "word": "KNITTING",
+      "clues": [
+        "Making clothing from wool using needles",
+        "Category: Leisure"
+      ]
+    },
+    {
+      "word": "PRESENTATION",
+      "clues": [
+        "A talk given in front of a group",
+        "Category: Business"
+      ]
+    },
+    {
+      "word": "CLIENT",
+      "clues": [
+        "A customer who buys a service",
+        "Category: Business"
+      ]
+    },
+    {
+      "word": "SUPERVISOR",
+      "clues": [
+        "Oversees the work of others",
+        "Category: Business"
+      ]
+    },
+    {
+      "word": "ECONOMY",
+      "clues": [
+        "A country's system of production and trade",
+        "Category: Business"
+      ]
+    },
+    {
+      "word": "INDUSTRY",
+      "clues": [
+        "A branch of economic activity",
+        "Category: Business"
+      ]
+    },
+    {
+      "word": "CUSTOMER",
+      "clues": [
+        "Someone who buys something",
+        "Category: Business"
+      ]
+    },
+    {
+      "word": "SUPPLIER",
+      "clues": [
+        "Provides goods to a business",
+        "Category: Business"
+      ]
+    },
+    {
+      "word": "VOYAGE",
+      "clues": [
+        "A long journey, often by ship",
+        "Category: Travel More"
+      ]
+    },
+    {
+      "word": "DEPARTURE",
+      "clues": [
+        "The moment of leaving",
+        "Category: Travel More"
+      ]
+    },
+    {
+      "word": "ARRIVAL",
+      "clues": [
+        "The moment of getting somewhere",
+        "Category: Travel More"
+      ]
+    },
+    {
+      "word": "CUSTOMS",
+      "clues": [
+        "Border control where luggage is checked",
+        "Category: Travel More"
+      ]
+    },
+    {
+      "word": "TOURIST",
+      "clues": [
+        "Someone traveling for pleasure",
+        "Category: Travel More"
+      ]
+    },
+    {
+      "word": "WATERFALL",
+      "clues": [
+        "Water falling over a steep cliff",
+        "Category: Nature More"
+      ]
+    },
+    {
+      "word": "CAVE",
+      "clues": [
+        "A natural hollow space in rock",
+        "Category: Nature More"
+      ]
+    },
+    {
+      "word": "CLIFF",
+      "clues": [
+        "A steep rock face",
+        "Category: Nature More"
+      ]
+    },
+    {
+      "word": "NOVEL",
+      "clues": [
+        "A long work of fiction",
+        "Category: Art and Literature"
+      ]
+    },
+    {
+      "word": "POEM",
+      "clues": [
+        "A short, often rhymed literary work",
+        "Category: Art and Literature"
+      ]
+    },
+    {
+      "word": "AUTHOR",
+      "clues": [
+        "Someone who writes books",
+        "Category: Art and Literature"
+      ]
+    },
+    {
+      "word": "RELIEF",
+      "clues": [
+        "The ease felt when a worry ends",
+        "Category: Feelings More"
+      ]
+    },
+    {
+      "word": "SATISFACTION",
+      "clues": [
+        "The feeling of contentment",
+        "Category: Feelings More"
+      ]
+    },
+    {
+      "word": "ENTHUSIASM",
+      "clues": [
+        "Great excitement for something",
+        "Category: Feelings More"
+      ]
+    },
+    {
+      "word": "REGRET",
+      "clues": [
+        "Sadness over a past decision",
+        "Category: Feelings More"
+      ]
+    },
+    {
+      "word": "EFFORT",
+      "clues": [
+        "Strenuous exertion to achieve something",
+        "Category: Daily Life"
+      ]
+    },
+    {
+      "word": "ADVICE",
+      "clues": [
+        "A suggestion about what someone should do",
+        "Category: Daily Life"
+      ]
+    },
+    {
+      "word": "EXCUSE",
+      "clues": [
+        "A reason given for a fault",
+        "Category: Daily Life"
+      ]
+    },
+    {
+      "word": "PROMISE",
+      "clues": [
+        "A commitment to do something",
+        "Category: Daily Life"
+      ]
+    },
+    {
+      "word": "SECRET",
+      "clues": [
+        "Something not told to anyone",
+        "Category: Daily Life"
+      ]
+    },
+    {
+      "word": "APOLOGY",
+      "clues": [
+        "An expression of regret for a mistake",
+        "Category: Daily Life"
+      ]
+    },
+    {
+      "word": "WARNING",
+      "clues": [
+        "An indication of danger",
+        "Category: Daily Life"
+      ]
+    },
+    {
+      "word": "THERMOMETER",
+      "clues": [
+        "Measures body temperature",
+        "Category: Health More"
+      ]
+    },
+    {
+      "word": "CRUTCHES",
+      "clues": [
+        "Help with walking on an injured leg",
+        "Category: Health More"
+      ]
+    },
+    {
+      "word": "INJECTION",
+      "clues": [
+        "A shot that delivers medicine into the body",
+        "Category: Health More"
+      ]
+    },
+    {
+      "word": "RECOVERY",
+      "clues": [
+        "The process of becoming healthy again",
+        "Category: Health More"
+      ]
+    },
+    {
+      "word": "INFECTION",
+      "clues": [
+        "When bacteria or viruses invade the body",
+        "Category: Health More"
+      ]
+    },
+    {
+      "word": "REGULATION",
+      "clues": [
+        "An official rule",
+        "Category: Legal and Official"
+      ]
+    },
+    {
+      "word": "JUDGE",
+      "clues": [
+        "Presides over a court case",
+        "Category: Legal and Official"
+      ]
+    },
+    {
+      "word": "JURY",
+      "clues": [
+        "A group that decides a legal verdict",
+        "Category: Legal and Official"
+      ]
+    },
+    {
+      "word": "WITNESS",
+      "clues": [
+        "Someone who saw an event and can testify",
+        "Category: Legal and Official"
+      ]
+    },
+    {
+      "word": "ROUTER",
+      "clues": [
+        "Connects devices to the internet at home",
+        "Category: Technology More"
+      ]
+    },
+    {
+      "word": "SIGNAL",
+      "clues": [
+        "A transmitted electronic indication",
+        "Category: Technology More"
+      ]
+    },
+    {
+      "word": "UPDATE",
+      "clues": [
+        "A newer, improved version of software",
+        "Category: Technology More"
+      ]
+    },
+    {
+      "word": "FREQUENTLY",
+      "clues": [
+        "Repeated often",
+        "Category: Time More"
+      ]
+    },
+    {
+      "word": "EVENTUALLY",
+      "clues": [
+        "At the end, after some time",
+        "Category: Time More"
+      ]
+    },
+    {
+      "word": "IMMEDIATELY",
+      "clues": [
+        "At once, without delay",
+        "Category: Time More"
+      ]
+    },
+    {
+      "word": "GENERATION",
+      "clues": [
+        "A group of people of similar age",
+        "Category: People and Society"
+      ]
+    },
+    {
+      "word": "CHILDHOOD",
+      "clues": [
+        "The time when someone is a child",
+        "Category: People and Society"
+      ]
+    },
+    {
+      "word": "RETIREMENT",
+      "clues": [
+        "The end of one's working life due to age",
+        "Category: People and Society"
+      ]
+    },
+    {
+      "word": "PRIORITY",
+      "clues": [
+        "Something that should be dealt with first",
+        "Category: More Ideas"
+      ]
+    },
+    {
+      "word": "STRATEGY",
+      "clues": [
+        "A plan to achieve a goal",
+        "Category: More Ideas"
+      ]
+    },
+    {
+      "word": "REPUTATION",
+      "clues": [
+        "What other people think of someone",
+        "Category: More Ideas"
+      ]
+    },
+    {
+      "word": "COMPROMISE",
+      "clues": [
+        "An agreement where both sides give in",
+        "Category: More Ideas"
+      ]
+    },
+    {
+      "word": "NEGOTIATION",
+      "clues": [
+        "A conversation aimed at reaching an agreement",
+        "Category: More Ideas"
+      ]
+    },
+    {
+      "word": "ASSUMPTION",
+      "clues": [
+        "Something believed true without proof",
+        "Category: More Ideas"
+      ]
+    },
+    {
+      "word": "PERSPECTIVE",
+      "clues": [
+        "The way someone views something",
+        "Category: More Ideas"
+      ]
+    },
+    {
+      "word": "HARMONY",
+      "clues": [
+        "A state of peaceful agreement",
+        "Category: More Ideas"
+      ]
+    },
+    {
+      "word": "CHAOS",
+      "clues": [
+        "Complete disorder",
+        "Category: More Ideas"
+      ]
+    },
+    {
+      "word": "WONDER",
+      "clues": [
+        "A feeling of amazement",
+        "Category: More Ideas"
+      ]
+    },
+    {
+      "word": "TRUST",
+      "clues": [
+        "Belief that someone is reliable",
+        "Category: More Ideas"
+      ]
+    },
+    {
+      "word": "BALANCE",
+      "clues": [
+        "Keeping things in equilibrium",
+        "Category: More Ideas"
+      ]
+    },
+    {
+      "word": "SILENCE",
+      "clues": [
+        "Complete quiet, no sound",
+        "Category: More Ideas"
+      ]
+    },
+    {
+      "word": "FREEDOM",
+      "clues": [
+        "The ability to act or think freely",
+        "Category: More Ideas"
+      ]
+    },
+    {
+      "word": "WISDOM",
+      "clues": [
+        "Deep understanding, often gained through experience",
+        "Category: More Ideas"
+      ]
+    },
+    {
+      "word": "IMAGINATION",
+      "clues": [
+        "The ability to form new ideas mentally",
+        "Category: More Ideas"
+      ]
+    },
+    {
+      "word": "CHOICE",
+      "clues": [
+        "A decision made between options",
+        "Category: Final Additions"
+      ]
+    },
+    {
+      "word": "ROBOT",
+      "clues": [
+        "A machine that performs tasks automatically",
+        "Category: Final Additions"
+      ]
+    },
+    {
+      "word": "STICKY",
+      "clues": [
+        "Tending to adhere or cling",
+        "Category: Final Additions"
+      ]
+    },
+    {
+      "word": "BLUNT",
+      "clues": [
+        "Not sharp",
+        "Category: Final Additions"
+      ]
+    },
+    {
+      "word": "ROUGH",
+      "clues": [
+        "Not smooth, uneven",
+        "Category: Final Additions"
+      ]
+    },
+    {
+      "word": "LOUD",
+      "clues": [
+        "Producing a lot of noise",
+        "Category: Final Additions"
+      ]
+    },
+    {
+      "word": "QUIET",
+      "clues": [
+        "Making little or no noise",
+        "Category: Final Additions"
+      ]
+    },
+    {
+      "word": "COMMITTEE",
+      "clues": [
+        "A small group appointed to a task",
+        "Category: Groups and Structures"
+      ]
+    },
+    {
+      "word": "COUNCIL",
+      "clues": [
+        "An advisory or governing group",
+        "Category: Groups and Structures"
+      ]
+    },
+    {
+      "word": "ALLIANCE",
+      "clues": [
+        "A formal agreement between groups",
+        "Category: Groups and Structures"
+      ]
+    },
+    {
+      "word": "COALITION",
+      "clues": [
+        "A temporary alliance for a common purpose",
+        "Category: Groups and Structures"
+      ]
+    },
+    {
+      "word": "ORGANIZATION",
+      "clues": [
+        "A structured group with a shared purpose",
+        "Category: Groups and Structures"
+      ]
+    },
+    {
+      "word": "INSTITUTION",
+      "clues": [
+        "An established organization, like a university",
+        "Category: Groups and Structures"
+      ]
+    },
+    {
+      "word": "FOUNDATION",
+      "clues": [
+        "An organization that funds charitable work",
+        "Category: Groups and Structures"
+      ]
+    },
+    {
+      "word": "SCARF",
+      "clues": [
+        "A strip of fabric worn around the neck for warmth",
+        "Category: Clothing Detail"
+      ]
+    },
+    {
+      "word": "BOOT",
+      "clues": [
+        "A sturdy shoe covering the ankle",
+        "Category: Clothing Detail"
+      ]
+    },
+    {
+      "word": "SANDAL",
+      "clues": [
+        "An open shoe worn in warm weather",
+        "Category: Clothing Detail"
+      ]
+    },
+    {
+      "word": "PAJAMAS",
+      "clues": [
+        "Clothing worn for sleeping",
+        "Category: Clothing Detail"
+      ]
+    },
+    {
+      "word": "COSTUME",
+      "clues": [
+        "Clothing worn to look like someone else",
+        "Category: Clothing Detail"
+      ]
+    },
+    {
+      "word": "ZIPPER",
+      "clues": [
+        "A fastener with interlocking teeth",
+        "Category: Clothing Detail"
+      ]
+    },
+    {
+      "word": "BUTTON",
+      "clues": [
+        "A small fastener pushed through a hole",
+        "Category: Clothing Detail"
+      ]
+    },
+    {
+      "word": "BASKETBALL",
+      "clues": [
+        "A sport where players score by shooting a ball through a hoop",
+        "Category: Sports Names"
+      ]
+    },
+    {
+      "word": "VOLLEYBALL",
+      "clues": [
+        "A sport where players hit a ball over a net",
+        "Category: Sports Names"
+      ]
+    },
+    {
+      "word": "BASEBALL",
+      "clues": [
+        "A bat-and-ball sport played on a diamond",
+        "Category: Sports Names"
+      ]
+    },
+    {
+      "word": "BOXING",
+      "clues": [
+        "A combat sport fought with fists",
+        "Category: Sports Names"
+      ]
+    },
+    {
+      "word": "WRESTLING",
+      "clues": [
+        "A combat sport involving grappling",
+        "Category: Sports Names"
+      ]
+    },
+    {
+      "word": "CYCLING",
+      "clues": [
+        "Riding a bicycle as a sport",
+        "Category: Sports Names"
+      ]
+    },
+    {
+      "word": "ARCHERY",
+      "clues": [
+        "The sport of shooting arrows at a target",
+        "Category: Sports Names"
+      ]
+    },
+    {
+      "word": "GYMNASTICS",
+      "clues": [
+        "A sport involving acrobatic body movements",
+        "Category: Sports Names"
+      ]
+    },
+    {
+      "word": "GARLIC",
+      "clues": [
+        "A pungent bulb used to flavor food",
+        "Category: Food Specifics"
+      ]
+    },
+    {
+      "word": "GINGER",
+      "clues": [
+        "A spicy root used in cooking",
+        "Category: Food Specifics"
+      ]
+    },
+    {
+      "word": "CUCUMBER",
+      "clues": [
+        "A long, green, watery vegetable",
+        "Category: Food Specifics"
+      ]
+    },
+    {
+      "word": "MUSHROOM",
+      "clues": [
+        "A fungus often used in cooking",
+        "Category: Food Specifics"
+      ]
+    },
+    {
+      "word": "STRAWBERRY",
+      "clues": [
+        "A small, red, seed-covered fruit",
+        "Category: Food Specifics"
+      ]
+    },
+    {
+      "word": "GRAPE",
+      "clues": [
+        "A small, round fruit that grows in bunches",
+        "Category: Food Specifics"
+      ]
+    },
+    {
+      "word": "PINEAPPLE",
+      "clues": [
+        "A tropical fruit with spiky skin",
+        "Category: Food Specifics"
+      ]
+    },
+    {
+      "word": "WATERMELON",
+      "clues": [
+        "A large, green fruit with red flesh",
+        "Category: Food Specifics"
+      ]
+    },
+    {
+      "word": "POPCORN",
+      "clues": [
+        "Corn kernels that puff up when heated",
+        "Category: Food Specifics"
+      ]
+    },
+    {
+      "word": "PANCAKE",
+      "clues": [
+        "A flat, round cake cooked on a griddle",
+        "Category: Food Specifics"
+      ]
+    },
+    {
+      "word": "DOORBELL",
+      "clues": [
+        "Rung to announce a visitor's arrival",
+        "Category: Household Specifics"
+      ]
+    },
+    {
+      "word": "DOORMAT",
+      "clues": [
+        "Wipe your feet on it before entering",
+        "Category: Household Specifics"
+      ]
+    },
+    {
+      "word": "HANGER",
+      "clues": [
+        "Holds clothing on a rod",
+        "Category: Household Specifics"
+      ]
+    },
+    {
+      "word": "DRAWER",
+      "clues": [
+        "Slides open to store items",
+        "Category: Household Specifics"
+      ]
+    },
+    {
+      "word": "VACUUM",
+      "clues": [
+        "A machine that sucks up dirt from floors",
+        "Category: Household Specifics"
+      ]
+    },
+    {
+      "word": "IRON",
+      "clues": [
+        "A device used to smooth wrinkles from clothes",
+        "Category: Household Specifics"
+      ]
+    },
+    {
+      "word": "MOP",
+      "clues": [
+        "Used to clean a wet floor",
+        "Category: Household Specifics"
+      ]
+    },
+    {
+      "word": "BUCKET",
+      "clues": [
+        "A container with a handle, for carrying liquid",
+        "Category: Household Specifics"
+      ]
+    },
+    {
+      "word": "SEED",
+      "clues": [
+        "Grows into a new plant",
+        "Category: Nature Specifics"
+      ]
+    },
+    {
+      "word": "PETAL",
+      "clues": [
+        "A colorful part of a flower",
+        "Category: Nature Specifics"
+      ]
+    },
+    {
+      "word": "PUDDLE",
+      "clues": [
+        "A small pool of water on the ground",
+        "Category: Nature Specifics"
+      ]
+    },
+    {
+      "word": "MEADOW",
+      "clues": [
+        "A field of grass and wildflowers",
+        "Category: Nature Specifics"
+      ]
+    },
+    {
+      "word": "CANYON",
+      "clues": [
+        "A deep gorge, often carved by a river",
+        "Category: Nature Specifics"
+      ]
+    },
+    {
+      "word": "HEADPHONES",
+      "clues": [
+        "Worn over the ears to listen privately",
+        "Category: Tech Specifics"
+      ]
+    },
+    {
+      "word": "MICROPHONE",
+      "clues": [
+        "Captures sound for recording or amplifying",
+        "Category: Tech Specifics"
+      ]
+    },
+    {
+      "word": "WEBCAM",
+      "clues": [
+        "A camera used for video calls",
+        "Category: Tech Specifics"
+      ]
+    },
+    {
+      "word": "TABLET",
+      "clues": [
+        "A flat, portable touchscreen computer",
+        "Category: Tech Specifics"
+      ]
+    },
+    {
+      "word": "BROWSER",
+      "clues": [
+        "Software used to view websites",
+        "Category: Tech Specifics"
+      ]
+    },
+    {
+      "word": "POSTCARD",
+      "clues": [
+        "A card sent through the mail without an envelope",
+        "Category: Last Few"
+      ]
+    },
+    {
+      "word": "CEREMONY",
+      "clues": [
+        "A formal event marking an occasion",
+        "Category: Last Few"
+      ]
+    },
+    {
+      "word": "FAREWELL",
+      "clues": [
+        "A goodbye, often before a long absence",
+        "Category: Last Few"
+      ]
+    },
+    {
+      "word": "GREETING",
+      "clues": [
+        "A word or gesture of welcome",
+        "Category: Last Few"
+      ]
+    },
+    {
+      "word": "COMPLIMENT",
+      "clues": [
+        "A remark expressing praise",
+        "Category: Last Few"
+      ]
+    },
+    {
+      "word": "FEEDBACK",
+      "clues": [
+        "Comments given in response to something",
+        "Category: Last Few"
+      ]
+    },
+    {
+      "word": "MILESTONE",
+      "clues": [
+        "A significant point in progress",
+        "Category: Last Few"
+      ]
+    },
+    {
+      "word": "OBSTACLE",
+      "clues": [
+        "Something that blocks progress",
+        "Category: Last Few"
+      ]
+    },
+    {
+      "word": "WARRANTY",
+      "clues": [
+        "A promise to repair or replace if something breaks",
+        "Category: Last Few"
+      ]
+    },
+    {
+      "word": "GUARANTEE",
+      "clues": [
+        "An assurance that something will happen",
+        "Category: Last Few"
+      ]
+    },
+    {
+      "word": "REFUND",
+      "clues": [
+        "Money given back after a purchase",
+        "Category: Last Few"
+      ]
+    },
+    {
+      "word": "BARGAIN",
+      "clues": [
+        "A good deal on a purchase",
+        "Category: Last Few"
+      ]
+    },
+    {
+      "word": "AUCTION",
+      "clues": [
+        "A public sale where items go to the highest bidder",
+        "Category: Last Few"
+      ]
+    },
+    {
+      "word": "INVENTORY",
+      "clues": [
+        "A list of goods held in stock",
+        "Category: Last Few"
+      ]
+    },
+    {
+      "word": "NECKLACE",
+      "clues": [
+        "A piece of jewelry worn around the neck",
+        "Category: Top Up"
+      ]
+    },
+    {
+      "word": "BRACELET",
+      "clues": [
+        "A piece of jewelry worn on the wrist",
+        "Category: Top Up"
+      ]
+    },
+    {
+      "word": "EARRING",
+      "clues": [
+        "A piece of jewelry worn on the ear",
+        "Category: Top Up"
+      ]
+    },
+    {
+      "word": "PERFUME",
+      "clues": [
+        "A liquid worn for a pleasant scent",
+        "Category: Top Up"
+      ]
+    },
+    {
+      "word": "MATTRESS",
+      "clues": [
+        "The padded part of a bed you lie on",
+        "Category: Top Up"
+      ]
+    },
+    {
+      "word": "CUSHION",
+      "clues": [
+        "A soft pad used for sitting or leaning on",
+        "Category: Top Up"
+      ]
+    },
+    {
+      "word": "CURTAIN",
+      "clues": [
+        "Hangs over a window to block light",
+        "Category: Top Up"
+      ]
+    },
+    {
+      "word": "DOORKNOB",
+      "clues": [
+        "Turned to open a door",
+        "Category: Top Up"
+      ]
+    },
+    {
+      "word": "WINDOWSILL",
+      "clues": [
+        "The ledge at the bottom of a window",
+        "Category: Top Up"
+      ]
+    },
+    {
+      "word": "STAIRCASE",
+      "clues": [
+        "A set of stairs",
+        "Category: Top Up"
+      ]
+    },
+    {
+      "word": "HALLWAY",
+      "clues": [
+        "A passage connecting rooms in a building",
+        "Category: Top Up"
+      ]
+    },
+    {
+      "word": "BALCONY",
+      "clues": [
+        "A small platform attached to an upper floor, outdoors",
+        "Category: Top Up"
+      ]
+    },
+    {
+      "word": "ROOFTOP",
+      "clues": [
+        "The top surface of a building",
+        "Category: Top Up"
       ]
     }
   ]

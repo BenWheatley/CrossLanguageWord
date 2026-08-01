@@ -2,1892 +2,4095 @@
   "metadata": {
     "title": "Deutsch B1",
     "language": "de",
-    "version": 3
+    "version": 4
   },
   "words": [
     {
       "word": "HAUS",
       "clues": [
-        "A building where a family lives"
+        "A building where a family lives",
+        "Category: Wohnen"
       ]
     },
     {
       "word": "WOHNUNG",
       "clues": [
-        "A rented set of rooms in a building"
+        "A rented set of rooms in a building",
+        "Category: Wohnen"
       ]
     },
     {
       "word": "ZIMMER",
       "clues": [
-        "One room in a house or hotel"
+        "One room in a house or hotel",
+        "Category: Wohnen"
       ]
     },
     {
       "word": "KÜCHE",
       "clues": [
-        "The room where you cook"
+        "The room where you cook",
+        "Category: Wohnen"
       ]
     },
     {
       "word": "BAD",
       "clues": [
-        "The room with the shower and toilet"
+        "The room with the shower and toilet",
+        "Category: Wohnen"
       ]
     },
     {
       "word": "GARTEN",
       "clues": [
-        "A patch of land for growing plants, behind a house"
+        "A patch of land for growing plants, behind a house",
+        "Category: Wohnen"
       ]
     },
     {
       "word": "TISCH",
       "clues": [
-        "Furniture you eat or write at"
+        "Furniture you eat or write at",
+        "Category: Wohnen"
       ]
     },
     {
       "word": "STUHL",
       "clues": [
-        "A single seat with a back, no arms"
+        "A single seat with a back, no arms",
+        "Category: Wohnen"
       ]
     },
     {
       "word": "BETT",
       "clues": [
-        "Where you sleep at night"
+        "Where you sleep at night",
+        "Category: Wohnen"
       ]
     },
     {
       "word": "SCHRANK",
       "clues": [
-        "Tall furniture for storing clothes"
+        "Tall furniture for storing clothes",
+        "Category: Wohnen"
       ]
     },
     {
       "word": "FENSTER",
       "clues": [
-        "Lets light into a room"
+        "Lets light into a room",
+        "Category: Wohnen"
       ]
     },
     {
       "word": "TÜR",
       "clues": [
-        "You open this to enter a room"
+        "You open this to enter a room",
+        "Category: Wohnen"
       ]
     },
     {
       "word": "SCHLÜSSEL",
       "clues": [
-        "Turns in a lock"
+        "Turns in a lock",
+        "Category: Wohnen"
       ]
     },
     {
       "word": "MIETE",
       "clues": [
         "Monthly payment to a landlord",
+        "Category: Wohnen",
         "ich ___ (mieten, 'to rent': present tense)"
       ]
     },
     {
       "word": "VERMIETER",
       "clues": [
-        "The person you pay rent to"
+        "The person you pay rent to",
+        "Category: Wohnen"
       ]
     },
     {
       "word": "NACHBAR",
       "clues": [
-        "Lives in the house or flat next door"
+        "Lives in the house or flat next door",
+        "Category: Wohnen"
       ]
     },
     {
       "word": "NACHBARSCHAFT",
       "clues": [
-        "The area right around your home"
+        "The area right around your home",
+        "Category: Wohnen"
       ]
     },
     {
       "word": "STRASSE",
       "clues": [
-        "Cars and bikes drive along it"
+        "Cars and bikes drive along it",
+        "Category: Wohnen"
       ]
     },
     {
       "word": "STADT",
       "clues": [
-        "A large town with many streets"
+        "A large town with many streets",
+        "Category: Wohnen"
       ]
     },
     {
       "word": "DORF",
       "clues": [
-        "A small settlement, smaller than a town"
+        "A small settlement, smaller than a town",
+        "Category: Wohnen"
       ]
     },
     {
       "word": "LAND",
       "clues": [
-        "A country, or the opposite of city"
+        "A country, or the opposite of city",
+        "Category: Wohnen"
       ]
     },
     {
       "word": "KARTE",
       "clues": [
-        "Shows you how to get somewhere"
+        "Shows you how to get somewhere",
+        "Category: Wohnen"
       ]
     },
     {
       "word": "ADRESSE",
       "clues": [
-        "Street, number, and city: where mail goes"
+        "Street, number, and city, where mail goes",
+        "Category: Wohnen"
+      ]
+    },
+    {
+      "word": "BALKON",
+      "clues": [
+        "A small outdoor platform attached to an upper floor",
+        "Category: Wohnen"
+      ]
+    },
+    {
+      "word": "KELLER",
+      "clues": [
+        "The storage space below a house",
+        "Category: Wohnen"
+      ]
+    },
+    {
+      "word": "DACH",
+      "clues": [
+        "The top covering of a building",
+        "Category: Wohnen"
+      ]
+    },
+    {
+      "word": "WAND",
+      "clues": [
+        "A vertical surface inside a room",
+        "Category: Wohnen"
+      ]
+    },
+    {
+      "word": "BODEN",
+      "clues": [
+        "What you walk on inside a room",
+        "Category: Wohnen"
+      ]
+    },
+    {
+      "word": "TREPPE",
+      "clues": [
+        "Steps between floors of a building",
+        "Category: Wohnen"
+      ]
+    },
+    {
+      "word": "AUFZUG",
+      "clues": [
+        "Carries people between floors without stairs",
+        "Category: Wohnen"
+      ]
+    },
+    {
+      "word": "VORHANG",
+      "clues": [
+        "Hangs over a window to block light",
+        "Category: Wohnen"
+      ]
+    },
+    {
+      "word": "LAMPE",
+      "clues": [
+        "Gives light in a room",
+        "Category: Wohnen"
+      ]
+    },
+    {
+      "word": "SPIEGEL",
+      "clues": [
+        "Shows your reflection",
+        "Category: Wohnen",
+        "Category: Kueche"
+      ]
+    },
+    {
+      "word": "TEPPICH",
+      "clues": [
+        "A soft covering laid on the floor",
+        "Category: Wohnen"
+      ]
+    },
+    {
+      "word": "MÖBEL",
+      "clues": [
+        "Tables, chairs, and beds, collectively",
+        "Category: Wohnen"
+      ]
+    },
+    {
+      "word": "UMZUG",
+      "clues": [
+        "Moving from one home to another",
+        "Category: Wohnen"
+      ]
+    },
+    {
+      "word": "RENOVIERUNG",
+      "clues": [
+        "Fixing up and updating a building",
+        "Category: Wohnen"
       ]
     },
     {
       "word": "ARBEIT",
       "clues": [
-        "What you do for a paycheck"
+        "What you do for a paycheck",
+        "Category: Arbeit"
       ]
     },
     {
       "word": "ARBEITSPLATZ",
       "clues": [
-        "Where you do your job"
+        "Where you do your job",
+        "Category: Arbeit"
       ]
     },
     {
       "word": "ARBEITSLOSIGKEIT",
       "clues": [
-        "Having no job"
+        "Having no job",
+        "Category: Arbeit"
       ]
     },
     {
       "word": "BEWERBUNG",
       "clues": [
-        "What you send to apply for a job"
+        "What you send to apply for a job",
+        "Category: Arbeit"
       ]
     },
     {
       "word": "LEBENSLAUF",
       "clues": [
-        "A document listing your work history"
+        "A document listing your work history",
+        "Category: Arbeit"
       ]
     },
     {
       "word": "VERTRAG",
       "clues": [
-        "A signed legal agreement"
+        "A signed legal agreement",
+        "Category: Arbeit"
       ]
     },
     {
       "word": "GEHALT",
       "clues": [
-        "Monthly pay from an employer"
+        "Monthly pay from an employer",
+        "Category: Arbeit"
       ]
     },
     {
       "word": "KOLLEGE",
       "clues": [
-        "A male coworker"
+        "A male coworker",
+        "Category: Arbeit"
       ]
     },
     {
       "word": "KOLLEGIN",
       "clues": [
-        "A female coworker"
+        "A female coworker",
+        "Category: Arbeit"
       ]
     },
     {
       "word": "CHEF",
       "clues": [
-        "The male boss"
+        "The male boss",
+        "Category: Arbeit"
       ]
     },
     {
       "word": "CHEFIN",
       "clues": [
-        "The female boss"
+        "The female boss",
+        "Category: Arbeit"
       ]
     },
     {
       "word": "BÜRO",
       "clues": [
-        "Where office work gets done"
+        "Where office work gets done",
+        "Category: Arbeit"
       ]
     },
     {
       "word": "TERMIN",
       "clues": [
-        "A scheduled appointment"
+        "A scheduled appointment",
+        "Category: Arbeit"
       ]
     },
     {
       "word": "BESPRECHUNG",
       "clues": [
-        "A work meeting"
+        "A work meeting",
+        "Category: Arbeit"
       ]
     },
     {
       "word": "PAUSE",
       "clues": [
-        "A short break from work"
+        "A short break from work",
+        "Category: Arbeit"
       ]
     },
     {
       "word": "URLAUB",
       "clues": [
-        "Time off taken for travel or rest"
+        "Time off taken for travel or rest",
+        "Category: Arbeit"
       ]
     },
     {
       "word": "RENTE",
       "clues": [
-        "Income received after retirement"
+        "Income received after retirement",
+        "Category: Arbeit"
       ]
     },
     {
       "word": "AUSBILDUNG",
       "clues": [
-        "Structured job training after school"
+        "Structured job training after school",
+        "Category: Arbeit"
       ]
     },
     {
       "word": "PRAKTIKUM",
       "clues": [
-        "A short unpaid or low-paid work placement"
+        "A short unpaid or low-paid work placement",
+        "Category: Arbeit"
+      ]
+    },
+    {
+      "word": "KÜNDIGUNG",
+      "clues": [
+        "Being let go from a job, or quitting it",
+        "Category: Arbeit"
+      ]
+    },
+    {
+      "word": "ÜBERSTUNDE",
+      "clues": [
+        "Extra time worked past the normal shift",
+        "Category: Arbeit"
+      ]
+    },
+    {
+      "word": "GEWERKSCHAFT",
+      "clues": [
+        "An organized group of workers advocating together",
+        "Category: Arbeit"
+      ]
+    },
+    {
+      "word": "FABRIK",
+      "clues": [
+        "A building where goods are manufactured",
+        "Category: Arbeit"
+      ]
+    },
+    {
+      "word": "FIRMA",
+      "clues": [
+        "A business or company",
+        "Category: Arbeit"
+      ]
+    },
+    {
+      "word": "ANGESTELLTER",
+      "clues": [
+        "Someone employed by a company",
+        "Category: Arbeit"
+      ]
+    },
+    {
+      "word": "SELBSTSTÄNDIGKEIT",
+      "clues": [
+        "Working for oneself rather than an employer",
+        "Category: Arbeit"
+      ]
+    },
+    {
+      "word": "SCHICHT",
+      "clues": [
+        "A set period of work, like a night shift",
+        "Category: Arbeit"
+      ]
+    },
+    {
+      "word": "AUFGABE",
+      "clues": [
+        "A task someone must complete",
+        "Category: Arbeit"
+      ]
+    },
+    {
+      "word": "PROJEKT",
+      "clues": [
+        "A planned piece of work with a goal",
+        "Category: Arbeit"
+      ]
+    },
+    {
+      "word": "ERFOLG",
+      "clues": [
+        "Achieving what was intended",
+        "Category: Arbeit"
       ]
     },
     {
       "word": "BEHÖRDE",
       "clues": [
-        "A government office you deal with paperwork at"
+        "A government office you deal with paperwork at",
+        "Category: Behoerden"
       ]
     },
     {
       "word": "ANTRAG",
       "clues": [
-        "A formal written request to an office"
+        "A formal written request to an office",
+        "Category: Behoerden"
       ]
     },
     {
       "word": "FORMULAR",
       "clues": [
-        "A document with blanks to fill in"
+        "A document with blanks to fill in",
+        "Category: Behoerden"
       ]
     },
     {
       "word": "UNTERSCHRIFT",
       "clues": [
-        "Your name, written by hand, to make something official"
+        "Your name, written by hand, to make something official",
+        "Category: Behoerden"
       ]
     },
     {
       "word": "AUSWEIS",
       "clues": [
-        "A card proving who you are"
+        "A card proving who you are",
+        "Category: Behoerden"
       ]
     },
     {
       "word": "PASS",
       "clues": [
-        "Needed to cross international borders"
+        "Needed to cross international borders",
+        "Category: Behoerden"
       ]
     },
     {
       "word": "FÜHRERSCHEIN",
       "clues": [
-        "Proves you're allowed to drive"
+        "Proves you're allowed to drive",
+        "Category: Behoerden"
+      ]
+    },
+    {
+      "word": "ANMELDUNG",
+      "clues": [
+        "Officially registering your address with the city",
+        "Category: Behoerden"
+      ]
+    },
+    {
+      "word": "BESCHEINIGUNG",
+      "clues": [
+        "An official document confirming something",
+        "Category: Behoerden"
+      ]
+    },
+    {
+      "word": "STEMPEL",
+      "clues": [
+        "A mark pressed onto a document to make it official",
+        "Category: Behoerden"
+      ]
+    },
+    {
+      "word": "GEBÜHR",
+      "clues": [
+        "Money charged for an official service",
+        "Category: Behoerden"
+      ]
+    },
+    {
+      "word": "FRIST",
+      "clues": [
+        "The deadline by which something must be submitted",
+        "Category: Behoerden"
+      ]
+    },
+    {
+      "word": "GENEHMIGUNG",
+      "clues": [
+        "Official permission for something",
+        "Category: Behoerden"
+      ]
+    },
+    {
+      "word": "BOTSCHAFT",
+      "clues": [
+        "A country's official representation in another country",
+        "Category: Behoerden"
+      ]
+    },
+    {
+      "word": "VISUM",
+      "clues": [
+        "Official permission to enter a foreign country",
+        "Category: Behoerden"
+      ]
+    },
+    {
+      "word": "STAATSANGEHÖRIGKEIT",
+      "clues": [
+        "The country a person officially belongs to",
+        "Category: Behoerden"
       ]
     },
     {
       "word": "VERSICHERUNG",
       "clues": [
-        "Pays out if something goes wrong"
+        "Pays out if something goes wrong",
+        "Category: Geld"
       ]
     },
     {
       "word": "STEUER",
       "clues": [
-        "Money owed to the government from income"
+        "Money owed to the government from income",
+        "Category: Geld"
       ]
     },
     {
       "word": "BANK",
       "clues": [
-        "Where you keep your savings"
+        "Where you keep your savings",
+        "Category: Geld"
       ]
     },
     {
       "word": "KONTO",
       "clues": [
-        "Holds your money at a bank"
+        "Holds your money at a bank",
+        "Category: Geld"
       ]
     },
     {
       "word": "GELD",
       "clues": [
-        "Coins and notes"
+        "Coins and notes",
+        "Category: Geld"
       ]
     },
     {
       "word": "MÜNZE",
       "clues": [
-        "A round metal piece of money"
+        "A round metal piece of money",
+        "Category: Geld"
       ]
     },
     {
       "word": "SCHEIN",
       "clues": [
-        "A paper note of money"
+        "A paper note of money",
+        "Category: Geld"
       ]
     },
     {
       "word": "RECHNUNG",
       "clues": [
-        "A bill you need to pay"
+        "A bill you need to pay",
+        "Category: Geld"
       ]
     },
     {
       "word": "QUITTUNG",
       "clues": [
-        "Proof that you paid"
+        "Proof that you paid",
+        "Category: Geld"
       ]
     },
     {
       "word": "PREIS",
       "clues": [
-        "What something costs"
+        "What something costs",
+        "Category: Geld"
       ]
     },
     {
       "word": "RABATT",
       "clues": [
-        "A price reduction"
+        "A price reduction",
+        "Category: Geld"
       ]
     },
     {
       "word": "SCHULDEN",
       "clues": [
-        "Money you owe"
+        "Money you owe",
+        "Category: Geld"
       ]
     },
     {
       "word": "KREDIT",
       "clues": [
-        "Borrowed money to be paid back"
+        "Borrowed money to be paid back",
+        "Category: Geld"
       ]
     },
     {
       "word": "SPARKONTO",
       "clues": [
-        "An account for putting money aside"
+        "An account for putting money aside",
+        "Category: Geld"
+      ]
+    },
+    {
+      "word": "ZINS",
+      "clues": [
+        "Extra money paid or earned on a loan or savings",
+        "Category: Geld"
+      ]
+    },
+    {
+      "word": "BUDGET",
+      "clues": [
+        "A plan for how to spend money",
+        "Category: Geld"
+      ]
+    },
+    {
+      "word": "AUSGABE",
+      "clues": [
+        "Money spent on something",
+        "Category: Geld"
+      ]
+    },
+    {
+      "word": "EINNAHME",
+      "clues": [
+        "Money received or earned",
+        "Category: Geld"
+      ]
+    },
+    {
+      "word": "ÜBERWEISUNG",
+      "clues": [
+        "Moving money from one account to another",
+        "Category: Geld"
+      ]
+    },
+    {
+      "word": "BARGELD",
+      "clues": [
+        "Physical coins and notes, not electronic",
+        "Category: Geld"
+      ]
+    },
+    {
+      "word": "KREDITKARTE",
+      "clues": [
+        "A card used to pay, borrowing against a bank",
+        "Category: Geld"
       ]
     },
     {
       "word": "GESUNDHEIT",
       "clues": [
-        "The state of feeling well"
+        "The state of feeling well",
+        "Category: Gesundheit"
       ]
     },
     {
       "word": "KRANKHEIT",
       "clues": [
-        "A medical condition that makes you unwell"
+        "A medical condition that makes you unwell",
+        "Category: Gesundheit"
       ]
     },
     {
       "word": "ARZT",
       "clues": [
-        "A doctor (male)"
+        "A doctor (male)",
+        "Category: Gesundheit"
       ]
     },
     {
       "word": "ÄRZTIN",
       "clues": [
-        "A doctor (female)"
+        "A doctor (female)",
+        "Category: Gesundheit"
       ]
     },
     {
       "word": "KRANKENHAUS",
       "clues": [
-        "Where you go for serious medical treatment"
+        "Where you go for serious medical treatment",
+        "Category: Gesundheit"
       ]
     },
     {
       "word": "APOTHEKE",
       "clues": [
-        "Where prescriptions get filled"
+        "Where prescriptions get filled",
+        "Category: Gesundheit"
       ]
     },
     {
       "word": "MEDIKAMENT",
       "clues": [
-        "Something a doctor prescribes"
+        "Something a doctor prescribes",
+        "Category: Gesundheit"
       ]
     },
     {
       "word": "SCHMERZEN",
       "clues": [
-        "What you feel when something hurts"
+        "What you feel when something hurts",
+        "Category: Gesundheit"
       ]
     },
     {
       "word": "FIEBER",
       "clues": [
-        "A raised body temperature when you're sick"
+        "A raised body temperature when you're sick",
+        "Category: Gesundheit"
       ]
     },
     {
       "word": "ERKÄLTUNG",
       "clues": [
-        "A mild illness with a runny nose"
+        "A mild illness with a runny nose",
+        "Category: Gesundheit"
       ]
     },
     {
       "word": "UNFALL",
       "clues": [
-        "A crash or mishap, often on the road"
+        "A crash or mishap, often on the road",
+        "Category: Gesundheit"
       ]
     },
     {
       "word": "VERLETZUNG",
       "clues": [
-        "Physical harm from an accident"
+        "Physical harm from an accident",
+        "Category: Gesundheit"
       ]
     },
     {
       "word": "BEHANDLUNG",
       "clues": [
-        "What a doctor gives to treat you"
+        "What a doctor gives to treat you",
+        "Category: Gesundheit"
       ]
     },
     {
       "word": "KRANKENKASSE",
       "clues": [
-        "The organization that covers your medical bills"
+        "The organization that covers your medical bills",
+        "Category: Gesundheit"
       ]
     },
     {
       "word": "TERMINKALENDER",
       "clues": [
-        "Where you write down your appointments"
+        "Where you write down your appointments",
+        "Category: Gesundheit"
+      ]
+    },
+    {
+      "word": "IMPFUNG",
+      "clues": [
+        "A shot that protects against a disease",
+        "Category: Gesundheit"
+      ]
+    },
+    {
+      "word": "DIAGNOSE",
+      "clues": [
+        "A doctor's identification of what's wrong",
+        "Category: Gesundheit"
+      ]
+    },
+    {
+      "word": "SYMPTOM",
+      "clues": [
+        "A sign that something is medically wrong",
+        "Category: Gesundheit"
+      ]
+    },
+    {
+      "word": "ALLERGIE",
+      "clues": [
+        "An overreaction of the body to something harmless",
+        "Category: Gesundheit"
+      ]
+    },
+    {
+      "word": "ZAHNARZT",
+      "clues": [
+        "A doctor for teeth",
+        "Category: Gesundheit"
+      ]
+    },
+    {
+      "word": "OPERATION",
+      "clues": [
+        "Surgery to treat a medical problem",
+        "Category: Gesundheit"
+      ]
+    },
+    {
+      "word": "REZEPT",
+      "clues": [
+        "A doctor's written instruction for medicine",
+        "Category: Gesundheit",
+        "Step-by-step instructions for cooking a dish",
+        "Category: Essen"
+      ]
+    },
+    {
+      "word": "PFLEGE",
+      "clues": [
+        "Ongoing care for someone who is sick or old",
+        "Category: Gesundheit"
+      ]
+    },
+    {
+      "word": "ERNÄHRUNG",
+      "clues": [
+        "What and how a person eats",
+        "Category: Gesundheit"
+      ]
+    },
+    {
+      "word": "BEWEGUNG",
+      "clues": [
+        "Physical activity, good for the body",
+        "Category: Gesundheit"
       ]
     },
     {
       "word": "FAMILIE",
       "clues": [
-        "Parents, children, and relatives together"
+        "Parents, children, and relatives together",
+        "Category: Familie"
       ]
     },
     {
       "word": "ELTERN",
       "clues": [
-        "Mother and father, together"
+        "Mother and father, together",
+        "Category: Familie"
       ]
     },
     {
       "word": "MUTTER",
       "clues": [
-        "Your female parent"
+        "Your female parent",
+        "Category: Familie"
       ]
     },
     {
       "word": "VATER",
       "clues": [
-        "Your male parent"
+        "Your male parent",
+        "Category: Familie"
       ]
     },
     {
       "word": "KIND",
       "clues": [
-        "A young person, not yet an adult"
+        "A young person, not yet an adult",
+        "Category: Familie"
       ]
     },
     {
       "word": "GESCHWISTER",
       "clues": [
-        "Brothers and sisters, collectively"
+        "Brothers and sisters, collectively",
+        "Category: Familie"
       ]
     },
     {
       "word": "BRUDER",
       "clues": [
-        "A male sibling"
+        "A male sibling",
+        "Category: Familie"
       ]
     },
     {
       "word": "SCHWESTER",
       "clues": [
-        "A female sibling"
+        "A female sibling",
+        "Category: Familie"
       ]
     },
     {
       "word": "EHEMANN",
       "clues": [
-        "A married woman's spouse (male)"
+        "A married woman's spouse (male)",
+        "Category: Familie"
       ]
     },
     {
       "word": "EHEFRAU",
       "clues": [
-        "A married man's spouse (female)"
+        "A married man's spouse (female)",
+        "Category: Familie"
       ]
     },
     {
       "word": "GROSSELTERN",
       "clues": [
-        "Your parents' parents"
+        "Your parents' parents",
+        "Category: Familie"
       ]
     },
     {
       "word": "ENKEL",
       "clues": [
-        "Your child's child"
+        "Your child's child",
+        "Category: Familie"
+      ]
+    },
+    {
+      "word": "ONKEL",
+      "clues": [
+        "Your parent's brother",
+        "Category: Familie"
+      ]
+    },
+    {
+      "word": "TANTE",
+      "clues": [
+        "Your parent's sister",
+        "Category: Familie"
+      ]
+    },
+    {
+      "word": "COUSIN",
+      "clues": [
+        "The child of your aunt or uncle (male)",
+        "Category: Familie"
+      ]
+    },
+    {
+      "word": "COUSINE",
+      "clues": [
+        "The child of your aunt or uncle (female)",
+        "Category: Familie"
+      ]
+    },
+    {
+      "word": "BABY",
+      "clues": [
+        "A very young child",
+        "Category: Familie"
+      ]
+    },
+    {
+      "word": "JUGENDLICHE",
+      "clues": [
+        "A teenager",
+        "Category: Familie"
+      ]
+    },
+    {
+      "word": "ERWACHSENE",
+      "clues": [
+        "A grown, adult person",
+        "Category: Familie"
+      ]
+    },
+    {
+      "word": "VERWANDTE",
+      "clues": [
+        "Someone related to you by family",
+        "Category: Familie"
       ]
     },
     {
       "word": "FREUNDSCHAFT",
       "clues": [
-        "The bond between close friends"
+        "The bond between close friends",
+        "Category: Feiern"
       ]
     },
     {
       "word": "BEZIEHUNG",
       "clues": [
-        "A romantic or personal connection between two people"
+        "A romantic or personal connection between two people",
+        "Category: Feiern"
       ]
     },
     {
       "word": "HOCHZEIT",
       "clues": [
-        "The ceremony where two people marry"
+        "The ceremony where two people marry",
+        "Category: Feiern"
       ]
     },
     {
       "word": "GEBURTSTAG",
       "clues": [
-        "The yearly anniversary of the day you were born"
+        "The yearly anniversary of the day you were born",
+        "Category: Feiern"
       ]
     },
     {
       "word": "FEIER",
       "clues": [
-        "A party or celebration"
+        "A party or celebration",
+        "Category: Feiern"
       ]
     },
     {
       "word": "EINLADUNG",
       "clues": [
-        "Asks someone to come to an event"
+        "Asks someone to come to an event",
+        "Category: Feiern"
       ]
     },
     {
       "word": "GESCHENK",
       "clues": [
-        "Something wrapped and given on a birthday"
+        "Something wrapped and given on a birthday",
+        "Category: Feiern"
       ]
     },
     {
       "word": "ÜBERRASCHUNG",
       "clues": [
-        "Something unexpected"
+        "Something unexpected",
+        "Category: Feiern"
+      ]
+    },
+    {
+      "word": "SCHEIDUNG",
+      "clues": [
+        "The legal ending of a marriage",
+        "Category: Feiern"
+      ]
+    },
+    {
+      "word": "VERLOBUNG",
+      "clues": [
+        "A promise to marry, before the wedding",
+        "Category: Feiern"
+      ]
+    },
+    {
+      "word": "JUBILÄUM",
+      "clues": [
+        "A special anniversary of an important event",
+        "Category: Feiern"
+      ]
+    },
+    {
+      "word": "TRAUER",
+      "clues": [
+        "Deep sadness, often after a loss",
+        "Category: Feiern"
+      ]
+    },
+    {
+      "word": "GAST",
+      "clues": [
+        "Someone invited to an event",
+        "Category: Feiern"
+      ]
+    },
+    {
+      "word": "GASTGEBER",
+      "clues": [
+        "The person hosting an event",
+        "Category: Feiern"
       ]
     },
     {
       "word": "SCHULE",
       "clues": [
-        "Where children go to learn"
+        "Where children go to learn",
+        "Category: Bildung"
       ]
     },
     {
       "word": "UNTERRICHT",
       "clues": [
-        "Time spent being taught in class"
+        "Time spent being taught in class",
+        "Category: Bildung"
       ]
     },
     {
       "word": "LEHRER",
       "clues": [
-        "A male teacher"
+        "A male teacher",
+        "Category: Bildung"
       ]
     },
     {
       "word": "LEHRERIN",
       "clues": [
-        "A female teacher"
+        "A female teacher",
+        "Category: Bildung"
       ]
     },
     {
       "word": "SCHÜLER",
       "clues": [
-        "A male pupil"
+        "A male pupil",
+        "Category: Bildung"
       ]
     },
     {
       "word": "KLASSE",
       "clues": [
-        "A group of students who study together"
+        "A group of students who study together",
+        "Category: Bildung"
       ]
     },
     {
       "word": "PRÜFUNG",
       "clues": [
-        "A test you can pass or fail"
+        "A test you can pass or fail",
+        "Category: Bildung"
       ]
     },
     {
       "word": "ZEUGNIS",
       "clues": [
-        "A document showing your school grades"
+        "A document showing your school grades",
+        "Category: Bildung"
       ]
     },
     {
       "word": "HAUSAUFGABE",
       "clues": [
-        "School work done at home"
+        "School work done at home",
+        "Category: Bildung"
       ]
     },
     {
       "word": "UNIVERSITÄT",
       "clues": [
-        "Where students go after secondary school"
+        "Where students go after secondary school",
+        "Category: Bildung"
       ]
     },
     {
       "word": "STUDIUM",
       "clues": [
-        "Years spent studying at a university"
+        "Years spent studying at a university",
+        "Category: Bildung"
       ]
     },
     {
       "word": "VORLESUNG",
       "clues": [
-        "A university class where a professor talks and students listen"
+        "A university class where a professor talks and students listen",
+        "Category: Bildung"
       ]
     },
     {
       "word": "BIBLIOTHEK",
       "clues": [
-        "A quiet building full of books to borrow"
+        "A quiet building full of books to borrow",
+        "Category: Bildung"
       ]
     },
     {
       "word": "STIPENDIUM",
       "clues": [
-        "Money awarded to help pay for study"
+        "Money awarded to help pay for study",
+        "Category: Bildung"
       ]
     },
     {
       "word": "NOTE",
       "clues": [
-        "A letter or number grade for schoolwork"
+        "A letter or number grade for schoolwork",
+        "Category: Bildung"
       ]
     },
     {
       "word": "WISSEN",
       "clues": [
-        "What you know"
+        "What you know",
+        "Category: Bildung",
+        "wir ___ (wissen, 'to know (a fact)': present tense)",
+        "Category: Verben (verb conjugation)",
+        "sie/Sie ___ (wissen, 'to know (a fact)': present tense)"
       ]
     },
     {
       "word": "BILDUNG",
       "clues": [
-        "Schooling and learning in general"
+        "Schooling and learning in general",
+        "Category: Bildung"
+      ]
+    },
+    {
+      "word": "KINDERGARTEN",
+      "clues": [
+        "School for the youngest children, before first grade",
+        "Category: Bildung"
+      ]
+    },
+    {
+      "word": "FACH",
+      "clues": [
+        "A specific subject taught at school",
+        "Category: Bildung"
+      ]
+    },
+    {
+      "word": "ABSCHLUSS",
+      "clues": [
+        "A qualification earned at the end of a course",
+        "Category: Bildung"
+      ]
+    },
+    {
+      "word": "KURS",
+      "clues": [
+        "A structured series of lessons",
+        "Category: Bildung"
       ]
     },
     {
       "word": "UMWELT",
       "clues": [
-        "Nature and surroundings we should protect"
+        "Nature and surroundings we should protect",
+        "Category: Umwelt"
       ]
     },
     {
       "word": "KLIMA",
       "clues": [
-        "The typical weather pattern of a region over time"
+        "The typical weather pattern of a region over time",
+        "Category: Umwelt"
       ]
     },
     {
       "word": "KLIMAWANDEL",
       "clues": [
-        "Long-term warming of the planet"
+        "Long-term warming of the planet",
+        "Category: Umwelt"
       ]
     },
     {
       "word": "MÜLL",
       "clues": [
-        "Things you throw away"
+        "Things you throw away",
+        "Category: Umwelt"
       ]
     },
     {
       "word": "MÜLLTRENNUNG",
       "clues": [
-        "Sorting rubbish into different bins"
+        "Sorting rubbish into different bins",
+        "Category: Umwelt"
       ]
     },
     {
       "word": "RECYCLING",
       "clues": [
-        "Turning old materials into new ones"
+        "Turning old materials into new ones",
+        "Category: Umwelt"
       ]
     },
     {
       "word": "ENERGIE",
       "clues": [
-        "Powers lights, machines, and engines"
+        "Powers lights, machines, and engines",
+        "Category: Umwelt"
       ]
     },
     {
       "word": "STROM",
       "clues": [
-        "Flows through wires to power devices"
+        "Flows through wires to power devices",
+        "Category: Umwelt"
       ]
     },
     {
       "word": "SONNENENERGIE",
       "clues": [
-        "Power generated from sunlight"
+        "Power generated from sunlight",
+        "Category: Umwelt"
       ]
     },
     {
       "word": "WASSER",
       "clues": [
-        "You drink it and swim in it"
+        "You drink it and swim in it",
+        "Category: Umwelt"
       ]
     },
     {
       "word": "LUFT",
       "clues": [
-        "What you breathe"
+        "What you breathe",
+        "Category: Umwelt"
       ]
     },
     {
       "word": "NATUR",
       "clues": [
-        "Forests, rivers, and mountains, collectively"
+        "Forests, rivers, and mountains, collectively",
+        "Category: Umwelt"
       ]
     },
     {
       "word": "WALD",
       "clues": [
-        "A large area covered in trees"
+        "A large area covered in trees",
+        "Category: Umwelt"
       ]
     },
     {
       "word": "TIER",
       "clues": [
-        "A living creature, not a plant"
+        "A living creature, not a plant",
+        "Category: Umwelt"
       ]
     },
     {
       "word": "PFLANZE",
       "clues": [
-        "Something green that grows from soil"
+        "Something green that grows from soil",
+        "Category: Umwelt"
       ]
     },
     {
       "word": "VERSCHMUTZUNG",
       "clues": [
-        "Dirt or waste harming the environment"
+        "Dirt or waste harming the environment",
+        "Category: Umwelt"
+      ]
+    },
+    {
+      "word": "WINDKRAFT",
+      "clues": [
+        "Power generated from moving air",
+        "Category: Umwelt"
+      ]
+    },
+    {
+      "word": "NACHHALTIGKEIT",
+      "clues": [
+        "Living in a way that doesn't harm the future",
+        "Category: Umwelt"
+      ]
+    },
+    {
+      "word": "AUSSTERBEN",
+      "clues": [
+        "When a species disappears completely",
+        "Category: Umwelt"
+      ]
+    },
+    {
+      "word": "RESSOURCE",
+      "clues": [
+        "A natural material used to make or power things",
+        "Category: Umwelt"
       ]
     },
     {
       "word": "VERKEHR",
       "clues": [
-        "Cars and buses moving through a city"
+        "Cars and buses moving through a city",
+        "Category: Verkehr"
       ]
     },
     {
       "word": "VERKEHRSMITTEL",
       "clues": [
-        "Any way of getting from A to B: bus, train, bike..."
+        "Any way of getting from A to B, bus, train, bike...",
+        "Category: Verkehr"
       ]
     },
     {
       "word": "BAHNHOF",
       "clues": [
-        "Where you catch a train"
+        "Where you catch a train",
+        "Category: Verkehr"
       ]
     },
     {
       "word": "FLUGHAFEN",
       "clues": [
-        "Where planes take off and land"
+        "Where planes take off and land",
+        "Category: Verkehr"
       ]
     },
     {
       "word": "HALTESTELLE",
       "clues": [
-        "Where a bus or tram picks you up"
+        "Where a bus or tram picks you up",
+        "Category: Verkehr"
       ]
     },
     {
       "word": "FAHRKARTE",
       "clues": [
-        "You show this to board a train or bus"
+        "You show this to board a train or bus",
+        "Category: Verkehr"
       ]
     },
     {
       "word": "FAHRPLAN",
       "clues": [
-        "Lists when trains or buses depart"
+        "Lists when trains or buses depart",
+        "Category: Verkehr"
       ]
     },
     {
       "word": "VERSPÄTUNG",
       "clues": [
-        "Arriving later than scheduled"
+        "Arriving later than scheduled",
+        "Category: Verkehr"
       ]
     },
     {
       "word": "STAU",
       "clues": [
-        "Cars stuck bumper to bumper"
+        "Cars stuck bumper to bumper",
+        "Category: Verkehr"
       ]
     },
     {
       "word": "AUTO",
       "clues": [
-        "A private four-wheeled vehicle"
+        "A private four-wheeled vehicle",
+        "Category: Verkehr"
       ]
     },
     {
       "word": "FAHRRAD",
       "clues": [
-        "A two-wheeled vehicle you pedal"
+        "A two-wheeled vehicle you pedal",
+        "Category: Verkehr"
       ]
     },
     {
       "word": "BUS",
       "clues": [
-        "A large road vehicle carrying many passengers"
+        "A large road vehicle carrying many passengers",
+        "Category: Verkehr"
       ]
     },
     {
       "word": "ZUG",
       "clues": [
-        "Runs on rails between stations"
+        "Runs on rails between stations",
+        "Category: Verkehr"
       ]
     },
     {
       "word": "STRASSENBAHN",
       "clues": [
-        "A tram running on city streets"
+        "A tram running on city streets",
+        "Category: Verkehr"
       ]
     },
     {
       "word": "FÜHRERSCHEINPRÜFUNG",
       "clues": [
-        "The test you take to earn a driving license"
+        "The test you take to earn a driving license",
+        "Category: Verkehr"
+      ]
+    },
+    {
+      "word": "AMPEL",
+      "clues": [
+        "Tells traffic when to stop and go",
+        "Category: Verkehr"
+      ]
+    },
+    {
+      "word": "KREUZUNG",
+      "clues": [
+        "Where two streets meet",
+        "Category: Verkehr"
+      ]
+    },
+    {
+      "word": "PARKPLATZ",
+      "clues": [
+        "A space for leaving a car",
+        "Category: Verkehr"
+      ]
+    },
+    {
+      "word": "FUSSGÄNGER",
+      "clues": [
+        "A person walking, not driving",
+        "Category: Verkehr"
+      ]
+    },
+    {
+      "word": "TANKSTELLE",
+      "clues": [
+        "Where you fill a car with fuel",
+        "Category: Verkehr"
       ]
     },
     {
       "word": "REISE",
       "clues": [
         "A journey somewhere",
+        "Category: Reisen",
         "ich ___ (reisen, 'to travel': present tense)"
       ]
     },
     {
       "word": "URLAUBSREISE",
       "clues": [
-        "A trip taken specifically for vacation"
+        "A trip taken specifically for vacation",
+        "Category: Reisen"
       ]
     },
     {
       "word": "GEPÄCK",
       "clues": [
-        "What you pack and carry when traveling"
+        "What you pack and carry when traveling",
+        "Category: Reisen"
       ]
     },
     {
       "word": "KOFFER",
       "clues": [
-        "A hard or soft case for packing clothes"
+        "A hard or soft case for packing clothes",
+        "Category: Reisen"
       ]
     },
     {
       "word": "HOTEL",
       "clues": [
-        "Where travelers pay to sleep for the night"
+        "Where travelers pay to sleep for the night",
+        "Category: Reisen"
       ]
     },
     {
       "word": "UNTERKUNFT",
       "clues": [
-        "Any place arranged to stay overnight"
+        "Any place arranged to stay overnight",
+        "Category: Reisen"
       ]
     },
     {
       "word": "SEHENSWÜRDIGKEIT",
       "clues": [
-        "A famous site tourists come to see"
+        "A famous site tourists come to see",
+        "Category: Reisen"
       ]
     },
     {
       "word": "AUSFLUG",
       "clues": [
-        "A short trip, often for a day"
+        "A short trip, often for a day",
+        "Category: Reisen"
       ]
     },
     {
       "word": "STRAND",
       "clues": [
-        "Sandy ground next to the sea"
+        "Sandy ground next to the sea",
+        "Category: Reisen"
       ]
     },
     {
       "word": "BERG",
       "clues": [
-        "A very tall landform"
+        "A very tall landform",
+        "Category: Reisen"
       ]
     },
     {
       "word": "MEER",
       "clues": [
-        "A large body of salt water"
+        "A large body of salt water",
+        "Category: Reisen"
+      ]
+    },
+    {
+      "word": "REISEPASS",
+      "clues": [
+        "A document needed to travel to another country",
+        "Category: Reisen"
+      ]
+    },
+    {
+      "word": "GRENZE",
+      "clues": [
+        "The line dividing two countries",
+        "Category: Reisen"
+      ]
+    },
+    {
+      "word": "SOUVENIR",
+      "clues": [
+        "Something bought to remember a trip by",
+        "Category: Reisen"
+      ]
+    },
+    {
+      "word": "ZELTPLATZ",
+      "clues": [
+        "A place set aside for camping",
+        "Category: Reisen"
+      ]
+    },
+    {
+      "word": "LANDKARTE",
+      "clues": [
+        "A printed map of a region or country",
+        "Category: Reisen"
+      ]
+    },
+    {
+      "word": "FERIEN",
+      "clues": [
+        "A long break from school or work, for travel or rest",
+        "Category: Reisen"
       ]
     },
     {
       "word": "ESSEN",
       "clues": [
         "What you eat",
+        "Category: Essen",
         "wir ___ (essen, 'to eat': present tense)",
+        "Category: Verben (verb conjugation)",
         "sie/Sie ___ (essen, 'to eat': present tense)"
       ]
     },
     {
       "word": "FRÜHSTÜCK",
       "clues": [
-        "The first meal of the day"
+        "The first meal of the day",
+        "Category: Essen"
       ]
     },
     {
       "word": "MITTAGESSEN",
       "clues": [
-        "The midday meal"
+        "The midday meal",
+        "Category: Essen"
       ]
     },
     {
       "word": "ABENDESSEN",
       "clues": [
-        "The evening meal"
-      ]
-    },
-    {
-      "word": "REZEPT",
-      "clues": [
-        "Step-by-step instructions for cooking a dish"
+        "The evening meal",
+        "Category: Essen"
       ]
     },
     {
       "word": "ZUTAT",
       "clues": [
-        "One item used in a recipe"
+        "One item used in a recipe",
+        "Category: Essen"
       ]
     },
     {
       "word": "GEMÜSE",
       "clues": [
-        "Carrots, potatoes, and the like"
+        "Carrots, potatoes, and the like",
+        "Category: Essen"
       ]
     },
     {
       "word": "OBST",
       "clues": [
-        "Apples, bananas, and the like"
+        "Apples, bananas, and the like",
+        "Category: Essen"
       ]
     },
     {
       "word": "BROT",
       "clues": [
-        "Baked from flour, sliced for sandwiches"
+        "Baked from flour, sliced for sandwiches",
+        "Category: Essen"
       ]
     },
     {
       "word": "KÄSE",
       "clues": [
-        "Made from milk, often sliced onto bread"
+        "Made from milk, often sliced onto bread",
+        "Category: Essen"
       ]
     },
     {
       "word": "FLEISCH",
       "clues": [
-        "Comes from an animal, cooked as food"
+        "Comes from an animal, cooked as food",
+        "Category: Essen"
       ]
     },
     {
       "word": "SUPERMARKT",
       "clues": [
-        "A large shop for groceries"
+        "A large shop for groceries",
+        "Category: Essen"
       ]
     },
     {
       "word": "EINKAUF",
       "clues": [
-        "The act of buying things"
+        "The act of buying things",
+        "Category: Essen"
       ]
     },
     {
       "word": "EINKAUFSLISTE",
       "clues": [
-        "A written list of things to buy"
+        "A written list of things to buy",
+        "Category: Essen"
       ]
     },
     {
       "word": "RESTAURANT",
       "clues": [
-        "Where you pay to eat a prepared meal"
+        "Where you pay to eat a prepared meal",
+        "Category: Essen"
       ]
     },
     {
       "word": "KELLNER",
       "clues": [
-        "Brings your food to the table"
+        "Brings your food to the table",
+        "Category: Essen"
       ]
     },
     {
       "word": "SPEISEKARTE",
       "clues": [
-        "Lists what a restaurant serves"
+        "Lists what a restaurant serves",
+        "Category: Essen"
+      ]
+    },
+    {
+      "word": "FRÜHSTÜCKSEI",
+      "clues": [
+        "An egg eaten in the morning",
+        "Category: Essen"
+      ]
+    },
+    {
+      "word": "GETRÄNK",
+      "clues": [
+        "Any beverage, hot or cold",
+        "Category: Essen"
+      ]
+    },
+    {
+      "word": "NACHTISCH",
+      "clues": [
+        "A sweet course eaten after the main meal",
+        "Category: Essen"
+      ]
+    },
+    {
+      "word": "VORSPEISE",
+      "clues": [
+        "A small dish served before the main course",
+        "Category: Essen"
+      ]
+    },
+    {
+      "word": "SUPPE",
+      "clues": [
+        "A liquid food, often eaten hot with a spoon",
+        "Category: Essen"
+      ]
+    },
+    {
+      "word": "SALAT",
+      "clues": [
+        "A cold dish of mixed vegetables",
+        "Category: Essen"
+      ]
+    },
+    {
+      "word": "GEWÜRZ",
+      "clues": [
+        "Added in small amounts to flavor food",
+        "Category: Essen"
+      ]
+    },
+    {
+      "word": "BACKOFEN",
+      "clues": [
+        "An appliance used to bake food",
+        "Category: Essen"
+      ]
+    },
+    {
+      "word": "HERD",
+      "clues": [
+        "A kitchen appliance used to cook food on top",
+        "Category: Essen"
       ]
     },
     {
       "word": "MEDIEN",
       "clues": [
-        "Newspapers, TV, and radio, collectively"
+        "Newspapers, TV, and radio, collectively",
+        "Category: Medien"
       ]
     },
     {
       "word": "ZEITUNG",
       "clues": [
-        "Printed daily news on paper"
+        "Printed daily news on paper",
+        "Category: Medien"
       ]
     },
     {
       "word": "NACHRICHTEN",
       "clues": [
-        "A broadcast summary of current events"
+        "A broadcast summary of current events",
+        "Category: Medien"
       ]
     },
     {
       "word": "FERNSEHEN",
       "clues": [
-        "Watching a screen for entertainment or news"
+        "Watching a screen for entertainment or news",
+        "Category: Medien"
       ]
     },
     {
       "word": "RADIO",
       "clues": [
-        "A device that plays broadcast audio"
+        "A device that plays broadcast audio",
+        "Category: Medien"
       ]
     },
     {
       "word": "WERBUNG",
       "clues": [
-        "A paid message trying to sell you something"
+        "A paid message trying to sell you something",
+        "Category: Medien"
       ]
     },
     {
       "word": "ARTIKEL",
       "clues": [
-        "A single piece of writing in a paper"
+        "A single piece of writing in a paper",
+        "Category: Medien"
       ]
     },
     {
       "word": "MELDUNG",
       "clues": [
-        "A short news report or notice"
+        "A short news report or notice",
+        "Category: Medien"
       ]
     },
     {
       "word": "MEINUNG",
       "clues": [
-        "What someone personally thinks about something"
+        "What someone personally thinks about something",
+        "Category: Medien"
+      ]
+    },
+    {
+      "word": "ZEITSCHRIFT",
+      "clues": [
+        "A magazine published regularly",
+        "Category: Medien"
+      ]
+    },
+    {
+      "word": "INTERVIEW",
+      "clues": [
+        "A recorded conversation for the news",
+        "Category: Medien"
+      ]
+    },
+    {
+      "word": "SENDUNG",
+      "clues": [
+        "A single television or radio program",
+        "Category: Medien"
+      ]
+    },
+    {
+      "word": "JOURNALIST",
+      "clues": [
+        "Someone whose job is reporting the news",
+        "Category: Medien"
       ]
     },
     {
       "word": "GESELLSCHAFT",
       "clues": [
-        "People living together in a community"
+        "People living together in a community",
+        "Category: Gesellschaft"
       ]
     },
     {
       "word": "POLITIK",
       "clues": [
-        "Decisions made by a government"
+        "Decisions made by a government",
+        "Category: Gesellschaft"
       ]
     },
     {
       "word": "WAHL",
       "clues": [
-        "Citizens choosing their leaders"
+        "Citizens choosing their leaders",
+        "Category: Gesellschaft"
       ]
     },
     {
       "word": "REGIERUNG",
       "clues": [
-        "The group in charge of running a country"
+        "The group in charge of running a country",
+        "Category: Gesellschaft"
       ]
     },
     {
       "word": "GESETZ",
       "clues": [
-        "A rule enforced by the state"
+        "A rule enforced by the state",
+        "Category: Gesellschaft"
       ]
     },
     {
       "word": "REGEL",
       "clues": [
-        "A guideline you're expected to follow"
+        "A guideline you're expected to follow",
+        "Category: Gesellschaft"
       ]
     },
     {
       "word": "PFLICHT",
       "clues": [
-        "Something you're obligated to do"
+        "Something you're obligated to do",
+        "Category: Gesellschaft"
       ]
     },
     {
       "word": "RECHT",
       "clues": [
-        "A legal entitlement"
+        "A legal entitlement",
+        "Category: Gesellschaft"
       ]
     },
     {
       "word": "VERANTWORTUNG",
       "clues": [
-        "Being accountable for something"
+        "Being accountable for something",
+        "Category: Gesellschaft"
       ]
     },
     {
       "word": "ENTSCHEIDUNG",
       "clues": [
-        "A choice that has been made"
+        "A choice that has been made",
+        "Category: Gesellschaft"
+      ]
+    },
+    {
+      "word": "BÜRGER",
+      "clues": [
+        "A legally recognized member of a country",
+        "Category: Gesellschaft"
+      ]
+    },
+    {
+      "word": "GERICHT",
+      "clues": [
+        "Where legal cases are judged",
+        "Category: Gesellschaft"
+      ]
+    },
+    {
+      "word": "PARTEI",
+      "clues": [
+        "An organized political group",
+        "Category: Gesellschaft"
+      ]
+    },
+    {
+      "word": "DEMOKRATIE",
+      "clues": [
+        "A system where citizens vote for their leaders",
+        "Category: Gesellschaft"
+      ]
+    },
+    {
+      "word": "KULTUR",
+      "clues": [
+        "The customs and beliefs shared by a group of people",
+        "Category: Gesellschaft"
+      ]
+    },
+    {
+      "word": "TRADITION",
+      "clues": [
+        "A custom passed down through generations",
+        "Category: Gesellschaft"
       ]
     },
     {
       "word": "GELEGENHEIT",
       "clues": [
-        "A good moment to do something"
+        "A good moment to do something",
+        "Category: Abstrakt"
       ]
     },
     {
       "word": "PROBLEM",
       "clues": [
-        "A difficulty needing a solution"
+        "A difficulty needing a solution",
+        "Category: Abstrakt"
       ]
     },
     {
       "word": "LÖSUNG",
       "clues": [
-        "How a problem gets fixed"
+        "How a problem gets fixed",
+        "Category: Abstrakt"
       ]
     },
     {
       "word": "ERFAHRUNG",
       "clues": [
-        "What you gain from having done something before"
+        "What you gain from having done something before",
+        "Category: Abstrakt"
       ]
     },
     {
       "word": "GEWOHNHEIT",
       "clues": [
-        "Something done so often it's automatic"
+        "Something done so often it's automatic",
+        "Category: Abstrakt"
       ]
     },
     {
       "word": "ZUKUNFT",
       "clues": [
-        "Time that hasn't happened yet"
+        "Time that hasn't happened yet",
+        "Category: Abstrakt"
       ]
     },
     {
       "word": "VERGANGENHEIT",
       "clues": [
-        "Time that has already happened"
+        "Time that has already happened",
+        "Category: Abstrakt"
       ]
     },
     {
       "word": "GEGENWART",
       "clues": [
-        "Right now, this moment"
+        "Right now, this moment",
+        "Category: Abstrakt"
       ]
     },
     {
       "word": "ZIEL",
       "clues": [
-        "What you're aiming to achieve"
+        "What you're aiming to achieve",
+        "Category: Abstrakt"
       ]
     },
     {
       "word": "PLAN",
       "clues": [
-        "An outline of what you intend to do"
+        "An outline of what you intend to do",
+        "Category: Abstrakt"
       ]
     },
     {
       "word": "IDEE",
       "clues": [
-        "A thought or suggestion"
+        "A thought or suggestion",
+        "Category: Abstrakt"
       ]
     },
     {
       "word": "GRUND",
       "clues": [
-        "Why something happened"
+        "Why something happened",
+        "Category: Abstrakt"
       ]
     },
     {
       "word": "BEISPIEL",
       "clues": [
-        "A single case used to illustrate a point"
+        "A single case used to illustrate a point",
+        "Category: Abstrakt"
       ]
     },
     {
       "word": "UNTERSCHIED",
       "clues": [
-        "How two things are not alike"
+        "How two things are not alike",
+        "Category: Abstrakt"
       ]
     },
     {
       "word": "ÄHNLICHKEIT",
       "clues": [
-        "How two things are alike"
+        "How two things are alike",
+        "Category: Abstrakt"
       ]
     },
     {
       "word": "VORTEIL",
       "clues": [
-        "A benefit something gives you"
+        "A benefit something gives you",
+        "Category: Abstrakt"
       ]
     },
     {
       "word": "NACHTEIL",
       "clues": [
-        "A downside something has"
+        "A downside something has",
+        "Category: Abstrakt"
       ]
     },
     {
       "word": "MÖGLICHKEIT",
       "clues": [
-        "A way something could be done"
+        "A way something could be done",
+        "Category: Abstrakt"
       ]
     },
     {
       "word": "SCHWIERIGKEIT",
       "clues": [
-        "Something that makes a task hard"
+        "Something that makes a task hard",
+        "Category: Abstrakt"
       ]
     },
     {
       "word": "BESCHWERDE",
       "clues": [
-        "A formal complaint"
+        "A formal complaint",
+        "Category: Abstrakt"
       ]
     },
     {
       "word": "KRITIK",
       "clues": [
-        "Negative feedback about something"
+        "Negative feedback about something",
+        "Category: Abstrakt"
+      ]
+    },
+    {
+      "word": "WAHRHEIT",
+      "clues": [
+        "What is actually true",
+        "Category: Abstrakt"
+      ]
+    },
+    {
+      "word": "FEHLER",
+      "clues": [
+        "A mistake",
+        "Category: Abstrakt"
+      ]
+    },
+    {
+      "word": "ABSICHT",
+      "clues": [
+        "What someone intends to do",
+        "Category: Abstrakt"
+      ]
+    },
+    {
+      "word": "URSACHE",
+      "clues": [
+        "The root cause of something",
+        "Category: Abstrakt"
+      ]
+    },
+    {
+      "word": "WIRKUNG",
+      "clues": [
+        "The result an action produces",
+        "Category: Abstrakt"
       ]
     },
     {
       "word": "GEFÜHL",
       "clues": [
-        "An emotion you experience"
+        "An emotion you experience",
+        "Category: Gefuehle"
       ]
     },
     {
       "word": "FREUDE",
       "clues": [
-        "The feeling of being happy"
+        "The feeling of being happy",
+        "Category: Gefuehle"
       ]
     },
     {
       "word": "ÄRGER",
       "clues": [
-        "Feeling annoyed or upset"
+        "Feeling annoyed or upset",
+        "Category: Gefuehle"
       ]
     },
     {
       "word": "ANGST",
       "clues": [
-        "The feeling before something scary"
+        "The feeling before something scary",
+        "Category: Gefuehle"
       ]
     },
     {
       "word": "SORGE",
       "clues": [
-        "Worrying about something"
+        "Worrying about something",
+        "Category: Gefuehle"
       ]
     },
     {
       "word": "HOFFNUNG",
       "clues": [
-        "Wanting something good to happen"
+        "Wanting something good to happen",
+        "Category: Gefuehle"
       ]
     },
     {
       "word": "GEDULD",
       "clues": [
-        "Staying calm while waiting"
+        "Staying calm while waiting",
+        "Category: Gefuehle"
       ]
     },
     {
       "word": "MUT",
       "clues": [
-        "Doing something despite being afraid"
+        "Doing something despite being afraid",
+        "Category: Gefuehle"
       ]
     },
     {
       "word": "STOLZ",
       "clues": [
-        "Feeling good about an achievement"
+        "Feeling good about an achievement",
+        "Category: Gefuehle"
       ]
     },
     {
       "word": "LANGEWEILE",
       "clues": [
-        "Having nothing interesting to do"
+        "Having nothing interesting to do",
+        "Category: Gefuehle"
       ]
     },
     {
       "word": "STRESS",
       "clues": [
-        "Pressure that makes you tense"
+        "Pressure that makes you tense",
+        "Category: Gefuehle"
       ]
     },
     {
       "word": "RUHE",
       "clues": [
-        "Peace and quiet"
+        "Peace and quiet",
+        "Category: Gefuehle"
       ]
     },
     {
       "word": "GERÄUSCH",
       "clues": [
-        "Something you hear"
+        "Something you hear",
+        "Category: Gefuehle"
+      ]
+    },
+    {
+      "word": "EIFERSUCHT",
+      "clues": [
+        "Resentment over someone else's advantage",
+        "Category: Gefuehle"
+      ]
+    },
+    {
+      "word": "NEUGIER",
+      "clues": [
+        "A strong desire to learn or know something",
+        "Category: Gefuehle"
+      ]
+    },
+    {
+      "word": "DANKBARKEIT",
+      "clues": [
+        "Feeling thankful",
+        "Category: Gefuehle"
+      ]
+    },
+    {
+      "word": "EINSAMKEIT",
+      "clues": [
+        "The feeling of having no company",
+        "Category: Gefuehle"
       ]
     },
     {
       "word": "HANDY",
       "clues": [
-        "A mobile phone"
+        "A mobile phone",
+        "Category: Technologie"
       ]
     },
     {
       "word": "COMPUTER",
       "clues": [
-        "A machine for processing data"
+        "A machine for processing data",
+        "Category: Technologie"
       ]
     },
     {
       "word": "BILDSCHIRM",
       "clues": [
-        "Where you see the picture on a device"
+        "Where you see the picture on a device",
+        "Category: Technologie"
       ]
     },
     {
       "word": "TASTATUR",
       "clues": [
-        "You type on this"
+        "You type on this",
+        "Category: Technologie"
       ]
     },
     {
       "word": "INTERNET",
       "clues": [
-        "The global network connecting computers"
+        "The global network connecting computers",
+        "Category: Technologie"
       ]
     },
     {
       "word": "PASSWORT",
       "clues": [
-        "Secret text needed to log in"
+        "Secret text needed to log in",
+        "Category: Technologie"
       ]
     },
     {
       "word": "NACHRICHT",
       "clues": [
-        "A short written message you send someone"
+        "A short written message you send someone",
+        "Category: Technologie"
       ]
     },
     {
       "word": "ANRUF",
       "clues": [
-        "Dialing someone's number to talk"
+        "Dialing someone's number to talk",
+        "Category: Technologie"
       ]
     },
     {
       "word": "AKKU",
       "clues": [
-        "Powers a phone when it's unplugged"
+        "Powers a phone when it's unplugged",
+        "Category: Technologie"
       ]
     },
     {
       "word": "LADEGERÄT",
       "clues": [
-        "Plugs in to recharge a device"
+        "Plugs in to recharge a device",
+        "Category: Technologie"
       ]
     },
     {
       "word": "GERÄT",
       "clues": [
-        "Any electronic appliance or device"
+        "Any electronic appliance or device",
+        "Category: Technologie"
       ]
     },
     {
       "word": "SOFTWARE",
       "clues": [
-        "The programs that run on a computer"
+        "The programs that run on a computer",
+        "Category: Technologie"
       ]
     },
     {
       "word": "DATEI",
       "clues": [
-        "A single saved document on a computer"
+        "A single saved document on a computer",
+        "Category: Technologie"
       ]
     },
     {
       "word": "SICHERHEIT",
       "clues": [
-        "Being protected from danger or risk"
+        "Being protected from danger or risk",
+        "Category: Technologie"
+      ]
+    },
+    {
+      "word": "ANWENDUNG",
+      "clues": [
+        "A program made for a specific purpose, an app",
+        "Category: Technologie"
+      ]
+    },
+    {
+      "word": "NETZWERK",
+      "clues": [
+        "A connected system of devices",
+        "Category: Technologie"
+      ]
+    },
+    {
+      "word": "DOWNLOAD",
+      "clues": [
+        "Copying a file from the internet onto a device",
+        "Category: Technologie"
+      ]
+    },
+    {
+      "word": "KAMERA",
+      "clues": [
+        "A device used to take pictures",
+        "Category: Technologie"
+      ]
+    },
+    {
+      "word": "DRUCKER",
+      "clues": [
+        "Puts text or images onto paper from a computer",
+        "Category: Technologie"
+      ]
+    },
+    {
+      "word": "BILDSCHIRMZEIT",
+      "clues": [
+        "Time spent looking at a screen",
+        "Category: Technologie"
       ]
     },
     {
       "word": "KLEIDUNG",
       "clues": [
-        "Everything you wear, collectively"
+        "Everything you wear, collectively",
+        "Category: Kleidung"
       ]
     },
     {
       "word": "JACKE",
       "clues": [
-        "A layer worn over a shirt, outdoors"
+        "A layer worn over a shirt, outdoors",
+        "Category: Kleidung"
       ]
     },
     {
       "word": "HOSE",
       "clues": [
-        "Covers both legs separately"
+        "Covers both legs separately",
+        "Category: Kleidung"
       ]
     },
     {
       "word": "SCHUH",
       "clues": [
-        "Worn on a foot"
+        "Worn on a foot",
+        "Category: Kleidung"
       ]
     },
     {
       "word": "MANTEL",
       "clues": [
-        "A long, heavy coat"
+        "A long, heavy coat",
+        "Category: Kleidung"
       ]
     },
     {
       "word": "MÜTZE",
       "clues": [
-        "Worn on the head in cold weather"
+        "Worn on the head in cold weather",
+        "Category: Kleidung"
       ]
     },
     {
       "word": "REGENSCHIRM",
       "clues": [
-        "Keeps you dry in the rain"
+        "Keeps you dry in the rain",
+        "Category: Kleidung"
+      ]
+    },
+    {
+      "word": "HEMD",
+      "clues": [
+        "A buttoned shirt, often worn for work",
+        "Category: Kleidung"
+      ]
+    },
+    {
+      "word": "KLEID",
+      "clues": [
+        "A one-piece garment worn by women",
+        "Category: Kleidung"
+      ]
+    },
+    {
+      "word": "ROCK",
+      "clues": [
+        "A garment that hangs from the waist, worn by women",
+        "Category: Kleidung"
+      ]
+    },
+    {
+      "word": "PULLOVER",
+      "clues": [
+        "A warm, knitted top pulled over the head",
+        "Category: Kleidung"
+      ]
+    },
+    {
+      "word": "HANDSCHUH",
+      "clues": [
+        "Worn on a hand to keep it warm",
+        "Category: Kleidung"
+      ]
+    },
+    {
+      "word": "SOCKE",
+      "clues": [
+        "Worn on a foot, under a shoe",
+        "Category: Kleidung"
+      ]
+    },
+    {
+      "word": "GÜRTEL",
+      "clues": [
+        "Worn around the waist to hold up trousers",
+        "Category: Kleidung"
+      ]
+    },
+    {
+      "word": "KRAWATTE",
+      "clues": [
+        "A strip of fabric tied around the neck for formal wear",
+        "Category: Kleidung"
       ]
     },
     {
       "word": "WETTER",
       "clues": [
-        "What the sky and temperature are doing today"
+        "What the sky and temperature are doing today",
+        "Category: Wetter"
       ]
     },
     {
       "word": "REGEN",
       "clues": [
-        "Water falling from clouds"
+        "Water falling from clouds",
+        "Category: Wetter"
       ]
     },
     {
       "word": "SCHNEE",
       "clues": [
-        "White and cold, falls in winter"
+        "White and cold, falls in winter",
+        "Category: Wetter"
       ]
     },
     {
       "word": "SONNE",
       "clues": [
-        "The star that lights our days"
+        "The star that lights our days",
+        "Category: Wetter"
       ]
     },
     {
       "word": "WOLKE",
       "clues": [
-        "Floats in the sky, can bring rain"
+        "Floats in the sky, can bring rain",
+        "Category: Wetter"
       ]
     },
     {
       "word": "WIND",
       "clues": [
-        "Moving air"
+        "Moving air",
+        "Category: Wetter"
       ]
     },
     {
       "word": "TEMPERATUR",
       "clues": [
-        "How hot or cold it is, in degrees"
+        "How hot or cold it is, in degrees",
+        "Category: Wetter"
       ]
     },
     {
       "word": "JAHRESZEIT",
       "clues": [
-        "One of four yearly periods: spring, summer, autumn, winter"
+        "One of four yearly periods: spring, summer, autumn, winter",
+        "Category: Wetter"
       ]
     },
     {
       "word": "FRÜHLING",
       "clues": [
-        "The season after winter"
+        "The season after winter",
+        "Category: Wetter"
       ]
     },
     {
       "word": "SOMMER",
       "clues": [
-        "The hottest season"
+        "The hottest season",
+        "Category: Wetter"
       ]
     },
     {
       "word": "HERBST",
       "clues": [
-        "The season when leaves fall"
+        "The season when leaves fall",
+        "Category: Wetter"
       ]
     },
     {
       "word": "WINTER",
       "clues": [
-        "The coldest season"
+        "The coldest season",
+        "Category: Wetter"
+      ]
+    },
+    {
+      "word": "GEWITTER",
+      "clues": [
+        "A storm with thunder and lightning",
+        "Category: Wetter"
+      ]
+    },
+    {
+      "word": "NEBEL",
+      "clues": [
+        "A thick, low cloud that reduces visibility",
+        "Category: Wetter"
+      ]
+    },
+    {
+      "word": "HITZE",
+      "clues": [
+        "Very high temperature",
+        "Category: Wetter"
+      ]
+    },
+    {
+      "word": "KÄLTE",
+      "clues": [
+        "Very low temperature",
+        "Category: Wetter"
       ]
     },
     {
       "word": "KLEIN",
       "clues": [
-        "The opposite of big"
+        "The opposite of big",
+        "Category: Adjektive"
       ]
     },
     {
       "word": "GROSS",
       "clues": [
-        "The opposite of small"
+        "The opposite of small",
+        "Category: Adjektive"
       ]
     },
     {
       "word": "SCHNELL",
       "clues": [
-        "Moving with speed"
+        "Moving with speed",
+        "Category: Adjektive"
       ]
     },
     {
       "word": "LANGSAM",
       "clues": [
-        "The opposite of fast"
+        "The opposite of fast",
+        "Category: Adjektive"
       ]
     },
     {
       "word": "WICHTIG",
       "clues": [
-        "Deserving serious attention"
+        "Deserving serious attention",
+        "Category: Adjektive"
       ]
     },
     {
       "word": "EINFACH",
       "clues": [
-        "Not difficult to do"
+        "Not difficult to do",
+        "Category: Adjektive"
       ]
     },
     {
       "word": "SCHWIERIG",
       "clues": [
-        "Hard to do"
+        "Hard to do",
+        "Category: Adjektive"
       ]
     },
     {
       "word": "MÖGLICH",
       "clues": [
-        "Able to happen"
+        "Able to happen",
+        "Category: Adjektive"
       ]
     },
     {
       "word": "NÖTIG",
       "clues": [
-        "Required, can't be skipped"
+        "Required, can't be skipped",
+        "Category: Adjektive"
       ]
     },
     {
       "word": "GENUG",
       "clues": [
-        "As much as is needed, no more"
+        "As much as is needed, no more",
+        "Category: Adjektive"
       ]
     },
     {
       "word": "BESONDERS",
       "clues": [
-        "More than usually"
+        "More than usually",
+        "Category: Adjektive"
       ]
     },
     {
       "word": "VIELLEICHT",
       "clues": [
-        "Perhaps, but not certain"
+        "Perhaps, but not certain",
+        "Category: Adjektive"
       ]
     },
     {
       "word": "EIGENTLICH",
       "clues": [
-        "In fact, to be precise"
+        "In fact, to be precise",
+        "Category: Adjektive"
       ]
     },
     {
       "word": "UNGEFÄHR",
       "clues": [
-        "Roughly, not an exact number"
+        "Roughly, not an exact number",
+        "Category: Adjektive"
       ]
     },
     {
       "word": "ZUFRIEDEN",
       "clues": [
-        "Content with how things are"
+        "Content with how things are",
+        "Category: Adjektive"
       ]
     },
     {
       "word": "MÜDE",
       "clues": [
-        "Needing sleep"
+        "Needing sleep",
+        "Category: Adjektive"
       ]
     },
     {
       "word": "GESUND",
       "clues": [
-        "In good physical condition"
+        "In good physical condition",
+        "Category: Adjektive"
       ]
     },
     {
       "word": "KRANK",
       "clues": [
-        "Not feeling well"
+        "Not feeling well",
+        "Category: Adjektive"
       ]
     },
     {
       "word": "SICHER",
       "clues": [
-        "Free from danger, or very certain"
+        "Free from danger, or very certain",
+        "Category: Adjektive"
       ]
     },
     {
       "word": "GEFÄHRLICH",
       "clues": [
-        "Likely to cause harm"
+        "Likely to cause harm",
+        "Category: Adjektive"
       ]
     },
     {
       "word": "FREUNDLICH",
       "clues": [
-        "Kind and warm toward others"
+        "Kind and warm toward others",
+        "Category: Adjektive"
       ]
     },
     {
       "word": "HÖFLICH",
       "clues": [
-        "Showing good manners"
+        "Showing good manners",
+        "Category: Adjektive"
       ]
     },
     {
       "word": "PÜNKTLICH",
       "clues": [
-        "Never late"
+        "Never late",
+        "Category: Adjektive"
       ]
     },
     {
       "word": "ZUVERLÄSSIG",
       "clues": [
-        "Always does what they say they will"
+        "Always does what they say they will",
+        "Category: Adjektive"
       ]
     },
     {
       "word": "SELBSTSTÄNDIG",
       "clues": [
-        "Working for oneself, not an employer"
+        "Working for oneself, not an employer",
+        "Category: Adjektive"
       ]
     },
     {
       "word": "BEQUEM",
       "clues": [
-        "Cozy and easy to relax in"
+        "Cozy and easy to relax in",
+        "Category: Adjektive"
       ]
     },
     {
       "word": "PRAKTISCH",
       "clues": [
-        "Useful in everyday situations"
+        "Useful in everyday situations",
+        "Category: Adjektive"
       ]
     },
     {
       "word": "MODERN",
       "clues": [
-        "Up to date, not old-fashioned"
+        "Up to date, not old-fashioned",
+        "Category: Adjektive"
       ]
     },
     {
       "word": "TYPISCH",
       "clues": [
-        "Exactly what you'd expect"
+        "Exactly what you'd expect",
+        "Category: Adjektive"
+      ]
+    },
+    {
+      "word": "BILLIG",
+      "clues": [
+        "Costing very little",
+        "Category: Adjektive"
+      ]
+    },
+    {
+      "word": "TEUER",
+      "clues": [
+        "Costing a lot",
+        "Category: Adjektive"
+      ]
+    },
+    {
+      "word": "SAUBER",
+      "clues": [
+        "Free from dirt",
+        "Category: Adjektive"
+      ]
+    },
+    {
+      "word": "SCHMUTZIG",
+      "clues": [
+        "Covered in dirt",
+        "Category: Adjektive"
+      ]
+    },
+    {
+      "word": "LEICHT",
+      "clues": [
+        "Not heavy, or not difficult",
+        "Category: Adjektive"
+      ]
+    },
+    {
+      "word": "SCHWER",
+      "clues": [
+        "Heavy, or difficult",
+        "Category: Adjektive"
+      ]
+    },
+    {
+      "word": "VOLL",
+      "clues": [
+        "Containing as much as possible",
+        "Category: Adjektive"
+      ]
+    },
+    {
+      "word": "LEER",
+      "clues": [
+        "Containing nothing",
+        "Category: Adjektive"
+      ]
+    },
+    {
+      "word": "NEU",
+      "clues": [
+        "Recently made or bought",
+        "Category: Adjektive"
+      ]
+    },
+    {
+      "word": "ALT",
+      "clues": [
+        "Having existed for a long time",
+        "Category: Adjektive"
+      ]
+    },
+    {
+      "word": "STARK",
+      "clues": [
+        "Having a lot of physical power",
+        "Category: Adjektive"
+      ]
+    },
+    {
+      "word": "SCHWACH",
+      "clues": [
+        "Lacking strength",
+        "Category: Adjektive"
+      ]
+    },
+    {
+      "word": "FLUSS",
+      "clues": [
+        "A large, natural stream of water",
+        "Category: Natur"
+      ]
+    },
+    {
+      "word": "SEE",
+      "clues": [
+        "A large body of still water surrounded by land",
+        "Category: Natur"
+      ]
+    },
+    {
+      "word": "INSEL",
+      "clues": [
+        "Land completely surrounded by water",
+        "Category: Natur"
+      ]
+    },
+    {
+      "word": "WÜSTE",
+      "clues": [
+        "A very dry region with little rainfall",
+        "Category: Natur"
+      ]
+    },
+    {
+      "word": "VOGEL",
+      "clues": [
+        "A feathered creature that can usually fly",
+        "Category: Natur"
+      ]
+    },
+    {
+      "word": "FISCH",
+      "clues": [
+        "Lives and breathes underwater",
+        "Category: Natur"
+      ]
+    },
+    {
+      "word": "HUND",
+      "clues": [
+        "A common furry pet that barks",
+        "Category: Natur"
+      ]
+    },
+    {
+      "word": "KATZE",
+      "clues": [
+        "A common furry pet that meows",
+        "Category: Natur"
+      ]
+    },
+    {
+      "word": "PFERD",
+      "clues": [
+        "A large animal people ride",
+        "Category: Natur"
+      ]
+    },
+    {
+      "word": "KUH",
+      "clues": [
+        "A farm animal that produces milk",
+        "Category: Natur"
+      ]
+    },
+    {
+      "word": "SCHWEIN",
+      "clues": [
+        "A farm animal, source of pork",
+        "Category: Natur"
+      ]
+    },
+    {
+      "word": "HUHN",
+      "clues": [
+        "A farm bird that lays eggs",
+        "Category: Natur"
+      ]
+    },
+    {
+      "word": "INSEKT",
+      "clues": [
+        "A small creature with six legs, like an ant",
+        "Category: Natur"
+      ]
+    },
+    {
+      "word": "BIENE",
+      "clues": [
+        "A flying insect that makes honey",
+        "Category: Natur"
+      ]
+    },
+    {
+      "word": "SCHMETTERLING",
+      "clues": [
+        "A colorful flying insect that starts as a caterpillar",
+        "Category: Natur"
+      ]
+    },
+    {
+      "word": "BLUME",
+      "clues": [
+        "A colorful flowering plant",
+        "Category: Natur"
+      ]
+    },
+    {
+      "word": "BAUM",
+      "clues": [
+        "A tall plant with a trunk and branches",
+        "Category: Natur"
+      ]
+    },
+    {
+      "word": "BLATT",
+      "clues": [
+        "Grows on a tree branch, usually green",
+        "Category: Natur"
+      ]
+    },
+    {
+      "word": "WURZEL",
+      "clues": [
+        "Grows underground, anchoring a plant",
+        "Category: Natur"
+      ]
+    },
+    {
+      "word": "AST",
+      "clues": [
+        "A branch growing from a tree's trunk",
+        "Category: Natur"
+      ]
+    },
+    {
+      "word": "SONNENUNTERGANG",
+      "clues": [
+        "The moment the sun disappears below the horizon",
+        "Category: Natur"
+      ]
+    },
+    {
+      "word": "SONNENAUFGANG",
+      "clues": [
+        "The moment the sun first appears in the morning",
+        "Category: Natur"
+      ]
+    },
+    {
+      "word": "REGENBOGEN",
+      "clues": [
+        "A colorful arc appearing in the sky after rain",
+        "Category: Natur"
+      ]
+    },
+    {
+      "word": "STERN",
+      "clues": [
+        "A distant glowing point of light visible at night",
+        "Category: Natur"
+      ]
+    },
+    {
+      "word": "MOND",
+      "clues": [
+        "Orbits the Earth and lights up the night",
+        "Category: Natur"
+      ]
+    },
+    {
+      "word": "SPORT",
+      "clues": [
+        "Physical activity done for fitness or competition",
+        "Category: Sport"
+      ]
+    },
+    {
+      "word": "MANNSCHAFT",
+      "clues": [
+        "A team of players",
+        "Category: Sport"
+      ]
+    },
+    {
+      "word": "SPIEL",
+      "clues": [
+        "A structured activity played for fun or competition",
+        "Category: Sport"
+      ]
+    },
+    {
+      "word": "WETTKAMPF",
+      "clues": [
+        "A contest to determine a winner",
+        "Category: Sport"
+      ]
+    },
+    {
+      "word": "TRAINING",
+      "clues": [
+        "Regular practice to improve at something",
+        "Category: Sport"
+      ]
+    },
+    {
+      "word": "SIEGER",
+      "clues": [
+        "The winner of a competition",
+        "Category: Sport"
+      ]
+    },
+    {
+      "word": "VERLIERER",
+      "clues": [
+        "The loser of a competition",
+        "Category: Sport"
+      ]
+    },
+    {
+      "word": "SCHWIMMBAD",
+      "clues": [
+        "A public pool for swimming",
+        "Category: Sport"
+      ]
+    },
+    {
+      "word": "FITNESSSTUDIO",
+      "clues": [
+        "A gym with equipment for exercise",
+        "Category: Sport"
+      ]
+    },
+    {
+      "word": "FUSSBALL",
+      "clues": [
+        "A sport played by kicking a ball into a goal",
+        "Category: Sport"
+      ]
+    },
+    {
+      "word": "MITGLIED",
+      "clues": [
+        "A person who belongs to a club or group",
+        "Category: Sport"
+      ]
+    },
+    {
+      "word": "VEREIN",
+      "clues": [
+        "An organized club, often for a hobby or sport",
+        "Category: Sport"
+      ]
+    },
+    {
+      "word": "HOBBY",
+      "clues": [
+        "An activity done for enjoyment in free time",
+        "Category: Sport"
+      ]
+    },
+    {
+      "word": "FREIZEIT",
+      "clues": [
+        "Time free from work or school",
+        "Category: Sport"
+      ]
+    },
+    {
+      "word": "MUSIK",
+      "clues": [
+        "Organized sound, played or sung",
+        "Category: Sport"
+      ]
+    },
+    {
+      "word": "INSTRUMENT",
+      "clues": [
+        "A device used to make music",
+        "Category: Sport"
+      ]
+    },
+    {
+      "word": "KONZERT",
+      "clues": [
+        "A live musical performance",
+        "Category: Sport"
+      ]
+    },
+    {
+      "word": "KINO",
+      "clues": [
+        "A place to watch films on a big screen",
+        "Category: Sport"
+      ]
+    },
+    {
+      "word": "THEATER",
+      "clues": [
+        "A place where live plays are performed",
+        "Category: Sport"
+      ]
+    },
+    {
+      "word": "AUSSTELLUNG",
+      "clues": [
+        "A public display of art or objects",
+        "Category: Sport"
+      ]
+    },
+    {
+      "word": "INGENIEUR",
+      "clues": [
+        "Designs and builds machines or structures",
+        "Category: Berufe"
+      ]
+    },
+    {
+      "word": "ANWALT",
+      "clues": [
+        "Represents people legally in court",
+        "Category: Berufe"
+      ]
+    },
+    {
+      "word": "ARCHITEKT",
+      "clues": [
+        "Designs buildings",
+        "Category: Berufe"
+      ]
+    },
+    {
+      "word": "ELEKTRIKER",
+      "clues": [
+        "Repairs electrical systems",
+        "Category: Berufe"
+      ]
+    },
+    {
+      "word": "KLEMPNER",
+      "clues": [
+        "Repairs pipes and water systems",
+        "Category: Berufe"
+      ]
+    },
+    {
+      "word": "MECHANIKER",
+      "clues": [
+        "Repairs cars and machines",
+        "Category: Berufe"
+      ]
+    },
+    {
+      "word": "BUCHHALTER",
+      "clues": [
+        "Manages the finances of a business",
+        "Category: Berufe"
+      ]
+    },
+    {
+      "word": "WISSENSCHAFTLER",
+      "clues": [
+        "Conducts experiments to discover new things",
+        "Category: Berufe"
+      ]
+    },
+    {
+      "word": "BAUER",
+      "clues": [
+        "Grows crops or raises animals",
+        "Category: Berufe"
+      ]
+    },
+    {
+      "word": "KOCH",
+      "clues": [
+        "Prepares food professionally in a kitchen",
+        "Category: Berufe"
+      ]
+    },
+    {
+      "word": "PILOT",
+      "clues": [
+        "Flies an airplane",
+        "Category: Berufe"
+      ]
+    },
+    {
+      "word": "FEUERWEHRMANN",
+      "clues": [
+        "Puts out fires and rescues people",
+        "Category: Berufe"
+      ]
+    },
+    {
+      "word": "POLIZIST",
+      "clues": [
+        "Enforces the law and keeps order",
+        "Category: Berufe"
+      ]
+    },
+    {
+      "word": "BIBLIOTHEKAR",
+      "clues": [
+        "Manages the books in a library",
+        "Category: Berufe"
+      ]
+    },
+    {
+      "word": "FOTOGRAF",
+      "clues": [
+        "Takes photographs professionally",
+        "Category: Berufe"
+      ]
+    },
+    {
+      "word": "ÜBERSETZER",
+      "clues": [
+        "Converts text from one language to another",
+        "Category: Berufe"
+      ]
+    },
+    {
+      "word": "VERKÄUFER",
+      "clues": [
+        "Sells goods to customers",
+        "Category: Berufe"
+      ]
+    },
+    {
+      "word": "HANDWERKER",
+      "clues": [
+        "Skilled manual worker, like a carpenter",
+        "Category: Berufe"
+      ]
+    },
+    {
+      "word": "KONTINENT",
+      "clues": [
+        "A huge landmass, like Europe or Africa",
+        "Category: StadtOrte"
+      ]
+    },
+    {
+      "word": "HAUPTSTADT",
+      "clues": [
+        "The main city of a country, where government is based",
+        "Category: StadtOrte"
+      ]
+    },
+    {
+      "word": "KÜSTE",
+      "clues": [
+        "The land right next to the sea",
+        "Category: StadtOrte"
+      ]
+    },
+    {
+      "word": "TAL",
+      "clues": [
+        "Low ground between two mountains",
+        "Category: StadtOrte"
+      ]
+    },
+    {
+      "word": "HAFEN",
+      "clues": [
+        "A protected area where ships dock",
+        "Category: StadtOrte"
+      ]
+    },
+    {
+      "word": "BRÜCKE",
+      "clues": [
+        "Crosses a river or a valley",
+        "Category: StadtOrte"
+      ]
+    },
+    {
+      "word": "TUNNEL",
+      "clues": [
+        "A passage under the ground or through a mountain",
+        "Category: StadtOrte"
+      ]
+    },
+    {
+      "word": "VORORT",
+      "clues": [
+        "A residential area at the edge of a city",
+        "Category: StadtOrte"
+      ]
+    },
+    {
+      "word": "MARKT",
+      "clues": [
+        "A place where goods are sold, often outdoors",
+        "Category: StadtOrte"
+      ]
+    },
+    {
+      "word": "SCHLOSS",
+      "clues": [
+        "A large, historic fortress or palace",
+        "Category: StadtOrte"
+      ]
+    },
+    {
+      "word": "KIRCHE",
+      "clues": [
+        "A building for Christian worship",
+        "Category: StadtOrte"
+      ]
+    },
+    {
+      "word": "FRIEDHOF",
+      "clues": [
+        "A place where the dead are buried",
+        "Category: StadtOrte"
+      ]
+    },
+    {
+      "word": "WOLKENKRATZER",
+      "clues": [
+        "A very tall building in a city",
+        "Category: StadtOrte"
+      ]
+    },
+    {
+      "word": "RATHAUS",
+      "clues": [
+        "The building where city government is based",
+        "Category: StadtOrte"
+      ]
+    },
+    {
+      "word": "FEUERWEHR",
+      "clues": [
+        "The service that puts out fires",
+        "Category: StadtOrte"
+      ]
+    },
+    {
+      "word": "KRANKENWAGEN",
+      "clues": [
+        "A vehicle that rushes sick people to hospital",
+        "Category: StadtOrte"
+      ]
+    },
+    {
+      "word": "PLATZ",
+      "clues": [
+        "An open public square in a town",
+        "Category: StadtOrte"
+      ]
+    },
+    {
+      "word": "DENKMAL",
+      "clues": [
+        "A structure built to remember a person or event",
+        "Category: StadtOrte"
+      ]
+    },
+    {
+      "word": "KERZE",
+      "clues": [
+        "Burns with a small flame, made of wax",
+        "Category: Kueche"
+      ]
+    },
+    {
+      "word": "DECKE",
+      "clues": [
+        "Warms you in bed",
+        "Category: Kueche"
+      ]
+    },
+    {
+      "word": "KISSEN",
+      "clues": [
+        "Supports the head while sleeping",
+        "Category: Kueche"
+      ]
+    },
+    {
+      "word": "HANDTUCH",
+      "clues": [
+        "Dries the body after a shower",
+        "Category: Kueche"
+      ]
+    },
+    {
+      "word": "BESEN",
+      "clues": [
+        "Used to sweep the floor",
+        "Category: Kueche"
+      ]
+    },
+    {
+      "word": "LEITER",
+      "clues": [
+        "Used to reach high places",
+        "Category: Kueche"
+      ]
+    },
+    {
+      "word": "HAMMER",
+      "clues": [
+        "A tool for driving in nails",
+        "Category: Kueche"
+      ]
+    },
+    {
+      "word": "SCHERE",
+      "clues": [
+        "A tool for cutting paper or fabric",
+        "Category: Kueche"
+      ]
+    },
+    {
+      "word": "BRIEFUMSCHLAG",
+      "clues": [
+        "A letter is sent inside this",
+        "Category: Kueche"
+      ]
+    },
+    {
+      "word": "KALENDER",
+      "clues": [
+        "Shows the days, weeks, and months",
+        "Category: Kueche"
+      ]
+    },
+    {
+      "word": "NOTIZBUCH",
+      "clues": [
+        "A small book for writing notes",
+        "Category: Kueche"
+      ]
+    },
+    {
+      "word": "RUCKSACK",
+      "clues": [
+        "Worn on the back, for books or gear",
+        "Category: Kueche"
+      ]
+    },
+    {
+      "word": "TASCHENLAMPE",
+      "clues": [
+        "A portable, battery-powered light source",
+        "Category: Kueche"
+      ]
+    },
+    {
+      "word": "KÜHLSCHRANK",
+      "clues": [
+        "Keeps food cold to preserve it",
+        "Category: Kueche"
+      ]
+    },
+    {
+      "word": "WASCHMASCHINE",
+      "clues": [
+        "Cleans clothes using water and soap",
+        "Category: Kueche"
+      ]
+    },
+    {
+      "word": "GESCHIRR",
+      "clues": [
+        "Plates, bowls, and cups used for eating",
+        "Category: Kueche"
+      ]
+    },
+    {
+      "word": "BESTECK",
+      "clues": [
+        "Knives, forks, and spoons",
+        "Category: Kueche"
+      ]
+    },
+    {
+      "word": "GESTERN",
+      "clues": [
+        "The day before today",
+        "Category: ZahlenZeit"
+      ]
+    },
+    {
+      "word": "MORGEN",
+      "clues": [
+        "The day after today",
+        "Category: ZahlenZeit"
+      ]
+    },
+    {
+      "word": "WOCHENENDE",
+      "clues": [
+        "Saturday and Sunday",
+        "Category: ZahlenZeit"
+      ]
+    },
+    {
+      "word": "JAHRHUNDERT",
+      "clues": [
+        "A period of one hundred years",
+        "Category: ZahlenZeit"
+      ]
+    },
+    {
+      "word": "JAHRZEHNT",
+      "clues": [
+        "A period of ten years",
+        "Category: ZahlenZeit"
+      ]
+    },
+    {
+      "word": "MOMENT",
+      "clues": [
+        "A very short period of time",
+        "Category: ZahlenZeit"
+      ]
+    },
+    {
+      "word": "ZEITPLAN",
+      "clues": [
+        "A planned schedule for tasks or events",
+        "Category: ZahlenZeit"
+      ]
+    },
+    {
+      "word": "ROUTINE",
+      "clues": [
+        "A regularly repeated sequence of actions",
+        "Category: ZahlenZeit"
+      ]
+    },
+    {
+      "word": "UHRZEIT",
+      "clues": [
+        "The specific time shown on a clock",
+        "Category: ZahlenZeit"
+      ]
+    },
+    {
+      "word": "MINUTE",
+      "clues": [
+        "Sixty seconds",
+        "Category: ZahlenZeit"
+      ]
+    },
+    {
+      "word": "STUNDE",
+      "clues": [
+        "Sixty minutes",
+        "Category: ZahlenZeit"
+      ]
+    },
+    {
+      "word": "SEKUNDE",
+      "clues": [
+        "A very short unit of time",
+        "Category: ZahlenZeit"
+      ]
+    },
+    {
+      "word": "WOCHE",
+      "clues": [
+        "Seven days",
+        "Category: ZahlenZeit"
+      ]
+    },
+    {
+      "word": "MONAT",
+      "clues": [
+        "About thirty days",
+        "Category: ZahlenZeit"
+      ]
+    },
+    {
+      "word": "JAHR",
+      "clues": [
+        "Twelve months",
+        "Category: ZahlenZeit"
+      ]
+    },
+    {
+      "word": "KOPF",
+      "clues": [
+        "The top part of the body, containing the brain",
+        "Category: Koerper"
+      ]
+    },
+    {
+      "word": "HAND",
+      "clues": [
+        "Used for grabbing and holding things",
+        "Category: Koerper"
+      ]
+    },
+    {
+      "word": "FUSS",
+      "clues": [
+        "Used for standing and walking",
+        "Category: Koerper"
+      ]
+    },
+    {
+      "word": "ARM",
+      "clues": [
+        "Connects the hand to the shoulder",
+        "Category: Koerper"
+      ]
+    },
+    {
+      "word": "BEIN",
+      "clues": [
+        "Connects the foot to the hip",
+        "Category: Koerper"
+      ]
+    },
+    {
+      "word": "AUGE",
+      "clues": [
+        "Used for seeing",
+        "Category: Koerper"
+      ]
+    },
+    {
+      "word": "OHR",
+      "clues": [
+        "Used for hearing",
+        "Category: Koerper"
+      ]
+    },
+    {
+      "word": "NASE",
+      "clues": [
+        "Used for smelling and breathing",
+        "Category: Koerper"
+      ]
+    },
+    {
+      "word": "MUND",
+      "clues": [
+        "Used for eating and speaking",
+        "Category: Koerper"
+      ]
+    },
+    {
+      "word": "HERZ",
+      "clues": [
+        "Pumps blood through the body",
+        "Category: Koerper"
+      ]
+    },
+    {
+      "word": "HAUT",
+      "clues": [
+        "Covers the outside of the body",
+        "Category: Koerper"
+      ]
+    },
+    {
+      "word": "HAAR",
+      "clues": [
+        "Grows on the head",
+        "Category: Koerper"
+      ]
+    },
+    {
+      "word": "ZAHN",
+      "clues": [
+        "Used for biting and chewing",
+        "Category: Koerper"
+      ]
+    },
+    {
+      "word": "FINGER",
+      "clues": [
+        "One of five on each hand",
+        "Category: Koerper"
+      ]
+    },
+    {
+      "word": "RÜCKEN",
+      "clues": [
+        "The back part of the body",
+        "Category: Koerper"
       ]
     },
     {
       "word": "BIN",
       "clues": [
-        "ich ___ (sein, 'to be': present tense)"
+        "ich ___ (sein, 'to be': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "BIST",
       "clues": [
-        "du ___ (sein, 'to be': present tense)"
+        "du ___ (sein, 'to be': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "IST",
       "clues": [
-        "er/sie/es ___ (sein, 'to be': present tense)"
+        "er/sie/es ___ (sein, 'to be': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "SIND",
       "clues": [
         "wir ___ (sein, 'to be': present tense)",
+        "Category: Verben (verb conjugation)",
         "sie/Sie ___ (sein, 'to be': present tense)"
       ]
     },
     {
       "word": "SEID",
       "clues": [
-        "ihr ___ (sein, 'to be': present tense)"
+        "ihr ___ (sein, 'to be': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "WAR",
       "clues": [
-        "ich ___ (sein, 'to be': simple past (Präteritum))"
+        "ich ___ (sein, 'to be': simple past (Präteritum))",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "GEWESEN",
       "clues": [
-        "Past participle of sein ('to be')"
+        "Past participle of sein ('to be')",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "HABE",
       "clues": [
-        "ich ___ (haben, 'to have': present tense)"
+        "ich ___ (haben, 'to have': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "HAST",
       "clues": [
-        "du ___ (haben, 'to have': present tense)"
+        "du ___ (haben, 'to have': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "HAT",
       "clues": [
-        "er/sie/es ___ (haben, 'to have': present tense)"
+        "er/sie/es ___ (haben, 'to have': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "HABEN",
       "clues": [
         "wir ___ (haben, 'to have': present tense)",
+        "Category: Verben (verb conjugation)",
         "sie/Sie ___ (haben, 'to have': present tense)"
       ]
     },
     {
       "word": "HABT",
       "clues": [
-        "ihr ___ (haben, 'to have': present tense)"
+        "ihr ___ (haben, 'to have': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "HATTE",
       "clues": [
-        "ich ___ (haben, 'to have': simple past (Präteritum))"
+        "ich ___ (haben, 'to have': simple past (Präteritum))",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "GEHABT",
       "clues": [
-        "Past participle of haben ('to have')"
+        "Past participle of haben ('to have')",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "WERDE",
       "clues": [
-        "ich ___ (werden, 'to become': present tense)"
+        "ich ___ (werden, 'to become': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "WIRST",
       "clues": [
-        "du ___ (werden, 'to become': present tense)"
+        "du ___ (werden, 'to become': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "WIRD",
       "clues": [
-        "er/sie/es ___ (werden, 'to become': present tense)"
+        "er/sie/es ___ (werden, 'to become': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "WERDEN",
       "clues": [
         "wir ___ (werden, 'to become': present tense)",
+        "Category: Verben (verb conjugation)",
         "sie/Sie ___ (werden, 'to become': present tense)"
       ]
     },
     {
       "word": "WERDET",
       "clues": [
-        "ihr ___ (werden, 'to become': present tense)"
+        "ihr ___ (werden, 'to become': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "WURDE",
       "clues": [
-        "ich ___ (werden, 'to become': simple past (Präteritum))"
+        "ich ___ (werden, 'to become': simple past (Präteritum))",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "GEWORDEN",
       "clues": [
-        "Past participle of werden ('to become')"
+        "Past participle of werden ('to become')",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "GEHE",
       "clues": [
-        "ich ___ (gehen, 'to go': present tense)"
+        "ich ___ (gehen, 'to go': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "GEHST",
       "clues": [
-        "du ___ (gehen, 'to go': present tense)"
+        "du ___ (gehen, 'to go': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "GEHT",
       "clues": [
         "er/sie/es ___ (gehen, 'to go': present tense)",
+        "Category: Verben (verb conjugation)",
         "ihr ___ (gehen, 'to go': present tense)"
       ]
     },
@@ -1895,234 +4098,272 @@
       "word": "GEHEN",
       "clues": [
         "wir ___ (gehen, 'to go': present tense)",
+        "Category: Verben (verb conjugation)",
         "sie/Sie ___ (gehen, 'to go': present tense)"
       ]
     },
     {
       "word": "GING",
       "clues": [
-        "ich ___ (gehen, 'to go': simple past (Präteritum))"
+        "ich ___ (gehen, 'to go': simple past (Präteritum))",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "GEGANGEN",
       "clues": [
-        "Past participle of gehen ('to go')"
+        "Past participle of gehen ('to go')",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "FAHRE",
       "clues": [
-        "ich ___ (fahren, 'to drive/go': present tense)"
+        "ich ___ (fahren, 'to drive/go': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "FÄHRST",
       "clues": [
-        "du ___ (fahren, 'to drive/go': present tense)"
+        "du ___ (fahren, 'to drive/go': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "FÄHRT",
       "clues": [
-        "er/sie/es ___ (fahren, 'to drive/go': present tense)"
+        "er/sie/es ___ (fahren, 'to drive/go': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "FAHREN",
       "clues": [
         "wir ___ (fahren, 'to drive/go': present tense)",
+        "Category: Verben (verb conjugation)",
         "sie/Sie ___ (fahren, 'to drive/go': present tense)"
       ]
     },
     {
       "word": "FAHRT",
       "clues": [
-        "ihr ___ (fahren, 'to drive/go': present tense)"
+        "ihr ___ (fahren, 'to drive/go': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "FUHR",
       "clues": [
-        "ich ___ (fahren, 'to drive/go': simple past (Präteritum))"
+        "ich ___ (fahren, 'to drive/go': simple past (Präteritum))",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "GEFAHREN",
       "clues": [
-        "Past participle of fahren ('to drive/go')"
+        "Past participle of fahren ('to drive/go')",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "SPRECHE",
       "clues": [
-        "ich ___ (sprechen, 'to speak': present tense)"
+        "ich ___ (sprechen, 'to speak': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "SPRICHST",
       "clues": [
-        "du ___ (sprechen, 'to speak': present tense)"
+        "du ___ (sprechen, 'to speak': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "SPRICHT",
       "clues": [
-        "er/sie/es ___ (sprechen, 'to speak': present tense)"
+        "er/sie/es ___ (sprechen, 'to speak': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "SPRECHEN",
       "clues": [
         "wir ___ (sprechen, 'to speak': present tense)",
+        "Category: Verben (verb conjugation)",
         "sie/Sie ___ (sprechen, 'to speak': present tense)"
       ]
     },
     {
       "word": "SPRECHT",
       "clues": [
-        "ihr ___ (sprechen, 'to speak': present tense)"
+        "ihr ___ (sprechen, 'to speak': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "SPRACH",
       "clues": [
-        "ich ___ (sprechen, 'to speak': simple past (Präteritum))"
+        "ich ___ (sprechen, 'to speak': simple past (Präteritum))",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "GESPROCHEN",
       "clues": [
-        "Past participle of sprechen ('to speak')"
+        "Past participle of sprechen ('to speak')",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "ESSE",
       "clues": [
-        "ich ___ (essen, 'to eat': present tense)"
+        "ich ___ (essen, 'to eat': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "ISST",
       "clues": [
         "du ___ (essen, 'to eat': present tense)",
+        "Category: Verben (verb conjugation)",
         "er/sie/es ___ (essen, 'to eat': present tense)"
       ]
     },
     {
       "word": "ESST",
       "clues": [
-        "ihr ___ (essen, 'to eat': present tense)"
+        "ihr ___ (essen, 'to eat': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "ASS",
       "clues": [
-        "ich ___ (essen, 'to eat': simple past (Präteritum))"
+        "ich ___ (essen, 'to eat': simple past (Präteritum))",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "GEGESSEN",
       "clues": [
-        "Past participle of essen ('to eat')"
+        "Past participle of essen ('to eat')",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "GEBE",
       "clues": [
-        "ich ___ (geben, 'to give': present tense)"
+        "ich ___ (geben, 'to give': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "GIBST",
       "clues": [
-        "du ___ (geben, 'to give': present tense)"
+        "du ___ (geben, 'to give': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "GIBT",
       "clues": [
-        "er/sie/es ___ (geben, 'to give': present tense)"
+        "er/sie/es ___ (geben, 'to give': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "GEBEN",
       "clues": [
         "wir ___ (geben, 'to give': present tense)",
+        "Category: Verben (verb conjugation)",
         "sie/Sie ___ (geben, 'to give': present tense)"
       ]
     },
     {
       "word": "GEBT",
       "clues": [
-        "ihr ___ (geben, 'to give': present tense)"
+        "ihr ___ (geben, 'to give': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "GAB",
       "clues": [
-        "ich ___ (geben, 'to give': simple past (Präteritum))"
+        "ich ___ (geben, 'to give': simple past (Präteritum))",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "GEGEBEN",
       "clues": [
-        "Past participle of geben ('to give')"
+        "Past participle of geben ('to give')",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "SEHE",
       "clues": [
-        "ich ___ (sehen, 'to see': present tense)"
+        "ich ___ (sehen, 'to see': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "SIEHST",
       "clues": [
-        "du ___ (sehen, 'to see': present tense)"
+        "du ___ (sehen, 'to see': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "SIEHT",
       "clues": [
-        "er/sie/es ___ (sehen, 'to see': present tense)"
+        "er/sie/es ___ (sehen, 'to see': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "SEHEN",
       "clues": [
         "wir ___ (sehen, 'to see': present tense)",
+        "Category: Verben (verb conjugation)",
         "sie/Sie ___ (sehen, 'to see': present tense)"
       ]
     },
     {
       "word": "SEHT",
       "clues": [
-        "ihr ___ (sehen, 'to see': present tense)"
+        "ihr ___ (sehen, 'to see': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "SAH",
       "clues": [
-        "ich ___ (sehen, 'to see': simple past (Präteritum))"
+        "ich ___ (sehen, 'to see': simple past (Präteritum))",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "GESEHEN",
       "clues": [
-        "Past participle of sehen ('to see')"
+        "Past participle of sehen ('to see')",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "LESE",
       "clues": [
-        "ich ___ (lesen, 'to read': present tense)"
+        "ich ___ (lesen, 'to read': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "LIEST",
       "clues": [
         "du ___ (lesen, 'to read': present tense)",
+        "Category: Verben (verb conjugation)",
         "er/sie/es ___ (lesen, 'to read': present tense)"
       ]
     },
@@ -2130,381 +4371,443 @@
       "word": "LESEN",
       "clues": [
         "wir ___ (lesen, 'to read': present tense)",
+        "Category: Verben (verb conjugation)",
         "sie/Sie ___ (lesen, 'to read': present tense)"
       ]
     },
     {
       "word": "LEST",
       "clues": [
-        "ihr ___ (lesen, 'to read': present tense)"
+        "ihr ___ (lesen, 'to read': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "LAS",
       "clues": [
-        "ich ___ (lesen, 'to read': simple past (Präteritum))"
+        "ich ___ (lesen, 'to read': simple past (Präteritum))",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "GELESEN",
       "clues": [
-        "Past participle of lesen ('to read')"
+        "Past participle of lesen ('to read')",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "NEHME",
       "clues": [
-        "ich ___ (nehmen, 'to take': present tense)"
+        "ich ___ (nehmen, 'to take': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "NIMMST",
       "clues": [
-        "du ___ (nehmen, 'to take': present tense)"
+        "du ___ (nehmen, 'to take': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "NIMMT",
       "clues": [
-        "er/sie/es ___ (nehmen, 'to take': present tense)"
+        "er/sie/es ___ (nehmen, 'to take': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "NEHMEN",
       "clues": [
         "wir ___ (nehmen, 'to take': present tense)",
+        "Category: Verben (verb conjugation)",
         "sie/Sie ___ (nehmen, 'to take': present tense)"
       ]
     },
     {
       "word": "NEHMT",
       "clues": [
-        "ihr ___ (nehmen, 'to take': present tense)"
+        "ihr ___ (nehmen, 'to take': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "NAHM",
       "clues": [
-        "ich ___ (nehmen, 'to take': simple past (Präteritum))"
+        "ich ___ (nehmen, 'to take': simple past (Präteritum))",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "GENOMMEN",
       "clues": [
-        "Past participle of nehmen ('to take')"
+        "Past participle of nehmen ('to take')",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "HELFE",
       "clues": [
-        "ich ___ (helfen, 'to help': present tense)"
+        "ich ___ (helfen, 'to help': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "HILFST",
       "clues": [
-        "du ___ (helfen, 'to help': present tense)"
+        "du ___ (helfen, 'to help': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "HILFT",
       "clues": [
-        "er/sie/es ___ (helfen, 'to help': present tense)"
+        "er/sie/es ___ (helfen, 'to help': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "HELFEN",
       "clues": [
         "wir ___ (helfen, 'to help': present tense)",
+        "Category: Verben (verb conjugation)",
         "sie/Sie ___ (helfen, 'to help': present tense)"
       ]
     },
     {
       "word": "HELFT",
       "clues": [
-        "ihr ___ (helfen, 'to help': present tense)"
+        "ihr ___ (helfen, 'to help': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "HALF",
       "clues": [
-        "ich ___ (helfen, 'to help': simple past (Präteritum))"
+        "ich ___ (helfen, 'to help': simple past (Präteritum))",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "GEHOLFEN",
       "clues": [
-        "Past participle of helfen ('to help')"
+        "Past participle of helfen ('to help')",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "SCHLAFE",
       "clues": [
-        "ich ___ (schlafen, 'to sleep': present tense)"
+        "ich ___ (schlafen, 'to sleep': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "SCHLÄFST",
       "clues": [
-        "du ___ (schlafen, 'to sleep': present tense)"
+        "du ___ (schlafen, 'to sleep': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "SCHLÄFT",
       "clues": [
-        "er/sie/es ___ (schlafen, 'to sleep': present tense)"
+        "er/sie/es ___ (schlafen, 'to sleep': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "SCHLAFEN",
       "clues": [
         "wir ___ (schlafen, 'to sleep': present tense)",
+        "Category: Verben (verb conjugation)",
         "sie/Sie ___ (schlafen, 'to sleep': present tense)"
       ]
     },
     {
       "word": "SCHLAFT",
       "clues": [
-        "ihr ___ (schlafen, 'to sleep': present tense)"
+        "ihr ___ (schlafen, 'to sleep': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "SCHLIEF",
       "clues": [
-        "ich ___ (schlafen, 'to sleep': simple past (Präteritum))"
+        "ich ___ (schlafen, 'to sleep': simple past (Präteritum))",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "GESCHLAFEN",
       "clues": [
-        "Past participle of schlafen ('to sleep')"
+        "Past participle of schlafen ('to sleep')",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "TRAGE",
       "clues": [
-        "ich ___ (tragen, 'to carry/wear': present tense)"
+        "ich ___ (tragen, 'to carry/wear': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "TRÄGST",
       "clues": [
-        "du ___ (tragen, 'to carry/wear': present tense)"
+        "du ___ (tragen, 'to carry/wear': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "TRÄGT",
       "clues": [
-        "er/sie/es ___ (tragen, 'to carry/wear': present tense)"
+        "er/sie/es ___ (tragen, 'to carry/wear': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "TRAGEN",
       "clues": [
         "wir ___ (tragen, 'to carry/wear': present tense)",
+        "Category: Verben (verb conjugation)",
         "sie/Sie ___ (tragen, 'to carry/wear': present tense)"
       ]
     },
     {
       "word": "TRAGT",
       "clues": [
-        "ihr ___ (tragen, 'to carry/wear': present tense)"
+        "ihr ___ (tragen, 'to carry/wear': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "TRUG",
       "clues": [
-        "ich ___ (tragen, 'to carry/wear': simple past (Präteritum))"
+        "ich ___ (tragen, 'to carry/wear': simple past (Präteritum))",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "GETRAGEN",
       "clues": [
-        "Past participle of tragen ('to carry/wear')"
+        "Past participle of tragen ('to carry/wear')",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "WASCHE",
       "clues": [
-        "ich ___ (waschen, 'to wash': present tense)"
+        "ich ___ (waschen, 'to wash': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "WÄSCHST",
       "clues": [
-        "du ___ (waschen, 'to wash': present tense)"
+        "du ___ (waschen, 'to wash': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "WÄSCHT",
       "clues": [
-        "er/sie/es ___ (waschen, 'to wash': present tense)"
+        "er/sie/es ___ (waschen, 'to wash': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "WASCHEN",
       "clues": [
         "wir ___ (waschen, 'to wash': present tense)",
+        "Category: Verben (verb conjugation)",
         "sie/Sie ___ (waschen, 'to wash': present tense)"
       ]
     },
     {
       "word": "WASCHT",
       "clues": [
-        "ihr ___ (waschen, 'to wash': present tense)"
+        "ihr ___ (waschen, 'to wash': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "WUSCH",
       "clues": [
-        "ich ___ (waschen, 'to wash': simple past (Präteritum))"
+        "ich ___ (waschen, 'to wash': simple past (Präteritum))",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "GEWASCHEN",
       "clues": [
-        "Past participle of waschen ('to wash')"
+        "Past participle of waschen ('to wash')",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "LAUFE",
       "clues": [
-        "ich ___ (laufen, 'to run/walk': present tense)"
+        "ich ___ (laufen, 'to run/walk': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "LÄUFST",
       "clues": [
-        "du ___ (laufen, 'to run/walk': present tense)"
+        "du ___ (laufen, 'to run/walk': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "LÄUFT",
       "clues": [
-        "er/sie/es ___ (laufen, 'to run/walk': present tense)"
+        "er/sie/es ___ (laufen, 'to run/walk': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "LAUFEN",
       "clues": [
         "wir ___ (laufen, 'to run/walk': present tense)",
+        "Category: Verben (verb conjugation)",
         "sie/Sie ___ (laufen, 'to run/walk': present tense)"
       ]
     },
     {
       "word": "LAUFT",
       "clues": [
-        "ihr ___ (laufen, 'to run/walk': present tense)"
+        "ihr ___ (laufen, 'to run/walk': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "LIEF",
       "clues": [
-        "ich ___ (laufen, 'to run/walk': simple past (Präteritum))"
+        "ich ___ (laufen, 'to run/walk': simple past (Präteritum))",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "GELAUFEN",
       "clues": [
-        "Past participle of laufen ('to run/walk')"
+        "Past participle of laufen ('to run/walk')",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "FANGE",
       "clues": [
-        "ich ___ (fangen, 'to catch': present tense)"
+        "ich ___ (fangen, 'to catch': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "FÄNGST",
       "clues": [
-        "du ___ (fangen, 'to catch': present tense)"
+        "du ___ (fangen, 'to catch': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "FÄNGT",
       "clues": [
-        "er/sie/es ___ (fangen, 'to catch': present tense)"
+        "er/sie/es ___ (fangen, 'to catch': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "FANGEN",
       "clues": [
         "wir ___ (fangen, 'to catch': present tense)",
+        "Category: Verben (verb conjugation)",
         "sie/Sie ___ (fangen, 'to catch': present tense)"
       ]
     },
     {
       "word": "FANGT",
       "clues": [
-        "ihr ___ (fangen, 'to catch': present tense)"
+        "ihr ___ (fangen, 'to catch': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "FING",
       "clues": [
-        "ich ___ (fangen, 'to catch': simple past (Präteritum))"
+        "ich ___ (fangen, 'to catch': simple past (Präteritum))",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "GEFANGEN",
       "clues": [
-        "Past participle of fangen ('to catch')"
+        "Past participle of fangen ('to catch')",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "HALTE",
       "clues": [
-        "ich ___ (halten, 'to hold/stop': present tense)"
+        "ich ___ (halten, 'to hold/stop': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "HÄLTST",
       "clues": [
-        "du ___ (halten, 'to hold/stop': present tense)"
+        "du ___ (halten, 'to hold/stop': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "HÄLT",
       "clues": [
-        "er/sie/es ___ (halten, 'to hold/stop': present tense)"
+        "er/sie/es ___ (halten, 'to hold/stop': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "HALTEN",
       "clues": [
         "wir ___ (halten, 'to hold/stop': present tense)",
+        "Category: Verben (verb conjugation)",
         "sie/Sie ___ (halten, 'to hold/stop': present tense)"
       ]
     },
     {
       "word": "HALTET",
       "clues": [
-        "ihr ___ (halten, 'to hold/stop': present tense)"
+        "ihr ___ (halten, 'to hold/stop': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "HIELT",
       "clues": [
-        "ich ___ (halten, 'to hold/stop': simple past (Präteritum))"
+        "ich ___ (halten, 'to hold/stop': simple past (Präteritum))",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "GEHALTEN",
       "clues": [
-        "Past participle of halten ('to hold/stop')"
+        "Past participle of halten ('to hold/stop')",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "LASSE",
       "clues": [
-        "ich ___ (lassen, 'to let/leave': present tense)"
+        "ich ___ (lassen, 'to let/leave': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "LÄSST",
       "clues": [
         "du ___ (lassen, 'to let/leave': present tense)",
+        "Category: Verben (verb conjugation)",
         "er/sie/es ___ (lassen, 'to let/leave': present tense)"
       ]
     },
@@ -2512,43 +4815,50 @@
       "word": "LASSEN",
       "clues": [
         "wir ___ (lassen, 'to let/leave': present tense)",
+        "Category: Verben (verb conjugation)",
         "sie/Sie ___ (lassen, 'to let/leave': present tense)"
       ]
     },
     {
       "word": "LASST",
       "clues": [
-        "ihr ___ (lassen, 'to let/leave': present tense)"
+        "ihr ___ (lassen, 'to let/leave': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "LIESS",
       "clues": [
-        "ich ___ (lassen, 'to let/leave': simple past (Präteritum))"
+        "ich ___ (lassen, 'to let/leave': simple past (Präteritum))",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "GELASSEN",
       "clues": [
-        "Past participle of lassen ('to let/leave')"
+        "Past participle of lassen ('to let/leave')",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "KOMME",
       "clues": [
-        "ich ___ (kommen, 'to come': present tense)"
+        "ich ___ (kommen, 'to come': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "KOMMST",
       "clues": [
-        "du ___ (kommen, 'to come': present tense)"
+        "du ___ (kommen, 'to come': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "KOMMT",
       "clues": [
         "er/sie/es ___ (kommen, 'to come': present tense)",
+        "Category: Verben (verb conjugation)",
         "ihr ___ (kommen, 'to come': present tense)"
       ]
     },
@@ -2556,37 +4866,43 @@
       "word": "KOMMEN",
       "clues": [
         "wir ___ (kommen, 'to come': present tense)",
+        "Category: Verben (verb conjugation)",
         "sie/Sie ___ (kommen, 'to come': present tense)"
       ]
     },
     {
       "word": "KAM",
       "clues": [
-        "ich ___ (kommen, 'to come': simple past (Präteritum))"
+        "ich ___ (kommen, 'to come': simple past (Präteritum))",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "GEKOMMEN",
       "clues": [
-        "Past participle of kommen ('to come')"
+        "Past participle of kommen ('to come')",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "FINDE",
       "clues": [
-        "ich ___ (finden, 'to find': present tense)"
+        "ich ___ (finden, 'to find': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "FINDEST",
       "clues": [
-        "du ___ (finden, 'to find': present tense)"
+        "du ___ (finden, 'to find': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "FINDET",
       "clues": [
         "er/sie/es ___ (finden, 'to find': present tense)",
+        "Category: Verben (verb conjugation)",
         "ihr ___ (finden, 'to find': present tense)"
       ]
     },
@@ -2594,37 +4910,43 @@
       "word": "FINDEN",
       "clues": [
         "wir ___ (finden, 'to find': present tense)",
+        "Category: Verben (verb conjugation)",
         "sie/Sie ___ (finden, 'to find': present tense)"
       ]
     },
     {
       "word": "FAND",
       "clues": [
-        "ich ___ (finden, 'to find': simple past (Präteritum))"
+        "ich ___ (finden, 'to find': simple past (Präteritum))",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "GEFUNDEN",
       "clues": [
-        "Past participle of finden ('to find')"
+        "Past participle of finden ('to find')",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "DENKE",
       "clues": [
-        "ich ___ (denken, 'to think': present tense)"
+        "ich ___ (denken, 'to think': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "DENKST",
       "clues": [
-        "du ___ (denken, 'to think': present tense)"
+        "du ___ (denken, 'to think': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "DENKT",
       "clues": [
         "er/sie/es ___ (denken, 'to think': present tense)",
+        "Category: Verben (verb conjugation)",
         "ihr ___ (denken, 'to think': present tense)"
       ]
     },
@@ -2632,37 +4954,43 @@
       "word": "DENKEN",
       "clues": [
         "wir ___ (denken, 'to think': present tense)",
+        "Category: Verben (verb conjugation)",
         "sie/Sie ___ (denken, 'to think': present tense)"
       ]
     },
     {
       "word": "DACHTE",
       "clues": [
-        "ich ___ (denken, 'to think': simple past (Präteritum))"
+        "ich ___ (denken, 'to think': simple past (Präteritum))",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "GEDACHT",
       "clues": [
-        "Past participle of denken ('to think')"
+        "Past participle of denken ('to think')",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "BRINGE",
       "clues": [
-        "ich ___ (bringen, 'to bring': present tense)"
+        "ich ___ (bringen, 'to bring': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "BRINGST",
       "clues": [
-        "du ___ (bringen, 'to bring': present tense)"
+        "du ___ (bringen, 'to bring': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "BRINGT",
       "clues": [
         "er/sie/es ___ (bringen, 'to bring': present tense)",
+        "Category: Verben (verb conjugation)",
         "ihr ___ (bringen, 'to bring': present tense)"
       ]
     },
@@ -2670,37 +4998,43 @@
       "word": "BRINGEN",
       "clues": [
         "wir ___ (bringen, 'to bring': present tense)",
+        "Category: Verben (verb conjugation)",
         "sie/Sie ___ (bringen, 'to bring': present tense)"
       ]
     },
     {
       "word": "BRACHTE",
       "clues": [
-        "ich ___ (bringen, 'to bring': simple past (Präteritum))"
+        "ich ___ (bringen, 'to bring': simple past (Präteritum))",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "GEBRACHT",
       "clues": [
-        "Past participle of bringen ('to bring')"
+        "Past participle of bringen ('to bring')",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "KENNE",
       "clues": [
-        "ich ___ (kennen, 'to know (a person/place)': present tense)"
+        "ich ___ (kennen, 'to know (a person/place)': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "KENNST",
       "clues": [
-        "du ___ (kennen, 'to know (a person/place)': present tense)"
+        "du ___ (kennen, 'to know (a person/place)': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "KENNT",
       "clues": [
         "er/sie/es ___ (kennen, 'to know (a person/place)': present tense)",
+        "Category: Verben (verb conjugation)",
         "ihr ___ (kennen, 'to know (a person/place)': present tense)"
       ]
     },
@@ -2708,74 +5042,86 @@
       "word": "KENNEN",
       "clues": [
         "wir ___ (kennen, 'to know (a person/place)': present tense)",
+        "Category: Verben (verb conjugation)",
         "sie/Sie ___ (kennen, 'to know (a person/place)': present tense)"
       ]
     },
     {
       "word": "KANNTE",
       "clues": [
-        "ich ___ (kennen, 'to know (a person/place)': simple past (Präteritum))"
+        "ich ___ (kennen, 'to know (a person/place)': simple past (Präteritum))",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "GEKANNT",
       "clues": [
-        "Past participle of kennen ('to know (a person/place)')"
+        "Past participle of kennen ('to know (a person/place)')",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "TREFFE",
       "clues": [
-        "ich ___ (treffen, 'to meet': present tense)"
+        "ich ___ (treffen, 'to meet': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "TRIFFST",
       "clues": [
-        "du ___ (treffen, 'to meet': present tense)"
+        "du ___ (treffen, 'to meet': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "TRIFFT",
       "clues": [
-        "er/sie/es ___ (treffen, 'to meet': present tense)"
+        "er/sie/es ___ (treffen, 'to meet': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "TREFFEN",
       "clues": [
         "wir ___ (treffen, 'to meet': present tense)",
+        "Category: Verben (verb conjugation)",
         "sie/Sie ___ (treffen, 'to meet': present tense)"
       ]
     },
     {
       "word": "TREFFT",
       "clues": [
-        "ihr ___ (treffen, 'to meet': present tense)"
+        "ihr ___ (treffen, 'to meet': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "TRAF",
       "clues": [
-        "ich ___ (treffen, 'to meet': simple past (Präteritum))"
+        "ich ___ (treffen, 'to meet': simple past (Präteritum))",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "GETROFFEN",
       "clues": [
-        "Past participle of treffen ('to meet')"
+        "Past participle of treffen ('to meet')",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "VERGESSE",
       "clues": [
-        "ich ___ (vergessen, 'to forget': present tense)"
+        "ich ___ (vergessen, 'to forget': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "VERGISST",
       "clues": [
         "du ___ (vergessen, 'to forget': present tense)",
+        "Category: Verben (verb conjugation)",
         "er/sie/es ___ (vergessen, 'to forget': present tense)"
       ]
     },
@@ -2783,38 +5129,44 @@
       "word": "VERGESSEN",
       "clues": [
         "wir ___ (vergessen, 'to forget': present tense)",
+        "Category: Verben (verb conjugation)",
         "sie/Sie ___ (vergessen, 'to forget': present tense)",
-        "Past participle of vergessen ('to forget')"
+        "Past participle of the verb meaning 'to forget'"
       ]
     },
     {
       "word": "VERGESST",
       "clues": [
-        "ihr ___ (vergessen, 'to forget': present tense)"
+        "ihr ___ (vergessen, 'to forget': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "VERGASS",
       "clues": [
-        "ich ___ (vergessen, 'to forget': simple past (Präteritum))"
+        "ich ___ (vergessen, 'to forget': simple past (Präteritum))",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "VERSTEHE",
       "clues": [
-        "ich ___ (verstehen, 'to understand': present tense)"
+        "ich ___ (verstehen, 'to understand': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "VERSTEHST",
       "clues": [
-        "du ___ (verstehen, 'to understand': present tense)"
+        "du ___ (verstehen, 'to understand': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "VERSTEHT",
       "clues": [
         "er/sie/es ___ (verstehen, 'to understand': present tense)",
+        "Category: Verben (verb conjugation)",
         "ihr ___ (verstehen, 'to understand': present tense)"
       ]
     },
@@ -2822,37 +5174,43 @@
       "word": "VERSTEHEN",
       "clues": [
         "wir ___ (verstehen, 'to understand': present tense)",
+        "Category: Verben (verb conjugation)",
         "sie/Sie ___ (verstehen, 'to understand': present tense)"
       ]
     },
     {
       "word": "VERSTAND",
       "clues": [
-        "ich ___ (verstehen, 'to understand': simple past (Präteritum))"
+        "ich ___ (verstehen, 'to understand': simple past (Präteritum))",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "VERSTANDEN",
       "clues": [
-        "Past participle of verstehen ('to understand')"
+        "Past participle of verstehen ('to understand')",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "BEGINNE",
       "clues": [
-        "ich ___ (beginnen, 'to begin': present tense)"
+        "ich ___ (beginnen, 'to begin': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "BEGINNST",
       "clues": [
-        "du ___ (beginnen, 'to begin': present tense)"
+        "du ___ (beginnen, 'to begin': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "BEGINNT",
       "clues": [
         "er/sie/es ___ (beginnen, 'to begin': present tense)",
+        "Category: Verben (verb conjugation)",
         "ihr ___ (beginnen, 'to begin': present tense)"
       ]
     },
@@ -2860,37 +5218,43 @@
       "word": "BEGINNEN",
       "clues": [
         "wir ___ (beginnen, 'to begin': present tense)",
+        "Category: Verben (verb conjugation)",
         "sie/Sie ___ (beginnen, 'to begin': present tense)"
       ]
     },
     {
       "word": "BEGANN",
       "clues": [
-        "ich ___ (beginnen, 'to begin': simple past (Präteritum))"
+        "ich ___ (beginnen, 'to begin': simple past (Präteritum))",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "BEGONNEN",
       "clues": [
-        "Past participle of beginnen ('to begin')"
+        "Past participle of beginnen ('to begin')",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "BLEIBE",
       "clues": [
-        "ich ___ (bleiben, 'to stay': present tense)"
+        "ich ___ (bleiben, 'to stay': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "BLEIBST",
       "clues": [
-        "du ___ (bleiben, 'to stay': present tense)"
+        "du ___ (bleiben, 'to stay': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "BLEIBT",
       "clues": [
         "er/sie/es ___ (bleiben, 'to stay': present tense)",
+        "Category: Verben (verb conjugation)",
         "ihr ___ (bleiben, 'to stay': present tense)"
       ]
     },
@@ -2898,37 +5262,43 @@
       "word": "BLEIBEN",
       "clues": [
         "wir ___ (bleiben, 'to stay': present tense)",
+        "Category: Verben (verb conjugation)",
         "sie/Sie ___ (bleiben, 'to stay': present tense)"
       ]
     },
     {
       "word": "BLIEB",
       "clues": [
-        "ich ___ (bleiben, 'to stay': simple past (Präteritum))"
+        "ich ___ (bleiben, 'to stay': simple past (Präteritum))",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "GEBLIEBEN",
       "clues": [
-        "Past participle of bleiben ('to stay')"
+        "Past participle of bleiben ('to stay')",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "SCHREIBE",
       "clues": [
-        "ich ___ (schreiben, 'to write': present tense)"
+        "ich ___ (schreiben, 'to write': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "SCHREIBST",
       "clues": [
-        "du ___ (schreiben, 'to write': present tense)"
+        "du ___ (schreiben, 'to write': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "SCHREIBT",
       "clues": [
         "er/sie/es ___ (schreiben, 'to write': present tense)",
+        "Category: Verben (verb conjugation)",
         "ihr ___ (schreiben, 'to write': present tense)"
       ]
     },
@@ -2936,37 +5306,43 @@
       "word": "SCHREIBEN",
       "clues": [
         "wir ___ (schreiben, 'to write': present tense)",
+        "Category: Verben (verb conjugation)",
         "sie/Sie ___ (schreiben, 'to write': present tense)"
       ]
     },
     {
       "word": "SCHRIEB",
       "clues": [
-        "ich ___ (schreiben, 'to write': simple past (Präteritum))"
+        "ich ___ (schreiben, 'to write': simple past (Präteritum))",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "GESCHRIEBEN",
       "clues": [
-        "Past participle of schreiben ('to write')"
+        "Past participle of schreiben ('to write')",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "FLIEGE",
       "clues": [
-        "ich ___ (fliegen, 'to fly': present tense)"
+        "ich ___ (fliegen, 'to fly': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "FLIEGST",
       "clues": [
-        "du ___ (fliegen, 'to fly': present tense)"
+        "du ___ (fliegen, 'to fly': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "FLIEGT",
       "clues": [
         "er/sie/es ___ (fliegen, 'to fly': present tense)",
+        "Category: Verben (verb conjugation)",
         "ihr ___ (fliegen, 'to fly': present tense)"
       ]
     },
@@ -2974,37 +5350,43 @@
       "word": "FLIEGEN",
       "clues": [
         "wir ___ (fliegen, 'to fly': present tense)",
+        "Category: Verben (verb conjugation)",
         "sie/Sie ___ (fliegen, 'to fly': present tense)"
       ]
     },
     {
       "word": "FLOG",
       "clues": [
-        "ich ___ (fliegen, 'to fly': simple past (Präteritum))"
+        "ich ___ (fliegen, 'to fly': simple past (Präteritum))",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "GEFLOGEN",
       "clues": [
-        "Past participle of fliegen ('to fly')"
+        "Past participle of fliegen ('to fly')",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "ZIEHE",
       "clues": [
-        "ich ___ (ziehen, 'to pull/move': present tense)"
+        "ich ___ (ziehen, 'to pull/move': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "ZIEHST",
       "clues": [
-        "du ___ (ziehen, 'to pull/move': present tense)"
+        "du ___ (ziehen, 'to pull/move': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "ZIEHT",
       "clues": [
         "er/sie/es ___ (ziehen, 'to pull/move': present tense)",
+        "Category: Verben (verb conjugation)",
         "ihr ___ (ziehen, 'to pull/move': present tense)"
       ]
     },
@@ -3012,37 +5394,43 @@
       "word": "ZIEHEN",
       "clues": [
         "wir ___ (ziehen, 'to pull/move': present tense)",
+        "Category: Verben (verb conjugation)",
         "sie/Sie ___ (ziehen, 'to pull/move': present tense)"
       ]
     },
     {
       "word": "ZOG",
       "clues": [
-        "ich ___ (ziehen, 'to pull/move': simple past (Präteritum))"
+        "ich ___ (ziehen, 'to pull/move': simple past (Präteritum))",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "GEZOGEN",
       "clues": [
-        "Past participle of ziehen ('to pull/move')"
+        "Past participle of ziehen ('to pull/move')",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "GEWINNE",
       "clues": [
-        "ich ___ (gewinnen, 'to win': present tense)"
+        "ich ___ (gewinnen, 'to win': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "GEWINNST",
       "clues": [
-        "du ___ (gewinnen, 'to win': present tense)"
+        "du ___ (gewinnen, 'to win': present tense)",
+        "Category: Verben (verb conjugation)"
       ]
     },
     {
       "word": "GEWINNT",
       "clues": [
         "er/sie/es ___ (gewinnen, 'to win': present tense)",
+        "Category: Verben (verb conjugation)",
         "ihr ___ (gewinnen, 'to win': present tense)"
       ]
     },
@@ -3050,13 +5438,1710 @@
       "word": "GEWINNEN",
       "clues": [
         "wir ___ (gewinnen, 'to win': present tense)",
+        "Category: Verben (verb conjugation)",
         "sie/Sie ___ (gewinnen, 'to win': present tense)"
       ]
     },
     {
       "word": "GEWANN",
       "clues": [
-        "ich ___ (gewinnen, 'to win': simple past (Präteritum))"
+        "ich ___ (gewinnen, 'to win': simple past (Präteritum))",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "GEWONNEN",
+      "clues": [
+        "Past participle of gewinnen ('to win')",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "WEISS",
+      "clues": [
+        "ich ___ (wissen, 'to know (a fact)': present tense)",
+        "Category: Verben (verb conjugation)",
+        "er/sie/es ___ (wissen, 'to know (a fact)': present tense)"
+      ]
+    },
+    {
+      "word": "WEISST",
+      "clues": [
+        "du ___ (wissen, 'to know (a fact)': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "WISST",
+      "clues": [
+        "ihr ___ (wissen, 'to know (a fact)': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "WUSSTE",
+      "clues": [
+        "ich ___ (wissen, 'to know (a fact)': simple past (Präteritum))",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "GEWUSST",
+      "clues": [
+        "Past participle of wissen ('to know (a fact)')",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "MAG",
+      "clues": [
+        "ich ___ (mögen, 'to like': present tense)",
+        "Category: Verben (verb conjugation)",
+        "er/sie/es ___ (mögen, 'to like': present tense)"
+      ]
+    },
+    {
+      "word": "MAGST",
+      "clues": [
+        "du ___ (mögen, 'to like': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "MÖGEN",
+      "clues": [
+        "wir ___ (mögen, 'to like': present tense)",
+        "Category: Verben (verb conjugation)",
+        "sie/Sie ___ (mögen, 'to like': present tense)"
+      ]
+    },
+    {
+      "word": "MÖGT",
+      "clues": [
+        "ihr ___ (mögen, 'to like': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "MOCHTE",
+      "clues": [
+        "ich ___ (mögen, 'to like': simple past (Präteritum))",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "GEMOCHT",
+      "clues": [
+        "Past participle of mögen ('to like')",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "KANN",
+      "clues": [
+        "ich ___ (können, 'to be able to (can)': present tense)",
+        "Category: Verben (verb conjugation)",
+        "er/sie/es ___ (können, 'to be able to (can)': present tense)"
+      ]
+    },
+    {
+      "word": "KANNST",
+      "clues": [
+        "du ___ (können, 'to be able to (can)': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "KÖNNEN",
+      "clues": [
+        "wir ___ (können, 'to be able to (can)': present tense)",
+        "Category: Verben (verb conjugation)",
+        "sie/Sie ___ (können, 'to be able to (can)': present tense)"
+      ]
+    },
+    {
+      "word": "KÖNNT",
+      "clues": [
+        "ihr ___ (können, 'to be able to (can)': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "KONNTE",
+      "clues": [
+        "ich ___ (können, 'to be able to (can)': simple past (Präteritum))",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "GEKONNT",
+      "clues": [
+        "Past participle of können ('to be able to (can)')",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "MUSS",
+      "clues": [
+        "ich ___ (müssen, 'to have to (must)': present tense)",
+        "Category: Verben (verb conjugation)",
+        "er/sie/es ___ (müssen, 'to have to (must)': present tense)"
+      ]
+    },
+    {
+      "word": "MUSST",
+      "clues": [
+        "du ___ (müssen, 'to have to (must)': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "MÜSSEN",
+      "clues": [
+        "wir ___ (müssen, 'to have to (must)': present tense)",
+        "Category: Verben (verb conjugation)",
+        "sie/Sie ___ (müssen, 'to have to (must)': present tense)"
+      ]
+    },
+    {
+      "word": "MÜSST",
+      "clues": [
+        "ihr ___ (müssen, 'to have to (must)': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "MUSSTE",
+      "clues": [
+        "ich ___ (müssen, 'to have to (must)': simple past (Präteritum))",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "GEMUSST",
+      "clues": [
+        "Past participle of müssen ('to have to (must)')",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "WILL",
+      "clues": [
+        "ich ___ (wollen, 'to want to': present tense)",
+        "Category: Verben (verb conjugation)",
+        "er/sie/es ___ (wollen, 'to want to': present tense)"
+      ]
+    },
+    {
+      "word": "WILLST",
+      "clues": [
+        "du ___ (wollen, 'to want to': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "WOLLEN",
+      "clues": [
+        "wir ___ (wollen, 'to want to': present tense)",
+        "Category: Verben (verb conjugation)",
+        "sie/Sie ___ (wollen, 'to want to': present tense)"
+      ]
+    },
+    {
+      "word": "WOLLT",
+      "clues": [
+        "ihr ___ (wollen, 'to want to': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "WOLLTE",
+      "clues": [
+        "ich ___ (wollen, 'to want to': simple past (Präteritum))",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "GEWOLLT",
+      "clues": [
+        "Past participle of wollen ('to want to')",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "SOLL",
+      "clues": [
+        "ich ___ (sollen, 'to be supposed to (should)': present tense)",
+        "Category: Verben (verb conjugation)",
+        "er/sie/es ___ (sollen, 'to be supposed to (should)': present tense)"
+      ]
+    },
+    {
+      "word": "SOLLST",
+      "clues": [
+        "du ___ (sollen, 'to be supposed to (should)': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "SOLLEN",
+      "clues": [
+        "wir ___ (sollen, 'to be supposed to (should)': present tense)",
+        "Category: Verben (verb conjugation)",
+        "sie/Sie ___ (sollen, 'to be supposed to (should)': present tense)"
+      ]
+    },
+    {
+      "word": "SOLLT",
+      "clues": [
+        "ihr ___ (sollen, 'to be supposed to (should)': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "SOLLTE",
+      "clues": [
+        "ich ___ (sollen, 'to be supposed to (should)': simple past (Präteritum))",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "GESOLLT",
+      "clues": [
+        "Past participle of sollen ('to be supposed to (should)')",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "DARF",
+      "clues": [
+        "ich ___ (dürfen, 'to be allowed to (may)': present tense)",
+        "Category: Verben (verb conjugation)",
+        "er/sie/es ___ (dürfen, 'to be allowed to (may)': present tense)"
+      ]
+    },
+    {
+      "word": "DARFST",
+      "clues": [
+        "du ___ (dürfen, 'to be allowed to (may)': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "DÜRFEN",
+      "clues": [
+        "wir ___ (dürfen, 'to be allowed to (may)': present tense)",
+        "Category: Verben (verb conjugation)",
+        "sie/Sie ___ (dürfen, 'to be allowed to (may)': present tense)"
+      ]
+    },
+    {
+      "word": "DÜRFT",
+      "clues": [
+        "ihr ___ (dürfen, 'to be allowed to (may)': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "DURFTE",
+      "clues": [
+        "ich ___ (dürfen, 'to be allowed to (may)': simple past (Präteritum))",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "GEDURFT",
+      "clues": [
+        "Past participle of dürfen ('to be allowed to (may)')",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "TRINKE",
+      "clues": [
+        "ich ___ (trinken, 'to drink': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "TRINKST",
+      "clues": [
+        "du ___ (trinken, 'to drink': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "TRINKT",
+      "clues": [
+        "er/sie/es ___ (trinken, 'to drink': present tense)",
+        "Category: Verben (verb conjugation)",
+        "ihr ___ (trinken, 'to drink': present tense)"
+      ]
+    },
+    {
+      "word": "TRINKEN",
+      "clues": [
+        "wir ___ (trinken, 'to drink': present tense)",
+        "Category: Verben (verb conjugation)",
+        "sie/Sie ___ (trinken, 'to drink': present tense)"
+      ]
+    },
+    {
+      "word": "TRANK",
+      "clues": [
+        "ich ___ (trinken, 'to drink': simple past (Präteritum))",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "GETRUNKEN",
+      "clues": [
+        "Past participle of trinken ('to drink')",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "SINGE",
+      "clues": [
+        "ich ___ (singen, 'to sing': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "SINGST",
+      "clues": [
+        "du ___ (singen, 'to sing': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "SINGT",
+      "clues": [
+        "er/sie/es ___ (singen, 'to sing': present tense)",
+        "Category: Verben (verb conjugation)",
+        "ihr ___ (singen, 'to sing': present tense)"
+      ]
+    },
+    {
+      "word": "SINGEN",
+      "clues": [
+        "wir ___ (singen, 'to sing': present tense)",
+        "Category: Verben (verb conjugation)",
+        "sie/Sie ___ (singen, 'to sing': present tense)"
+      ]
+    },
+    {
+      "word": "SANG",
+      "clues": [
+        "ich ___ (singen, 'to sing': simple past (Präteritum))",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "GESUNGEN",
+      "clues": [
+        "Past participle of singen ('to sing')",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "SCHWIMME",
+      "clues": [
+        "ich ___ (schwimmen, 'to swim': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "SCHWIMMST",
+      "clues": [
+        "du ___ (schwimmen, 'to swim': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "SCHWIMMT",
+      "clues": [
+        "er/sie/es ___ (schwimmen, 'to swim': present tense)",
+        "Category: Verben (verb conjugation)",
+        "ihr ___ (schwimmen, 'to swim': present tense)"
+      ]
+    },
+    {
+      "word": "SCHWIMMEN",
+      "clues": [
+        "wir ___ (schwimmen, 'to swim': present tense)",
+        "Category: Verben (verb conjugation)",
+        "sie/Sie ___ (schwimmen, 'to swim': present tense)"
+      ]
+    },
+    {
+      "word": "SCHWAMM",
+      "clues": [
+        "ich ___ (schwimmen, 'to swim': simple past (Präteritum))",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "GESCHWOMMEN",
+      "clues": [
+        "Past participle of schwimmen ('to swim')",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "LIEGE",
+      "clues": [
+        "ich ___ (liegen, 'to lie (be lying down)': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "LIEGST",
+      "clues": [
+        "du ___ (liegen, 'to lie (be lying down)': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "LIEGT",
+      "clues": [
+        "er/sie/es ___ (liegen, 'to lie (be lying down)': present tense)",
+        "Category: Verben (verb conjugation)",
+        "ihr ___ (liegen, 'to lie (be lying down)': present tense)"
+      ]
+    },
+    {
+      "word": "LIEGEN",
+      "clues": [
+        "wir ___ (liegen, 'to lie (be lying down)': present tense)",
+        "Category: Verben (verb conjugation)",
+        "sie/Sie ___ (liegen, 'to lie (be lying down)': present tense)"
+      ]
+    },
+    {
+      "word": "LAG",
+      "clues": [
+        "ich ___ (liegen, 'to lie (be lying down)': simple past (Präteritum))",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "GELEGEN",
+      "clues": [
+        "Past participle of liegen ('to lie (be lying down)')",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "SITZE",
+      "clues": [
+        "ich ___ (sitzen, 'to sit': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "SITZT",
+      "clues": [
+        "du ___ (sitzen, 'to sit': present tense)",
+        "Category: Verben (verb conjugation)",
+        "er/sie/es ___ (sitzen, 'to sit': present tense)",
+        "ihr ___ (sitzen, 'to sit': present tense)"
+      ]
+    },
+    {
+      "word": "SITZEN",
+      "clues": [
+        "wir ___ (sitzen, 'to sit': present tense)",
+        "Category: Verben (verb conjugation)",
+        "sie/Sie ___ (sitzen, 'to sit': present tense)"
+      ]
+    },
+    {
+      "word": "SASS",
+      "clues": [
+        "ich ___ (sitzen, 'to sit': simple past (Präteritum))",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "GESESSEN",
+      "clues": [
+        "Past participle of sitzen ('to sit')",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "STEHE",
+      "clues": [
+        "ich ___ (stehen, 'to stand': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "STEHST",
+      "clues": [
+        "du ___ (stehen, 'to stand': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "STEHT",
+      "clues": [
+        "er/sie/es ___ (stehen, 'to stand': present tense)",
+        "Category: Verben (verb conjugation)",
+        "ihr ___ (stehen, 'to stand': present tense)"
+      ]
+    },
+    {
+      "word": "STEHEN",
+      "clues": [
+        "wir ___ (stehen, 'to stand': present tense)",
+        "Category: Verben (verb conjugation)",
+        "sie/Sie ___ (stehen, 'to stand': present tense)"
+      ]
+    },
+    {
+      "word": "STAND",
+      "clues": [
+        "ich ___ (stehen, 'to stand': simple past (Präteritum))",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "GESTANDEN",
+      "clues": [
+        "Past participle of stehen ('to stand')",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "RUFE",
+      "clues": [
+        "ich ___ (rufen, 'to call/shout': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "RUFST",
+      "clues": [
+        "du ___ (rufen, 'to call/shout': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "RUFT",
+      "clues": [
+        "er/sie/es ___ (rufen, 'to call/shout': present tense)",
+        "Category: Verben (verb conjugation)",
+        "ihr ___ (rufen, 'to call/shout': present tense)"
+      ]
+    },
+    {
+      "word": "RUFEN",
+      "clues": [
+        "wir ___ (rufen, 'to call/shout': present tense)",
+        "Category: Verben (verb conjugation)",
+        "sie/Sie ___ (rufen, 'to call/shout': present tense)"
+      ]
+    },
+    {
+      "word": "RIEF",
+      "clues": [
+        "ich ___ (rufen, 'to call/shout': simple past (Präteritum))",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "GERUFEN",
+      "clues": [
+        "Past participle of rufen ('to call/shout')",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "FALLE",
+      "clues": [
+        "ich ___ (fallen, 'to fall': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "FÄLLST",
+      "clues": [
+        "du ___ (fallen, 'to fall': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "FÄLLT",
+      "clues": [
+        "er/sie/es ___ (fallen, 'to fall': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "FALLEN",
+      "clues": [
+        "wir ___ (fallen, 'to fall': present tense)",
+        "Category: Verben (verb conjugation)",
+        "sie/Sie ___ (fallen, 'to fall': present tense)"
+      ]
+    },
+    {
+      "word": "FALLT",
+      "clues": [
+        "ihr ___ (fallen, 'to fall': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "FIEL",
+      "clues": [
+        "ich ___ (fallen, 'to fall': simple past (Präteritum))",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "GEFALLEN",
+      "clues": [
+        "Past participle of fallen ('to fall')",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "MACHE",
+      "clues": [
+        "ich ___ (machen, 'to do/make': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "MACHST",
+      "clues": [
+        "du ___ (machen, 'to do/make': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "MACHT",
+      "clues": [
+        "er/sie/es ___ (machen, 'to do/make': present tense)",
+        "Category: Verben (verb conjugation)",
+        "ihr ___ (machen, 'to do/make': present tense)"
+      ]
+    },
+    {
+      "word": "MACHEN",
+      "clues": [
+        "wir ___ (machen, 'to do/make': present tense)",
+        "Category: Verben (verb conjugation)",
+        "sie/Sie ___ (machen, 'to do/make': present tense)"
+      ]
+    },
+    {
+      "word": "MACHTE",
+      "clues": [
+        "ich ___ (machen, 'to do/make': simple past (Präteritum))",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "GEMACHT",
+      "clues": [
+        "Past participle of machen ('to do/make')",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "SAGE",
+      "clues": [
+        "ich ___ (sagen, 'to say': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "SAGST",
+      "clues": [
+        "du ___ (sagen, 'to say': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "SAGT",
+      "clues": [
+        "er/sie/es ___ (sagen, 'to say': present tense)",
+        "Category: Verben (verb conjugation)",
+        "ihr ___ (sagen, 'to say': present tense)"
+      ]
+    },
+    {
+      "word": "SAGEN",
+      "clues": [
+        "wir ___ (sagen, 'to say': present tense)",
+        "Category: Verben (verb conjugation)",
+        "sie/Sie ___ (sagen, 'to say': present tense)"
+      ]
+    },
+    {
+      "word": "SAGTE",
+      "clues": [
+        "ich ___ (sagen, 'to say': simple past (Präteritum))",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "GESAGT",
+      "clues": [
+        "Past participle of sagen ('to say')",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "FRAGE",
+      "clues": [
+        "ich ___ (fragen, 'to ask': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "FRAGST",
+      "clues": [
+        "du ___ (fragen, 'to ask': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "FRAGT",
+      "clues": [
+        "er/sie/es ___ (fragen, 'to ask': present tense)",
+        "Category: Verben (verb conjugation)",
+        "ihr ___ (fragen, 'to ask': present tense)"
+      ]
+    },
+    {
+      "word": "FRAGEN",
+      "clues": [
+        "wir ___ (fragen, 'to ask': present tense)",
+        "Category: Verben (verb conjugation)",
+        "sie/Sie ___ (fragen, 'to ask': present tense)"
+      ]
+    },
+    {
+      "word": "FRAGTE",
+      "clues": [
+        "ich ___ (fragen, 'to ask': simple past (Präteritum))",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "GEFRAGT",
+      "clues": [
+        "Past participle of fragen ('to ask')",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "WOHNE",
+      "clues": [
+        "ich ___ (wohnen, 'to live/reside': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "WOHNST",
+      "clues": [
+        "du ___ (wohnen, 'to live/reside': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "WOHNT",
+      "clues": [
+        "er/sie/es ___ (wohnen, 'to live/reside': present tense)",
+        "Category: Verben (verb conjugation)",
+        "ihr ___ (wohnen, 'to live/reside': present tense)"
+      ]
+    },
+    {
+      "word": "WOHNEN",
+      "clues": [
+        "wir ___ (wohnen, 'to live/reside': present tense)",
+        "Category: Verben (verb conjugation)",
+        "sie/Sie ___ (wohnen, 'to live/reside': present tense)"
+      ]
+    },
+    {
+      "word": "WOHNTE",
+      "clues": [
+        "ich ___ (wohnen, 'to live/reside': simple past (Präteritum))",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "GEWOHNT",
+      "clues": [
+        "Past participle of wohnen ('to live/reside')",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "KAUFE",
+      "clues": [
+        "ich ___ (kaufen, 'to buy': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "KAUFST",
+      "clues": [
+        "du ___ (kaufen, 'to buy': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "KAUFT",
+      "clues": [
+        "er/sie/es ___ (kaufen, 'to buy': present tense)",
+        "Category: Verben (verb conjugation)",
+        "ihr ___ (kaufen, 'to buy': present tense)"
+      ]
+    },
+    {
+      "word": "KAUFEN",
+      "clues": [
+        "wir ___ (kaufen, 'to buy': present tense)",
+        "Category: Verben (verb conjugation)",
+        "sie/Sie ___ (kaufen, 'to buy': present tense)"
+      ]
+    },
+    {
+      "word": "KAUFTE",
+      "clues": [
+        "ich ___ (kaufen, 'to buy': simple past (Präteritum))",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "GEKAUFT",
+      "clues": [
+        "Past participle of kaufen ('to buy')",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "SPIELE",
+      "clues": [
+        "ich ___ (spielen, 'to play': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "SPIELST",
+      "clues": [
+        "du ___ (spielen, 'to play': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "SPIELT",
+      "clues": [
+        "er/sie/es ___ (spielen, 'to play': present tense)",
+        "Category: Verben (verb conjugation)",
+        "ihr ___ (spielen, 'to play': present tense)"
+      ]
+    },
+    {
+      "word": "SPIELEN",
+      "clues": [
+        "wir ___ (spielen, 'to play': present tense)",
+        "Category: Verben (verb conjugation)",
+        "sie/Sie ___ (spielen, 'to play': present tense)"
+      ]
+    },
+    {
+      "word": "SPIELTE",
+      "clues": [
+        "ich ___ (spielen, 'to play': simple past (Präteritum))",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "GESPIELT",
+      "clues": [
+        "Past participle of spielen ('to play')",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "HÖRE",
+      "clues": [
+        "ich ___ (hören, 'to hear/listen': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "HÖRST",
+      "clues": [
+        "du ___ (hören, 'to hear/listen': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "HÖRT",
+      "clues": [
+        "er/sie/es ___ (hören, 'to hear/listen': present tense)",
+        "Category: Verben (verb conjugation)",
+        "ihr ___ (hören, 'to hear/listen': present tense)"
+      ]
+    },
+    {
+      "word": "HÖREN",
+      "clues": [
+        "wir ___ (hören, 'to hear/listen': present tense)",
+        "Category: Verben (verb conjugation)",
+        "sie/Sie ___ (hören, 'to hear/listen': present tense)"
+      ]
+    },
+    {
+      "word": "HÖRTE",
+      "clues": [
+        "ich ___ (hören, 'to hear/listen': simple past (Präteritum))",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "GEHÖRT",
+      "clues": [
+        "Past participle of hören ('to hear/listen')",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "LERNE",
+      "clues": [
+        "ich ___ (lernen, 'to learn': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "LERNST",
+      "clues": [
+        "du ___ (lernen, 'to learn': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "LERNT",
+      "clues": [
+        "er/sie/es ___ (lernen, 'to learn': present tense)",
+        "Category: Verben (verb conjugation)",
+        "ihr ___ (lernen, 'to learn': present tense)"
+      ]
+    },
+    {
+      "word": "LERNEN",
+      "clues": [
+        "wir ___ (lernen, 'to learn': present tense)",
+        "Category: Verben (verb conjugation)",
+        "sie/Sie ___ (lernen, 'to learn': present tense)"
+      ]
+    },
+    {
+      "word": "LERNTE",
+      "clues": [
+        "ich ___ (lernen, 'to learn': simple past (Präteritum))",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "GELERNT",
+      "clues": [
+        "Past participle of lernen ('to learn')",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "BRAUCHE",
+      "clues": [
+        "ich ___ (brauchen, 'to need': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "BRAUCHST",
+      "clues": [
+        "du ___ (brauchen, 'to need': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "BRAUCHT",
+      "clues": [
+        "er/sie/es ___ (brauchen, 'to need': present tense)",
+        "Category: Verben (verb conjugation)",
+        "ihr ___ (brauchen, 'to need': present tense)"
+      ]
+    },
+    {
+      "word": "BRAUCHEN",
+      "clues": [
+        "wir ___ (brauchen, 'to need': present tense)",
+        "Category: Verben (verb conjugation)",
+        "sie/Sie ___ (brauchen, 'to need': present tense)"
+      ]
+    },
+    {
+      "word": "BRAUCHTE",
+      "clues": [
+        "ich ___ (brauchen, 'to need': simple past (Präteritum))",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "GEBRAUCHT",
+      "clues": [
+        "Past participle of brauchen ('to need')",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "KOCHE",
+      "clues": [
+        "ich ___ (kochen, 'to cook': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "KOCHST",
+      "clues": [
+        "du ___ (kochen, 'to cook': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "KOCHT",
+      "clues": [
+        "er/sie/es ___ (kochen, 'to cook': present tense)",
+        "Category: Verben (verb conjugation)",
+        "ihr ___ (kochen, 'to cook': present tense)"
+      ]
+    },
+    {
+      "word": "KOCHEN",
+      "clues": [
+        "wir ___ (kochen, 'to cook': present tense)",
+        "Category: Verben (verb conjugation)",
+        "sie/Sie ___ (kochen, 'to cook': present tense)"
+      ]
+    },
+    {
+      "word": "KOCHTE",
+      "clues": [
+        "ich ___ (kochen, 'to cook': simple past (Präteritum))",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "GEKOCHT",
+      "clues": [
+        "Past participle of kochen ('to cook')",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "SUCHE",
+      "clues": [
+        "ich ___ (suchen, 'to look for': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "SUCHST",
+      "clues": [
+        "du ___ (suchen, 'to look for': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "SUCHT",
+      "clues": [
+        "er/sie/es ___ (suchen, 'to look for': present tense)",
+        "Category: Verben (verb conjugation)",
+        "ihr ___ (suchen, 'to look for': present tense)"
+      ]
+    },
+    {
+      "word": "SUCHEN",
+      "clues": [
+        "wir ___ (suchen, 'to look for': present tense)",
+        "Category: Verben (verb conjugation)",
+        "sie/Sie ___ (suchen, 'to look for': present tense)"
+      ]
+    },
+    {
+      "word": "SUCHTE",
+      "clues": [
+        "ich ___ (suchen, 'to look for': simple past (Präteritum))",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "GESUCHT",
+      "clues": [
+        "Past participle of suchen ('to look for')",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "ZEIGE",
+      "clues": [
+        "ich ___ (zeigen, 'to show': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "ZEIGST",
+      "clues": [
+        "du ___ (zeigen, 'to show': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "ZEIGT",
+      "clues": [
+        "er/sie/es ___ (zeigen, 'to show': present tense)",
+        "Category: Verben (verb conjugation)",
+        "ihr ___ (zeigen, 'to show': present tense)"
+      ]
+    },
+    {
+      "word": "ZEIGEN",
+      "clues": [
+        "wir ___ (zeigen, 'to show': present tense)",
+        "Category: Verben (verb conjugation)",
+        "sie/Sie ___ (zeigen, 'to show': present tense)"
+      ]
+    },
+    {
+      "word": "ZEIGTE",
+      "clues": [
+        "ich ___ (zeigen, 'to show': simple past (Präteritum))",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "GEZEIGT",
+      "clues": [
+        "Past participle of zeigen ('to show')",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "HOLE",
+      "clues": [
+        "ich ___ (holen, 'to fetch/get': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "HOLST",
+      "clues": [
+        "du ___ (holen, 'to fetch/get': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "HOLT",
+      "clues": [
+        "er/sie/es ___ (holen, 'to fetch/get': present tense)",
+        "Category: Verben (verb conjugation)",
+        "ihr ___ (holen, 'to fetch/get': present tense)"
+      ]
+    },
+    {
+      "word": "HOLEN",
+      "clues": [
+        "wir ___ (holen, 'to fetch/get': present tense)",
+        "Category: Verben (verb conjugation)",
+        "sie/Sie ___ (holen, 'to fetch/get': present tense)"
+      ]
+    },
+    {
+      "word": "HOLTE",
+      "clues": [
+        "ich ___ (holen, 'to fetch/get': simple past (Präteritum))",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "GEHOLT",
+      "clues": [
+        "Past participle of holen ('to fetch/get')",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "STELLE",
+      "clues": [
+        "ich ___ (stellen, 'to put/place': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "STELLST",
+      "clues": [
+        "du ___ (stellen, 'to put/place': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "STELLT",
+      "clues": [
+        "er/sie/es ___ (stellen, 'to put/place': present tense)",
+        "Category: Verben (verb conjugation)",
+        "ihr ___ (stellen, 'to put/place': present tense)"
+      ]
+    },
+    {
+      "word": "STELLEN",
+      "clues": [
+        "wir ___ (stellen, 'to put/place': present tense)",
+        "Category: Verben (verb conjugation)",
+        "sie/Sie ___ (stellen, 'to put/place': present tense)"
+      ]
+    },
+    {
+      "word": "STELLTE",
+      "clues": [
+        "ich ___ (stellen, 'to put/place': simple past (Präteritum))",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "GESTELLT",
+      "clues": [
+        "Past participle of stellen ('to put/place')",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "LEGE",
+      "clues": [
+        "ich ___ (legen, 'to lay/put down': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "LEGST",
+      "clues": [
+        "du ___ (legen, 'to lay/put down': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "LEGT",
+      "clues": [
+        "er/sie/es ___ (legen, 'to lay/put down': present tense)",
+        "Category: Verben (verb conjugation)",
+        "ihr ___ (legen, 'to lay/put down': present tense)"
+      ]
+    },
+    {
+      "word": "LEGEN",
+      "clues": [
+        "wir ___ (legen, 'to lay/put down': present tense)",
+        "Category: Verben (verb conjugation)",
+        "sie/Sie ___ (legen, 'to lay/put down': present tense)"
+      ]
+    },
+    {
+      "word": "LEGTE",
+      "clues": [
+        "ich ___ (legen, 'to lay/put down': simple past (Präteritum))",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "GELEGT",
+      "clues": [
+        "Past participle of legen ('to lay/put down')",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "PACKE",
+      "clues": [
+        "ich ___ (packen, 'to pack': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "PACKST",
+      "clues": [
+        "du ___ (packen, 'to pack': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "PACKT",
+      "clues": [
+        "er/sie/es ___ (packen, 'to pack': present tense)",
+        "Category: Verben (verb conjugation)",
+        "ihr ___ (packen, 'to pack': present tense)"
+      ]
+    },
+    {
+      "word": "PACKEN",
+      "clues": [
+        "wir ___ (packen, 'to pack': present tense)",
+        "Category: Verben (verb conjugation)",
+        "sie/Sie ___ (packen, 'to pack': present tense)"
+      ]
+    },
+    {
+      "word": "PACKTE",
+      "clues": [
+        "ich ___ (packen, 'to pack': simple past (Präteritum))",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "GEPACKT",
+      "clues": [
+        "Past participle of packen ('to pack')",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "LEBE",
+      "clues": [
+        "ich ___ (leben, 'to live (be alive)': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "LEBST",
+      "clues": [
+        "du ___ (leben, 'to live (be alive)': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "LEBT",
+      "clues": [
+        "er/sie/es ___ (leben, 'to live (be alive)': present tense)",
+        "Category: Verben (verb conjugation)",
+        "ihr ___ (leben, 'to live (be alive)': present tense)"
+      ]
+    },
+    {
+      "word": "LEBEN",
+      "clues": [
+        "wir ___ (leben, 'to live (be alive)': present tense)",
+        "Category: Verben (verb conjugation)",
+        "sie/Sie ___ (leben, 'to live (be alive)': present tense)"
+      ]
+    },
+    {
+      "word": "LEBTE",
+      "clues": [
+        "ich ___ (leben, 'to live (be alive)': simple past (Präteritum))",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "GELEBT",
+      "clues": [
+        "Past participle of leben ('to live (be alive)')",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "LIEBE",
+      "clues": [
+        "ich ___ (lieben, 'to love': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "LIEBST",
+      "clues": [
+        "du ___ (lieben, 'to love': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "LIEBT",
+      "clues": [
+        "er/sie/es ___ (lieben, 'to love': present tense)",
+        "Category: Verben (verb conjugation)",
+        "ihr ___ (lieben, 'to love': present tense)"
+      ]
+    },
+    {
+      "word": "LIEBEN",
+      "clues": [
+        "wir ___ (lieben, 'to love': present tense)",
+        "Category: Verben (verb conjugation)",
+        "sie/Sie ___ (lieben, 'to love': present tense)"
+      ]
+    },
+    {
+      "word": "LIEBTE",
+      "clues": [
+        "ich ___ (lieben, 'to love': simple past (Präteritum))",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "GELIEBT",
+      "clues": [
+        "Past participle of lieben ('to love')",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "GLAUBE",
+      "clues": [
+        "ich ___ (glauben, 'to believe': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "GLAUBST",
+      "clues": [
+        "du ___ (glauben, 'to believe': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "GLAUBT",
+      "clues": [
+        "er/sie/es ___ (glauben, 'to believe': present tense)",
+        "Category: Verben (verb conjugation)",
+        "ihr ___ (glauben, 'to believe': present tense)"
+      ]
+    },
+    {
+      "word": "GLAUBEN",
+      "clues": [
+        "wir ___ (glauben, 'to believe': present tense)",
+        "Category: Verben (verb conjugation)",
+        "sie/Sie ___ (glauben, 'to believe': present tense)"
+      ]
+    },
+    {
+      "word": "GLAUBTE",
+      "clues": [
+        "ich ___ (glauben, 'to believe': simple past (Präteritum))",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "GEGLAUBT",
+      "clues": [
+        "Past participle of glauben ('to believe')",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "DANKE",
+      "clues": [
+        "ich ___ (danken, 'to thank': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "DANKST",
+      "clues": [
+        "du ___ (danken, 'to thank': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "DANKT",
+      "clues": [
+        "er/sie/es ___ (danken, 'to thank': present tense)",
+        "Category: Verben (verb conjugation)",
+        "ihr ___ (danken, 'to thank': present tense)"
+      ]
+    },
+    {
+      "word": "DANKEN",
+      "clues": [
+        "wir ___ (danken, 'to thank': present tense)",
+        "Category: Verben (verb conjugation)",
+        "sie/Sie ___ (danken, 'to thank': present tense)"
+      ]
+    },
+    {
+      "word": "DANKTE",
+      "clues": [
+        "ich ___ (danken, 'to thank': simple past (Präteritum))",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "GEDANKT",
+      "clues": [
+        "Past participle of danken ('to thank')",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "SCHAE",
+      "clues": [
+        "ich ___ (schaün, 'to look': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "SCHAST",
+      "clues": [
+        "du ___ (schaün, 'to look': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "SCHAT",
+      "clues": [
+        "er/sie/es ___ (schaün, 'to look': present tense)",
+        "Category: Verben (verb conjugation)",
+        "ihr ___ (schaün, 'to look': present tense)"
+      ]
+    },
+    {
+      "word": "SCHAÜN",
+      "clues": [
+        "wir ___ (schaün, 'to look': present tense)",
+        "Category: Verben (verb conjugation)",
+        "sie/Sie ___ (schaün, 'to look': present tense)"
+      ]
+    },
+    {
+      "word": "SCHATE",
+      "clues": [
+        "ich ___ (schaün, 'to look': simple past (Präteritum))",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "GESCHAT",
+      "clues": [
+        "Past participle of schaün ('to look')",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "TANZE",
+      "clues": [
+        "ich ___ (tanzen, 'to dance': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "TANZT",
+      "clues": [
+        "du ___ (tanzen, 'to dance': present tense)",
+        "Category: Verben (verb conjugation)",
+        "er/sie/es ___ (tanzen, 'to dance': present tense)",
+        "ihr ___ (tanzen, 'to dance': present tense)"
+      ]
+    },
+    {
+      "word": "TANZEN",
+      "clues": [
+        "wir ___ (tanzen, 'to dance': present tense)",
+        "Category: Verben (verb conjugation)",
+        "sie/Sie ___ (tanzen, 'to dance': present tense)"
+      ]
+    },
+    {
+      "word": "TANZTE",
+      "clues": [
+        "ich ___ (tanzen, 'to dance': simple past (Präteritum))",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "GETANZT",
+      "clues": [
+        "Past participle of tanzen ('to dance')",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "LACHE",
+      "clues": [
+        "ich ___ (lachen, 'to laugh': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "LACHST",
+      "clues": [
+        "du ___ (lachen, 'to laugh': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "LACHT",
+      "clues": [
+        "er/sie/es ___ (lachen, 'to laugh': present tense)",
+        "Category: Verben (verb conjugation)",
+        "ihr ___ (lachen, 'to laugh': present tense)"
+      ]
+    },
+    {
+      "word": "LACHEN",
+      "clues": [
+        "wir ___ (lachen, 'to laugh': present tense)",
+        "Category: Verben (verb conjugation)",
+        "sie/Sie ___ (lachen, 'to laugh': present tense)"
+      ]
+    },
+    {
+      "word": "LACHTE",
+      "clues": [
+        "ich ___ (lachen, 'to laugh': simple past (Präteritum))",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "GELACHT",
+      "clues": [
+        "Past participle of lachen ('to laugh')",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "WEINE",
+      "clues": [
+        "ich ___ (weinen, 'to cry': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "WEINST",
+      "clues": [
+        "du ___ (weinen, 'to cry': present tense)",
+        "Category: Verben (verb conjugation)"
+      ]
+    },
+    {
+      "word": "WEINT",
+      "clues": [
+        "er/sie/es ___ (weinen, 'to cry': present tense)",
+        "Category: Verben (verb conjugation)",
+        "ihr ___ (weinen, 'to cry': present tense)"
+      ]
+    },
+    {
+      "word": "WEINEN",
+      "clues": [
+        "wir ___ (weinen, 'to cry': present tense)",
+        "Category: Verben (verb conjugation)",
+        "sie/Sie ___ (weinen, 'to cry': present tense)"
       ]
     }
   ]
