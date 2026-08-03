@@ -114,6 +114,10 @@
   let currentWordKey = null; // e.g. "across-3"
   let celebrated = false;
   let puzzleStartTime = null;
+  const STORAGE_KEY = 'crossword-trainer-state';
+  const SAVE_VERSION = 1;
+  let pendingRestore = null; // a saved puzzle waiting to be restored on first load, if any
+  let saveTimer = null;
   let bestTimeSeconds = null; // best solve time this session (not persisted)
   let currentListId = null; // 'english' | 'german' | null (custom file has no URL representation)
 
@@ -228,7 +232,12 @@
     if(Number(wordCountInput.value) > wordBank.length) wordCountInput.value = wordBank.length;
     generateBtn.disabled = false;
     setStatus('');
-    generate();
+    if(pendingRestore){
+      restoreFromSaved(pendingRestore);
+      pendingRestore = null;
+    } else {
+      generate();
+    }
   }
 
   // ---------- render ----------
@@ -485,6 +494,7 @@
     cell.wrap.classList.remove('check-correct', 'check-incorrect');
     if(ch) advanceAfterInput(r,c);
     checkAndCelebrate();
+    scheduleSave();
   }
 
   function checkAnswers(){
@@ -687,6 +697,7 @@
           }
         }
         checkAndCelebrate();
+        scheduleSave();
         break;
       }
       case 'Delete':
@@ -694,6 +705,7 @@
         cell.input.value='';
         cell.wrap.classList.remove('check-correct', 'check-incorrect');
         checkAndCelebrate();
+        scheduleSave();
         break;
       case ' ': e.preventDefault(); onCellMouseDown(r,c); break;
       default: break;
@@ -726,6 +738,74 @@
     return Math.max(3, maxCols);
   }
 
+  // ---------- persistence (resume where you left off after a reload) ----------
+  function saveState(){
+    try{
+      const answers = [];
+      for(let r=0;r<rows;r++){
+        const rowArr = [];
+        for(let c=0;c<cols;c++){
+          const cell = cellEls[r] && cellEls[r][c];
+          rowArr.push(cell ? cell.input.value : null);
+        }
+        answers.push(rowArr);
+      }
+      const state = {
+        version: SAVE_VERSION,
+        rows, cols, gridData, placedWords, answers,
+        elapsedMs: puzzleStartTime ? (Date.now() - puzzleStartTime) : 0,
+        celebrated,
+        listSelect: wordListSelect.value,
+        wordCount: wordCountInput.value,
+      };
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    }catch(e){
+      // localStorage unavailable (private browsing, quota exceeded, etc.) - the app still
+      // works fine without persistence, just silently skip saving this time.
+    }
+  }
+
+  function scheduleSave(){
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(saveState, 250);
+  }
+
+  function loadSavedState(){
+    try{
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if(!raw) return null;
+      const state = JSON.parse(raw);
+      if(!state || state.version !== SAVE_VERSION) return null;
+      if(!Array.isArray(state.gridData) || !Array.isArray(state.placedWords) || !Array.isArray(state.answers)) return null;
+      if(typeof state.rows !== 'number' || typeof state.cols !== 'number') return null;
+      return state;
+    }catch(e){
+      return null;
+    }
+  }
+
+  function restoreFromSaved(saved){
+    const numAt = {};
+    for(const p of saved.placedWords){ numAt[key(p.row, p.col)] = p.number; }
+    const built = { grid: saved.gridData, rows: saved.rows, cols: saved.cols, placements: saved.placedWords };
+    const numbering = { placements: saved.placedWords, numAt };
+    renderGrid(built, numbering);
+    for(let r=0;r<saved.rows;r++){
+      for(let c=0;c<saved.cols;c++){
+        const val = saved.answers[r] && saved.answers[r][c];
+        if(val && cellEls[r] && cellEls[r][c]) cellEls[r][c].input.value = val;
+      }
+    }
+    puzzleStartTime = Date.now() - (saved.elapsedMs || 0);
+    celebrated = !!saved.celebrated; // don't replay the solved animation/confetti on a reload
+    if(saved.listSelect) wordListSelect.value = saved.listSelect;
+    if(saved.wordCount) wordCountInput.value = saved.wordCount;
+    printBtn.disabled = false;
+    checkBtn.disabled = false;
+    setStatus('');
+    updateUrlParams();
+  }
+
   function generate(){
     if(!wordBank.length){
       setStatus('Load a word list first.', true);
@@ -746,6 +826,7 @@
     } else {
       setStatus('');
     }
+    saveState();
   }
 
   function restoreFocusToCurrentCell(){
@@ -795,8 +876,19 @@
     const wordsParam = parseInt(params.get('words'), 10);
 
     const validLists = ['english', 'german', 'german_a2', 'german_to_english'];
-    const list = validLists.includes(listParam) ? listParam : 'german';
+    let list = validLists.includes(listParam) ? listParam : 'german';
     const words = (Number.isFinite(wordsParam) && wordsParam >= 2) ? wordsParam : 15;
+
+    // Reopening a closed tab or a bookmark carries whatever URL params were last in the address
+    // bar too, so their presence doesn't reliably distinguish "deliberate fresh link" from
+    // "returning to a session in progress" - always try to resume a saved puzzle if one exists.
+    pendingRestore = loadSavedState();
+    // Fetch whichever list the saved puzzle actually came from, so the loaded word bank stays
+    // consistent with it (otherwise "New crossword" right after resuming would switch to a
+    // different list than the one just being solved).
+    if(pendingRestore && validLists.includes(pendingRestore.listSelect)){
+      list = pendingRestore.listSelect;
+    }
 
     wordCountInput.value = words;
     wordListSelect.value = list;
