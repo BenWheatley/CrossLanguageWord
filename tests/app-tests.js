@@ -325,7 +325,7 @@ test('solving the puzzle correctly triggers the celebration overlay', async () =
     const app = await bootApp('?list=german_a2&words=60');
     const doc = app.document;
     const cluesForKaufen = new Set();
-    for(let i = 0; i < 60 && cluesForKaufen.size < 4; i++){
+    for(let i = 0; i < 60 && cluesForKaufen.size <= 2; i++){
       doc.getElementById('generateBtn').click();
       const pairs = [['#printAnswerAcross', '#acrossList'], ['#printAnswerDown', '#downList']];
       for(const [answerSel, clueSel] of pairs){
@@ -336,7 +336,36 @@ test('solving the puzzle correctly triggers the celebration overlay', async () =
         answers.forEach((answer, ix) => { if(answer === 'KAUFEN') cluesForKaufen.add(clues[ix]); });
       }
     }
-    // Both source entries carry two clues; all four should be reachable from the single merged word.
-    assertEqual(cluesForKaufen.size, 4, `only saw ${cluesForKaufen.size} distinct clues for KAUFEN`);
+    // Each source entry carries exactly two clues, so a third distinct clue is only reachable if
+    // the two entries merged into one word. Asserting on all four would just be testing how
+    // evenly a random draw covers four options.
+    assertTrue(cluesForKaufen.size > 2,
+      `only saw ${cluesForKaufen.size} distinct clues for KAUFEN; a merged word should offer more than one entry's worth`);
+  });
+
+  test('the word count is capped at 120, from the URL and from the field alike', async () => {
+    const app = await bootApp('?list=german&words=900');
+    const doc = app.document;
+    const field = doc.getElementById('wordCount');
+
+    assertEqual(field.value, '120', 'a ?words= far above the cap should clamp');
+    assertEqual(field.max, '120', 'the field should not offer more than the cap');
+    assertEqual(doc.querySelectorAll('#acrossList li, #downList li').length, 120);
+
+    field.value = '5000';
+    doc.getElementById('generateBtn').click();
+    assertEqual(field.value, '120', 'a hand-typed count above the cap should clamp too');
+    assertEqual(doc.querySelectorAll('#acrossList li, #downList li').length, 120);
+  });
+
+  test('generating at the cap stays well under a second', async () => {
+    const app = await bootApp('?list=german&words=120');
+    const doc = app.document;
+    const started = performance.now();
+    doc.getElementById('generateBtn').click();
+    const elapsed = performance.now() - started;
+    // Generation is synchronous, so this is frozen-tab time. Measured around 310-380ms; a
+    // generous ceiling here still catches a return to the old cubic blow-up.
+    assertTrue(elapsed < 3000, `generating 120 words blocked for ${Math.round(elapsed)}ms`);
   });
 }

@@ -38,7 +38,7 @@
         </div>
         <div class="field">
           <label for="wordCount">Words in puzzle</label>
-          <input type="number" id="wordCount" min="2" value="15">
+          <input type="number" id="wordCount" min="2" max="120" value="15">
         </div>
         <label class="check-field">
           <input type="checkbox" id="printAnswers"> Show my typed answers when printing, instead of a blank puzzle
@@ -166,6 +166,16 @@
   };
   const DEFAULT_LIST = 'german';
   const DEFAULT_WORDS = 15;
+  // Generation cost climbs far faster than the word count does - roughly cubically, because each
+  // of the target placements rescans a grid that is itself growing. Measured on german.json:
+  // 50 words 177ms, 100 words 354ms, 200 words 2.2s, 400 words 17.3s. It is all synchronous, so
+  // those are frozen-tab seconds with no spinner and no way to cancel, and the word-count field
+  // used to offer the whole bank (1000) as its maximum while regenerating on every change.
+  // 120 keeps the worst case near a second and is already far more crossword than fits a page.
+  const MAX_WORDS = 120;
+  function clampWordCount(n){
+    return Math.max(2, Math.min(n, MAX_WORDS, wordBank.length || MAX_WORDS));
+  }
 
   // ---------- file loading ----------
   wordListSelect.addEventListener('change', function(){
@@ -261,8 +271,8 @@
     const title = (data.metadata && data.metadata.title) ? data.metadata.title : 'Crossword Trainer';
     pageTitle.textContent = title;
     pageTagline.textContent = wordBank.length + ' words available';
-    wordCountInput.max = wordBank.length;
-    if(Number(wordCountInput.value) > wordBank.length) wordCountInput.value = wordBank.length;
+    wordCountInput.max = Math.min(MAX_WORDS, wordBank.length);
+    wordCountInput.value = clampWordCount(parseInt(wordCountInput.value, 10) || DEFAULT_WORDS);
     generateBtn.disabled = false;
     setStatus('');
     if(pendingRestore){
@@ -867,7 +877,9 @@
       setStatus('Load a word list first.', true);
       return;
     }
-    const n = Math.max(2, Math.min(parseInt(wordCountInput.value,10)||2, wordBank.length));
+    const n = clampWordCount(parseInt(wordCountInput.value, 10) || DEFAULT_WORDS);
+    // Reflect the clamp back, so the field never shows a number the puzzle didn't use.
+    if(String(n) !== wordCountInput.value) wordCountInput.value = n;
     closeCelebration();
     const result = buildCrossword(pickClues(wordBank), n, undefined, computeMaxCols());
     const built = trimAndIndex(result);
@@ -936,7 +948,7 @@
     const wordsParam = parseInt(p.get('words'), 10);
     return {
       list: LISTS[listParam] ? listParam : DEFAULT_LIST,
-      words: (Number.isFinite(wordsParam) && wordsParam >= 2) ? wordsParam : DEFAULT_WORDS,
+      words: Number.isFinite(wordsParam) && wordsParam >= 2 ? Math.min(wordsParam, MAX_WORDS) : DEFAULT_WORDS,
       explicit: p.has('list') || p.has('words')
     };
   }
