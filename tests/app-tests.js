@@ -249,4 +249,33 @@ test('solving the puzzle correctly triggers the celebration overlay', async () =
     const down = document.querySelectorAll('#printAnswerDown li').length;
     assertEqual(across + down, 12);
   });
+
+  // A puzzle you were part-way through and a puzzle someone linked you to both arrive as a URL
+  // with parameters, because the app writes its own into the address bar after every generate.
+  // These pin down which one wins, and that following a link doesn't destroy it.
+
+  test('a link naming a different puzzle beats the saved session', async () => {
+    await bootApp('?list=german&words=20');           // start a session, let it save
+    const app = await bootApp('?list=english&words=8', { keepSavedState: true });
+    assertEqual(app.document.getElementById('pageTitle').textContent, 'English');
+    assertEqual(app.document.getElementById('wordCount').value, '8');
+  });
+
+  test('following a link does not rewrite it to a different puzzle', async () => {
+    await bootApp('?list=german&words=20');
+    const app = await bootApp('?list=english&words=8', { keepSavedState: true });
+    const search = app.window.location.search;
+    assertTrue(search.includes('list=english'), `address bar became ${search}`);
+    assertTrue(search.includes('words=8'), `address bar became ${search}`);
+  });
+
+  test('reopening the same URL resumes the saved puzzle rather than generating a new one', async () => {
+    const first = await bootApp('?list=german&words=12');
+    const answersBefore = Array.from(first.document.querySelectorAll('#printAnswerAcross li, #printAnswerDown li'))
+      .map((li) => li.textContent).sort().join('|');
+    const again = await bootApp('?list=german&words=12', { keepSavedState: true });
+    const answersAfter = Array.from(again.document.querySelectorAll('#printAnswerAcross li, #printAnswerDown li'))
+      .map((li) => li.textContent).sort().join('|');
+    assertEqual(answersAfter, answersBefore, 'the same puzzle should come back, not a fresh one');
+  });
 }

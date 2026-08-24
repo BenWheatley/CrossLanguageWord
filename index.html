@@ -115,7 +115,7 @@
   let celebrated = false;
   let puzzleStartTime = null;
   const STORAGE_KEY = 'crossword-trainer-state';
-  const SAVE_VERSION = 1;
+  const SAVE_VERSION = 2; // bumped when `params` replaced the old listSelect/wordCount fields
   let pendingRestore = null; // a saved puzzle waiting to be restored on first load, if any
   let saveTimer = null;
   let bestTimeSeconds = null; // best solve time this session (not persisted)
@@ -155,6 +155,18 @@
     toUpperGrapheme, normalizeText, graphemes, key, buildCrossword, trimAndIndex, numberGrid
   } = CrosswordEngine;
 
+  // ---------- word lists ----------
+  // One table, so the <select>, the ?list= parameter and the saved-state check can never disagree
+  // about which ids are real or which file each one means.
+  const LISTS = {
+    english:           { file: 'example.json',                label: 'English' },
+    german_a2:         { file: 'Deutsch-A2.json',             label: 'Deutsch A2' },
+    german:            { file: 'german.json',                 label: 'Deutsch B1' },
+    german_to_english: { file: 'deutsch-fragen-english.json', label: 'Deutsch B1 \u2192 Englisch' }
+  };
+  const DEFAULT_LIST = 'german';
+  const DEFAULT_WORDS = 15;
+
   // ---------- file loading ----------
   wordListSelect.addEventListener('change', function(){
     const v = wordListSelect.value;
@@ -169,10 +181,10 @@
       return;
     }
     fileTriggerLabel.style.display = 'none';
-    if(v === 'english'){ currentListId = 'english'; fetchWordList('example.json', 'English'); }
-    else if(v === 'german'){ currentListId = 'german'; fetchWordList('german.json', 'Deutsch B1'); }
-    else if(v === 'german_a2'){ currentListId = 'german_a2'; fetchWordList('Deutsch-A2.json', 'Deutsch A2'); }
-    else if(v === 'german_to_english'){ currentListId = 'german_to_english'; fetchWordList('deutsch-fragen-english.json', 'Deutsch B1 → Englisch'); }
+    if(LISTS[v]){
+      currentListId = v;
+      fetchWordList(LISTS[v].file, LISTS[v].label);
+    }
   });
 
   function fetchWordList(path, label){
@@ -764,8 +776,9 @@
         rows, cols, gridData, placedWords, answers,
         elapsedMs: puzzleStartTime ? (Date.now() - puzzleStartTime) : 0,
         celebrated,
-        listSelect: wordListSelect.value,
-        wordCount: wordCountInput.value,
+        // The parameters this puzzle was generated from. Kept so a later visit can tell whether
+        // an incoming URL is asking for this same puzzle or a different one - see initFromUrl.
+        params: { list: currentListId, words: Number(wordCountInput.value) },
       };
       localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
     }catch(e){
@@ -807,8 +820,8 @@
     }
     puzzleStartTime = Date.now() - (saved.elapsedMs || 0);
     celebrated = !!saved.celebrated; // don't replay the solved animation/confetti on a reload
-    if(saved.listSelect) wordListSelect.value = saved.listSelect;
-    if(saved.wordCount) wordCountInput.value = saved.wordCount;
+    if(saved.params && saved.params.list) wordListSelect.value = saved.params.list;
+    if(saved.params && saved.params.words) wordCountInput.value = saved.params.words;
     printBtn.disabled = false;
     checkBtn.disabled = false;
     setStatus('');
@@ -879,33 +892,48 @@
   wordCountInput.addEventListener('change', () => { if(wordBank.length) generate(); });
 
   // ---------- initial load: read ?list= and ?words= from the URL so the page is never blank ----------
+
+  // Reads the puzzle description out of a query string, falling back to the defaults for anything
+  // missing or unrecognised. `explicit` records whether the URL actually asked for anything, as
+  // opposed to being a bare index.html.
+  function readPuzzleParams(search){
+    const p = new URLSearchParams(search);
+    const listParam = p.get('list');
+    const wordsParam = parseInt(p.get('words'), 10);
+    return {
+      list: LISTS[listParam] ? listParam : DEFAULT_LIST,
+      words: (Number.isFinite(wordsParam) && wordsParam >= 2) ? wordsParam : DEFAULT_WORDS,
+      explicit: p.has('list') || p.has('words')
+    };
+  }
+
+  function sameParams(a, b){
+    return !!a && !!b && a.list === b.list && Number(a.words) === Number(b.words);
+  }
+
   (function initFromUrl(){
-    const params = new URLSearchParams(window.location.search);
-    const listParam = params.get('list');
-    const wordsParam = parseInt(params.get('words'), 10);
+    const requested = readPuzzleParams(window.location.search);
+    const saved = loadSavedState();
 
-    const validLists = ['english', 'german', 'german_a2', 'german_to_english'];
-    let list = validLists.includes(listParam) ? listParam : 'german';
-    const words = (Number.isFinite(wordsParam) && wordsParam >= 2) ? wordsParam : 15;
+    // Deciding between "resume what I was doing" and "give me the puzzle this link names" is
+    // awkward because the app writes its own parameters into the address bar after every
+    // generate - so by the time you reopen a closed tab, the URL looks exactly as deliberate as
+    // a link a friend sent you. The presence of parameters proves nothing.
+    //
+    // What does distinguish them is *which* parameters. Compare the incoming URL against the
+    // ones the saved puzzle was generated from: matching means this is the same puzzle you were
+    // already working on, so resume it with your answers intact. Differing means you asked for
+    // something else, and the link wins.
+    const resume = !!saved && (!requested.explicit || sameParams(requested, saved.params));
 
-    // Reopening a closed tab or a bookmark carries whatever URL params were last in the address
-    // bar too, so their presence doesn't reliably distinguish "deliberate fresh link" from
-    // "returning to a session in progress" - always try to resume a saved puzzle if one exists.
-    pendingRestore = loadSavedState();
-    // Fetch whichever list the saved puzzle actually came from, so the loaded word bank stays
-    // consistent with it (otherwise "New crossword" right after resuming would switch to a
-    // different list than the one just being solved).
-    if(pendingRestore && validLists.includes(pendingRestore.listSelect)){
-      list = pendingRestore.listSelect;
-    }
+    const active = resume && saved.params ? saved.params : requested;
+    pendingRestore = resume ? saved : null;
 
-    wordCountInput.value = words;
+    wordCountInput.value = active.words;
+    const list = LISTS[active.list] ? active.list : DEFAULT_LIST;
     wordListSelect.value = list;
     currentListId = list;
-    if(list === 'english') fetchWordList('example.json', 'English');
-    else if(list === 'german_a2') fetchWordList('Deutsch-A2.json', 'Deutsch A2');
-    else if(list === 'german_to_english') fetchWordList('deutsch-fragen-english.json', 'Deutsch B1 → Englisch');
-    else fetchWordList('german.json', 'Deutsch B1');
+    fetchWordList(LISTS[list].file, LISTS[list].label);
   })();
 
 })();

@@ -18,8 +18,15 @@ function waitFor(predicate, timeout = 5000, interval = 20){
   });
 }
 
-function bootApp(query = ''){
-  try{ localStorage.removeItem('crossword-trainer-state'); }catch(e){}
+/**
+ * @param {string} query e.g. '?list=german&words=10'
+ * @param {{keepSavedState?: boolean}} opts - by default each boot starts from a clean slate.
+ *   Pass keepSavedState to test resume behaviour across two boots.
+ */
+function bootApp(query = '', opts = {}){
+  if(!opts.keepSavedState){
+    try{ localStorage.removeItem('crossword-trainer-state'); }catch(e){}
+  }
   return new Promise((resolve) => {
     const iframe = document.getElementById('appFrame');
     const target = '../index.html' + query;
