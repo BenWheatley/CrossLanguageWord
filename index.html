@@ -726,11 +726,20 @@
   // How many columns wide the grid is allowed to be, based on the header bar's actual current
   // width and the (unchanged, fixed) cell size - so the puzzle never needs to render wider than
   // that bar, growing taller instead once this is reached. Recomputed at generation time.
+  //
+  // The header is not always measurable at generation time: a hidden container, a not-yet-laid-out
+  // iframe (which is exactly how tests/index.html hosts the app) and some background-tab cases all
+  // report a width of zero. Falling back to Infinity there would quietly *remove* the constraint
+  // rather than guess at it, which is the worst of the available options - it produces 80+ column
+  // grids that overflow the page and cannot be printed. Fall back to a conservative fixed width
+  // instead: narrow enough to fit portrait A4/Letter at the print cell size, wide enough to still
+  // build a reasonable puzzle.
+  const FALLBACK_MAX_COLS = 20;
   function computeMaxCols(){
     const header = document.querySelector('header.app-head');
-    if(!header) return Infinity;
+    if(!header) return FALLBACK_MAX_COLS;
     const targetWidth = header.getBoundingClientRect().width;
-    if(targetWidth <= 0) return Infinity;
+    if(!(targetWidth > 0)) return FALLBACK_MAX_COLS;
     const cellSizeStr = getComputedStyle(gridEl).getPropertyValue('--cell-size').trim();
     const cellSize = parseFloat(cellSizeStr) || 38;
     const gap = 1, borderTotal = 4; // matches #grid's screen CSS: gap:1px, border:2px each side
