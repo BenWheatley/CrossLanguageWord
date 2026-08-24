@@ -201,8 +201,21 @@ no build step; they are script tags and a static server, the same as the
 program itself.
 
 The suite exercises the generator directly and also drives the real
-`index.html` inside a hidden frame, so the thing under test is the thing you
-actually run.
+`index.html` inside an off-screen frame, so the thing under test is the thing
+you actually run.
+
+The same page is run automatically on every push, in Chromium, Firefox and
+WebKit, by the workflow in `.github/workflows/tests.yml`. That arrangement
+uses Playwright merely to open the page and read the result, so there is only
+ever one suite — no second copy in another format to fall out of step with
+this one. To run it that way yourself:
+
+```bash
+npm ci && npx playwright install --with-deps && npx playwright test
+```
+
+None of which the program itself requires. It remains script tags and a
+static server.
 
 ## 11. KNOWN LIMITATIONS
 

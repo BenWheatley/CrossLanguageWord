@@ -1,0 +1,48 @@
+# Runs tests/index.html - the same suite a person runs by visiting tests/ in a browser - across
+# Chromium, Firefox and WebKit on every push and pull request.
+#
+# GitHub Actions is free for public repositories, with no cap on standard-runner minutes, so
+# there is no reason to be frugal about the browser matrix. Private repositories get a monthly
+# allowance instead; if this repository is ever made private, trim the matrix.
+name: tests
+
+on:
+  push:
+    branches: ['**']
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  browser-suite:
+    name: ${{ matrix.browser }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    strategy:
+      fail-fast: false          # one browser failing shouldn't hide the others' results
+      matrix:
+        browser: [chromium, firefox, webkit]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install Playwright
+        run: |
+          npm ci
+          npx playwright install --with-deps ${{ matrix.browser }}
+
+      - name: Run the browser suite
+        run: npx playwright test --project=${{ matrix.browser }}
+
+      - name: Upload failure trace
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: trace-${{ matrix.browser }}
+          path: test-results/
+          retention-days: 7

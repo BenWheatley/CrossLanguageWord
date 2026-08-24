@@ -28,7 +28,19 @@
   li.pass{ color: #2B6B2B; }
   li.fail{ color: #9A3B2E; font-weight: 600; }
   li .detail{ font-weight: normal; color: #6B6559; font-size: 12px; margin: 2px 0 4px 0; white-space: pre-wrap; }
-  #appFrame{ display: none; }
+  /* Positioned off-screen rather than display:none. A display:none iframe is never laid out, so
+     the app inside it cannot take focus - which silently breaks every keyboard, typing and
+     composition test under a headless browser - and its header measures zero width, so the grid
+     width cap is never exercised either. Off-screen keeps the app real while keeping it out of
+     the way. */
+  #appFrame{
+    position: absolute;
+    left: -10000px;
+    top: 0;
+    width: 1100px;
+    height: 800px;
+    border: 0;
+  }
   table{ border-collapse: collapse; font-size: 13px; margin-bottom: 20px; }
   th, td{ border: 1px solid #D8D0BC; padding: 5px 12px; text-align: right; }
   th{ background: #EDE7D3; text-align: right; }
@@ -88,7 +100,13 @@
     registerAppTests(appRunner.test);
     const appResult = await appRunner.run(document.getElementById('appResults'));
 
-    await runPerformanceBenchmark(document.getElementById('perfTableBody'));
+    // The benchmark is a tuning aid, not a check, and it is the slowest thing on the page.
+    // ?perf=0 skips it so continuous integration isn't paying for it on every push.
+    if(new URLSearchParams(location.search).get('perf') !== '0'){
+      await runPerformanceBenchmark(document.getElementById('perfTableBody'));
+    } else {
+      document.getElementById('perfNote').textContent = 'Skipped (?perf=0).';
+    }
 
     const passed = engineResult.passed + appResult.passed;
     const failed = engineResult.failed + appResult.failed;
@@ -96,6 +114,16 @@
 
     summaryEl.textContent = `${passed} passed, ${failed} failed (${total} total)`;
     summaryEl.className = failed > 0 ? 'bad' : 'ok';
+
+    // Machine-readable result, so a CI runner can read the outcome and the individual failure
+    // messages rather than scraping this page's markup.
+    window.__TEST_RESULTS__ = {
+      passed, failed, total,
+      failures: Array.from(document.querySelectorAll('li.fail')).map((li) => ({
+        name: li.childNodes[0].textContent.replace(/^\u2717\s*/, ''),
+        detail: li.querySelector('.detail') ? li.querySelector('.detail').textContent : ''
+      }))
+    };
   })();
   </script>
 </body>
