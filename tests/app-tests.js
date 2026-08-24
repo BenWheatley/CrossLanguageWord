@@ -278,4 +278,30 @@ test('solving the puzzle correctly triggers the celebration overlay', async () =
       .map((li) => li.textContent).sort().join('|');
     assertEqual(answersAfter, answersBefore, 'the same puzzle should come back, not a fresh one');
   });
+
+  test('regenerating can show a different clue for a word, not the one it was stuck with on load', async () => {
+    // Deutsch A2 is the smallest bundled list, so words recur quickly across regenerations.
+    const app = await bootApp('?list=german_a2&words=30');
+    const doc = app.document;
+    const seen = new Map();
+
+    for(let i = 0; i < 25; i++){
+      doc.getElementById('generateBtn').click();
+      const pairs = [['#printAnswerAcross', '#acrossList'], ['#printAnswerDown', '#downList']];
+      for(const [answerSel, clueSel] of pairs){
+        const answers = Array.from(doc.querySelectorAll(answerSel + ' li'))
+          .map((li) => li.textContent.replace(/^\d+\.\s*/, ''));
+        const clues = Array.from(doc.querySelectorAll(clueSel + ' li'))
+          .map((li) => li.textContent.replace(/^\d+/, ''));
+        answers.forEach((answer, ix) => {
+          if(!seen.has(answer)) seen.set(answer, new Set());
+          seen.get(answer).add(clues[ix]);
+        });
+      }
+      for(const clueSet of seen.values()){
+        if(clueSet.size > 1) return; // a word has been shown with two different clues - done
+      }
+    }
+    throw new Error('no word ever showed a second clue across 25 regenerations - clues look frozen');
+  });
 }

@@ -226,11 +226,12 @@
       if(!w || typeof w.word !== 'string') continue;
       const answer = normalizeText(w.word.trim());
       if(graphemes(answer).length < 2) continue; // skip 1-letter/empty entries
-      let clue = '';
-      if(Array.isArray(w.clues) && w.clues.length){
-        clue = w.clues[Math.floor(Math.random()*w.clues.length)];
-      }
-      cleaned.push({ answer: toUpperGrapheme(answer), clue: clue || '(no clue provided)' });
+      // Keep every clue the list offers. Which one to show is a per-puzzle decision, not a
+      // per-session one - see pickClues().
+      const clues = Array.isArray(w.clues)
+        ? w.clues.filter(c => typeof c === 'string' && c.trim())
+        : [];
+      cleaned.push({ answer: toUpperGrapheme(answer), clues: clues.length ? clues : ['(no clue provided)'] });
     }
     if(cleaned.length < 2){
       setStatus('Found fewer than 2 usable words in that file.', true);
@@ -828,6 +829,19 @@
     updateUrlParams();
   }
 
+  // Every word in the bundled lists carries at least two hand-written clues, and some carry five.
+  // Choosing one per word at *load* time froze it for the whole session: regenerating gave you a
+  // new grid but word-for-word identical clues, so the alternates only ever surfaced on a full
+  // page reload. Choose per puzzle instead, so the extra clues are actually reachable.
+  //
+  // The bank's order is preserved, because that is what the generator shuffles.
+  function pickClues(bank){
+    return bank.map(w => ({
+      answer: w.answer,
+      clue: w.clues[Math.floor(Math.random() * w.clues.length)]
+    }));
+  }
+
   function generate(){
     if(!wordBank.length){
       setStatus('Load a word list first.', true);
@@ -835,7 +849,7 @@
     }
     const n = Math.max(2, Math.min(parseInt(wordCountInput.value,10)||2, wordBank.length));
     closeCelebration();
-    const result = buildCrossword(wordBank, n, undefined, computeMaxCols());
+    const result = buildCrossword(pickClues(wordBank), n, undefined, computeMaxCols());
     const built = trimAndIndex(result);
     const numbering = numberGrid(built);
     renderGrid(built, numbering);
