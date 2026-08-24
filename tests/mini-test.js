@@ -33,11 +33,11 @@ function createRunner(){
         await fn();
         passed++;
         row.className = 'pass';
-        row.textContent = '✓ ' + name;
+        row.textContent = '\u2713 ' + name;
       }catch(err){
         failed++;
         row.className = 'fail';
-        row.textContent = '✗ ' + name;
+        row.textContent = '\u2717 ' + name;
         const detail = document.createElement('div');
         detail.className = 'detail';
         detail.textContent = (err && err.message) ? err.message : String(err);

@@ -1,9 +1,8 @@
 /**
- * app-tests.js - integration tests for the interactive app, driven through a real iframe
- * (see app-helpers.js). Registered onto the shared runner created in tests/index.html.
+ * app-tests.js - end-to-end tests that drive the real ../index.html inside a hidden iframe,
+ * using the helpers in app-helpers.js.
  *
- * Requires the test page to be served over http(s) so the app's own fetch('german.json' etc.)
- * calls succeed - same requirement as the app itself.
+ * Registered onto the shared runner created in tests/index.html.
  */
 function registerAppTests(test){
 
@@ -92,7 +91,7 @@ function registerAppTests(test){
     assertNotEqual(document.activeElement, start);
   });
 
-  test('dead-key composition (¨+u→ü) resolves correctly and then advances', async () => {
+  test('dead-key composition (¨+u\u2192ü) resolves correctly and then advances', async () => {
     const app = await bootApp('?list=german&words=10');
     const { document, window } = app;
     const cell = document.activeElement;
@@ -149,12 +148,49 @@ function registerAppTests(test){
     assertTrue(!wrapAt(start.r, start.c).classList.contains('check-incorrect'));
   });
 
-  test('solving the puzzle correctly triggers the celebration overlay', async () => {
+  test('typed progress survives a reload (same puzzle restored, not a new random one)', async () => {
+  const app = await bootApp('?list=german&words=10');
+  const { document: appDoc, window: appWin } = app;
+
+  const firstInput = appDoc.activeElement;
+  const r = firstInput.dataset.r, c = firstInput.dataset.c;
+  firstInput.dispatchEvent(new appWin.KeyboardEvent('keydown', { key: 'X', bubbles: true }));
+  firstInput.value = 'X';
+  firstInput.dispatchEvent(new appWin.Event('input', { bubbles: true }));
+
+  const originalFirstClue = appDoc.querySelector('#acrossList li, #downList li').textContent;
+  const originalCellCount = appDoc.querySelectorAll('#grid .cell').length;
+
+  // Wait past the debounced save, then navigate the iframe back to the exact same URL - a
+  // real reload - without clearing localStorage first (bootApp() normally clears it for
+  // test isolation; here we want the opposite, to prove state actually survives). #appFrame
+  // lives in this outer test page's own document, not the app's (appDoc) - using the plain
+  // top-level `document` here on purpose.
+  await new Promise((resolve) => setTimeout(resolve, 500));
+  const iframe = document.getElementById('appFrame');
+  await new Promise((resolve) => {
+    function onLoad(){
+      iframe.removeEventListener('load', onLoad);
+      waitFor(() => iframe.contentWindow.document.querySelectorAll('#grid .cell').length > 0).then(resolve);
+    }
+    iframe.addEventListener('load', onLoad);
+    iframe.src = 'about:blank';
+    iframe.src = '../index.html?list=german&words=10';
+  });
+
+  const doc2 = iframe.contentWindow.document;
+  assertEqual(doc2.querySelectorAll('#grid .cell').length, originalCellCount, 'restored grid should be the same size, not a fresh random one');
+  assertEqual(doc2.querySelector('#acrossList li, #downList li').textContent, originalFirstClue, 'restored puzzle should have the exact same clues, not a new random puzzle');
+  const restoredCell = doc2.querySelector(`#grid .cell input[data-r="${r}"][data-c="${c}"]`);
+  assertEqual(restoredCell.value, 'X', 'the letter typed before reload should still be filled in');
+});
+
+test('solving the puzzle correctly triggers the celebration overlay', async () => {
     const app = await bootApp('?list=english&words=2');
     const { document, window } = app;
     const acrossKey = Array.from(document.querySelectorAll('#printAnswerAcross li')).map((li) => li.textContent);
     const downKey = Array.from(document.querySelectorAll('#printAnswerDown li')).map((li) => li.textContent);
-    if(acrossKey.length !== 1 || downKey.length !== 1) return; // rare 2-word shape, skip
+    if(acrossKey.length !== 1 || downKey.length !== 1) return;
 
     const [acrossNum, acrossAns] = acrossKey[0].split('. ');
     const [downNum, downAns] = downKey[0].split('. ');

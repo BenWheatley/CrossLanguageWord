@@ -18,12 +18,8 @@ function waitFor(predicate, timeout = 5000, interval = 20){
   });
 }
 
-/**
- * Loads (or reloads) the app in the shared #appFrame iframe and waits until it has actually
- * finished generating a puzzle, not just until the iframe's 'load' event fires.
- * @param {string} query e.g. '?list=german&words=10'
- */
 function bootApp(query = ''){
+  try{ localStorage.removeItem('crossword-trainer-state'); }catch(e){}
   return new Promise((resolve) => {
     const iframe = document.getElementById('appFrame');
     const target = '../index.html' + query;
@@ -39,7 +35,6 @@ function bootApp(query = ''){
       });
     }
     iframe.addEventListener('load', onLoad);
-    // Force a real reload even if the src string is unchanged from last time.
     if(iframe.src.endsWith(target)) iframe.src = 'about:blank';
     iframe.src = target;
   });
@@ -55,7 +50,6 @@ function typeInto(input, win, char){
   input.dispatchEvent(new win.Event('input', { bubbles: true }));
 }
 
-/** Builds an {r,c}->input lookup for the current grid, plus a lookup from clue number to its start cell. */
 function gridIndex(doc){
   const inputs = Array.from(doc.querySelectorAll('#grid .cell input'));
   const byPos = {};
