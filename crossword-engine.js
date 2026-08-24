@@ -26,9 +26,31 @@
   function toUpperGrapheme(str){
     return str.toLocaleUpperCase();
   }
+
+  // Text arriving from a word list has to be normalized before it is measured or split, because
+  // the same visible word has more than one valid encoding: "über" can be stored precomposed
+  // (U+00DC) or decomposed (U+0055 U+0308), and macOS-authored files routinely use the latter.
+  // Decomposed text gives the combining mark its own grid cell, so the word occupies one more
+  // square than it has letters and that square can never be filled - the puzzle simply cannot be
+  // solved. Everything the user types is normalized to NFC before comparison, so normalizing the
+  // word list the same way is what makes the two comparable at all.
+  function normalizeText(str){
+    return str.normalize('NFC');
+  }
+
+  // Split into user-perceived characters. Array.from() alone splits by code point, which is
+  // correct for astral characters (emoji, 𝔘) but still separates a combining mark from the
+  // letter it belongs to - and not every mark has a precomposed form for normalizeText() to fold
+  // away. Intl.Segmenter does the real Unicode grapheme-cluster segmentation where it exists;
+  // Array.from() remains the fallback for older engines.
+  const segmenter = (typeof Intl !== 'undefined' && typeof Intl.Segmenter === 'function')
+    ? new Intl.Segmenter(undefined, { granularity: 'grapheme' })
+    : null;
   function graphemes(str){
-    // Good-enough grapheme split: handles surrogate pairs (astral chars).
-    return Array.from(str);
+    if(!segmenter) return Array.from(str);
+    const out = [];
+    for(const { segment } of segmenter.segment(str)) out.push(segment);
+    return out;
   }
 
   function shuffle(arr){
@@ -385,6 +407,7 @@
 
   return {
     toUpperGrapheme,
+    normalizeText,
     graphemes,
     shuffle,
     key,
