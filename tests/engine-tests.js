@@ -7,6 +7,8 @@
 function registerEngineTests(test){
   const engine = window.CrosswordEngine;
 
+  const GOLDEN_RNG_VALUES = ['0.012550512096', '0.860431064852', '0.447748388397', '0.767062008381'];
+
   async function loadBank(filename){
     const res = await fetch('../' + filename);
     const data = await res.json();
@@ -107,7 +109,7 @@ function registerEngineTests(test){
     for(const w of bank) counts.set(w.answer, 0);
     const trials = 40, target = 15;
     for(let i = 0; i < trials; i++){
-      const result = engine.buildCrossword(bank, target, 20); // small time budget keeps this test fast
+      const result = engine.buildCrossword(bank, target, { attempts: 3 }); // few attempts keeps this test fast
       for(const p of result.placements) counts.set(p.word.answer, counts.get(p.word.answer) + 1);
     }
     const freqs = Array.from(counts.values());
@@ -141,15 +143,61 @@ function registerEngineTests(test){
     }
   });
 
-  test('buildCrossword() respects its time budget (does not run drastically longer than requested)', async () => {
+  // ---------- reproducibility ----------
+  // A seed in a URL is only worth having if it names the same puzzle everywhere. These pin that
+  // down; the golden-values test below is the one that would catch someone swapping the PRNG.
+
+  test('makeRng() produces the documented stream (changing this invalidates every shared URL)', () => {
+    // Captured from the mulberry32 + FNV-1a implementation in crossword-engine.js. They depend
+    // only on Math.imul, xor, unsigned shifts and a division by 2^32, so every engine must agree.
+    // If this fails, the PRNG changed and every seed anyone has shared now opens a different
+    // puzzle - that is a breaking change, not a test to update casually.
+    const rnd = engine.makeRng('abc123');
+    const got = [rnd(), rnd(), rnd(), rnd()].map((v) => v.toFixed(12));
+    assertEqual(got.join(','), GOLDEN_RNG_VALUES.join(','));
+  });
+
+  test('makeRng() gives uncorrelated streams for seeds differing by one character', () => {
+    const a = engine.makeRng('seed1');
+    const b = engine.makeRng('seed2');
+    let shared = 0;
+    for(let i = 0; i < 20; i++){ if(a() === b()) shared++; }
+    assertEqual(shared, 0, 'neighbouring seeds should not produce overlapping streams');
+  });
+
+  test('buildCrossword() rebuilds an identical puzzle from the same seed', async () => {
     const bank = await loadBank('german.json');
-    const budgetMs = 50;
-    const t0 = performance.now();
-    engine.buildCrossword(bank, 20, budgetMs);
-    const elapsed = performance.now() - t0;
-    // Generous slack (a single in-flight attempt can finish after the deadline passes) - this
-    // is a sanity check against runaway behavior, not a tight timing guarantee.
-    assertTrue(elapsed < budgetMs * 5, `took ${elapsed.toFixed(0)}ms for a ${budgetMs}ms budget`);
+    const describe = (result) => result.placements
+      .map((p) => `${p.word.answer}@${p.row},${p.col},${p.dir}`).join('|');
+    for(const seed of ['abc123', 'zzz999', 'q']){
+      const first = engine.buildCrossword(bank, 20, { maxCols: 20, rng: engine.makeRng(seed) });
+      const second = engine.buildCrossword(bank, 20, { maxCols: 20, rng: engine.makeRng(seed) });
+      assertEqual(describe(second), describe(first), `seed ${seed} did not reproduce`);
+    }
+  });
+
+  test('buildCrossword() gives different puzzles for different seeds', async () => {
+    const bank = await loadBank('german.json');
+    const describe = (seed) => engine
+      .buildCrossword(bank, 20, { maxCols: 20, rng: engine.makeRng(seed) })
+      .placements.map((p) => p.word.answer).join('|');
+    assertNotEqual(describe('aaaaaa'), describe('bbbbbb'));
+  });
+
+  test('attemptsFor() is a pure function of the target, so speed cannot change the puzzle', () => {
+    // The old wall-clock budget meant a fast machine tried more layouts and settled on a
+    // different one. Attempt counts must depend on nothing but the word count.
+    for(const n of [2, 10, 15, 20, 30, 40, 60, 80, 120]){
+      assertEqual(engine.attemptsFor(n), engine.attemptsFor(n), `attemptsFor(${n}) is unstable`);
+      assertTrue(engine.attemptsFor(n) >= 1, `attemptsFor(${n}) must run at least once`);
+    }
+    // and more words must never mean more work per puzzle
+    let previous = Infinity;
+    for(const n of [10, 15, 20, 30, 40, 60, 80, 120]){
+      const attempts = engine.attemptsFor(n);
+      assertTrue(attempts <= previous, `attemptsFor(${n}) rose to ${attempts}`);
+      previous = attempts;
+    }
   });
 
   test('buildCrossword() reliably reaches the full requested count at various scales (all real lists)', async () => {
@@ -181,7 +229,7 @@ function registerEngineTests(test){
     const bank = await loadBank('german.json');
     for(const maxCols of [7, 10, 15, 20]){
       for(let trial = 0; trial < 5; trial++){
-        const result = engine.buildCrossword(bank, 20, undefined, maxCols);
+        const result = engine.buildCrossword(bank, 20, { maxCols });
         const bounds = engine.computeBounds(result.placements);
         assertTrue(bounds.cols <= maxCols, `maxCols=${maxCols} but grid came out ${bounds.cols} columns wide`);
       }

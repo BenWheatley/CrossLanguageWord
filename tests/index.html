@@ -49,14 +49,14 @@
   <h2>index.html - interactive app (via a hidden iframe)</h2>
   <ul id="appResults"></ul>
 
-  <h2>buildCrossword() performance: time budget vs grid size</h2>
-  <p id="perfNote">Each row runs <code>buildCrossword(bank, target, timeBudgetMs)</code> a few
-    times and averages the results. A bigger budget tries more randomized layouts before
-    settling, generally shrinking the grid, with diminishing returns as it goes. Watch where
-    "avg area" stops meaningfully improving relative to the budget spent to judge whether the
-    current default (160ms) is a reasonable place to sit.</p>
+  <h2>buildCrossword() performance: attempts vs grid size</h2>
+  <p id="perfNote">Each row builds a 30-word puzzle from eight fixed seeds and averages the
+    results. More attempts means more randomized layouts tried before settling, generally
+    shrinking the grid, with diminishing returns as it goes. Watch where "avg area" stops
+    meaningfully improving relative to the time spent, to judge whether
+    <code>attemptsFor()</code> in crossword-engine.js sits in a sensible place.</p>
   <table id="perfTable">
-    <thead><tr><th>time budget (ms)</th><th>avg area</th><th>min area</th><th>avg actual time (ms)</th></tr></thead>
+    <thead><tr><th>attempts</th><th>avg area</th><th>min area</th><th>avg time (ms)</th></tr></thead>
     <tbody id="perfTableBody"></tbody>
   </table>
 

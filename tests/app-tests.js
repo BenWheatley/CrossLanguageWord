@@ -368,4 +368,64 @@ test('solving the puzzle correctly triggers the celebration overlay', async () =
     // generous ceiling here still catches a return to the old cubic blow-up.
     assertTrue(elapsed < 3000, `generating 120 words blocked for ${Math.round(elapsed)}ms`);
   });
+
+  // ---------- shareable puzzles ----------
+
+  function describePuzzle(doc){
+    return {
+      grid: Array.from(doc.querySelectorAll('#grid .cell'))
+        .map((c) => c.classList.contains('block') ? '#' : '.').join(''),
+      answers: Array.from(doc.querySelectorAll('#printAnswerAcross li, #printAnswerDown li'))
+        .map((li) => li.textContent).join('|'),
+      clues: Array.from(doc.querySelectorAll('#acrossList li, #downList li'))
+        .map((li) => li.textContent).join('|')
+    };
+  }
+
+  test('the address bar always names the puzzle on screen with a seed', async () => {
+    const app = await bootApp('?list=german&words=15');
+    const search = app.window.location.search;
+    assertTrue(/seed=[a-z0-9]+/.test(search), `no seed in ${search}`);
+  });
+
+  test('a seeded URL rebuilds the identical puzzle - grid, words and clues', async () => {
+    const first = await bootApp('?list=german&words=15');
+    const before = describePuzzle(first.document);
+    const shared = first.window.location.search;
+
+    const replay = await bootApp(shared);
+    const after = describePuzzle(replay.document);
+
+    assertEqual(after.grid, before.grid, 'same seed should give the same grid shape');
+    assertEqual(after.answers, before.answers, 'same seed should give the same words');
+    assertEqual(after.clues, before.clues, 'same seed should give the same clues');
+  });
+
+  test('a hand-written seed is honoured', async () => {
+    const a = await bootApp('?list=english&words=12&seed=abc123');
+    const b = await bootApp('?list=english&words=12&seed=abc123');
+    assertEqual(describePuzzle(b.document).answers, describePuzzle(a.document).answers);
+    assertTrue(a.window.location.search.includes('seed=abc123'), 'the seed should survive in the URL');
+  });
+
+  test('different seeds give different puzzles', async () => {
+    const a = await bootApp('?list=english&words=12&seed=aaaaaa');
+    const b = await bootApp('?list=english&words=12&seed=bbbbbb');
+    assertNotEqual(describePuzzle(b.document).answers, describePuzzle(a.document).answers);
+  });
+
+  test('New crossword moves to a new seed rather than replaying the old one', async () => {
+    const app = await bootApp('?list=german&words=15&seed=abc123');
+    const before = describePuzzle(app.document);
+    app.document.getElementById('generateBtn').click();
+    const after = describePuzzle(app.document);
+    assertNotEqual(after.answers, before.answers, 'a new puzzle was expected');
+    assertTrue(!app.window.location.search.includes('seed=abc123'), 'the seed should have moved on');
+  });
+
+  test('a garbage seed falls back to a fresh puzzle rather than breaking', async () => {
+    const app = await bootApp('?list=english&words=10&seed=' + encodeURIComponent('!!! not a seed !!!'));
+    assertEqual(app.errors.length, 0, app.errors.join('; '));
+    assertEqual(app.document.querySelectorAll('#acrossList li, #downList li').length, 10);
+  });
 }

@@ -53,10 +53,62 @@
     return out;
   }
 
-  function shuffle(arr){
+  // ---------- deterministic randomness ----------
+  // Math.random() cannot be seeded and is not specified to agree between engines, so a puzzle
+  // built with it cannot be described by a short string and rebuilt elsewhere. Everything random
+  // in here therefore runs off a caller-supplied generator, and makeRng() supplies one that is
+  // reproducible anywhere: hash the seed to a 32-bit integer, then run mulberry32 over it.
+  //
+  // Both steps use only Math.imul, xor and unsigned shifts - integer operations with exactly
+  // defined results in every JavaScript engine - and the single division is by 2^32, which is
+  // exact in float64. So the same seed yields the same stream of numbers on any OS, browser or
+  // engine version. That portability is the whole point: it is what lets a seed in a URL name a
+  // puzzle rather than merely a puzzle-shaped thing.
+
+  function hashSeed(str){
+    let h = 2166136261 >>> 0;               // FNV-1a offset basis
+    for(let i=0;i<str.length;i++){
+      h ^= str.charCodeAt(i);               // UTF-16 code units - engine-independent
+      h = Math.imul(h, 16777619);
+    }
+    // Avalanche, so that seeds differing in one character ("a1" vs "a2") don't start out
+    // producing near-identical streams.
+    h ^= h >>> 16; h = Math.imul(h, 2246822507);
+    h ^= h >>> 13; h = Math.imul(h, 3266489909);
+    h ^= h >>> 16;
+    return h >>> 0;
+  }
+
+  /** @returns {function(): number} a reproducible generator over [0, 1), like Math.random. */
+  function makeRng(seed){
+    let a = hashSeed(String(seed));
+    return function(){
+      a = (a + 0x6D2B79F5) | 0;
+      let t = Math.imul(a ^ (a >>> 15), 1 | a);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+
+  const SEED_ALPHABET = 'abcdefghijklmnopqrstuvwxyz0123456789';
+  const SEED_LENGTH = 6;
+  /** A fresh seed, short enough to read out loud or type from a printed sheet. */
+  function randomSeed(){
+    let out = '';
+    for(let i=0;i<SEED_LENGTH;i++){
+      out += SEED_ALPHABET[Math.floor(Math.random()*SEED_ALPHABET.length)];
+    }
+    return out;
+  }
+  /** Seeds are compared and stored lowercase; anything else is not a seed we produced. */
+  function isValidSeed(value){
+    return typeof value === 'string' && /^[a-z0-9]{1,16}$/.test(value);
+  }
+
+  function shuffle(arr, rnd = Math.random){
     const a = arr.slice();
     for(let i=a.length-1;i>0;i--){
-      const j = Math.floor(Math.random()*(i+1));
+      const j = Math.floor(rnd()*(i+1));
       [a[i],a[j]] = [a[j],a[i]];
     }
     return a;
@@ -300,8 +352,8 @@
   // whichever ones happen to be easier to interlock, or certain vocabulary would get shown far
   // more often than the rest across repeated generations. The only constraint is basic
   // feasibility: at least one word needs to fit within maxCols so there's a valid starting point.
-  function pickRandomSubset(bank, target, maxCols){
-    const pool = shuffle(bank);
+  function pickRandomSubset(bank, target, maxCols, rnd = Math.random){
+    const pool = shuffle(bank, rnd);
     const subset = pool.slice(0, Math.min(target, pool.length));
     if(Number.isFinite(maxCols)){
       const fits = w => graphemes(w.answer).length <= maxCols;
@@ -333,38 +385,61 @@
     return { minR, minC, rows: maxR-minR+1, cols: maxC-minC+1 };
   }
 
+  // How many differently-shuffled layouts to try before settling on the smallest. This used to be
+  // a wall-clock budget, which adapted nicely to machine speed but meant a fast computer tried
+  // more layouts than a slow one and therefore produced a *different* puzzle from the same
+  // inputs. A seed that only reproduces a puzzle on hardware like yours is not worth having, so
+  // the count is now a pure function of the target instead.
+  //
+  // The ladder tracks measured per-attempt cost on german.json (0.4ms at 5 words, 5.5ms at 20,
+  // 58ms at 40, 113ms at 60, 729ms at 120 - it grows far faster than the word count does), aiming
+  // to keep every size in roughly the same few-hundred-millisecond band. Wall-clock time still
+  // varies with the machine; which puzzle you get no longer does.
+  function attemptsFor(target){
+    if(target <= 10) return 120;
+    if(target <= 15) return 60;
+    if(target <= 20) return 40;
+    if(target <= 30) return 12;
+    if(target <= 40) return 5;
+    if(target <= 60) return 3;
+    if(target <= 80) return 2;
+    return 1;
+  }
+
   /**
    * @param {Array} bank - candidate words, each {answer, clue}
    * @param {number} targetCount - how many words to try to place
-   * @param {number} timeBudgetMs - keep trying different arrangements of the same randomly
-   *   chosen word subset for about this many milliseconds, keeping whichever arrangement came
-   *   out smallest. Always runs at least one attempt regardless of the budget. Bigger puzzles
-   *   naturally get fewer attempts (each one costs more), smaller puzzles get more - this adapts
-   *   automatically rather than needing a fixed count tuned for one size.
-   * @param {number} maxCols - if given, caps how many columns wide the finished grid can be
-   *   (no cap on rows). The grid grows taller instead of wider once this limit is reached.
+   * @param {object} [options]
+   * @param {number} [options.maxCols] - caps how many columns wide the finished grid can be (no
+   *   cap on rows). The grid grows taller instead of wider once this limit is reached.
+   * @param {function} [options.rng] - the source of randomness. Pass one from makeRng() for a
+   *   reproducible puzzle; defaults to Math.random for a different one every time.
+   * @param {number} [options.attempts] - override the attempt count from attemptsFor().
    */
-  function buildCrossword(bank, targetCount, timeBudgetMs = 160, maxCols = Infinity){
+  function buildCrossword(bank, targetCount, options = {}){
+    const maxCols = options.maxCols === undefined ? Infinity : options.maxCols;
+    const rnd = options.rng || Math.random;
     const target = Math.min(targetCount, bank.length);
+    const attempts = Math.max(1, options.attempts || attemptsFor(target));
+
     // Which words appear is decided once, uniformly at random - not re-rolled per attempt, or
     // whichever random sample happens to be easier to interlock would win more often, silently
     // favoring some vocabulary over the rest across repeated generations.
-    const subset = pickRandomSubset(bank, target, maxCols);
+    const subset = pickRandomSubset(bank, target, maxCols, rnd);
 
     let best = null, bestArea = Infinity, bestPlacedCount = -1;
-    const deadline = Date.now() + timeBudgetMs;
-    do {
+    for(let i=0;i<attempts;i++){
       // What varies between attempts is purely the processing order of this same fixed subset -
       // attemptPlacement's disjoint-region fallback means the whole subset gets placed regardless
       // of order, so different shuffles just explore different resulting layouts.
-      const result = attemptPlacement(shuffle(subset), target, maxCols);
+      const result = attemptPlacement(shuffle(subset, rnd), target, maxCols);
       const bounds = computeBounds(result.placements);
       const placedCount = result.placements.length;
       const area = bounds.rows * bounds.cols;
       if(!best || placedCount > bestPlacedCount || (placedCount === bestPlacedCount && area < bestArea)){
         best = result; bestPlacedCount = placedCount; bestArea = area;
       }
-    } while(Date.now() < deadline);
+    }
 
     return best;
   }
@@ -409,7 +484,11 @@
     toUpperGrapheme,
     normalizeText,
     graphemes,
+    makeRng,
+    randomSeed,
+    isValidSeed,
     shuffle,
+    attemptsFor,
     key,
     attemptPlacement,
     pickRandomSubset,

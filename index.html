@@ -115,11 +115,13 @@
   let celebrated = false;
   let puzzleStartTime = null;
   const STORAGE_KEY = 'crossword-trainer-state';
-  const SAVE_VERSION = 2; // bumped when `params` replaced the old listSelect/wordCount fields
+  const SAVE_VERSION = 3; // bumped when `params` gained the seed
   let pendingRestore = null; // a saved puzzle waiting to be restored on first load, if any
+  let pendingSeed = null;    // a seed from the URL, waiting for the word list to finish loading
   let saveTimer = null;
   let bestTimeSeconds = null; // best solve time this session (not persisted)
   let currentListId = null; // 'english' | 'german' | null (custom file has no URL representation)
+  let currentSeed = null;   // the seed the visible puzzle was built from
 
   const fileInput = document.getElementById('fileInput');
   const wordListSelect = document.getElementById('wordListSelect');
@@ -152,7 +154,8 @@
 
   // ---------- crossword generation engine (crossword-engine.js) ----------
   const {
-    toUpperGrapheme, normalizeText, graphemes, key, buildCrossword, trimAndIndex, numberGrid
+    toUpperGrapheme, normalizeText, graphemes, key, makeRng, randomSeed, isValidSeed,
+    buildCrossword, trimAndIndex, numberGrid
   } = CrosswordEngine;
 
   // ---------- word lists ----------
@@ -279,8 +282,9 @@
       restoreFromSaved(pendingRestore);
       pendingRestore = null;
     } else {
-      generate();
+      generate(pendingSeed);
     }
+    pendingSeed = null;
   }
 
   // ---------- render ----------
@@ -761,6 +765,12 @@
     if(currentListId) params.set('list', currentListId);
     else params.delete('list'); // a custom-loaded file has no URL representation
     params.set('words', wordCountInput.value);
+    // With the seed here, the address bar is a complete description of the puzzle on screen -
+    // copy it to anyone and they get this grid, these words and these clues, not merely a puzzle
+    // of the same size. A custom-loaded file still has no URL representation, so a seed alone
+    // couldn't rebuild it; leave it out rather than imply otherwise.
+    if(currentSeed && currentListId) params.set('seed', currentSeed);
+    else params.delete('seed');
     const query = params.toString();
     const newUrl = window.location.pathname + (query ? '?' + query : '');
     history.replaceState(null, '', newUrl);
@@ -809,7 +819,7 @@
         celebrated,
         // The parameters this puzzle was generated from. Kept so a later visit can tell whether
         // an incoming URL is asking for this same puzzle or a different one - see initFromUrl.
-        params: { list: currentListId, words: Number(wordCountInput.value) },
+        params: { list: currentListId, words: Number(wordCountInput.value), seed: currentSeed },
       };
       localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
     }catch(e){
@@ -853,6 +863,7 @@
     celebrated = !!saved.celebrated; // don't replay the solved animation/confetti on a reload
     if(saved.params && saved.params.list) wordListSelect.value = saved.params.list;
     if(saved.params && saved.params.words) wordCountInput.value = saved.params.words;
+    if(saved.params && saved.params.seed) currentSeed = saved.params.seed;
     printBtn.disabled = false;
     checkBtn.disabled = false;
     setStatus('');
@@ -865,23 +876,35 @@
   // page reload. Choose per puzzle instead, so the extra clues are actually reachable.
   //
   // The bank's order is preserved, because that is what the generator shuffles.
-  function pickClues(bank){
+  function pickClues(bank, rnd){
     return bank.map(w => ({
       answer: w.answer,
-      clue: w.clues[Math.floor(Math.random() * w.clues.length)]
+      clue: w.clues[Math.floor(rnd() * w.clues.length)]
     }));
   }
 
-  function generate(){
+  // `seed` names the puzzle: the same seed, list and word count always rebuild the same grid,
+  // with the same words and the same clues. Called with no seed for a brand new puzzle.
+  function generate(seed){
     if(!wordBank.length){
       setStatus('Load a word list first.', true);
       return;
     }
+    seed = isValidSeed(seed) ? seed : randomSeed();
+    currentSeed = seed;
     const n = clampWordCount(parseInt(wordCountInput.value, 10) || DEFAULT_WORDS);
     // Reflect the clamp back, so the field never shows a number the puzzle didn't use.
     if(String(n) !== wordCountInput.value) wordCountInput.value = n;
     closeCelebration();
-    const result = buildCrossword(pickClues(wordBank), n, undefined, computeMaxCols());
+    // Two independent streams from the one seed, rather than one stream feeding both. Clue
+    // choice then doesn't shift just because the layout search drew a different number of
+    // values - so tuning attemptsFor() can never silently reword every existing shared puzzle.
+    const rngClues = makeRng(seed + '#clues');
+    const rngLayout = makeRng(seed + '#layout');
+    const result = buildCrossword(pickClues(wordBank, rngClues), n, {
+      maxCols: computeMaxCols(),
+      rng: rngLayout
+    });
     const built = trimAndIndex(result);
     const numbering = numberGrid(built);
     renderGrid(built, numbering);
@@ -923,13 +946,15 @@
     }
   });
 
-  generateBtn.addEventListener('click', generate);
+  // Wrapped rather than passed directly: as a listener, generate() would receive the click
+  // Event as its seed argument.
+  generateBtn.addEventListener('click', () => generate());
   checkBtn.addEventListener('click', () => { checkAnswers(); restoreFocusToCurrentCell(); });
   printBtn.addEventListener('click', () => { window.print(); restoreFocusToCurrentCell(); });
   printAnswersCk.addEventListener('change', () => {
     document.body.classList.toggle('print-answers', printAnswersCk.checked);
   });
-  celebrateNewBtn.addEventListener('click', generate);
+  celebrateNewBtn.addEventListener('click', () => generate());
   celebrateCloseBtn.addEventListener('click', () => { closeCelebration(); restoreFocusToCurrentCell(); });
   celebrateOverlay.addEventListener('click', (e) => { if(e.target === celebrateOverlay){ closeCelebration(); restoreFocusToCurrentCell(); } });
 
@@ -946,15 +971,24 @@
     const p = new URLSearchParams(search);
     const listParam = p.get('list');
     const wordsParam = parseInt(p.get('words'), 10);
+    const seedParam = (p.get('seed') || '').toLowerCase();
     return {
       list: LISTS[listParam] ? listParam : DEFAULT_LIST,
       words: Number.isFinite(wordsParam) && wordsParam >= 2 ? Math.min(wordsParam, MAX_WORDS) : DEFAULT_WORDS,
-      explicit: p.has('list') || p.has('words')
+      seed: isValidSeed(seedParam) ? seedParam : null,
+      explicit: p.has('list') || p.has('words') || p.has('seed')
     };
   }
 
-  function sameParams(a, b){
-    return !!a && !!b && a.list === b.list && Number(a.words) === Number(b.words);
+  // Does `requested` describe the puzzle `saved` already holds? Argument order matters: a URL
+  // that names no seed isn't asking for a *particular* german-15 puzzle, just a german-15 one,
+  // and the saved puzzle satisfies that - so resume it rather than throwing away answers in
+  // progress. Only an explicit, different seed means "not that one, this one".
+  function sameParams(requested, saved){
+    return !!requested && !!saved
+      && requested.list === saved.list
+      && Number(requested.words) === Number(saved.words)
+      && (!requested.seed || requested.seed === saved.seed);
   }
 
   (function initFromUrl(){
@@ -974,6 +1008,8 @@
 
     const active = resume && saved.params ? saved.params : requested;
     pendingRestore = resume ? saved : null;
+    // A link carrying a seed asks for one specific puzzle; hand it to the first generate().
+    pendingSeed = active.seed || null;
 
     wordCountInput.value = active.words;
     const list = LISTS[active.list] ? active.list : DEFAULT_LIST;
