@@ -304,4 +304,39 @@ test('solving the puzzle correctly triggers the celebration overlay', async () =
     }
     throw new Error('no word ever showed a second clue across 25 regenerations - clues look frozen');
   });
+
+  test('no puzzle contains the same answer twice, even from a list with duplicate entries', async () => {
+    // Deutsch A2 lists kaufen, brauchen and morgen twice each.
+    const app = await bootApp('?list=german_a2&words=60');
+    const doc = app.document;
+    for(let i = 0; i < 20; i++){
+      doc.getElementById('generateBtn').click();
+      const answers = Array.from(doc.querySelectorAll('#printAnswerAcross li, #printAnswerDown li'))
+        .map((li) => li.textContent.replace(/^\d+\.\s*/, ''));
+      const seen = new Set();
+      for(const answer of answers){
+        assertTrue(!seen.has(answer), `${answer} appeared twice in one puzzle`);
+        seen.add(answer);
+      }
+    }
+  });
+
+  test('duplicate list entries merge their clues rather than competing as two words', async () => {
+    const app = await bootApp('?list=german_a2&words=60');
+    const doc = app.document;
+    const cluesForKaufen = new Set();
+    for(let i = 0; i < 60 && cluesForKaufen.size < 4; i++){
+      doc.getElementById('generateBtn').click();
+      const pairs = [['#printAnswerAcross', '#acrossList'], ['#printAnswerDown', '#downList']];
+      for(const [answerSel, clueSel] of pairs){
+        const answers = Array.from(doc.querySelectorAll(answerSel + ' li'))
+          .map((li) => li.textContent.replace(/^\d+\.\s*/, ''));
+        const clues = Array.from(doc.querySelectorAll(clueSel + ' li'))
+          .map((li) => li.textContent.replace(/^\d+/, '').trim());
+        answers.forEach((answer, ix) => { if(answer === 'KAUFEN') cluesForKaufen.add(clues[ix]); });
+      }
+    }
+    // Both source entries carry two clues; all four should be reachable from the single merged word.
+    assertEqual(cluesForKaufen.size, 4, `only saw ${cluesForKaufen.size} distinct clues for KAUFEN`);
+  });
 }

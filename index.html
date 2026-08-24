@@ -221,7 +221,15 @@
       setStatus('That file does not look like a valid word list (expected a "words" array).', true);
       return;
     }
-    const cleaned = [];
+    // Keyed by answer, because the same answer twice in one grid reads as a mistake - the solver
+    // fills in the identical word in two places and assumes they misread something. Entries only
+    // have to differ once they're uppercased and normalized, which is the form the grid compares,
+    // so that's what's keyed on. Deutsch-A2.json really does list kaufen, brauchen and morgen
+    // twice each; at 60 words, 8 puzzles in 40 contained a repeat.
+    //
+    // Merge the clues rather than discarding the later entry: two list authors describing the
+    // same word two ways is exactly the variety pickClues() wants.
+    const byAnswer = new Map();
     for(const w of data.words){
       if(!w || typeof w.word !== 'string') continue;
       const answer = normalizeText(w.word.trim());
@@ -231,7 +239,19 @@
       const clues = Array.isArray(w.clues)
         ? w.clues.filter(c => typeof c === 'string' && c.trim())
         : [];
-      cleaned.push({ answer: toUpperGrapheme(answer), clues: clues.length ? clues : ['(no clue provided)'] });
+      const key = toUpperGrapheme(answer);
+      const existing = byAnswer.get(key);
+      if(existing){
+        for(const clue of clues){
+          if(!existing.clues.includes(clue)) existing.clues.push(clue);
+        }
+      } else {
+        byAnswer.set(key, { answer: key, clues: clues.slice() });
+      }
+    }
+    const cleaned = Array.from(byAnswer.values());
+    for(const w of cleaned){
+      if(!w.clues.length) w.clues.push('(no clue provided)');
     }
     if(cleaned.length < 2){
       setStatus('Found fewer than 2 usable words in that file.', true);
