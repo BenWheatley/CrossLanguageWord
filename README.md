@@ -214,6 +214,11 @@ The suite exercises the generator directly and also drives the real
 `index.html` inside an off-screen frame, so the thing under test is the thing
 you actually run.
 
+A few cases need a genuine top-level page reload, which a frame cannot provide;
+those live in `tests/ci/` and run under Playwright. Everything that can be
+tested in the frame stays in the page above, so there is only one suite to keep
+up to date.
+
 The same page is run automatically on every push, in Chromium, Firefox and
 WebKit, by the workflow in `.github/workflows/tests.yml`. That arrangement
 uses Playwright merely to open the page and read the result, so there is only
@@ -236,6 +241,10 @@ static server.
   for a moment while it is built. This is normal.
 * **Your best time is not remembered between sessions.** It is shown for
   comparison within a sitting only.
+* **A very large word list of your own is not kept between sessions.** Ordinary
+  lists are stored with the puzzle so you can carry on where you left off; one
+  too big for that leaves the puzzle intact but asks you to load the file again
+  before making a new crossword.
 
 ## 12. TROUBLESHOOTING
 

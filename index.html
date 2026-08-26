@@ -119,13 +119,18 @@
   let celebrated = false;
   let puzzleStartTime = null;
   const STORAGE_KEY = 'crossword-trainer-state';
-  const SAVE_VERSION = 3; // bumped when `params` gained the seed
+  const SAVE_VERSION = 4; // bumped when a loaded file's words started being saved too
   let pendingRestore = null; // a saved puzzle waiting to be restored on first load, if any
   let pendingSeed = null;    // a seed from the URL, waiting for the word list to finish loading
   let saveTimer = null;
   let bestTimeSeconds = null; // best solve time this session (not persisted)
   let currentListId = null; // 'english' | 'german' | null (custom file has no URL representation)
   let currentSeed = null;   // the seed the visible puzzle was built from
+  let currentListTitle = 'Crossword Trainer';
+  let currentListLanguage = null;
+  // A list the reader loaded from their own file has no ?list= id and no URL to fetch it back
+  // from, so resuming one means carrying the words themselves in the saved state.
+  const CUSTOM_LIST_BUDGET_BYTES = 1500000;
 
   const fileInput = document.getElementById('fileInput');
   const wordListSelect = document.getElementById('wordListSelect');
@@ -275,21 +280,16 @@
       setStatus('Found fewer than 2 usable words in that file.', true);
       return;
     }
-    wordBank = cleaned;
     const title = (data.metadata && data.metadata.title) ? data.metadata.title : 'Crossword Trainer';
-    pageTitle.textContent = title;
     // The document claimed lang="en" whatever was on screen, so a screen reader read German
     // answers with English pronunciation rules. A "de-en" list is mostly German, so take the
     // first subtag.
     const language = data.metadata && typeof data.metadata.language === 'string'
       ? data.metadata.language.split('-')[0]
       : null;
-    document.documentElement.lang = language || 'en';
-    pageTagline.textContent = wordBank.length + ' words available';
-    wordCountInput.max = Math.min(MAX_WORDS, wordBank.length);
-    wordCountInput.value = clampWordCount(parseInt(wordCountInput.value, 10) || DEFAULT_WORDS);
-    generateBtn.disabled = false;
-    setStatus('');
+
+    adoptWordBank(cleaned, title, language);
+
     if(pendingRestore){
       restoreFromSaved(pendingRestore);
       pendingRestore = null;
@@ -297,6 +297,22 @@
       generate(pendingSeed);
     }
     pendingSeed = null;
+  }
+
+  // Everything that happens once a bank of words is ready, whoever produced it: a fetched file, a
+  // file the reader chose, or one recovered from a previous session's saved state. Separate from
+  // loadWordBank so that last case can skip parsing and fetching entirely.
+  function adoptWordBank(words, title, language){
+    wordBank = words;
+    currentListTitle = title;
+    currentListLanguage = language || null;
+    pageTitle.textContent = title;
+    document.documentElement.lang = language || 'en';
+    pageTagline.textContent = wordBank.length + ' words available';
+    wordCountInput.max = Math.min(MAX_WORDS, wordBank.length);
+    wordCountInput.value = clampWordCount(parseInt(wordCountInput.value, 10) || DEFAULT_WORDS);
+    generateBtn.disabled = false;
+    setStatus('');
   }
 
   // ---------- render ----------
@@ -489,8 +505,14 @@
     currentWordKey = wid;
     highlightWord(wid);
     cell.wrap.classList.add('active');
-    cell.input.focus();
-    cell.input.select();
+    // A modal dialog keeps focus. Filling the final square opens the celebration, and any input
+    // events arriving after that - a fast typist finishing a crossing word, or a script filling
+    // the grid - would otherwise drag focus back out of the dialog and into the grid behind it.
+    // The highlight still follows along; only the focus is withheld.
+    if(!celebrateOverlay.classList.contains('show')){
+      cell.input.focus();
+      cell.input.select();
+    }
   }
 
   function focusFirstCell(){
@@ -683,7 +705,15 @@
     celebrateOverlay.hidden = false;
     celebrateOverlay.classList.add('show');
     document.addEventListener('keydown', trapCelebrateFocus, true);
+    // Focus twice, deliberately. An element that was display:none a moment ago is not reliably
+    // focusable in the same tick - WebKit drops the call - so retry once the overlay has been
+    // laid out. But requestAnimationFrame does not run in a hidden or backgrounded frame, so the
+    // immediate attempt has to be there too. Whichever works, works; focusing an
+    // already-focused element does nothing.
     celebrateNewBtn.focus();
+    requestAnimationFrame(() => {
+      if(celebrateOverlay.classList.contains('show')) celebrateNewBtn.focus();
+    });
     startFireworks();
   }
 
@@ -965,6 +995,24 @@
         // an incoming URL is asking for this same puzzle or a different one - see initFromUrl.
         params: { list: currentListId, words: Number(wordCountInput.value), seed: currentSeed },
       };
+      // A bundled list can be fetched again by its id. A list the reader supplied cannot - there
+      // is no URL for it and the browser will not reopen a file by name - so resuming that puzzle
+      // means keeping the words themselves. Without this the grid came back but the word bank
+      // behind it was whichever bundled list loaded by default, so "New crossword" silently
+      // changed language and the heading named the wrong list.
+      if(!currentListId){
+        state.customList = { title: currentListTitle, language: currentListLanguage };
+        const withWords = JSON.stringify(
+          Object.assign({}, state, { customList: Object.assign({}, state.customList, { words: wordBank }) })
+        );
+        // Very large lists are not worth blowing the storage quota over - and failing to save
+        // would lose the typed answers too, which matter more. Keep the puzzle either way and
+        // let restoreFromSaved explain that the list needs loading again.
+        if(withWords.length <= CUSTOM_LIST_BUDGET_BYTES){
+          localStorage.setItem(STORAGE_KEY, withWords);
+          return;
+        }
+      }
       localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
     }catch(e){
       // localStorage unavailable (private browsing, quota exceeded, etc.) - the app still
@@ -976,6 +1024,21 @@
     clearTimeout(saveTimer);
     saveTimer = setTimeout(saveState, 250);
   }
+
+  // Saves are debounced, so closing the tab within a quarter-second of the last keystroke would
+  // otherwise lose it. pagehide is the reliable point to flush at - unload is unreliable on
+  // mobile, where a tab can be discarded without one - and visibilitychange covers the case of
+  // switching away and never coming back.
+  window.addEventListener('pagehide', () => {
+    clearTimeout(saveTimer);
+    saveState();
+  });
+  document.addEventListener('visibilitychange', () => {
+    if(document.visibilityState === 'hidden'){
+      clearTimeout(saveTimer);
+      saveState();
+    }
+  });
 
   function loadSavedState(){
     try{
@@ -1008,6 +1071,25 @@
     if(saved.params && saved.params.list) wordListSelect.value = saved.params.list;
     if(saved.params && saved.params.words) wordCountInput.value = saved.params.words;
     if(saved.params && saved.params.seed) currentSeed = saved.params.seed;
+
+    if(saved.customList){
+      // Put the select back on its placeholder: none of the named lists is what is on screen.
+      wordListSelect.value = '';
+      if(Array.isArray(saved.customList.words) && saved.customList.words.length){
+        adoptWordBank(saved.customList.words, saved.customList.title, saved.customList.language);
+      } else {
+        // The list was too big to keep. The puzzle and the answers are intact, but there is
+        // nothing to build a new one from until the file is loaded again - say so rather than
+        // leaving "New crossword" quietly producing German.
+        wordBank = [];
+        generateBtn.disabled = true;
+        pageTitle.textContent = saved.customList.title || 'Crossword Trainer';
+        document.documentElement.lang = saved.customList.language || 'en';
+        pageTagline.textContent = 'resumed from a loaded file';
+        setStatus('Resumed your puzzle. That word list was too large to keep, so load the file '
+          + 'again from the options menu before making a new crossword.', true);
+      }
+    }
     printBtn.disabled = false;
     checkBtn.disabled = false;
     setStatus('');
@@ -1125,6 +1207,10 @@
       list: LISTS[listParam] ? listParam : DEFAULT_LIST,
       words: Number.isFinite(wordsParam) && wordsParam >= 2 ? Math.min(wordsParam, MAX_WORDS) : DEFAULT_WORDS,
       seed: isValidSeed(seedParam) ? seedParam : null,
+      // Whether the URL actually named a list, as opposed to us having defaulted one in above.
+      // A puzzle built from a loaded file has no id to put in the URL, so its saved list is null
+      // and would never match the default - see sameParams.
+      listExplicit: p.has('list'),
       explicit: p.has('list') || p.has('words') || p.has('seed')
     };
   }
@@ -1135,7 +1221,10 @@
   // progress. Only an explicit, different seed means "not that one, this one".
   function sameParams(requested, saved){
     return !!requested && !!saved
-      && requested.list === saved.list
+      // Compare the list only when the URL named one. Otherwise `list` here is just the default
+      // we filled in, which contradicts nothing - and in particular does not contradict a saved
+      // puzzle built from a loaded file, whose list is null by nature.
+      && (!requested.listExplicit || requested.list === saved.list)
       && Number(requested.words) === Number(saved.words)
       && (!requested.seed || requested.seed === saved.seed);
   }
@@ -1161,6 +1250,17 @@
     pendingSeed = active.seed || null;
 
     wordCountInput.value = active.words;
+
+    // A resumed custom-file puzzle has everything it needs in the saved state. Fetching a bundled
+    // list here would load the wrong words behind the right grid, which is precisely the bug.
+    if(pendingRestore && pendingRestore.customList){
+      currentListId = null;
+      restoreFromSaved(pendingRestore);
+      pendingRestore = null;
+      pendingSeed = null;
+      return;
+    }
+
     const list = LISTS[active.list] ? active.list : DEFAULT_LIST;
     wordListSelect.value = list;
     currentListId = list;

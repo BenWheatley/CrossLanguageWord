@@ -19,38 +19,65 @@ function waitFor(predicate, timeout = 5000, interval = 20){
 }
 
 /**
+ * Loads a URL into the shared frame and resolves once *that* document has loaded.
+ *
+ * Checking which document arrived is the whole point. Setting src twice in quick succession
+ * (about:blank, then the app) leaves load events in flight, and a listener attached for the
+ * second navigation will happily fire on the first one's event - handing back the about:blank
+ * document, whose getElementById returns null for everything and whose localStorage view is not
+ * the app's. That was the source of a long string of "WebKit is flaky" symptoms.
+ *
+ * Compared by pathname, not full href: the app rewrites its own query string during load.
+ */
+function loadFrame(iframe, url){
+  const wanted = new URL(url, location.href).pathname;
+  return new Promise((resolve) => {
+    function onLoad(){
+      let arrived = null;
+      try{ arrived = iframe.contentWindow.location.pathname; }catch(e){ return; }
+      if(arrived !== wanted) return; // a stale event from an earlier navigation
+      iframe.removeEventListener('load', onLoad);
+      resolve();
+    }
+    iframe.addEventListener('load', onLoad);
+    iframe.src = url;
+  });
+}
+
+/**
+ * Loads (or reloads) the app in the shared #appFrame iframe and waits until it has actually
+ * finished generating a puzzle, not just until the iframe's 'load' event fires.
+ *
  * @param {string} query e.g. '?list=german&words=10'
  * @param {{keepSavedState?: boolean}} opts - by default each boot starts from a clean slate.
  *   Pass keepSavedState to test resume behaviour across two boots.
  */
-function bootApp(query = '', opts = {}){
-  if(!opts.keepSavedState){
-    try{ localStorage.removeItem('crossword-trainer-state'); }catch(e){}
-  }
-  return new Promise((resolve) => {
-    const iframe = document.getElementById('appFrame');
-    const target = '../index.html' + query;
-    function onLoad(){
-      iframe.removeEventListener('load', onLoad);
-      const win = iframe.contentWindow;
-      const doc = win.document;
-      const errors = [];
-      win.onerror = (msg) => errors.push(msg);
-      waitFor(() => doc.querySelectorAll('#grid .cell').length > 0).then(async (ready) => {
-        if(!ready && errors.length === 0) errors.push('app did not finish rendering a grid within the timeout');
-        // Cells existing is not the same as the app being ready to type into. focusFirstCell()
-        // runs at the end of render, but the focus does not always land in the same tick - in
-        // WebKit it lands a beat later, which intermittently left document.activeElement as
-        // <body> and made every focus-dependent test a coin toss. Wait for focus to settle.
-        // Best-effort: a test that does not care about focus should not fail over it.
-        if(ready) await waitFor(() => doc.activeElement && doc.activeElement.tagName === 'INPUT', 2000);
-        resolve({ window: win, document: doc, errors });
-      });
-    }
-    iframe.addEventListener('load', onLoad);
-    if(iframe.src.endsWith(target)) iframe.src = 'about:blank';
-    iframe.src = target;
-  });
+async function bootApp(query = '', opts = {}){
+  const iframe = document.getElementById('appFrame');
+
+  // Tear the previous app down before touching storage, and do the clearing from inside the
+  // frame. Two separate hazards, one step: the outgoing app may have a debounced save pending
+  // that would land after the clear, and a clear issued from *this* page is not ordered against
+  // the frame's own writes in WebKit, so it could wipe state a resume test had just set up.
+  // blank.html is same-origin, destroys the previous document, and clears in its own timeline.
+  await loadFrame(iframe, 'blank.html' + (opts.keepSavedState ? '' : '?clear=1'));
+
+  await loadFrame(iframe, '../index.html' + query);
+
+  const win = iframe.contentWindow;
+  const doc = win.document;
+  const errors = [];
+  win.onerror = (msg) => errors.push(msg);
+
+  const ready = await waitFor(() => doc.querySelectorAll('#grid .cell').length > 0);
+  if(!ready && errors.length === 0) errors.push('app did not finish rendering a grid within the timeout');
+  // Cells existing is not the same as the app being ready to type into. focusFirstCell() runs at
+  // the end of render, but the focus does not always land in the same tick - in WebKit it lands a
+  // beat later, which intermittently left document.activeElement as <body> and made every
+  // focus-dependent test a coin toss. Best-effort: a test that does not care must not fail here.
+  if(ready) await waitFor(() => doc.activeElement && doc.activeElement.tagName === 'INPUT', 2000);
+
+  return { window: win, document: doc, errors };
 }
 
 function clickCell(el, win){
@@ -144,4 +171,3 @@ function printRuleValue(doc, selector, property){
   }
   return null;
 }
-
