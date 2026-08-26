@@ -35,6 +35,27 @@ function registerEngineTests(test){
     assertEqual(engine.toUpperGrapheme('π'), 'Π');
   });
 
+  test('toUpperGrapheme() writes ß as SS, the way a German crossword does', () => {
+    // Deliberate, not a bug to tidy away: Duden's all-caps rule and German crossword convention
+    // both give SS, and the solver can type both squares. Seven cells for a six-letter word.
+    assertEqual(engine.toUpperGrapheme('straße'), 'STRASSE');
+    assertEqual(engine.graphemes(engine.toUpperGrapheme('straße')).length, 7);
+  });
+
+  test('toUpperGrapheme() folds a capital eszett to SS rather than leaving an untypable cell', () => {
+    // ẞ is a legal alternative in German orthography but is not on anybody's keyboard, so a list
+    // written with it must not produce a square the solver cannot fill.
+    assertEqual(engine.toUpperGrapheme('STRAẞE'), 'STRASSE');
+    assertEqual(engine.toUpperGrapheme('ẞ'), 'SS');
+  });
+
+  test('toUpperGrapheme() does not depend on the reader\'s system locale', () => {
+    // toLocaleUpperCase() would give İ under a Turkish locale, so the same word list built a
+    // different grid on a Turkish machine and a shared seed stopped reproducing there.
+    assertEqual(engine.toUpperGrapheme('i'), 'I');
+    assertEqual(engine.toUpperGrapheme('istanbul'), 'ISTANBUL');
+  });
+
   test('attemptPlacement() places the first word across at the origin', () => {
     const bank = [{ answer: 'HOUSE', clue: '' }];
     const result = engine.attemptPlacement(bank, 1);

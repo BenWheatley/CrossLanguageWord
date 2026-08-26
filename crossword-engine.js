@@ -23,8 +23,24 @@
   // ---------- text handling ----------
   // Grapheme-aware helpers so multi-byte / combining characters (ü, π, emoji, etc.) are treated
   // as a single "letter" for crossword purposes rather than being split into raw UTF-16 code units.
+  //
+  // Casing deserves a note, because two reasonable-looking choices here are both wrong.
+  //
+  // German ß uppercases to SS, and that is what we want: it is Duden's rule for all-caps and it
+  // is what German crosswords have always done - STRASSE takes seven squares and the solver can
+  // type every one of them. The capital eszett ẞ (permitted as an alternative since 2017) would
+  // keep the letter count at six, but it is close to untypable on an ordinary keyboard, so it
+  // buys a cosmetic win at the price of a square nobody can fill. A word list that already
+  // contains ẞ is therefore folded back to ß first, so it takes the same route.
+  //
+  // toUpperCase(), not toLocaleUpperCase(): the locale-aware version follows the *reader's*
+  // system locale, so the same German word list built a different grid on a Turkish machine
+  // (i -> İ) than on a German one, and a shared seed stopped reproducing across the two. The
+  // locale-independent Unicode default is stable everywhere and still gives ß -> SS. If a
+  // Turkish or Lithuanian list is ever added, a per-list locale would belong here.
+  const CAPITAL_ESZETT = /\u1E9E/g;
   function toUpperGrapheme(str){
-    return str.toLocaleUpperCase();
+    return str.replace(CAPITAL_ESZETT, '\u00DF').toUpperCase();
   }
 
   // Text arriving from a word list has to be normalized before it is measured or split, because

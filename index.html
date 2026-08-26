@@ -534,9 +534,14 @@
 
   function onInput(e,r,c){
     const cell = cellAt(r,c);
-    const raw = normalizeText(e.target.value);
+    // Uppercase first, then take the last grapheme - not the other way round. A cell holds one
+    // letter, but uppercasing can lengthen what it is given: type ß and toUpperGrapheme returns
+    // SS, which the old order wrote into the cell whole, leaving a two-character square that
+    // could never match anything. Taking the last grapheme of the uppercased text gives a single
+    // S instead, and the solver can type the second one themselves.
+    const raw = toUpperGrapheme(normalizeText(e.target.value));
     const g = graphemes(raw);
-    const ch = g.length ? toUpperGrapheme(g[g.length-1]) : '';
+    const ch = g.length ? g[g.length-1] : '';
     cell.input.value = ch;
     cell.wrap.classList.remove('check-correct', 'check-incorrect');
     if(ch) advanceAfterInput(r,c);
