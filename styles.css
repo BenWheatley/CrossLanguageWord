@@ -456,6 +456,11 @@
     #printAnswerKey{
       padding-top:12px;
       border-top:1px dashed #999;
+      /* Bounds the rotated child's paint area explicitly. A 180-degree rotation about the centre
+         maps a box onto itself, so this clips nothing visually - but Safari emits a trailing
+         blank page for a transformed element at the end of the document, and telling it the
+         paint is contained is what stops that. */
+      overflow:hidden;
       /* Keep the whole key together. That is also the answer to "if a page break is needed, put
          it before this section": an unbreakable block that does not fit in what is left of the
          page moves to the next one whole, which is exactly the wanted behaviour. */
@@ -481,8 +486,8 @@
       justify-content:center;
       gap:26px;
       transform:rotate(180deg);   /* the answers alone are inverted */
-      break-inside:avoid;
-      page-break-inside:avoid;
+      /* No break-inside here. Keeping the key whole is the parent's job, and Safari's
+         fragmentation handling for flex containers is where the phantom page comes from. */
     }
     #printAnswerKey ol{
       list-style:none;
