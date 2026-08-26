@@ -173,8 +173,30 @@ Points to observe:
   file written on a Macintosh works as well as one written elsewhere.
 * Capitalisation in the file is not significant; the grid is capitalised.
 
-A list loaded this way cannot be described by an address, so puzzles made
-from it cannot be shared by link (section 6). Send the file instead.
+### Puzzles from your own list
+
+A list of your own has no address to be fetched from, so the link identifies it
+by checksum instead:
+
+    index.html?list=custom&words=15&seed=4rd6k1&sum=14w665o0j4d
+
+Lists you load are kept, so returning to such a link simply works. Where they
+are not to hand — another computer, a link from somebody else, a browser whose
+storage has been cleared — the program asks you for the file and checks that
+what you offer is the list the puzzle was made from. Several lists may be kept
+at once, and a link finds the right one among them.
+
+The checksum covers the words, their order, and the clues. It has to cover the
+clues as well as the words: the grid is decided by the answers alone, but which
+clue is shown for each word depends on how many clues that word has and on their
+wording, so a list matching only on words could rebuild the same grid and put
+different clues beside it. A checksum that said "this is the list" and then
+produced different clues would be worse than one that said "this is not".
+
+Should you offer a file with the same words but clues edited since — a typo put
+right, a clue reworded — the program says so and carries on, since the grid will
+be identical and only some wording may differ. A file with different words is
+refused.
 
 ## 8. PRINTING
 
@@ -243,10 +265,9 @@ static server.
   for a moment while it is built. This is normal.
 * **Your best time is not remembered between sessions.** It is shown for
   comparison within a sitting only.
-* **A very large word list of your own is not kept between sessions.** Ordinary
-  lists are stored with the puzzle so you can carry on where you left off; one
-  too big for that leaves the puzzle intact but asks you to load the file again
-  before making a new crossword.
+* **A very large word list of your own may not be kept between sessions.** Lists
+  are kept so you can return to their puzzles; when there is not room, the
+  least recently used are dropped and the program asks for the file again.
 
 ## 12. TROUBLESHOOTING
 

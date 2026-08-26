@@ -208,6 +208,25 @@
   }
   #status.warn{color:var(--warn);}
 
+  /* Shown when a link names a word list loaded from a file the app no longer holds. The words
+     cannot be fetched from anywhere, so the reader is the only source for them. */
+  #listPrompt{
+    border:1px solid var(--rule);
+    border-radius:6px;
+    padding:14px 16px;
+    margin:0 0 18px;
+    background:var(--panel);
+    max-width:640px;
+  }
+  #listPrompt[hidden]{ display:none; }
+  #listPrompt p{
+    margin:0 0 10px;
+    font-size:14px;
+    line-height:1.5;
+  }
+  #listPrompt .file-trigger-label{ margin:0 8px 0 0; vertical-align:middle; }
+  #listPrompt button{ vertical-align:middle; }
+
   .board-area{
     display:flex;
     gap:26px;
@@ -219,6 +238,9 @@
     position:relative;
     flex:0 0 auto;
   }
+  /* Before any puzzle exists - while the reader is being asked for a word list - the grid has no
+     cells, and a bordered empty box reads as a stray mark on the page. */
+  #grid:empty{ display:none; }
   #grid{
     --cell-size:38px;
     display:grid;

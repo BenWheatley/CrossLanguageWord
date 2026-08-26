@@ -28,8 +28,15 @@ async function openApp(page, query){
   await page.waitForFunction(() => document.querySelectorAll('#grid .cell').length > 0);
 }
 
+/** Opens a link that may legitimately produce a prompt instead of a grid. */
+async function openApp2(page, query){
+  await page.goto('/index.html' + query, { waitUntil: 'networkidle' });
+  await page.waitForFunction(() =>
+    document.querySelectorAll('#grid .cell').length > 0 || !document.getElementById('listPrompt').hidden);
+}
+
 /** Feeds a word list through the real file input, exactly as choosing a file would. */
-async function loadCustomList(page, list){
+async function loadCustomList(page, list, opts = {}){
   await page.evaluate((data) => {
     const file = new File([JSON.stringify(data)], 'mine.json', { type: 'application/json' });
     const transfer = new DataTransfer();
@@ -38,7 +45,12 @@ async function loadCustomList(page, list){
     input.files = transfer.files;
     input.dispatchEvent(new Event('change', { bubbles: true }));
   }, list);
-  await page.waitForFunction(() => document.getElementById('pageTitle').textContent === 'Mijn Woordenlijst');
+  const expected = opts.expectTitle === undefined ? 'Mijn Woordenlijst' : opts.expectTitle;
+  if(expected === false){
+    await page.waitForTimeout(400);   // the file is meant to be rejected; nothing will change
+  } else {
+    await page.waitForFunction((t) => document.getElementById('pageTitle').textContent === t, expected);
+  }
 }
 
 const answersOf = (page) => page.evaluate(() =>
@@ -90,3 +102,93 @@ test('a link naming a bundled list still beats a resumed loaded file', async ({ 
   await openApp(page, '?list=english&words=8');
   await expect(page.locator('#pageTitle')).toHaveText('English');
 });
+
+// ---------- finding the list again by fingerprint ----------
+
+const answersOfAll = (page) => page.evaluate(() =>
+  Array.from(document.querySelectorAll('#printAnswerAcross li, #printAnswerDown li'))
+    .map((li) => li.textContent).join('|'));
+const cluesOf = (page) => page.evaluate(() =>
+  Array.from(document.querySelectorAll('#acrossList li, #downList li'))
+    .map((li) => li.textContent).join('|'));
+const promptShown = (page) => page.evaluate(() => !document.getElementById('listPrompt').hidden);
+const statusOf = (page) => page.evaluate(() => document.getElementById('status').textContent);
+
+test('the link carries a fingerprint for a loaded list', async ({ page }) => {
+  await openApp(page, '?list=german&words=8');
+  await loadCustomList(page, CUSTOM_LIST);
+  const search = await page.evaluate(() => location.search);
+  expect(search).toContain('list=custom');
+  expect(search).toMatch(/sum=[a-z0-9]+/);
+  expect(search).toMatch(/seed=[a-z0-9]+/);
+});
+
+test('a link whose list this browser does not hold asks for the file', async ({ browser }) => {
+  const first = await (await browser.newContext()).newPage();
+  await openApp(first, '?list=german&words=8');
+  await loadCustomList(first, CUSTOM_LIST);
+  const link = await first.evaluate(() => location.search);
+
+  // A different browser: same link, none of the stored lists.
+  const fresh = await (await browser.newContext()).newPage();
+  await openApp2(fresh, link);
+  expect(await promptShown(fresh), 'should ask for the file').toBe(true);
+
+  // Handing it the right file rebuilds the identical puzzle.
+  await loadCustomList(fresh, CUSTOM_LIST);
+  expect(await promptShown(fresh)).toBe(false);
+  expect(await answersOfAll(fresh)).toBe(await answersOfAll(first));
+  expect(await cluesOf(fresh)).toBe(await cluesOf(first));
+});
+
+test('a different word list is refused rather than quietly accepted', async ({ browser }) => {
+  const first = await (await browser.newContext()).newPage();
+  await openApp(first, '?list=german&words=8');
+  await loadCustomList(first, CUSTOM_LIST);
+  const link = await first.evaluate(() => location.search);
+
+  const fresh = await (await browser.newContext()).newPage();
+  await openApp2(fresh, link);
+  const wrong = JSON.parse(JSON.stringify(CUSTOM_LIST));
+  wrong.words[0].word = 'raam';               // a genuinely different list of words
+  await loadCustomList(fresh, wrong, { expectTitle: false });
+  expect(await promptShown(fresh), 'should still be asking').toBe(true);
+  expect(await statusOf(fresh)).toContain('different word list');
+});
+
+test('two loaded lists can both be resumed', async ({ page }) => {
+  const listTwo = JSON.parse(JSON.stringify(CUSTOM_LIST));
+  listTwo.metadata.title = 'Tweede Lijst';
+  listTwo.words[0].word = 'raam';
+
+  await openApp(page, '?list=german&words=8');
+  await loadCustomList(page, CUSTOM_LIST);
+  const linkOne = await page.evaluate(() => location.search);
+  await loadCustomList(page, listTwo, { expectTitle: 'Tweede Lijst' });
+  const linkTwo = await page.evaluate(() => location.search);
+  expect(linkOne).not.toBe(linkTwo);
+
+  await openApp2(page, linkOne);
+  expect(await promptShown(page)).toBe(false);
+  await expect(page.locator('#pageTitle')).toHaveText('Mijn Woordenlijst');
+
+  await openApp2(page, linkTwo);
+  expect(await promptShown(page)).toBe(false);
+  await expect(page.locator('#pageTitle')).toHaveText('Tweede Lijst');
+});
+
+test('the prompt offers a way out for someone who cannot find the file', async ({ browser }) => {
+  const first = await (await browser.newContext()).newPage();
+  await openApp(first, '?list=german&words=8');
+  await loadCustomList(first, CUSTOM_LIST);
+  const link = await first.evaluate(() => location.search);
+
+  const fresh = await (await browser.newContext()).newPage();
+  await openApp2(fresh, link);
+  expect(await promptShown(fresh)).toBe(true);
+  await fresh.evaluate(() => document.getElementById('listPromptFresh').click());
+  await fresh.waitForFunction(() => document.querySelectorAll('#grid .cell').length > 0);
+  expect(await promptShown(fresh)).toBe(false);
+  await expect(fresh.locator('#pageTitle')).toHaveText('Deutsch B1');
+});
+

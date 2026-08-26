@@ -7,6 +7,8 @@
 function registerEngineTests(test){
   const engine = window.CrosswordEngine;
 
+  const GOLDEN_FINGERPRINT = '1nkful2ldp2';
+  const GOLDEN_SHAPE = 'yran4iwdvv';
   const GOLDEN_RNG_VALUES = ['0.012550512096', '0.860431064852', '0.447748388397', '0.767062008381'];
 
   async function loadBank(filename){
@@ -319,4 +321,63 @@ function registerEngineTests(test){
       const result = engine.buildCrossword(bank, realNetwork.length);
       assertEqual(result.placements.length, realNetwork.length);
     });
+
+  // ---------- identifying a word list ----------
+  // The split between these two matters, and is not arbitrary: the grid and the choice of words
+  // depend on the answers alone, while which clue is shown also depends on clue counts and text.
+  // Measured, not assumed - see the tests below.
+
+  const bankA = [
+    { answer: 'VENSTER', clues: ['a1', 'a2'] },
+    { answer: 'DEUR',    clues: ['b1', 'b2'] },
+    { answer: 'STRAAT',  clues: ['c1', 'c2'] }
+  ];
+  const cloneBank = (b) => b.map((w) => ({ answer: w.answer, clues: w.clues.slice() }));
+
+  test('wordListFingerprint() changes when the clue text changes', () => {
+    const edited = cloneBank(bankA);
+    edited[1].clues[0] = 'different wording';
+    assertNotEqual(engine.wordListFingerprint(edited), engine.wordListFingerprint(bankA));
+  });
+
+  test('wordListFingerprint() changes when a word gains a clue', () => {
+    const edited = cloneBank(bankA);
+    edited[2].clues.push('c3');
+    assertNotEqual(engine.wordListFingerprint(edited), engine.wordListFingerprint(bankA));
+  });
+
+  test('wordListShape() ignores clues but not answers or their order', () => {
+    const reworded = cloneBank(bankA).map((w) => ({ answer: w.answer, clues: ['zzz'] }));
+    assertEqual(engine.wordListShape(reworded), engine.wordListShape(bankA),
+      'clue edits must not look like a different list of words');
+
+    const reordered = cloneBank(bankA);
+    [reordered[0], reordered[1]] = [reordered[1], reordered[0]];
+    assertNotEqual(engine.wordListShape(reordered), engine.wordListShape(bankA),
+      'order decides the grid, so it must change the shape');
+
+    const extra = cloneBank(bankA).concat([{ answer: 'TAFEL', clues: ['d1'] }]);
+    assertNotEqual(engine.wordListShape(extra), engine.wordListShape(bankA));
+  });
+
+  test('a list that keeps its shape rebuilds the same grid from the same seed', async () => {
+    // This is the claim the shape hash is making, so it is worth checking against the generator
+    // rather than trusting the reasoning.
+    const bank = (await loadBank('example.json')).slice(0, 40).map((w) => ({ answer: w.answer, clues: [w.clue] }));
+    const reworded = bank.map((w) => ({ answer: w.answer, clues: ['rewritten clue'] }));
+    assertEqual(engine.wordListShape(reworded), engine.wordListShape(bank));
+
+    const describe = (b) => engine
+      .buildCrossword(b.map((w) => ({ answer: w.answer, clue: w.clues[0] })), 12,
+        { maxCols: 20, rng: engine.makeRng('fixed') })
+      .placements.map((p) => `${p.word.answer}@${p.row},${p.col},${p.dir}`).join('|');
+    assertEqual(describe(reworded), describe(bank), 'same answers in the same order, same grid');
+  });
+
+  test('fingerprints are the documented values (changing this breaks existing links)', () => {
+    // Like the PRNG golden values: a link carries a fingerprint, so changing how one is computed
+    // means every link anyone has saved stops finding its list.
+    assertEqual(engine.wordListFingerprint(bankA), GOLDEN_FINGERPRINT);
+    assertEqual(engine.wordListShape(bankA), GOLDEN_SHAPE);
+  });
 }

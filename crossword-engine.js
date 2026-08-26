@@ -106,6 +106,60 @@
     };
   }
 
+  // ---------- identifying a word list ----------
+  // A list the reader loaded from their own file has no URL to fetch it back from, so a shared
+  // or bookmarked link has to name it some other way: a checksum, which the app can match against
+  // the lists it has kept, or against a file the reader picks again.
+  //
+  // What the checksum has to cover follows from what generation actually reads, which is worth
+  // being exact about because the two halves differ:
+  //
+  //   - The grid, and which words are in it, depend on the answers and their order, and on
+  //     nothing else. pickRandomSubset shuffles the bank (draws determined by its length),
+  //     and placement only ever looks at answer letters.
+  //   - Which clue is shown for each word depends on that word's position in the bank, on how
+  //     many clues it has (the drawn fraction is scaled by clues.length), and on the text at the
+  //     chosen index.
+  //
+  // So a list could match on answers alone and still produce different clue wording for the same
+  // seed. Since the seed is in the URL, and a shared link is supposed to open the same puzzle,
+  // the fingerprint covers the clues too - a checksum that says "same list" and then shows
+  // different clues would be worse than one that says "different list".
+  //
+  // The shape hash covers answers only, and exists to tell those two failures apart: a file with
+  // the same words but edited clues is a near-miss worth explaining, not a wrong file.
+
+  // cyrb53: a 53-bit hash built from Math.imul, xor and shifts, so it agrees across engines - the
+  // same requirement as makeRng, and for the same reason. The final combination stays inside
+  // float64's exact integer range.
+  function cyrb53(str){
+    let h1 = 0xdeadbeef, h2 = 0x41c6ce57;
+    for(let i = 0; i < str.length; i++){
+      const ch = str.charCodeAt(i);
+      h1 = Math.imul(h1 ^ ch, 2654435761);
+      h2 = Math.imul(h2 ^ ch, 1597334677);
+    }
+    h1 = Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^ Math.imul(h2 ^ (h2 >>> 13), 3266489909);
+    h2 = Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^ Math.imul(h1 ^ (h1 >>> 13), 3266489909);
+    return (4294967296 * (2097151 & h2) + (h1 >>> 0)).toString(36);
+  }
+
+  // Unit and record separators: control characters that cannot occur in a word or a clue, so no
+  // arrangement of list content can be made to look like a different arrangement.
+  const FIELD_SEP = '\u001F';
+  const RECORD_SEP = '\u001E';
+
+  /** Everything generation reads: answers in order, clue counts, and clue text. */
+  function wordListFingerprint(bank){
+    const records = bank.map(w => [w.answer, String(w.clues.length)].concat(w.clues).join(FIELD_SEP));
+    return cyrb53(records.join(RECORD_SEP));
+  }
+
+  /** Answers in order - what the grid and the choice of words depend on, and nothing more. */
+  function wordListShape(bank){
+    return cyrb53(bank.map(w => w.answer).join(RECORD_SEP));
+  }
+
   const SEED_ALPHABET = 'abcdefghijklmnopqrstuvwxyz0123456789';
   const SEED_LENGTH = 6;
   /** A fresh seed, short enough to read out loud or type from a printed sheet. */
@@ -501,6 +555,8 @@
     normalizeText,
     graphemes,
     makeRng,
+    wordListFingerprint,
+    wordListShape,
     randomSeed,
     isValidSeed,
     shuffle,

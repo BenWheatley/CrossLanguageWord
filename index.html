@@ -55,6 +55,12 @@
 
   <div id="status" class="no-print" role="status" aria-live="polite"></div>
 
+  <div id="listPrompt" class="no-print" hidden>
+    <p id="listPromptText"></p>
+    <label for="fileInput" class="file-trigger-label">Choose file…</label>
+    <button id="listPromptFresh" class="secondary">Start a new puzzle instead</button>
+  </div>
+
   <div class="board-area">
     <div id="gridHost">
       <div id="grid" role="group" aria-label="Crossword grid"></div>
@@ -119,18 +125,25 @@
   let celebrated = false;
   let puzzleStartTime = null;
   const STORAGE_KEY = 'crossword-trainer-state';
-  const SAVE_VERSION = 4; // bumped when a loaded file's words started being saved too
+  const SAVE_VERSION = 5; // bumped when custom lists moved into their own keyed store
+  const LIBRARY_KEY = 'crossword-trainer-lists';
   let pendingRestore = null; // a saved puzzle waiting to be restored on first load, if any
   let pendingSeed = null;    // a seed from the URL, waiting for the word list to finish loading
   let saveTimer = null;
   let bestTimeSeconds = null; // best solve time this session (not persisted)
-  let currentListId = null; // 'english' | 'german' | null (custom file has no URL representation)
+  let currentListId = null; // an id from LISTS, or CUSTOM_LIST_ID for a file the reader loaded
   let currentSeed = null;   // the seed the visible puzzle was built from
   let currentListTitle = 'Crossword Trainer';
   let currentListLanguage = null;
-  // A list the reader loaded from their own file has no ?list= id and no URL to fetch it back
-  // from, so resuming one means carrying the words themselves in the saved state.
-  const CUSTOM_LIST_BUDGET_BYTES = 1500000;
+  let currentListSum = null;   // fingerprint of the loaded list, when there is one
+  let currentListShape = null; // hash of just its answers - see the engine's note on the two
+
+  // A list the reader loaded from their own file has no URL to fetch it back from, so the link
+  // names it by fingerprint instead and the words are kept in a store of their own, keyed the
+  // same way. Several lists can be held at once, which a single slot on the saved puzzle could
+  // not manage - open a puzzle from one file, another from a second, and both stay resumable.
+  const CUSTOM_LIST_ID = 'custom';
+  const LIBRARY_BUDGET_BYTES = 2000000;
 
   const fileInput = document.getElementById('fileInput');
   const wordListSelect = document.getElementById('wordListSelect');
@@ -150,6 +163,9 @@
   const hamburgerBtn = document.getElementById('hamburgerBtn');
   const optionsMenu = document.getElementById('optionsMenu');
   const statusEl = document.getElementById('status');
+  const listPrompt = document.getElementById('listPrompt');
+  const listPromptText = document.getElementById('listPromptText');
+  const listPromptFresh = document.getElementById('listPromptFresh');
   const gridEl = document.getElementById('grid');
   const dirPopup = document.getElementById('dirPopup');
   const acrossListEl = document.getElementById('acrossList');
@@ -165,7 +181,7 @@
   // ---------- crossword generation engine (crossword-engine.js) ----------
   const {
     toUpperGrapheme, normalizeText, graphemes, key, makeRng, randomSeed, isValidSeed,
-    buildCrossword, trimAndIndex, numberGrid
+    wordListFingerprint, wordListShape, buildCrossword, trimAndIndex, numberGrid
   } = CrosswordEngine;
 
   // ---------- word lists ----------
@@ -220,29 +236,156 @@
       });
   }
 
+  // When a link names a list the app does not hold, the reader is asked for the file and what
+  // they pick has to be checked against the fingerprint in that link. Null the rest of the time.
+  let awaitedListSum = null;
+  let awaitedListShape = null;
+
   fileInput.addEventListener('change', function(e){
     fileTriggerLabel.style.display = 'none';
     const file = e.target.files[0];
     if(!file) return;
     const reader = new FileReader();
     reader.onload = function(ev){
+      let data;
       try{
-        const data = JSON.parse(ev.target.result);
-        currentListId = null;
-        loadWordBank(data);
+        data = JSON.parse(ev.target.result);
       }catch(err){
         setStatus('Could not parse that file: ' + err.message, true);
+        return;
       }
+      acceptLoadedFile(data);
     };
     reader.onerror = function(){ setStatus('Could not read that file.', true); };
     reader.readAsText(file, 'utf-8');
     fileInput.value = '';
   });
 
-  function loadWordBank(data){
+  // Shown when a link names a loaded list the app does not hold: the words cannot be fetched, so
+  // the reader is the only source for them.
+  function showListPrompt(title){
+    listPromptText.textContent = title
+      ? `This puzzle was made from “${title}”, a word list from your own file. Choose that file to carry on.`
+      : 'This puzzle was made from a word list from your own file. Choose that file to carry on.';
+    listPrompt.hidden = false;
+    generateBtn.disabled = true;
+  }
+
+  function hideListPrompt(){
+    listPrompt.hidden = true;
+  }
+
+  listPromptFresh.addEventListener('click', () => {
+    // They would rather not hunt for the file. Fall back to the default list and say so.
+    awaitedListSum = null;
+    awaitedListShape = null;
+    pendingRestore = null;
+    pendingSeed = null;
+    hideListPrompt();
+    currentListId = DEFAULT_LIST;
+    currentListSum = null;
+    wordListSelect.value = DEFAULT_LIST;
+    fetchWordList(LISTS[DEFAULT_LIST].file, LISTS[DEFAULT_LIST].label);
+  });
+
+  function acceptLoadedFile(data){
+    const derived = deriveBank(data);
+    if(!derived) return;
+    const sum = wordListFingerprint(derived.bank);
+
+    // A link asked for one specific list. Check this is it before building anything on top of it.
+    let warning = '';
+    if(awaitedListSum && sum !== awaitedListSum){
+      if(awaitedListShape && wordListShape(derived.bank) === awaitedListShape){
+        // Same answers in the same order, so the grid will come out identical and only the clue
+        // wording can differ. Worth saying plainly and then letting them get on with it, rather
+        // than refusing a list that is obviously the right one with a typo fixed.
+        warning = 'That list has the same words but its clues have been edited since this link '
+          + 'was made. The grid will be the same; some clues may be worded differently.';
+      } else {
+        setStatus('That is a different word list from the one this puzzle was made with. '
+          + 'Choose the file it came from, or start a new puzzle with this one instead.', true);
+        return;
+      }
+    }
+
+    const kept = adoptCustomList(derived, sum);
+    if(!kept){
+      warning = warning || 'That list is too large to keep between visits, so you may be asked '
+        + 'for the file again next time.';
+    }
+
+    hideListPrompt();
+    const wasAwaited = !!awaitedListSum;
+    awaitedListSum = null;
+    awaitedListShape = null;
+    if(wasAwaited) startPuzzle();  // the link's puzzle, now that its list has arrived
+    else generate();               // a list chosen from the menu means a new puzzle
+
+    // After, not before: both restoreFromSaved and generate clear the status line.
+    if(warning) setStatus(warning, true);
+  }
+
+  /** Adopts a loaded list and files it in the store under its fingerprint. */
+  function adoptCustomList(derived, sum){
+    currentListId = CUSTOM_LIST_ID;
+    currentListSum = sum;
+    currentListShape = wordListShape(derived.bank);
+    adoptWordBank(derived.bank, derived.title, derived.language);
+    return rememberList(sum, {
+      title: derived.title,
+      language: derived.language,
+      words: derived.bank
+    });
+  }
+
+  // ---------- the store of loaded word lists ----------
+  // Keyed by fingerprint, so a link carrying one can find the list it needs among however many
+  // the reader has accumulated.
+  function loadLibrary(){
+    try{
+      const raw = localStorage.getItem(LIBRARY_KEY);
+      const parsed = raw ? JSON.parse(raw) : null;
+      return (parsed && typeof parsed === 'object') ? parsed : {};
+    }catch(e){
+      return {};
+    }
+  }
+
+  function findSavedList(sum){
+    const entry = loadLibrary()[sum];
+    return (entry && Array.isArray(entry.words) && entry.words.length) ? entry : null;
+  }
+
+  function rememberList(sum, entry){
+    try{
+      const library = loadLibrary();
+      library[sum] = Object.assign({}, entry, { usedAt: Date.now() });
+      // Drop the least recently used until it fits, never the one just added. A list too large
+      // to keep at all simply is not kept - the link still works, it just asks for the file.
+      let serialized = JSON.stringify(library);
+      const order = Object.keys(library)
+        .filter(k => k !== sum)
+        .sort((a, b) => (library[a].usedAt || 0) - (library[b].usedAt || 0));
+      while(serialized.length > LIBRARY_BUDGET_BYTES && order.length){
+        delete library[order.shift()];
+        serialized = JSON.stringify(library);
+      }
+      if(serialized.length > LIBRARY_BUDGET_BYTES) return false;
+      localStorage.setItem(LIBRARY_KEY, serialized);
+      return true;
+    }catch(e){
+      return false; // storage unavailable or full; the app carries on without remembering
+    }
+  }
+
+  // Turns a parsed file into the bank the generator works on, or null (having said why).
+  // Separate from loadWordBank so a file can be inspected - fingerprinted, checked against the
+  // one a link asks for - before anything on screen changes.
+  function deriveBank(data){
     if(!data || !Array.isArray(data.words)){
       setStatus('That file does not look like a valid word list (expected a "words" array).', true);
-      return;
+      return null;
     }
     // Keyed by answer, because the same answer twice in one grid reads as a mistake - the solver
     // fills in the identical word in two places and assumes they misread something. Entries only
@@ -278,7 +421,7 @@
     }
     if(cleaned.length < 2){
       setStatus('Found fewer than 2 usable words in that file.', true);
-      return;
+      return null;
     }
     const title = (data.metadata && data.metadata.title) ? data.metadata.title : 'Crossword Trainer';
     // The document claimed lang="en" whatever was on screen, so a screen reader read German
@@ -287,9 +430,19 @@
     const language = data.metadata && typeof data.metadata.language === 'string'
       ? data.metadata.language.split('-')[0]
       : null;
+    return { bank: cleaned, title, language };
+  }
 
-    adoptWordBank(cleaned, title, language);
+  function loadWordBank(data){
+    const derived = deriveBank(data);
+    if(!derived) return;
+    adoptWordBank(derived.bank, derived.title, derived.language);
+    startPuzzle();
+  }
 
+  // Whatever the app should do once a bank is in place on first load: pick up the puzzle that was
+  // in progress, or build the one the link asked for.
+  function startPuzzle(){
     if(pendingRestore){
       restoreFromSaved(pendingRestore);
       pendingRestore = null;
@@ -937,7 +1090,12 @@
   function updateUrlParams(){
     const params = new URLSearchParams(window.location.search);
     if(currentListId) params.set('list', currentListId);
-    else params.delete('list'); // a custom-loaded file has no URL representation
+    else params.delete('list');
+    // A loaded file has no id to fetch it back by, so the link carries its fingerprint instead.
+    // That is enough to find it again among the lists kept here, or to check a file the reader
+    // picks when it is not among them.
+    if(currentListId === CUSTOM_LIST_ID && currentListSum) params.set('sum', currentListSum);
+    else params.delete('sum');
     params.set('words', wordCountInput.value);
     // With the seed here, the address bar is a complete description of the puzzle on screen -
     // copy it to anyone and they get this grid, these words and these clues, not merely a puzzle
@@ -993,25 +1151,22 @@
         celebrated,
         // The parameters this puzzle was generated from. Kept so a later visit can tell whether
         // an incoming URL is asking for this same puzzle or a different one - see initFromUrl.
-        params: { list: currentListId, words: Number(wordCountInput.value), seed: currentSeed },
+        // The puzzle records which list it came from. For a loaded file that is a fingerprint
+        // rather than an id, and the words themselves live in the keyed store, so two puzzles
+        // from two different files do not each carry their own copy.
+        params: {
+          list: currentListId,
+          sum: currentListId === CUSTOM_LIST_ID ? currentListSum : null,
+          words: Number(wordCountInput.value),
+          seed: currentSeed
+        },
       };
-      // A bundled list can be fetched again by its id. A list the reader supplied cannot - there
-      // is no URL for it and the browser will not reopen a file by name - so resuming that puzzle
-      // means keeping the words themselves. Without this the grid came back but the word bank
-      // behind it was whichever bundled list loaded by default, so "New crossword" silently
-      // changed language and the heading named the wrong list.
-      if(!currentListId){
-        state.customList = { title: currentListTitle, language: currentListLanguage };
-        const withWords = JSON.stringify(
-          Object.assign({}, state, { customList: Object.assign({}, state.customList, { words: wordBank }) })
-        );
-        // Very large lists are not worth blowing the storage quota over - and failing to save
-        // would lose the typed answers too, which matter more. Keep the puzzle either way and
-        // let restoreFromSaved explain that the list needs loading again.
-        if(withWords.length <= CUSTOM_LIST_BUDGET_BYTES){
-          localStorage.setItem(STORAGE_KEY, withWords);
-          return;
-        }
+      if(currentListId === CUSTOM_LIST_ID){
+        // Enough to name the list when asking for it again, and to tell "same words, edited
+        // clues" apart from "wrong file" if what turns up does not match. Both are a few bytes;
+        // the words themselves are in the keyed store.
+        state.customTitle = currentListTitle;
+        state.customShape = currentListShape;
       }
       localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
     }catch(e){
@@ -1071,25 +1226,13 @@
     if(saved.params && saved.params.list) wordListSelect.value = saved.params.list;
     if(saved.params && saved.params.words) wordCountInput.value = saved.params.words;
     if(saved.params && saved.params.seed) currentSeed = saved.params.seed;
+    if(saved.params && saved.params.sum) currentListSum = saved.params.sum;
+    if(saved.customShape) currentListShape = saved.customShape;
 
-    if(saved.customList){
-      // Put the select back on its placeholder: none of the named lists is what is on screen.
-      wordListSelect.value = '';
-      if(Array.isArray(saved.customList.words) && saved.customList.words.length){
-        adoptWordBank(saved.customList.words, saved.customList.title, saved.customList.language);
-      } else {
-        // The list was too big to keep. The puzzle and the answers are intact, but there is
-        // nothing to build a new one from until the file is loaded again - say so rather than
-        // leaving "New crossword" quietly producing German.
-        wordBank = [];
-        generateBtn.disabled = true;
-        pageTitle.textContent = saved.customList.title || 'Crossword Trainer';
-        document.documentElement.lang = saved.customList.language || 'en';
-        pageTagline.textContent = 'resumed from a loaded file';
-        setStatus('Resumed your puzzle. That word list was too large to keep, so load the file '
-          + 'again from the options menu before making a new crossword.', true);
-      }
-    }
+    // The list itself is already in place by the time a restore runs - either found in the store
+    // by fingerprint or picked by the reader - so there is nothing to adopt here. Just make sure
+    // the menu is not claiming a bundled list when a loaded file is on screen.
+    if(saved.params && saved.params.list === CUSTOM_LIST_ID) wordListSelect.value = '';
     printBtn.disabled = false;
     checkBtn.disabled = false;
     setStatus('');
@@ -1203,8 +1346,11 @@
     const listParam = p.get('list');
     const wordsParam = parseInt(p.get('words'), 10);
     const seedParam = (p.get('seed') || '').toLowerCase();
+    const sumParam = (p.get('sum') || '').toLowerCase();
+    const known = LISTS[listParam] || listParam === CUSTOM_LIST_ID;
     return {
-      list: LISTS[listParam] ? listParam : DEFAULT_LIST,
+      list: known ? listParam : DEFAULT_LIST,
+      sum: /^[a-z0-9]{1,16}$/.test(sumParam) ? sumParam : null,
       words: Number.isFinite(wordsParam) && wordsParam >= 2 ? Math.min(wordsParam, MAX_WORDS) : DEFAULT_WORDS,
       seed: isValidSeed(seedParam) ? seedParam : null,
       // Whether the URL actually named a list, as opposed to us having defaulted one in above.
@@ -1225,6 +1371,7 @@
       // we filled in, which contradicts nothing - and in particular does not contradict a saved
       // puzzle built from a loaded file, whose list is null by nature.
       && (!requested.listExplicit || requested.list === saved.list)
+      && (!requested.sum || requested.sum === saved.sum)
       && Number(requested.words) === Number(saved.words)
       && (!requested.seed || requested.seed === saved.seed);
   }
@@ -1251,13 +1398,26 @@
 
     wordCountInput.value = active.words;
 
-    // A resumed custom-file puzzle has everything it needs in the saved state. Fetching a bundled
-    // list here would load the wrong words behind the right grid, which is precisely the bug.
-    if(pendingRestore && pendingRestore.customList){
-      currentListId = null;
-      restoreFromSaved(pendingRestore);
-      pendingRestore = null;
-      pendingSeed = null;
+    // A puzzle built from a loaded file names its list by fingerprint. Look for it among the
+    // lists kept here; if it is not one of them - a different browser, cleared storage, a link
+    // from someone else - the reader is the only place those words can come from, so ask.
+    if(active.list === CUSTOM_LIST_ID){
+      const sum = active.sum || (saved && saved.params ? saved.params.sum : null);
+      const stored = sum ? findSavedList(sum) : null;
+      currentListId = CUSTOM_LIST_ID;
+      currentListSum = sum;
+      wordListSelect.value = '';
+      if(stored){
+        adoptWordBank(stored.words, stored.title, stored.language);
+        rememberList(sum, stored); // touch it, so it survives eviction the longest
+        startPuzzle();
+      } else {
+        awaitedListSum = sum;
+        // Known only when this browser saved the puzzle. A link from someone else carries the
+        // fingerprint and nothing more, so a mismatch there can only be reported as a wrong file.
+        awaitedListShape = (saved && saved.customShape) || null;
+        showListPrompt((saved && saved.customTitle) || null);
+      }
       return;
     }
 
