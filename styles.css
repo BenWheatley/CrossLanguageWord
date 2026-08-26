@@ -152,6 +152,10 @@
     flex-wrap:wrap;
     margin-bottom:18px;
   }
+  /* Options, then the two things you do to the puzzle in front of you, then - pushed to the far
+     end - the one that throws it away and starts again. Separating it by distance rather than
+     only by colour makes it harder to hit by accident. */
+  .toolbar #generateBtn{ margin-left:auto; }
   .hamburger-wrap{ position:relative; }
   .hamburger-btn{
     width:40px;
@@ -496,6 +500,10 @@
   @media (max-width:640px){
     #grid{ --cell-size:30px; }
     .cell input{font-size:14px;}
+    /* Narrow enough that the toolbar wraps, and a wrapped item pushed by margin-left:auto ends
+       up stranded on the right of its own row. Let it sit in line instead; the order still puts
+       it last. */
+    .toolbar #generateBtn{ margin-left:0; }
   }
 
   /* Readers who have asked their system for less motion get the same information without the

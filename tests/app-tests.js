@@ -564,4 +564,21 @@ test('solving the puzzle correctly triggers the celebration overlay', async () =
     assertTrue(cellSize.includes('var(--cols)'),
       'the bound should divide the page width by the actual column count');
   });
+
+  test('the toolbar reads options, check, print, then new crossword last', async () => {
+    const doc = (await bootApp('?list=german&words=10')).document;
+    const order = Array.from(doc.querySelectorAll('.toolbar button'))
+      .filter((b) => b.offsetParent !== null || b.id)   // the hamburger has no text of its own
+      .map((b) => b.id);
+    assertEqual(order.join(','), 'hamburgerBtn,checkBtn,printBtn,generateBtn');
+  });
+
+  test('the footer describes what a shared start cell actually does', async () => {
+    const doc = (await bootApp('?list=german&words=10')).document;
+    const hint = doc.querySelector('footer.hint').textContent;
+    // It highlights the word you are editing; it does not put a question to you.
+    assertTrue(!/ask which one you mean/i.test(hint), 'the old, inaccurate wording is still there');
+    assertTrue(/highlighted/i.test(hint), 'the hint should mention the highlight');
+    assertTrue(/space/i.test(hint), 'and how to switch direction');
+  });
 }

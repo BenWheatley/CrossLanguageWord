@@ -116,9 +116,11 @@ Complete the whole grid correctly and the program will say so.
   Space . . . . . . . . . . . Switch between Across and Down
 ```
 
-Squares that begin both an Across and a Down word are ambiguous, and clicking
-one presents a small menu asking which you meant. Clicking a square you are
-already in switches direction, as does the space bar.
+Squares that begin both an Across and a Down word belong to two answers at
+once. The highlighted squares always show which of the two you are currently
+filling in; click the square again, or press the space bar, to switch to the
+other. Arriving at such a square fresh presents a small menu asking which you
+meant.
 
 Accented characters may be typed however your keyboard normally produces
 them, including by dead key (`¨` then `u` for `ü`). The program waits for the
