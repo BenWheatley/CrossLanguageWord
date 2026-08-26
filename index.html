@@ -43,6 +43,9 @@
         <label class="check-field">
           <input type="checkbox" id="printAnswers"> Show my typed answers when printing, instead of a blank puzzle
         </label>
+        <label class="check-field">
+          <input type="checkbox" id="printKey" checked> Print the answer key at the foot of the sheet
+        </label>
       </div>
     </div>
     <button id="generateBtn" disabled>New crossword</button>
@@ -73,7 +76,7 @@
   </div>
 
   <div id="printAnswerKey">
-    <div class="key-heading">Answer key (flip the page)</div>
+    <div class="key-heading">Answer key &mdash; turn the sheet upside down to read</div>
     <div class="key-cols">
       <ol id="printAnswerAcross"></ol>
       <ol id="printAnswerDown"></ol>
@@ -138,6 +141,7 @@
   const printBtn = document.getElementById('printBtn');
   const checkBtn = document.getElementById('checkBtn');
   const printAnswersCk = document.getElementById('printAnswers');
+  const printKeyCk = document.getElementById('printKey');
   const hamburgerBtn = document.getElementById('hamburgerBtn');
   const optionsMenu = document.getElementById('optionsMenu');
   const statusEl = document.getElementById('status');
@@ -1093,6 +1097,11 @@
   printBtn.addEventListener('click', () => { window.print(); restoreFocusToCurrentCell(); });
   printAnswersCk.addEventListener('change', () => {
     document.body.classList.toggle('print-answers', printAnswersCk.checked);
+  });
+  // Printing a puzzle for somebody else to solve shouldn't force the answers onto the same
+  // sheet. On by default, because that is what it has always done.
+  printKeyCk.addEventListener('change', () => {
+    document.body.classList.toggle('print-no-key', !printKeyCk.checked);
   });
   celebrateNewBtn.addEventListener('click', () => generate());
   celebrateCloseBtn.addEventListener('click', () => { closeCelebration(); restoreFocusToCurrentCell(); });

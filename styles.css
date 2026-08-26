@@ -418,7 +418,16 @@
     #pageTagline{display:none;}
     .board-area{display:block;}
     #gridHost{margin:0 auto 20px; width:max-content;}
-    #grid{ --cell-size:26px; background:transparent; border:2px solid #000; gap:0; }
+    /* The column budget comes from the browser window, so a puzzle generated on a wide screen
+       could be wider than the paper: 29 columns at 26px is 754px against roughly 718px of
+       printable A4. Shrink the cells to fit when that happens - 26px stays the cap, so ordinary
+       puzzles print exactly as before. var(--cols) is a plain number, so it can divide a length. */
+    #grid{
+      --cell-size:min(26px, calc(180mm / var(--cols)));
+      background:transparent;
+      border:2px solid #000;
+      gap:0;
+    }
     .cell{ background:#fff; border:1px solid #000; }
     .cell.block{ background:#000 !important; }
     .cell .num{ color:#000; font-size:8px; }
@@ -435,26 +444,41 @@
 
   #printAnswerKey{ display:none; }
   @media print{
+    /* The rotation used to be applied to this whole block, which put the dividing rule and the
+       heading upside down at the *bottom* of the section - so the sheet read: answers, then a
+       heading, then the line that was supposed to introduce them. Only the answers themselves
+       should be inverted. The heading and rule stay the right way up, at the top, where they
+       announce what follows. */
     #printAnswerKey{
-      margin-top:30px;
       padding-top:12px;
-      border-top:1px dashed #ccc;
-      transform:rotate(180deg);
+      border-top:1px dashed #999;
+      /* Keep the whole key together. That is also the answer to "if a page break is needed, put
+         it before this section": an unbreakable block that does not fit in what is left of the
+         page moves to the next one whole, which is exactly the wanted behaviour. */
+      break-inside:avoid;
       page-break-inside:avoid;
+      /* No trailing margin. A bottom margin on the last element in the flow can overhang the end
+         of the page and produce an extra, empty sheet. */
+      margin:24px 0 0 0;
     }
     #printAnswerKey .key-heading{
       font-family:'IBM Plex Mono',monospace;
       font-size:8px;
-      color:#c9c2b2;
+      color:#555;                 /* readable: it is a label, not part of the concealed answer */
       text-transform:uppercase;
       letter-spacing:.08em;
       text-align:center;
       margin-bottom:6px;
+      break-after:avoid;
+      page-break-after:avoid;     /* never orphan the heading from the answers it introduces */
     }
     #printAnswerKey .key-cols{
       display:flex;
       justify-content:center;
       gap:26px;
+      transform:rotate(180deg);   /* the answers alone are inverted */
+      break-inside:avoid;
+      page-break-inside:avoid;
     }
     #printAnswerKey ol{
       list-style:none;
@@ -463,8 +487,10 @@
       font-family:'IBM Plex Mono',monospace;
       font-size:7.5px;
       line-height:1.6;
-      color:#c9c2b2;
+      color:#c9c2b2;              /* low contrast, so it does not read at a glance */
     }
+    /* "Print the answer key" turned off in the options menu. */
+    body.print-no-key #printAnswerKey{ display:none !important; }
   }
 
   @media (max-width:640px){

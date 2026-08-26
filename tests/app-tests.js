@@ -522,4 +522,46 @@ test('solving the puzzle correctly triggers the celebration overlay', async () =
     // The old code only set a flag when the run ended, so the last frame stayed on the canvas.
     assertEqual(litPixelCount(canvas), 0, 'the canvas should be wiped, not just left frozen');
   });
+
+  // ---------- printing ----------
+
+  test('only the answers are printed upside down - the rule and heading stay the right way up', async () => {
+    const doc = (await bootApp('?list=german&words=10')).document;
+    // The rotation used to sit on the whole block, which put the dividing rule and the heading
+    // inverted at the bottom, below the answers they were meant to introduce.
+    assertEqual(printRuleValue(doc, '#printAnswerKey', 'transform'), null,
+      'the answer key block itself must not be rotated');
+    assertEqual(printRuleValue(doc, '#printAnswerKey .key-cols', 'transform'), 'rotate(180deg)',
+      'the answers alone should be inverted');
+  });
+
+  test('the answer key is kept whole, so a page break lands before it rather than through it', async () => {
+    const doc = (await bootApp('?list=german&words=10')).document;
+    assertEqual(printRuleValue(doc, '#printAnswerKey', 'break-inside'), 'avoid');
+    assertEqual(printRuleValue(doc, '#printAnswerKey .key-heading', 'break-after'), 'avoid',
+      'the heading should never be orphaned from its answers');
+  });
+
+  test('the answer key can be turned off for printing', async () => {
+    const app = await bootApp('?list=german&words=10');
+    const { document: doc, window: win } = app;
+    const checkbox = doc.getElementById('printKey');
+    assertTrue(checkbox.checked, 'the key should be printed by default, as it always has been');
+    assertTrue(!doc.body.classList.contains('print-no-key'));
+
+    checkbox.checked = false;
+    checkbox.dispatchEvent(new win.Event('change', { bubbles: true }));
+    assertTrue(doc.body.classList.contains('print-no-key'), 'unchecking should suppress the key');
+  });
+
+  test('printed cells are sized from the paper, not from the window that generated the puzzle', async () => {
+    const doc = (await bootApp('?list=german&words=40')).document;
+    const cellSize = printRuleValue(doc, '#grid', '--cell-size');
+    // A wide window allows a wide column budget; 29 columns at a flat 26px is about 199mm
+    // against roughly 190mm of printable A4, so the cap has to be able to shrink.
+    assertTrue(cellSize && cellSize.includes('min('),
+      `print cell size should be bounded by the page, got ${cellSize}`);
+    assertTrue(cellSize.includes('var(--cols)'),
+      'the bound should divide the page width by the actual column count');
+  });
 }

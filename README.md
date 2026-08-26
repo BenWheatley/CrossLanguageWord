@@ -177,12 +177,22 @@ from it cannot be shared by link (section 6). Send the file instead.
 ## 8. PRINTING
 
 **Print** produces a clean copy of the puzzle with the interface furniture
-removed. The answer key is printed at the foot of the sheet, upside down and
-in a pale grey, in the manner of a puzzle magazine.
+removed. The grid is scaled to the paper, so a puzzle generated on a wide
+screen still fits the page.
 
-The options panel offers **Show my typed answers when printing**, which
-prints the grid as you have filled it in rather than blank. Leave it off to
-print a fresh puzzle for someone else to solve.
+The answer key is printed at the foot of the sheet in a pale grey and upside
+down, in the manner of a puzzle magazine — turn the sheet to read it. Its
+heading and dividing rule stay the right way up so you can see what it is
+without turning anything.
+
+Two options in the panel affect printing:
+
+* **Show my typed answers when printing** prints the grid as you have filled
+  it in rather than blank. Leave it off to print a fresh puzzle for someone
+  else to solve.
+* **Print the answer key at the foot of the sheet** is on by default. Turn it
+  off when the solver should not be handed the answers along with the
+  puzzle.
 
 ## 9. SAVING YOUR PROGRESS
 
@@ -224,9 +234,6 @@ static server.
   produces more crossword than fits comfortably on a page.
 * **Generation is not interruptible.** A large puzzle will occupy the browser
   for a moment while it is built. This is normal.
-* **Grid width follows your window.** A puzzle generated on a wide screen may
-  be wider than a narrow one printed later. Generate at roughly the width you
-  intend to print.
 * **Your best time is not remembered between sessions.** It is shown for
   comparison within a sitting only.
 

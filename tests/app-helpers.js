@@ -122,3 +122,26 @@ function litPixelCount(canvas){
   return count;
 }
 
+/**
+ * Looks up a declaration inside the stylesheet's `@media print` block. Print rules cannot be
+ * exercised by rendering - the test page has no way to put the browser into print media - so the
+ * rules themselves are what gets asserted on.
+ * @returns {string|null} the declared value, or null if the selector isn't in a print block.
+ */
+function printRuleValue(doc, selector, property){
+  for(const sheet of Array.from(doc.styleSheets)){
+    let rules;
+    try{ rules = Array.from(sheet.cssRules); }catch(e){ continue; } // cross-origin sheet
+    for(const rule of rules){
+      if(!(rule.media && Array.from(rule.media).join(',').includes('print'))) continue;
+      for(const inner of Array.from(rule.cssRules || [])){
+        if(inner.selectorText === selector){
+          const value = inner.style.getPropertyValue(property);
+          if(value) return value.trim();
+        }
+      }
+    }
+  }
+  return null;
+}
+
