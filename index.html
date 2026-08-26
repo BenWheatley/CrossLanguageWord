@@ -50,24 +50,24 @@
     <button id="printBtn" class="secondary" disabled>Print</button>
   </div>
 
-  <div id="status" class="no-print"></div>
+  <div id="status" class="no-print" role="status" aria-live="polite"></div>
 
   <div class="board-area">
     <div id="gridHost">
-      <div id="grid"></div>
-      <div id="dirPopup">
+      <div id="grid" role="group" aria-label="Crossword grid"></div>
+      <div id="dirPopup" role="group" aria-label="Which word do you mean?">
         <button data-dir="across">→ Across</button>
         <button data-dir="down">↓ Down</button>
       </div>
     </div>
     <div class="clues">
       <div class="clue-col">
-        <h2>Across</h2>
-        <ul class="clue-list" id="acrossList"></ul>
+        <h2 id="acrossHeading">Across</h2>
+        <ul class="clue-list" id="acrossList" aria-labelledby="acrossHeading"></ul>
       </div>
       <div class="clue-col">
-        <h2>Down</h2>
-        <ul class="clue-list" id="downList"></ul>
+        <h2 id="downHeading">Down</h2>
+        <ul class="clue-list" id="downList" aria-labelledby="downHeading"></ul>
       </div>
     </div>
   </div>
@@ -80,8 +80,9 @@
     </div>
   </div>
 
-  <div id="celebrateOverlay" class="no-print">
-    <canvas id="fireworksCanvas"></canvas>
+  <div id="celebrateOverlay" class="no-print" role="dialog" aria-modal="true"
+       aria-labelledby="celebrateHeadline" aria-describedby="celebrateTime" hidden>
+    <canvas id="fireworksCanvas" aria-hidden="true"></canvas>
     <div id="celebrateCard">
       <div id="celebrateHeadline">Solved!</div>
       <div id="celebrateTime">0:00</div>
@@ -273,6 +274,13 @@
     wordBank = cleaned;
     const title = (data.metadata && data.metadata.title) ? data.metadata.title : 'Crossword Trainer';
     pageTitle.textContent = title;
+    // The document claimed lang="en" whatever was on screen, so a screen reader read German
+    // answers with English pronunciation rules. A "de-en" list is mostly German, so take the
+    // first subtag.
+    const language = data.metadata && typeof data.metadata.language === 'string'
+      ? data.metadata.language.split('-')[0]
+      : null;
+    document.documentElement.lang = language || 'en';
     pageTagline.textContent = wordBank.length + ' words available';
     wordCountInput.max = Math.min(MAX_WORDS, wordBank.length);
     wordCountInput.value = clampWordCount(parseInt(wordCountInput.value, 10) || DEFAULT_WORDS);
@@ -362,6 +370,21 @@
       }
     }
 
+    // Every square gets a spoken name. Without one a screen reader announces two hundred
+    // identical "blank, edit text" fields with no way to tell where you are or which clue you
+    // are answering - the grid's meaning is entirely visual otherwise.
+    for(let r=0;r<rows;r++){
+      for(let c=0;c<cols;c++){
+        const cell = cellEls[r][c];
+        if(!cell) continue;
+        const belongsTo = [];
+        if(cell.across) belongsTo.push(wordInfo(cell.across).number + ' across');
+        if(cell.down) belongsTo.push(wordInfo(cell.down).number + ' down');
+        cell.input.setAttribute('aria-label',
+          `Row ${r+1}, column ${c+1}` + (belongsTo.length ? ', ' + belongsTo.join(' and ') : ''));
+      }
+    }
+
     renderClueLists();
     focusFirstCell();
   }
@@ -377,7 +400,19 @@
       const t = document.createElement('span');
       t.textContent = w.clue;
       li.appendChild(n); li.appendChild(t);
+      // A clue was a click target and nothing else: no tab stop, no keyboard activation, so
+      // jumping to a word was mouse-only. role/tabindex plus Enter and Space make it operable
+      // the way its appearance already implies.
+      li.setAttribute('role', 'button');
+      li.setAttribute('tabindex', '0');
+      li.setAttribute('aria-label', `${w.number} ${w.dir}, ${w.len} letters: ${w.clue}`);
       li.addEventListener('click', () => selectWord(w.dir, w.number, true));
+      li.addEventListener('keydown', (e) => {
+        if(e.key === 'Enter' || e.key === ' '){
+          e.preventDefault();
+          selectWord(w.dir, w.number, true);
+        }
+      });
       (w.dir==='across' ? acrossListEl : downListEl).appendChild(li);
     }
     renderPrintAnswerKey();
@@ -416,7 +451,10 @@
         cell.wrap.classList.remove('in-word','active');
       }
     }
-    document.querySelectorAll('.clue-list li').forEach(li => li.classList.remove('active'));
+    document.querySelectorAll('.clue-list li').forEach(li => {
+      li.classList.remove('active');
+      li.removeAttribute('aria-current');
+    });
   }
 
   function highlightWord(wid){
@@ -429,7 +467,11 @@
       cellEls[r][c].wrap.classList.add('in-word');
     }
     const li = document.querySelector(`.clue-list li[data-wid="${wid}"]`);
-    if(li){ li.classList.add('active'); if(typeof li.scrollIntoView === 'function') li.scrollIntoView({block:'nearest'}); }
+    if(li){
+      li.classList.add('active');
+      li.setAttribute('aria-current', 'true');
+      if(typeof li.scrollIntoView === 'function') li.scrollIntoView({block:'nearest'});
+    }
   }
 
   function focusCell(r,c,dir){
@@ -601,6 +643,27 @@
     return m + ':' + String(s).padStart(2,'0');
   }
 
+  // The overlay looked like a dialog but behaved like a decoration: keyboard focus stayed in the
+  // grid behind it, Escape did nothing, and a screen reader was never told it had appeared.
+  let celebrateReturnFocus = null;
+
+  function trapCelebrateFocus(e){
+    if(e.key === 'Escape'){
+      e.preventDefault();
+      closeCelebration();
+      restoreFocusToCurrentCell();
+      return;
+    }
+    if(e.key !== 'Tab') return;
+    const focusable = [celebrateNewBtn, celebrateCloseBtn];
+    const first = focusable[0], last = focusable[focusable.length-1];
+    if(e.shiftKey && document.activeElement === first){
+      e.preventDefault(); last.focus();
+    } else if(!e.shiftKey && document.activeElement === last){
+      e.preventDefault(); first.focus();
+    }
+  }
+
   function openCelebration(){
     const elapsedSeconds = puzzleStartTime ? Math.max(0, Math.round((Date.now() - puzzleStartTime)/1000)) : 0;
     celebrateTime.textContent = formatTime(elapsedSeconds);
@@ -612,18 +675,46 @@
       sub = 'Best this session: ' + formatTime(bestTimeSeconds);
     }
     celebrateSub.textContent = sub;
+    celebrateReturnFocus = document.activeElement;
+    celebrateOverlay.hidden = false;
     celebrateOverlay.classList.add('show');
+    document.addEventListener('keydown', trapCelebrateFocus, true);
+    celebrateNewBtn.focus();
     startFireworks();
   }
 
   function closeCelebration(){
+    const wasOpen = celebrateOverlay.classList.contains('show');
     celebrateOverlay.classList.remove('show');
+    celebrateOverlay.hidden = true;
+    document.removeEventListener('keydown', trapCelebrateFocus, true);
     stopFireworks();
+    // Hand focus back where it came from, rather than dropping it on the body.
+    if(wasOpen && celebrateReturnFocus && typeof celebrateReturnFocus.focus === 'function'){
+      celebrateReturnFocus.focus();
+    }
+    celebrateReturnFocus = null;
   }
 
   // ---------- fireworks (small canvas particle system, no external libs) ----------
-  let fwCtx = null, fwRAF = null, fwParticles = [], fwRockets = [], fwLastLaunch = 0, fwRunning = false;
-  const FW_COLORS = ['#F3C13B','#3B6E8F','#C1440E','#5B8A3A','#B24C9E','#E0574C'];
+  // Two things were wrong with the old version. It was dim - small flat dots on a dark overlay,
+  // drawn with a plain clearRect each frame so nothing left a trail. And it never cleaned up:
+  // the stop timer only set a flag, so the final frame stayed painted on the canvas
+  // indefinitely, leaving a scatter of frozen dots over the card until the overlay was closed.
+  //
+  // Now: additive blending and a glow make them read as light rather than paint, fading the
+  // previous frame instead of clearing it leaves trails, and the run ends by letting the last
+  // shells burn out and then clearing the canvas, so they genuinely disappear.
+  let fwCtx = null, fwRAF = null, fwParticles = [], fwRockets = [], fwLastLaunch = 0;
+  let fwRunning = false;   // the animation loop is live
+  let fwLaunching = false; // new shells are still being sent up
+  const FW_COLORS = ['#FFD34E','#6FC4F5','#FF7A45','#8FE36B','#F07CD6','#FF6B5E'];
+  const FW_DURATION_MS = 4200;  // how long new shells keep going up
+  const FW_BURNOUT_MS = 3000;   // generous allowance for the last of them to fade out
+
+  function prefersReducedMotion(){
+    return typeof matchMedia === 'function' && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  }
 
   function fwResize(){
     fireworksCanvas.width = fireworksCanvas.clientWidth * devicePixelRatio;
@@ -633,25 +724,26 @@
   function fwLaunchRocket(){
     const w = fireworksCanvas.clientWidth, h = fireworksCanvas.clientHeight;
     fwRockets.push({
-      x: w * (0.2 + Math.random()*0.6),
+      x: w * (0.15 + Math.random()*0.7),
       y: h,
-      targetY: h * (0.15 + Math.random()*0.35),
-      vy: -(h*0.012 + Math.random()*3),
+      targetY: h * (0.12 + Math.random()*0.34),
+      vy: -(h*0.013 + Math.random()*3),
       color: FW_COLORS[Math.floor(Math.random()*FW_COLORS.length)]
     });
   }
 
   function fwExplode(x, y, color){
-    const count = 34 + Math.floor(Math.random()*14);
+    const count = 46 + Math.floor(Math.random()*20);
     for(let i=0;i<count;i++){
       const angle = (Math.PI*2*i/count) + Math.random()*0.3;
-      const speed = 1.6 + Math.random()*3.2;
+      const speed = 1.8 + Math.random()*3.8;
       fwParticles.push({
         x, y,
         vx: Math.cos(angle)*speed,
         vy: Math.sin(angle)*speed,
         life: 1,
-        decay: 0.012 + Math.random()*0.014,
+        decay: 0.009 + Math.random()*0.011,
+        radius: 2.6 + Math.random()*1.4,
         color
       });
     }
@@ -661,10 +753,17 @@
     if(!fwRunning) return;
     const w = fireworksCanvas.clientWidth, h = fireworksCanvas.clientHeight;
     fwCtx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);
-    fwCtx.clearRect(0,0,w,h);
+
+    // Fade the previous frame rather than erasing it, which leaves a trail behind every spark.
+    // destination-out keeps the canvas itself transparent, so the overlay below is untouched.
+    fwCtx.globalCompositeOperation = 'destination-out';
+    fwCtx.fillStyle = 'rgba(0,0,0,0.22)';
+    fwCtx.fillRect(0,0,w,h);
+    // Additive blending: overlapping sparks brighten each other instead of covering each other.
+    fwCtx.globalCompositeOperation = 'lighter';
 
     const now = performance.now();
-    if(now - fwLastLaunch > 480 && fwRockets.length < 4){
+    if(fwLaunching && now - fwLastLaunch > 320 && fwRockets.length < 6){
       fwLaunchRocket();
       fwLastLaunch = now;
     }
@@ -673,8 +772,10 @@
       const r = fwRockets[i];
       r.y += r.vy;
       r.vy += 0.05;
+      fwCtx.shadowBlur = 12;
+      fwCtx.shadowColor = r.color;
       fwCtx.beginPath();
-      fwCtx.arc(r.x, r.y, 2.2, 0, Math.PI*2);
+      fwCtx.arc(r.x, r.y, 2.8, 0, Math.PI*2);
       fwCtx.fillStyle = r.color;
       fwCtx.fill();
       if(r.vy >= 0 || r.y <= r.targetY){
@@ -692,36 +793,70 @@
       p.life -= p.decay;
       if(p.life <= 0){ fwParticles.splice(i,1); continue; }
       fwCtx.globalAlpha = Math.max(0, p.life);
+      fwCtx.shadowBlur = 14;
+      fwCtx.shadowColor = p.color;
       fwCtx.beginPath();
-      fwCtx.arc(p.x, p.y, 2.4, 0, Math.PI*2);
+      fwCtx.arc(p.x, p.y, p.radius, 0, Math.PI*2);
       fwCtx.fillStyle = p.color;
       fwCtx.fill();
       fwCtx.globalAlpha = 1;
+    }
+
+    fwCtx.shadowBlur = 0;
+    fwCtx.globalCompositeOperation = 'source-over';
+
+    // Once the last shell has stopped launching and everything it threw up has burned out,
+    // wipe the canvas. Without this the final frame stayed on screen as a field of dead dots.
+    if(!fwLaunching && fwRockets.length === 0 && fwParticles.length === 0){
+      stopFireworks();
+      return;
     }
 
     fwRAF = requestAnimationFrame(fwStep);
   }
 
   function startFireworks(){
+    // A full-screen burst of flashing particles is exactly what this setting is asking us not
+    // to do. The card, the time and the message all still appear.
+    if(prefersReducedMotion()) return;
     if(!fwCtx) fwCtx = fireworksCanvas.getContext('2d');
     fwResize();
     fwParticles = [];
     fwRockets = [];
     fwLastLaunch = 0;
     fwRunning = true;
+    fwLaunching = true;
     fwLaunchRocket();
     if(fwRAF) cancelAnimationFrame(fwRAF);
     fwStep();
     clearTimeout(startFireworks._stopTimer);
-    startFireworks._stopTimer = setTimeout(() => { fwRunning = false; }, 4200);
+    clearTimeout(startFireworks._hardStopTimer);
+    // Stop *launching* here rather than stopping dead: the shells already in the air finish
+    // their arc, and fwStep clears the canvas once the last spark has gone.
+    startFireworks._stopTimer = setTimeout(() => { fwLaunching = false; }, FW_DURATION_MS);
+    // fwStep only runs while requestAnimationFrame does, and that stops in a hidden or
+    // backgrounded tab - which would leave the final frame painted until the tab was looked at
+    // again. A timer is throttled in the background but still fires, so the canvas gets cleared
+    // either way. Whichever path gets there first wins; stopFireworks is safe to run twice.
+    startFireworks._hardStopTimer = setTimeout(stopFireworks, FW_DURATION_MS + FW_BURNOUT_MS);
   }
 
   function stopFireworks(){
     fwRunning = false;
+    fwLaunching = false;
+    clearTimeout(startFireworks._stopTimer);
+    clearTimeout(startFireworks._hardStopTimer);
     if(fwRAF) cancelAnimationFrame(fwRAF);
+    fwRAF = null;
     fwParticles = [];
     fwRockets = [];
-    if(fwCtx) fwCtx.clearRect(0,0,fireworksCanvas.width,fireworksCanvas.height);
+    if(fwCtx){
+      fwCtx.setTransform(1,0,0,1,0,0);
+      fwCtx.globalCompositeOperation = 'source-over';
+      fwCtx.globalAlpha = 1;
+      fwCtx.shadowBlur = 0;
+      fwCtx.clearRect(0,0,fireworksCanvas.width,fireworksCanvas.height);
+    }
   }
 
   window.addEventListener('resize', () => { if(celebrateOverlay.classList.contains('show')) fwResize(); });

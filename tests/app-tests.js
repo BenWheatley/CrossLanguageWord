@@ -75,7 +75,9 @@ function registerAppTests(test){
     const app = await bootApp('?list=german&words=10');
     const { document, window } = app;
     const cell = document.activeElement;
+    assertEqual(cell.tagName, 'INPUT', 'expected a grid square to be focused after loading');
     typeInto(cell, window, 'X');
+    assertNotEqual(document.activeElement, cell, 'typing should have advanced to the next square');
     document.activeElement.dispatchEvent(new window.KeyboardEvent('keydown', { key: 'Backspace', bubbles: true }));
     assertEqual(cell.value, '', 'original cell should be clear after backing up into it');
   });
@@ -427,5 +429,97 @@ test('solving the puzzle correctly triggers the celebration overlay', async () =
     const app = await bootApp('?list=english&words=10&seed=' + encodeURIComponent('!!! not a seed !!!'));
     assertEqual(app.errors.length, 0, app.errors.join('; '));
     assertEqual(app.document.querySelectorAll('#acrossList li, #downList li').length, 10);
+  });
+
+  // ---------- accessibility ----------
+
+  test('every grid square has a spoken name saying where it is and what it belongs to', async () => {
+    const app = await bootApp('?list=english&words=10');
+    const inputs = Array.from(app.document.querySelectorAll('#grid .cell input'));
+    assertTrue(inputs.length > 0, 'expected a grid');
+    const unlabelled = inputs.filter((i) => !i.getAttribute('aria-label'));
+    assertEqual(unlabelled.length, 0, `${unlabelled.length} squares had no aria-label`);
+    // and the label should actually locate the square
+    const sample = inputs[0].getAttribute('aria-label');
+    assertTrue(/^Row \d+, column \d+/.test(sample), `unhelpful label: ${sample}`);
+  });
+
+  test('clues are reachable and operable from the keyboard, not only by mouse', async () => {
+    const app = await bootApp('?list=english&words=10');
+    const { document: doc, window: win } = app;
+    const clue = doc.querySelector('#acrossList li, #downList li');
+    assertEqual(clue.getAttribute('tabindex'), '0', 'a clue should be a tab stop');
+    assertEqual(clue.getAttribute('role'), 'button');
+
+    clue.focus();
+    clue.dispatchEvent(new win.KeyboardEvent('keydown', { key: 'Enter', bubbles: true }));
+    // focus() does not always take effect in the same tick - WebKit applies it a beat later.
+    await waitFor(() => doc.activeElement && doc.activeElement.tagName === 'INPUT', 2000);
+    assertEqual(doc.activeElement.tagName, 'INPUT', 'Enter on a clue should move focus into the grid');
+  });
+
+  test('the current clue is marked for assistive tech, not only by colour', async () => {
+    const app = await bootApp('?list=english&words=10');
+    const doc = app.document;
+    const current = doc.querySelectorAll('.clue-list li[aria-current="true"]');
+    assertEqual(current.length, 1, 'exactly one clue should be marked current');
+    assertTrue(current[0].classList.contains('active'), 'and it should be the highlighted one');
+  });
+
+  test('the page declares the language it is actually showing', async () => {
+    const german = await bootApp('?list=german&words=8');
+    assertEqual(german.document.documentElement.lang, 'de');
+    const english = await bootApp('?list=english&words=8');
+    assertEqual(english.document.documentElement.lang, 'en');
+  });
+
+  test('the status line is a live region so warnings are announced', async () => {
+    const app = await bootApp('?list=english&words=8');
+    const status = app.document.getElementById('status');
+    assertEqual(status.getAttribute('role'), 'status');
+    assertEqual(status.getAttribute('aria-live'), 'polite');
+  });
+
+  test('the celebration is a modal dialog that takes and traps focus', async () => {
+    const app = await bootApp('?list=english&words=2');
+    if(!solvePuzzle(app)) return;
+    const { document: doc, window: win } = app;
+    const overlay = doc.getElementById('celebrateOverlay');
+    assertTrue(overlay.classList.contains('show'), 'expected the celebration to open');
+    assertEqual(overlay.getAttribute('role'), 'dialog');
+    assertEqual(overlay.getAttribute('aria-modal'), 'true');
+    assertEqual(overlay.hidden, false);
+    await waitFor(() => doc.activeElement && doc.activeElement.id === 'celebrateNewBtn', 2000);
+    assertEqual(doc.activeElement.id, 'celebrateNewBtn', 'focus should move into the dialog');
+
+    // Tab off the last control wraps back to the first rather than escaping to the page behind.
+    const closeBtn = doc.getElementById('celebrateCloseBtn');
+    closeBtn.focus();
+    await waitFor(() => doc.activeElement === closeBtn, 2000);
+    doc.dispatchEvent(new win.KeyboardEvent('keydown', { key: 'Tab', bubbles: true }));
+    await waitFor(() => doc.activeElement && doc.activeElement.id === 'celebrateNewBtn', 2000);
+    assertEqual(doc.activeElement.id, 'celebrateNewBtn', 'focus should have wrapped');
+  });
+
+  test('Escape closes the celebration and hands focus back to the grid', async () => {
+    const app = await bootApp('?list=english&words=2');
+    if(!solvePuzzle(app)) return;
+    const { document: doc, window: win } = app;
+    doc.dispatchEvent(new win.KeyboardEvent('keydown', { key: 'Escape', bubbles: true }));
+    const overlay = doc.getElementById('celebrateOverlay');
+    assertTrue(!overlay.classList.contains('show'), 'Escape should close the dialog');
+    assertEqual(overlay.hidden, true);
+    await waitFor(() => doc.activeElement && doc.activeElement.tagName === 'INPUT', 2000);
+    assertEqual(doc.activeElement.tagName, 'INPUT', 'focus should return to the grid');
+  });
+
+  test('closing the celebration leaves no fireworks painted on the canvas', async () => {
+    const app = await bootApp('?list=english&words=2');
+    if(!solvePuzzle(app)) return;
+    const doc = app.document;
+    const canvas = doc.getElementById('fireworksCanvas');
+    doc.getElementById('celebrateCloseBtn').click();
+    // The old code only set a flag when the run ended, so the last frame stayed on the canvas.
+    assertEqual(litPixelCount(canvas), 0, 'the canvas should be wiped, not just left frozen');
   });
 }

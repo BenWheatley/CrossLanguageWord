@@ -36,8 +36,14 @@ function bootApp(query = '', opts = {}){
       const doc = win.document;
       const errors = [];
       win.onerror = (msg) => errors.push(msg);
-      waitFor(() => doc.querySelectorAll('#grid .cell').length > 0).then((ready) => {
+      waitFor(() => doc.querySelectorAll('#grid .cell').length > 0).then(async (ready) => {
         if(!ready && errors.length === 0) errors.push('app did not finish rendering a grid within the timeout');
+        // Cells existing is not the same as the app being ready to type into. focusFirstCell()
+        // runs at the end of render, but the focus does not always land in the same tick - in
+        // WebKit it lands a beat later, which intermittently left document.activeElement as
+        // <body> and made every focus-dependent test a coin toss. Wait for focus to settle.
+        // Best-effort: a test that does not care about focus should not fail over it.
+        if(ready) await waitFor(() => doc.activeElement && doc.activeElement.tagName === 'INPUT', 2000);
         resolve({ window: win, document: doc, errors });
       });
     }
@@ -70,3 +76,49 @@ function gridIndex(doc){
   }
   return { byPos, startOf };
 }
+
+/**
+ * Fills in the whole grid from the printed answer key, which is how a test solves a puzzle.
+ * Returns false if the key and the grid disagree, so a caller can bail rather than assert
+ * against a half-filled grid.
+ */
+function solvePuzzle(app){
+  const { document: doc, window: win } = app;
+  const starts = {};
+  doc.querySelectorAll('#grid .cell').forEach((cell) => {
+    const num = cell.querySelector('.num');
+    const input = cell.querySelector('input');
+    if(num && input) starts[num.textContent] = { r: +input.dataset.r, c: +input.dataset.c };
+  });
+
+  let filled = 0;
+  for(const [listSel, dir] of [['#printAnswerAcross', 'across'], ['#printAnswerDown', 'down']]){
+    for(const li of doc.querySelectorAll(listSel + ' li')){
+      const match = /^(\d+)\.\s*(.+)$/.exec(li.textContent);
+      if(!match) return false;
+      const start = starts[match[1]];
+      if(!start) return false;
+      const answer = Array.from(match[2]);
+      for(let i = 0; i < answer.length; i++){
+        const r = dir === 'across' ? start.r : start.r + i;
+        const c = dir === 'across' ? start.c + i : start.c;
+        const input = doc.querySelector(`#grid .cell input[data-r="${r}"][data-c="${c}"]`);
+        if(!input) return false;
+        input.value = answer[i];
+        input.dispatchEvent(new win.Event('input', { bubbles: true }));
+        filled++;
+      }
+    }
+  }
+  return filled > 0;
+}
+
+/** Counts canvas pixels with meaningful alpha - i.e. is anything actually painted there? */
+function litPixelCount(canvas){
+  const ctx = canvas.getContext('2d');
+  const data = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+  let count = 0;
+  for(let i = 3; i < data.length; i += 4){ if(data[i] > 8) count++; }
+  return count;
+}
+

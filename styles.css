@@ -286,6 +286,8 @@
     transition:opacity .25s ease;
   }
   #celebrateOverlay.show{ display:flex; opacity:1; }
+  /* [hidden] has to beat the .show display:flex, or toggling the attribute would do nothing. */
+  #celebrateOverlay[hidden]{ display:none; }
   #fireworksCanvas{
     position:absolute;
     inset:0;
@@ -385,6 +387,12 @@
     gap:7px;
   }
   .clue-list li:hover{background:#efe9d9;}
+  /* Clue items are keyboard-operable now, so they need a visible focus ring. */
+  .clue-list li:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:1px;
+    background:#efe9d9;
+  }
   .clue-list li.active{background:var(--highlight-word);}
   .clue-list .n{
     font-family:'IBM Plex Mono',monospace;
@@ -462,4 +470,19 @@
   @media (max-width:640px){
     #grid{ --cell-size:30px; }
     .cell input{font-size:14px;}
+  }
+
+  /* Readers who have asked their system for less motion get the same information without the
+     movement: the solved grid still changes colour, the card still appears, and the fireworks
+     are skipped entirely (startFireworks() checks the same query before it does anything). */
+  @media (prefers-reduced-motion: reduce){
+    *, *::before, *::after{
+      animation-duration:0.001ms !important;
+      animation-iteration-count:1 !important;
+      transition-duration:0.001ms !important;
+    }
+    #grid.solved .cell:not(.block) input{
+      animation:none;
+      background:var(--highlight-word);
+    }
   }
