@@ -1,0 +1,8 @@
+node_modules/
+test-results/
+playwright-report/
+blob-report/
+.DS_Store
+
+# Local editor/agent scratch config
+.claude/

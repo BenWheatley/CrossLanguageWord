@@ -152,6 +152,10 @@
     flex-wrap:wrap;
     margin-bottom:18px;
   }
+  /* Options, then the two things you do to the puzzle in front of you, then - pushed to the far
+     end - the one that throws it away and starts again. Separating it by distance rather than
+     only by colour makes it harder to hit by accident. */
+  .toolbar #generateBtn{ margin-left:auto; }
   .hamburger-wrap{ position:relative; }
   .hamburger-btn{
     width:40px;
@@ -204,6 +208,25 @@
   }
   #status.warn{color:var(--warn);}
 
+  /* Shown when a link names a word list loaded from a file the app no longer holds. The words
+     cannot be fetched from anywhere, so the reader is the only source for them. */
+  #listPrompt{
+    border:1px solid var(--rule);
+    border-radius:6px;
+    padding:14px 16px;
+    margin:0 0 18px;
+    background:var(--panel);
+    max-width:640px;
+  }
+  #listPrompt[hidden]{ display:none; }
+  #listPrompt p{
+    margin:0 0 10px;
+    font-size:14px;
+    line-height:1.5;
+  }
+  #listPrompt .file-trigger-label{ margin:0 8px 0 0; vertical-align:middle; }
+  #listPrompt button{ vertical-align:middle; }
+
   .board-area{
     display:flex;
     gap:26px;
@@ -215,6 +238,9 @@
     position:relative;
     flex:0 0 auto;
   }
+  /* Before any puzzle exists - while the reader is being asked for a word list - the grid has no
+     cells, and a bordered empty box reads as a stray mark on the page. */
+  #grid:empty{ display:none; }
   #grid{
     --cell-size:38px;
     display:grid;
@@ -286,6 +312,8 @@
     transition:opacity .25s ease;
   }
   #celebrateOverlay.show{ display:flex; opacity:1; }
+  /* [hidden] has to beat the .show display:flex, or toggling the attribute would do nothing. */
+  #celebrateOverlay[hidden]{ display:none; }
   #fireworksCanvas{
     position:absolute;
     inset:0;
@@ -385,6 +413,12 @@
     gap:7px;
   }
   .clue-list li:hover{background:#efe9d9;}
+  /* Clue items are keyboard-operable now, so they need a visible focus ring. */
+  .clue-list li:focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:1px;
+    background:#efe9d9;
+  }
   .clue-list li.active{background:var(--highlight-word);}
   .clue-list .n{
     font-family:'IBM Plex Mono',monospace;
@@ -403,14 +437,33 @@
 
   @media print{
     *{ -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; color-adjust:exact !important; }
-    body{background:#fff;}
+    body{
+      background:#fff;
+      /* The screen rule sets min-height:100vh so a short page still fills the window. In paged
+         media WebKit resolves vh against the browser window rather than the page box, so that
+         min-height survives into printing and forces the body to the height of the reader's
+         Safari window - 1100px or more against roughly 970px of usable A4. The content ends far
+         above that; the remainder is empty space, and it spills onto a second, blank sheet.
+         Chromium re-lays out at the paper size when printing, so vh means the page there and the
+         bug never appears - which is why printing to PDF from Chromium could not reproduce it. */
+      min-height:0;
+    }
     .no-print{display:none !important;}
     .wrap{max-width:none;padding:0;margin:0;}
     header.app-head{border-bottom:2px solid #000;margin-bottom:14px;}
     #pageTagline{display:none;}
     .board-area{display:block;}
     #gridHost{margin:0 auto 20px; width:max-content;}
-    #grid{ --cell-size:26px; background:transparent; border:2px solid #000; gap:0; }
+    /* The column budget comes from the browser window, so a puzzle generated on a wide screen
+       could be wider than the paper: 29 columns at 26px is 754px against roughly 718px of
+       printable A4. Shrink the cells to fit when that happens - 26px stays the cap, so ordinary
+       puzzles print exactly as before. var(--cols) is a plain number, so it can divide a length. */
+    #grid{
+      --cell-size:min(26px, calc(180mm / var(--cols)));
+      background:transparent;
+      border:2px solid #000;
+      gap:0;
+    }
     .cell{ background:#fff; border:1px solid #000; }
     .cell.block{ background:#000 !important; }
     .cell .num{ color:#000; font-size:8px; }
@@ -427,26 +480,41 @@
 
   #printAnswerKey{ display:none; }
   @media print{
+    /* The rotation used to be applied to this whole block, which put the dividing rule and the
+       heading upside down at the *bottom* of the section - so the sheet read: answers, then a
+       heading, then the line that was supposed to introduce them. Only the answers themselves
+       should be inverted. The heading and rule stay the right way up, at the top, where they
+       announce what follows. */
     #printAnswerKey{
-      margin-top:30px;
       padding-top:12px;
-      border-top:1px dashed #ccc;
-      transform:rotate(180deg);
+      border-top:1px dashed #999;
+      /* Keep the whole key together. That is also the answer to "if a page break is needed, put
+         it before this section": an unbreakable block that does not fit in what is left of the
+         page moves to the next one whole, which is exactly the wanted behaviour. */
+      break-inside:avoid;
       page-break-inside:avoid;
+      /* No trailing margin. A bottom margin on the last element in the flow can overhang the end
+         of the page and produce an extra, empty sheet. */
+      margin:24px 0 0 0;
     }
     #printAnswerKey .key-heading{
       font-family:'IBM Plex Mono',monospace;
       font-size:8px;
-      color:#c9c2b2;
+      color:#555;                 /* readable: it is a label, not part of the concealed answer */
       text-transform:uppercase;
       letter-spacing:.08em;
       text-align:center;
       margin-bottom:6px;
+      break-after:avoid;
+      page-break-after:avoid;     /* never orphan the heading from the answers it introduces */
     }
     #printAnswerKey .key-cols{
       display:flex;
       justify-content:center;
       gap:26px;
+      transform:rotate(180deg);   /* the answers alone are inverted */
+      /* No break-inside here: keeping the key whole is the parent's job, and declaring it twice
+         only invites the two to disagree. */
     }
     #printAnswerKey ol{
       list-style:none;
@@ -455,11 +523,32 @@
       font-family:'IBM Plex Mono',monospace;
       font-size:7.5px;
       line-height:1.6;
-      color:#c9c2b2;
+      color:#c9c2b2;              /* low contrast, so it does not read at a glance */
     }
+    /* "Print the answer key" turned off in the options menu. */
+    body.print-no-key #printAnswerKey{ display:none !important; }
   }
 
   @media (max-width:640px){
     #grid{ --cell-size:30px; }
     .cell input{font-size:14px;}
+    /* Narrow enough that the toolbar wraps, and a wrapped item pushed by margin-left:auto ends
+       up stranded on the right of its own row. Let it sit in line instead; the order still puts
+       it last. */
+    .toolbar #generateBtn{ margin-left:0; }
+  }
+
+  /* Readers who have asked their system for less motion get the same information without the
+     movement: the solved grid still changes colour, the card still appears, and the fireworks
+     are skipped entirely (startFireworks() checks the same query before it does anything). */
+  @media (prefers-reduced-motion: reduce){
+    *, *::before, *::after{
+      animation-duration:0.001ms !important;
+      animation-iteration-count:1 !important;
+      transition-duration:0.001ms !important;
+    }
+    #grid.solved .cell:not(.block) input{
+      animation:none;
+      background:var(--highlight-word);
+    }
   }

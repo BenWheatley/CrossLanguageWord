@@ -38,50 +38,60 @@
         </div>
         <div class="field">
           <label for="wordCount">Words in puzzle</label>
-          <input type="number" id="wordCount" min="2" value="15">
+          <input type="number" id="wordCount" min="2" max="120" value="15">
         </div>
         <label class="check-field">
           <input type="checkbox" id="printAnswers"> Show my typed answers when printing, instead of a blank puzzle
         </label>
+        <label class="check-field">
+          <input type="checkbox" id="printKey" checked> Print the answer key at the foot of the sheet
+        </label>
       </div>
     </div>
-    <button id="generateBtn" disabled>New crossword</button>
     <button id="checkBtn" class="secondary" disabled>Check answers</button>
     <button id="printBtn" class="secondary" disabled>Print</button>
+    <button id="generateBtn" disabled>New crossword</button>
   </div>
 
-  <div id="status" class="no-print"></div>
+  <div id="status" class="no-print" role="status" aria-live="polite"></div>
+
+  <div id="listPrompt" class="no-print" hidden>
+    <p id="listPromptText"></p>
+    <label for="fileInput" class="file-trigger-label">Choose file…</label>
+    <button id="listPromptFresh" class="secondary">Start a new puzzle instead</button>
+  </div>
 
   <div class="board-area">
     <div id="gridHost">
-      <div id="grid"></div>
-      <div id="dirPopup">
+      <div id="grid" role="group" aria-label="Crossword grid"></div>
+      <div id="dirPopup" role="group" aria-label="Which word do you mean?">
         <button data-dir="across">→ Across</button>
         <button data-dir="down">↓ Down</button>
       </div>
     </div>
     <div class="clues">
       <div class="clue-col">
-        <h2>Across</h2>
-        <ul class="clue-list" id="acrossList"></ul>
+        <h2 id="acrossHeading">Across</h2>
+        <ul class="clue-list" id="acrossList" aria-labelledby="acrossHeading"></ul>
       </div>
       <div class="clue-col">
-        <h2>Down</h2>
-        <ul class="clue-list" id="downList"></ul>
+        <h2 id="downHeading">Down</h2>
+        <ul class="clue-list" id="downList" aria-labelledby="downHeading"></ul>
       </div>
     </div>
   </div>
 
   <div id="printAnswerKey">
-    <div class="key-heading">Answer key (flip the page)</div>
+    <div class="key-heading">Answer key &mdash; turn the sheet upside down to read</div>
     <div class="key-cols">
       <ol id="printAnswerAcross"></ol>
       <ol id="printAnswerDown"></ol>
     </div>
   </div>
 
-  <div id="celebrateOverlay" class="no-print">
-    <canvas id="fireworksCanvas"></canvas>
+  <div id="celebrateOverlay" class="no-print" role="dialog" aria-modal="true"
+       aria-labelledby="celebrateHeadline" aria-describedby="celebrateTime" hidden>
+    <canvas id="fireworksCanvas" aria-hidden="true"></canvas>
     <div id="celebrateCard">
       <div id="celebrateHeadline">Solved!</div>
       <div id="celebrateTime">0:00</div>
@@ -94,7 +104,7 @@
   </div>
 
   <footer class="hint no-print">
-    Click a cell to focus it. Type to fill letters, arrow keys to move, backspace to clear. Cells that start both an across and a down word will ask which one you mean.
+    Click a cell to focus it. Type to fill letters, arrow keys to move, backspace to clear. The highlighted squares show which word you are answering; on a cell that starts both an across and a down word, click again or press space to switch between them.
   </footer>
 </div>
 
@@ -115,11 +125,25 @@
   let celebrated = false;
   let puzzleStartTime = null;
   const STORAGE_KEY = 'crossword-trainer-state';
-  const SAVE_VERSION = 1;
+  const SAVE_VERSION = 5; // bumped when custom lists moved into their own keyed store
+  const LIBRARY_KEY = 'crossword-trainer-lists';
   let pendingRestore = null; // a saved puzzle waiting to be restored on first load, if any
+  let pendingSeed = null;    // a seed from the URL, waiting for the word list to finish loading
   let saveTimer = null;
   let bestTimeSeconds = null; // best solve time this session (not persisted)
-  let currentListId = null; // 'english' | 'german' | null (custom file has no URL representation)
+  let currentListId = null; // an id from LISTS, or CUSTOM_LIST_ID for a file the reader loaded
+  let currentSeed = null;   // the seed the visible puzzle was built from
+  let currentListTitle = 'Crossword Trainer';
+  let currentListLanguage = null;
+  let currentListSum = null;   // fingerprint of the loaded list, when there is one
+  let currentListShape = null; // hash of just its answers - see the engine's note on the two
+
+  // A list the reader loaded from their own file has no URL to fetch it back from, so the link
+  // names it by fingerprint instead and the words are kept in a store of their own, keyed the
+  // same way. Several lists can be held at once, which a single slot on the saved puzzle could
+  // not manage - open a puzzle from one file, another from a second, and both stay resumable.
+  const CUSTOM_LIST_ID = 'custom';
+  const LIBRARY_BUDGET_BYTES = 2000000;
 
   const fileInput = document.getElementById('fileInput');
   const wordListSelect = document.getElementById('wordListSelect');
@@ -135,9 +159,13 @@
   const printBtn = document.getElementById('printBtn');
   const checkBtn = document.getElementById('checkBtn');
   const printAnswersCk = document.getElementById('printAnswers');
+  const printKeyCk = document.getElementById('printKey');
   const hamburgerBtn = document.getElementById('hamburgerBtn');
   const optionsMenu = document.getElementById('optionsMenu');
   const statusEl = document.getElementById('status');
+  const listPrompt = document.getElementById('listPrompt');
+  const listPromptText = document.getElementById('listPromptText');
+  const listPromptFresh = document.getElementById('listPromptFresh');
   const gridEl = document.getElementById('grid');
   const dirPopup = document.getElementById('dirPopup');
   const acrossListEl = document.getElementById('acrossList');
@@ -152,8 +180,31 @@
 
   // ---------- crossword generation engine (crossword-engine.js) ----------
   const {
-    toUpperGrapheme, graphemes, key, buildCrossword, trimAndIndex, numberGrid
+    toUpperGrapheme, normalizeText, graphemes, key, makeRng, randomSeed, isValidSeed,
+    wordListFingerprint, wordListShape, buildCrossword, trimAndIndex, numberGrid
   } = CrosswordEngine;
+
+  // ---------- word lists ----------
+  // One table, so the <select>, the ?list= parameter and the saved-state check can never disagree
+  // about which ids are real or which file each one means.
+  const LISTS = {
+    english:           { file: 'example.json',                label: 'English' },
+    german_a2:         { file: 'Deutsch-A2.json',             label: 'Deutsch A2' },
+    german:            { file: 'german.json',                 label: 'Deutsch B1' },
+    german_to_english: { file: 'deutsch-fragen-english.json', label: 'Deutsch B1 \u2192 Englisch' }
+  };
+  const DEFAULT_LIST = 'german';
+  const DEFAULT_WORDS = 15;
+  // Generation cost climbs far faster than the word count does - roughly cubically, because each
+  // of the target placements rescans a grid that is itself growing. Measured on german.json:
+  // 50 words 177ms, 100 words 354ms, 200 words 2.2s, 400 words 17.3s. It is all synchronous, so
+  // those are frozen-tab seconds with no spinner and no way to cancel, and the word-count field
+  // used to offer the whole bank (1000) as its maximum while regenerating on every change.
+  // 120 keeps the worst case near a second and is already far more crossword than fits a page.
+  const MAX_WORDS = 120;
+  function clampWordCount(n){
+    return Math.max(2, Math.min(n, MAX_WORDS, wordBank.length || MAX_WORDS));
+  }
 
   // ---------- file loading ----------
   wordListSelect.addEventListener('change', function(){
@@ -169,10 +220,10 @@
       return;
     }
     fileTriggerLabel.style.display = 'none';
-    if(v === 'english'){ currentListId = 'english'; fetchWordList('example.json', 'English'); }
-    else if(v === 'german'){ currentListId = 'german'; fetchWordList('german.json', 'Deutsch B1'); }
-    else if(v === 'german_a2'){ currentListId = 'german_a2'; fetchWordList('Deutsch-A2.json', 'Deutsch A2'); }
-    else if(v === 'german_to_english'){ currentListId = 'german_to_english'; fetchWordList('deutsch-fragen-english.json', 'Deutsch B1 → Englisch'); }
+    if(LISTS[v]){
+      currentListId = v;
+      fetchWordList(LISTS[v].file, LISTS[v].label);
+    }
   });
 
   function fetchWordList(path, label){
@@ -185,59 +236,236 @@
       });
   }
 
+  // When a link names a list the app does not hold, the reader is asked for the file and what
+  // they pick has to be checked against the fingerprint in that link. Null the rest of the time.
+  let awaitedListSum = null;
+  let awaitedListShape = null;
+
   fileInput.addEventListener('change', function(e){
     fileTriggerLabel.style.display = 'none';
     const file = e.target.files[0];
     if(!file) return;
     const reader = new FileReader();
     reader.onload = function(ev){
+      let data;
       try{
-        const data = JSON.parse(ev.target.result);
-        currentListId = null;
-        loadWordBank(data);
+        data = JSON.parse(ev.target.result);
       }catch(err){
         setStatus('Could not parse that file: ' + err.message, true);
+        return;
       }
+      acceptLoadedFile(data);
     };
     reader.onerror = function(){ setStatus('Could not read that file.', true); };
     reader.readAsText(file, 'utf-8');
     fileInput.value = '';
   });
 
-  function loadWordBank(data){
+  // Shown when a link names a loaded list the app does not hold: the words cannot be fetched, so
+  // the reader is the only source for them.
+  function showListPrompt(title){
+    listPromptText.textContent = title
+      ? `This puzzle was made from “${title}”, a word list from your own file. Choose that file to carry on.`
+      : 'This puzzle was made from a word list from your own file. Choose that file to carry on.';
+    listPrompt.hidden = false;
+    generateBtn.disabled = true;
+  }
+
+  function hideListPrompt(){
+    listPrompt.hidden = true;
+  }
+
+  listPromptFresh.addEventListener('click', () => {
+    // They would rather not hunt for the file. Fall back to the default list and say so.
+    awaitedListSum = null;
+    awaitedListShape = null;
+    pendingRestore = null;
+    pendingSeed = null;
+    hideListPrompt();
+    currentListId = DEFAULT_LIST;
+    currentListSum = null;
+    wordListSelect.value = DEFAULT_LIST;
+    fetchWordList(LISTS[DEFAULT_LIST].file, LISTS[DEFAULT_LIST].label);
+  });
+
+  function acceptLoadedFile(data){
+    const derived = deriveBank(data);
+    if(!derived) return;
+    const sum = wordListFingerprint(derived.bank);
+
+    // A link asked for one specific list. Check this is it before building anything on top of it.
+    let warning = '';
+    if(awaitedListSum && sum !== awaitedListSum){
+      if(awaitedListShape && wordListShape(derived.bank) === awaitedListShape){
+        // Same answers in the same order, so the grid will come out identical and only the clue
+        // wording can differ. Worth saying plainly and then letting them get on with it, rather
+        // than refusing a list that is obviously the right one with a typo fixed.
+        warning = 'That list has the same words but its clues have been edited since this link '
+          + 'was made. The grid will be the same; some clues may be worded differently.';
+      } else {
+        setStatus('That is a different word list from the one this puzzle was made with. '
+          + 'Choose the file it came from, or start a new puzzle with this one instead.', true);
+        return;
+      }
+    }
+
+    const kept = adoptCustomList(derived, sum);
+    if(!kept){
+      warning = warning || 'That list is too large to keep between visits, so you may be asked '
+        + 'for the file again next time.';
+    }
+
+    hideListPrompt();
+    const wasAwaited = !!awaitedListSum;
+    awaitedListSum = null;
+    awaitedListShape = null;
+    if(wasAwaited) startPuzzle();  // the link's puzzle, now that its list has arrived
+    else generate();               // a list chosen from the menu means a new puzzle
+
+    // After, not before: both restoreFromSaved and generate clear the status line.
+    if(warning) setStatus(warning, true);
+  }
+
+  /** Adopts a loaded list and files it in the store under its fingerprint. */
+  function adoptCustomList(derived, sum){
+    currentListId = CUSTOM_LIST_ID;
+    currentListSum = sum;
+    currentListShape = wordListShape(derived.bank);
+    adoptWordBank(derived.bank, derived.title, derived.language);
+    return rememberList(sum, {
+      title: derived.title,
+      language: derived.language,
+      words: derived.bank
+    });
+  }
+
+  // ---------- the store of loaded word lists ----------
+  // Keyed by fingerprint, so a link carrying one can find the list it needs among however many
+  // the reader has accumulated.
+  function loadLibrary(){
+    try{
+      const raw = localStorage.getItem(LIBRARY_KEY);
+      const parsed = raw ? JSON.parse(raw) : null;
+      return (parsed && typeof parsed === 'object') ? parsed : {};
+    }catch(e){
+      return {};
+    }
+  }
+
+  function findSavedList(sum){
+    const entry = loadLibrary()[sum];
+    return (entry && Array.isArray(entry.words) && entry.words.length) ? entry : null;
+  }
+
+  function rememberList(sum, entry){
+    try{
+      const library = loadLibrary();
+      library[sum] = Object.assign({}, entry, { usedAt: Date.now() });
+      // Drop the least recently used until it fits, never the one just added. A list too large
+      // to keep at all simply is not kept - the link still works, it just asks for the file.
+      let serialized = JSON.stringify(library);
+      const order = Object.keys(library)
+        .filter(k => k !== sum)
+        .sort((a, b) => (library[a].usedAt || 0) - (library[b].usedAt || 0));
+      while(serialized.length > LIBRARY_BUDGET_BYTES && order.length){
+        delete library[order.shift()];
+        serialized = JSON.stringify(library);
+      }
+      if(serialized.length > LIBRARY_BUDGET_BYTES) return false;
+      localStorage.setItem(LIBRARY_KEY, serialized);
+      return true;
+    }catch(e){
+      return false; // storage unavailable or full; the app carries on without remembering
+    }
+  }
+
+  // Turns a parsed file into the bank the generator works on, or null (having said why).
+  // Separate from loadWordBank so a file can be inspected - fingerprinted, checked against the
+  // one a link asks for - before anything on screen changes.
+  function deriveBank(data){
     if(!data || !Array.isArray(data.words)){
       setStatus('That file does not look like a valid word list (expected a "words" array).', true);
-      return;
+      return null;
     }
-    const cleaned = [];
+    // Keyed by answer, because the same answer twice in one grid reads as a mistake - the solver
+    // fills in the identical word in two places and assumes they misread something. Entries only
+    // have to differ once they're uppercased and normalized, which is the form the grid compares,
+    // so that's what's keyed on. Deutsch-A2.json really does list kaufen, brauchen and morgen
+    // twice each; at 60 words, 8 puzzles in 40 contained a repeat.
+    //
+    // Merge the clues rather than discarding the later entry: two list authors describing the
+    // same word two ways is exactly the variety pickClues() wants.
+    const byAnswer = new Map();
     for(const w of data.words){
       if(!w || typeof w.word !== 'string') continue;
-      const answer = w.word.trim();
+      const answer = normalizeText(w.word.trim());
       if(graphemes(answer).length < 2) continue; // skip 1-letter/empty entries
-      let clue = '';
-      if(Array.isArray(w.clues) && w.clues.length){
-        clue = w.clues[Math.floor(Math.random()*w.clues.length)];
+      // Keep every clue the list offers. Which one to show is a per-puzzle decision, not a
+      // per-session one - see pickClues().
+      const clues = Array.isArray(w.clues)
+        ? w.clues.filter(c => typeof c === 'string' && c.trim())
+        : [];
+      const key = toUpperGrapheme(answer);
+      const existing = byAnswer.get(key);
+      if(existing){
+        for(const clue of clues){
+          if(!existing.clues.includes(clue)) existing.clues.push(clue);
+        }
+      } else {
+        byAnswer.set(key, { answer: key, clues: clues.slice() });
       }
-      cleaned.push({ answer: toUpperGrapheme(answer), clue: clue || '(no clue provided)' });
+    }
+    const cleaned = Array.from(byAnswer.values());
+    for(const w of cleaned){
+      if(!w.clues.length) w.clues.push('(no clue provided)');
     }
     if(cleaned.length < 2){
       setStatus('Found fewer than 2 usable words in that file.', true);
-      return;
+      return null;
     }
-    wordBank = cleaned;
     const title = (data.metadata && data.metadata.title) ? data.metadata.title : 'Crossword Trainer';
-    pageTitle.textContent = title;
-    pageTagline.textContent = wordBank.length + ' words available';
-    wordCountInput.max = wordBank.length;
-    if(Number(wordCountInput.value) > wordBank.length) wordCountInput.value = wordBank.length;
-    generateBtn.disabled = false;
-    setStatus('');
+    // The document claimed lang="en" whatever was on screen, so a screen reader read German
+    // answers with English pronunciation rules. A "de-en" list is mostly German, so take the
+    // first subtag.
+    const language = data.metadata && typeof data.metadata.language === 'string'
+      ? data.metadata.language.split('-')[0]
+      : null;
+    return { bank: cleaned, title, language };
+  }
+
+  function loadWordBank(data){
+    const derived = deriveBank(data);
+    if(!derived) return;
+    adoptWordBank(derived.bank, derived.title, derived.language);
+    startPuzzle();
+  }
+
+  // Whatever the app should do once a bank is in place on first load: pick up the puzzle that was
+  // in progress, or build the one the link asked for.
+  function startPuzzle(){
     if(pendingRestore){
       restoreFromSaved(pendingRestore);
       pendingRestore = null;
     } else {
-      generate();
+      generate(pendingSeed);
     }
+    pendingSeed = null;
+  }
+
+  // Everything that happens once a bank of words is ready, whoever produced it: a fetched file, a
+  // file the reader chose, or one recovered from a previous session's saved state. Separate from
+  // loadWordBank so that last case can skip parsing and fetching entirely.
+  function adoptWordBank(words, title, language){
+    wordBank = words;
+    currentListTitle = title;
+    currentListLanguage = language || null;
+    pageTitle.textContent = title;
+    document.documentElement.lang = language || 'en';
+    pageTagline.textContent = wordBank.length + ' words available';
+    wordCountInput.max = Math.min(MAX_WORDS, wordBank.length);
+    wordCountInput.value = clampWordCount(parseInt(wordCountInput.value, 10) || DEFAULT_WORDS);
+    generateBtn.disabled = false;
+    setStatus('');
   }
 
   // ---------- render ----------
@@ -315,6 +543,21 @@
       }
     }
 
+    // Every square gets a spoken name. Without one a screen reader announces two hundred
+    // identical "blank, edit text" fields with no way to tell where you are or which clue you
+    // are answering - the grid's meaning is entirely visual otherwise.
+    for(let r=0;r<rows;r++){
+      for(let c=0;c<cols;c++){
+        const cell = cellEls[r][c];
+        if(!cell) continue;
+        const belongsTo = [];
+        if(cell.across) belongsTo.push(wordInfo(cell.across).number + ' across');
+        if(cell.down) belongsTo.push(wordInfo(cell.down).number + ' down');
+        cell.input.setAttribute('aria-label',
+          `Row ${r+1}, column ${c+1}` + (belongsTo.length ? ', ' + belongsTo.join(' and ') : ''));
+      }
+    }
+
     renderClueLists();
     focusFirstCell();
   }
@@ -330,7 +573,19 @@
       const t = document.createElement('span');
       t.textContent = w.clue;
       li.appendChild(n); li.appendChild(t);
+      // A clue was a click target and nothing else: no tab stop, no keyboard activation, so
+      // jumping to a word was mouse-only. role/tabindex plus Enter and Space make it operable
+      // the way its appearance already implies.
+      li.setAttribute('role', 'button');
+      li.setAttribute('tabindex', '0');
+      li.setAttribute('aria-label', `${w.number} ${w.dir}, ${w.len} letters: ${w.clue}`);
       li.addEventListener('click', () => selectWord(w.dir, w.number, true));
+      li.addEventListener('keydown', (e) => {
+        if(e.key === 'Enter' || e.key === ' '){
+          e.preventDefault();
+          selectWord(w.dir, w.number, true);
+        }
+      });
       (w.dir==='across' ? acrossListEl : downListEl).appendChild(li);
     }
     renderPrintAnswerKey();
@@ -369,7 +624,10 @@
         cell.wrap.classList.remove('in-word','active');
       }
     }
-    document.querySelectorAll('.clue-list li').forEach(li => li.classList.remove('active'));
+    document.querySelectorAll('.clue-list li').forEach(li => {
+      li.classList.remove('active');
+      li.removeAttribute('aria-current');
+    });
   }
 
   function highlightWord(wid){
@@ -382,7 +640,11 @@
       cellEls[r][c].wrap.classList.add('in-word');
     }
     const li = document.querySelector(`.clue-list li[data-wid="${wid}"]`);
-    if(li){ li.classList.add('active'); if(typeof li.scrollIntoView === 'function') li.scrollIntoView({block:'nearest'}); }
+    if(li){
+      li.classList.add('active');
+      li.setAttribute('aria-current', 'true');
+      if(typeof li.scrollIntoView === 'function') li.scrollIntoView({block:'nearest'});
+    }
   }
 
   function focusCell(r,c,dir){
@@ -396,8 +658,14 @@
     currentWordKey = wid;
     highlightWord(wid);
     cell.wrap.classList.add('active');
-    cell.input.focus();
-    cell.input.select();
+    // A modal dialog keeps focus. Filling the final square opens the celebration, and any input
+    // events arriving after that - a fast typist finishing a crossing word, or a script filling
+    // the grid - would otherwise drag focus back out of the dialog and into the grid behind it.
+    // The highlight still follows along; only the focus is withheld.
+    if(!celebrateOverlay.classList.contains('show')){
+      cell.input.focus();
+      cell.input.select();
+    }
   }
 
   function focusFirstCell(){
@@ -487,9 +755,14 @@
 
   function onInput(e,r,c){
     const cell = cellAt(r,c);
-    const raw = e.target.value.normalize('NFC');
+    // Uppercase first, then take the last grapheme - not the other way round. A cell holds one
+    // letter, but uppercasing can lengthen what it is given: type ß and toUpperGrapheme returns
+    // SS, which the old order wrote into the cell whole, leaving a two-character square that
+    // could never match anything. Taking the last grapheme of the uppercased text gives a single
+    // S instead, and the solver can type the second one themselves.
+    const raw = toUpperGrapheme(normalizeText(e.target.value));
     const g = graphemes(raw);
-    const ch = g.length ? toUpperGrapheme(g[g.length-1]) : '';
+    const ch = g.length ? g[g.length-1] : '';
     cell.input.value = ch;
     cell.wrap.classList.remove('check-correct', 'check-incorrect');
     if(ch) advanceAfterInput(r,c);
@@ -506,7 +779,7 @@
         const val = cell.input.value;
         if(!val) continue; // only mark cells the user actually filled in
         const letter = gridData[r][c];
-        if(toUpperGrapheme(val) === letter){
+        if(toUpperGrapheme(normalizeText(val)) === letter){
           cell.wrap.classList.add('check-correct');
         } else {
           cell.wrap.classList.add('check-incorrect');
@@ -522,7 +795,7 @@
         const letter = gridData[r][c];
         if(letter === null) continue;
         const val = cellEls[r][c].input.value;
-        if(!val || toUpperGrapheme(val) !== letter) return false;
+        if(!val || toUpperGrapheme(normalizeText(val)) !== letter) return false;
       }
     }
     return true;
@@ -549,6 +822,27 @@
     return m + ':' + String(s).padStart(2,'0');
   }
 
+  // The overlay looked like a dialog but behaved like a decoration: keyboard focus stayed in the
+  // grid behind it, Escape did nothing, and a screen reader was never told it had appeared.
+  let celebrateReturnFocus = null;
+
+  function trapCelebrateFocus(e){
+    if(e.key === 'Escape'){
+      e.preventDefault();
+      closeCelebration();
+      restoreFocusToCurrentCell();
+      return;
+    }
+    if(e.key !== 'Tab') return;
+    const focusable = [celebrateNewBtn, celebrateCloseBtn];
+    const first = focusable[0], last = focusable[focusable.length-1];
+    if(e.shiftKey && document.activeElement === first){
+      e.preventDefault(); last.focus();
+    } else if(!e.shiftKey && document.activeElement === last){
+      e.preventDefault(); first.focus();
+    }
+  }
+
   function openCelebration(){
     const elapsedSeconds = puzzleStartTime ? Math.max(0, Math.round((Date.now() - puzzleStartTime)/1000)) : 0;
     celebrateTime.textContent = formatTime(elapsedSeconds);
@@ -560,18 +854,54 @@
       sub = 'Best this session: ' + formatTime(bestTimeSeconds);
     }
     celebrateSub.textContent = sub;
+    celebrateReturnFocus = document.activeElement;
+    celebrateOverlay.hidden = false;
     celebrateOverlay.classList.add('show');
+    document.addEventListener('keydown', trapCelebrateFocus, true);
+    // Focus twice, deliberately. An element that was display:none a moment ago is not reliably
+    // focusable in the same tick - WebKit drops the call - so retry once the overlay has been
+    // laid out. But requestAnimationFrame does not run in a hidden or backgrounded frame, so the
+    // immediate attempt has to be there too. Whichever works, works; focusing an
+    // already-focused element does nothing.
+    celebrateNewBtn.focus();
+    requestAnimationFrame(() => {
+      if(celebrateOverlay.classList.contains('show')) celebrateNewBtn.focus();
+    });
     startFireworks();
   }
 
   function closeCelebration(){
+    const wasOpen = celebrateOverlay.classList.contains('show');
     celebrateOverlay.classList.remove('show');
+    celebrateOverlay.hidden = true;
+    document.removeEventListener('keydown', trapCelebrateFocus, true);
     stopFireworks();
+    // Hand focus back where it came from, rather than dropping it on the body.
+    if(wasOpen && celebrateReturnFocus && typeof celebrateReturnFocus.focus === 'function'){
+      celebrateReturnFocus.focus();
+    }
+    celebrateReturnFocus = null;
   }
 
   // ---------- fireworks (small canvas particle system, no external libs) ----------
-  let fwCtx = null, fwRAF = null, fwParticles = [], fwRockets = [], fwLastLaunch = 0, fwRunning = false;
-  const FW_COLORS = ['#F3C13B','#3B6E8F','#C1440E','#5B8A3A','#B24C9E','#E0574C'];
+  // Two things were wrong with the old version. It was dim - small flat dots on a dark overlay,
+  // drawn with a plain clearRect each frame so nothing left a trail. And it never cleaned up:
+  // the stop timer only set a flag, so the final frame stayed painted on the canvas
+  // indefinitely, leaving a scatter of frozen dots over the card until the overlay was closed.
+  //
+  // Now: additive blending and a glow make them read as light rather than paint, fading the
+  // previous frame instead of clearing it leaves trails, and the run ends by letting the last
+  // shells burn out and then clearing the canvas, so they genuinely disappear.
+  let fwCtx = null, fwRAF = null, fwParticles = [], fwRockets = [], fwLastLaunch = 0;
+  let fwRunning = false;   // the animation loop is live
+  let fwLaunching = false; // new shells are still being sent up
+  const FW_COLORS = ['#FFD34E','#6FC4F5','#FF7A45','#8FE36B','#F07CD6','#FF6B5E'];
+  const FW_DURATION_MS = 4200;  // how long new shells keep going up
+  const FW_BURNOUT_MS = 3000;   // generous allowance for the last of them to fade out
+
+  function prefersReducedMotion(){
+    return typeof matchMedia === 'function' && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  }
 
   function fwResize(){
     fireworksCanvas.width = fireworksCanvas.clientWidth * devicePixelRatio;
@@ -581,25 +911,26 @@
   function fwLaunchRocket(){
     const w = fireworksCanvas.clientWidth, h = fireworksCanvas.clientHeight;
     fwRockets.push({
-      x: w * (0.2 + Math.random()*0.6),
+      x: w * (0.15 + Math.random()*0.7),
       y: h,
-      targetY: h * (0.15 + Math.random()*0.35),
-      vy: -(h*0.012 + Math.random()*3),
+      targetY: h * (0.12 + Math.random()*0.34),
+      vy: -(h*0.013 + Math.random()*3),
       color: FW_COLORS[Math.floor(Math.random()*FW_COLORS.length)]
     });
   }
 
   function fwExplode(x, y, color){
-    const count = 34 + Math.floor(Math.random()*14);
+    const count = 46 + Math.floor(Math.random()*20);
     for(let i=0;i<count;i++){
       const angle = (Math.PI*2*i/count) + Math.random()*0.3;
-      const speed = 1.6 + Math.random()*3.2;
+      const speed = 1.8 + Math.random()*3.8;
       fwParticles.push({
         x, y,
         vx: Math.cos(angle)*speed,
         vy: Math.sin(angle)*speed,
         life: 1,
-        decay: 0.012 + Math.random()*0.014,
+        decay: 0.009 + Math.random()*0.011,
+        radius: 2.6 + Math.random()*1.4,
         color
       });
     }
@@ -609,10 +940,17 @@
     if(!fwRunning) return;
     const w = fireworksCanvas.clientWidth, h = fireworksCanvas.clientHeight;
     fwCtx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);
-    fwCtx.clearRect(0,0,w,h);
+
+    // Fade the previous frame rather than erasing it, which leaves a trail behind every spark.
+    // destination-out keeps the canvas itself transparent, so the overlay below is untouched.
+    fwCtx.globalCompositeOperation = 'destination-out';
+    fwCtx.fillStyle = 'rgba(0,0,0,0.22)';
+    fwCtx.fillRect(0,0,w,h);
+    // Additive blending: overlapping sparks brighten each other instead of covering each other.
+    fwCtx.globalCompositeOperation = 'lighter';
 
     const now = performance.now();
-    if(now - fwLastLaunch > 480 && fwRockets.length < 4){
+    if(fwLaunching && now - fwLastLaunch > 320 && fwRockets.length < 6){
       fwLaunchRocket();
       fwLastLaunch = now;
     }
@@ -621,8 +959,10 @@
       const r = fwRockets[i];
       r.y += r.vy;
       r.vy += 0.05;
+      fwCtx.shadowBlur = 12;
+      fwCtx.shadowColor = r.color;
       fwCtx.beginPath();
-      fwCtx.arc(r.x, r.y, 2.2, 0, Math.PI*2);
+      fwCtx.arc(r.x, r.y, 2.8, 0, Math.PI*2);
       fwCtx.fillStyle = r.color;
       fwCtx.fill();
       if(r.vy >= 0 || r.y <= r.targetY){
@@ -640,36 +980,70 @@
       p.life -= p.decay;
       if(p.life <= 0){ fwParticles.splice(i,1); continue; }
       fwCtx.globalAlpha = Math.max(0, p.life);
+      fwCtx.shadowBlur = 14;
+      fwCtx.shadowColor = p.color;
       fwCtx.beginPath();
-      fwCtx.arc(p.x, p.y, 2.4, 0, Math.PI*2);
+      fwCtx.arc(p.x, p.y, p.radius, 0, Math.PI*2);
       fwCtx.fillStyle = p.color;
       fwCtx.fill();
       fwCtx.globalAlpha = 1;
+    }
+
+    fwCtx.shadowBlur = 0;
+    fwCtx.globalCompositeOperation = 'source-over';
+
+    // Once the last shell has stopped launching and everything it threw up has burned out,
+    // wipe the canvas. Without this the final frame stayed on screen as a field of dead dots.
+    if(!fwLaunching && fwRockets.length === 0 && fwParticles.length === 0){
+      stopFireworks();
+      return;
     }
 
     fwRAF = requestAnimationFrame(fwStep);
   }
 
   function startFireworks(){
+    // A full-screen burst of flashing particles is exactly what this setting is asking us not
+    // to do. The card, the time and the message all still appear.
+    if(prefersReducedMotion()) return;
     if(!fwCtx) fwCtx = fireworksCanvas.getContext('2d');
     fwResize();
     fwParticles = [];
     fwRockets = [];
     fwLastLaunch = 0;
     fwRunning = true;
+    fwLaunching = true;
     fwLaunchRocket();
     if(fwRAF) cancelAnimationFrame(fwRAF);
     fwStep();
     clearTimeout(startFireworks._stopTimer);
-    startFireworks._stopTimer = setTimeout(() => { fwRunning = false; }, 4200);
+    clearTimeout(startFireworks._hardStopTimer);
+    // Stop *launching* here rather than stopping dead: the shells already in the air finish
+    // their arc, and fwStep clears the canvas once the last spark has gone.
+    startFireworks._stopTimer = setTimeout(() => { fwLaunching = false; }, FW_DURATION_MS);
+    // fwStep only runs while requestAnimationFrame does, and that stops in a hidden or
+    // backgrounded tab - which would leave the final frame painted until the tab was looked at
+    // again. A timer is throttled in the background but still fires, so the canvas gets cleared
+    // either way. Whichever path gets there first wins; stopFireworks is safe to run twice.
+    startFireworks._hardStopTimer = setTimeout(stopFireworks, FW_DURATION_MS + FW_BURNOUT_MS);
   }
 
   function stopFireworks(){
     fwRunning = false;
+    fwLaunching = false;
+    clearTimeout(startFireworks._stopTimer);
+    clearTimeout(startFireworks._hardStopTimer);
     if(fwRAF) cancelAnimationFrame(fwRAF);
+    fwRAF = null;
     fwParticles = [];
     fwRockets = [];
-    if(fwCtx) fwCtx.clearRect(0,0,fireworksCanvas.width,fireworksCanvas.height);
+    if(fwCtx){
+      fwCtx.setTransform(1,0,0,1,0,0);
+      fwCtx.globalCompositeOperation = 'source-over';
+      fwCtx.globalAlpha = 1;
+      fwCtx.shadowBlur = 0;
+      fwCtx.clearRect(0,0,fireworksCanvas.width,fireworksCanvas.height);
+    }
   }
 
   window.addEventListener('resize', () => { if(celebrateOverlay.classList.contains('show')) fwResize(); });
@@ -716,8 +1090,19 @@
   function updateUrlParams(){
     const params = new URLSearchParams(window.location.search);
     if(currentListId) params.set('list', currentListId);
-    else params.delete('list'); // a custom-loaded file has no URL representation
+    else params.delete('list');
+    // A loaded file has no id to fetch it back by, so the link carries its fingerprint instead.
+    // That is enough to find it again among the lists kept here, or to check a file the reader
+    // picks when it is not among them.
+    if(currentListId === CUSTOM_LIST_ID && currentListSum) params.set('sum', currentListSum);
+    else params.delete('sum');
     params.set('words', wordCountInput.value);
+    // With the seed here, the address bar is a complete description of the puzzle on screen -
+    // copy it to anyone and they get this grid, these words and these clues, not merely a puzzle
+    // of the same size. A custom-loaded file still has no URL representation, so a seed alone
+    // couldn't rebuild it; leave it out rather than imply otherwise.
+    if(currentSeed && currentListId) params.set('seed', currentSeed);
+    else params.delete('seed');
     const query = params.toString();
     const newUrl = window.location.pathname + (query ? '?' + query : '');
     history.replaceState(null, '', newUrl);
@@ -726,11 +1111,20 @@
   // How many columns wide the grid is allowed to be, based on the header bar's actual current
   // width and the (unchanged, fixed) cell size - so the puzzle never needs to render wider than
   // that bar, growing taller instead once this is reached. Recomputed at generation time.
+  //
+  // The header is not always measurable at generation time: a hidden container, a not-yet-laid-out
+  // iframe (which is exactly how tests/index.html hosts the app) and some background-tab cases all
+  // report a width of zero. Falling back to Infinity there would quietly *remove* the constraint
+  // rather than guess at it, which is the worst of the available options - it produces 80+ column
+  // grids that overflow the page and cannot be printed. Fall back to a conservative fixed width
+  // instead: narrow enough to fit portrait A4/Letter at the print cell size, wide enough to still
+  // build a reasonable puzzle.
+  const FALLBACK_MAX_COLS = 20;
   function computeMaxCols(){
     const header = document.querySelector('header.app-head');
-    if(!header) return Infinity;
+    if(!header) return FALLBACK_MAX_COLS;
     const targetWidth = header.getBoundingClientRect().width;
-    if(targetWidth <= 0) return Infinity;
+    if(!(targetWidth > 0)) return FALLBACK_MAX_COLS;
     const cellSizeStr = getComputedStyle(gridEl).getPropertyValue('--cell-size').trim();
     const cellSize = parseFloat(cellSizeStr) || 38;
     const gap = 1, borderTotal = 4; // matches #grid's screen CSS: gap:1px, border:2px each side
@@ -755,9 +1149,25 @@
         rows, cols, gridData, placedWords, answers,
         elapsedMs: puzzleStartTime ? (Date.now() - puzzleStartTime) : 0,
         celebrated,
-        listSelect: wordListSelect.value,
-        wordCount: wordCountInput.value,
+        // The parameters this puzzle was generated from. Kept so a later visit can tell whether
+        // an incoming URL is asking for this same puzzle or a different one - see initFromUrl.
+        // The puzzle records which list it came from. For a loaded file that is a fingerprint
+        // rather than an id, and the words themselves live in the keyed store, so two puzzles
+        // from two different files do not each carry their own copy.
+        params: {
+          list: currentListId,
+          sum: currentListId === CUSTOM_LIST_ID ? currentListSum : null,
+          words: Number(wordCountInput.value),
+          seed: currentSeed
+        },
       };
+      if(currentListId === CUSTOM_LIST_ID){
+        // Enough to name the list when asking for it again, and to tell "same words, edited
+        // clues" apart from "wrong file" if what turns up does not match. Both are a few bytes;
+        // the words themselves are in the keyed store.
+        state.customTitle = currentListTitle;
+        state.customShape = currentListShape;
+      }
       localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
     }catch(e){
       // localStorage unavailable (private browsing, quota exceeded, etc.) - the app still
@@ -769,6 +1179,21 @@
     clearTimeout(saveTimer);
     saveTimer = setTimeout(saveState, 250);
   }
+
+  // Saves are debounced, so closing the tab within a quarter-second of the last keystroke would
+  // otherwise lose it. pagehide is the reliable point to flush at - unload is unreliable on
+  // mobile, where a tab can be discarded without one - and visibilitychange covers the case of
+  // switching away and never coming back.
+  window.addEventListener('pagehide', () => {
+    clearTimeout(saveTimer);
+    saveState();
+  });
+  document.addEventListener('visibilitychange', () => {
+    if(document.visibilityState === 'hidden'){
+      clearTimeout(saveTimer);
+      saveState();
+    }
+  });
 
   function loadSavedState(){
     try{
@@ -798,22 +1223,57 @@
     }
     puzzleStartTime = Date.now() - (saved.elapsedMs || 0);
     celebrated = !!saved.celebrated; // don't replay the solved animation/confetti on a reload
-    if(saved.listSelect) wordListSelect.value = saved.listSelect;
-    if(saved.wordCount) wordCountInput.value = saved.wordCount;
+    if(saved.params && saved.params.list) wordListSelect.value = saved.params.list;
+    if(saved.params && saved.params.words) wordCountInput.value = saved.params.words;
+    if(saved.params && saved.params.seed) currentSeed = saved.params.seed;
+    if(saved.params && saved.params.sum) currentListSum = saved.params.sum;
+    if(saved.customShape) currentListShape = saved.customShape;
+
+    // The list itself is already in place by the time a restore runs - either found in the store
+    // by fingerprint or picked by the reader - so there is nothing to adopt here. Just make sure
+    // the menu is not claiming a bundled list when a loaded file is on screen.
+    if(saved.params && saved.params.list === CUSTOM_LIST_ID) wordListSelect.value = '';
     printBtn.disabled = false;
     checkBtn.disabled = false;
     setStatus('');
     updateUrlParams();
   }
 
-  function generate(){
+  // Every word in the bundled lists carries at least two hand-written clues, and some carry five.
+  // Choosing one per word at *load* time froze it for the whole session: regenerating gave you a
+  // new grid but word-for-word identical clues, so the alternates only ever surfaced on a full
+  // page reload. Choose per puzzle instead, so the extra clues are actually reachable.
+  //
+  // The bank's order is preserved, because that is what the generator shuffles.
+  function pickClues(bank, rnd){
+    return bank.map(w => ({
+      answer: w.answer,
+      clue: w.clues[Math.floor(rnd() * w.clues.length)]
+    }));
+  }
+
+  // `seed` names the puzzle: the same seed, list and word count always rebuild the same grid,
+  // with the same words and the same clues. Called with no seed for a brand new puzzle.
+  function generate(seed){
     if(!wordBank.length){
       setStatus('Load a word list first.', true);
       return;
     }
-    const n = Math.max(2, Math.min(parseInt(wordCountInput.value,10)||2, wordBank.length));
+    seed = isValidSeed(seed) ? seed : randomSeed();
+    currentSeed = seed;
+    const n = clampWordCount(parseInt(wordCountInput.value, 10) || DEFAULT_WORDS);
+    // Reflect the clamp back, so the field never shows a number the puzzle didn't use.
+    if(String(n) !== wordCountInput.value) wordCountInput.value = n;
     closeCelebration();
-    const result = buildCrossword(wordBank, n, undefined, computeMaxCols());
+    // Two independent streams from the one seed, rather than one stream feeding both. Clue
+    // choice then doesn't shift just because the layout search drew a different number of
+    // values - so tuning attemptsFor() can never silently reword every existing shared puzzle.
+    const rngClues = makeRng(seed + '#clues');
+    const rngLayout = makeRng(seed + '#layout');
+    const result = buildCrossword(pickClues(wordBank, rngClues), n, {
+      maxCols: computeMaxCols(),
+      rng: rngLayout
+    });
     const built = trimAndIndex(result);
     const numbering = numberGrid(built);
     renderGrid(built, numbering);
@@ -855,13 +1315,20 @@
     }
   });
 
-  generateBtn.addEventListener('click', generate);
+  // Wrapped rather than passed directly: as a listener, generate() would receive the click
+  // Event as its seed argument.
+  generateBtn.addEventListener('click', () => generate());
   checkBtn.addEventListener('click', () => { checkAnswers(); restoreFocusToCurrentCell(); });
   printBtn.addEventListener('click', () => { window.print(); restoreFocusToCurrentCell(); });
   printAnswersCk.addEventListener('change', () => {
     document.body.classList.toggle('print-answers', printAnswersCk.checked);
   });
-  celebrateNewBtn.addEventListener('click', generate);
+  // Printing a puzzle for somebody else to solve shouldn't force the answers onto the same
+  // sheet. On by default, because that is what it has always done.
+  printKeyCk.addEventListener('change', () => {
+    document.body.classList.toggle('print-no-key', !printKeyCk.checked);
+  });
+  celebrateNewBtn.addEventListener('click', () => generate());
   celebrateCloseBtn.addEventListener('click', () => { closeCelebration(); restoreFocusToCurrentCell(); });
   celebrateOverlay.addEventListener('click', (e) => { if(e.target === celebrateOverlay){ closeCelebration(); restoreFocusToCurrentCell(); } });
 
@@ -870,33 +1337,94 @@
   wordCountInput.addEventListener('change', () => { if(wordBank.length) generate(); });
 
   // ---------- initial load: read ?list= and ?words= from the URL so the page is never blank ----------
+
+  // Reads the puzzle description out of a query string, falling back to the defaults for anything
+  // missing or unrecognised. `explicit` records whether the URL actually asked for anything, as
+  // opposed to being a bare index.html.
+  function readPuzzleParams(search){
+    const p = new URLSearchParams(search);
+    const listParam = p.get('list');
+    const wordsParam = parseInt(p.get('words'), 10);
+    const seedParam = (p.get('seed') || '').toLowerCase();
+    const sumParam = (p.get('sum') || '').toLowerCase();
+    const known = LISTS[listParam] || listParam === CUSTOM_LIST_ID;
+    return {
+      list: known ? listParam : DEFAULT_LIST,
+      sum: /^[a-z0-9]{1,16}$/.test(sumParam) ? sumParam : null,
+      words: Number.isFinite(wordsParam) && wordsParam >= 2 ? Math.min(wordsParam, MAX_WORDS) : DEFAULT_WORDS,
+      seed: isValidSeed(seedParam) ? seedParam : null,
+      // Whether the URL actually named a list, as opposed to us having defaulted one in above.
+      // A puzzle built from a loaded file has no id to put in the URL, so its saved list is null
+      // and would never match the default - see sameParams.
+      listExplicit: p.has('list'),
+      explicit: p.has('list') || p.has('words') || p.has('seed')
+    };
+  }
+
+  // Does `requested` describe the puzzle `saved` already holds? Argument order matters: a URL
+  // that names no seed isn't asking for a *particular* german-15 puzzle, just a german-15 one,
+  // and the saved puzzle satisfies that - so resume it rather than throwing away answers in
+  // progress. Only an explicit, different seed means "not that one, this one".
+  function sameParams(requested, saved){
+    return !!requested && !!saved
+      // Compare the list only when the URL named one. Otherwise `list` here is just the default
+      // we filled in, which contradicts nothing - and in particular does not contradict a saved
+      // puzzle built from a loaded file, whose list is null by nature.
+      && (!requested.listExplicit || requested.list === saved.list)
+      && (!requested.sum || requested.sum === saved.sum)
+      && Number(requested.words) === Number(saved.words)
+      && (!requested.seed || requested.seed === saved.seed);
+  }
+
   (function initFromUrl(){
-    const params = new URLSearchParams(window.location.search);
-    const listParam = params.get('list');
-    const wordsParam = parseInt(params.get('words'), 10);
+    const requested = readPuzzleParams(window.location.search);
+    const saved = loadSavedState();
 
-    const validLists = ['english', 'german', 'german_a2', 'german_to_english'];
-    let list = validLists.includes(listParam) ? listParam : 'german';
-    const words = (Number.isFinite(wordsParam) && wordsParam >= 2) ? wordsParam : 15;
+    // Deciding between "resume what I was doing" and "give me the puzzle this link names" is
+    // awkward because the app writes its own parameters into the address bar after every
+    // generate - so by the time you reopen a closed tab, the URL looks exactly as deliberate as
+    // a link a friend sent you. The presence of parameters proves nothing.
+    //
+    // What does distinguish them is *which* parameters. Compare the incoming URL against the
+    // ones the saved puzzle was generated from: matching means this is the same puzzle you were
+    // already working on, so resume it with your answers intact. Differing means you asked for
+    // something else, and the link wins.
+    const resume = !!saved && (!requested.explicit || sameParams(requested, saved.params));
 
-    // Reopening a closed tab or a bookmark carries whatever URL params were last in the address
-    // bar too, so their presence doesn't reliably distinguish "deliberate fresh link" from
-    // "returning to a session in progress" - always try to resume a saved puzzle if one exists.
-    pendingRestore = loadSavedState();
-    // Fetch whichever list the saved puzzle actually came from, so the loaded word bank stays
-    // consistent with it (otherwise "New crossword" right after resuming would switch to a
-    // different list than the one just being solved).
-    if(pendingRestore && validLists.includes(pendingRestore.listSelect)){
-      list = pendingRestore.listSelect;
+    const active = resume && saved.params ? saved.params : requested;
+    pendingRestore = resume ? saved : null;
+    // A link carrying a seed asks for one specific puzzle; hand it to the first generate().
+    pendingSeed = active.seed || null;
+
+    wordCountInput.value = active.words;
+
+    // A puzzle built from a loaded file names its list by fingerprint. Look for it among the
+    // lists kept here; if it is not one of them - a different browser, cleared storage, a link
+    // from someone else - the reader is the only place those words can come from, so ask.
+    if(active.list === CUSTOM_LIST_ID){
+      const sum = active.sum || (saved && saved.params ? saved.params.sum : null);
+      const stored = sum ? findSavedList(sum) : null;
+      currentListId = CUSTOM_LIST_ID;
+      currentListSum = sum;
+      wordListSelect.value = '';
+      if(stored){
+        adoptWordBank(stored.words, stored.title, stored.language);
+        rememberList(sum, stored); // touch it, so it survives eviction the longest
+        startPuzzle();
+      } else {
+        awaitedListSum = sum;
+        // Known only when this browser saved the puzzle. A link from someone else carries the
+        // fingerprint and nothing more, so a mismatch there can only be reported as a wrong file.
+        awaitedListShape = (saved && saved.customShape) || null;
+        showListPrompt((saved && saved.customTitle) || null);
+      }
+      return;
     }
 
-    wordCountInput.value = words;
+    const list = LISTS[active.list] ? active.list : DEFAULT_LIST;
     wordListSelect.value = list;
     currentListId = list;
-    if(list === 'english') fetchWordList('example.json', 'English');
-    else if(list === 'german_a2') fetchWordList('Deutsch-A2.json', 'Deutsch A2');
-    else if(list === 'german_to_english') fetchWordList('deutsch-fragen-english.json', 'Deutsch B1 → Englisch');
-    else fetchWordList('german.json', 'Deutsch B1');
+    fetchWordList(LISTS[list].file, LISTS[list].label);
   })();
 
 })();

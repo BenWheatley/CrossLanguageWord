@@ -23,18 +23,162 @@
   // ---------- text handling ----------
   // Grapheme-aware helpers so multi-byte / combining characters (ü, π, emoji, etc.) are treated
   // as a single "letter" for crossword purposes rather than being split into raw UTF-16 code units.
+  //
+  // Casing deserves a note, because two reasonable-looking choices here are both wrong.
+  //
+  // German ß uppercases to SS, and that is what we want: it is Duden's rule for all-caps and it
+  // is what German crosswords have always done - STRASSE takes seven squares and the solver can
+  // type every one of them. The capital eszett ẞ (permitted as an alternative since 2017) would
+  // keep the letter count at six, but it is close to untypable on an ordinary keyboard, so it
+  // buys a cosmetic win at the price of a square nobody can fill. A word list that already
+  // contains ẞ is therefore folded back to ß first, so it takes the same route.
+  //
+  // toUpperCase(), not toLocaleUpperCase(): the locale-aware version follows the *reader's*
+  // system locale, so the same German word list built a different grid on a Turkish machine
+  // (i -> İ) than on a German one, and a shared seed stopped reproducing across the two. The
+  // locale-independent Unicode default is stable everywhere and still gives ß -> SS. If a
+  // Turkish or Lithuanian list is ever added, a per-list locale would belong here.
+  const CAPITAL_ESZETT = /\u1E9E/g;
   function toUpperGrapheme(str){
-    return str.toLocaleUpperCase();
-  }
-  function graphemes(str){
-    // Good-enough grapheme split: handles surrogate pairs (astral chars).
-    return Array.from(str);
+    return str.replace(CAPITAL_ESZETT, '\u00DF').toUpperCase();
   }
 
-  function shuffle(arr){
+  // Text arriving from a word list has to be normalized before it is measured or split, because
+  // the same visible word has more than one valid encoding: "über" can be stored precomposed
+  // (U+00DC) or decomposed (U+0055 U+0308), and macOS-authored files routinely use the latter.
+  // Decomposed text gives the combining mark its own grid cell, so the word occupies one more
+  // square than it has letters and that square can never be filled - the puzzle simply cannot be
+  // solved. Everything the user types is normalized to NFC before comparison, so normalizing the
+  // word list the same way is what makes the two comparable at all.
+  function normalizeText(str){
+    return str.normalize('NFC');
+  }
+
+  // Split into user-perceived characters. Array.from() alone splits by code point, which is
+  // correct for astral characters (emoji, 𝔘) but still separates a combining mark from the
+  // letter it belongs to - and not every mark has a precomposed form for normalizeText() to fold
+  // away. Intl.Segmenter does the real Unicode grapheme-cluster segmentation where it exists;
+  // Array.from() remains the fallback for older engines.
+  const segmenter = (typeof Intl !== 'undefined' && typeof Intl.Segmenter === 'function')
+    ? new Intl.Segmenter(undefined, { granularity: 'grapheme' })
+    : null;
+  function graphemes(str){
+    if(!segmenter) return Array.from(str);
+    const out = [];
+    for(const { segment } of segmenter.segment(str)) out.push(segment);
+    return out;
+  }
+
+  // ---------- deterministic randomness ----------
+  // Math.random() cannot be seeded and is not specified to agree between engines, so a puzzle
+  // built with it cannot be described by a short string and rebuilt elsewhere. Everything random
+  // in here therefore runs off a caller-supplied generator, and makeRng() supplies one that is
+  // reproducible anywhere: hash the seed to a 32-bit integer, then run mulberry32 over it.
+  //
+  // Both steps use only Math.imul, xor and unsigned shifts - integer operations with exactly
+  // defined results in every JavaScript engine - and the single division is by 2^32, which is
+  // exact in float64. So the same seed yields the same stream of numbers on any OS, browser or
+  // engine version. That portability is the whole point: it is what lets a seed in a URL name a
+  // puzzle rather than merely a puzzle-shaped thing.
+
+  function hashSeed(str){
+    let h = 2166136261 >>> 0;               // FNV-1a offset basis
+    for(let i=0;i<str.length;i++){
+      h ^= str.charCodeAt(i);               // UTF-16 code units - engine-independent
+      h = Math.imul(h, 16777619);
+    }
+    // Avalanche, so that seeds differing in one character ("a1" vs "a2") don't start out
+    // producing near-identical streams.
+    h ^= h >>> 16; h = Math.imul(h, 2246822507);
+    h ^= h >>> 13; h = Math.imul(h, 3266489909);
+    h ^= h >>> 16;
+    return h >>> 0;
+  }
+
+  /** @returns {function(): number} a reproducible generator over [0, 1), like Math.random. */
+  function makeRng(seed){
+    let a = hashSeed(String(seed));
+    return function(){
+      a = (a + 0x6D2B79F5) | 0;
+      let t = Math.imul(a ^ (a >>> 15), 1 | a);
+      t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+      return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+  }
+
+  // ---------- identifying a word list ----------
+  // A list the reader loaded from their own file has no URL to fetch it back from, so a shared
+  // or bookmarked link has to name it some other way: a checksum, which the app can match against
+  // the lists it has kept, or against a file the reader picks again.
+  //
+  // What the checksum has to cover follows from what generation actually reads, which is worth
+  // being exact about because the two halves differ:
+  //
+  //   - The grid, and which words are in it, depend on the answers and their order, and on
+  //     nothing else. pickRandomSubset shuffles the bank (draws determined by its length),
+  //     and placement only ever looks at answer letters.
+  //   - Which clue is shown for each word depends on that word's position in the bank, on how
+  //     many clues it has (the drawn fraction is scaled by clues.length), and on the text at the
+  //     chosen index.
+  //
+  // So a list could match on answers alone and still produce different clue wording for the same
+  // seed. Since the seed is in the URL, and a shared link is supposed to open the same puzzle,
+  // the fingerprint covers the clues too - a checksum that says "same list" and then shows
+  // different clues would be worse than one that says "different list".
+  //
+  // The shape hash covers answers only, and exists to tell those two failures apart: a file with
+  // the same words but edited clues is a near-miss worth explaining, not a wrong file.
+
+  // cyrb53: a 53-bit hash built from Math.imul, xor and shifts, so it agrees across engines - the
+  // same requirement as makeRng, and for the same reason. The final combination stays inside
+  // float64's exact integer range.
+  function cyrb53(str){
+    let h1 = 0xdeadbeef, h2 = 0x41c6ce57;
+    for(let i = 0; i < str.length; i++){
+      const ch = str.charCodeAt(i);
+      h1 = Math.imul(h1 ^ ch, 2654435761);
+      h2 = Math.imul(h2 ^ ch, 1597334677);
+    }
+    h1 = Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^ Math.imul(h2 ^ (h2 >>> 13), 3266489909);
+    h2 = Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^ Math.imul(h1 ^ (h1 >>> 13), 3266489909);
+    return (4294967296 * (2097151 & h2) + (h1 >>> 0)).toString(36);
+  }
+
+  // Unit and record separators: control characters that cannot occur in a word or a clue, so no
+  // arrangement of list content can be made to look like a different arrangement.
+  const FIELD_SEP = '\u001F';
+  const RECORD_SEP = '\u001E';
+
+  /** Everything generation reads: answers in order, clue counts, and clue text. */
+  function wordListFingerprint(bank){
+    const records = bank.map(w => [w.answer, String(w.clues.length)].concat(w.clues).join(FIELD_SEP));
+    return cyrb53(records.join(RECORD_SEP));
+  }
+
+  /** Answers in order - what the grid and the choice of words depend on, and nothing more. */
+  function wordListShape(bank){
+    return cyrb53(bank.map(w => w.answer).join(RECORD_SEP));
+  }
+
+  const SEED_ALPHABET = 'abcdefghijklmnopqrstuvwxyz0123456789';
+  const SEED_LENGTH = 6;
+  /** A fresh seed, short enough to read out loud or type from a printed sheet. */
+  function randomSeed(){
+    let out = '';
+    for(let i=0;i<SEED_LENGTH;i++){
+      out += SEED_ALPHABET[Math.floor(Math.random()*SEED_ALPHABET.length)];
+    }
+    return out;
+  }
+  /** Seeds are compared and stored lowercase; anything else is not a seed we produced. */
+  function isValidSeed(value){
+    return typeof value === 'string' && /^[a-z0-9]{1,16}$/.test(value);
+  }
+
+  function shuffle(arr, rnd = Math.random){
     const a = arr.slice();
     for(let i=a.length-1;i>0;i--){
-      const j = Math.floor(Math.random()*(i+1));
+      const j = Math.floor(rnd()*(i+1));
       [a[i],a[j]] = [a[j],a[i]];
     }
     return a;
@@ -278,8 +422,8 @@
   // whichever ones happen to be easier to interlock, or certain vocabulary would get shown far
   // more often than the rest across repeated generations. The only constraint is basic
   // feasibility: at least one word needs to fit within maxCols so there's a valid starting point.
-  function pickRandomSubset(bank, target, maxCols){
-    const pool = shuffle(bank);
+  function pickRandomSubset(bank, target, maxCols, rnd = Math.random){
+    const pool = shuffle(bank, rnd);
     const subset = pool.slice(0, Math.min(target, pool.length));
     if(Number.isFinite(maxCols)){
       const fits = w => graphemes(w.answer).length <= maxCols;
@@ -311,38 +455,61 @@
     return { minR, minC, rows: maxR-minR+1, cols: maxC-minC+1 };
   }
 
+  // How many differently-shuffled layouts to try before settling on the smallest. This used to be
+  // a wall-clock budget, which adapted nicely to machine speed but meant a fast computer tried
+  // more layouts than a slow one and therefore produced a *different* puzzle from the same
+  // inputs. A seed that only reproduces a puzzle on hardware like yours is not worth having, so
+  // the count is now a pure function of the target instead.
+  //
+  // The ladder tracks measured per-attempt cost on german.json (0.4ms at 5 words, 5.5ms at 20,
+  // 58ms at 40, 113ms at 60, 729ms at 120 - it grows far faster than the word count does), aiming
+  // to keep every size in roughly the same few-hundred-millisecond band. Wall-clock time still
+  // varies with the machine; which puzzle you get no longer does.
+  function attemptsFor(target){
+    if(target <= 10) return 120;
+    if(target <= 15) return 60;
+    if(target <= 20) return 40;
+    if(target <= 30) return 12;
+    if(target <= 40) return 5;
+    if(target <= 60) return 3;
+    if(target <= 80) return 2;
+    return 1;
+  }
+
   /**
    * @param {Array} bank - candidate words, each {answer, clue}
    * @param {number} targetCount - how many words to try to place
-   * @param {number} timeBudgetMs - keep trying different arrangements of the same randomly
-   *   chosen word subset for about this many milliseconds, keeping whichever arrangement came
-   *   out smallest. Always runs at least one attempt regardless of the budget. Bigger puzzles
-   *   naturally get fewer attempts (each one costs more), smaller puzzles get more - this adapts
-   *   automatically rather than needing a fixed count tuned for one size.
-   * @param {number} maxCols - if given, caps how many columns wide the finished grid can be
-   *   (no cap on rows). The grid grows taller instead of wider once this limit is reached.
+   * @param {object} [options]
+   * @param {number} [options.maxCols] - caps how many columns wide the finished grid can be (no
+   *   cap on rows). The grid grows taller instead of wider once this limit is reached.
+   * @param {function} [options.rng] - the source of randomness. Pass one from makeRng() for a
+   *   reproducible puzzle; defaults to Math.random for a different one every time.
+   * @param {number} [options.attempts] - override the attempt count from attemptsFor().
    */
-  function buildCrossword(bank, targetCount, timeBudgetMs = 160, maxCols = Infinity){
+  function buildCrossword(bank, targetCount, options = {}){
+    const maxCols = options.maxCols === undefined ? Infinity : options.maxCols;
+    const rnd = options.rng || Math.random;
     const target = Math.min(targetCount, bank.length);
+    const attempts = Math.max(1, options.attempts || attemptsFor(target));
+
     // Which words appear is decided once, uniformly at random - not re-rolled per attempt, or
     // whichever random sample happens to be easier to interlock would win more often, silently
     // favoring some vocabulary over the rest across repeated generations.
-    const subset = pickRandomSubset(bank, target, maxCols);
+    const subset = pickRandomSubset(bank, target, maxCols, rnd);
 
     let best = null, bestArea = Infinity, bestPlacedCount = -1;
-    const deadline = Date.now() + timeBudgetMs;
-    do {
+    for(let i=0;i<attempts;i++){
       // What varies between attempts is purely the processing order of this same fixed subset -
       // attemptPlacement's disjoint-region fallback means the whole subset gets placed regardless
       // of order, so different shuffles just explore different resulting layouts.
-      const result = attemptPlacement(shuffle(subset), target, maxCols);
+      const result = attemptPlacement(shuffle(subset, rnd), target, maxCols);
       const bounds = computeBounds(result.placements);
       const placedCount = result.placements.length;
       const area = bounds.rows * bounds.cols;
       if(!best || placedCount > bestPlacedCount || (placedCount === bestPlacedCount && area < bestArea)){
         best = result; bestPlacedCount = placedCount; bestArea = area;
       }
-    } while(Date.now() < deadline);
+    }
 
     return best;
   }
@@ -385,8 +552,15 @@
 
   return {
     toUpperGrapheme,
+    normalizeText,
     graphemes,
+    makeRng,
+    wordListFingerprint,
+    wordListShape,
+    randomSeed,
+    isValidSeed,
     shuffle,
+    attemptsFor,
     key,
     attemptPlacement,
     pickRandomSubset,

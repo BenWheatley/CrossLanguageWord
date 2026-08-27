@@ -28,7 +28,19 @@
   li.pass{ color: #2B6B2B; }
   li.fail{ color: #9A3B2E; font-weight: 600; }
   li .detail{ font-weight: normal; color: #6B6559; font-size: 12px; margin: 2px 0 4px 0; white-space: pre-wrap; }
-  #appFrame{ display: none; }
+  /* Positioned off-screen rather than display:none. A display:none iframe is never laid out, so
+     the app inside it cannot take focus - which silently breaks every keyboard, typing and
+     composition test under a headless browser - and its header measures zero width, so the grid
+     width cap is never exercised either. Off-screen keeps the app real while keeping it out of
+     the way. */
+  #appFrame{
+    position: absolute;
+    left: -10000px;
+    top: 0;
+    width: 1100px;
+    height: 800px;
+    border: 0;
+  }
   table{ border-collapse: collapse; font-size: 13px; margin-bottom: 20px; }
   th, td{ border: 1px solid #D8D0BC; padding: 5px 12px; text-align: right; }
   th{ background: #EDE7D3; text-align: right; }
@@ -38,10 +50,9 @@
 </head>
 <body>
   <h1>Crossword Trainer - Automated Tests</h1>
-  <p id="note">Runs entirely in this browser tab, no Node, no npm, no other files needed besides
-    this one and <code>../crossword-engine.js</code>. Must be served over http(s) (not opened as
-    a <code>file://</code> page) so <code>fetch()</code> can load the word list JSON files, same
-    requirement as the app itself.</p>
+  <p id="note">Runs entirely in this browser tab - no Node, no npm, no build step. Must be served
+    over http(s) (not opened as a <code>file://</code> page) so <code>fetch()</code> can load the
+    word list JSON files, same requirement as the app itself.</p>
   <div id="summary" class="pending">Running...</div>
 
   <h2>crossword-engine.js - pure generation logic</h2>
@@ -50,641 +61,28 @@
   <h2>index.html - interactive app (via a hidden iframe)</h2>
   <ul id="appResults"></ul>
 
-  <h2>buildCrossword() performance: time budget vs grid size</h2>
-  <p id="perfNote">Each row runs <code>buildCrossword(bank, target, timeBudgetMs)</code> a few
-    times and averages the results. A bigger budget tries more randomized layouts before
-    settling, generally shrinking the grid, with diminishing returns as it goes. Watch where
-    "avg area" stops meaningfully improving relative to the budget spent to judge whether the
-    current default (160ms) is a reasonable place to sit.</p>
+  <h2>buildCrossword() performance: attempts vs grid size</h2>
+  <p id="perfNote">Each row builds a 30-word puzzle from eight fixed seeds and averages the
+    results. More attempts means more randomized layouts tried before settling, generally
+    shrinking the grid, with diminishing returns as it goes. Watch where "avg area" stops
+    meaningfully improving relative to the time spent, to judge whether
+    <code>attemptsFor()</code> in crossword-engine.js sits in a sensible place.</p>
   <table id="perfTable">
-    <thead><tr><th>time budget (ms)</th><th>avg area</th><th>min area</th><th>avg actual time (ms)</th></tr></thead>
+    <thead><tr><th>attempts</th><th>avg area</th><th>min area</th><th>avg time (ms)</th></tr></thead>
     <tbody id="perfTableBody"></tbody>
   </table>
 
   <iframe id="appFrame" title="app under test"></iframe>
 
   <script src="../crossword-engine.js"></script>
+  <script src="mini-test.js"></script>
+  <script src="app-helpers.js"></script>
+  <script src="engine-tests.js"></script>
+  <script src="app-tests.js"></script>
+  <script src="perf-bench.js"></script>
   <script>
   'use strict';
 
-  // ============================================================================================
-  // mini test framework
-  // ============================================================================================
-  function assertEqual(actual, expected, msg){
-    if(actual !== expected){
-      throw new Error((msg ? msg + ': ' : '') + `expected ${JSON.stringify(expected)}, got ${JSON.stringify(actual)}`);
-    }
-  }
-  function assertTrue(cond, msg){
-    if(!cond) throw new Error(msg || 'expected a truthy value');
-  }
-  function assertNotEqual(actual, expected, msg){
-    if(actual === expected){
-      throw new Error((msg ? msg + ': ' : '') + `expected value to differ from ${JSON.stringify(expected)}`);
-    }
-  }
-
-  function createRunner(){
-    const tests = [];
-    function test(name, fn){ tests.push({ name, fn }); }
-
-    async function run(container){
-      let passed = 0, failed = 0;
-      for(const { name, fn } of tests){
-        const row = document.createElement('li');
-        try{
-          await fn();
-          passed++;
-          row.className = 'pass';
-          row.textContent = '\u2713 ' + name;
-        }catch(err){
-          failed++;
-          row.className = 'fail';
-          row.textContent = '\u2717 ' + name;
-          const detail = document.createElement('div');
-          detail.className = 'detail';
-          detail.textContent = (err && err.message) ? err.message : String(err);
-          row.appendChild(detail);
-          console.error(name, err);
-        }
-        if(container) container.appendChild(row);
-      }
-      return { passed, failed, total: tests.length };
-    }
-
-    return { test, run };
-  }
-
-  // ============================================================================================
-  // helpers for driving the real app (../index.html) inside the hidden iframe
-  // ============================================================================================
-  function waitFor(predicate, timeout = 5000, interval = 20){
-    return new Promise((resolve) => {
-      const start = Date.now();
-      (function poll(){
-        if(predicate()) return resolve(true);
-        if(Date.now() - start >= timeout) return resolve(false);
-        setTimeout(poll, interval);
-      })();
-    });
-  }
-
-  function bootApp(query = ''){
-    try{ localStorage.removeItem('crossword-trainer-state'); }catch(e){}
-    return new Promise((resolve) => {
-      const iframe = document.getElementById('appFrame');
-      const target = '../index.html' + query;
-      function onLoad(){
-        iframe.removeEventListener('load', onLoad);
-        const win = iframe.contentWindow;
-        const doc = win.document;
-        const errors = [];
-        win.onerror = (msg) => errors.push(msg);
-        waitFor(() => doc.querySelectorAll('#grid .cell').length > 0).then((ready) => {
-          if(!ready && errors.length === 0) errors.push('app did not finish rendering a grid within the timeout');
-          resolve({ window: win, document: doc, errors });
-        });
-      }
-      iframe.addEventListener('load', onLoad);
-      if(iframe.src.endsWith(target)) iframe.src = 'about:blank';
-      iframe.src = target;
-    });
-  }
-
-  function clickCell(el, win){
-    el.dispatchEvent(new win.Event('mousedown', { bubbles: true }));
-  }
-
-  function typeInto(input, win, char){
-    input.dispatchEvent(new win.KeyboardEvent('keydown', { key: char, bubbles: true }));
-    input.value = char;
-    input.dispatchEvent(new win.Event('input', { bubbles: true }));
-  }
-
-  function gridIndex(doc){
-    const inputs = Array.from(doc.querySelectorAll('#grid .cell input'));
-    const byPos = {};
-    inputs.forEach((inp) => { byPos[inp.dataset.r + ',' + inp.dataset.c] = inp; });
-    function startOf(number){
-      const numSpans = Array.from(doc.querySelectorAll('#grid .cell .num'));
-      const span = numSpans.find((s) => s.textContent === String(number));
-      if(!span) return null;
-      const input = span.parentElement.querySelector('input');
-      return { r: parseInt(input.dataset.r, 10), c: parseInt(input.dataset.c, 10) };
-    }
-    return { byPos, startOf };
-  }
-
-  // ============================================================================================
-  // engine tests
-  // ============================================================================================
-  function registerEngineTests(test){
-    const engine = window.CrosswordEngine;
-
-    async function loadBank(filename){
-      const res = await fetch('../' + filename);
-      const data = await res.json();
-      return data.words.map((w) => ({
-        answer: engine.toUpperGrapheme(w.word),
-        clue: w.clues[0]
-      }));
-    }
-
-    test('graphemes() splits astral/surrogate-pair characters as single units', () => {
-      const result = engine.graphemes('a\uD835\uDD18b');
-      assertEqual(result.length, 3, `expected 3 graphemes, got ${JSON.stringify(result)}`);
-    });
-
-    test('graphemes() handles plain ASCII correctly', () => {
-      assertEqual(engine.graphemes('cat').join(','), 'c,a,t');
-    });
-
-    test('toUpperGrapheme() uppercases German umlauts correctly', () => {
-      assertEqual(engine.toUpperGrapheme('küche'), 'KÜCHE');
-    });
-
-    test('toUpperGrapheme() uppercases Greek letters correctly', () => {
-      assertEqual(engine.toUpperGrapheme('π'), 'Π');
-    });
-
-    test('attemptPlacement() places the first word across at the origin', () => {
-      const bank = [{ answer: 'HOUSE', clue: '' }];
-      const result = engine.attemptPlacement(bank, 1);
-      assertEqual(result.placements.length, 1);
-      const p = result.placements[0];
-      assertEqual(p.row, 0);
-      assertEqual(p.col, 0);
-      assertEqual(p.dir, 'across');
-    });
-
-    test('attemptPlacement() never places two different letters in the same cell', () => {
-      const bank = [
-        { answer: 'HOUSE', clue: '' }, { answer: 'OCEAN', clue: '' }, { answer: 'RIVER', clue: '' },
-        { answer: 'FOREST', clue: '' }, { answer: 'MOUNTAIN', clue: '' }
-      ];
-      const result = engine.attemptPlacement(bank, bank.length);
-      const grid = new Map();
-      for(const p of result.placements){
-        for(let i = 0; i < p.letters.length; i++){
-          const r = p.dir === 'across' ? p.row : p.row + i;
-          const c = p.dir === 'across' ? p.col + i : p.col;
-          const k = r + ',' + c;
-          if(grid.has(k)) assertEqual(grid.get(k), p.letters[i], `conflicting letters at cell ${k}`);
-          else grid.set(k, p.letters[i]);
-        }
-      }
-    });
-
-    test('computeBounds() computes a correct bounding box for a single across word', () => {
-      const bounds = engine.computeBounds([{ row: 0, col: 0, dir: 'across', letters: ['A','B','C'] }]);
-      assertEqual(bounds.rows, 1);
-      assertEqual(bounds.cols, 3);
-    });
-
-    test('computeBounds() computes a correct bounding box across mixed directions', () => {
-      const placements = [
-        { row: 0, col: 0, dir: 'across', letters: ['A','B','C'] },
-        { row: -2, col: 1, dir: 'down', letters: ['X','B','Y','Z'] }
-      ];
-      const bounds = engine.computeBounds(placements);
-      assertEqual(bounds.minR, -2);
-      assertEqual(bounds.rows, 4);
-    });
-
-    test('buildCrossword() places every requested word when the bank comfortably allows it', async () => {
-      const bank = await loadBank('example.json');
-      for(const n of [5, 10, 20]){
-        const result = engine.buildCrossword(bank, n);
-        assertEqual(result.placements.length, n, `target=${n} only placed ${result.placements.length}`);
-      }
-    });
-
-    test('buildCrossword() clamps to bank size when more words are requested than exist', async () => {
-      const bank = (await loadBank('example.json')).slice(0, 8);
-      const result = engine.buildCrossword(bank, 999);
-      assertTrue(result.placements.length <= bank.length);
-    });
-
-    test('buildCrossword() never places the same word object twice', async () => {
-      const bank = await loadBank('german.json');
-      const result = engine.buildCrossword(bank, 30);
-      const seen = new Set();
-      for(const p of result.placements){
-        assertTrue(!seen.has(p.word), 'a word object was placed more than once');
-        seen.add(p.word);
-      }
-    });
-
-    test('buildCrossword() selects words roughly uniformly at random across repeated generations (no bias toward easy-to-cross words)', async () => {
-      const bank = await loadBank('german.json');
-      const counts = new Map();
-      for(const w of bank) counts.set(w.answer, 0);
-      const trials = 40, target = 15;
-      for(let i = 0; i < trials; i++){
-        const result = engine.buildCrossword(bank, target, 20); // small time budget keeps this test fast
-        for(const p of result.placements) counts.set(p.word.answer, counts.get(p.word.answer) + 1);
-      }
-      const freqs = Array.from(counts.values());
-      const expected = (trials * target) / bank.length;
-      const mean = freqs.reduce((a,b) => a+b, 0) / freqs.length;
-      // Loose statistical check: shouldn't be wildly off from the theoretical expectation for
-      // uniform sampling. A tight check would make this test flaky by nature; this just guards
-      // against a gross, systematic bias reappearing (e.g. some words never getting picked).
-      assertTrue(Math.abs(mean - expected) < expected * 0.25, `mean selections ${mean.toFixed(2)} too far from expected ${expected.toFixed(2)}`);
-      const neverSelected = freqs.filter((f) => f === 0).length;
-      // For each word, P(never picked in one trial) = 1 - target/bank.length, so the expected
-      // count of never-selected words over `trials` independent draws is bank.length times that,
-      // raised to the trials power. The previous fixed-fraction threshold sat almost exactly on
-      // this expected value with no margin, so it flaked by design - give real headroom around it.
-      const expectedNeverSelected = bank.length * Math.pow(1 - target / bank.length, trials);
-      assertTrue(neverSelected < expectedNeverSelected * 1.3, `${neverSelected} of ${bank.length} words were never selected across ${trials} trials (expected around ${expectedNeverSelected.toFixed(0)})`);
-    });
-
-    test('pickRandomSubset() returns the requested number of unique words', async () => {
-      const bank = await loadBank('german.json');
-      const subset = engine.pickRandomSubset(bank, 25, Infinity);
-      assertEqual(subset.length, 25);
-      assertEqual(new Set(subset.map((w) => w.answer)).size, 25);
-    });
-
-    test('pickRandomSubset() ensures at least one word fits within a tight maxCols', async () => {
-      const bank = await loadBank('german.json');
-      for(let trial = 0; trial < 20; trial++){
-        const subset = engine.pickRandomSubset(bank, 15, 6);
-        assertTrue(subset.some((w) => engine.graphemes(w.answer).length <= 6), 'no word in the subset fits within maxCols=6');
-      }
-    });
-
-    test('buildCrossword() respects its time budget (does not run drastically longer than requested)', async () => {
-      const bank = await loadBank('german.json');
-      const budgetMs = 50;
-      const t0 = performance.now();
-      engine.buildCrossword(bank, 20, budgetMs);
-      const elapsed = performance.now() - t0;
-      // Generous slack (a single in-flight attempt can finish after the deadline passes) - this
-      // is a sanity check against runaway behavior, not a tight timing guarantee.
-      assertTrue(elapsed < budgetMs * 5, `took ${elapsed.toFixed(0)}ms for a ${budgetMs}ms budget`);
-    });
-
-    test('buildCrossword() reliably reaches the full requested count at various scales (all real lists)', async () => {
-      for(const file of ['german.json', 'example.json', 'deutsch-fragen-english.json']){
-        const bank = await loadBank(file);
-        for(const n of [10, 30, Math.min(100, bank.length)]){
-          const result = engine.buildCrossword(bank, n);
-          assertEqual(result.placements.length, n, `${file} target=${n} only placed ${result.placements.length}`);
-        }
-      }
-    });
-
-    test('buildCrossword() places every word even in a pathological, poorly-connected bank (via disjoint regions)', () => {
-      const fillerLetters = 'JQXYZ'.split('');
-      const fillers = [];
-      for(let i = 0; i < 20; i++){
-        fillers.push({ answer: fillerLetters[i % fillerLetters.length].repeat(3 + (i % 3)), clue: 'f' });
-      }
-      const realNetwork = ['HOUSERIVER','RIVERMOUTH','MOUNTAINOUS','FORESTLAND','LANDSCAPED']
-        .map((w) => ({ answer: w, clue: w }));
-      const bank = fillers.concat(realNetwork);
-      // target = the whole bank, so nothing gets left out of the random subset - this specifically
-      // exercises the disjoint-region fallback on a set that can't all interlock into one cluster.
-      const result = engine.buildCrossword(bank, bank.length);
-      assertEqual(result.placements.length, bank.length);
-    });
-
-    test('buildCrossword() never exceeds a given maxCols, even when the longest word (the usual anchor) is itself wider than the budget', async () => {
-      const bank = await loadBank('german.json');
-      for(const maxCols of [7, 10, 15, 20]){
-        for(let trial = 0; trial < 5; trial++){
-          const result = engine.buildCrossword(bank, 20, undefined, maxCols);
-          const bounds = engine.computeBounds(result.placements);
-          assertTrue(bounds.cols <= maxCols, `maxCols=${maxCols} but grid came out ${bounds.cols} columns wide`);
-        }
-      }
-    });
-
-    test('numberGrid() assigns a number to every placement, and shared start cells share one number', async () => {
-      const bank = await loadBank('example.json');
-      const result = engine.buildCrossword(bank, 15);
-      const built = engine.trimAndIndex(result);
-      const numbering = engine.numberGrid(built);
-      assertEqual(numbering.placements.length, built.placements.length);
-      const byPos = new Map();
-      for(const p of numbering.placements){
-        assertTrue(Number.isInteger(p.number) && p.number > 0, `placement ${p.answer} has an invalid number`);
-        const k = p.row + ',' + p.col;
-        if(byPos.has(k)) assertEqual(byPos.get(k), p.number, `cell ${k} has two different numbers`);
-        else byPos.set(k, p.number);
-      }
-    });
-
-    test('attemptPlacement() never lets one word run straight through another in the same direction (e.g. RENT over the tail of PARENT)', async () => {
-      const bank = await loadBank('example.json');
-      for(let trial = 0; trial < 30; trial++){
-        const result = engine.buildCrossword(bank, 15);
-        const dirsAt = new Map();
-        for(const p of result.placements){
-          for(let i = 0; i < p.letters.length; i++){
-            const r = p.dir === 'across' ? p.row : p.row + i;
-            const c = p.dir === 'across' ? p.col + i : p.col;
-            const k = r + ',' + c;
-            const existing = dirsAt.get(k) || { across: false, down: false };
-            assertTrue(!existing[p.dir], `${p.answer} (${p.dir}) overlaps another word in the same direction at ${k}`);
-            existing[p.dir] = true;
-            dirsAt.set(k, existing);
-          }
-        }
-      }
-    });
-  }
-
-  // ============================================================================================
-  // app (integration) tests
-  // ============================================================================================
-  function registerAppTests(test){
-
-    test('loads Deutsch B1 with 15 words by default when no URL params are given', async () => {
-      const app = await bootApp('');
-      assertEqual(app.document.getElementById('wordListSelect').value, 'german');
-      assertEqual(app.document.getElementById('wordCount').value, '15');
-      assertTrue(app.document.querySelectorAll('#grid .cell').length > 0, 'grid should be populated');
-      assertEqual(app.errors.length, 0, 'errors: ' + JSON.stringify(app.errors));
-    });
-
-    test('respects explicit list/words URL params', async () => {
-      const app = await bootApp('?list=english&words=12');
-      assertEqual(app.document.getElementById('wordListSelect').value, 'english');
-      assertEqual(app.document.getElementById('wordCount').value, '12');
-      const clueCount = app.document.querySelectorAll('#acrossList li, #downList li').length;
-      assertEqual(clueCount, 12);
-    });
-
-    test('falls back to defaults gracefully on garbage URL params', async () => {
-      const app = await bootApp('?list=not-a-real-list&words=not-a-number');
-      assertEqual(app.document.getElementById('wordListSelect').value, 'german');
-      assertEqual(app.document.getElementById('wordCount').value, '15');
-      assertEqual(app.errors.length, 0);
-    });
-
-    test('writes the current list/word-count back into the URL after generating', async () => {
-      const app = await bootApp('?bogus=1');
-      assertTrue(app.window.location.href.includes('list=german'));
-      assertTrue(app.window.location.href.includes('words=15'));
-      assertTrue(app.window.location.href.includes('bogus=1'), 'unrelated existing params should be preserved');
-    });
-
-    test('typing a letter fills the cell and advances focus to the next cell in the word', async () => {
-      const app = await bootApp('?list=german&words=10');
-      const { document, window } = app;
-      const first = document.activeElement;
-      typeInto(first, window, 'X');
-      assertEqual(first.value, 'X');
-      assertNotEqual(document.activeElement, first, 'focus should have advanced');
-    });
-
-    test('fast/rollover typing (next keydown before previous keyup) does not drop letters', async () => {
-      const app = await bootApp('?list=german&words=10');
-      const { document, window } = app;
-      const { byPos, startOf } = gridIndex(document);
-      const acrossKey = Array.from(document.querySelectorAll('#printAnswerAcross li')).map((li) => li.textContent);
-      const [numStr, ans] = acrossKey[0].split('. ');
-      const start = startOf(numStr);
-      document.querySelector(`.clue-list li[data-wid="across-${numStr}"]`)
-        .dispatchEvent(new window.Event('click', { bubbles: true }));
-
-      let prevInput = null;
-      for(let i = 0; i < ans.length; i++){
-        const active = document.activeElement;
-        active.dispatchEvent(new window.KeyboardEvent('keydown', { key: ans[i], bubbles: true }));
-        active.value = ans[i];
-        active.dispatchEvent(new window.Event('input', { bubbles: true }));
-        if(prevInput) prevInput.dispatchEvent(new window.KeyboardEvent('keyup', { key: 'x', bubbles: true }));
-        prevInput = active;
-      }
-      if(prevInput) prevInput.dispatchEvent(new window.KeyboardEvent('keyup', { key: 'x', bubbles: true }));
-
-      let landed = '';
-      for(let i = 0; i < ans.length; i++) landed += byPos[start.r + ',' + (start.c + i)].value;
-      assertEqual(landed, ans);
-    });
-
-    test('backspace on a filled cell clears it', async () => {
-      const app = await bootApp('?list=german&words=10');
-      const { document, window } = app;
-      const cell = document.activeElement;
-      typeInto(cell, window, 'X');
-      document.activeElement.dispatchEvent(new window.KeyboardEvent('keydown', { key: 'Backspace', bubbles: true }));
-      assertEqual(cell.value, '', 'original cell should be clear after backing up into it');
-    });
-
-    test('arrow keys move focus across the grid', async () => {
-      const app = await bootApp('?list=german&words=10');
-      const { document, window } = app;
-      const start = document.activeElement;
-      const activeLi = document.querySelector('.clue-list li.active');
-      const isDown = activeLi && activeLi.closest('#downList') !== null;
-      const key = isDown ? 'ArrowDown' : 'ArrowRight';
-      start.dispatchEvent(new window.KeyboardEvent('keydown', { key, bubbles: true }));
-      assertNotEqual(document.activeElement, start);
-    });
-
-    test('dead-key composition (¨+u\u2192ü) resolves correctly and then advances', async () => {
-      const app = await bootApp('?list=german&words=10');
-      const { document, window } = app;
-      const cell = document.activeElement;
-
-      cell.dispatchEvent(new window.CompositionEvent('compositionstart', { data: '' }));
-      cell.value = '¨';
-      cell.dispatchEvent(new window.Event('input', { bubbles: true }));
-      assertEqual(document.activeElement, cell, 'focus must not move during composition');
-
-      cell.value = 'ü';
-      cell.dispatchEvent(new window.CompositionEvent('compositionend', { data: 'ü' }));
-      assertEqual(cell.value, 'Ü');
-      assertNotEqual(document.activeElement, cell, 'focus should advance once composition ends');
-    });
-
-    test('clicking a filled cell selects its full text (so typing replaces it)', async () => {
-      const app = await bootApp('?list=german&words=10');
-      const { document, window } = app;
-      const inputs = Array.from(document.querySelectorAll('#grid .cell input'));
-      const cellA = inputs[0], cellB = inputs[1];
-      cellA.value = 'X';
-      clickCell(cellB, window);
-      clickCell(cellA, window);
-      assertEqual(document.activeElement, cellA);
-      assertEqual(cellA.selectionStart, 0);
-      assertEqual(cellA.selectionEnd, cellA.value.length);
-    });
-
-    test('Check answers marks correct/incorrect cells and leaves untouched cells alone', async () => {
-      const app = await bootApp('?list=german&words=10');
-      const { document, window } = app;
-      const { byPos, startOf } = gridIndex(document);
-      const acrossKey = Array.from(document.querySelectorAll('#printAnswerAcross li')).map((li) => li.textContent);
-      const [numStr, ans] = acrossKey[0].split('. ');
-      const start = startOf(numStr);
-
-      const wrongLetter = ans[0] === 'X' ? 'Y' : 'X';
-      byPos[start.r + ',' + start.c].value = wrongLetter;
-      byPos[start.r + ',' + start.c].dispatchEvent(new window.Event('input', { bubbles: true }));
-      for(let i = 1; i < ans.length; i++){
-        byPos[start.r + ',' + (start.c + i)].value = ans[i];
-        byPos[start.r + ',' + (start.c + i)].dispatchEvent(new window.Event('input', { bubbles: true }));
-      }
-
-      document.getElementById('checkBtn').dispatchEvent(new window.Event('click', { bubbles: true }));
-
-      const wrapAt = (r,c) => byPos[r + ',' + c].closest('.cell');
-      assertTrue(wrapAt(start.r, start.c).classList.contains('check-incorrect'));
-      assertTrue(!wrapAt(start.r, start.c).classList.contains('check-correct'));
-      assertTrue(wrapAt(start.r, start.c + 1).classList.contains('check-correct'));
-
-      byPos[start.r + ',' + start.c].value = ans[0];
-      byPos[start.r + ',' + start.c].dispatchEvent(new window.Event('input', { bubbles: true }));
-      assertTrue(!wrapAt(start.r, start.c).classList.contains('check-incorrect'));
-    });
-
-    test('typed progress survives a reload (same puzzle restored, not a new random one)', async () => {
-    const app = await bootApp('?list=german&words=10');
-    const { document: appDoc, window: appWin } = app;
-
-    const firstInput = appDoc.activeElement;
-    const r = firstInput.dataset.r, c = firstInput.dataset.c;
-    firstInput.dispatchEvent(new appWin.KeyboardEvent('keydown', { key: 'X', bubbles: true }));
-    firstInput.value = 'X';
-    firstInput.dispatchEvent(new appWin.Event('input', { bubbles: true }));
-
-    const originalFirstClue = appDoc.querySelector('#acrossList li, #downList li').textContent;
-    const originalCellCount = appDoc.querySelectorAll('#grid .cell').length;
-
-    // Wait past the debounced save, then navigate the iframe back to the exact same URL - a
-    // real reload - without clearing localStorage first (bootApp() normally clears it for
-    // test isolation; here we want the opposite, to prove state actually survives). #appFrame
-    // lives in this outer test page's own document, not the app's (appDoc) - using the plain
-    // top-level `document` here on purpose.
-    await new Promise((resolve) => setTimeout(resolve, 500));
-    const iframe = document.getElementById('appFrame');
-    await new Promise((resolve) => {
-      function onLoad(){
-        iframe.removeEventListener('load', onLoad);
-        waitFor(() => iframe.contentWindow.document.querySelectorAll('#grid .cell').length > 0).then(resolve);
-      }
-      iframe.addEventListener('load', onLoad);
-      iframe.src = 'about:blank';
-      iframe.src = '../index.html?list=german&words=10';
-    });
-
-    const doc2 = iframe.contentWindow.document;
-    assertEqual(doc2.querySelectorAll('#grid .cell').length, originalCellCount, 'restored grid should be the same size, not a fresh random one');
-    assertEqual(doc2.querySelector('#acrossList li, #downList li').textContent, originalFirstClue, 'restored puzzle should have the exact same clues, not a new random puzzle');
-    const restoredCell = doc2.querySelector(`#grid .cell input[data-r="${r}"][data-c="${c}"]`);
-    assertEqual(restoredCell.value, 'X', 'the letter typed before reload should still be filled in');
-  });
-
-  test('solving the puzzle correctly triggers the celebration overlay', async () => {
-      const app = await bootApp('?list=english&words=2');
-      const { document, window } = app;
-      const acrossKey = Array.from(document.querySelectorAll('#printAnswerAcross li')).map((li) => li.textContent);
-      const downKey = Array.from(document.querySelectorAll('#printAnswerDown li')).map((li) => li.textContent);
-      if(acrossKey.length !== 1 || downKey.length !== 1) return;
-
-      const [acrossNum, acrossAns] = acrossKey[0].split('. ');
-      const [downNum, downAns] = downKey[0].split('. ');
-      const { byPos, startOf } = gridIndex(document);
-      const acrossStart = startOf(acrossNum);
-      const downStart = startOf(downNum);
-
-      function setCell(r, c, letter){
-        const inp = byPos[r + ',' + c];
-        inp.value = letter;
-        inp.dispatchEvent(new window.Event('input', { bubbles: true }));
-      }
-      for(let i = 0; i < acrossAns.length; i++) setCell(acrossStart.r, acrossStart.c + i, acrossAns[i]);
-      for(let i = 0; i < downAns.length; i++) setCell(downStart.r + i, downStart.c, downAns[i]);
-
-      assertTrue(document.getElementById('celebrateOverlay').classList.contains('show'));
-    });
-
-    test('the options menu opens and closes, and clicking outside closes it', async () => {
-      const app = await bootApp('?list=german&words=10');
-      const { document, window } = app;
-      const menu = document.getElementById('optionsMenu');
-      assertEqual(menu.hidden, true);
-      document.getElementById('hamburgerBtn').dispatchEvent(new window.Event('click', { bubbles: true }));
-      assertEqual(menu.hidden, false);
-      document.body.dispatchEvent(new window.Event('click', { bubbles: true }));
-      assertEqual(menu.hidden, true);
-    });
-
-    test('Check answers and Print return focus to a grid cell afterward', async () => {
-      const app = await bootApp('?list=german&words=10');
-      const { document, window } = app;
-      document.getElementById('checkBtn').dispatchEvent(new window.Event('click', { bubbles: true }));
-      assertEqual(document.activeElement.tagName, 'INPUT');
-
-      window.print = () => {};
-      document.getElementById('printBtn').dispatchEvent(new window.Event('click', { bubbles: true }));
-      assertEqual(document.activeElement.tagName, 'INPUT');
-    });
-
-    test('status is empty on a fully successful generation (no noisy success message)', async () => {
-      const app = await bootApp('?list=german&words=10');
-      assertEqual(app.document.getElementById('status').textContent, '');
-    });
-
-    test('subtitle no longer instructs users to "choose how many to include"', async () => {
-      const app = await bootApp('?list=german&words=10');
-      const tagline = app.document.getElementById('pageTagline').textContent.toLowerCase();
-      assertTrue(!tagline.includes('choose'));
-    });
-
-    test('the print answer key lists every placed word exactly once, split by direction', async () => {
-      const app = await bootApp('?list=german&words=12');
-      const { document } = app;
-      const across = document.querySelectorAll('#printAnswerAcross li').length;
-      const down = document.querySelectorAll('#printAnswerDown li').length;
-      assertEqual(across + down, 12);
-    });
-  }
-
-  // ============================================================================================
-  // performance benchmark: time budget vs resulting grid area
-  // ============================================================================================
-  async function runPerformanceBenchmark(tbody){
-    const engine = window.CrosswordEngine;
-    const res = await fetch('../german.json');
-    const data = await res.json();
-    const bank = data.words.map((w) => ({ answer: engine.toUpperGrapheme(w.word), clue: w.clues[0] }));
-    const target = 30;
-    const budgetValues = [10, 25, 50, 100, 160, 250, 400, 600];
-    const repeats = 3;
-
-    for(const budgetMs of budgetValues){
-      const areas = [];
-      const times = [];
-      for(let i = 0; i < repeats; i++){
-        const t0 = performance.now();
-        const result = engine.buildCrossword(bank, target, budgetMs);
-        const t1 = performance.now();
-        const bounds = engine.computeBounds(result.placements);
-        areas.push(bounds.rows * bounds.cols);
-        times.push(t1 - t0);
-      }
-      const avgArea = areas.reduce((a,b) => a+b, 0) / areas.length;
-      const minArea = Math.min(...areas);
-      const avgTime = times.reduce((a,b) => a+b, 0) / times.length;
-      const tr = document.createElement('tr');
-      tr.innerHTML = `<td>${budgetMs}</td><td>${avgArea.toFixed(1)}</td><td>${minArea}</td><td>${avgTime.toFixed(1)}</td>`;
-      tbody.appendChild(tr);
-      // Let the browser paint each row as it completes rather than freezing until the whole
-      // benchmark (which can take a little while at the largest n) is done.
-      await new Promise((resolve) => setTimeout(resolve, 0));
-    }
-  }
-
-  // ============================================================================================
-  // run everything
-  // ============================================================================================
   (async function(){
     const summaryEl = document.getElementById('summary');
 
@@ -702,7 +100,13 @@
     registerAppTests(appRunner.test);
     const appResult = await appRunner.run(document.getElementById('appResults'));
 
-    await runPerformanceBenchmark(document.getElementById('perfTableBody'));
+    // The benchmark is a tuning aid, not a check, and it is the slowest thing on the page.
+    // ?perf=0 skips it so continuous integration isn't paying for it on every push.
+    if(new URLSearchParams(location.search).get('perf') !== '0'){
+      await runPerformanceBenchmark(document.getElementById('perfTableBody'));
+    } else {
+      document.getElementById('perfNote').textContent = 'Skipped (?perf=0).';
+    }
 
     const passed = engineResult.passed + appResult.passed;
     const failed = engineResult.failed + appResult.failed;
@@ -710,6 +114,16 @@
 
     summaryEl.textContent = `${passed} passed, ${failed} failed (${total} total)`;
     summaryEl.className = failed > 0 ? 'bad' : 'ok';
+
+    // Machine-readable result, so a CI runner can read the outcome and the individual failure
+    // messages rather than scraping this page's markup.
+    window.__TEST_RESULTS__ = {
+      passed, failed, total,
+      failures: Array.from(document.querySelectorAll('li.fail')).map((li) => ({
+        name: li.childNodes[0].textContent.replace(/^\u2717\s*/, ''),
+        detail: li.querySelector('.detail') ? li.querySelector('.detail').textContent : ''
+      }))
+    };
   })();
   </script>
 </body>

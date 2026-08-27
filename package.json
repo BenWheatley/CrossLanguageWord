@@ -1,0 +1,14 @@
+{
+  "name": "crosslanguageword",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Cross-language vocabulary crosswords. The app itself needs no build step; this file exists only so continuous integration can drive the browser test suite.",
+  "scripts": {
+    "test": "playwright test",
+    "test:install": "playwright install --with-deps",
+    "serve": "python3 -m http.server 8765"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.49.0"
+  }
+}

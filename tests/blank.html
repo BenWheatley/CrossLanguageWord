@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>blank</title>
+</head>
+<body>
+<script>
+// Test-only helper page, loaded into the app frame between boots.
+//
+// Clearing saved state has to happen in a document on the app's own origin, in the app frame's
+// own timeline. Issuing localStorage.removeItem from the parent page and then navigating the
+// frame is not equivalent: WebKit does not guarantee the two frames' writes are applied in the
+// order they were issued, so the removal could land *after* the app had saved and silently wipe
+// state that a resume test had just set up. Doing it here removes the ambiguity - the clear runs,
+// this document finishes, and only then does the app load and read.
+if(new URLSearchParams(location.search).get('clear') === '1'){
+  try{ localStorage.removeItem('crossword-trainer-state'); }catch(e){}
+}
+</script>
+</body>
+</html>
