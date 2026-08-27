@@ -437,7 +437,17 @@
 
   @media print{
     *{ -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; color-adjust:exact !important; }
-    body{background:#fff;}
+    body{
+      background:#fff;
+      /* The screen rule sets min-height:100vh so a short page still fills the window. In paged
+         media WebKit resolves vh against the browser window rather than the page box, so that
+         min-height survives into printing and forces the body to the height of the reader's
+         Safari window - 1100px or more against roughly 970px of usable A4. The content ends far
+         above that; the remainder is empty space, and it spills onto a second, blank sheet.
+         Chromium re-lays out at the paper size when printing, so vh means the page there and the
+         bug never appears - which is why printing to PDF from Chromium could not reproduce it. */
+      min-height:0;
+    }
     .no-print{display:none !important;}
     .wrap{max-width:none;padding:0;margin:0;}
     header.app-head{border-bottom:2px solid #000;margin-bottom:14px;}
@@ -478,11 +488,6 @@
     #printAnswerKey{
       padding-top:12px;
       border-top:1px dashed #999;
-      /* Bounds the rotated child's paint area explicitly. A 180-degree rotation about the centre
-         maps a box onto itself, so this clips nothing visually - but Safari emits a trailing
-         blank page for a transformed element at the end of the document, and telling it the
-         paint is contained is what stops that. */
-      overflow:hidden;
       /* Keep the whole key together. That is also the answer to "if a page break is needed, put
          it before this section": an unbreakable block that does not fit in what is left of the
          page moves to the next one whole, which is exactly the wanted behaviour. */
@@ -508,8 +513,8 @@
       justify-content:center;
       gap:26px;
       transform:rotate(180deg);   /* the answers alone are inverted */
-      /* No break-inside here. Keeping the key whole is the parent's job, and Safari's
-         fragmentation handling for flex containers is where the phantom page comes from. */
+      /* No break-inside here: keeping the key whole is the parent's job, and declaring it twice
+         only invites the two to disagree. */
     }
     #printAnswerKey ol{
       list-style:none;

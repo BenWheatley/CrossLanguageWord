@@ -554,6 +554,19 @@ test('solving the puzzle correctly triggers the celebration overlay', async () =
     assertTrue(doc.body.classList.contains('print-no-key'), 'unchecking should suppress the key');
   });
 
+  test('printing does not inherit the screen rule that stretches the body to the window', async () => {
+    const app = await bootApp('?list=german&words=10');
+    // The screen rule is min-height:100vh so a short page still fills the window. WebKit resolves
+    // vh against the window even in paged media, so leaving it in force made the body as tall as
+    // the reader's Safari window - well past a sheet of A4 - and printed a second, blank page.
+    assertEqual(printRuleValue(app.document, 'body', 'min-height'), '0px',
+      'the print rules must reset min-height, or a tall window prints a blank trailing page');
+
+    // And the screen rule is still doing its job.
+    assertEqual(getComputedStyle(app.document.body).minHeight,
+      app.window.innerHeight + 'px', 'on screen the body should still fill the window');
+  });
+
   test('printed cells are sized from the paper, not from the window that generated the puzzle', async () => {
     const doc = (await bootApp('?list=german&words=40')).document;
     const cellSize = printRuleValue(doc, '#grid', '--cell-size');
