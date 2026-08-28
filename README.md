@@ -265,9 +265,17 @@ static server.
   for a moment while it is built. This is normal.
 * **Your best time is not remembered between sessions.** It is shown for
   comparison within a sitting only.
+* **Nothing is remembered about which words you found hard.** Words are drawn at
+  random from the list, so practice is not directed at your weak spots.
+* **There is no way to reveal an answer.** If a word defeats you, the program
+  will not tell you what it was.
+* **Reading a clue on a telephone means scrolling away from the grid.** The
+  clue list sits below the puzzle, so the two are not on screen together.
 * **A very large word list of your own may not be kept between sessions.** Lists
   are kept so you can return to their puzzles; when there is not room, the
   least recently used are dropped and the program asks for the file again.
+
+Planned work and known gaps are listed in `TODO.md`.
 
 ## 12. TROUBLESHOOTING
 

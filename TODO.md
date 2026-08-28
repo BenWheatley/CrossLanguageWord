@@ -1,0 +1,120 @@
+# TODO
+
+Findings from the gameplay and UX review that are not yet done. Roughly in the
+order I would tackle them; the numbering matches the review.
+
+## 1. Nothing is remembered, so nothing is trained
+
+The only thing kept between sessions is the puzzle you are in the middle of:
+
+    localStorage: crossword-trainer-state, crossword-trainer-lists
+
+There is no record of which words have been seen, which were answered unaided,
+or which were repeatedly missed. Word selection is uniformly random *by design*
+— `pickRandomSubset` deliberately avoids favouring easy-to-interlock vocabulary,
+which is right for variety — but it means a word failed five times is exactly as
+likely to come up as one known cold. The finish screen reports a time and
+nothing about the vocabulary.
+
+For something called a trainer this is the central gap. The groundwork is
+already in place: words are keyed by answer, bank order is stable, puzzles are
+seeded and reproducible.
+
+- Record a per-answer outcome: solved unaided / needed checking / revealed.
+- Weight selection toward words with a poor record, without abandoning variety
+  altogether — a mostly-random draw with a modest bias is probably right.
+- Show something about vocabulary, not just elapsed time, when a puzzle is done.
+
+Depends on nothing. Feeds on 2.
+
+## 2. When you do not know a word there is no way to find out
+
+No reveal, no hint. "Check answers" marks letters right or wrong but never says
+what the answer was. So the learner's dead end is: stuck → guess → abandon, and
+the one thing a vocabulary trainer must do — teach the word you did not know —
+it cannot do.
+
+The answers are already in the document for the printed key, so this is a
+presentation problem rather than a data one.
+
+- "Reveal word" at minimum; possibly "reveal letter" as a gentler step.
+- Mark revealed answers so they can feed 1.
+- Consider whether revealing should end the timer's claim on that puzzle.
+
+Smallest useful change on this list. Probably do it first.
+
+## 4. On a phone the clue and the square are never both on screen
+
+Measured on an iPhone 13 (390×844) while focused in the grid:
+
+| | |
+| --- | --- |
+| Clue list starts | 829px down |
+| Active clue, relative to viewport | 865–957px |
+| Clue visible while in the grid | never |
+| Focused cell visible with keyboard up | no, mid-grid |
+| Cell size | 30px, against 44pt/48dp touch minimums |
+
+So the loop is: read clue, scroll up ~900px, tap, type, scroll back. There is a
+contributing bug: `highlightWord` calls `scrollIntoView` on the clue and
+`focusCell` then immediately calls `input.focus()`, which scrolls back to the
+grid — the two fight and the clue never actually arrives.
+
+- A sticky current-clue bar above or below the grid on narrow screens. This one
+  change would fix most of the experience.
+- Larger cells on touch, or a zoomed view of the current word.
+- Stop the two scrolls fighting.
+
+## 5. Nothing happens while you are solving
+
+Completing a word correctly produces no feedback at all: the clue is not marked,
+the squares do not change. There is no progress count, and the timer only
+appears at the end.
+
+- Mark a clue done when its word is completely filled.
+- A quiet "7 of 15" somewhere.
+- Let "Check answers" work on the current word as well as the whole grid; at
+  present it marks every wrong letter in the puzzle, which is a blunt
+  instrument and the only setting on offer.
+
+## 7. One difficulty lever, and thin crossings
+
+Word count is the only control. Measured interlock, 25 trials per size:
+
+| words | crossings/word | isolated words | grid fill |
+| --- | --- | --- | --- |
+| 15 | 1.96 | 3.2% | 41.8% |
+| 30 | 2.09 | 1.1% | 38.6% |
+
+Respectable for arbitrary word lists, but most letters are unchecked, so an
+unknown word usually cannot be inferred from its crossings the way it can in a
+dense crossword. That is inherent to building from a supplied list rather than a
+curated grid — and it is part of why 2 matters.
+
+- Filter by word length, or by level within a list.
+- "Only words I have missed" — which is 1 again, from the other end.
+
+## 8. Smaller things
+
+- **Tab moves square by square, not clue to clue.** Every major crossword uses
+  Tab for the next clue. The highlight now follows focus, so it is coherent, but
+  it is still not the convention.
+- Finishing a word jumps to the next clue *number*, which may be in the other
+  direction and is disorienting.
+- Enter and Escape do nothing in the grid.
+- Both print checkboxes sit in the options menu permanently, though they only
+  matter at print time.
+- The tagline says "1000 words available" while the puzzle uses 15. "15 of 1000"
+  would read as less of an unkept promise.
+- The English list has English clues for English answers — an ordinary crossword,
+  and the odd one out in a project called CrossLanguageWord.
+- Two clues are shared by same-length answers and so cannot be resolved:
+  "a german preposition" → AUF/BEI, and "might make you laugh, cry, or shout" →
+  EMOTION/FEELING. Data fixes, not code.
+
+## Done
+
+- 3 — losing a puzzle to a stray keystroke, with no way back. Undo, plus a
+  debounce on the word count.
+- 6 — clues printing their own answer. 1.31 free answers per puzzle → 0.01.
+- Tab leaving the highlight behind on the previous word.
