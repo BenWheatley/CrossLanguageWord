@@ -199,13 +199,24 @@
   }
   .options-menu .check-field input{ margin-top:2px; flex:0 0 auto; }
 
+  #statusRow{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin:-8px 0 18px;
+    min-height:16px;
+  }
   #status{
     font-family:'IBM Plex Mono',monospace;
     font-size:12.5px;
     color:var(--ink-soft);
-    margin:-8px 0 18px;
-    min-height:16px;
   }
+  #undoBtn{
+    padding:4px 10px;
+    font-size:12px;
+    flex:0 0 auto;
+  }
+  #undoBtn[hidden]{ display:none; }
   #status.warn{color:var(--warn);}
 
   /* Shown when a link names a word list loaded from a file the app no longer holds. The words

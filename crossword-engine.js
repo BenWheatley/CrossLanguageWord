@@ -160,6 +160,49 @@
     return cyrb53(bank.map(w => w.answer).join(RECORD_SEP));
   }
 
+  // ---------- clue quality ----------
+  // Some clues print the answer they are asking for. The German B1 list is full of conjugation
+  // drills built from the infinitive - "wir ___ (wissen, 'to know (a fact)': present tense)" for
+  // WISSEN - which hands the solver the word outright, and a few dozen more give the stem with an
+  // ending still attached ("ich ___ (mieten, ...)" for MIETE).
+  //
+  // A token has to be the answer, or the answer plus an ending. Matching a bare substring would
+  // be far too eager: two- and three-letter answers hide inside ordinary words all the time,
+  // hence the length floors. The ending case needs four characters before it is safe.
+  function clueRevealsAnswer(answer, clue){
+    if(typeof answer !== 'string' || typeof clue !== 'string') return false;
+    const target = answer.toLowerCase();
+    if(target.length < 3) return false;
+    const tokens = clue.toLowerCase().match(/\p{L}+/gu);
+    if(!tokens) return false;
+    for(const token of tokens){
+      if(token === target) return true;
+      if(target.length >= 4 && token.startsWith(target)) return true;
+    }
+    return false;
+  }
+
+  /**
+   * Chooses a clue for `word` using one draw from `rnd`, skipping past any that print the answer.
+   *
+   * Deliberately takes its draw first and then walks, rather than filtering the list and drawing
+   * from what is left. Filtering would change how many clues each word appears to have, and the
+   * draw is scaled by exactly that number - so every seed anyone has already shared would start
+   * showing different clues, and a loaded list's fingerprint would change too. Walking on from
+   * the drawn index leaves the arithmetic alone and only replaces the clues that were spoiling
+   * the puzzle. If every clue for a word gives it away, the drawn one stands: a revealed answer
+   * beats no clue at all.
+   */
+  function pickClue(word, rnd){
+    const clues = word.clues;
+    const start = Math.floor(rnd() * clues.length);
+    for(let i = 0; i < clues.length; i++){
+      const candidate = clues[(start + i) % clues.length];
+      if(!clueRevealsAnswer(word.answer, candidate)) return candidate;
+    }
+    return clues[start];
+  }
+
   const SEED_ALPHABET = 'abcdefghijklmnopqrstuvwxyz0123456789';
   const SEED_LENGTH = 6;
   /** A fresh seed, short enough to read out loud or type from a printed sheet. */
@@ -557,6 +600,8 @@
     makeRng,
     wordListFingerprint,
     wordListShape,
+    clueRevealsAnswer,
+    pickClue,
     randomSeed,
     isValidSeed,
     shuffle,

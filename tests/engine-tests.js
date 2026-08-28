@@ -7,6 +7,9 @@
 function registerEngineTests(test){
   const engine = window.CrosswordEngine;
 
+  /** Runs pickClue with a generator that returns one fixed value. */
+  const pickWith = (word, value) => engine.pickClue(word, () => value);
+
   const GOLDEN_FINGERPRINT = '1nkful2ldp2';
   const GOLDEN_SHAPE = 'yran4iwdvv';
   const GOLDEN_RNG_VALUES = ['0.012550512096', '0.860431064852', '0.447748388397', '0.767062008381'];
@@ -379,5 +382,51 @@ function registerEngineTests(test){
     // means every link anyone has saved stops finding its list.
     assertEqual(engine.wordListFingerprint(bankA), GOLDEN_FINGERPRINT);
     assertEqual(engine.wordListShape(bankA), GOLDEN_SHAPE);
+  });
+
+  // ---------- clues that give the answer away ----------
+
+  test('clueRevealsAnswer() catches the answer printed in its own clue', () => {
+    assertTrue(engine.clueRevealsAnswer('WISSEN', "wir ___ (wissen, 'to know (a fact)': present tense)"));
+    assertTrue(engine.clueRevealsAnswer('ESSEN', "wir ___ (essen, 'to eat': present tense)"));
+    assertTrue(engine.clueRevealsAnswer('SNOW', 'Perfect for building a snowman'));
+  });
+
+  test('clueRevealsAnswer() catches the answer with an ending still attached', () => {
+    assertTrue(engine.clueRevealsAnswer('MIETE', "ich ___ (mieten, 'to rent': present tense)"));
+    assertTrue(engine.clueRevealsAnswer('HABE', "ich ___ (haben, 'to have': present tense)"));
+  });
+
+  test('clueRevealsAnswer() does not fire on short answers hiding inside ordinary words', () => {
+    // The reason for the length floors: two- and three-letter answers are substrings of half the
+    // dictionary, and treating that as a giveaway would throw away perfectly good clues.
+    assertTrue(!engine.clueRevealsAnswer('EI', 'Sein Freund kam vorbei'));
+    assertTrue(!engine.clueRevealsAnswer('IN', 'Inside a place'));
+    assertTrue(!engine.clueRevealsAnswer('ER', 'A male person'));
+    assertTrue(!engine.clueRevealsAnswer('HAUS', 'Where a family lives'));
+  });
+
+  test('pickClue() skips a giveaway and takes the next clue instead', () => {
+    const word = { answer: 'WISSEN', clues: ['wir ___ (wissen, ...)', 'To have knowledge of a fact'] };
+    // whatever the draw lands on, the clean clue is what comes back
+    for(const value of [0, 0.4, 0.6, 0.99]){
+      assertEqual(pickWith(word, value), 'To have knowledge of a fact');
+    }
+  });
+
+  test('pickClue() keeps the drawn clue when every clue gives the answer away', () => {
+    // A revealed answer still beats no clue at all.
+    const word = { answer: 'STAND', clues: ['a stand', 'the stand'] };
+    assertEqual(pickWith(word, 0), 'a stand');
+    assertEqual(pickWith(word, 0.99), 'the stand');
+  });
+
+  test('pickClue() takes exactly one draw, so seeds keep meaning the same puzzle', () => {
+    // The draw is scaled by clues.length. Filtering the list first, or drawing more than once,
+    // would shift every later word's clue and change what an already-shared seed opens.
+    let draws = 0;
+    const rnd = () => { draws++; return 0.5; };
+    engine.pickClue({ answer: 'WISSEN', clues: ['wir ___ (wissen, ...)', 'ok', 'also ok'] }, rnd);
+    assertEqual(draws, 1);
   });
 }

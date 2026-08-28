@@ -53,7 +53,10 @@
     <button id="generateBtn" disabled>New crossword</button>
   </div>
 
-  <div id="status" class="no-print" role="status" aria-live="polite"></div>
+  <div id="statusRow" class="no-print">
+    <div id="status" role="status" aria-live="polite"></div>
+    <button id="undoBtn" class="secondary" hidden>Undo new puzzle</button>
+  </div>
 
   <div id="listPrompt" class="no-print" hidden>
     <p id="listPromptText"></p>
@@ -138,6 +141,14 @@
   let currentListSum = null;   // fingerprint of the loaded list, when there is one
   let currentListShape = null; // hash of just its answers - see the engine's note on the two
 
+  // What the puzzle on screen actually is, as opposed to where the controls currently stand.
+  // The two part company during a change: picking a new word list sets currentListId and loads a
+  // bank before the new puzzle exists, and the word-count field has already moved by the time the
+  // rebuild it triggers runs. Anything describing the visible puzzle - what gets saved, and what
+  // undo has to put back - has to read from here, or it will label the outgoing puzzle with the
+  // incoming puzzle's settings.
+  let currentPuzzle = null; // {list, sum, words, seed, title, language, shape}
+
   // A list the reader loaded from their own file has no URL to fetch it back from, so the link
   // names it by fingerprint instead and the words are kept in a store of their own, keyed the
   // same way. Several lists can be held at once, which a single slot on the saved puzzle could
@@ -163,6 +174,7 @@
   const hamburgerBtn = document.getElementById('hamburgerBtn');
   const optionsMenu = document.getElementById('optionsMenu');
   const statusEl = document.getElementById('status');
+  const undoBtn = document.getElementById('undoBtn');
   const listPrompt = document.getElementById('listPrompt');
   const listPromptText = document.getElementById('listPromptText');
   const listPromptFresh = document.getElementById('listPromptFresh');
@@ -181,7 +193,7 @@
   // ---------- crossword generation engine (crossword-engine.js) ----------
   const {
     toUpperGrapheme, normalizeText, graphemes, key, makeRng, randomSeed, isValidSeed,
-    wordListFingerprint, wordListShape, buildCrossword, trimAndIndex, numberGrid
+    wordListFingerprint, wordListShape, pickClue, buildCrossword, trimAndIndex, numberGrid
   } = CrosswordEngine;
 
   // ---------- word lists ----------
@@ -530,6 +542,16 @@
         if(!cell) continue;
         cell.input.addEventListener('mousedown', (e) => { e.preventDefault(); onCellMouseDown(r,c); });
         cell.input.addEventListener('keydown', (e) => onKeyDown(e,r,c));
+        // Focus can arrive without the app putting it there: Tab and Shift+Tab walk the squares
+        // as ordinary form fields, and assistive technology moves between them too. Without this,
+        // the highlight and the current word stayed on whichever square the app last chose, so
+        // the board showed one word highlighted while the cursor sat in another - and it only
+        // sorted itself out once a letter was typed. Follow the focus wherever it comes from.
+        cell.input.addEventListener('focus', () => {
+          if(focusingProgrammatically) return;   // focusCell is already doing the bookkeeping
+          if(r === focusedR && c === focusedC) return;
+          focusCell(r, c);
+        });
         // Composing (dead-key accents like ¨+u→ü, or IME input) fires interim 'input' events
         // mid-sequence. If we react to those immediately and advance focus, the composition gets
         // cut short - the diacritic ends up stranded in the cell it started in. So: ignore 'input'
@@ -647,6 +669,10 @@
     }
   }
 
+  // Set while focusCell is moving the focus itself, so the focus listener on each square can tell
+  // the app's own moves from a Tab or a screen reader's and not undo the direction it just chose.
+  let focusingProgrammatically = false;
+
   function focusCell(r,c,dir){
     const cell = cellAt(r,c);
     if(!cell) return;
@@ -663,8 +689,13 @@
     // the grid - would otherwise drag focus back out of the dialog and into the grid behind it.
     // The highlight still follows along; only the focus is withheld.
     if(!celebrateOverlay.classList.contains('show')){
-      cell.input.focus();
-      cell.input.select();
+      focusingProgrammatically = true;
+      try{
+        cell.input.focus();
+        cell.input.select();
+      } finally {
+        focusingProgrammatically = false;
+      }
     }
   }
 
@@ -765,6 +796,8 @@
     const ch = g.length ? g[g.length-1] : '';
     cell.input.value = ch;
     cell.wrap.classList.remove('check-correct', 'check-incorrect');
+    // Working on the new puzzle is as clear a sign as any that it is the one you wanted.
+    if(ch) clearUndo();
     if(ch) advanceAfterInput(r,c);
     checkAndCelebrate();
     scheduleSave();
@@ -1089,23 +1122,40 @@
   // ---------- generate ----------
   function updateUrlParams(){
     const params = new URLSearchParams(window.location.search);
-    if(currentListId) params.set('list', currentListId);
+    // Describes the puzzle on screen, so the address stays a way of getting back to *this* one
+    // even while the controls have moved on to whatever is being asked for next.
+    const shown = currentPuzzle || {
+      list: currentListId, sum: currentListSum, words: Number(wordCountInput.value), seed: currentSeed
+    };
+    const currentListId_ = shown.list;
+    if(currentListId_) params.set('list', currentListId_);
     else params.delete('list');
     // A loaded file has no id to fetch it back by, so the link carries its fingerprint instead.
     // That is enough to find it again among the lists kept here, or to check a file the reader
     // picks when it is not among them.
-    if(currentListId === CUSTOM_LIST_ID && currentListSum) params.set('sum', currentListSum);
+    if(currentListId_ === CUSTOM_LIST_ID && shown.sum) params.set('sum', shown.sum);
     else params.delete('sum');
-    params.set('words', wordCountInput.value);
+    params.set('words', shown.words);
     // With the seed here, the address bar is a complete description of the puzzle on screen -
     // copy it to anyone and they get this grid, these words and these clues, not merely a puzzle
     // of the same size. A custom-loaded file still has no URL representation, so a seed alone
     // couldn't rebuild it; leave it out rather than imply otherwise.
-    if(currentSeed && currentListId) params.set('seed', currentSeed);
+    if(shown.seed && currentListId_) params.set('seed', shown.seed);
     else params.delete('seed');
     const query = params.toString();
     const newUrl = window.location.pathname + (query ? '?' + query : '');
-    history.replaceState(null, '', newUrl);
+    if(newUrl === window.location.pathname + window.location.search) return; // nothing to say
+
+    // WebKit caps replaceState at 100 calls per 10 seconds and throws a SecurityError past that.
+    // Holding down the word-count arrows is enough to reach it, and the throw used to propagate
+    // out of here and abandon the rest of whatever called it - generate() or restoreFromSaved()
+    // - leaving the puzzle built but the app's bookkeeping half finished. The address is the
+    // least important thing on the page; if it cannot be updated, let it be stale.
+    try{
+      history.replaceState(null, '', newUrl);
+    }catch(e){
+      /* rate limited, or history unavailable - carry on */
+    }
   }
 
   // How many columns wide the grid is allowed to be, based on the header bar's actual current
@@ -1133,9 +1183,8 @@
   }
 
   // ---------- persistence (resume where you left off after a reload) ----------
-  function saveState(){
-    try{
-      const answers = [];
+  function snapshotState(){
+    const answers = [];
       for(let r=0;r<rows;r++){
         const rowArr = [];
         for(let c=0;c<cols;c++){
@@ -1144,6 +1193,15 @@
         }
         answers.push(rowArr);
       }
+      const describes = currentPuzzle || {
+        list: currentListId,
+        sum: currentListId === CUSTOM_LIST_ID ? currentListSum : null,
+        words: Number(wordCountInput.value),
+        seed: currentSeed,
+        title: currentListTitle,
+        language: currentListLanguage,
+        shape: currentListShape
+      };
       const state = {
         version: SAVE_VERSION,
         rows, cols, gridData, placedWords, answers,
@@ -1155,25 +1213,103 @@
         // rather than an id, and the words themselves live in the keyed store, so two puzzles
         // from two different files do not each carry their own copy.
         params: {
-          list: currentListId,
-          sum: currentListId === CUSTOM_LIST_ID ? currentListSum : null,
-          words: Number(wordCountInput.value),
-          seed: currentSeed
+          list: describes.list,
+          sum: describes.list === CUSTOM_LIST_ID ? describes.sum : null,
+          words: describes.words,
+          seed: describes.seed
         },
       };
-      if(currentListId === CUSTOM_LIST_ID){
+      if(describes.list === CUSTOM_LIST_ID){
         // Enough to name the list when asking for it again, and to tell "same words, edited
         // clues" apart from "wrong file" if what turns up does not match. Both are a few bytes;
         // the words themselves are in the keyed store.
-        state.customTitle = currentListTitle;
-        state.customShape = currentListShape;
+        state.customTitle = describes.title;
+        state.customShape = describes.shape;
       }
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    return state;
+  }
+
+  function saveState(){
+    try{
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(snapshotState()));
     }catch(e){
       // localStorage unavailable (private browsing, quota exceeded, etc.) - the app still
       // works fine without persistence, just silently skip saving this time.
     }
   }
+
+  // ---------- undoing a discarded puzzle ----------
+  // Building a new puzzle throws away whatever was in the old one, and there are three ways to
+  // set that off: the "New crossword" button, changing the word list, and nudging the word count
+  // - which is a single arrow key in a number field. None of them asked, and none of them could
+  // be taken back: the app rewrites its own address with replaceState, so the browser's Back
+  // button does not return the old puzzle either, and its seed is gone the moment it is replaced.
+  //
+  // Rather than putting a confirmation in front of an action people take on purpose dozens of
+  // times a session, keep the discarded puzzle and offer it back.
+  let undoState = null;
+
+  function hasTypedLetters(){
+    for(let r=0;r<rows;r++){
+      for(let c=0;c<cols;c++){
+        const cell = cellEls[r] && cellEls[r][c];
+        if(cell && cell.input.value) return true;
+      }
+    }
+    return false;
+  }
+
+  function showUndo(){
+    undoBtn.hidden = false;
+  }
+
+  function clearUndo(){
+    undoState = null;
+    undoBtn.hidden = true;
+  }
+
+  /** Called just before a new puzzle replaces the current one. */
+  function captureUndo(){
+    if(placedWords.length && hasTypedLetters()) undoState = snapshotState();
+    else undoState = null;
+  }
+
+  function performUndo(){
+    const snapshot = undoState;
+    if(!snapshot) return;
+    clearUndo();
+
+    const listId = snapshot.params && snapshot.params.list;
+    if(listId && listId !== currentListId){
+      // It came from a different word list, so that list has to be back in place before the
+      // puzzle can be. pendingRestore is the same hand-off the first load uses.
+      pendingRestore = snapshot;
+      if(listId === CUSTOM_LIST_ID){
+        const stored = snapshot.params.sum ? findSavedList(snapshot.params.sum) : null;
+        if(!stored){
+          pendingRestore = null;
+          setStatus('That puzzle came from a word list this browser no longer holds, so it '
+            + 'cannot be brought back.', true);
+          return;
+        }
+        currentListId = CUSTOM_LIST_ID;
+        currentListSum = snapshot.params.sum;
+        wordListSelect.value = '';
+        adoptWordBank(stored.words, stored.title, stored.language);
+        startPuzzle();
+      } else if(LISTS[listId]){
+        currentListId = listId;
+        wordListSelect.value = listId;
+        fetchWordList(LISTS[listId].file, LISTS[listId].label); // restores once the bank arrives
+      }
+      return;
+    }
+
+    restoreFromSaved(snapshot);
+    saveState();
+  }
+
+  undoBtn.addEventListener('click', () => { performUndo(); restoreFocusToCurrentCell(); });
 
   function scheduleSave(){
     clearTimeout(saveTimer);
@@ -1233,9 +1369,19 @@
     // by fingerprint or picked by the reader - so there is nothing to adopt here. Just make sure
     // the menu is not claiming a bundled list when a loaded file is on screen.
     if(saved.params && saved.params.list === CUSTOM_LIST_ID) wordListSelect.value = '';
+    currentPuzzle = {
+      list: (saved.params && saved.params.list) || currentListId,
+      sum: (saved.params && saved.params.sum) || null,
+      words: (saved.params && saved.params.words) || Number(wordCountInput.value),
+      seed: (saved.params && saved.params.seed) || currentSeed,
+      title: saved.customTitle || currentListTitle,
+      language: currentListLanguage,
+      shape: saved.customShape || currentListShape
+    };
     printBtn.disabled = false;
     checkBtn.disabled = false;
     setStatus('');
+    clearUndo();
     updateUrlParams();
   }
 
@@ -1246,10 +1392,7 @@
   //
   // The bank's order is preserved, because that is what the generator shuffles.
   function pickClues(bank, rnd){
-    return bank.map(w => ({
-      answer: w.answer,
-      clue: w.clues[Math.floor(rnd() * w.clues.length)]
-    }));
+    return bank.map(w => ({ answer: w.answer, clue: pickClue(w, rnd) }));
   }
 
   // `seed` names the puzzle: the same seed, list and word count always rebuild the same grid,
@@ -1259,6 +1402,7 @@
       setStatus('Load a word list first.', true);
       return;
     }
+    captureUndo();
     seed = isValidSeed(seed) ? seed : randomSeed();
     currentSeed = seed;
     const n = clampWordCount(parseInt(wordCountInput.value, 10) || DEFAULT_WORDS);
@@ -1278,14 +1422,26 @@
     const numbering = numberGrid(built);
     renderGrid(built, numbering);
     puzzleStartTime = Date.now();
+    currentPuzzle = {
+      list: currentListId,
+      sum: currentListId === CUSTOM_LIST_ID ? currentListSum : null,
+      words: n,                       // the count actually used, after clamping
+      seed: currentSeed,
+      title: currentListTitle,
+      language: currentListLanguage,
+      shape: currentListShape
+    };
     printBtn.disabled = false;
     checkBtn.disabled = false;
     updateUrlParams();
     if(numbering.placements.length < n){
       setStatus(`Placed ${numbering.placements.length} of ${n} requested words (the rest didn't fit this layout). Click "New crossword" for another attempt.`, true);
+    } else if(undoState){
+      setStatus('New puzzle. Your previous answers have not been thrown away.');
     } else {
       setStatus('');
     }
+    if(undoState) showUndo();
     saveState();
   }
 
@@ -1333,8 +1489,14 @@
   celebrateOverlay.addEventListener('click', (e) => { if(e.target === celebrateOverlay){ closeCelebration(); restoreFocusToCurrentCell(); } });
 
   // Regenerate automatically whenever the requested word count changes (a new list already
-  // triggers generation itself, from within loadWordBank).
-  wordCountInput.addEventListener('change', () => { if(wordBank.length) generate(); });
+  // triggers generation itself, from within loadWordBank). Debounced, because a number field
+  // fires change on every press of its arrows: stepping from 15 to 25 would otherwise build ten
+  // puzzles in a row, throwing away nine of them and the previous one's answers along with them.
+  let wordCountTimer = null;
+  wordCountInput.addEventListener('change', () => {
+    clearTimeout(wordCountTimer);
+    wordCountTimer = setTimeout(() => { if(wordBank.length) generate(); }, 450);
+  });
 
   // ---------- initial load: read ?list= and ?words= from the URL so the page is never blank ----------
 

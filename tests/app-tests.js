@@ -594,4 +594,98 @@ test('solving the puzzle correctly triggers the celebration overlay', async () =
     assertTrue(/highlighted/i.test(hint), 'the hint should mention the highlight');
     assertTrue(/space/i.test(hint), 'and how to switch direction');
   });
+
+  // ---------- not losing a puzzle you were working on ----------
+
+  const typedCells = (doc) => Array.from(doc.querySelectorAll('#grid .cell input'))
+    .filter((i) => i.value).map((i) => `${i.dataset.r},${i.dataset.c}=${i.value}`).join(' ');
+  const seedOf = (app) => new URLSearchParams(app.window.location.search).get('seed');
+  function typeInFirstCells(app, text){
+    Array.from(app.document.querySelectorAll('#grid .cell input')).slice(0, text.length)
+      .forEach((input, i) => {
+        input.value = text[i];
+        input.dispatchEvent(new app.window.Event('input', { bubbles: true }));
+      });
+  }
+
+  test('a new puzzle can be undone, bringing the answers back', async () => {
+    const app = await bootApp('?list=german&words=12&seed=undoa1');
+    const doc = app.document;
+    typeInFirstCells(app, 'ABCD');
+    const before = { typed: typedCells(doc), seed: seedOf(app) };
+
+    doc.getElementById('generateBtn').click();
+    assertTrue(!doc.getElementById('undoBtn').hidden, 'undo should be offered');
+    assertNotEqual(seedOf(app), before.seed, 'a new puzzle was expected');
+
+    doc.getElementById('undoBtn').click();
+    assertEqual(typedCells(doc), before.typed, 'the answers should come back');
+    assertEqual(seedOf(app), before.seed, 'and the same puzzle with them');
+  });
+
+  test('undo is not offered when there was nothing typed to lose', async () => {
+    const app = await bootApp('?list=german&words=12&seed=undoa2');
+    app.document.getElementById('generateBtn').click();
+    assertTrue(app.document.getElementById('undoBtn').hidden,
+      'an untouched puzzle is not worth offering back');
+  });
+
+  test('undo retires once you start work on the new puzzle', async () => {
+    const app = await bootApp('?list=german&words=12&seed=undoa3');
+    typeInFirstCells(app, 'ABCD');
+    app.document.getElementById('generateBtn').click();
+    assertTrue(!app.document.getElementById('undoBtn').hidden);
+    typeInFirstCells(app, 'Z');
+    assertTrue(app.document.getElementById('undoBtn').hidden,
+      'working on the new puzzle means it is the one you wanted');
+  });
+
+  test('changing the word list can be undone, list and all', async () => {
+    const app = await bootApp('?list=german&words=12&seed=undoa4');
+    const { document: doc, window: win } = app;
+    typeInFirstCells(app, 'ABCD');
+    const before = { typed: typedCells(doc), seed: seedOf(app), title: doc.getElementById('pageTitle').textContent };
+
+    const select = doc.getElementById('wordListSelect');
+    select.value = 'english';
+    select.dispatchEvent(new win.Event('change', { bubbles: true }));
+    await waitFor(() => doc.getElementById('pageTitle').textContent === 'English');
+
+    doc.getElementById('undoBtn').click();
+    await waitFor(() => doc.getElementById('pageTitle').textContent === before.title);
+    assertEqual(typedCells(doc), before.typed);
+    assertEqual(seedOf(app), before.seed);
+    assertTrue(app.window.location.search.includes('list=german'), 'the address should follow it back');
+  });
+
+  test('holding the word-count arrows builds one puzzle, not one per press', async () => {
+    const app = await bootApp('?list=german&words=12&seed=undoa5');
+    const { document: doc, window: win } = app;
+    let builds = 0;
+    new win.MutationObserver(() => { builds++; })
+      .observe(doc.getElementById('grid'), { childList: true });
+
+    const field = doc.getElementById('wordCount');
+    for(let i = 0; i < 6; i++){
+      field.value = String(12 + i + 1);
+      field.dispatchEvent(new win.Event('change', { bubbles: true }));
+    }
+    await waitFor(() => builds > 0, 3000);
+    await waitFor(() => false, 400);   // let any stragglers land
+    assertEqual(builds, 1, `six changes should settle into one rebuild, saw ${builds}`);
+    assertEqual(field.value, '18');
+  });
+
+  test('the address describes the puzzle on screen, not where the controls have got to', async () => {
+    // These part company mid-change: the word count moves before the rebuild it triggers runs.
+    const app = await bootApp('?list=german&words=12&seed=undoa6');
+    const { document: doc, window: win } = app;
+    const field = doc.getElementById('wordCount');
+    field.value = '20';
+    field.dispatchEvent(new win.Event('change', { bubbles: true }));
+    // before the debounce fires, the puzzle is still the twelve-word one
+    assertTrue(win.location.search.includes('words=12'),
+      `address said ${win.location.search} while the old puzzle was still on screen`);
+    await waitFor(() => win.location.search.includes('words=20'), 3000);
+  });
 }
