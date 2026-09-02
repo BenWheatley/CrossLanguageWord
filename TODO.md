@@ -43,27 +43,17 @@ presentation problem rather than a data one.
 
 Smallest useful change on this list. Probably do it first.
 
-## 4. On a phone the clue and the square are never both on screen
+## 4. Phone ergonomics — partly done
 
-Measured on an iPhone 13 (390×844) while focused in the grid:
+The grid and the clues now have a scrolling pane each, so both are on screen and
+neither moves the other. What is left:
 
-| | |
-| --- | --- |
-| Clue list starts | 829px down |
-| Active clue, relative to viewport | 865–957px |
-| Clue visible while in the grid | never |
-| Focused cell visible with keyboard up | no, mid-grid |
-| Cell size | 30px, against 44pt/48dp touch minimums |
-
-So the loop is: read clue, scroll up ~900px, tap, type, scroll back. There is a
-contributing bug: `highlightWord` calls `scrollIntoView` on the clue and
-`focusCell` then immediately calls `input.focus()`, which scrolls back to the
-grid — the two fight and the clue never actually arrives.
-
-- A sticky current-clue bar above or below the grid on narrow screens. This one
-  change would fix most of the experience.
-- Larger cells on touch, or a zoomed view of the current word.
-- Stop the two scrolls fighting.
+- **Cells are 30px**, against 44pt/48dp touch minimums, so tapping an exact
+  square is fiddly. Either larger cells with the grid pane scrolled, or a zoomed
+  view of the current word.
+- **With the keyboard up** the panes have roughly 330px between them. Worth
+  measuring what that leaves of each, and whether a single current-clue bar
+  would serve better than a clue pane when the keyboard is showing.
 
 ## 5. Nothing happens while you are solving
 
@@ -118,3 +108,6 @@ curated grid — and it is part of why 2 matters.
   debounce on the word count.
 - 6 — clues printing their own answer. 1.31 free answers per puzzle → 0.01.
 - Tab leaving the highlight behind on the previous word.
+- Most of 4 — the double scroll jump when changing square, and the clues being
+  a screenful below the puzzle on a phone. Each now has its own scrolling pane,
+  and the page does not move at all when you change square.
