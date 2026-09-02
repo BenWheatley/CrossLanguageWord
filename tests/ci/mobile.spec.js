@@ -112,3 +112,116 @@ test('the direction popup lands on the square it belongs to, even when the grid 
     expect(offset.verticalGap).toBeGreaterThanOrEqual(0);
     expect(offset.verticalGap).toBeLessThan(20);
   });
+
+test('the clue pane is deep enough to read a clue, with room to spare', async ({ page }) => {
+  await openPuzzle(page);
+  const pane = await page.evaluate(() => {
+    const clues = document.querySelector('.clues');
+    const items = [...clues.querySelectorAll('.clue-list li')];
+    const tallest = Math.max(...items.map((li) => li.getBoundingClientRect().height));
+    return { height: Math.round(clues.getBoundingClientRect().height), tallestClue: Math.round(tallest) };
+  });
+  // A pane sized only as a fraction of the screen goes too shallow to read once the keyboard is
+  // up, so there is a floor on it. Room for the heading and several clues, not just one.
+  expect(pane.height).toBeGreaterThanOrEqual(150);
+  expect(pane.height).toBeGreaterThan(pane.tallestClue * 2);
+});
+
+test('the current clue is scrolled clear of the sticky heading, not under it', async ({ page }) => {
+  await openPuzzle(page);
+  const worst = await page.evaluate(async () => {
+    const clues = document.querySelector('.clues');
+    const inputs = [...document.querySelectorAll('#grid .cell input')];
+    let hidden = 0, checked = 0;
+    for(let i = 0; i < 14; i++){
+      inputs[Math.floor(i * inputs.length / 14)]
+        .dispatchEvent(new Event('mousedown', { bubbles: true }));
+      await new Promise((r) => setTimeout(r, 90));
+      const li = document.querySelector('.clue-list li.active');
+      const heading = li.closest('.clue-col').querySelector('h2').getBoundingClientRect();
+      const a = li.getBoundingClientRect(), p = clues.getBoundingClientRect();
+      checked++;
+      if(a.top < p.top - 1 || a.bottom > p.bottom + 1 || a.top < heading.bottom - 1) hidden++;
+    }
+    return { hidden, checked };
+  });
+  expect(worst.hidden, `${worst.hidden} of ${worst.checked} selections left the clue unreadable`).toBe(0);
+});
+
+test('the grid always fits the screen, with nothing scrolling sideways', async ({ page }) => {
+  await openPuzzle(page);
+  for(let i = 0; i < 6; i++){
+    const fit = await page.evaluate(() => {
+      const g = document.getElementById('grid'), host = document.getElementById('gridHost');
+      return {
+        gridWidth: Math.round(g.getBoundingClientRect().width),
+        hostWidth: host.clientWidth,
+        hostScrollsSideways: host.scrollWidth > host.clientWidth,
+        pageScrollsSideways: document.documentElement.scrollWidth > document.documentElement.clientWidth
+      };
+    });
+    expect(fit.gridWidth, `grid ${fit.gridWidth}px in ${fit.hostWidth}px`).toBeLessThanOrEqual(fit.hostWidth);
+    expect(fit.hostScrollsSideways).toBe(false);
+    expect(fit.pageScrollsSideways).toBe(false);
+    await page.evaluate(() => document.getElementById('generateBtn').click());
+    await page.waitForTimeout(300);
+  }
+});
+
+test('a puzzle built for a wider screen is rebuilt to fit, and the wide one kept on the undo',
+  async ({ browser }) => {
+    // Column count is fixed when a puzzle is built. Carried to a narrower screen it cannot fit,
+    // and shrinking the squares is no way to solve a crossword.
+    const ctx = await browser.newContext({ viewport: { width: 1400, height: 900 } });
+    const page = await ctx.newPage();
+    await page.goto('/index.html?list=german&words=15&seed=wideT', { waitUntil: 'networkidle' });
+    await page.waitForFunction(() => document.querySelectorAll('#grid .cell').length > 0);
+    await page.waitForTimeout(300);
+    const wideCols = await page.evaluate(() =>
+      +getComputedStyle(document.getElementById('grid')).getPropertyValue('--cols'));
+
+    await page.setViewportSize({ width: 390, height: 664 });
+    await page.reload({ waitUntil: 'networkidle' });
+    await page.waitForFunction(() => document.querySelectorAll('#grid .cell').length > 0);
+    await page.waitForTimeout(400);
+
+    const after = await page.evaluate(() => {
+      const g = document.getElementById('grid'), host = document.getElementById('gridHost');
+      return {
+        cols: +getComputedStyle(g).getPropertyValue('--cols'),
+        fits: g.getBoundingClientRect().width <= host.clientWidth,
+        undoOffered: !document.getElementById('undoBtn').hidden,
+        status: document.getElementById('status').textContent
+      };
+    });
+    expect(after.fits, `still ${after.cols} columns wide, built at ${wideCols}`).toBe(true);
+    expect(after.undoOffered, 'the wide puzzle should still be reachable').toBe(true);
+    expect(after.status).toContain('wider screen');
+    await ctx.close();
+  });
+
+test('the controls fold into the options menu, leaving the title row', async ({ page }) => {
+  await openPuzzle(page);
+  const compact = await page.evaluate(() => ({
+    hamburgerInTitleRow: !!document.querySelector('header.app-head .hamburger-wrap'),
+    toolbarShown: getComputedStyle(document.querySelector('.toolbar')).display !== 'none',
+    taglineShown: getComputedStyle(document.getElementById('pageTagline')).display !== 'none',
+    chromeAboveBoard: Math.round(document.querySelector('.board-area').getBoundingClientRect().top)
+  }));
+  expect(compact.hamburgerInTitleRow).toBe(true);
+  expect(compact.toolbarShown, 'the button row should be gone').toBe(false);
+  expect(compact.taglineShown, 'the word count line should be gone').toBe(false);
+  expect(compact.chromeAboveBoard, 'everything above the puzzle').toBeLessThan(110);
+
+  await page.click('#hamburgerBtn');
+  const menu = await page.evaluate(() => {
+    const m = document.getElementById('optionsMenu').getBoundingClientRect();
+    return {
+      actions: [...document.querySelectorAll('#menuActions button')].map((b) => b.textContent.trim()),
+      onScreen: m.left >= 0 && m.right <= window.innerWidth
+    };
+  });
+  expect(menu.actions).toEqual(['Check answers', 'Print', 'New crossword']);
+  expect(menu.onScreen, 'the menu must not open off the side of the screen').toBe(true);
+});
+

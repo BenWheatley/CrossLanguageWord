@@ -46,6 +46,9 @@
         <label class="check-field">
           <input type="checkbox" id="printKey" checked> Print the answer key at the foot of the sheet
         </label>
+        <!-- On a narrow screen the toolbar buttons are moved in here, so the row of controls
+             above the puzzle collapses to a single options button. See applyCompactLayout. -->
+        <div id="menuActions"></div>
       </div>
     </div>
     <button id="checkBtn" class="secondary" disabled>Check answers</button>
@@ -172,6 +175,10 @@
   const printAnswersCk = document.getElementById('printAnswers');
   const printKeyCk = document.getElementById('printKey');
   const hamburgerBtn = document.getElementById('hamburgerBtn');
+  const hamburgerWrap = document.querySelector('.hamburger-wrap');
+  const menuActions = document.getElementById('menuActions');
+  const toolbarEl = document.querySelector('.toolbar');
+  const headerEl = document.querySelector('header.app-head');
   const optionsMenu = document.getElementById('optionsMenu');
   const statusEl = document.getElementById('status');
   const undoBtn = document.getElementById('undoBtn');
@@ -456,8 +463,24 @@
   // in progress, or build the one the link asked for.
   function startPuzzle(){
     if(pendingRestore){
-      restoreFromSaved(pendingRestore);
-      pendingRestore = null;
+      // A puzzle's column count is fixed when it is built, against the width of the screen it was
+      // built on. Carrying one to a narrower screen - a desktop puzzle picked up on a phone -
+      // leaves a grid too wide to fit, and the only way to make it fit would be to shrink the
+      // squares, which is no way to solve a crossword. Build one that fits instead, and keep the
+      // wide one on the undo so it is not lost: it is still perfectly good on a larger screen.
+      const savedCols = pendingRestore.cols;
+      if(Number.isFinite(savedCols) && savedCols > computeMaxCols()){
+        const restored = pendingRestore;
+        pendingRestore = null;
+        generate(pendingSeed);
+        undoState = restored;
+        showUndo();
+        setStatus('That puzzle was made for a wider screen, so here is one that fits. '
+          + 'Undo brings the other one back.', true);
+      } else {
+        restoreFromSaved(pendingRestore);
+        pendingRestore = null;
+      }
     } else {
       generate(pendingSeed);
     }
@@ -705,8 +728,18 @@
 
     const item = li.getBoundingClientRect();
     const view = panel.getBoundingClientRect();
-    if(item.top < view.top) panel.scrollTop -= (view.top - item.top);
-    else if(item.bottom > view.bottom) panel.scrollTop += (item.bottom - view.bottom);
+
+    // The list heading sticks to the top of the pane, so the first stretch of it is covered.
+    // Scrolling a clue to the very top would tuck it underneath; keep clear of it, and show a
+    // little of the clue before as well so the current one does not sit flush against the edge.
+    const heading = li.closest('.clue-col') && li.closest('.clue-col').querySelector('h2');
+    const covered = heading && getComputedStyle(heading).position === 'sticky'
+      ? heading.getBoundingClientRect().height
+      : 0;
+    const margin = covered + 8;
+
+    if(item.top < view.top + margin) panel.scrollTop -= (view.top + margin - item.top);
+    else if(item.bottom > view.bottom - 8) panel.scrollTop += (item.bottom - view.bottom + 8);
   }
 
   function focusCell(r,c,dir){
@@ -1538,6 +1571,32 @@
     clearTimeout(wordCountTimer);
     wordCountTimer = setTimeout(() => { if(wordBank.length) generate(); }, 450);
   });
+
+  // ---------- narrow screens: fold the toolbar into the options menu ----------
+  // A phone has no room for a row of buttons above the puzzle - on a 664px screen the header and
+  // toolbar were eating 152px of it, which is a quarter of the puzzle. So on a narrow screen the
+  // options button moves up beside the title and everything else moves inside its menu, leaving
+  // the space to the crossword itself. Nothing changes on a desktop.
+  //
+  // Done by moving the elements rather than duplicating them, so there is only ever one Check
+  // answers button with one set of listeners on it, wherever it currently sits.
+  const compactLayout = typeof matchMedia === 'function'
+    ? matchMedia('(max-width: 640px)')
+    : { matches: false, addEventListener: () => {} };
+
+  function applyCompactLayout(){
+    if(compactLayout.matches){
+      if(hamburgerWrap.parentElement !== headerEl) headerEl.appendChild(hamburgerWrap);
+      menuActions.append(checkBtn, printBtn, generateBtn);
+    } else {
+      if(hamburgerWrap.parentElement !== toolbarEl) toolbarEl.prepend(hamburgerWrap);
+      toolbarEl.append(checkBtn, printBtn, generateBtn);
+    }
+  }
+  applyCompactLayout();
+  if(typeof compactLayout.addEventListener === 'function'){
+    compactLayout.addEventListener('change', applyCompactLayout);
+  }
 
   // ---------- initial load: read ?list= and ?words= from the URL so the page is never blank ----------
 

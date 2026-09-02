@@ -576,10 +576,38 @@
 
        Reclaim what the page can spare to pay for it: tighter margins, a smaller title, and the
        keyboard hint dropped, since it describes a mouse. */
-    .wrap{ padding:12px 12px 16px; }
-    header.app-head{ margin-bottom:10px; padding-bottom:8px; }
-    header.app-head h1{ font-size:26px; }
+    .wrap{ padding:10px 12px 14px; }
+    /* The options button sits in the title row, and the word count moves into its menu, so the
+       whole strip of controls costs one line instead of three. */
+    header.app-head{
+      margin-bottom:10px;
+      padding-bottom:8px;
+      align-items:center;
+      gap:12px;
+    }
+    header.app-head h1{ font-size:24px; }
+    #pageTagline{ display:none; }
+    .toolbar{ display:none; }
     footer.hint{ display:none; }
+
+    /* The buttons, once moved in here, read as a list of actions rather than a toolbar. */
+    #menuActions{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      margin-top:12px;
+      padding-top:12px;
+      border-top:1px solid var(--rule);
+    }
+    #menuActions button{ width:100%; }
+    /* The options button now sits at the right-hand end of the title row, so its menu has to hang
+       from that edge - anchored to the left it opened off the side of the screen. */
+    .options-menu{
+      left:auto;
+      right:0;
+      width:calc(100vw - 24px);
+      max-width:320px;
+    }
 
     .board-area{
       display:flex;
@@ -588,14 +616,21 @@
     }
     #gridHost{
       width:100%;
-      max-height:48vh;
+      max-height:44vh;
+      max-height:44dvh;   /* shrinks when the keyboard appears; vh does not */
+      min-height:170px;
       overflow:auto;
       -webkit-overflow-scrolling:touch;
     }
     .clues{
       display:block;
       width:100%;
-      max-height:30vh;
+      /* Deep enough to read a clue and see the next, with room to spare. The floor matters more
+         than the ceiling: with the on-screen keyboard up there is only about a third of the
+         screen left, and a pane sized purely as a fraction of it would be too shallow to read. */
+      max-height:38vh;
+      max-height:38dvh;
+      min-height:150px;
       overflow-y:auto;
       -webkit-overflow-scrolling:touch;
       border:1px solid var(--rule);

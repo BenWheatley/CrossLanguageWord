@@ -599,7 +599,11 @@ test('solving the puzzle correctly triggers the celebration overlay', async () =
 
   const typedCells = (doc) => Array.from(doc.querySelectorAll('#grid .cell input'))
     .filter((i) => i.value).map((i) => `${i.dataset.r},${i.dataset.c}=${i.value}`).join(' ');
-  const seedOf = (app) => new URLSearchParams(app.window.location.search).get('seed');
+  // Identify a puzzle by the puzzle, not by the address. WebKit rate-limits replaceState, and the
+  // app is deliberately willing to leave the address stale rather than let a refusal derail a
+  // rebuild - so under a fast run the URL can lag behind what is on screen.
+  const puzzleId = (doc) => Array.from(doc.querySelectorAll('#printAnswerAcross li, #printAnswerDown li'))
+    .map((li) => li.textContent).join('|');
   function typeInFirstCells(app, text){
     Array.from(app.document.querySelectorAll('#grid .cell input')).slice(0, text.length)
       .forEach((input, i) => {
@@ -612,15 +616,15 @@ test('solving the puzzle correctly triggers the celebration overlay', async () =
     const app = await bootApp('?list=german&words=12&seed=undoa1');
     const doc = app.document;
     typeInFirstCells(app, 'ABCD');
-    const before = { typed: typedCells(doc), seed: seedOf(app) };
+    const before = { typed: typedCells(doc), puzzle: puzzleId(doc) };
 
     doc.getElementById('generateBtn').click();
     assertTrue(!doc.getElementById('undoBtn').hidden, 'undo should be offered');
-    assertNotEqual(seedOf(app), before.seed, 'a new puzzle was expected');
+    assertNotEqual(puzzleId(doc), before.puzzle, 'a new puzzle was expected');
 
     doc.getElementById('undoBtn').click();
     assertEqual(typedCells(doc), before.typed, 'the answers should come back');
-    assertEqual(seedOf(app), before.seed, 'and the same puzzle with them');
+    assertEqual(puzzleId(doc), before.puzzle, 'and the same puzzle with them');
   });
 
   test('undo is not offered when there was nothing typed to lose', async () => {
@@ -644,7 +648,7 @@ test('solving the puzzle correctly triggers the celebration overlay', async () =
     const app = await bootApp('?list=german&words=12&seed=undoa4');
     const { document: doc, window: win } = app;
     typeInFirstCells(app, 'ABCD');
-    const before = { typed: typedCells(doc), seed: seedOf(app), title: doc.getElementById('pageTitle').textContent };
+    const before = { typed: typedCells(doc), puzzle: puzzleId(doc), title: doc.getElementById('pageTitle').textContent };
 
     const select = doc.getElementById('wordListSelect');
     select.value = 'english';
@@ -654,8 +658,7 @@ test('solving the puzzle correctly triggers the celebration overlay', async () =
     doc.getElementById('undoBtn').click();
     await waitFor(() => doc.getElementById('pageTitle').textContent === before.title);
     assertEqual(typedCells(doc), before.typed);
-    assertEqual(seedOf(app), before.seed);
-    assertTrue(app.window.location.search.includes('list=german'), 'the address should follow it back');
+    assertEqual(puzzleId(doc), before.puzzle);
   });
 
   test('holding the word-count arrows builds one puzzle, not one per press', async () => {
