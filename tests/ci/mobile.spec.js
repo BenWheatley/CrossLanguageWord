@@ -225,3 +225,51 @@ test('the controls fold into the options menu, leaving the title row', async ({ 
   expect(menu.onScreen, 'the menu must not open off the side of the screen').toBe(true);
 });
 
+test('no control small enough to make iOS zoom the page in', async ({ page }) => {
+  await openPuzzle(page);
+  await page.click('#hamburgerBtn');          // reveal the ones inside the options menu
+  const small = await page.evaluate(() => {
+    const TYPED = ['text', 'number', 'search', 'tel', 'url', 'email', 'password'];
+    const offenders = [];
+    document.querySelectorAll('input, select, textarea').forEach((el) => {
+      const takesText = el.tagName === 'SELECT' || el.tagName === 'TEXTAREA' || TYPED.includes(el.type);
+      if(!takesText) return;
+      const size = parseFloat(getComputedStyle(el).fontSize);
+      // Safari zooms the page whenever a control under 16px takes focus, and does not zoom out
+      // again: the puzzle ends up bigger than the screen and a reload keeps it that way.
+      if(size < 16){
+        const name = el.id ? '#' + el.id : (el.dataset.r !== undefined ? 'grid square' : el.tagName.toLowerCase());
+        if(!offenders.some((o) => o.name === name)) offenders.push({ name, size });
+      }
+    });
+    return offenders;
+  });
+  expect(small, `controls under 16px: ${small.map((o) => `${o.name} at ${o.size}px`).join(', ')}`).toEqual([]);
+});
+
+test('the larger control size does not break the grid or the menu', async ({ page }) => {
+  await openPuzzle(page, '?list=german&words=16&seed=zoom1');
+  const grid = await page.evaluate(() => {
+    const g = document.getElementById('grid'), host = document.getElementById('gridHost');
+    const input = document.querySelector('#grid .cell:not(.block) input');
+    input.value = 'W';                        // a wide letter, to check it still fits its square
+    return {
+      gridFits: g.getBoundingClientRect().width <= host.clientWidth,
+      letterFits: input.scrollWidth <= input.clientWidth + 1,
+      pageScrollsSideways: document.documentElement.scrollWidth > document.documentElement.clientWidth
+    };
+  });
+  expect(grid.gridFits).toBe(true);
+  expect(grid.letterFits).toBe(true);
+  expect(grid.pageScrollsSideways).toBe(false);
+
+  await page.click('#hamburgerBtn');
+  const menu = await page.evaluate(() => {
+    const m = document.getElementById('optionsMenu').getBoundingClientRect();
+    const select = document.getElementById('wordListSelect').getBoundingClientRect();
+    return { onScreen: m.left >= 0 && m.right <= window.innerWidth, selectFits: select.right <= m.right };
+  });
+  expect(menu.onScreen).toBe(true);
+  expect(menu.selectFits).toBe(true);
+});
+

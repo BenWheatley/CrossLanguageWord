@@ -560,9 +560,23 @@
     body.print-no-key #printAnswerKey{ display:none !important; }
   }
 
+  /* iOS Safari zooms the page in whenever a text field or select smaller than 16px takes focus,
+     and it never zooms back out again. Tapping a square, or the word count in the options menu,
+     left the page magnified with the puzzle no longer fitting the screen, and a reload kept it
+     that way. Sixteen pixels is the threshold, so every control that can take focus is held at
+     or above it wherever the pointer is coarse - which catches tablets as well as phones,
+     regardless of how wide they are.
+
+     The other way to stop the zoom is maximum-scale=1 on the viewport, which also takes away
+     pinch-zoom from anyone who needs it. Not worth it. */
+  @media (hover: none) and (pointer: coarse){
+    .cell input,
+    input[type="number"],
+    select#wordListSelect{ font-size:16px; }
+  }
+
   @media (max-width:640px){
     #grid{ --cell-size:30px; }
-    .cell input{font-size:14px;}
     /* Narrow enough that the toolbar wraps, and a wrapped item pushed by margin-left:auto ends
        up stranded on the right of its own row. Let it sit in line instead; the order still puts
        it last. */
