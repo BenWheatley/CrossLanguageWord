@@ -43,17 +43,17 @@ presentation problem rather than a data one.
 
 Smallest useful change on this list. Probably do it first.
 
-## 4. Phone ergonomics — partly done
+## 4. Phone ergonomics — mostly done
 
-The grid and the clues now have a scrolling pane each, so both are on screen and
-neither moves the other. What is left:
+The grid and the clues have a scrolling pane each, the controls have folded into
+the options menu, and the grid is always narrow enough for the screen. What is
+left:
 
 - **Cells are 30px**, against 44pt/48dp touch minimums, so tapping an exact
   square is fiddly. Either larger cells with the grid pane scrolled, or a zoomed
   view of the current word.
-- **With the keyboard up** the panes have roughly 330px between them. Worth
-  measuring what that leaves of each, and whether a single current-clue bar
-  would serve better than a clue pane when the keyboard is showing.
+- **A single current-clue line** might serve better than a clue pane while the
+  keyboard is up, when there is only about a third of the screen to share.
 
 ## 5. Nothing happens while you are solving
 
@@ -86,6 +86,13 @@ curated grid — and it is part of why 2 matters.
 
 ## 8. Smaller things
 
+- **A seed does not name the same puzzle at every window width.** The column
+  budget is computed from the screen and fed to the generator, so the same link
+  opened on a phone and on a desktop builds two different grids from the same
+  seed. The words and clues are drawn before the layout, so those match; the
+  grid does not. Either the width wants to be in the link alongside the seed, or
+  generation wants a fixed column budget with the display adapting instead.
+
 - **Tab moves square by square, not clue to clue.** Every major crossword uses
   Tab for the next clue. The highlight now follows focus, so it is coherent, but
   it is still not the convention.
@@ -110,4 +117,8 @@ curated grid — and it is part of why 2 matters.
 - Tab leaving the highlight behind on the previous word.
 - Most of 4 — the double scroll jump when changing square, and the clues being
   a screenful below the puzzle on a phone. Each now has its own scrolling pane,
-  and the page does not move at all when you change square.
+  and the page does not move at all when you change square. The clue pane has a
+  floor deep enough to read, the current clue scrolls clear of the sticky
+  heading, the controls fold into the options menu on a narrow screen (168px of
+  chrome down to 94px), and a puzzle built for a wider screen is rebuilt to fit
+  rather than scrolling sideways.
