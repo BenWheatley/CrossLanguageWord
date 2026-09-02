@@ -665,13 +665,49 @@
     if(li){
       li.classList.add('active');
       li.setAttribute('aria-current', 'true');
-      if(typeof li.scrollIntoView === 'function') li.scrollIntoView({block:'nearest'});
+      revealClue(li);
     }
   }
 
   // Set while focusCell is moving the focus itself, so the focus listener on each square can tell
   // the app's own moves from a Tab or a screen reader's and not undo the direction it just chose.
   let focusingProgrammatically = false;
+
+  /**
+   * Brings a clue into view without moving the page.
+   *
+   * scrollIntoView cannot be used here. It scrolls every scrollable ancestor including the
+   * document, so on a phone - where the clues sit below the puzzle - selecting a square threw the
+   * page down to the clue list, and the focus() that followed a moment later dragged it back to
+   * the square. One tap, two jumps, and the grid leaving the screen in between.
+   *
+   * Where the clues are in a scrolling pane - which is how the narrow layout arranges them, and
+   * how a long list ends up on any width - scroll that pane and leave the page alone.
+   *
+   * Where they are not, the lists sit beside the grid and both move together, so scrolling the
+   * page to the clue is the right thing and is what the layout has always done. It is only when
+   * the clue is a screenful away from the square that the two scrolls become a visible fight,
+   * and that is exactly the case the pane now covers.
+   */
+  function revealClue(li){
+    let panel = li.parentElement;
+    while(panel && panel !== document.body){
+      const style = getComputedStyle(panel);
+      const scrolls = /(auto|scroll)/.test(style.overflowY) && panel.scrollHeight > panel.clientHeight;
+      if(scrolls) break;
+      panel = panel.parentElement;
+    }
+
+    if(!panel || panel === document.body){
+      if(typeof li.scrollIntoView === 'function') li.scrollIntoView({block:'nearest'});
+      return;
+    }
+
+    const item = li.getBoundingClientRect();
+    const view = panel.getBoundingClientRect();
+    if(item.top < view.top) panel.scrollTop -= (view.top - item.top);
+    else if(item.bottom > view.bottom) panel.scrollTop += (item.bottom - view.bottom);
+  }
 
   function focusCell(r,c,dir){
     const cell = cellAt(r,c);
@@ -719,10 +755,15 @@
 
   function showDirPopup(r,c){
     const cell = cellAt(r,c);
+    const host = document.getElementById('gridHost');
     const wrapRect = cell.wrap.getBoundingClientRect();
-    const hostRect = document.getElementById('gridHost').getBoundingClientRect();
-    dirPopup.style.left = (wrapRect.left - hostRect.left) + 'px';
-    dirPopup.style.top = (wrapRect.bottom - hostRect.top + 4) + 'px';
+    const hostRect = host.getBoundingClientRect();
+    // The popup is absolutely positioned inside the host, so it is placed against the host's
+    // padding box rather than what is currently visible of it. On a phone the host is a scrolling
+    // pane, and without adding its scroll offset the popup would appear a screenful away from the
+    // square it belongs to.
+    dirPopup.style.left = (wrapRect.left - hostRect.left + host.scrollLeft) + 'px';
+    dirPopup.style.top = (wrapRect.bottom - hostRect.top + host.scrollTop + 4) + 'px';
     dirPopup.style.display = 'block';
     dirPopup.dataset.r = r; dirPopup.dataset.c = c;
   }

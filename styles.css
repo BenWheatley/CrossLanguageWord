@@ -400,6 +400,21 @@
     min-width:280px;
     display:flex;
     gap:22px;
+    /* The clue lists scroll within themselves rather than stretching the page. Selecting a word
+       has to bring its clue into view, and the only other way to do that is to scroll the page -
+       which moves the puzzle out from under you, and fights the scroll that focusing the square
+       does a moment later. A pane of their own settles it: the clue comes into view, the grid
+       stays exactly where it was. Short lists fit inside and look no different. */
+    max-height:calc(100vh - 120px);
+    overflow-y:auto;
+    -webkit-overflow-scrolling:touch;
+  }
+  /* Which list you are reading stays legible while its clues scroll past. */
+  .clue-col h2{
+    position:sticky;
+    top:0;
+    z-index:1;
+    background:var(--paper);
   }
   .clue-col{flex:1;min-width:130px;}
   .clue-col h2{
@@ -483,7 +498,12 @@
     .cell.in-word input, .cell.active input{ background:transparent; box-shadow:none; }
     .cell.check-correct input{ background:transparent !important; color:transparent; }
     .cell.check-incorrect input{ box-shadow:none !important; }
-    .clues{ display:flex; gap:30px; }
+    /* Whatever the screen rules did with panels and scrolling, paper has neither. */
+    .clues{ display:flex; gap:30px; max-height:none; overflow:visible; border:0; padding:0; background:none; }
+    .clue-col h2{ position:static; background:none; }
+    #gridHost{ max-height:none; overflow:visible; }
+    footer.hint{ display:none; }
+    .clue-col h2{ position:static; }
     .clue-list{ font-size:11px; }
     .clue-list li.active{ background:transparent; }
     #printAnswerKey{ display:block !important; }
@@ -547,6 +567,44 @@
        up stranded on the right of its own row. Let it sit in line instead; the order still puts
        it last. */
     .toolbar #generateBtn{ margin-left:0; }
+
+    /* On a phone the clues sat in two narrow columns below the grid, far enough down that
+       reading one meant scrolling the puzzle off the screen and back again. A fifteen-word
+       puzzle is about 685px of grid on a 664px screen, so the two can only be on screen together
+       if each gets a pane of its own and scrolls inside it. Reading a clue no longer moves the
+       puzzle, and answering no longer hides the clue.
+
+       Reclaim what the page can spare to pay for it: tighter margins, a smaller title, and the
+       keyboard hint dropped, since it describes a mouse. */
+    .wrap{ padding:12px 12px 16px; }
+    header.app-head{ margin-bottom:10px; padding-bottom:8px; }
+    header.app-head h1{ font-size:26px; }
+    footer.hint{ display:none; }
+
+    .board-area{
+      display:flex;
+      flex-direction:column;
+      gap:10px;
+    }
+    #gridHost{
+      width:100%;
+      max-height:48vh;
+      overflow:auto;
+      -webkit-overflow-scrolling:touch;
+    }
+    .clues{
+      display:block;
+      width:100%;
+      max-height:30vh;
+      overflow-y:auto;
+      -webkit-overflow-scrolling:touch;
+      border:1px solid var(--rule);
+      border-radius:var(--radius);
+      background:var(--panel);
+      padding:10px 12px;
+    }
+    .clue-col + .clue-col{ margin-top:14px; }
+    .clue-col h2{ top:-10px; background:var(--panel); margin:0 0 8px; padding:6px 0 4px; }
   }
 
   /* Readers who have asked their system for less motion get the same information without the
