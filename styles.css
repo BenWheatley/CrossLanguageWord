@@ -477,6 +477,11 @@
     .no-print{display:none !important;}
     .wrap{max-width:none;padding:0;margin:0;}
     header.app-head{border-bottom:2px solid #000;margin-bottom:14px;}
+    /* The screen title is clamp(28px, 4vw, 40px), so its printed size followed whatever width
+       the page happened to be laid out at - the device on a phone, the window on a desktop.
+       Pin it, so a sheet looks the same wherever it was printed from. 32px is what 4vw comes to
+       at A4 width, which is what desktop printing has been producing all along. */
+    header.app-head h1{ font-size:32px; }
     #pageTagline{display:none;}
     .board-area{display:block;}
     #gridHost{margin:0 auto 20px; width:max-content;}
@@ -569,13 +574,19 @@
 
      The other way to stop the zoom is maximum-scale=1 on the viewport, which also takes away
      pinch-zoom from anyone who needs it. Not worth it. */
-  @media (hover: none) and (pointer: coarse){
+  @media screen and (hover: none) and (pointer: coarse){
     .cell input,
     input[type="number"],
     select#wordListSelect{ font-size:16px; }
   }
 
-  @media (max-width:640px){
+  /* Screen only, deliberately. Everything in here is about fitting a hand-held screen - panes
+     with their own scrolling, a single column of clues, a smaller title, controls folded into a
+     menu - and none of it should reach paper. Left unscoped, a phone printed a different-looking
+     sheet from a desktop: one column of clues instead of two, the panes' borders and padding, a
+     board still carrying the height of the screen it was sized for. A printed page should not
+     record what it was printed from. */
+  @media screen and (max-width:640px){
     #grid{ --cell-size:30px; }
     /* Narrow enough that the toolbar wraps, and a wrapped item pushed by margin-left:auto ends
        up stranded on the right of its own row. Let it sit in line instead; the order still puts
@@ -623,16 +634,27 @@
       max-width:320px;
     }
 
+    /* --board-height is what is actually visible right now, keyboard and all - see
+       measureVisibleArea. Giving the board that height exactly lets the two panes divide it
+       between them: the clues take their share or their floor, whichever is larger, and the grid
+       takes what is left. Sizing each pane independently could not do that, and overran the
+       bottom of the screen by whatever the floor added. Without visualViewport the height is
+       auto and the fallback ceilings below apply instead. */
     .board-area{
+      height:var(--board-height, auto);
       display:flex;
       flex-direction:column;
+      /* The wide layout wraps its two panes onto a second row when they will not fit side by
+         side. Here the direction is column and the height is definite, so the same rule wraps a
+         pane that will not fit into a second *column* - off the side of the screen. */
+      flex-wrap:nowrap;
       gap:10px;
     }
     #gridHost{
       width:100%;
-      max-height:44vh;
-      max-height:44dvh;   /* shrinks when the keyboard appears; vh does not */
-      min-height:170px;
+      flex:1 1 auto;
+      min-height:0;              /* may shrink as far as it must; the pane scrolls */
+      max-height:calc(var(--board-height, 52vh) * 0.62);
       overflow:auto;
       -webkit-overflow-scrolling:touch;
     }
@@ -642,9 +664,12 @@
       /* Deep enough to read a clue and see the next, with room to spare. The floor matters more
          than the ceiling: with the on-screen keyboard up there is only about a third of the
          screen left, and a pane sized purely as a fraction of it would be too shallow to read. */
+      flex:0 0 auto;
+      height:40%;
       max-height:38vh;
-      max-height:38dvh;
-      min-height:150px;
+      /* A floor, so the clues stay readable when the keyboard has taken most of the screen.
+         Room for the heading and a couple of clues is the least that is any use. */
+      min-height:112px;
       overflow-y:auto;
       -webkit-overflow-scrolling:touch;
       border:1px solid var(--rule);
@@ -653,7 +678,11 @@
       padding:10px 12px;
     }
     .clue-col + .clue-col{ margin-top:14px; }
-    .clue-col h2{ top:-10px; background:var(--panel); margin:0 0 8px; padding:6px 0 4px; }
+    /* The gap under a sticky heading has to be padding, not margin: a margin is transparent, so
+       clues scrolling up through it showed above the heading's rule and made it look as though
+       the heading had been struck through. Padding carries the background with it. */
+    .clue-col h2{ top:-10px; background:var(--panel); margin:0; padding:6px 0 7px; }
+    .clue-list{ padding-top:6px; }
   }
 
   /* Readers who have asked their system for less motion get the same information without the

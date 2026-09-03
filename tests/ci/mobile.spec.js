@@ -273,3 +273,138 @@ test('the larger control size does not break the grid or the menu', async ({ pag
   expect(menu.selectFits).toBe(true);
 });
 
+/** Covers the page the way the iOS keyboard does: the visual viewport shrinks, the layout one does not. */
+async function raiseKeyboard(page, visibleHeight = 336){
+  await page.evaluate((height) => {
+    const real = window.visualViewport;
+    const fake = {
+      height, offsetTop: 0, offsetLeft: 0, scale: 1,
+      addEventListener: real.addEventListener.bind(real),
+      removeEventListener: real.removeEventListener.bind(real)
+    };
+    Object.defineProperty(window, 'visualViewport', { value: fake, configurable: true });
+    real.dispatchEvent(new Event('resize'));
+  }, visibleHeight);
+  await page.waitForTimeout(150);
+}
+
+test('the clues stay visible and readable once the keyboard is up', async ({ page }) => {
+  await openPuzzle(page, '?list=german&words=16&seed=kbd1');
+  const VISIBLE = 336;
+  await raiseKeyboard(page, VISIBLE);
+
+  const seen = await page.evaluate((visible) => {
+    const clues = document.querySelector('.clues').getBoundingClientRect();
+    const grid = document.getElementById('gridHost').getBoundingClientRect();
+    return {
+      cluesWithin: clues.top >= 0 && clues.bottom <= visible + 1,
+      gridWithin: grid.top >= 0 && grid.bottom <= visible + 1,
+      cluePaneHeight: Math.round(clues.height),
+      panesStacked: clues.top >= grid.bottom - 1,
+      sameColumn: Math.abs(clues.left - grid.left) < 2
+    };
+  }, VISIBLE);
+
+  // vh and dvh both keep reporting the whole screen when the keyboard is up - it covers the page
+  // rather than shortening it - so a pane sized from them ends up underneath the keyboard.
+  expect(seen.cluesWithin, `clue pane runs past the ${VISIBLE}px left on screen`).toBe(true);
+  expect(seen.gridWithin).toBe(true);
+  expect(seen.cluePaneHeight, 'too shallow to read a clue').toBeGreaterThanOrEqual(110);
+  // A column flex container with a definite height wraps an item that will not fit into a second
+  // column, off the side of the screen, unless told not to.
+  expect(seen.panesStacked, 'the panes should stack, not sit side by side').toBe(true);
+  expect(seen.sameColumn).toBe(true);
+});
+
+test('the panes give the space back when the keyboard goes away', async ({ page }) => {
+  await openPuzzle(page, '?list=german&words=16&seed=kbd1');
+  const before = await page.evaluate(() => Math.round(document.querySelector('.clues').getBoundingClientRect().height));
+  await raiseKeyboard(page, 336);
+  const during = await page.evaluate(() => Math.round(document.querySelector('.clues').getBoundingClientRect().height));
+  expect(during).toBeLessThan(before);
+});
+
+test('the options menu is not printed', async ({ page }) => {
+  await openPuzzle(page);
+  await page.click('#hamburgerBtn');           // the Print button lives inside it on a phone
+  await page.emulateMedia({ media: 'print' });
+  const printed = await page.evaluate(() => {
+    const drawn = (sel) => { const e = document.querySelector(sel); if(!e) return null;
+      const r = e.getBoundingClientRect(); return r.width > 0 && r.height > 0; };
+    return {
+      hamburger: drawn('.hamburger-wrap'), menu: drawn('#optionsMenu'), actions: drawn('#menuActions'),
+      grid: drawn('#grid'), clues: drawn('.clues'), answerKey: drawn('#printAnswerKey')
+    };
+  });
+  // The wrap moves into the title row on a phone, so it can no longer rely on the toolbar's
+  // no-print to hide it.
+  expect(printed.hamburger, 'the options button should not print').toBe(false);
+  expect(printed.menu, 'nor its menu').toBe(false);
+  expect(printed.actions).toBe(false);
+  expect(printed.grid).toBe(true);
+  expect(printed.clues).toBe(true);
+  expect(printed.answerKey).toBe(true);
+});
+
+test('a sheet printed from a phone is laid out the same as one printed from a desktop',
+  async ({ browser }) => {
+    // The narrow-screen rules describe how to fit a hand-held screen. None of it belongs on
+    // paper: a phone was printing one column of clues instead of two, with the panes' borders
+    // and padding, and a board still carrying the height of the screen it was sized for.
+    const measure = async (contextOptions) => {
+      const context = await browser.newContext(contextOptions);
+      const page = await context.newPage();
+      await page.goto('/index.html?list=german&words=12&seed=pcmp', { waitUntil: 'networkidle' });
+      await page.waitForFunction(() => document.querySelectorAll('#grid .cell').length > 0);
+      await page.emulateMedia({ media: 'print' });
+      const style = await page.evaluate(() => {
+        const of = (sel, prop) => { const e = document.querySelector(sel); return e ? getComputedStyle(e)[prop] : null; };
+        const across = document.getElementById('acrossList').getBoundingClientRect();
+        const down = document.getElementById('downList').getBoundingClientRect();
+        return {
+          titleFontSize: of('header.app-head h1', 'fontSize'),
+          wrapPadding: of('.wrap', 'padding'),
+          boardDisplay: of('.board-area', 'display'),
+          cluesDisplay: of('.clues', 'display'),
+          cluesOverflow: of('.clues', 'overflowY'),
+          cluesBorderTop: of('.clues', 'borderTopWidth'),
+          cluesPadding: of('.clues', 'padding'),
+          clueColumnsSideBySide: Math.abs(down.top - across.top) < 4 && down.left > across.right - 4,
+          headingPosition: of('.clue-col h2', 'position'),
+          headingPadding: of('.clue-col h2', 'padding'),
+          clueListPaddingTop: of('.clue-list', 'paddingTop'),
+          cellFontSize: of('#grid .cell input', 'fontSize'),
+          gridHostOverflow: of('#gridHost', 'overflow'),
+          secondColumnMargin: of('.clue-col + .clue-col', 'marginTop'),
+          taglineShown: of('#pageTagline', 'display')
+        };
+      });
+      await context.close();
+      return style;
+    };
+
+    const desktop = await measure({ viewport: { width: 1280, height: 900 } });
+    const phone = await measure({ ...devices['iPhone 13'] });
+
+    // Everything here is styling; the puzzle itself legitimately differs, since each device
+    // builds one to fit its own screen.
+    expect(phone).toEqual(desktop);
+    expect(desktop.clueColumnsSideBySide, 'two columns on paper').toBe(true);
+    expect(desktop.cluesBorderTop, 'no on-screen panel border on paper').toBe('0px');
+  });
+
+test('the printed title does not depend on the width it was laid out at', async ({ browser }) => {
+  // clamp(28px, 4vw, 40px) made the printed title follow the window as well as the device.
+  const sizes = [];
+  for(const width of [390, 700, 1280, 1900]){
+    const context = await browser.newContext({ viewport: { width, height: 800 } });
+    const page = await context.newPage();
+    await page.goto('/index.html?list=german&words=12&seed=pcmp', { waitUntil: 'networkidle' });
+    await page.waitForFunction(() => document.querySelectorAll('#grid .cell').length > 0);
+    await page.emulateMedia({ media: 'print' });
+    sizes.push(await page.evaluate(() => getComputedStyle(document.querySelector('header.app-head h1')).fontSize));
+    await context.close();
+  }
+  expect(new Set(sizes).size, `printed title sizes: ${sizes.join(', ')}`).toBe(1);
+});
+

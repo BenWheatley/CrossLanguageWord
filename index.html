@@ -18,7 +18,9 @@
   </header>
 
   <div class="toolbar no-print">
-    <div class="hamburger-wrap">
+    <!-- no-print on the wrap itself, not just the toolbar around it: on a narrow screen this
+         moves into the title row, and would otherwise print. -->
+    <div class="hamburger-wrap no-print">
       <button id="hamburgerBtn" class="secondary hamburger-btn" aria-label="Options" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -1549,7 +1551,14 @@
   // Event as its seed argument.
   generateBtn.addEventListener('click', () => generate());
   checkBtn.addEventListener('click', () => { checkAnswers(); restoreFocusToCurrentCell(); });
-  printBtn.addEventListener('click', () => { window.print(); restoreFocusToCurrentCell(); });
+  printBtn.addEventListener('click', () => {
+    // On a narrow screen this button lives inside the options menu, so the menu is still open
+    // when the print sheet appears. It is hidden from the printed page either way, but leaving
+    // it open over the preview is untidy.
+    closeOptionsMenu();
+    window.print();
+    restoreFocusToCurrentCell();
+  });
   printAnswersCk.addEventListener('change', () => {
     document.body.classList.toggle('print-answers', printAnswersCk.checked);
   });
@@ -1597,6 +1606,37 @@
   if(typeof compactLayout.addEventListener === 'function'){
     compactLayout.addEventListener('change', applyCompactLayout);
   }
+
+  // The on-screen keyboard does not change the layout viewport on iOS. It covers the page rather
+  // than shortening it, so vh - and dvh, which only answers to the browser's own chrome - carry
+  // on reporting the full screen, and a pane sized as a fraction of that sits happily underneath
+  // the keyboard. visualViewport is the only thing that reports what is actually left, so the
+  // panes are sized from it and shrink as the keyboard comes up.
+  //
+  // Published as a custom property rather than set on the elements, so the stylesheet keeps
+  // control of how the space is divided, and so a browser without visualViewport falls back to
+  // the viewport-relative sizes written beside it.
+  function measureVisibleArea(){
+    if(!compactLayout.matches) return;
+    const board = document.querySelector('.board-area');
+    if(!board) return;
+    const viewport = window.visualViewport;
+    const visibleBottom = viewport
+      ? viewport.offsetTop + viewport.height   // both in layout-viewport coordinates
+      : window.innerHeight;
+    const available = visibleBottom - board.getBoundingClientRect().top - 10;
+    document.documentElement.style.setProperty('--board-height', Math.max(200, Math.round(available)) + 'px');
+  }
+
+  if(window.visualViewport){
+    window.visualViewport.addEventListener('resize', measureVisibleArea);
+    window.visualViewport.addEventListener('scroll', measureVisibleArea);
+  }
+  window.addEventListener('resize', measureVisibleArea);
+  if(typeof compactLayout.addEventListener === 'function'){
+    compactLayout.addEventListener('change', measureVisibleArea);
+  }
+  measureVisibleArea();
 
   // ---------- initial load: read ?list= and ?words= from the URL so the page is never blank ----------
 
