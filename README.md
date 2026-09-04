@@ -79,6 +79,20 @@ python3 -m http.server 8000
 
 Then direct your browser to `http://localhost:8000/`.
 
+If you are **changing** the program rather than solving its puzzles, use the server
+supplied instead:
+
+```bash
+python3 server-debug-nocache.py
+```
+
+It serves the same folder on port 8050 — pass a different one as an argument
+— and forbids caching, so every reload fetches. The ordinary server sends no
+instruction on the matter, leaving each browser to decide for itself how long a
+file remains good; Safari in particular is inclined to keep one, and an edit that
+appears not to have worked is a poor thing to have to diagnose. On a telephone or
+a simulator, where clearing the cache is awkward, it is worse still.
+
 **Please note:** opening `index.html` directly from disk (a `file://`
 address) will *not* work. Browsers refuse to let a local page read the word
 list files alongside it, and you will be greeted by an error message rather
@@ -281,6 +295,13 @@ Planned work and known gaps are listed in `TODO.md`.
 
 > **"Could not load german.json"**
 > The page is being opened from disk rather than served. See section 3.
+
+> **I have changed the program but the browser shows the old version.**
+> The browser is holding a copy. Serve it with `server-debug-nocache.py`, which
+> forbids that (section 3). In the iOS Simulator you may also clear it from
+> Settings › Apps › Safari › Clear History and Website Data, or attach the Web
+> Inspector from Safari on the Mac (Develop › your simulator) and switch on
+> Disable Caches.
 
 > **The puzzle has fewer words than I asked for.**
 > Not every word can be made to cross another. The program says so in the
