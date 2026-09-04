@@ -601,7 +601,6 @@
 
        Reclaim what the page can spare to pay for it: tighter margins, a smaller title, and the
        keyboard hint dropped, since it describes a mouse. */
-    .wrap{ padding:10px 12px 14px; }
     /* The options button sits in the title row, and the word count moves into its menu, so the
        whole strip of controls costs one line instead of three. */
     header.app-head{
@@ -660,6 +659,13 @@
       display:flex;
       flex-direction:column;
       gap:0;
+      /* Kept on a home screen there is no browser chrome to keep the page off the notch and the
+         home indicator, so the shell has to do it itself. Zero in a normal tab, where the
+         browser has already made room. */
+      padding-top:calc(10px + env(safe-area-inset-top));
+      padding-bottom:calc(14px + env(safe-area-inset-bottom));
+      padding-left:calc(12px + env(safe-area-inset-left));
+      padding-right:calc(12px + env(safe-area-inset-right));
     }
     header.app-head,
     #statusRow,

@@ -26,10 +26,11 @@ requirements, operation, and licensing.
    7.  Using Your Own Word Lists
    8.  Printing
    9.  Saving Your Progress
-  10.  Running the Test Suite
-  11.  Known Limitations
-  12.  Troubleshooting
-  13.  Licence and Registration
+  10.  Keeping It on a Telephone
+  11.  Running the Test Suite
+  12.  Known Limitations
+  13.  Troubleshooting
+  14.  Licence and Registration
  --------------------------------------------------------------------------
 ```
 
@@ -63,6 +64,9 @@ A live copy runs at:
 
 * A web browser of recent vintage. Firefox, Chrome, Edge and Safari have all
   been tested.
+* To keep it on a telephone and use it offline (section 10), the page must be
+  served over **https** — or from localhost, which counts as secure for this
+  purpose. The published copy qualifies.
 * A web server. **This is not optional** — see section 3.
 * No plug-ins are required. No installation program is required. No
   registry entries are created. Nothing is transmitted anywhere; the program
@@ -111,7 +115,7 @@ the grid. Filling the last square of a word advances you to the next one.
 
 The button bearing three horizontal lines opens the options panel, where you
 may choose a different word list or a different number of words (from 2 to
-120 — see section 11). Changing either generates a fresh puzzle at once.
+120 — see section 12). Changing either generates a fresh puzzle at once.
 
 **Check answers** marks the squares you have filled: correct squares turn
 green, incorrect squares gain a red border. Squares you have left empty are
@@ -241,7 +245,30 @@ tomorrow, and you will be returned to the same grid with your answers intact.
 Saving is silent and requires nothing of you. If your browser forbids it —
 private browsing modes usually do — the program carries on without it.
 
-## 10. RUNNING THE TEST SUITE
+## 10. KEEPING IT ON A TELEPHONE
+
+The program may be kept on a telephone's home screen and used with no network at
+all — on a train, on an aeroplane, or anywhere else the signal has deserted you.
+
+To install it, open it in Safari, press the Share button, and choose **Add to Home
+Screen**. In Chrome on Android the same thing lives in the menu, usually as
+**Install app**. It then opens in a window of its own, without the browser's
+address bar, and appears among your other applications.
+
+Everything needed to build a puzzle is stored on first use: the program, the
+stylesheet, and all four word lists. After that no network is required to open
+it, to solve, to check answers, to print, or to press **New crossword** — nor even
+to change word list, since all four are already there.
+
+Two points worth knowing:
+
+* The program itself is fetched afresh whenever there **is** a network, so an
+  installed copy takes up improvements as soon as it is opened online. Only the
+  word lists are served from storage first, being large and seldom changed.
+* A word list of your own is held separately (section 7) and is likewise available
+  offline, but it is not part of what is stored on first use.
+
+## 11. RUNNING THE TEST SUITE
 
 Serve the folder as in section 3 and visit `tests/` in your browser. The
 tests run in the page and report as they go. They require no Node, no npm and
@@ -270,7 +297,7 @@ npm ci && npx playwright install --with-deps && npx playwright test
 None of which the program itself requires. It remains script tags and a
 static server.
 
-## 11. KNOWN LIMITATIONS
+## 12. KNOWN LIMITATIONS
 
 * **Puzzles are limited to 120 words.** Generation time climbs steeply with
   the word count — far faster than the count itself — and 120 already
@@ -291,7 +318,7 @@ static server.
 
 Planned work and known gaps are listed in `TODO.md`.
 
-## 12. TROUBLESHOOTING
+## 13. TROUBLESHOOTING
 
 > **"Could not load german.json"**
 > The page is being opened from disk rather than served. See section 3.
@@ -316,7 +343,7 @@ Planned work and known gaps are listed in `TODO.md`.
 > Very long words dominate a small grid. Either raise the word count or
 > shorten the entries.
 
-## 13. LICENCE AND REGISTRATION
+## 14. LICENCE AND REGISTRATION
 
 Copyright © 2026 Ben Wheatley. **All rights reserved.**
 

@@ -2,8 +2,19 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- viewport-fit=cover so the fixed layout can reach the edges of a notched screen; the
+     stylesheet then keeps content clear of the notch and the home indicator itself. -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Crossword Trainer</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#F3EFE6">
+<meta name="description" content="Cross-language vocabulary crosswords.">
+<!-- Kept on a home screen, iOS uses these rather than the manifest. -->
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Crossword">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
@@ -1736,6 +1747,25 @@
   })();
 
 })();
+</script>
+
+<script>
+// Registering the worker is what makes the program keep working with no network, and what lets
+// it be kept on a home screen as an application. It is deliberately outside the main script and
+// after load, so a failure here - an old browser, a page opened from disk, a refused
+// registration - cannot stop the crossword itself from working.
+// Only from the top-level document. A worker belongs to the page someone actually opened, not
+// to a copy of it framed inside something else - and WebKit refuses a registration from a frame
+// loudly enough to fail the test harness, which runs the program in one.
+if('serviceWorker' in navigator && location.protocol.startsWith('http') && window.top === window.self){
+  window.addEventListener('load', () => {
+    // updateViaCache:'none' so the browser always asks the network whether sw.js itself has
+    // changed, rather than serving a cached copy of the thing that manages the cache.
+    navigator.serviceWorker.register('sw.js', { updateViaCache: 'none' }).catch(() => {
+      /* offline caching simply will not be available; nothing else is affected */
+    });
+  });
+}
 </script>
 </body>
 </html>

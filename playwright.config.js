@@ -22,10 +22,42 @@ module.exports = defineConfig({
     baseURL: `http://127.0.0.1:${PORT}`,
     trace: 'retain-on-failure'
   },
+  // The device-shaped specs are kept out of the three engine projects on purpose. A device
+  // descriptor carries defaultBrowserType, which overrides whichever project is running it: left
+  // in the matrix, tests/ci/mobile.spec.js ran under WebKit three times over and reported itself
+  // as three engines. It gets one project of its own instead - WebKit, which is what an iPhone
+  // actually runs - and the engine matrix covers the parts that are not device-specific.
   projects: [
-    { name: 'chromium', use: { ...devices['Desktop Chrome'] } },
-    { name: 'firefox', use: { ...devices['Desktop Firefox'] } },
-    { name: 'webkit', use: { ...devices['Desktop Safari'] } }
+    {
+      name: 'chromium',
+      use: { ...devices['Desktop Chrome'] },
+      testIgnore: ['**/mobile.spec.js', '**/pwa.spec.js']
+    },
+    {
+      name: 'firefox',
+      use: { ...devices['Desktop Firefox'] },
+      testIgnore: ['**/mobile.spec.js', '**/pwa.spec.js']
+    },
+    {
+      name: 'webkit',
+      use: { ...devices['Desktop Safari'] },
+      testIgnore: ['**/mobile.spec.js', '**/pwa.spec.js']
+    },
+    {
+      // The phone layout, on the engine a phone uses.
+      name: 'mobile-safari',
+      use: { ...devices['iPhone 13'] },
+      testMatch: '**/mobile.spec.js'
+    },
+    {
+      // Service workers, on a phone-sized Chromium. Playwright's WebKit cannot be taken offline
+      // with a worker registered - page.reload fails with an internal error - so the offline
+      // behaviour is exercised here instead. It is browser machinery rather than anything this
+      // program decides, but it does mean iOS itself is checked by hand, not here.
+      name: 'pwa',
+      use: { ...devices['Pixel 5'] },
+      testMatch: '**/pwa.spec.js'
+    }
   ],
   webServer: {
     // Python rather than a Node server: it is on every runner already, and adding a dependency
