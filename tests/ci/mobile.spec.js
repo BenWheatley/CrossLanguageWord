@@ -408,3 +408,104 @@ test('the printed title does not depend on the width it was laid out at', async 
   expect(new Set(sizes).size, `printed title sizes: ${sizes.join(', ')}`).toBe(1);
 });
 
+test('the page itself cannot scroll, and the three regions never move', async ({ page }) => {
+  await openPuzzle(page, '?list=german&words=16&seed=shell1');
+  const result = await page.evaluate(async () => {
+    const header = document.querySelector('header.app-head');
+    const host = document.getElementById('gridHost');
+    const clues = document.querySelector('.clues');
+    const tops = { header: new Set(), grid: new Set(), clues: new Set() };
+    const note = () => {
+      tops.header.add(Math.round(header.getBoundingClientRect().top));
+      tops.grid.add(Math.round(host.getBoundingClientRect().top));
+      tops.clues.add(Math.round(clues.getBoundingClientRect().top));
+    };
+    note();
+    for(const y of [400, 1200, -600]){ window.scrollTo(0, y); await new Promise((r) => setTimeout(r, 60)); note(); }
+    document.body.scrollTop = 800;
+    await new Promise((r) => setTimeout(r, 60)); note();
+    host.scrollTop = host.scrollHeight;          // scroll a pane to its end, where chaining leaked
+    clues.scrollTop = clues.scrollHeight;
+    await new Promise((r) => setTimeout(r, 80)); note();
+    return {
+      documentScrollable: document.documentElement.scrollHeight > window.innerHeight,
+      windowScrollY: Math.round(window.scrollY),
+      headerFixed: tops.header.size === 1,
+      gridRegionFixed: tops.grid.size === 1,
+      clueRegionFixed: tops.clues.size === 1,
+      gridScrolledInternally: host.scrollTop > 0,
+      cluesScrolledInternally: clues.scrollTop > 0
+    };
+  });
+  // A flick anywhere used to carry the whole document, taking the puzzle off the top of the
+  // screen and leaving the clue list floating on its own.
+  expect(result.documentScrollable, 'the page must not scroll').toBe(false);
+  expect(result.windowScrollY).toBe(0);
+  expect(result.headerFixed, 'the title moved').toBe(true);
+  expect(result.gridRegionFixed, 'the puzzle region moved').toBe(true);
+  expect(result.clueRegionFixed, 'the clue region moved').toBe(true);
+  expect(result.gridScrolledInternally, 'the puzzle should scroll inside its own region').toBe(true);
+  expect(result.cluesScrolledInternally).toBe(true);
+});
+
+test('every clue can be reached, keyboard up or down', async ({ page }) => {
+  await openPuzzle(page, '?list=german&words=16&seed=shell1');
+  const sweep = () => page.evaluate(async () => {
+    const clues = document.querySelector('.clues');
+    let missed = 0, checked = 0, worst = null;
+    for(const li of [...document.querySelectorAll('.clue-list li')]){
+      li.dispatchEvent(new Event('click', { bubbles: true }));
+      await new Promise((r) => setTimeout(r, 60));
+      const active = document.querySelector('.clue-list li.active');
+      const a = active.getBoundingClientRect(), pane = clues.getBoundingClientRect();
+      const heading = active.closest('.clue-col').querySelector('h2').getBoundingClientRect();
+      checked++;
+      if(a.top < pane.top - 1 || a.bottom > pane.bottom + 1 || a.top < heading.bottom - 1){
+        missed++; if(!worst) worst = active.textContent.slice(0, 30);
+      }
+    }
+    return { checked, missed, worst };
+  });
+
+  const down = await sweep();
+  expect(down.missed, `${down.missed}/${down.checked} unreachable, e.g. ${down.worst}`).toBe(0);
+
+  await raiseKeyboard(page, 336);
+  const up = await sweep();
+  expect(up.missed, `${up.missed}/${up.checked} unreachable with the keyboard up, e.g. ${up.worst}`).toBe(0);
+});
+
+test('the current clue is brought back into view when the keyboard changes the space', async ({ page }) => {
+  await openPuzzle(page, '?list=german&words=16&seed=shell1');
+  await page.evaluate(async () => {
+    const items = [...document.querySelectorAll('.clue-list li')];
+    items[items.length - 2].dispatchEvent(new Event('click', { bubbles: true }));
+    await new Promise((r) => setTimeout(r, 80));
+  });
+  await raiseKeyboard(page, 336);
+  // The pane shrinks under the keyboard, so a clue that was in view can fall out of it.
+  const visible = await page.evaluate(() => {
+    const pane = document.querySelector('.clues').getBoundingClientRect();
+    const a = document.querySelector('.clue-list li.active').getBoundingClientRect();
+    return a.top >= pane.top - 1 && a.bottom <= pane.bottom + 1;
+  });
+  expect(visible).toBe(true);
+});
+
+test('the wide layout is left alone', async ({ browser }) => {
+  const context = await browser.newContext({ viewport: { width: 1280, height: 800 } });
+  const page = await context.newPage();
+  await page.goto('/index.html?list=german&words=20&seed=desk2', { waitUntil: 'networkidle' });
+  await page.waitForFunction(() => document.querySelectorAll('#grid .cell').length > 0);
+  const desktop = await page.evaluate(() => ({
+    wrapPosition: getComputedStyle(document.querySelector('.wrap')).position,
+    bodyOverflow: getComputedStyle(document.body).overflow,
+    appHeightSet: !!getComputedStyle(document.documentElement).getPropertyValue('--app-height').trim()
+  }));
+  // The fixed shell is for hand-held screens; a desktop keeps an ordinary scrolling page.
+  expect(desktop.wrapPosition).toBe('static');
+  expect(desktop.bodyOverflow).toBe('visible');
+  expect(desktop.appHeightSet).toBe(false);
+  await context.close();
+});
+

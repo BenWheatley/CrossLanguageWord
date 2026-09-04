@@ -70,14 +70,14 @@
   </div>
 
   <div class="board-area">
-    <div id="gridHost">
+    <div id="gridHost" role="region" aria-label="Puzzle" tabindex="-1">
       <div id="grid" role="group" aria-label="Crossword grid"></div>
       <div id="dirPopup" role="group" aria-label="Which word do you mean?">
         <button data-dir="across">→ Across</button>
         <button data-dir="down">↓ Down</button>
       </div>
     </div>
-    <div class="clues">
+    <div class="clues" role="region" aria-label="Clues">
       <div class="clue-col">
         <h2 id="acrossHeading">Across</h2>
         <ul class="clue-list" id="acrossList" aria-labelledby="acrossHeading"></ul>
@@ -1617,15 +1617,21 @@
   // control of how the space is divided, and so a browser without visualViewport falls back to
   // the viewport-relative sizes written beside it.
   function measureVisibleArea(){
-    if(!compactLayout.matches) return;
-    const board = document.querySelector('.board-area');
-    if(!board) return;
+    if(!compactLayout.matches){
+      document.documentElement.style.removeProperty('--app-height');
+      return;
+    }
     const viewport = window.visualViewport;
-    const visibleBottom = viewport
-      ? viewport.offsetTop + viewport.height   // both in layout-viewport coordinates
-      : window.innerHeight;
-    const available = visibleBottom - board.getBoundingClientRect().top - 10;
-    document.documentElement.style.setProperty('--board-height', Math.max(200, Math.round(available)) + 'px');
+    // The shell is fixed to the top of the visible area, so its height is simply what is visible.
+    // Not 100%: the iOS keyboard covers the viewport rather than shortening it, so a percentage
+    // would leave the bottom of the shell - the clues - underneath the keyboard.
+    const height = viewport ? viewport.height : window.innerHeight;
+    document.documentElement.style.setProperty('--app-height', Math.max(240, Math.round(height)) + 'px');
+
+    // The regions have just changed size, so whatever was in view may not be any more. The
+    // current clue is the one thing that must stay visible.
+    const active = document.querySelector('.clue-list li.active');
+    if(active) revealClue(active);
   }
 
   if(window.visualViewport){

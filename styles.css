@@ -634,19 +634,45 @@
       max-width:320px;
     }
 
-    /* --board-height is what is actually visible right now, keyboard and all - see
-       measureVisibleArea. Giving the board that height exactly lets the two panes divide it
-       between them: the clues take their share or their floor, whichever is larger, and the grid
-       takes what is left. Sizing each pane independently could not do that, and overran the
-       bottom of the screen by whatever the floor added. Without visualViewport the height is
-       auto and the fallback ceilings below apply instead. */
+    /* ---- the app is a fixed shell, not a page that scrolls ----
+       Sizing panes inside a document that could still scroll was the mistake. The panes behaved,
+       but the document behind them did not: a flick anywhere carried the whole page, took the
+       puzzle off the top of the screen, and left the clue list floating on its own. Rubber-banding
+       at the ends of a pane chained straight through to it.
+
+       So the page does not scroll at all here. The shell is fixed to the visible area, laid out
+       as a column of three regions - title, puzzle, clues - and only the two lower regions
+       scroll, each keeping its own position. This is what frames were for; a fixed flex column
+       with overflow on the children is how it is spelled now.
+
+       The height comes from --app-height rather than 100% because the iOS keyboard does not
+       shorten the viewport, it covers it: see measureVisibleArea. */
+    html, body{
+      height:100%;
+      overflow:hidden;
+      overscroll-behavior:none;  /* no rubber-band on the document behind the panes */
+    }
+    .wrap{
+      position:fixed;
+      inset:0;
+      height:var(--app-height, 100%);
+      max-width:none;
+      display:flex;
+      flex-direction:column;
+      gap:0;
+    }
+    header.app-head,
+    #statusRow,
+    #listPrompt{ flex:0 0 auto; }
+
     .board-area{
-      height:var(--board-height, auto);
+      flex:1 1 auto;
+      min-height:0;              /* without this a flex child refuses to shrink past its content */
       display:flex;
       flex-direction:column;
       /* The wide layout wraps its two panes onto a second row when they will not fit side by
-         side. Here the direction is column and the height is definite, so the same rule wraps a
-         pane that will not fit into a second *column* - off the side of the screen. */
+         side. Here the direction is column, so the same rule would wrap a pane that will not fit
+         into a second *column* - off the side of the screen. */
       flex-wrap:nowrap;
       gap:10px;
     }
@@ -654,8 +680,8 @@
       width:100%;
       flex:1 1 auto;
       min-height:0;              /* may shrink as far as it must; the pane scrolls */
-      max-height:calc(var(--board-height, 52vh) * 0.62);
       overflow:auto;
+      overscroll-behavior:contain;
       -webkit-overflow-scrolling:touch;
     }
     .clues{
@@ -665,12 +691,13 @@
          than the ceiling: with the on-screen keyboard up there is only about a third of the
          screen left, and a pane sized purely as a fraction of it would be too shallow to read. */
       flex:0 0 auto;
-      height:40%;
-      max-height:38vh;
+      height:38%;
       /* A floor, so the clues stay readable when the keyboard has taken most of the screen.
          Room for the heading and a couple of clues is the least that is any use. */
       min-height:112px;
+      max-height:60%;
       overflow-y:auto;
+      overscroll-behavior:contain;
       -webkit-overflow-scrolling:touch;
       border:1px solid var(--rule);
       border-radius:var(--radius);
