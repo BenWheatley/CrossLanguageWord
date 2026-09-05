@@ -26,8 +26,9 @@ test('moving between squares never scrolls the page', async ({ page }) => {
     }
     return [...positions];
   });
-  // Selecting a square used to scroll the page down to the clue list and then back up to the
-  // square: one tap, two jumps, with the grid leaving the screen in between.
+  // Bringing the clue into view and focusing the square are two separate scrolls, and on a phone
+  // the clue list is most of a screen away from the grid. If either moves the page, one tap
+  // produces two jumps with the grid leaving the screen in between.
   expect(result, `page scrolled to ${result.join(', ')}`).toEqual([0]);
 });
 
@@ -437,8 +438,8 @@ test('the page itself cannot scroll, and the three regions never move', async ({
       cluesScrolledInternally: clues.scrollTop > 0
     };
   });
-  // A flick anywhere used to carry the whole document, taking the puzzle off the top of the
-  // screen and leaving the clue list floating on its own.
+  // If the document can scroll at all, a flick anywhere carries it - taking the puzzle off the
+  // top of the screen and leaving the clue list floating on its own.
   expect(result.documentScrollable, 'the page must not scroll').toBe(false);
   expect(result.windowScrollY).toBe(0);
   expect(result.headerFixed, 'the title moved').toBe(true);
@@ -531,7 +532,7 @@ test('the shell sits exactly over what is visible, keyboard or no keyboard', asy
   expect(down.slackUnderClues, 'wasted space below the clues').toBeLessThanOrEqual(20);
 
   // A fixed element is placed against the layout viewport, and Safari scrolls that to reveal the
-  // focused field - which used to push the title off the top of the screen.
+  // focused field. Unless the shell follows, the title goes off the top of the screen.
   await page.evaluate(() => {
     const real = window.visualViewport;
     const fake = { height: 336, offsetTop: 44, offsetLeft: 0, scale: 1,

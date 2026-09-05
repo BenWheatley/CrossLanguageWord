@@ -498,16 +498,16 @@
     return { minR, minC, rows: maxR-minR+1, cols: maxC-minC+1 };
   }
 
-  // How many differently-shuffled layouts to try before settling on the smallest. This used to be
-  // a wall-clock budget, which adapted nicely to machine speed but meant a fast computer tried
-  // more layouts than a slow one and therefore produced a *different* puzzle from the same
-  // inputs. A seed that only reproduces a puzzle on hardware like yours is not worth having, so
-  // the count is now a pure function of the target instead.
+  // How many differently-shuffled layouts to try before settling on the smallest.
   //
-  // The ladder tracks measured per-attempt cost on german.json (0.4ms at 5 words, 5.5ms at 20,
-  // 58ms at 40, 113ms at 60, 729ms at 120 - it grows far faster than the word count does), aiming
-  // to keep every size in roughly the same few-hundred-millisecond band. Wall-clock time still
-  // varies with the machine; which puzzle you get no longer does.
+  // A pure function of the target, deliberately, rather than however many fit in a time budget:
+  // a faster machine would try more layouts and settle on a different one, so the same seed would
+  // open a different puzzle depending on the hardware, which is no use in a shared link.
+  //
+  // The ladder tracks measured per-attempt cost on german.json - 0.4ms at 5 words, 5.5ms at 20,
+  // 58ms at 40, 113ms at 60, 729ms at 120, growing far faster than the word count does - to keep
+  // every size in roughly the same few-hundred-millisecond band. Wall-clock time still varies
+  // with the machine; which puzzle you get does not.
   function attemptsFor(target){
     if(target <= 10) return 120;
     if(target <= 15) return 60;

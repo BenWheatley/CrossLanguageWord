@@ -4,9 +4,9 @@
 // context to activate in, so they live here rather than in the in-page suite.
 const { test, expect } = require('@playwright/test');
 
-// No test.use of a device here on purpose: a device descriptor carries defaultBrowserType and
-// would override the project running it, which is how these ended up in WebKit - the one engine
-// Playwright cannot take offline with a worker registered. The project decides the engine.
+// No test.use of a device here on purpose. A device descriptor carries defaultBrowserType, which
+// overrides whichever project is running the file - and Playwright's WebKit cannot be taken
+// offline with a worker registered. The project decides the engine.
 
 async function openAndInstall(page){
   await page.goto('/index.html?list=german&words=12&seed=pwa1', { waitUntil: 'networkidle' });

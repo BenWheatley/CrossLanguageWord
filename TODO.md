@@ -121,4 +121,7 @@ curated grid — and it is part of why 2 matters.
   floor deep enough to read, the current clue scrolls clear of the sticky
   heading, the controls fold into the options menu on a narrow screen (168px of
   chrome down to 94px), and a puzzle built for a wider screen is rebuilt to fit
-  rather than scrolling sideways.
+  rather than scrolling sideways. The layout is now a fixed shell of three
+  regions that cannot be scrolled off, pinned to the visible area so the
+  keyboard cannot hide the clues, with the current square centred in its pane.
+- Installable, and works with no network at all (README section 10).

@@ -227,12 +227,11 @@
   };
   const DEFAULT_LIST = 'german';
   const DEFAULT_WORDS = 15;
-  // Generation cost climbs far faster than the word count does - roughly cubically, because each
-  // of the target placements rescans a grid that is itself growing. Measured on german.json:
-  // 50 words 177ms, 100 words 354ms, 200 words 2.2s, 400 words 17.3s. It is all synchronous, so
-  // those are frozen-tab seconds with no spinner and no way to cancel, and the word-count field
-  // used to offer the whole bank (1000) as its maximum while regenerating on every change.
-  // 120 keeps the worst case near a second and is already far more crossword than fits a page.
+  // Generation cost climbs far faster than the word count does - roughly cubically, since each
+  // placement rescans a grid that is itself growing. Measured on german.json: 50 words 177ms,
+  // 100 words 354ms, 200 words 2.2s, 400 words 17.3s. It is synchronous, so those are frozen-tab
+  // seconds with no spinner and no way to cancel. 120 keeps the worst case near a second, and is
+  // already more crossword than fits on a page.
   const MAX_WORDS = 120;
   function clampWordCount(n){
     return Math.max(2, Math.min(n, MAX_WORDS, wordBank.length || MAX_WORDS));
@@ -1263,11 +1262,11 @@
     const newUrl = window.location.pathname + (query ? '?' + query : '');
     if(newUrl === window.location.pathname + window.location.search) return; // nothing to say
 
-    // WebKit caps replaceState at 100 calls per 10 seconds and throws a SecurityError past that.
-    // Holding down the word-count arrows is enough to reach it, and the throw used to propagate
-    // out of here and abandon the rest of whatever called it - generate() or restoreFromSaved()
-    // - leaving the puzzle built but the app's bookkeeping half finished. The address is the
-    // least important thing on the page; if it cannot be updated, let it be stale.
+    // WebKit caps replaceState at 100 calls per 10 seconds and throws a SecurityError past that,
+    // which holding down the word-count arrows is enough to reach. An exception escaping here
+    // would abandon the rest of generate() or restoreFromSaved(), leaving the puzzle built and
+    // the bookkeeping half done. The address is the least important thing on the page: if it
+    // cannot be updated, let it be stale.
     try{
       history.replaceState(null, '', newUrl);
     }catch(e){
@@ -1621,7 +1620,7 @@
   // Regenerate automatically whenever the requested word count changes (a new list already
   // triggers generation itself, from within loadWordBank). Debounced, because a number field
   // fires change on every press of its arrows: stepping from 15 to 25 would otherwise build ten
-  // puzzles in a row, throwing away nine of them and the previous one's answers along with them.
+  // puzzles and discard nine.
   let wordCountTimer = null;
   wordCountInput.addEventListener('change', () => {
     clearTimeout(wordCountTimer);

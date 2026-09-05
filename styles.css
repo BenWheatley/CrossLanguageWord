@@ -516,11 +516,9 @@
 
   #printAnswerKey{ display:none; }
   @media print{
-    /* The rotation used to be applied to this whole block, which put the dividing rule and the
-       heading upside down at the *bottom* of the section - so the sheet read: answers, then a
-       heading, then the line that was supposed to introduce them. Only the answers themselves
-       should be inverted. The heading and rule stay the right way up, at the top, where they
-       announce what follows. */
+    /* Only the answers are inverted, not the whole block: rotating the block would carry the
+       dividing rule and the heading round with it, leaving them upside down at the foot of the
+       section, below the answers they are meant to introduce. */
     #printAnswerKey{
       padding-top:12px;
       border-top:1px dashed #999;
@@ -714,9 +712,9 @@
       padding:10px 12px;
     }
     .clue-col + .clue-col{ margin-top:14px; }
-    /* The gap under a sticky heading has to be padding, not margin: a margin is transparent, so
-       clues scrolling up through it showed above the heading's rule and made it look as though
-       the heading had been struck through. Padding carries the background with it. */
+    /* The gap under a sticky heading must be padding rather than margin. A margin is
+       transparent, so clues scrolling up through it appear above the heading's rule, which reads
+       as the heading being struck through. Padding carries the background with it. */
     .clue-col h2{ top:-10px; background:var(--panel); margin:0; padding:6px 0 7px; }
     .clue-list{ padding-top:6px; }
   }
