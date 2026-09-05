@@ -653,7 +653,10 @@
     }
     .wrap{
       position:fixed;
-      inset:0;
+      top:var(--app-top, 0px);
+      left:0;
+      right:0;
+      bottom:auto;
       height:var(--app-height, 100%);
       max-width:none;
       display:flex;

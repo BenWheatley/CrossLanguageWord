@@ -509,3 +509,78 @@ test('the wide layout is left alone', async ({ browser }) => {
   await context.close();
 });
 
+test('the shell sits exactly over what is visible, keyboard or no keyboard', async ({ page }) => {
+  await openPuzzle(page, '?list=german&words=16&seed=fit3');
+  const check = () => page.evaluate(() => {
+    const vv = window.visualViewport;
+    const top = vv.offsetTop, bottom = vv.offsetTop + vv.height;
+    const wrap = document.querySelector('.wrap').getBoundingClientRect();
+    const header = document.querySelector('header.app-head').getBoundingClientRect();
+    const clues = document.querySelector('.clues').getBoundingClientRect();
+    return {
+      titleVisible: header.top >= top - 1,
+      coversTop: wrap.top <= top + 1,
+      coversBottom: wrap.bottom >= bottom - 1,
+      slackUnderClues: Math.round(bottom - clues.bottom)
+    };
+  });
+
+  const down = await check();
+  expect(down.titleVisible).toBe(true);
+  expect(down.coversTop && down.coversBottom).toBe(true);
+  expect(down.slackUnderClues, 'wasted space below the clues').toBeLessThanOrEqual(20);
+
+  // A fixed element is placed against the layout viewport, and Safari scrolls that to reveal the
+  // focused field - which used to push the title off the top of the screen.
+  await page.evaluate(() => {
+    const real = window.visualViewport;
+    const fake = { height: 336, offsetTop: 44, offsetLeft: 0, scale: 1,
+      addEventListener: real.addEventListener.bind(real), removeEventListener: real.removeEventListener.bind(real) };
+    Object.defineProperty(window, 'visualViewport', { value: fake, configurable: true });
+    real.dispatchEvent(new Event('resize'));
+  });
+  await page.waitForTimeout(200);
+
+  const up = await check();
+  expect(up.titleVisible, 'the title was pushed off the top').toBe(true);
+  expect(up.coversTop && up.coversBottom, 'the shell drifted off the visible area').toBe(true);
+  expect(up.slackUnderClues).toBeLessThanOrEqual(20);
+});
+
+test('the square being answered is put near the middle of the puzzle pane', async ({ page }) => {
+  await openPuzzle(page, '?list=german&words=18&seed=ctr1');
+  const result = await page.evaluate(async () => {
+    const pane = document.getElementById('gridHost');
+    const inputs = [...document.querySelectorAll('#grid .cell input')];
+    const offsets = [];
+    let outside = 0;
+    for(let i = 0; i < 20; i++){
+      inputs[Math.floor(i * inputs.length / 20)].dispatchEvent(new Event('mousedown', { bubbles: true }));
+      await new Promise((r) => setTimeout(r, 70));
+      const active = document.querySelector('#grid .cell.active').getBoundingClientRect();
+      const view = pane.getBoundingClientRect();
+      if(active.top < view.top - 1 || active.bottom > view.bottom + 1) outside++;
+      offsets.push(Math.abs((active.top + active.height / 2) - (view.top + view.height / 2)) / view.height);
+    }
+    offsets.sort((a, b) => a - b);
+    return { outside, median: offsets[Math.floor(offsets.length / 2)], paneScrolls: pane.scrollHeight > pane.clientHeight };
+  });
+  expect(result.paneScrolls, 'this puzzle should be taller than its pane').toBe(true);
+  expect(result.outside, 'a square ended up outside the pane').toBe(0);
+  // Squares near the top and bottom of the grid cannot be centred without scrolling past the
+  // end, so the median is the honest measure.
+  expect(result.median, 'squares are not being centred').toBeLessThan(0.1);
+});
+
+test('acting from the options menu closes it', async ({ page }) => {
+  await openPuzzle(page);
+  await page.evaluate(() => { window.print = () => {}; });
+  for(const id of ['checkBtn', 'generateBtn', 'printBtn']){
+    await page.click('#hamburgerBtn');
+    expect(await page.evaluate(() => !document.getElementById('optionsMenu').hidden), `menu did not open before ${id}`).toBe(true);
+    await page.evaluate((button) => document.getElementById(button).click(), id);
+    await page.waitForTimeout(200);
+    expect(await page.evaluate(() => document.getElementById('optionsMenu').hidden), `${id} left the menu open`).toBe(true);
+  }
+});
+
