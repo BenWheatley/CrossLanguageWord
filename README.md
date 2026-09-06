@@ -117,6 +117,20 @@ The button bearing three horizontal lines opens the options panel, where you
 may choose a different word list or a different number of words (from 2 to
 120 — see section 12). Changing either generates a fresh puzzle at once.
 
+**Hint** helps with the word you are on, a little at a time. The first press
+offers a different clue for the same word, where the list has one — it gives
+nothing away, being the same word described another way, and is often all that
+is wanted when a clue is the obstacle rather than the vocabulary. Pressing again
+fills in a letter, always the next one from the front, since knowing a word
+begins SCH is worth a great deal more than knowing its seventh letter. Keep
+pressing and the word fills in.
+
+Letters are only given once you have attempted the word. This is not to be
+strict about it: trying and failing, and then being told, is how a word is
+learnt, whereas being shown one you never reached teaches nothing at all. The
+program keeps count and says at the end how many hints were taken and which word
+gave the most trouble.
+
 **Check answers** marks the squares you have filled: correct squares turn
 green, incorrect squares gain a red border. Squares you have left empty are
 not marked, so you may check your work part-way through without being

@@ -247,7 +247,7 @@ test('the controls fold into the options menu, leaving the title row', async ({ 
       onScreen: m.left >= 0 && m.right <= window.innerWidth
     };
   });
-  expect(menu.actions).toEqual(['Check answers', 'Print', 'New crossword']);
+  expect(menu.actions).toEqual(['Hint', 'Check answers', 'Print', 'New crossword']);
   expect(menu.onScreen, 'the menu must not open off the side of the screen').toBe(true);
 });
 

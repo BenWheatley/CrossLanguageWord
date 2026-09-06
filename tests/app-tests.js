@@ -578,12 +578,12 @@ test('solving the puzzle correctly triggers the celebration overlay', async () =
       'the bound should divide the page width by the actual column count');
   });
 
-  test('the toolbar reads options, check, print, then new crossword last', async () => {
+  test('the toolbar reads options, hint, check, print, then new crossword last', async () => {
     const doc = (await bootApp('?list=german&words=10')).document;
     const order = Array.from(doc.querySelectorAll('.toolbar button'))
       .filter((b) => b.offsetParent !== null || b.id)   // the hamburger has no text of its own
       .map((b) => b.id);
-    assertEqual(order.join(','), 'hamburgerBtn,checkBtn,printBtn,generateBtn');
+    assertEqual(order.join(','), 'hamburgerBtn,hintBtn,checkBtn,printBtn,generateBtn');
   });
 
   test('the footer describes what a shared start cell actually does', async () => {
@@ -690,5 +690,104 @@ test('solving the puzzle correctly triggers the celebration overlay', async () =
     assertTrue(win.location.search.includes('words=12'),
       `address said ${win.location.search} while the old puzzle was still on screen`);
     await waitFor(() => win.location.search.includes('words=20'), 3000);
+  });
+
+  // ---------- hints ----------
+
+  const wordSquares = (app) => Array.from(app.document.querySelectorAll('#grid .cell.in-word input'));
+  const wordText = (app) => wordSquares(app).map((i) => i.value || '.').join('');
+  const activeClue = (app) => {
+    const li = app.document.querySelector('.clue-list li.active');
+    return li ? li.textContent.replace(/^\d+/, '').trim() : null;
+  };
+
+  test('the first hint offers a different clue, not a letter', async () => {
+    const app = await bootApp('?list=german&words=12&seed=hint1');
+    const before = activeClue(app);
+    app.document.getElementById('hintBtn').click();
+    assertNotEqual(activeClue(app), before, 'the clue should have been replaced');
+    assertEqual(wordText(app).replace(/\./g, ''), '', 'no letters should have been given away');
+  });
+
+  test('a letter is not given until the word has been attempted', async () => {
+    const app = await bootApp('?list=german&words=12&seed=hint1');
+    const { document: doc } = app;
+    doc.getElementById('hintBtn').click();       // uses up the alternative clue
+    doc.getElementById('hintBtn').click();       // asks for a letter, having tried nothing
+    assertEqual(wordText(app).replace(/\./g, ''), '', 'a letter was given for an untouched word');
+    assertTrue(/have a go/i.test(doc.getElementById('status').textContent),
+      'it should say why nothing happened');
+  });
+
+  test('once attempted, hints fill the word from the front', async () => {
+    const app = await bootApp('?list=german&words=12&seed=hint1');
+    const { document: doc, window: win } = app;
+    doc.getElementById('hintBtn').click();       // the alternative clue
+
+    // a wrong letter counts as an attempt, and should itself be corrected
+    const first = wordSquares(app)[0];
+    first.value = 'X';
+    first.dispatchEvent(new win.Event('input', { bubbles: true }));
+
+    doc.getElementById('hintBtn').click();
+    const afterOne = wordText(app);
+    assertNotEqual(afterOne[0], 'X', 'the wrong letter should have been put right');
+    assertEqual(afterOne.slice(1).replace(/\./g, ''), '', 'only the first square should be filled');
+
+    doc.getElementById('hintBtn').click();
+    const afterTwo = wordText(app);
+    assertEqual(afterTwo[0], afterOne[0], 'the first letter should not change');
+    assertNotEqual(afterTwo[1], '.', 'the second square should now be filled');
+    // Recall runs forwards, so hints extend the prefix rather than filling in gaps elsewhere.
+    assertEqual(afterTwo.slice(2).replace(/\./g, ''), '');
+  });
+
+  test('a square filled by a hint is marked as given, not as worked out', async () => {
+    const app = await bootApp('?list=german&words=12&seed=hint1');
+    const { document: doc, window: win } = app;
+    doc.getElementById('hintBtn').click();
+    const first = wordSquares(app)[0];
+    first.value = 'X';
+    first.dispatchEvent(new win.Event('input', { bubbles: true }));
+    doc.getElementById('hintBtn').click();
+    assertEqual(doc.querySelectorAll('#grid .cell.revealed').length, 1);
+  });
+
+  test('the finish says how much help was taken', async () => {
+    const clean = await bootApp('?list=english&words=2&seed=hfin');
+    if(solvePuzzle(clean)){
+      assertTrue(/no hints/i.test(clean.document.getElementById('celebrateSub').textContent),
+        'a puzzle solved unaided should say so');
+    }
+
+    const helped = await bootApp('?list=english&words=2&seed=hfin');
+    const { document: doc, window: win } = helped;
+    doc.getElementById('hintBtn').click();
+    const square = wordSquares(helped)[0];
+    square.value = 'Z';
+    square.dispatchEvent(new win.Event('input', { bubbles: true }));
+    doc.getElementById('hintBtn').click();
+    if(solvePuzzle(helped)){
+      const sub = doc.getElementById('celebrateSub').textContent;
+      assertTrue(/hint/i.test(sub), `the summary should mention hints, got "${sub}"`);
+      assertTrue(!/no hints/i.test(sub), 'it should not claim the puzzle was solved unaided');
+    }
+  });
+
+  test('hints already taken survive a reload', async () => {
+    const app = await bootApp('?list=german&words=12&seed=hkeep');
+    const { document: doc, window: win } = app;
+    doc.getElementById('hintBtn').click();
+    const clueAfterHint = activeClue(app);
+    const square = wordSquares(app)[0];
+    square.value = 'X';
+    square.dispatchEvent(new win.Event('input', { bubbles: true }));
+    doc.getElementById('hintBtn').click();
+    await waitFor(() => false, 400);
+
+    const again = await bootApp(app.window.location.search, { keepSavedState: true });
+    assertEqual(activeClue(again), clueAfterHint, 'the clue a hint swapped in should come back');
+    assertEqual(again.document.querySelectorAll('#grid .cell.revealed').length, 0,
+      'a restored puzzle shows the letters, and the record of them is in the save');
   });
 }

@@ -64,6 +64,7 @@
         <div id="menuActions"></div>
       </div>
     </div>
+    <button id="hintBtn" class="secondary" disabled>Hint</button>
     <button id="checkBtn" class="secondary" disabled>Check answers</button>
     <button id="printBtn" class="secondary" disabled>Print</button>
     <button id="generateBtn" disabled>New crossword</button>
@@ -192,6 +193,7 @@
   const generateBtn = document.getElementById('generateBtn');
   const printBtn = document.getElementById('printBtn');
   const checkBtn = document.getElementById('checkBtn');
+  const hintBtn = document.getElementById('hintBtn');
   const printAnswersCk = document.getElementById('printAnswers');
   const printKeyCk = document.getElementById('printKey');
   const hamburgerBtn = document.getElementById('hamburgerBtn');
@@ -552,6 +554,11 @@
   // ---------- render ----------
   function renderGrid(built, numbering){
     celebrated = false;
+    stopTimingWord();
+    hintsByWord = {};
+    cluesShownFor = {};
+    timeByWord = {};
+    lastActivityAt = 0;
     gridEl.classList.remove('solved');
     rows = built.rows; cols = built.cols;
     gridData = built.grid;
@@ -797,6 +804,8 @@
     let wid = currentDir==='across' ? cell.across : cell.down;
     if(!wid){ wid = cell.across || cell.down; currentDir = cell.across ? 'across' : 'down'; }
     currentWordKey = wid;
+    startTimingWord(wid);
+    updateHintButton();
     highlightWord(wid);
     cell.wrap.classList.add('active');
     // A modal dialog keeps focus. Filling the final square opens the celebration, and any input
@@ -946,6 +955,7 @@
     const ch = g.length ? g[g.length-1] : '';
     cell.input.value = ch;
     cell.wrap.classList.remove('check-correct', 'check-incorrect');
+    noteActivity();
     // Working on the new puzzle is as clear a sign as any that it is the one you wanted.
     if(ch) clearUndo();
     if(ch) advanceAfterInput(r,c);
@@ -999,6 +1009,35 @@
     }
   }
 
+  /**
+   * Which word gave the most trouble.
+   *
+   * Hints weigh far more than time, because a hint is a deliberate and unambiguous admission
+   * while time is noisy: the first word of a puzzle is always slow while the grid is being read,
+   * and the last are quick because the crossings have filled them in. Time is divided by the
+   * word's length, so a long word is not called hard merely for taking longer to type.
+   */
+  function hardestWord(){
+    stopTimingWord();               // fold in whatever the current word has accrued
+    let best = null, bestScore = 0;
+    for(const word of placedWords){
+      const wid = word.dir + '-' + word.number;
+      const hints = hintsByWord[wid] || 0;
+      const seconds = (timeByWord[wid] || 0) / 1000;
+      const score = hints * 20 + seconds / Math.max(1, word.len);
+      if(score > bestScore){ bestScore = score; best = { word, hints, seconds }; }
+    }
+    if(!best || bestScore < 3) return null;   // nothing stood out; better to say nothing
+    return { answer: best.word.answer, hints: best.hints, seconds: Math.round(best.seconds) };
+  }
+
+  function describeEffort(hardest){
+    const bits = [];
+    if(hardest.hints) bits.push(hardest.hints === 1 ? '1 hint' : hardest.hints + ' hints');
+    if(hardest.seconds >= 5) bits.push(formatTime(hardest.seconds));
+    return bits.join(', ') || 'no hints';
+  }
+
   function formatTime(totalSeconds){
     const m = Math.floor(totalSeconds / 60);
     const s = totalSeconds % 60;
@@ -1036,7 +1075,13 @@
     } else {
       sub = 'Best this session: ' + formatTime(bestTimeSeconds);
     }
-    celebrateSub.textContent = sub;
+    // Say plainly what it took. Not to scold - so that "solved unaided" stays a true thing to
+    // have been told, and so the word that gave trouble is named while it is still in mind.
+    const hints = hintsUsedTotal();
+    const hardest = hardestWord();
+    const summary = [hints === 0 ? 'No hints' : hints === 1 ? 'One hint' : hints + ' hints'];
+    if(hardest) summary.push('hardest: ' + hardest.answer + ' (' + describeEffort(hardest) + ')');
+    celebrateSub.textContent = [sub, summary.join(' \u00b7 ')].filter(Boolean).join(' \u2014 ');
     celebrateReturnFocus = document.activeElement;
     celebrateOverlay.hidden = false;
     celebrateOverlay.classList.add('show');
@@ -1269,6 +1314,145 @@
     }
   }
 
+  // ---------- hints ----------
+  // A vocabulary trainer has to be able to tell you the word you did not know - that is the
+  // moment it teaches something - without becoming the easiest way through the puzzle. What
+  // stops that is not making help expensive but making it consequential: a word you needed help
+  // with is reported at the end and, once there is a record of such things, will come round
+  // again. So hints are cheap, counted, and never silent.
+  //
+  // They come in rungs, cheapest first, because being stuck usually needs unsticking rather than
+  // an answer:
+  //
+  //   1. another clue for the same word, where the list offers one. It gives nothing away -
+  //      it is the same word described differently - and for a language learner not being able
+  //      to read the clue is a different problem from not knowing the word, which is why this
+  //      rung is not gated on having tried.
+  //   2. a letter, and then another, until the word is filled. Always the earliest square that
+  //      is empty or wrong, because recall runs forwards: knowing a word starts SCH is worth
+  //      far more than knowing its seventh letter is E, even though the seventh letter would
+  //      narrow a dictionary search faster.
+  //
+  // Each rung is one press, so a whole word costs as many hints as it has letters. That is a
+  // gentler brake than any confirmation dialogue, and it makes "hints used" a real number.
+  // Time spent on each word, for reporting which one gave the most trouble. Not elapsed time:
+  // people jump about, and a word sits half-finished while three others get done. Only the time
+  // the caret is actually inside the word counts, and only while somebody is working - a phone
+  // put down mid-word would otherwise make that word look impossible.
+  const IDLE_GRACE_MS = 45000;
+  let timeByWord = {};      // wid -> milliseconds of attention
+  let timingWord = null;    // wid currently being timed
+  let timingSince = 0;
+  let lastActivityAt = 0;
+
+  function noteActivity(){ lastActivityAt = Date.now(); }
+
+  function stopTimingWord(){
+    if(!timingWord) return;
+    const until = Math.min(Date.now(), lastActivityAt + IDLE_GRACE_MS);
+    const spent = until - timingSince;
+    if(spent > 0) timeByWord[timingWord] = (timeByWord[timingWord] || 0) + spent;
+    timingWord = null;
+  }
+
+  function startTimingWord(wid){
+    if(timingWord === wid) return;
+    stopTimingWord();
+    if(!wid) return;
+    timingWord = wid;
+    timingSince = Date.now();
+    if(!lastActivityAt) lastActivityAt = timingSince;
+  }
+
+  let hintsByWord = {};     // wid -> how many hints that word has taken
+  let cluesShownFor = {};   // wid -> index into the word's clue list, once it has been changed
+
+  function hintsUsedTotal(){
+    return Object.keys(hintsByWord).reduce((sum, wid) => sum + hintsByWord[wid], 0);
+  }
+
+  /** The squares of a word, in reading order, with what is in them now. */
+  function squaresOf(word){
+    const out = [];
+    for(let i = 0; i < word.len; i++){
+      const r = word.dir === 'across' ? word.row : word.row + i;
+      const c = word.dir === 'across' ? word.col + i : word.col;
+      out.push({ r, c, cell: cellEls[r][c], expected: gridData[r][c] });
+    }
+    return out;
+  }
+
+  /** Has the reader attempted this word at all? The letter rungs wait until they have. */
+  function wordHasBeenTried(word){
+    return squaresOf(word).some(s => s.cell && s.cell.input.value);
+  }
+
+  function currentWord(){
+    return currentWordKey ? wordInfo(currentWordKey) : null;
+  }
+
+  function updateHintButton(){
+    const word = currentWord();
+    hintBtn.disabled = !word || !placedWords.length;
+  }
+
+  function takeHint(){
+    const word = currentWord();
+    if(!word) return;
+    const wid = word.dir + '-' + word.number;
+    const squares = squaresOf(word);
+    const wrong = squares.filter(s => s.cell && s.cell.input.value !== s.expected);
+
+    if(!wrong.length){
+      setStatus('That word is already filled in correctly.');
+      return;
+    }
+
+    // Rung one: a different clue, if this word has another and has not had it yet.
+    const alternatives = cluesForAnswer(word.answer);
+    if(cluesShownFor[wid] === undefined && alternatives.length > 1){
+      const different = alternatives.find(text => text !== word.clue);
+      if(different){
+        cluesShownFor[wid] = 1;
+        word.clue = different;
+        hintsByWord[wid] = (hintsByWord[wid] || 0) + 1;
+        renderClueLists();
+        highlightWord(wid);
+        setStatus('Another clue for ' + word.number + ' ' + word.dir + '.');
+        scheduleSave();
+        return;
+      }
+    }
+
+    // Rung two onwards: a letter. Wait until something has been tried.
+    if(!wordHasBeenTried(word)){
+      setStatus('Have a go at it first - then a hint will fill in a letter.', true);
+      return;
+    }
+
+    const square = wrong[0];   // earliest empty or wrong square
+    square.cell.input.value = square.expected;
+    square.cell.wrap.classList.add('revealed');
+    square.cell.wrap.classList.remove('check-correct', 'check-incorrect');
+    hintsByWord[wid] = (hintsByWord[wid] || 0) + 1;
+    setStatus('');
+    checkAndCelebrate();
+    scheduleSave();
+    focusCell(square.r, square.c, word.dir);
+  }
+
+  /** Every clue the loaded list holds for an answer, so a hint can offer a different one. */
+  function cluesForAnswer(answer){
+    const entry = wordBank.find(w => w.answer === answer);
+    return entry ? entry.clues : [];
+  }
+
+  hintBtn.addEventListener('click', () => {
+    closeOptionsMenu();
+    takeHint();
+    restoreFocusToCurrentCell();
+  });
+
   // ---------- generate ----------
   function updateUrlParams(){
     const params = new URLSearchParams(window.location.search);
@@ -1379,6 +1563,9 @@
         state.customTitle = describes.title;
         state.customShape = describes.shape;
       }
+      // Hints belong to the puzzle, so a resumed one remembers what it has already given away.
+      state.hintsByWord = hintsByWord;
+      state.cluesShownFor = cluesShownFor;
     return state;
   }
 
@@ -1479,8 +1666,12 @@
   });
   document.addEventListener('visibilitychange', () => {
     if(document.visibilityState === 'hidden'){
+      stopTimingWord();
       clearTimeout(saveTimer);
       saveState();
+    } else {
+      noteActivity();
+      startTimingWord(currentWordKey);
     }
   });
 
@@ -1510,6 +1701,8 @@
         if(val && cellEls[r] && cellEls[r][c]) cellEls[r][c].input.value = val;
       }
     }
+    hintsByWord = (saved.hintsByWord && typeof saved.hintsByWord === 'object') ? saved.hintsByWord : {};
+    cluesShownFor = (saved.cluesShownFor && typeof saved.cluesShownFor === 'object') ? saved.cluesShownFor : {};
     puzzleStartTime = Date.now() - (saved.elapsedMs || 0);
     celebrated = !!saved.celebrated; // don't replay the solved animation/confetti on a reload
     if(saved.params && saved.params.list) wordListSelect.value = saved.params.list;
@@ -1534,6 +1727,7 @@
     };
     printBtn.disabled = false;
     checkBtn.disabled = false;
+    updateHintButton();
     setStatus('');
     clearUndo();
     updateUrlParams();
@@ -1591,6 +1785,7 @@
     };
     printBtn.disabled = false;
     checkBtn.disabled = false;
+    updateHintButton();
     updateUrlParams();
     if(numbering.placements.length < n){
       setStatus(`Placed ${numbering.placements.length} of ${n} requested words (the rest didn't fit this layout). Click "New crossword" for another attempt.`, true);
@@ -1684,10 +1879,10 @@
   function applyCompactLayout(){
     if(compactLayout.matches){
       if(hamburgerWrap.parentElement !== headerEl) headerEl.appendChild(hamburgerWrap);
-      menuActions.append(checkBtn, printBtn, generateBtn);
+      menuActions.append(hintBtn, checkBtn, printBtn, generateBtn);
     } else {
       if(hamburgerWrap.parentElement !== toolbarEl) toolbarEl.prepend(hamburgerWrap);
-      toolbarEl.append(checkBtn, printBtn, generateBtn);
+      toolbarEl.append(hintBtn, checkBtn, printBtn, generateBtn);
     }
   }
   applyCompactLayout();

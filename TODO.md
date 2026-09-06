@@ -20,28 +20,14 @@ For something called a trainer this is the central gap. The groundwork is
 already in place: words are keyed by answer, bank order is stable, puzzles are
 seeded and reproducible.
 
-- Record a per-answer outcome: solved unaided / needed checking / revealed.
+- Record a per-answer outcome: solved unaided / needed checking / hinted. Hints
+  per word and attention per word are already tracked for the end-of-puzzle
+  summary; they are thrown away when the puzzle changes, and want keeping.
 - Weight selection toward words with a poor record, without abandoning variety
   altogether — a mostly-random draw with a modest bias is probably right.
 - Show something about vocabulary, not just elapsed time, when a puzzle is done.
 
 Depends on nothing. Feeds on 2.
-
-## 2. When you do not know a word there is no way to find out
-
-No reveal, no hint. "Check answers" marks letters right or wrong but never says
-what the answer was. So the learner's dead end is: stuck → guess → abandon, and
-the one thing a vocabulary trainer must do — teach the word you did not know —
-it cannot do.
-
-The answers are already in the document for the printed key, so this is a
-presentation problem rather than a data one.
-
-- "Reveal word" at minimum; possibly "reveal letter" as a gentler step.
-- Mark revealed answers so they can feed 1.
-- Consider whether revealing should end the timer's claim on that puzzle.
-
-Smallest useful change on this list. Probably do it first.
 
 ## 4. Phone ergonomics — mostly done
 
@@ -118,6 +104,9 @@ curated grid — and it is part of why 2 matters.
   regions that cannot be scrolled off, pinned to the visible area so the
   keyboard cannot hide the clues, with the current square centred in its pane.
 - Installable, and works with no network at all (README section 10).
+- 2 — no way to find out a word you did not know. A hint ladder: another clue
+  first, then letters from the front of the word, gated on having attempted it,
+  counted, and reported at the end along with the word that gave most trouble.
 - 8, first item — a seed now names one puzzle, because the link carries the width
   it was built at. Where that width does not fit the screen, the choice between
   the exact puzzle and a fitted one is put to the reader.
