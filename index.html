@@ -74,6 +74,12 @@
     <button id="undoBtn" class="secondary" hidden>Undo new puzzle</button>
   </div>
 
+  <div id="widePrompt" class="no-print" hidden>
+    <p id="widePromptText"></p>
+    <button id="widePlayBtn" class="secondary">Play it as it is</button>
+    <button id="wideFitBtn">Make one that fits</button>
+  </div>
+
   <div id="listPrompt" class="no-print" hidden>
     <p id="listPromptText"></p>
     <label for="fileInput" class="file-trigger-label">Choose file…</label>
@@ -148,6 +154,7 @@
   const LIBRARY_KEY = 'crossword-trainer-lists';
   let pendingRestore = null; // a saved puzzle waiting to be restored on first load, if any
   let pendingSeed = null;    // a seed from the URL, waiting for the word list to finish loading
+  let pendingBudget = null;  // and the column budget it was built against, if the link named one
   let saveTimer = null;
   let bestTimeSeconds = null; // best solve time this session (not persisted)
   let currentListId = null; // an id from LISTS, or CUSTOM_LIST_ID for a file the reader loaded
@@ -195,6 +202,10 @@
   const optionsMenu = document.getElementById('optionsMenu');
   const statusEl = document.getElementById('status');
   const undoBtn = document.getElementById('undoBtn');
+  const widePrompt = document.getElementById('widePrompt');
+  const widePromptText = document.getElementById('widePromptText');
+  const widePlayBtn = document.getElementById('widePlayBtn');
+  const wideFitBtn = document.getElementById('wideFitBtn');
   const listPrompt = document.getElementById('listPrompt');
   const listPromptText = document.getElementById('listPromptText');
   const listPromptFresh = document.getElementById('listPromptFresh');
@@ -473,30 +484,53 @@
 
   // Whatever the app should do once a bank is in place on first load: pick up the puzzle that was
   // in progress, or build the one the link asked for.
+  // A puzzle's width is fixed when it is built, against the screen it was built on, so one
+  // carried to a narrower screen - a desktop puzzle picked up on a phone - does not fit. Making
+  // it fit would mean either shrinking the squares or scrolling sideways, and which of those is
+  // the lesser evil depends on why the reader opened it: to solve this exact puzzle alongside
+  // somebody else, or just to have a crossword. So ask, rather than decide for them.
+  //
+  // Answering once settles it for the visit; being asked on every link would be tiresome.
+  let alwaysPlayWide = false;
+
+  function puzzleIsTooWide(){
+    return rows > 0 && cols > computeMaxCols();
+  }
+
+  function offerWideChoice(){
+    // The puzzle is already on screen behind this, so the choice is made looking at the thing
+    // being chosen rather than at a description of it.
+    widePromptText.textContent = 'This puzzle was made for a wider screen. You can play it as it '
+      + 'is, scrolling sideways to see all of it, or have one built to fit - the same words and '
+      + 'the same clues, arranged differently.';
+    widePrompt.hidden = false;
+  }
+
+  function hideWideChoice(){ widePrompt.hidden = true; }
+
+  widePlayBtn.addEventListener('click', () => {
+    alwaysPlayWide = true;
+    hideWideChoice();
+    restoreFocusToCurrentCell();
+  });
+
+  wideFitBtn.addEventListener('click', () => {
+    hideWideChoice();
+    // Same seed, this screen's budget: the word choice does not depend on the budget, so this is
+    // the same vocabulary laid out afresh rather than a different puzzle.
+    generate(currentSeed, computeMaxCols());
+  });
+
   function startPuzzle(){
     if(pendingRestore){
-      // A puzzle's column count is fixed when it is built, against the width of the screen it was
-      // built on. Carrying one to a narrower screen - a desktop puzzle picked up on a phone -
-      // leaves a grid too wide to fit, and the only way to make it fit would be to shrink the
-      // squares, which is no way to solve a crossword. Build one that fits instead, and keep the
-      // wide one on the undo so it is not lost: it is still perfectly good on a larger screen.
-      const savedCols = pendingRestore.cols;
-      if(Number.isFinite(savedCols) && savedCols > computeMaxCols()){
-        const restored = pendingRestore;
-        pendingRestore = null;
-        generate(pendingSeed);
-        undoState = restored;
-        showUndo();
-        setStatus('That puzzle was made for a wider screen, so here is one that fits. '
-          + 'Undo brings the other one back.', true);
-      } else {
-        restoreFromSaved(pendingRestore);
-        pendingRestore = null;
-      }
+      restoreFromSaved(pendingRestore);
+      pendingRestore = null;
     } else {
-      generate(pendingSeed);
+      generate(pendingSeed, pendingBudget);
     }
     pendingSeed = null;
+    pendingBudget = null;
+    if(!alwaysPlayWide && puzzleIsTooWide()) offerWideChoice();
   }
 
   // Everything that happens once a bank of words is ready, whoever produced it: a fetched file, a
@@ -1252,6 +1286,8 @@
     if(currentListId_ === CUSTOM_LIST_ID && shown.sum) params.set('sum', shown.sum);
     else params.delete('sum');
     params.set('words', shown.words);
+    if(Number.isFinite(shown.cols)) params.set('cols', shown.cols);
+    else params.delete('cols');
     // With the seed here, the address bar is a complete description of the puzzle on screen -
     // copy it to anyone and they get this grid, these words and these clues, not merely a puzzle
     // of the same size. A custom-loaded file still has no URL representation, so a seed alone
@@ -1332,7 +1368,8 @@
           list: describes.list,
           sum: describes.list === CUSTOM_LIST_ID ? describes.sum : null,
           words: describes.words,
-          seed: describes.seed
+          seed: describes.seed,
+          cols: describes.cols
         },
       };
       if(describes.list === CUSTOM_LIST_ID){
@@ -1490,6 +1527,7 @@
       sum: (saved.params && saved.params.sum) || null,
       words: (saved.params && saved.params.words) || Number(wordCountInput.value),
       seed: (saved.params && saved.params.seed) || currentSeed,
+      cols: (saved.params && saved.params.cols) || saved.cols,
       title: saved.customTitle || currentListTitle,
       language: currentListLanguage,
       shape: saved.customShape || currentListShape
@@ -1513,7 +1551,11 @@
 
   // `seed` names the puzzle: the same seed, list and word count always rebuild the same grid,
   // with the same words and the same clues. Called with no seed for a brand new puzzle.
-  function generate(seed){
+  // `budget` is the column limit the puzzle is built against. It is an input to generation, not a
+  // consequence of it, so a link has to carry it for a seed to name one particular puzzle: the
+  // same seed at two different budgets draws the same words and clues but arranges them
+  // differently. Defaults to whatever this screen can show.
+  function generate(seed, budget){
     if(!wordBank.length){
       setStatus('Load a word list first.', true);
       return;
@@ -1521,6 +1563,7 @@
     captureUndo();
     seed = isValidSeed(seed) ? seed : randomSeed();
     currentSeed = seed;
+    const maxCols = Number.isFinite(budget) && budget >= 3 ? budget : computeMaxCols();
     const n = clampWordCount(parseInt(wordCountInput.value, 10) || DEFAULT_WORDS);
     // Reflect the clamp back, so the field never shows a number the puzzle didn't use.
     if(String(n) !== wordCountInput.value) wordCountInput.value = n;
@@ -1530,10 +1573,7 @@
     // values - so tuning attemptsFor() can never silently reword every existing shared puzzle.
     const rngClues = makeRng(seed + '#clues');
     const rngLayout = makeRng(seed + '#layout');
-    const result = buildCrossword(pickClues(wordBank, rngClues), n, {
-      maxCols: computeMaxCols(),
-      rng: rngLayout
-    });
+    const result = buildCrossword(pickClues(wordBank, rngClues), n, { maxCols, rng: rngLayout });
     const built = trimAndIndex(result);
     const numbering = numberGrid(built);
     renderGrid(built, numbering);
@@ -1543,6 +1583,8 @@
       sum: currentListId === CUSTOM_LIST_ID ? currentListSum : null,
       words: n,                       // the count actually used, after clamping
       seed: currentSeed,
+      cols: maxCols,                  // the budget it was built against, not the width it came out
+
       title: currentListTitle,
       language: currentListLanguage,
       shape: currentListShape
@@ -1589,7 +1631,7 @@
 
   // Wrapped rather than passed directly: as a listener, generate() would receive the click
   // Event as its seed argument.
-  generateBtn.addEventListener('click', () => { closeOptionsMenu(); generate(); });
+  generateBtn.addEventListener('click', () => { closeOptionsMenu(); hideWideChoice(); generate(); });
   // Each of these does something to the puzzle, so the menu they were pressed from should get
   // out of the way and let it be seen.
   checkBtn.addEventListener('click', () => {
@@ -1706,12 +1748,14 @@
     const wordsParam = parseInt(p.get('words'), 10);
     const seedParam = (p.get('seed') || '').toLowerCase();
     const sumParam = (p.get('sum') || '').toLowerCase();
+    const colsParam = parseInt(p.get('cols'), 10);
     const known = LISTS[listParam] || listParam === CUSTOM_LIST_ID;
     return {
       list: known ? listParam : DEFAULT_LIST,
       sum: /^[a-z0-9]{1,16}$/.test(sumParam) ? sumParam : null,
       words: Number.isFinite(wordsParam) && wordsParam >= 2 ? Math.min(wordsParam, MAX_WORDS) : DEFAULT_WORDS,
       seed: isValidSeed(seedParam) ? seedParam : null,
+      cols: Number.isFinite(colsParam) && colsParam >= 3 && colsParam <= 200 ? colsParam : null,
       // Whether the URL actually named a list, as opposed to us having defaulted one in above.
       // A puzzle built from a loaded file has no id to put in the URL, so its saved list is null
       // and would never match the default - see sameParams.
@@ -1731,6 +1775,7 @@
       // puzzle built from a loaded file, whose list is null by nature.
       && (!requested.listExplicit || requested.list === saved.list)
       && (!requested.sum || requested.sum === saved.sum)
+      && (!requested.cols || Number(requested.cols) === Number(saved.cols))
       && Number(requested.words) === Number(saved.words)
       && (!requested.seed || requested.seed === saved.seed);
   }
@@ -1752,8 +1797,10 @@
 
     const active = resume && saved.params ? saved.params : requested;
     pendingRestore = resume ? saved : null;
-    // A link carrying a seed asks for one specific puzzle; hand it to the first generate().
+    // A link carrying a seed asks for one specific puzzle; hand it, and the width it was built
+    // at, to the first generate().
     pendingSeed = active.seed || null;
+    pendingBudget = active.cols || null;
 
     wordCountInput.value = active.words;
 

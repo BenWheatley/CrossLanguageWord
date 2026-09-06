@@ -159,11 +159,19 @@ composition to finish before advancing, so the accent is not left stranded.
 Every puzzle has a seed, and the address in your browser's location bar
 always names it:
 
-    index.html?list=german&words=15&seed=4rd6k1
+    index.html?list=german&words=15&seed=4rd6k1&cols=29
 
 Send that address to someone else and they will get **the same puzzle** —
 the same grid, the same words, and the same clues — on whatever machine and
-whatever browser they happen to be using. Write the seed on the blackboard
+whatever browser they happen to be using.
+
+The last part of the address is the width the puzzle was laid out to. It is
+there because the same words can be arranged into a wide grid or a narrow one,
+and without it the puzzle would be rebuilt to suit whatever screen opened it.
+Should that width not fit — a puzzle made on a desktop, opened on a telephone —
+the program says so and offers you the choice: play it as it stands, scrolling
+sideways, or have one built to fit, which will have the same words and the same
+clues in a different arrangement. Write the seed on the blackboard
 and a class of thirty will all be solving the same crossword.
 
 This works because the program uses its own random number generator rather

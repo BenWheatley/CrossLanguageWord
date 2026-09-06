@@ -169,37 +169,62 @@ test('the grid always fits the screen, with nothing scrolling sideways', async (
   }
 });
 
-test('a puzzle built for a wider screen is rebuilt to fit, and the wide one kept on the undo',
-  async ({ browser }) => {
-    // Column count is fixed when a puzzle is built. Carried to a narrower screen it cannot fit,
-    // and shrinking the squares is no way to solve a crossword.
-    const ctx = await browser.newContext({ viewport: { width: 1400, height: 900 } });
-    const page = await ctx.newPage();
-    await page.goto('/index.html?list=german&words=15&seed=wideT', { waitUntil: 'networkidle' });
-    await page.waitForFunction(() => document.querySelectorAll('#grid .cell').length > 0);
-    await page.waitForTimeout(300);
-    const wideCols = await page.evaluate(() =>
-      +getComputedStyle(document.getElementById('grid')).getPropertyValue('--cols'));
+test('a puzzle too wide for the screen offers a choice rather than deciding', async ({ browser }) => {
+  // Which is better - scrolling sideways through the exact puzzle somebody shared, or a fitted
+  // one built from the same words - depends on why it was opened. So it is asked, not assumed.
+  const wide = await browser.newContext({ viewport: { width: 1400, height: 900 } });
+  const desktop = await wide.newPage();
+  await desktop.goto('/index.html?list=german&words=16&seed=w8a', { waitUntil: 'networkidle' });
+  await desktop.waitForFunction(() => document.querySelectorAll('#grid .cell').length > 0);
+  const link = await desktop.evaluate(() => location.search);
+  const desktopWords = await desktop.evaluate(() =>
+    [...document.querySelectorAll('#printAnswerAcross li, #printAnswerDown li')]
+      .map((li) => li.textContent.replace(/^\d+\.\s*/, '')).sort().join(','));
+  expect(link, 'the link must carry the width it was built at').toMatch(/cols=\d+/);
+  await wide.close();
 
-    await page.setViewportSize({ width: 390, height: 664 });
-    await page.reload({ waitUntil: 'networkidle' });
-    await page.waitForFunction(() => document.querySelectorAll('#grid .cell').length > 0);
-    await page.waitForTimeout(400);
+  const phone = await browser.newContext({ ...devices['iPhone 13'] });
+  const page = await phone.newPage();
+  await page.goto('/index.html' + link, { waitUntil: 'networkidle' });
+  await page.waitForFunction(() => document.querySelectorAll('#grid .cell').length > 0);
+  await page.waitForTimeout(300);
 
-    const after = await page.evaluate(() => {
-      const g = document.getElementById('grid'), host = document.getElementById('gridHost');
-      return {
-        cols: +getComputedStyle(g).getPropertyValue('--cols'),
-        fits: g.getBoundingClientRect().width <= host.clientWidth,
-        undoOffered: !document.getElementById('undoBtn').hidden,
-        status: document.getElementById('status').textContent
-      };
-    });
-    expect(after.fits, `still ${after.cols} columns wide, built at ${wideCols}`).toBe(true);
-    expect(after.undoOffered, 'the wide puzzle should still be reachable').toBe(true);
-    expect(after.status).toContain('wider screen');
-    await ctx.close();
-  });
+  const asked = await page.evaluate(() => ({
+    prompt: !document.getElementById('widePrompt').hidden,
+    puzzleBehind: document.querySelectorAll('#grid .cell').length > 0
+  }));
+  expect(asked.prompt, 'should have asked').toBe(true);
+  expect(asked.puzzleBehind, 'the puzzle should be visible behind the question').toBe(true);
+
+  // taking the fitted option gives the same vocabulary, laid out afresh
+  await page.click('#wideFitBtn');
+  await page.waitForTimeout(500);
+  const fitted = await page.evaluate(() => ({
+    prompt: !document.getElementById('widePrompt').hidden,
+    fits: document.getElementById('grid').getBoundingClientRect().width
+      <= document.getElementById('gridHost').clientWidth,
+    words: [...document.querySelectorAll('#printAnswerAcross li, #printAnswerDown li')]
+      .map((li) => li.textContent.replace(/^\d+\.\s*/, '')).sort().join(',')
+  }));
+  expect(fitted.prompt).toBe(false);
+  expect(fitted.fits).toBe(true);
+  expect(fitted.words, 'the fitted puzzle should be the same words').toBe(desktopWords);
+  await phone.close();
+});
+
+test('a link rebuilds the same puzzle on the screen it was made for', async ({ browser }) => {
+  const shape = async () => {
+    const context = await browser.newContext({ viewport: { width: 1400, height: 900 } });
+    const page = await context.newPage();
+    await page.goto('/index.html?list=german&words=16&seed=w8a&cols=29', { waitUntil: 'networkidle' });
+    await page.waitForFunction(() => document.querySelectorAll('#grid .cell').length > 0);
+    const grid = await page.evaluate(() => [...document.querySelectorAll('#grid .cell')]
+      .map((c) => c.classList.contains('block') ? '#' : '.').join(''));
+    await context.close();
+    return grid;
+  };
+  expect(await shape()).toBe(await shape());
+});
 
 test('the controls fold into the options menu, leaving the title row', async ({ page }) => {
   await openPuzzle(page);

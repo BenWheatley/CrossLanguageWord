@@ -230,6 +230,19 @@
     max-width:640px;
   }
   #listPrompt[hidden]{ display:none; }
+  /* Same panel treatment as the word-list prompt: an aside the reader has to answer, shown above
+     the puzzle it is about rather than in place of it. */
+  #widePrompt{
+    border:1px solid var(--rule);
+    border-radius:6px;
+    padding:12px 14px;
+    margin:0 0 12px;
+    background:var(--panel);
+    max-width:640px;
+  }
+  #widePrompt[hidden]{ display:none; }
+  #widePrompt p{ margin:0 0 10px; font-size:14px; line-height:1.5; }
+  #widePrompt button + button{ margin-left:8px; }
   #listPrompt p{
     margin:0 0 10px;
     font-size:14px;
@@ -670,7 +683,8 @@
     }
     header.app-head,
     #statusRow,
-    #listPrompt{ flex:0 0 auto; }
+    #listPrompt,
+    #widePrompt{ flex:0 0 auto; }
 
     .board-area{
       flex:1 1 auto;

@@ -86,13 +86,6 @@ curated grid — and it is part of why 2 matters.
 
 ## 8. Smaller things
 
-- **A seed does not name the same puzzle at every window width.** The column
-  budget is computed from the screen and fed to the generator, so the same link
-  opened on a phone and on a desktop builds two different grids from the same
-  seed. The words and clues are drawn before the layout, so those match; the
-  grid does not. Either the width wants to be in the link alongside the seed, or
-  generation wants a fixed column budget with the display adapting instead.
-
 - **Tab moves square by square, not clue to clue.** Every major crossword uses
   Tab for the next clue. The highlight now follows focus, so it is coherent, but
   it is still not the convention.
@@ -125,3 +118,6 @@ curated grid — and it is part of why 2 matters.
   regions that cannot be scrolled off, pinned to the visible area so the
   keyboard cannot hide the clues, with the current square centred in its pane.
 - Installable, and works with no network at all (README section 10).
+- 8, first item — a seed now names one puzzle, because the link carries the width
+  it was built at. Where that width does not fit the screen, the choice between
+  the exact puzzle and a fitted one is put to the reader.
