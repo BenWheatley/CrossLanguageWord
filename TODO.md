@@ -20,6 +20,21 @@ For something called a trainer this is the central gap. The groundwork is
 already in place: words are keyed by answer, bank order is stable, puzzles are
 seeded and reproducible.
 
+**Settled: this goes in a separate mode, and does not change the existing one.**
+A personalised draw and a shareable seed cannot both hold — if selection depends
+on private history, a link stops naming the same puzzle for two people. So there
+are three modes rather than one behaviour:
+
+| Mode | Draw | Shareable |
+| --- | --- | --- |
+| Shareable | uniform, seeded — exactly as today | yes, by link |
+| Smart | weighted by this reader's record | no |
+| Daily | uniform, seeded from the date | yes, implicitly — same puzzle for everyone |
+
+Daily is a variant of shareable rather than of smart: same uniform draw, with the
+seed derived from the date instead of chosen at random. It is in the Later pile
+below. Nothing about smart mode may alter what an existing link opens.
+
 - Record a per-answer outcome: solved unaided / needed checking / hinted. Hints
   per word and attention per word are already tracked for the end-of-puzzle
   summary; they are thrown away when the puzzle changes, and want keeping.
@@ -51,6 +66,12 @@ Things worth having that are not worth having yet.
   compressed. Self-contained, works offline, needs no word list at the other end.
   A separate feature from ordinary sharing rather than an extension of it: the
   recipient has a puzzle but nothing to build a second one from.
+
+- **A daily puzzle.** One puzzle per date, the same for everybody, seeded from the
+  date rather than at random. Agreed as an easy win and wanted, but the design is
+  not worked out: which list it draws from, what happens when you open it twice,
+  whether yesterday's is still reachable, and whether a streak is counted. Needs
+  workshopping before it is built.
 
 - **Improve a finished grid by moving words about.** Once a puzzle is built, try
   relocating individual words and keep whatever raises the crossing count. More
@@ -126,6 +147,14 @@ Three ways out, none chosen:
   handles all of them together. The right long-term home — a word skipped by the
   generator and a word the learner keeps missing both want the same treatment —
   but it cannot be built before 1 is.
+
+**The mode split (1) narrows this.** In shareable mode the draw must be a pure
+function of the seed, or a link stops opening the same puzzle for two people. A
+and C both consult counts accumulated locally, so both would break that — they
+are usable in smart mode only, and shareable mode would still need its own
+answer. B changes only how the pool is drawn from a given seed, so it holds in
+every mode. That is a real narrowing rather than a preference: B is the only one
+of the three that can fix shareable mode at all.
 
 **Recommendation: measure B first.** It is the only one of the three that removes
 the bias instead of correcting for it after the fact, and the cost is a number we
