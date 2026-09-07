@@ -41,6 +41,22 @@ left:
 - **A single current-clue line** might serve better than a clue pane while the
   keyboard is up, when there is only about a third of the screen to share.
 
+## Later, deliberately
+
+Things worth having that are not worth having yet.
+
+- **Send a puzzle to somebody who does not have the list.** Compress the answers
+  *and* their clues into the URL fragment (`#…`, never sent to a server, and
+  comfortably long). About 800 bytes raw for fifteen words, perhaps 400
+  compressed. Self-contained, works offline, needs no word list at the other end.
+  A separate feature from ordinary sharing rather than an extension of it: the
+  recipient has a puzzle but nothing to build a second one from.
+
+- **Improve a finished grid by moving words about.** Once a puzzle is built, try
+  relocating individual words and keep whatever raises the crossing count. More
+  work than the generator changes already made, and less certain to pay off, so
+  it waits until those have been measured.
+
 ## 5. Nothing happens while you are solving
 
 Completing a word correctly produces no feedback at all: the clue is not marked,

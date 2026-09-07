@@ -212,6 +212,22 @@ plain JSON:
 }
 ```
 
+### A note on changing a word list
+
+The lists are **append-only**, and each says so in its own header. A shared puzzle
+identifies its words and clues by their position in the list, so a link made today
+has to still mean the same thing tomorrow.
+
+* Add new words, and new clues, **at the end**.
+* Never reorder, and never remove.
+* Never rewrite a clue in place — append the better wording and leave the old one
+  where it is.
+* Raise `version` in the header when you append.
+
+Kept to, links stay valid indefinitely and stay short. Broken, an old link quietly
+opens a puzzle with somebody else's clues in it, which is the sort of fault nobody
+thinks to look for.
+
 Points to observe:
 
 * `word` is the answer, and goes in the grid. `clues` is a list, and the
