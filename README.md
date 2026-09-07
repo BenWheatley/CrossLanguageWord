@@ -50,7 +50,7 @@ Four word lists are included:
 | English | 1000 English words, English clues |
 | Deutsch A2 | 1167 German words at CEFR level A2 |
 | Deutsch B1 | 1000 German words at CEFR level B1 |
-| Deutsch B1 → Englisch | German answers, English clues |
+| Deutsch B1 → Englisch | 1000 English words at CEFR level B1, German clues |
 
 Every word carries at least two hand-written clues, and the program chooses
 between them afresh for each puzzle, so the same word does not become
