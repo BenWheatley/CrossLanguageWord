@@ -282,7 +282,9 @@ test('solving the puzzle correctly triggers the celebration overlay', async () =
   });
 
   test('regenerating can show a different clue for a word, not the one it was stuck with on load', async () => {
-    // Deutsch A2 is the smallest bundled list, so words recur quickly across regenerations.
+    // Any bundled list will do: 30 words drawn 25 times over is far more draws than the list is
+    // long, so words recur, and each carries exactly two clues - so a recurrence has an even
+    // chance of showing the other one.
     const app = await bootApp('?list=german_a2&words=30');
     const doc = app.document;
     const seen = new Map();
@@ -308,7 +310,8 @@ test('solving the puzzle correctly triggers the celebration overlay', async () =
   });
 
   test('no puzzle contains the same answer twice, even from a list with duplicate entries', async () => {
-    // Deutsch A2 lists kaufen, brauchen and morgen twice each.
+    // Deutsch A2 lists kaufen, brauchen and morgen twice each - the list is append-only, so those
+    // duplicates stay put however much it grows, and a 60-word draw can still turn one up.
     const app = await bootApp('?list=german_a2&words=60');
     const doc = app.document;
     for(let i = 0; i < 20; i++){
@@ -324,10 +327,33 @@ test('solving the puzzle correctly triggers the celebration overlay', async () =
   });
 
   test('duplicate list entries merge their clues rather than competing as two words', async () => {
-    const app = await bootApp('?list=german_a2&words=60');
+    // Fed through the real file input rather than taken from a bundled list. The bundled lists do
+    // contain accidental duplicates, but how often one is drawn depends on how long the list has
+    // grown - this test used to lean on Deutsch A2 being short, and stopped proving anything the
+    // moment that list was expanded. A fixture with one duplicate and nothing else makes the draw
+    // certain regardless.
+    const app = await bootApp('?words=4');
     const doc = app.document;
-    const cluesForKaufen = new Set();
-    for(let i = 0; i < 60 && cluesForKaufen.size <= 2; i++){
+    const list = {
+      metadata: { title: 'Merge Fixture', language: 'de', version: 1 },
+      words: [
+        { word: 'ALPHA',  clues: ['first clue for alpha', 'second clue for alpha'] },
+        { word: 'BETA',   clues: ['a clue for beta', 'another clue for beta'] },
+        { word: 'GAMMA',  clues: ['a clue for gamma', 'another clue for gamma'] },
+        { word: 'DELTA',  clues: ['a clue for delta', 'another clue for delta'] },
+        { word: 'ALPHA',  clues: ['third clue for alpha', 'fourth clue for alpha'] }
+      ]
+    };
+    const win = app.window;
+    const transfer = new win.DataTransfer();
+    transfer.items.add(new win.File([JSON.stringify(list)], 'merge-fixture.json', { type: 'application/json' }));
+    const input = doc.getElementById('fileInput');
+    input.files = transfer.files;
+    input.dispatchEvent(new win.Event('change', { bubbles: true }));
+    await waitFor(() => doc.getElementById('pageTitle').textContent === 'Merge Fixture');
+
+    const cluesForAlpha = new Set();
+    for(let i = 0; i < 40 && cluesForAlpha.size <= 2; i++){
       doc.getElementById('generateBtn').click();
       const pairs = [['#printAnswerAcross', '#acrossList'], ['#printAnswerDown', '#downList']];
       for(const [answerSel, clueSel] of pairs){
@@ -335,14 +361,14 @@ test('solving the puzzle correctly triggers the celebration overlay', async () =
           .map((li) => li.textContent.replace(/^\d+\.\s*/, ''));
         const clues = Array.from(doc.querySelectorAll(clueSel + ' li'))
           .map((li) => li.textContent.replace(/^\d+/, '').trim());
-        answers.forEach((answer, ix) => { if(answer === 'KAUFEN') cluesForKaufen.add(clues[ix]); });
+        answers.forEach((answer, ix) => { if(answer === 'ALPHA') cluesForAlpha.add(clues[ix]); });
       }
     }
     // Each source entry carries exactly two clues, so a third distinct clue is only reachable if
     // the two entries merged into one word. Asserting on all four would just be testing how
     // evenly a random draw covers four options.
-    assertTrue(cluesForKaufen.size > 2,
-      `only saw ${cluesForKaufen.size} distinct clues for KAUFEN; a merged word should offer more than one entry's worth`);
+    assertTrue(cluesForAlpha.size > 2,
+      `only saw ${cluesForAlpha.size} distinct clues for ALPHA; a merged word should offer more than one entry's worth`);
   });
 
   test('the word count is capped at 120, from the URL and from the field alike', async () => {

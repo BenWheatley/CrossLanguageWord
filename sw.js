@@ -15,7 +15,7 @@
  * Bump CACHE_VERSION when anything precached changes. Old caches are deleted on activation.
  */
 
-const CACHE_VERSION = 'crossword-trainer-v1';
+const CACHE_VERSION = 'crossword-trainer-v2';
 
 // Everything needed to open the program and build a puzzle with no network at all.
 const PRECACHE = [

@@ -48,7 +48,7 @@ Four word lists are included:
 | List | Contents |
 | --- | --- |
 | English | 1000 English words, English clues |
-| Deutsch A2 | 203 German words at CEFR level A2 |
+| Deutsch A2 | 1167 German words at CEFR level A2 |
 | Deutsch B1 | 1000 German words at CEFR level B1 |
 | Deutsch B1 → Englisch | German answers, English clues |
 

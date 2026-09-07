@@ -2,7 +2,7 @@
   "metadata": {
     "title": "Deutsch A2",
     "language": "de",
-    "version": 1,
+    "version": 2,
     "wordOrder": "append-only",
     "note": "Append-only. Shared puzzles identify words and clues by position, so links made today must still mean the same thing tomorrow: add new words and new clues at the end, never reorder or remove, and never rewrite a clue in place - append the better wording instead. Raise version when you append."
   },
@@ -1447,6 +1447,6733 @@
       "clues": [
         "To be allowed to do something",
         "To have permission"
+      ]
+    },
+    {
+      "word": "MUTTER",
+      "clues": [
+        "The female parent in a family",
+        "The woman who raised you"
+      ]
+    },
+    {
+      "word": "VATER",
+      "clues": [
+        "The male parent in a family",
+        "The man who raised you"
+      ]
+    },
+    {
+      "word": "ELTERN",
+      "clues": [
+        "A mother and a father together",
+        "The two adults who raise a child"
+      ]
+    },
+    {
+      "word": "KIND",
+      "clues": [
+        "A young person, not yet grown up",
+        "Someone too young for school, or just starting it"
+      ]
+    },
+    {
+      "word": "SOHN",
+      "clues": [
+        "A male child of his parents",
+        "What a boy is to his mother"
+      ]
+    },
+    {
+      "word": "TOCHTER",
+      "clues": [
+        "A female child of her parents",
+        "What a girl is to her father"
+      ]
+    },
+    {
+      "word": "BRUDER",
+      "clues": [
+        "A male sibling",
+        "Your parents' other son"
+      ]
+    },
+    {
+      "word": "SCHWESTER",
+      "clues": [
+        "A female sibling",
+        "Your parents' other daughter"
+      ]
+    },
+    {
+      "word": "GESCHWISTER",
+      "clues": [
+        "Brothers and sisters as a group",
+        "Children of the same parents"
+      ]
+    },
+    {
+      "word": "GROSSMUTTER",
+      "clues": [
+        "The mother of your mother or father",
+        "An older relative who often spoils the children"
+      ]
+    },
+    {
+      "word": "GROSSVATER",
+      "clues": [
+        "The father of your mother or father",
+        "An older male relative, two generations up"
+      ]
+    },
+    {
+      "word": "ENKEL",
+      "clues": [
+        "The child of your child",
+        "What you become to your grandparents"
+      ]
+    },
+    {
+      "word": "ONKEL",
+      "clues": [
+        "The brother of one of your parents",
+        "Your cousin's father"
+      ]
+    },
+    {
+      "word": "TANTE",
+      "clues": [
+        "The sister of one of your parents",
+        "Your cousin's mother"
+      ]
+    },
+    {
+      "word": "NEFFE",
+      "clues": [
+        "The son of your brother or sister",
+        "A male relative one generation down, not your own child"
+      ]
+    },
+    {
+      "word": "NICHTE",
+      "clues": [
+        "The daughter of your brother or sister",
+        "A female relative one generation down, not your own child"
+      ]
+    },
+    {
+      "word": "COUSIN",
+      "clues": [
+        "The son of your aunt or uncle",
+        "A male relative of your own generation"
+      ]
+    },
+    {
+      "word": "FAMILIE",
+      "clues": [
+        "Parents and children together",
+        "The group of people you are related to"
+      ]
+    },
+    {
+      "word": "EHEMANN",
+      "clues": [
+        "A married man, seen from his partner",
+        "The male half of a married couple"
+      ]
+    },
+    {
+      "word": "EHEFRAU",
+      "clues": [
+        "A married woman, seen from her partner",
+        "The female half of a married couple"
+      ]
+    },
+    {
+      "word": "HOCHZEIT",
+      "clues": [
+        "The celebration when two people marry",
+        "A day with rings, guests and cake"
+      ]
+    },
+    {
+      "word": "EHE",
+      "clues": [
+        "The state of being married",
+        "What a wedding begins"
+      ]
+    },
+    {
+      "word": "FREUND",
+      "clues": [
+        "Someone you like and spend time with",
+        "A person you trust but are not related to"
+      ]
+    },
+    {
+      "word": "FREUNDIN",
+      "clues": [
+        "A female companion you are close to",
+        "A woman you like and see often"
+      ]
+    },
+    {
+      "word": "NACHBAR",
+      "clues": [
+        "The person who lives next door",
+        "Someone whose house is beside yours"
+      ]
+    },
+    {
+      "word": "GAST",
+      "clues": [
+        "A person you have invited to your home",
+        "Someone staying at a hotel"
+      ]
+    },
+    {
+      "word": "MENSCH",
+      "clues": [
+        "A human being",
+        "Any person at all"
+      ]
+    },
+    {
+      "word": "LEUTE",
+      "clues": [
+        "People in general, as a group",
+        "More than one person"
+      ]
+    },
+    {
+      "word": "MANN",
+      "clues": [
+        "An adult male person",
+        "A grown-up boy"
+      ]
+    },
+    {
+      "word": "FRAU",
+      "clues": [
+        "An adult female person",
+        "A grown-up girl"
+      ]
+    },
+    {
+      "word": "JUNGE",
+      "clues": [
+        "A male child",
+        "A boy, not yet a man"
+      ]
+    },
+    {
+      "word": "MÄDCHEN",
+      "clues": [
+        "A female child",
+        "A girl, not yet a woman"
+      ]
+    },
+    {
+      "word": "BABY",
+      "clues": [
+        "A very small child who cannot walk yet",
+        "A person in the first year of life"
+      ]
+    },
+    {
+      "word": "ERWACHSENE",
+      "clues": [
+        "A person who is no longer a child",
+        "Someone old enough to vote"
+      ]
+    },
+    {
+      "word": "NAME",
+      "clues": [
+        "What you are called",
+        "The word that stands for a person"
+      ]
+    },
+    {
+      "word": "VORNAME",
+      "clues": [
+        "The personal part of what you are called",
+        "The name that comes before the family one"
+      ]
+    },
+    {
+      "word": "NACHNAME",
+      "clues": [
+        "The family part of what you are called",
+        "The name shared by parents and children"
+      ]
+    },
+    {
+      "word": "ADRESSE",
+      "clues": [
+        "Where you live, written for the post",
+        "Street, number and town together"
+      ]
+    },
+    {
+      "word": "ALTER",
+      "clues": [
+        "How many years someone has lived",
+        "A number that rises every birthday"
+      ]
+    },
+    {
+      "word": "GEBURTSTAG",
+      "clues": [
+        "The day you celebrate each year with cake",
+        "The anniversary of when you were born"
+      ]
+    },
+    {
+      "word": "GEBURTSORT",
+      "clues": [
+        "The town where you came into the world",
+        "A detail asked for on official forms"
+      ]
+    },
+    {
+      "word": "BERUF",
+      "clues": [
+        "The work you are trained to do",
+        "What you answer when asked what you do"
+      ]
+    },
+    {
+      "word": "KÖRPER",
+      "clues": [
+        "The whole physical form of a person",
+        "What clothes cover"
+      ]
+    },
+    {
+      "word": "KOPF",
+      "clues": [
+        "The part of the body above the neck",
+        "Where the brain sits"
+      ]
+    },
+    {
+      "word": "HAAR",
+      "clues": [
+        "What grows on your head and needs cutting",
+        "Something you brush in the morning"
+      ]
+    },
+    {
+      "word": "GESICHT",
+      "clues": [
+        "The front of the head",
+        "What you see in a mirror"
+      ]
+    },
+    {
+      "word": "AUGE",
+      "clues": [
+        "The part of the body you see with",
+        "One of a pair, above the nose"
+      ]
+    },
+    {
+      "word": "OHR",
+      "clues": [
+        "The part of the body you hear with",
+        "One on each side of the head"
+      ]
+    },
+    {
+      "word": "NASE",
+      "clues": [
+        "The part of the face you smell with",
+        "What you blow when you have a cold"
+      ]
+    },
+    {
+      "word": "MUND",
+      "clues": [
+        "The part of the face you speak and eat with",
+        "Where the teeth are"
+      ]
+    },
+    {
+      "word": "ZAHN",
+      "clues": [
+        "One of the hard white things you chew with",
+        "What a dentist looks at"
+      ]
+    },
+    {
+      "word": "ZUNGE",
+      "clues": [
+        "The soft part in the mouth you taste with",
+        "What you stick out to be rude"
+      ]
+    },
+    {
+      "word": "HALS",
+      "clues": [
+        "The part joining head and shoulders",
+        "What hurts first with a cold"
+      ]
+    },
+    {
+      "word": "SCHULTER",
+      "clues": [
+        "The joint where the arm meets the body",
+        "What you shrug"
+      ]
+    },
+    {
+      "word": "ARM",
+      "clues": [
+        "The limb between shoulder and hand",
+        "What you use to carry a box"
+      ]
+    },
+    {
+      "word": "HAND",
+      "clues": [
+        "The part at the end of the arm",
+        "What you shake when you meet someone"
+      ]
+    },
+    {
+      "word": "FINGER",
+      "clues": [
+        "One of five on each hand",
+        "What you point with"
+      ]
+    },
+    {
+      "word": "BAUCH",
+      "clues": [
+        "The soft front part below the chest",
+        "What hurts after eating too much"
+      ]
+    },
+    {
+      "word": "RÜCKEN",
+      "clues": [
+        "The part of the body behind the chest",
+        "What often aches after lifting"
+      ]
+    },
+    {
+      "word": "BEIN",
+      "clues": [
+        "The limb you stand on",
+        "What a table also has four of"
+      ]
+    },
+    {
+      "word": "KNIE",
+      "clues": [
+        "The joint in the middle of the leg",
+        "What you bend to kneel"
+      ]
+    },
+    {
+      "word": "FUSS",
+      "clues": [
+        "The part at the end of the leg",
+        "What shoes go on"
+      ]
+    },
+    {
+      "word": "HERZ",
+      "clues": [
+        "The organ that pumps blood",
+        "A shape used to mean love"
+      ]
+    },
+    {
+      "word": "BLUT",
+      "clues": [
+        "The red liquid inside the body",
+        "What comes out of a cut"
+      ]
+    },
+    {
+      "word": "HAUT",
+      "clues": [
+        "The outer covering of the body",
+        "What gets burnt in the sun"
+      ]
+    },
+    {
+      "word": "KNOCHEN",
+      "clues": [
+        "One of the hard parts inside the body",
+        "What a dog likes to chew"
+      ]
+    },
+    {
+      "word": "GESUND",
+      "clues": [
+        "In good health, not ill",
+        "How you feel when nothing hurts"
+      ]
+    },
+    {
+      "word": "KRANK",
+      "clues": [
+        "Not well; needing to stay in bed",
+        "How you feel with a fever"
+      ]
+    },
+    {
+      "word": "KRANKHEIT",
+      "clues": [
+        "A condition that makes you unwell",
+        "What a doctor tries to name"
+      ]
+    },
+    {
+      "word": "SCHMERZ",
+      "clues": [
+        "An unpleasant feeling in the body",
+        "What a painkiller reduces"
+      ]
+    },
+    {
+      "word": "FIEBER",
+      "clues": [
+        "A body temperature that is too high",
+        "What a thermometer shows when you are ill"
+      ]
+    },
+    {
+      "word": "HUSTEN",
+      "clues": [
+        "To push air out noisily when your throat itches",
+        "What you do with a bad chest"
+      ]
+    },
+    {
+      "word": "SCHNUPFEN",
+      "clues": [
+        "A blocked or running nose",
+        "A mild winter illness"
+      ]
+    },
+    {
+      "word": "GRIPPE",
+      "clues": [
+        "An illness with fever and aching limbs",
+        "What a yearly injection protects against"
+      ]
+    },
+    {
+      "word": "ARZT",
+      "clues": [
+        "A person trained to treat the sick",
+        "Who you visit when you are ill"
+      ]
+    },
+    {
+      "word": "ÄRZTIN",
+      "clues": [
+        "A woman trained to treat the sick",
+        "A female medical professional"
+      ]
+    },
+    {
+      "word": "ZAHNARZT",
+      "clues": [
+        "The person who looks after your teeth",
+        "Who you see about a hole in a molar"
+      ]
+    },
+    {
+      "word": "KRANKENHAUS",
+      "clues": [
+        "The building where the seriously ill are treated",
+        "Where operations happen"
+      ]
+    },
+    {
+      "word": "APOTHEKE",
+      "clues": [
+        "The shop where you collect medicine",
+        "Where a prescription is filled"
+      ]
+    },
+    {
+      "word": "MEDIKAMENT",
+      "clues": [
+        "Something you take to get better",
+        "What comes in tablets or drops"
+      ]
+    },
+    {
+      "word": "TABLETTE",
+      "clues": [
+        "A small round dose of medicine",
+        "Something you swallow with water"
+      ]
+    },
+    {
+      "word": "SPRITZE",
+      "clues": [
+        "An injection given with a needle",
+        "How a vaccine is usually delivered"
+      ]
+    },
+    {
+      "word": "VERBAND",
+      "clues": [
+        "Cloth wrapped around a wound",
+        "What covers a cut while it heals"
+      ]
+    },
+    {
+      "word": "UNFALL",
+      "clues": [
+        "Something bad that happens by chance",
+        "Why an ambulance is called"
+      ]
+    },
+    {
+      "word": "NOTFALL",
+      "clues": [
+        "A situation needing help immediately",
+        "Why you would ring the emergency number"
+      ]
+    },
+    {
+      "word": "TERMIN",
+      "clues": [
+        "An agreed time to meet someone",
+        "What you book at the doctor's"
+      ]
+    },
+    {
+      "word": "MÜDE",
+      "clues": [
+        "Needing sleep",
+        "How you feel late at night"
+      ]
+    },
+    {
+      "word": "HUNGRIG",
+      "clues": [
+        "Needing something to eat",
+        "How you feel before lunch"
+      ]
+    },
+    {
+      "word": "DURSTIG",
+      "clues": [
+        "Needing something to drink",
+        "How you feel after running in the heat"
+      ]
+    },
+    {
+      "word": "SATT",
+      "clues": [
+        "Having eaten enough",
+        "How you feel after a big meal"
+      ]
+    },
+    {
+      "word": "GLÜCKLICH",
+      "clues": [
+        "Feeling very pleased with life",
+        "How good news makes you"
+      ]
+    },
+    {
+      "word": "TRAURIG",
+      "clues": [
+        "Feeling unhappy",
+        "How you feel when saying goodbye"
+      ]
+    },
+    {
+      "word": "BÖSE",
+      "clues": [
+        "Feeling anger towards someone",
+        "How a parent looks after a broken window"
+      ]
+    },
+    {
+      "word": "FROH",
+      "clues": [
+        "Pleased and cheerful",
+        "How you feel when the sun comes out"
+      ]
+    },
+    {
+      "word": "MUT",
+      "clues": [
+        "The quality of facing fear",
+        "What you need to speak in public"
+      ]
+    },
+    {
+      "word": "ANGST",
+      "clues": [
+        "The feeling of being afraid",
+        "What the dark gives some children"
+      ]
+    },
+    {
+      "word": "SORGE",
+      "clues": [
+        "A worry about what might happen",
+        "What keeps you awake at night"
+      ]
+    },
+    {
+      "word": "LIEBE",
+      "clues": [
+        "A very strong warm feeling for someone",
+        "What the heart symbol stands for"
+      ]
+    },
+    {
+      "word": "HOFFNUNG",
+      "clues": [
+        "The feeling that things will turn out well",
+        "What you keep when the news is bad"
+      ]
+    },
+    {
+      "word": "SPASS",
+      "clues": [
+        "Enjoyment and amusement",
+        "What a good party gives you"
+      ]
+    },
+    {
+      "word": "LANGEWEILE",
+      "clues": [
+        "The feeling of having nothing to do",
+        "What a long wait produces"
+      ]
+    },
+    {
+      "word": "STRESS",
+      "clues": [
+        "Pressure that makes you tense",
+        "What too much work causes"
+      ]
+    },
+    {
+      "word": "RUHE",
+      "clues": [
+        "Quiet and calm",
+        "What you ask for when children are noisy"
+      ]
+    },
+    {
+      "word": "LACHEN",
+      "clues": [
+        "To make a happy sound at something funny",
+        "What a joke causes"
+      ]
+    },
+    {
+      "word": "WEINEN",
+      "clues": [
+        "To let tears fall",
+        "What a baby does when hungry"
+      ]
+    },
+    {
+      "word": "LÄCHELN",
+      "clues": [
+        "To turn the mouth up in a friendly way",
+        "What you do for a photograph"
+      ]
+    },
+    {
+      "word": "FÜHLEN",
+      "clues": [
+        "To have an emotion or sensation",
+        "To notice something by touch"
+      ]
+    },
+    {
+      "word": "WEHTUN",
+      "clues": [
+        "To cause pain",
+        "What a broken bone does"
+      ]
+    },
+    {
+      "word": "HEILEN",
+      "clues": [
+        "To make well again",
+        "What time is said to do to wounds"
+      ]
+    },
+    {
+      "word": "ATMEN",
+      "clues": [
+        "To take air in and let it out",
+        "Something you do without thinking"
+      ]
+    },
+    {
+      "word": "SCHWITZEN",
+      "clues": [
+        "To lose water through the skin in heat",
+        "What happens in a sauna"
+      ]
+    },
+    {
+      "word": "FRIEREN",
+      "clues": [
+        "To feel very cold",
+        "What you do without a coat in winter"
+      ]
+    },
+    {
+      "word": "WACHSEN",
+      "clues": [
+        "To become bigger over time",
+        "What children and plants both do"
+      ]
+    },
+    {
+      "word": "STERBEN",
+      "clues": [
+        "To stop living",
+        "The end that comes to everyone"
+      ]
+    },
+    {
+      "word": "LEBEN",
+      "clues": [
+        "To be alive",
+        "The time between birth and death"
+      ]
+    },
+    {
+      "word": "GEBOREN",
+      "clues": [
+        "Brought into the world",
+        "What you were, on your birthday, years ago"
+      ]
+    },
+    {
+      "word": "MÜDIGKEIT",
+      "clues": [
+        "The state of needing rest",
+        "What builds up on a long journey"
+      ]
+    },
+    {
+      "word": "KRAFT",
+      "clues": [
+        "Physical power",
+        "What you need to lift something heavy"
+      ]
+    },
+    {
+      "word": "SPORT",
+      "clues": [
+        "Physical activity done for health or fun",
+        "What you do in a gym"
+      ]
+    },
+    {
+      "word": "BEWEGUNG",
+      "clues": [
+        "Physical activity; not sitting still",
+        "What doctors say we need more of"
+      ]
+    },
+    {
+      "word": "DIÄT",
+      "clues": [
+        "A controlled way of eating",
+        "What people start in January"
+      ]
+    },
+    {
+      "word": "PFLEGE",
+      "clues": [
+        "Looking after someone who cannot manage alone",
+        "What the elderly may need at home"
+      ]
+    },
+    {
+      "word": "HILFE",
+      "clues": [
+        "Support given to someone in need",
+        "What you shout in danger"
+      ]
+    },
+    {
+      "word": "PATIENT",
+      "clues": [
+        "A person being treated by a doctor",
+        "Who waits in the surgery"
+      ]
+    },
+    {
+      "word": "REZEPT",
+      "clues": [
+        "A doctor's written order for medicine",
+        "Also: instructions for cooking a dish"
+      ]
+    },
+    {
+      "word": "HAUS",
+      "clues": [
+        "A building people live in",
+        "Something with a roof, walls and a front door"
+      ]
+    },
+    {
+      "word": "WOHNUNG",
+      "clues": [
+        "A home on one floor inside a larger building",
+        "What you rent in a block"
+      ]
+    },
+    {
+      "word": "ZIMMER",
+      "clues": [
+        "One space inside a home",
+        "What a hotel gives you a key to"
+      ]
+    },
+    {
+      "word": "KÜCHE",
+      "clues": [
+        "The room where meals are prepared",
+        "Where the cooker and fridge stand"
+      ]
+    },
+    {
+      "word": "BAD",
+      "clues": [
+        "The room with a bath and a basin",
+        "Where you wash in the morning"
+      ]
+    },
+    {
+      "word": "SCHLAFZIMMER",
+      "clues": [
+        "The room where you spend the night",
+        "Where the bed is"
+      ]
+    },
+    {
+      "word": "WOHNZIMMER",
+      "clues": [
+        "The room where the family sits together",
+        "Where the sofa and television are"
+      ]
+    },
+    {
+      "word": "FLUR",
+      "clues": [
+        "The passage connecting rooms",
+        "Where you hang your coat when you come in"
+      ]
+    },
+    {
+      "word": "KELLER",
+      "clues": [
+        "The room below ground level",
+        "Where old boxes and wine are kept"
+      ]
+    },
+    {
+      "word": "DACH",
+      "clues": [
+        "The covering on top of a building",
+        "What keeps the rain out"
+      ]
+    },
+    {
+      "word": "BODEN",
+      "clues": [
+        "The surface you walk on indoors",
+        "Also: the earth in a garden"
+      ]
+    },
+    {
+      "word": "WAND",
+      "clues": [
+        "The upright side of a room",
+        "What you hang a picture on"
+      ]
+    },
+    {
+      "word": "DECKE",
+      "clues": [
+        "The surface above you in a room",
+        "Also: what you pull over you in bed"
+      ]
+    },
+    {
+      "word": "TÜR",
+      "clues": [
+        "What you open to enter a room",
+        "Something with a handle and a lock"
+      ]
+    },
+    {
+      "word": "FENSTER",
+      "clues": [
+        "The glass opening in a wall",
+        "What you look out of"
+      ]
+    },
+    {
+      "word": "TREPPE",
+      "clues": [
+        "Steps between floors",
+        "How you get upstairs without a lift"
+      ]
+    },
+    {
+      "word": "AUFZUG",
+      "clues": [
+        "The machine that carries you between floors",
+        "What you take instead of the stairs"
+      ]
+    },
+    {
+      "word": "GARTEN",
+      "clues": [
+        "The green space beside a house",
+        "Where flowers and vegetables are grown"
+      ]
+    },
+    {
+      "word": "BALKON",
+      "clues": [
+        "A small platform outside an upper window",
+        "Where you sit outside without leaving the flat"
+      ]
+    },
+    {
+      "word": "GARAGE",
+      "clues": [
+        "Where a car is kept under cover",
+        "A building beside the house for a vehicle"
+      ]
+    },
+    {
+      "word": "MÖBEL",
+      "clues": [
+        "Tables, chairs and cupboards together",
+        "What you move when you change home"
+      ]
+    },
+    {
+      "word": "TISCH",
+      "clues": [
+        "A flat surface on legs",
+        "What you eat at"
+      ]
+    },
+    {
+      "word": "STUHL",
+      "clues": [
+        "A seat for one person",
+        "What you pull up to the table"
+      ]
+    },
+    {
+      "word": "SESSEL",
+      "clues": [
+        "A soft chair with arms",
+        "Where you sit to read in comfort"
+      ]
+    },
+    {
+      "word": "SOFA",
+      "clues": [
+        "A long soft seat for several people",
+        "What faces the television"
+      ]
+    },
+    {
+      "word": "BETT",
+      "clues": [
+        "The furniture you sleep in",
+        "What you make in the morning"
+      ]
+    },
+    {
+      "word": "SCHRANK",
+      "clues": [
+        "A tall cupboard for clothes",
+        "Where shirts hang"
+      ]
+    },
+    {
+      "word": "REGAL",
+      "clues": [
+        "Shelves for books or jars",
+        "Where a collection is displayed"
+      ]
+    },
+    {
+      "word": "SPIEGEL",
+      "clues": [
+        "Glass that shows your reflection",
+        "What hangs above the basin"
+      ]
+    },
+    {
+      "word": "LAMPE",
+      "clues": [
+        "Something that gives light in a room",
+        "What you switch on when it gets dark"
+      ]
+    },
+    {
+      "word": "TEPPICH",
+      "clues": [
+        "A soft floor covering",
+        "What lies under the table"
+      ]
+    },
+    {
+      "word": "VORHANG",
+      "clues": [
+        "Cloth pulled across a window",
+        "What you close at night"
+      ]
+    },
+    {
+      "word": "KISSEN",
+      "clues": [
+        "A soft bag you rest your head on",
+        "What lies at the top of the bed"
+      ]
+    },
+    {
+      "word": "HANDTUCH",
+      "clues": [
+        "Cloth for drying yourself",
+        "What hangs beside the bath"
+      ]
+    },
+    {
+      "word": "SEIFE",
+      "clues": [
+        "What you wash your hands with",
+        "Something that makes bubbles"
+      ]
+    },
+    {
+      "word": "KÜHLSCHRANK",
+      "clues": [
+        "The cold cupboard for food",
+        "Where the milk is kept"
+      ]
+    },
+    {
+      "word": "HERD",
+      "clues": [
+        "The appliance you cook on",
+        "What has rings or plates on top"
+      ]
+    },
+    {
+      "word": "OFEN",
+      "clues": [
+        "The hot box for roasting and baking",
+        "Where bread is browned"
+      ]
+    },
+    {
+      "word": "WASCHMASCHINE",
+      "clues": [
+        "The machine that cleans clothes",
+        "What you fill with dirty shirts"
+      ]
+    },
+    {
+      "word": "STAUBSAUGER",
+      "clues": [
+        "The machine that pulls dirt off the floor",
+        "A noisy cleaning appliance"
+      ]
+    },
+    {
+      "word": "SCHLÜSSEL",
+      "clues": [
+        "The small metal thing that opens a lock",
+        "What you must not leave inside the flat"
+      ]
+    },
+    {
+      "word": "MIETE",
+      "clues": [
+        "What a tenant pays each month",
+        "The cost of living in someone else's flat"
+      ]
+    },
+    {
+      "word": "VERMIETER",
+      "clues": [
+        "The person who owns the flat you rent",
+        "Who you pay each month"
+      ]
+    },
+    {
+      "word": "UMZUG",
+      "clues": [
+        "Moving your things to a new home",
+        "What a van is hired for"
+      ]
+    },
+    {
+      "word": "STROM",
+      "clues": [
+        "Electric power in the house",
+        "What runs the lights"
+      ]
+    },
+    {
+      "word": "HEIZUNG",
+      "clues": [
+        "What keeps a room warm in winter",
+        "The radiators and boiler together"
+      ]
+    },
+    {
+      "word": "WASSER",
+      "clues": [
+        "The clear liquid from the tap",
+        "What you drink most of"
+      ]
+    },
+    {
+      "word": "MÜLL",
+      "clues": [
+        "What you throw away",
+        "What is collected once a week"
+      ]
+    },
+    {
+      "word": "KLEIDUNG",
+      "clues": [
+        "What people wear",
+        "Clothes in general"
+      ]
+    },
+    {
+      "word": "HEMD",
+      "clues": [
+        "A buttoned top with a collar",
+        "What a suit is worn over"
+      ]
+    },
+    {
+      "word": "HOSE",
+      "clues": [
+        "Clothing with two legs",
+        "What you pull on before your shoes"
+      ]
+    },
+    {
+      "word": "ROCK",
+      "clues": [
+        "A garment hanging from the waist, with no legs",
+        "Worn instead of trousers"
+      ]
+    },
+    {
+      "word": "KLEID",
+      "clues": [
+        "A one-piece garment for the whole body",
+        "Often worn to a party"
+      ]
+    },
+    {
+      "word": "JACKE",
+      "clues": [
+        "A short coat",
+        "What you put on when it turns cool"
+      ]
+    },
+    {
+      "word": "MANTEL",
+      "clues": [
+        "A long warm coat",
+        "Winter outer clothing"
+      ]
+    },
+    {
+      "word": "PULLOVER",
+      "clues": [
+        "A warm knitted top",
+        "What you pull over your head when cold"
+      ]
+    },
+    {
+      "word": "SCHUH",
+      "clues": [
+        "What you wear on your foot",
+        "Something with laces"
+      ]
+    },
+    {
+      "word": "STIEFEL",
+      "clues": [
+        "A tall shoe covering the ankle",
+        "Footwear for mud and snow"
+      ]
+    },
+    {
+      "word": "SOCKE",
+      "clues": [
+        "What goes on the foot inside a shoe",
+        "The thing that always loses its partner"
+      ]
+    },
+    {
+      "word": "MÜTZE",
+      "clues": [
+        "A soft warm head covering",
+        "What you wear when it snows"
+      ]
+    },
+    {
+      "word": "HUT",
+      "clues": [
+        "A head covering with a brim",
+        "What a gentleman raises politely"
+      ]
+    },
+    {
+      "word": "SCHAL",
+      "clues": [
+        "A long strip worn round the neck",
+        "Winter protection for the throat"
+      ]
+    },
+    {
+      "word": "HANDSCHUH",
+      "clues": [
+        "What keeps a hand warm",
+        "Worn in pairs in winter"
+      ]
+    },
+    {
+      "word": "GÜRTEL",
+      "clues": [
+        "A strap round the waist",
+        "What holds trousers up"
+      ]
+    },
+    {
+      "word": "TASCHE",
+      "clues": [
+        "Something you carry things in",
+        "Also: the pocket in a coat"
+      ]
+    },
+    {
+      "word": "BRILLE",
+      "clues": [
+        "Glass lenses worn on the nose",
+        "What helps you read small print"
+      ]
+    },
+    {
+      "word": "RING",
+      "clues": [
+        "A circle of metal worn on a finger",
+        "What is exchanged at a wedding"
+      ]
+    },
+    {
+      "word": "SCHMUCK",
+      "clues": [
+        "Rings, necklaces and bracelets together",
+        "What is kept in a small box"
+      ]
+    },
+    {
+      "word": "GRÖSSE",
+      "clues": [
+        "How big something is",
+        "What you must know when buying shoes"
+      ]
+    },
+    {
+      "word": "STADT",
+      "clues": [
+        "A large place where many people live",
+        "Bigger than a village"
+      ]
+    },
+    {
+      "word": "DORF",
+      "clues": [
+        "A small place in the country",
+        "Where everybody knows everybody"
+      ]
+    },
+    {
+      "word": "STRASSE",
+      "clues": [
+        "The way cars drive along",
+        "What has a name and house numbers"
+      ]
+    },
+    {
+      "word": "PLATZ",
+      "clues": [
+        "An open square in a town",
+        "Also: a seat that is free"
+      ]
+    },
+    {
+      "word": "BRÜCKE",
+      "clues": [
+        "What carries a road over a river",
+        "How you cross water without a boat"
+      ]
+    },
+    {
+      "word": "KIRCHE",
+      "clues": [
+        "The building where people pray",
+        "What has a tower and bells"
+      ]
+    },
+    {
+      "word": "SCHULE",
+      "clues": [
+        "Where children learn",
+        "Where lessons and breaks happen"
+      ]
+    },
+    {
+      "word": "RATHAUS",
+      "clues": [
+        "The building where the town is governed",
+        "Where you register an address"
+      ]
+    },
+    {
+      "word": "POST",
+      "clues": [
+        "Where letters and parcels are sent from",
+        "What brings you the morning mail"
+      ]
+    },
+    {
+      "word": "BANK",
+      "clues": [
+        "Where money is kept and lent",
+        "Also: a seat in a park"
+      ]
+    },
+    {
+      "word": "MARKT",
+      "clues": [
+        "Where traders sell from stalls",
+        "A square full of fruit on a Saturday"
+      ]
+    },
+    {
+      "word": "GESCHÄFT",
+      "clues": [
+        "A place where things are sold",
+        "Also: business in general"
+      ]
+    },
+    {
+      "word": "LADEN",
+      "clues": [
+        "A small shop",
+        "Where you buy bread on the corner"
+      ]
+    },
+    {
+      "word": "SUPERMARKT",
+      "clues": [
+        "A large self-service food shop",
+        "Where you push a trolley"
+      ]
+    },
+    {
+      "word": "BÄCKEREI",
+      "clues": [
+        "The shop that sells bread and rolls",
+        "Where the smell is best in the morning"
+      ]
+    },
+    {
+      "word": "METZGEREI",
+      "clues": [
+        "The shop that sells meat",
+        "Where sausages hang in the window"
+      ]
+    },
+    {
+      "word": "RESTAURANT",
+      "clues": [
+        "Where meals are served at tables",
+        "Where a waiter brings the bill"
+      ]
+    },
+    {
+      "word": "HOTEL",
+      "clues": [
+        "Where travellers sleep for a fee",
+        "A building with numbered rooms and a reception"
+      ]
+    },
+    {
+      "word": "MUSEUM",
+      "clues": [
+        "A building full of things worth seeing",
+        "Where old objects are displayed"
+      ]
+    },
+    {
+      "word": "KINO",
+      "clues": [
+        "Where films are shown",
+        "A dark room with a large screen"
+      ]
+    },
+    {
+      "word": "THEATER",
+      "clues": [
+        "Where plays are performed",
+        "Where actors appear on a stage"
+      ]
+    },
+    {
+      "word": "BIBLIOTHEK",
+      "clues": [
+        "Where books are borrowed",
+        "A quiet building full of shelves"
+      ]
+    },
+    {
+      "word": "PARK",
+      "clues": [
+        "Green space in a town",
+        "Where people walk dogs and sit on benches"
+      ]
+    },
+    {
+      "word": "ZOO",
+      "clues": [
+        "Where wild animals are kept and shown",
+        "Where children go to see elephants"
+      ]
+    },
+    {
+      "word": "SCHWIMMBAD",
+      "clues": [
+        "Where you go to swim indoors",
+        "A building with lanes and chlorine"
+      ]
+    },
+    {
+      "word": "STADION",
+      "clues": [
+        "Where large crowds watch sport",
+        "Where a football match is played"
+      ]
+    },
+    {
+      "word": "FLUGHAFEN",
+      "clues": [
+        "Where aeroplanes land and take off",
+        "Where you check in a suitcase"
+      ]
+    },
+    {
+      "word": "BAHNHOF",
+      "clues": [
+        "Where trains stop for passengers",
+        "Where you look at a departure board"
+      ]
+    },
+    {
+      "word": "HALTESTELLE",
+      "clues": [
+        "Where a bus picks people up",
+        "Where you wait with a timetable"
+      ]
+    },
+    {
+      "word": "PARKPLATZ",
+      "clues": [
+        "Where cars are left",
+        "What is always full in the town centre"
+      ]
+    },
+    {
+      "word": "TANKSTELLE",
+      "clues": [
+        "Where a car is refuelled",
+        "Where you also buy a bad coffee at night"
+      ]
+    },
+    {
+      "word": "AUTO",
+      "clues": [
+        "A vehicle with four wheels for a few people",
+        "What needs a licence to drive"
+      ]
+    },
+    {
+      "word": "BUS",
+      "clues": [
+        "A large road vehicle for many passengers",
+        "What stops every few streets"
+      ]
+    },
+    {
+      "word": "ZUG",
+      "clues": [
+        "A line of carriages on rails",
+        "What runs on tracks between cities"
+      ]
+    },
+    {
+      "word": "BAHN",
+      "clues": [
+        "The railway system",
+        "How you travel on rails"
+      ]
+    },
+    {
+      "word": "STRASSENBAHN",
+      "clues": [
+        "A tram running on city rails",
+        "A rail vehicle that shares the road"
+      ]
+    },
+    {
+      "word": "FAHRRAD",
+      "clues": [
+        "A vehicle with two wheels and pedals",
+        "What you ride and must not forget to lock"
+      ]
+    },
+    {
+      "word": "MOTORRAD",
+      "clues": [
+        "A two-wheeled vehicle with an engine",
+        "What needs a helmet"
+      ]
+    },
+    {
+      "word": "FLUGZEUG",
+      "clues": [
+        "A vehicle that carries people through the air",
+        "What has wings and a cabin"
+      ]
+    },
+    {
+      "word": "SCHIFF",
+      "clues": [
+        "A large vessel that carries people on water",
+        "What sails between ports"
+      ]
+    },
+    {
+      "word": "BOOT",
+      "clues": [
+        "A small vessel on water",
+        "What is rowed or sailed"
+      ]
+    },
+    {
+      "word": "TAXI",
+      "clues": [
+        "A car you pay to be driven in",
+        "What you wave down in the street"
+      ]
+    },
+    {
+      "word": "FAHRKARTE",
+      "clues": [
+        "What proves you may travel",
+        "What an inspector asks to see"
+      ]
+    },
+    {
+      "word": "FAHRPLAN",
+      "clues": [
+        "The list of departure times",
+        "What tells you when the next train goes"
+      ]
+    },
+    {
+      "word": "GLEIS",
+      "clues": [
+        "The numbered place a train arrives at",
+        "Where the rails run at a station"
+      ]
+    },
+    {
+      "word": "VERSPÄTUNG",
+      "clues": [
+        "Arriving later than promised",
+        "What is announced apologetically at stations"
+      ]
+    },
+    {
+      "word": "REISE",
+      "clues": [
+        "A journey to somewhere far",
+        "What a holiday begins with"
+      ]
+    },
+    {
+      "word": "URLAUB",
+      "clues": [
+        "Time away from work for rest",
+        "What you count the days to"
+      ]
+    },
+    {
+      "word": "KOFFER",
+      "clues": [
+        "The case you pack for a journey",
+        "What goes in the hold of a plane"
+      ]
+    },
+    {
+      "word": "RUCKSACK",
+      "clues": [
+        "A bag carried on the back",
+        "What a walker wears"
+      ]
+    },
+    {
+      "word": "PASS",
+      "clues": [
+        "The document that lets you cross a border",
+        "What is stamped at customs"
+      ]
+    },
+    {
+      "word": "GRENZE",
+      "clues": [
+        "The line between two countries",
+        "Where you may be asked for papers"
+      ]
+    },
+    {
+      "word": "AUSLAND",
+      "clues": [
+        "Countries other than your own",
+        "Where you go when you travel far"
+      ]
+    },
+    {
+      "word": "HEIMAT",
+      "clues": [
+        "The place you feel you come from",
+        "Where your roots are"
+      ]
+    },
+    {
+      "word": "WEG",
+      "clues": [
+        "The route from one place to another",
+        "Also: a narrow path"
+      ]
+    },
+    {
+      "word": "KARTE",
+      "clues": [
+        "A drawing showing where places are",
+        "Also: what you pay with instead of cash"
+      ]
+    },
+    {
+      "word": "RICHTUNG",
+      "clues": [
+        "The way something points",
+        "North, south, east or west"
+      ]
+    },
+    {
+      "word": "ABFAHRT",
+      "clues": [
+        "The moment a train or bus leaves",
+        "The opposite of arrival"
+      ]
+    },
+    {
+      "word": "ANKUNFT",
+      "clues": [
+        "The moment you reach your destination",
+        "What the board shows for incoming flights"
+      ]
+    },
+    {
+      "word": "EINTRITT",
+      "clues": [
+        "What you pay to go in",
+        "The price of admission"
+      ]
+    },
+    {
+      "word": "AUSGANG",
+      "clues": [
+        "The way out of a building",
+        "What is marked with a green sign"
+      ]
+    },
+    {
+      "word": "EINGANG",
+      "clues": [
+        "The way into a building",
+        "Where you go in"
+      ]
+    },
+    {
+      "word": "FAHREN",
+      "clues": [
+        "To travel by vehicle",
+        "What a driver does"
+      ]
+    },
+    {
+      "word": "FLIEGEN",
+      "clues": [
+        "To travel through the air",
+        "What birds and planes do"
+      ]
+    },
+    {
+      "word": "LAUFEN",
+      "clues": [
+        "To move quickly on foot",
+        "Also: everyday word for going on foot"
+      ]
+    },
+    {
+      "word": "STEIGEN",
+      "clues": [
+        "To go upwards",
+        "What prices annoyingly do"
+      ]
+    },
+    {
+      "word": "WARTEN",
+      "clues": [
+        "To stay until something happens",
+        "What you do at a bus stop"
+      ]
+    },
+    {
+      "word": "ANKOMMEN",
+      "clues": [
+        "To reach the place you were going",
+        "What you finally do after a long journey"
+      ]
+    },
+    {
+      "word": "ABFAHREN",
+      "clues": [
+        "To set off in a vehicle",
+        "What a train does at the timetabled minute"
+      ]
+    },
+    {
+      "word": "MITNEHMEN",
+      "clues": [
+        "To take something along with you",
+        "What you do with an umbrella if rain is likely"
+      ]
+    },
+    {
+      "word": "PACKEN",
+      "clues": [
+        "To put things into a case",
+        "What you do the night before a trip"
+      ]
+    },
+    {
+      "word": "BUCHEN",
+      "clues": [
+        "To reserve a room or a seat",
+        "What you do online before travelling"
+      ]
+    },
+    {
+      "word": "BROT",
+      "clues": [
+        "The baked food you slice for sandwiches",
+        "What a baker makes from flour and yeast"
+      ]
+    },
+    {
+      "word": "BRÖTCHEN",
+      "clues": [
+        "A small round baked roll",
+        "What Germans buy fresh for breakfast"
+      ]
+    },
+    {
+      "word": "BUTTER",
+      "clues": [
+        "The yellow fat spread on bread",
+        "What is churned from cream"
+      ]
+    },
+    {
+      "word": "KÄSE",
+      "clues": [
+        "A food made from milk, often yellow",
+        "What has holes in the cartoon version"
+      ]
+    },
+    {
+      "word": "WURST",
+      "clues": [
+        "Meat in a long skin",
+        "What is grilled at a barbecue"
+      ]
+    },
+    {
+      "word": "FLEISCH",
+      "clues": [
+        "Food that comes from an animal",
+        "What vegetarians avoid"
+      ]
+    },
+    {
+      "word": "SCHINKEN",
+      "clues": [
+        "Cured meat from a pig's leg",
+        "A thin slice for a sandwich"
+      ]
+    },
+    {
+      "word": "SUPPE",
+      "clues": [
+        "A hot liquid meal eaten with a spoon",
+        "What you have when you are ill"
+      ]
+    },
+    {
+      "word": "SALAT",
+      "clues": [
+        "A cold dish of raw leaves",
+        "What comes with dressing on the side"
+      ]
+    },
+    {
+      "word": "GEMÜSE",
+      "clues": [
+        "Plants eaten as food, not sweet",
+        "Carrots, beans and cabbage together"
+      ]
+    },
+    {
+      "word": "OBST",
+      "clues": [
+        "Sweet food that grows on trees and bushes",
+        "Apples, pears and plums together"
+      ]
+    },
+    {
+      "word": "BIRNE",
+      "clues": [
+        "A fruit narrow at the top, wide below",
+        "Also: the glass part of a lamp"
+      ]
+    },
+    {
+      "word": "TRAUBE",
+      "clues": [
+        "A small round fruit growing in bunches",
+        "What wine is pressed from"
+      ]
+    },
+    {
+      "word": "ERDBEERE",
+      "clues": [
+        "A red summer fruit with seeds outside",
+        "What is served with cream"
+      ]
+    },
+    {
+      "word": "KIRSCHE",
+      "clues": [
+        "A small red fruit with a stone",
+        "What grows on a tree and stains your fingers"
+      ]
+    },
+    {
+      "word": "ORANGE",
+      "clues": [
+        "A round citrus fruit",
+        "Also: a colour between red and yellow"
+      ]
+    },
+    {
+      "word": "ZITRONE",
+      "clues": [
+        "A sour yellow citrus fruit",
+        "What you squeeze into tea"
+      ]
+    },
+    {
+      "word": "MÖHRE",
+      "clues": [
+        "A long orange root vegetable",
+        "What rabbits are said to love"
+      ]
+    },
+    {
+      "word": "GURKE",
+      "clues": [
+        "A long green vegetable, mostly water",
+        "What is sliced into a salad or pickled"
+      ]
+    },
+    {
+      "word": "PILZ",
+      "clues": [
+        "Something that grows in damp woods and is eaten",
+        "What you must identify carefully before cooking"
+      ]
+    },
+    {
+      "word": "BOHNE",
+      "clues": [
+        "A seed eaten as a vegetable",
+        "Also: what coffee is ground from"
+      ]
+    },
+    {
+      "word": "ERBSE",
+      "clues": [
+        "A small round green seed in a pod",
+        "What is frozen by the bagful"
+      ]
+    },
+    {
+      "word": "MEHL",
+      "clues": [
+        "Ground grain used for baking",
+        "What bread starts as"
+      ]
+    },
+    {
+      "word": "EIER",
+      "clues": [
+        "More than one of what a hen lays",
+        "What you beat for an omelette"
+      ]
+    },
+    {
+      "word": "KUCHEN",
+      "clues": [
+        "A sweet baked dish for special days",
+        "What has candles on a birthday"
+      ]
+    },
+    {
+      "word": "KEKS",
+      "clues": [
+        "A small hard sweet baked thing",
+        "What you dunk in tea"
+      ]
+    },
+    {
+      "word": "SCHOKOLADE",
+      "clues": [
+        "A sweet brown food made from cocoa",
+        "What melts in a warm pocket"
+      ]
+    },
+    {
+      "word": "EIS",
+      "clues": [
+        "A frozen sweet eaten in summer",
+        "Also: frozen water"
+      ]
+    },
+    {
+      "word": "HONIG",
+      "clues": [
+        "The sweet food bees make",
+        "What you stir into tea for a sore throat"
+      ]
+    },
+    {
+      "word": "MARMELADE",
+      "clues": [
+        "Sweet fruit spread for bread",
+        "What goes on toast at breakfast"
+      ]
+    },
+    {
+      "word": "PFEFFER",
+      "clues": [
+        "The dark spice ground beside the salt",
+        "What makes you sneeze"
+      ]
+    },
+    {
+      "word": "ÖL",
+      "clues": [
+        "The liquid fat used for frying",
+        "What is pressed from olives"
+      ]
+    },
+    {
+      "word": "ESSIG",
+      "clues": [
+        "A sour liquid used in dressings",
+        "What goes with oil on a salad"
+      ]
+    },
+    {
+      "word": "SOSSE",
+      "clues": [
+        "The liquid poured over a dish",
+        "What gravy is"
+      ]
+    },
+    {
+      "word": "BIER",
+      "clues": [
+        "An alcoholic drink made from hops",
+        "What comes in a stein"
+      ]
+    },
+    {
+      "word": "WEIN",
+      "clues": [
+        "An alcoholic drink made from grapes",
+        "What is red, white or rosé"
+      ]
+    },
+    {
+      "word": "SEKT",
+      "clues": [
+        "A sparkling wine for celebrations",
+        "What is opened with a pop at New Year"
+      ]
+    },
+    {
+      "word": "MINERALWASSER",
+      "clues": [
+        "Bottled water, often with bubbles",
+        "What you order instead of tap water"
+      ]
+    },
+    {
+      "word": "LIMONADE",
+      "clues": [
+        "A sweet fizzy drink",
+        "What children order in a restaurant"
+      ]
+    },
+    {
+      "word": "FRÜHSTÜCK",
+      "clues": [
+        "The first meal of the day",
+        "What is eaten before work"
+      ]
+    },
+    {
+      "word": "MITTAGESSEN",
+      "clues": [
+        "The meal eaten in the middle of the day",
+        "What a canteen serves"
+      ]
+    },
+    {
+      "word": "ABENDESSEN",
+      "clues": [
+        "The last meal of the day",
+        "What the family eats together at night"
+      ]
+    },
+    {
+      "word": "HUNGER",
+      "clues": [
+        "The need for food",
+        "What makes your stomach rumble"
+      ]
+    },
+    {
+      "word": "DURST",
+      "clues": [
+        "The need for drink",
+        "What a hot day gives you"
+      ]
+    },
+    {
+      "word": "ESSEN",
+      "clues": [
+        "To take food into the mouth",
+        "Also: a meal itself"
+      ]
+    },
+    {
+      "word": "TRINKEN",
+      "clues": [
+        "To take liquid into the mouth",
+        "What you do when thirsty"
+      ]
+    },
+    {
+      "word": "PROBIEREN",
+      "clues": [
+        "To taste a little to see if you like it",
+        "To give something a first try"
+      ]
+    },
+    {
+      "word": "SCHMECKEN",
+      "clues": [
+        "To have a certain taste",
+        "What good food does"
+      ]
+    },
+    {
+      "word": "LECKER",
+      "clues": [
+        "Very pleasant to eat",
+        "How you describe a good meal"
+      ]
+    },
+    {
+      "word": "SÜSS",
+      "clues": [
+        "Tasting of sugar",
+        "How honey and cake are"
+      ]
+    },
+    {
+      "word": "SAUER",
+      "clues": [
+        "Tasting sharp, like a lemon",
+        "How milk goes when it is old"
+      ]
+    },
+    {
+      "word": "SCHARF",
+      "clues": [
+        "Burning hot with spice",
+        "Also: how a good knife is"
+      ]
+    },
+    {
+      "word": "BITTER",
+      "clues": [
+        "Tasting sharp and unpleasant",
+        "How black coffee is without sugar"
+      ]
+    },
+    {
+      "word": "FRISCH",
+      "clues": [
+        "Newly made or picked",
+        "What bread should be"
+      ]
+    },
+    {
+      "word": "SPEISEKARTE",
+      "clues": [
+        "The list of dishes in a restaurant",
+        "What the waiter hands you first"
+      ]
+    },
+    {
+      "word": "RECHNUNG",
+      "clues": [
+        "The paper showing what you owe",
+        "What you ask for at the end of a meal"
+      ]
+    },
+    {
+      "word": "TRINKGELD",
+      "clues": [
+        "Extra money left for good service",
+        "What you round the bill up by"
+      ]
+    },
+    {
+      "word": "KELLNER",
+      "clues": [
+        "The person who serves at tables",
+        "Who takes your order"
+      ]
+    },
+    {
+      "word": "BAUM",
+      "clues": [
+        "A tall plant with a trunk and branches",
+        "What is cut down for wood"
+      ]
+    },
+    {
+      "word": "BLUME",
+      "clues": [
+        "A plant grown for its colour and scent",
+        "What is given in a bunch"
+      ]
+    },
+    {
+      "word": "GRAS",
+      "clues": [
+        "The green plant covering a lawn",
+        "What sheep eat"
+      ]
+    },
+    {
+      "word": "BLATT",
+      "clues": [
+        "The flat green part of a plant",
+        "Also: a single sheet of paper"
+      ]
+    },
+    {
+      "word": "WALD",
+      "clues": [
+        "A large area covered with trees",
+        "Where you walk among pines"
+      ]
+    },
+    {
+      "word": "WIESE",
+      "clues": [
+        "An open field of grass and flowers",
+        "Where cows graze"
+      ]
+    },
+    {
+      "word": "BERG",
+      "clues": [
+        "High ground rising above the land",
+        "What climbers go up"
+      ]
+    },
+    {
+      "word": "TAL",
+      "clues": [
+        "The low ground between hills",
+        "Where a river usually runs"
+      ]
+    },
+    {
+      "word": "FLUSS",
+      "clues": [
+        "Water running across the land to the sea",
+        "What a bridge crosses"
+      ]
+    },
+    {
+      "word": "SEE",
+      "clues": [
+        "A body of water surrounded by land",
+        "Where you row a boat inland"
+      ]
+    },
+    {
+      "word": "MEER",
+      "clues": [
+        "The great salt water",
+        "What the beach meets"
+      ]
+    },
+    {
+      "word": "STRAND",
+      "clues": [
+        "The sand at the edge of the sea",
+        "Where towels and umbrellas go in summer"
+      ]
+    },
+    {
+      "word": "INSEL",
+      "clues": [
+        "Land with water all around it",
+        "What you reach by ferry"
+      ]
+    },
+    {
+      "word": "HIMMEL",
+      "clues": [
+        "What is above you out of doors",
+        "Where the clouds are"
+      ]
+    },
+    {
+      "word": "SONNE",
+      "clues": [
+        "The bright star that lights the day",
+        "What you need cream against"
+      ]
+    },
+    {
+      "word": "MOND",
+      "clues": [
+        "What shines in the night sky and changes shape",
+        "Where astronauts once walked"
+      ]
+    },
+    {
+      "word": "STERN",
+      "clues": [
+        "A point of light in the night sky",
+        "Also: a shape with five points"
+      ]
+    },
+    {
+      "word": "WOLKE",
+      "clues": [
+        "White or grey shape in the sky",
+        "What hides the sun"
+      ]
+    },
+    {
+      "word": "REGEN",
+      "clues": [
+        "Water falling from the sky",
+        "Why you carry an umbrella"
+      ]
+    },
+    {
+      "word": "SCHNEE",
+      "clues": [
+        "White frozen water falling in winter",
+        "What children build a man from"
+      ]
+    },
+    {
+      "word": "WIND",
+      "clues": [
+        "Moving air",
+        "What fills a sail"
+      ]
+    },
+    {
+      "word": "STURM",
+      "clues": [
+        "Very strong wind and bad weather",
+        "What brings trees down"
+      ]
+    },
+    {
+      "word": "GEWITTER",
+      "clues": [
+        "A storm with thunder and lightning",
+        "What frightens dogs in summer"
+      ]
+    },
+    {
+      "word": "BLITZ",
+      "clues": [
+        "The bright flash in a storm",
+        "What comes just before the thunder"
+      ]
+    },
+    {
+      "word": "DONNER",
+      "clues": [
+        "The loud noise after the flash",
+        "What rolls across the sky"
+      ]
+    },
+    {
+      "word": "NEBEL",
+      "clues": [
+        "Thick cloud at ground level",
+        "What makes driving slow in autumn"
+      ]
+    },
+    {
+      "word": "WETTER",
+      "clues": [
+        "The state of the air outdoors",
+        "What the forecast is about"
+      ]
+    },
+    {
+      "word": "TEMPERATUR",
+      "clues": [
+        "How warm or cold something is",
+        "What a thermometer measures"
+      ]
+    },
+    {
+      "word": "GRAD",
+      "clues": [
+        "The unit that measures warmth",
+        "What the forecast counts in"
+      ]
+    },
+    {
+      "word": "JAHRESZEIT",
+      "clues": [
+        "One of the four parts of the year",
+        "Spring, summer, autumn or winter"
+      ]
+    },
+    {
+      "word": "FRÜHLING",
+      "clues": [
+        "The season when plants start growing",
+        "The season after winter"
+      ]
+    },
+    {
+      "word": "SOMMER",
+      "clues": [
+        "The warmest season",
+        "When the school holidays fall"
+      ]
+    },
+    {
+      "word": "HERBST",
+      "clues": [
+        "The season when leaves fall",
+        "The season before winter"
+      ]
+    },
+    {
+      "word": "WINTER",
+      "clues": [
+        "The coldest season",
+        "When the snow comes"
+      ]
+    },
+    {
+      "word": "TIER",
+      "clues": [
+        "A living creature that is not a plant",
+        "What a vet treats"
+      ]
+    },
+    {
+      "word": "HUND",
+      "clues": [
+        "A four-legged pet that barks",
+        "What is taken for walks"
+      ]
+    },
+    {
+      "word": "KATZE",
+      "clues": [
+        "A four-legged pet that purrs",
+        "What chases mice"
+      ]
+    },
+    {
+      "word": "PFERD",
+      "clues": [
+        "A large animal that can be ridden",
+        "What pulls a cart or wins a race"
+      ]
+    },
+    {
+      "word": "KUH",
+      "clues": [
+        "The farm animal that gives milk",
+        "What says moo"
+      ]
+    },
+    {
+      "word": "SCHWEIN",
+      "clues": [
+        "The pink farm animal kept for meat",
+        "What rolls in mud"
+      ]
+    },
+    {
+      "word": "SCHAF",
+      "clues": [
+        "The farm animal with wool",
+        "What is counted to fall asleep"
+      ]
+    },
+    {
+      "word": "HUHN",
+      "clues": [
+        "The farm bird that lays eggs",
+        "What clucks in the yard"
+      ]
+    },
+    {
+      "word": "VOGEL",
+      "clues": [
+        "An animal with feathers that can fly",
+        "What sings in the garden"
+      ]
+    },
+    {
+      "word": "MAUS",
+      "clues": [
+        "A small grey animal with a long tail",
+        "Also: what you move on a desk"
+      ]
+    },
+    {
+      "word": "INSEKT",
+      "clues": [
+        "A small creature with six legs",
+        "A fly, a bee or a beetle"
+      ]
+    },
+    {
+      "word": "BIENE",
+      "clues": [
+        "The insect that makes honey",
+        "What flies between flowers"
+      ]
+    },
+    {
+      "word": "FLIEGE",
+      "clues": [
+        "The small insect that buzzes round food",
+        "What you swat in summer"
+      ]
+    },
+    {
+      "word": "SPINNE",
+      "clues": [
+        "The eight-legged creature that spins webs",
+        "What frightens some people in the bath"
+      ]
+    },
+    {
+      "word": "WOLF",
+      "clues": [
+        "A wild animal like a large grey dog",
+        "What howls in fairy tales"
+      ]
+    },
+    {
+      "word": "BÄR",
+      "clues": [
+        "A large heavy wild animal",
+        "What sleeps through the winter"
+      ]
+    },
+    {
+      "word": "FUCHS",
+      "clues": [
+        "A wild red animal with a bushy tail",
+        "The clever one in the fables"
+      ]
+    },
+    {
+      "word": "UMWELT",
+      "clues": [
+        "The natural world around us",
+        "What pollution damages"
+      ]
+    },
+    {
+      "word": "NATUR",
+      "clues": [
+        "Everything not made by people",
+        "What you go to the countryside for"
+      ]
+    },
+    {
+      "word": "LUFT",
+      "clues": [
+        "What you breathe",
+        "What fills a balloon"
+      ]
+    },
+    {
+      "word": "FEUER",
+      "clues": [
+        "Burning flames",
+        "What the brigade puts out"
+      ]
+    },
+    {
+      "word": "ERDE",
+      "clues": [
+        "The soil in the ground",
+        "Also: the planet we live on"
+      ]
+    },
+    {
+      "word": "PFLANZE",
+      "clues": [
+        "A living green thing that grows in soil",
+        "What needs water and light"
+      ]
+    },
+    {
+      "word": "SAMEN",
+      "clues": [
+        "What you put in soil to grow a plant",
+        "The small start of something green"
+      ]
+    },
+    {
+      "word": "ERNTE",
+      "clues": [
+        "The gathering in of crops",
+        "What a farmer waits all summer for"
+      ]
+    },
+    {
+      "word": "BAUERNHOF",
+      "clues": [
+        "The place where crops and animals are raised",
+        "Where the tractor lives"
+      ]
+    },
+    {
+      "word": "MÜLLTRENNUNG",
+      "clues": [
+        "Sorting rubbish into different bins",
+        "What the coloured containers are for"
+      ]
+    },
+    {
+      "word": "SONNENSCHEIN",
+      "clues": [
+        "Bright light and warmth from the sky",
+        "What a cloudless day gives"
+      ]
+    },
+    {
+      "word": "LEHRER",
+      "clues": [
+        "The person who teaches a class",
+        "Who stands at the front of the room"
+      ]
+    },
+    {
+      "word": "LEHRERIN",
+      "clues": [
+        "A woman who teaches a class",
+        "A female member of school staff"
+      ]
+    },
+    {
+      "word": "SCHÜLER",
+      "clues": [
+        "A young person who attends lessons",
+        "Who sits at a desk in a classroom"
+      ]
+    },
+    {
+      "word": "STUDENT",
+      "clues": [
+        "Someone studying at a university",
+        "Who attends lectures and sits exams"
+      ]
+    },
+    {
+      "word": "KLASSE",
+      "clues": [
+        "A group of pupils taught together",
+        "Also: how good something is"
+      ]
+    },
+    {
+      "word": "UNTERRICHT",
+      "clues": [
+        "The lessons given at school",
+        "What the bell begins and ends"
+      ]
+    },
+    {
+      "word": "FACH",
+      "clues": [
+        "One subject on a timetable",
+        "Maths, history or biology, for example"
+      ]
+    },
+    {
+      "word": "STUNDENPLAN",
+      "clues": [
+        "The grid showing which lesson comes when",
+        "What tells a pupil where to be"
+      ]
+    },
+    {
+      "word": "HAUSAUFGABE",
+      "clues": [
+        "Work set to be done at home",
+        "What is handed in the next morning"
+      ]
+    },
+    {
+      "word": "PRÜFUNG",
+      "clues": [
+        "A formal test of what you know",
+        "What you revise for"
+      ]
+    },
+    {
+      "word": "NOTE",
+      "clues": [
+        "The mark given for a piece of work",
+        "Also: a short written message"
+      ]
+    },
+    {
+      "word": "ZEUGNIS",
+      "clues": [
+        "The report listing your marks",
+        "What is handed out at the end of the year"
+      ]
+    },
+    {
+      "word": "TAFEL",
+      "clues": [
+        "The board the teacher writes on",
+        "Also: a bar of chocolate"
+      ]
+    },
+    {
+      "word": "KREIDE",
+      "clues": [
+        "The white stick used for writing on a board",
+        "What leaves dust on your fingers"
+      ]
+    },
+    {
+      "word": "HEFT",
+      "clues": [
+        "A thin book of blank pages for schoolwork",
+        "What you write exercises in"
+      ]
+    },
+    {
+      "word": "BUCH",
+      "clues": [
+        "Pages bound together to be read",
+        "What a library lends"
+      ]
+    },
+    {
+      "word": "STIFT",
+      "clues": [
+        "Something you write or draw with",
+        "What you sharpen"
+      ]
+    },
+    {
+      "word": "KUGELSCHREIBER",
+      "clues": [
+        "A pen with a small rolling ball",
+        "What clicks in a meeting"
+      ]
+    },
+    {
+      "word": "BLEISTIFT",
+      "clues": [
+        "A wooden writing tool that can be rubbed out",
+        "What comes with a rubber on the end"
+      ]
+    },
+    {
+      "word": "RADIERGUMMI",
+      "clues": [
+        "What removes pencil marks",
+        "What you reach for after a mistake"
+      ]
+    },
+    {
+      "word": "LINEAL",
+      "clues": [
+        "A straight edge for drawing lines",
+        "What measures centimetres"
+      ]
+    },
+    {
+      "word": "SCHERE",
+      "clues": [
+        "The tool with two blades for cutting paper",
+        "What children are told to carry carefully"
+      ]
+    },
+    {
+      "word": "PAPIER",
+      "clues": [
+        "The thin material you write on",
+        "What comes in reams"
+      ]
+    },
+    {
+      "word": "ANTWORT",
+      "clues": [
+        "What you give when asked something",
+        "The end of a question"
+      ]
+    },
+    {
+      "word": "FRAGE",
+      "clues": [
+        "What you ask when you want to know",
+        "What ends with a curved mark"
+      ]
+    },
+    {
+      "word": "BEISPIEL",
+      "clues": [
+        "One case that shows what is meant",
+        "What a teacher gives to make it clear"
+      ]
+    },
+    {
+      "word": "FEHLER",
+      "clues": [
+        "Something done wrongly",
+        "What red ink marks in an essay"
+      ]
+    },
+    {
+      "word": "ERGEBNIS",
+      "clues": [
+        "What comes out at the end",
+        "The score, or the answer to a sum"
+      ]
+    },
+    {
+      "word": "SPRACHE",
+      "clues": [
+        "The system of words a people speak",
+        "What you learn in order to travel"
+      ]
+    },
+    {
+      "word": "WORT",
+      "clues": [
+        "A single unit of speech",
+        "What a dictionary defines"
+      ]
+    },
+    {
+      "word": "SATZ",
+      "clues": [
+        "A group of words expressing a thought",
+        "What ends with a full stop"
+      ]
+    },
+    {
+      "word": "TEXT",
+      "clues": [
+        "Written words together",
+        "What you are asked to read aloud"
+      ]
+    },
+    {
+      "word": "ÜBUNG",
+      "clues": [
+        "A task done to get better at something",
+        "What practice consists of"
+      ]
+    },
+    {
+      "word": "KURS",
+      "clues": [
+        "A series of lessons on one subject",
+        "What you sign up for at evening classes"
+      ]
+    },
+    {
+      "word": "UNIVERSITÄT",
+      "clues": [
+        "Where degrees are studied for",
+        "The highest kind of school"
+      ]
+    },
+    {
+      "word": "BILDUNG",
+      "clues": [
+        "The learning a person has received",
+        "What schools and universities provide"
+      ]
+    },
+    {
+      "word": "ARBEIT",
+      "clues": [
+        "What people do to earn money",
+        "Also: a piece of written schoolwork"
+      ]
+    },
+    {
+      "word": "ARBEITER",
+      "clues": [
+        "Someone who works with their hands",
+        "An employee in a factory"
+      ]
+    },
+    {
+      "word": "CHEF",
+      "clues": [
+        "The person in charge at work",
+        "Who you ask for time off"
+      ]
+    },
+    {
+      "word": "KOLLEGE",
+      "clues": [
+        "Someone you work with",
+        "A person at the next desk"
+      ]
+    },
+    {
+      "word": "BÜRO",
+      "clues": [
+        "The room where office work is done",
+        "Where the desks and computers are"
+      ]
+    },
+    {
+      "word": "FIRMA",
+      "clues": [
+        "A business that employs people",
+        "What has a name over the door"
+      ]
+    },
+    {
+      "word": "FABRIK",
+      "clues": [
+        "A building where goods are made",
+        "Where machines run in shifts"
+      ]
+    },
+    {
+      "word": "STELLE",
+      "clues": [
+        "A job that someone can fill",
+        "What is advertised in the paper"
+      ]
+    },
+    {
+      "word": "BEWERBUNG",
+      "clues": [
+        "The letter you send to ask for a job",
+        "What comes with a curriculum vitae"
+      ]
+    },
+    {
+      "word": "VERTRAG",
+      "clues": [
+        "A written agreement between two sides",
+        "What both parties sign"
+      ]
+    },
+    {
+      "word": "GEHALT",
+      "clues": [
+        "The money paid for work each month",
+        "What arrives in the bank on payday"
+      ]
+    },
+    {
+      "word": "LOHN",
+      "clues": [
+        "Pay for work, often by the hour",
+        "What a labourer receives"
+      ]
+    },
+    {
+      "word": "URLAUBSTAG",
+      "clues": [
+        "One day off work",
+        "What you take when the weather is good"
+      ]
+    },
+    {
+      "word": "PAUSE",
+      "clues": [
+        "A short stop in work or lessons",
+        "What the bell rings for"
+      ]
+    },
+    {
+      "word": "FEIERABEND",
+      "clues": [
+        "The end of the working day",
+        "When the tools go down"
+      ]
+    },
+    {
+      "word": "ÜBERSTUNDE",
+      "clues": [
+        "An extra hour worked beyond the normal day",
+        "What is either paid or given back as time"
+      ]
+    },
+    {
+      "word": "SCHICHT",
+      "clues": [
+        "One period of work in a place that never closes",
+        "What nurses and factory workers change over"
+      ]
+    },
+    {
+      "word": "BERUFSSCHULE",
+      "clues": [
+        "The school attended alongside training",
+        "Where an apprentice studies one day a week"
+      ]
+    },
+    {
+      "word": "AUSBILDUNG",
+      "clues": [
+        "Training for a particular trade",
+        "What an apprentice completes"
+      ]
+    },
+    {
+      "word": "PRAKTIKUM",
+      "clues": [
+        "A short period of work done to learn",
+        "What a student does over the summer"
+      ]
+    },
+    {
+      "word": "VERKÄUFER",
+      "clues": [
+        "The person who serves you in a shop",
+        "Who works behind the counter"
+      ]
+    },
+    {
+      "word": "KOCH",
+      "clues": [
+        "The person who prepares meals professionally",
+        "Who works in a restaurant kitchen"
+      ]
+    },
+    {
+      "word": "BÄCKER",
+      "clues": [
+        "The person who makes bread",
+        "Who starts work before dawn"
+      ]
+    },
+    {
+      "word": "POLIZIST",
+      "clues": [
+        "An officer of the law",
+        "Who wears a uniform and keeps order"
+      ]
+    },
+    {
+      "word": "FEUERWEHRMANN",
+      "clues": [
+        "A person who puts out fires",
+        "Who slides down the pole"
+      ]
+    },
+    {
+      "word": "INGENIEUR",
+      "clues": [
+        "A person who designs machines and structures",
+        "Who works out whether the bridge will hold"
+      ]
+    },
+    {
+      "word": "HANDWERKER",
+      "clues": [
+        "A person skilled with tools",
+        "Who comes to fix the pipes"
+      ]
+    },
+    {
+      "word": "ELEKTRIKER",
+      "clues": [
+        "A worker who deals with wiring",
+        "Who you call when the lights fail"
+      ]
+    },
+    {
+      "word": "FRISEUR",
+      "clues": [
+        "The person who cuts hair",
+        "Who you visit every few weeks"
+      ]
+    },
+    {
+      "word": "FAHRER",
+      "clues": [
+        "The person controlling a vehicle",
+        "Who sits behind the wheel"
+      ]
+    },
+    {
+      "word": "PILOT",
+      "clues": [
+        "The person who flies an aircraft",
+        "Who speaks from the flight deck"
+      ]
+    },
+    {
+      "word": "BAUER",
+      "clues": [
+        "A person who farms the land",
+        "Who keeps cows and grows corn"
+      ]
+    },
+    {
+      "word": "KÜNSTLER",
+      "clues": [
+        "A person who makes paintings or sculpture",
+        "Who exhibits in a gallery"
+      ]
+    },
+    {
+      "word": "MUSIKER",
+      "clues": [
+        "A person who plays or writes music",
+        "Who performs in an orchestra or band"
+      ]
+    },
+    {
+      "word": "SCHAUSPIELER",
+      "clues": [
+        "A person who performs a part",
+        "Who appears on stage or screen"
+      ]
+    },
+    {
+      "word": "GELD",
+      "clues": [
+        "What things are bought with",
+        "Coins and notes together"
+      ]
+    },
+    {
+      "word": "MÜNZE",
+      "clues": [
+        "A small round piece of money",
+        "What jingles in a pocket"
+      ]
+    },
+    {
+      "word": "SCHEIN",
+      "clues": [
+        "A paper piece of money",
+        "What a machine dispenses"
+      ]
+    },
+    {
+      "word": "PREIS",
+      "clues": [
+        "What something costs",
+        "Also: what a winner receives"
+      ]
+    },
+    {
+      "word": "KASSE",
+      "clues": [
+        "Where you pay in a shop",
+        "Where the queue forms at the exit"
+      ]
+    },
+    {
+      "word": "QUITTUNG",
+      "clues": [
+        "The paper proving you have paid",
+        "What you keep in case you return the goods"
+      ]
+    },
+    {
+      "word": "RABATT",
+      "clues": [
+        "A reduction in the price",
+        "What a sale offers"
+      ]
+    },
+    {
+      "word": "ANGEBOT",
+      "clues": [
+        "Goods offered at a lower price",
+        "Also: a proposal put to someone"
+      ]
+    },
+    {
+      "word": "KONTO",
+      "clues": [
+        "Where your money is held at the bank",
+        "What a salary is paid into"
+      ]
+    },
+    {
+      "word": "KREDIT",
+      "clues": [
+        "Money borrowed and paid back over time",
+        "What a bank grants"
+      ]
+    },
+    {
+      "word": "SCHULDEN",
+      "clues": [
+        "Money that is owed",
+        "What you want to be free of"
+      ]
+    },
+    {
+      "word": "STEUER",
+      "clues": [
+        "Money paid to the state",
+        "What is taken from your wages"
+      ]
+    },
+    {
+      "word": "VERSICHERUNG",
+      "clues": [
+        "A payment that protects against loss",
+        "What covers you if the car is damaged"
+      ]
+    },
+    {
+      "word": "RECHNEN",
+      "clues": [
+        "To work with numbers",
+        "What you do with a calculator"
+      ]
+    },
+    {
+      "word": "ZAHL",
+      "clues": [
+        "A figure used for counting",
+        "What you write instead of a word for an amount"
+      ]
+    },
+    {
+      "word": "SUMME",
+      "clues": [
+        "The total when things are added",
+        "What all the parts come to"
+      ]
+    },
+    {
+      "word": "HÄLFTE",
+      "clues": [
+        "One of two equal parts",
+        "Fifty per cent of something"
+      ]
+    },
+    {
+      "word": "PROZENT",
+      "clues": [
+        "A part in every hundred",
+        "How interest is expressed"
+      ]
+    },
+    {
+      "word": "TELEFON",
+      "clues": [
+        "The device for speaking to distant people",
+        "What rings when someone wants you"
+      ]
+    },
+    {
+      "word": "HANDY",
+      "clues": [
+        "A telephone you carry with you",
+        "What is charged overnight"
+      ]
+    },
+    {
+      "word": "NUMMER",
+      "clues": [
+        "The digits that identify a phone or a house",
+        "What you dial"
+      ]
+    },
+    {
+      "word": "NACHRICHT",
+      "clues": [
+        "A short written or spoken message",
+        "Also: an item on the news"
+      ]
+    },
+    {
+      "word": "BRIEF",
+      "clues": [
+        "A written message sent in an envelope",
+        "What the postman brings"
+      ]
+    },
+    {
+      "word": "PAKET",
+      "clues": [
+        "Goods sent wrapped through the post",
+        "What arrives in a cardboard box"
+      ]
+    },
+    {
+      "word": "BRIEFMARKE",
+      "clues": [
+        "The small sticker that pays for postage",
+        "What goes in the corner of an envelope"
+      ]
+    },
+    {
+      "word": "COMPUTER",
+      "clues": [
+        "The machine used for work and mail",
+        "What has a screen and a keyboard"
+      ]
+    },
+    {
+      "word": "BILDSCHIRM",
+      "clues": [
+        "The part of a computer you look at",
+        "Where the picture appears"
+      ]
+    },
+    {
+      "word": "TASTATUR",
+      "clues": [
+        "The set of keys you type on",
+        "What has letters in an awkward order"
+      ]
+    },
+    {
+      "word": "DRUCKER",
+      "clues": [
+        "The machine that puts a document on paper",
+        "What always runs out of ink"
+      ]
+    },
+    {
+      "word": "INTERNET",
+      "clues": [
+        "The worldwide network of computers",
+        "Where you search for things"
+      ]
+    },
+    {
+      "word": "WEBSEITE",
+      "clues": [
+        "A page you look at online",
+        "What has an address beginning with www"
+      ]
+    },
+    {
+      "word": "PASSWORT",
+      "clues": [
+        "The secret word that lets you in",
+        "What you are told to change often"
+      ]
+    },
+    {
+      "word": "DATEI",
+      "clues": [
+        "A document stored on a computer",
+        "What you save and name"
+      ]
+    },
+    {
+      "word": "FOTO",
+      "clues": [
+        "A picture made with a camera",
+        "What you take on holiday"
+      ]
+    },
+    {
+      "word": "KAMERA",
+      "clues": [
+        "The device that takes pictures",
+        "What has a lens and a shutter"
+      ]
+    },
+    {
+      "word": "FERNSEHEN",
+      "clues": [
+        "Watching programmes on a screen at home",
+        "What the evening is often spent doing"
+      ]
+    },
+    {
+      "word": "RADIO",
+      "clues": [
+        "The device that plays broadcast sound",
+        "What is on in the car"
+      ]
+    },
+    {
+      "word": "ZEITUNG",
+      "clues": [
+        "Printed news, published daily",
+        "What is read over breakfast"
+      ]
+    },
+    {
+      "word": "ZEITSCHRIFT",
+      "clues": [
+        "A magazine appearing weekly or monthly",
+        "What waits in a doctor's waiting room"
+      ]
+    },
+    {
+      "word": "MUSIK",
+      "clues": [
+        "Organised sound made to be heard",
+        "What comes from an instrument"
+      ]
+    },
+    {
+      "word": "LIED",
+      "clues": [
+        "A short piece of music with words",
+        "What is sung"
+      ]
+    },
+    {
+      "word": "FILM",
+      "clues": [
+        "A story told in moving pictures",
+        "What is shown at the cinema"
+      ]
+    },
+    {
+      "word": "SENDUNG",
+      "clues": [
+        "One programme on radio or television",
+        "What is broadcast at a fixed hour"
+      ]
+    },
+    {
+      "word": "WERBUNG",
+      "clues": [
+        "Messages persuading you to buy",
+        "What interrupts a programme"
+      ]
+    },
+    {
+      "word": "SPIEL",
+      "clues": [
+        "An activity played for enjoyment",
+        "Also: a match between two teams"
+      ]
+    },
+    {
+      "word": "MANNSCHAFT",
+      "clues": [
+        "A group playing together as one side",
+        "Eleven players on a football field"
+      ]
+    },
+    {
+      "word": "TOR",
+      "clues": [
+        "Where the ball must go to score",
+        "Also: a large gate"
+      ]
+    },
+    {
+      "word": "SIEG",
+      "clues": [
+        "Winning a contest",
+        "The opposite of a defeat"
+      ]
+    },
+    {
+      "word": "NIEDERLAGE",
+      "clues": [
+        "Losing a contest",
+        "What the losing side suffers"
+      ]
+    },
+    {
+      "word": "WETTBEWERB",
+      "clues": [
+        "A contest between rivals",
+        "What prizes are awarded at"
+      ]
+    },
+    {
+      "word": "HOBBY",
+      "clues": [
+        "Something you do for pleasure in your free time",
+        "What you keep up outside work"
+      ]
+    },
+    {
+      "word": "FREIZEIT",
+      "clues": [
+        "The hours when you are not working",
+        "Evenings and weekends"
+      ]
+    },
+    {
+      "word": "FEST",
+      "clues": [
+        "A celebration with many people",
+        "What a village holds each summer"
+      ]
+    },
+    {
+      "word": "PARTY",
+      "clues": [
+        "A gathering with music and food",
+        "What you are invited to"
+      ]
+    },
+    {
+      "word": "GESCHENK",
+      "clues": [
+        "Something given without payment",
+        "What is wrapped for a birthday"
+      ]
+    },
+    {
+      "word": "EINLADUNG",
+      "clues": [
+        "The request to come to an event",
+        "What arrives by card or message"
+      ]
+    },
+    {
+      "word": "FEIERN",
+      "clues": [
+        "To mark a happy occasion",
+        "What you do on a birthday"
+      ]
+    },
+    {
+      "word": "BESUCHEN",
+      "clues": [
+        "To go and see someone or something",
+        "What tourists do to a museum"
+      ]
+    },
+    {
+      "word": "TREFFEN",
+      "clues": [
+        "To come together with someone",
+        "What friends arrange for the evening"
+      ]
+    },
+    {
+      "word": "REDEN",
+      "clues": [
+        "To speak with someone",
+        "What two people do over coffee"
+      ]
+    },
+    {
+      "word": "ERZÄHLEN",
+      "clues": [
+        "To tell a story or what happened",
+        "What a grandparent does at bedtime"
+      ]
+    },
+    {
+      "word": "DISKUTIEREN",
+      "clues": [
+        "To argue a question back and forth",
+        "What a committee does at length"
+      ]
+    },
+    {
+      "word": "ENTSCHEIDEN",
+      "clues": [
+        "To make a choice between options",
+        "What you finally do after weighing things up"
+      ]
+    },
+    {
+      "word": "VERSPRECHEN",
+      "clues": [
+        "To say firmly that you will do something",
+        "What must then be kept"
+      ]
+    },
+    {
+      "word": "DANKEN",
+      "clues": [
+        "To say you are grateful",
+        "What you do after receiving a gift"
+      ]
+    },
+    {
+      "word": "GRATULIEREN",
+      "clues": [
+        "To wish someone joy on a good occasion",
+        "What you do on a birthday"
+      ]
+    },
+    {
+      "word": "EINLADEN",
+      "clues": [
+        "To ask someone to come",
+        "What a host does before a party"
+      ]
+    },
+    {
+      "word": "VORSTELLEN",
+      "clues": [
+        "To make two people known to each other",
+        "Also: to picture something in the mind"
+      ]
+    },
+    {
+      "word": "VEREINBAREN",
+      "clues": [
+        "To settle a time or a condition together",
+        "What two sides do about a meeting"
+      ]
+    },
+    {
+      "word": "GEBEN",
+      "clues": [
+        "To hand something to someone",
+        "The opposite of taking"
+      ]
+    },
+    {
+      "word": "NEHMEN",
+      "clues": [
+        "To take hold of something",
+        "What you do with a seat that is offered"
+      ]
+    },
+    {
+      "word": "BRINGEN",
+      "clues": [
+        "To carry something to where someone is",
+        "What a waiter does with the food"
+      ]
+    },
+    {
+      "word": "HOLEN",
+      "clues": [
+        "To go and fetch something",
+        "What you do with the shopping"
+      ]
+    },
+    {
+      "word": "LEGEN",
+      "clues": [
+        "To put something down flat",
+        "What you do with a book on a table"
+      ]
+    },
+    {
+      "word": "STELLEN",
+      "clues": [
+        "To put something upright",
+        "What you do with a bottle on a shelf"
+      ]
+    },
+    {
+      "word": "SETZEN",
+      "clues": [
+        "To place someone or yourself on a seat",
+        "What you do before a meal"
+      ]
+    },
+    {
+      "word": "SITZEN",
+      "clues": [
+        "To rest on a seat",
+        "How you spend a lecture"
+      ]
+    },
+    {
+      "word": "STEHEN",
+      "clues": [
+        "To be upright on your feet",
+        "What you do in a queue"
+      ]
+    },
+    {
+      "word": "LIEGEN",
+      "clues": [
+        "To be flat on a surface",
+        "How a book rests on a table"
+      ]
+    },
+    {
+      "word": "HÄNGEN",
+      "clues": [
+        "To be fixed from above",
+        "What a picture does on a wall"
+      ]
+    },
+    {
+      "word": "HALTEN",
+      "clues": [
+        "To keep hold of something",
+        "Also: what a bus does at a stop"
+      ]
+    },
+    {
+      "word": "ZIEHEN",
+      "clues": [
+        "To pull something towards you",
+        "What a horse does to a cart"
+      ]
+    },
+    {
+      "word": "DRÜCKEN",
+      "clues": [
+        "To press against something",
+        "What you do to a button"
+      ]
+    },
+    {
+      "word": "WERFEN",
+      "clues": [
+        "To send something through the air by hand",
+        "What you do with a ball"
+      ]
+    },
+    {
+      "word": "FANGEN",
+      "clues": [
+        "To catch something moving",
+        "What a keeper does with the ball"
+      ]
+    },
+    {
+      "word": "FALLEN",
+      "clues": [
+        "To drop towards the ground",
+        "What leaves do in autumn"
+      ]
+    },
+    {
+      "word": "HEBEN",
+      "clues": [
+        "To raise something up",
+        "What you do with a heavy box"
+      ]
+    },
+    {
+      "word": "TRETEN",
+      "clues": [
+        "To strike with the foot",
+        "Also: to step somewhere"
+      ]
+    },
+    {
+      "word": "SCHIEBEN",
+      "clues": [
+        "To push something along",
+        "What you do with a trolley"
+      ]
+    },
+    {
+      "word": "DREHEN",
+      "clues": [
+        "To turn something round",
+        "What you do to a key in a lock"
+      ]
+    },
+    {
+      "word": "BINDEN",
+      "clues": [
+        "To fasten with string or a knot",
+        "What you do with laces"
+      ]
+    },
+    {
+      "word": "BRECHEN",
+      "clues": [
+        "To break into pieces",
+        "What glass does when dropped"
+      ]
+    },
+    {
+      "word": "REISSEN",
+      "clues": [
+        "To tear apart",
+        "What happens to old paper"
+      ]
+    },
+    {
+      "word": "KLEBEN",
+      "clues": [
+        "To stick with glue",
+        "What tape does"
+      ]
+    },
+    {
+      "word": "MESSEN",
+      "clues": [
+        "To find out how big something is",
+        "What a tape is used for"
+      ]
+    },
+    {
+      "word": "WIEGEN",
+      "clues": [
+        "To find out how heavy something is",
+        "What scales are for"
+      ]
+    },
+    {
+      "word": "ZÄHLEN",
+      "clues": [
+        "To say the numbers in order",
+        "What you do with money at the till"
+      ]
+    },
+    {
+      "word": "SAMMELN",
+      "clues": [
+        "To gather things of one kind",
+        "What a hobby of stamps involves"
+      ]
+    },
+    {
+      "word": "VERLIEREN",
+      "clues": [
+        "To no longer have something",
+        "Also: what the beaten team does"
+      ]
+    },
+    {
+      "word": "GEWINNEN",
+      "clues": [
+        "To come first in a contest",
+        "What a lottery ticket might do"
+      ]
+    },
+    {
+      "word": "VERSUCHEN",
+      "clues": [
+        "To make an attempt",
+        "What you do before giving up"
+      ]
+    },
+    {
+      "word": "SCHAFFEN",
+      "clues": [
+        "To manage to do something",
+        "What you do with a difficult task"
+      ]
+    },
+    {
+      "word": "GELINGEN",
+      "clues": [
+        "To turn out well",
+        "What a cake does if you follow the recipe"
+      ]
+    },
+    {
+      "word": "BEGINNEN",
+      "clues": [
+        "To start something",
+        "What a film does at eight"
+      ]
+    },
+    {
+      "word": "AUFHÖREN",
+      "clues": [
+        "To stop doing something",
+        "What you are asked to do with a noise"
+      ]
+    },
+    {
+      "word": "WEITERMACHEN",
+      "clues": [
+        "To carry on with what you were doing",
+        "Not to give up"
+      ]
+    },
+    {
+      "word": "WIEDERHOLEN",
+      "clues": [
+        "To do or say something again",
+        "What a teacher does with an unclear point"
+      ]
+    },
+    {
+      "word": "ÄNDERN",
+      "clues": [
+        "To make different",
+        "What you do to plans when the weather turns"
+      ]
+    },
+    {
+      "word": "VERBESSERN",
+      "clues": [
+        "To make better",
+        "What practice does to a skill"
+      ]
+    },
+    {
+      "word": "ENTWICKELN",
+      "clues": [
+        "To grow into something more advanced",
+        "What a company does with a new product"
+      ]
+    },
+    {
+      "word": "BENUTZEN",
+      "clues": [
+        "To make use of something",
+        "What you do with a tool"
+      ]
+    },
+    {
+      "word": "FUNKTIONIEREN",
+      "clues": [
+        "To work properly",
+        "What a machine should do"
+      ]
+    },
+    {
+      "word": "KAPUTT",
+      "clues": [
+        "Broken and not working",
+        "How a machine is when it will not start"
+      ]
+    },
+    {
+      "word": "SCHICKEN",
+      "clues": [
+        "To send something to someone",
+        "What you do with a parcel"
+      ]
+    },
+    {
+      "word": "BEKOMMEN",
+      "clues": [
+        "To receive something",
+        "What happens when a gift arrives"
+      ]
+    },
+    {
+      "word": "ERHALTEN",
+      "clues": [
+        "To be given something formally",
+        "What you do with a letter from an office"
+      ]
+    },
+    {
+      "word": "LEIHEN",
+      "clues": [
+        "To let someone use your thing for a while",
+        "What a library does with books"
+      ]
+    },
+    {
+      "word": "MIETEN",
+      "clues": [
+        "To pay to use something for a time",
+        "What you do with a flat or a car"
+      ]
+    },
+    {
+      "word": "BESITZEN",
+      "clues": [
+        "To have something as your own",
+        "What an owner does"
+      ]
+    },
+    {
+      "word": "GEHÖREN",
+      "clues": [
+        "To be the property of someone",
+        "What your coat does to you"
+      ]
+    },
+    {
+      "word": "TEILEN",
+      "clues": [
+        "To divide something between people",
+        "What you do with a cake"
+      ]
+    },
+    {
+      "word": "SCHENKEN",
+      "clues": [
+        "To give as a present",
+        "What you do at Christmas"
+      ]
+    },
+    {
+      "word": "KÜMMERN",
+      "clues": [
+        "To take care of someone or something",
+        "What you do about a problem you own"
+      ]
+    },
+    {
+      "word": "WARNEN",
+      "clues": [
+        "To tell someone of a danger",
+        "What a sign does"
+      ]
+    },
+    {
+      "word": "SCHÜTZEN",
+      "clues": [
+        "To keep from harm",
+        "What a helmet does"
+      ]
+    },
+    {
+      "word": "RETTEN",
+      "clues": [
+        "To bring out of danger",
+        "What a lifeguard does"
+      ]
+    },
+    {
+      "word": "STÖREN",
+      "clues": [
+        "To interrupt or disturb",
+        "What noise does to concentration"
+      ]
+    },
+    {
+      "word": "ÄRGERN",
+      "clues": [
+        "To make someone annoyed",
+        "What a younger brother enjoys doing"
+      ]
+    },
+    {
+      "word": "STREITEN",
+      "clues": [
+        "To argue angrily",
+        "What neighbours do about a fence"
+      ]
+    },
+    {
+      "word": "KÄMPFEN",
+      "clues": [
+        "To fight for something",
+        "What a boxer does"
+      ]
+    },
+    {
+      "word": "VERZEIHEN",
+      "clues": [
+        "To stop being angry at a wrong",
+        "What you ask for after a mistake"
+      ]
+    },
+    {
+      "word": "ENTSCHULDIGEN",
+      "clues": [
+        "To say sorry",
+        "What you do after stepping on a foot"
+      ]
+    },
+    {
+      "word": "ERLAUBEN",
+      "clues": [
+        "To let someone do something",
+        "What a permit does"
+      ]
+    },
+    {
+      "word": "VERBIETEN",
+      "clues": [
+        "To say something may not be done",
+        "What a red sign does"
+      ]
+    },
+    {
+      "word": "BEFEHLEN",
+      "clues": [
+        "To tell someone firmly to do something",
+        "What an officer does"
+      ]
+    },
+    {
+      "word": "GEHORCHEN",
+      "clues": [
+        "To do as you are told",
+        "What a well-trained dog does"
+      ]
+    },
+    {
+      "word": "WÜNSCHEN",
+      "clues": [
+        "To want something to happen",
+        "What you do over a birthday cake"
+      ]
+    },
+    {
+      "word": "HOFFEN",
+      "clues": [
+        "To want and expect something good",
+        "What you do about the weather"
+      ]
+    },
+    {
+      "word": "MEINEN",
+      "clues": [
+        "To hold an opinion",
+        "What you do when you say what you think"
+      ]
+    },
+    {
+      "word": "VORSCHLAGEN",
+      "clues": [
+        "To put an idea forward",
+        "What you do with a plan at a meeting"
+      ]
+    },
+    {
+      "word": "PLANEN",
+      "clues": [
+        "To work out what will be done",
+        "What you do before a holiday"
+      ]
+    },
+    {
+      "word": "ORGANISIEREN",
+      "clues": [
+        "To arrange all the parts of an event",
+        "What a host does before a party"
+      ]
+    },
+    {
+      "word": "VORBEREITEN",
+      "clues": [
+        "To get ready in advance",
+        "What you do to a meal before guests arrive"
+      ]
+    },
+    {
+      "word": "ERLEDIGEN",
+      "clues": [
+        "To get a task finished",
+        "What you do with the jobs on a list"
+      ]
+    },
+    {
+      "word": "BEENDEN",
+      "clues": [
+        "To bring to a close",
+        "What you do with a piece of work"
+      ]
+    },
+    {
+      "word": "VERGLEICHEN",
+      "clues": [
+        "To look at two things side by side",
+        "What you do with prices"
+      ]
+    },
+    {
+      "word": "UNTERSCHEIDEN",
+      "clues": [
+        "To tell two things apart",
+        "What you do between similar words"
+      ]
+    },
+    {
+      "word": "WÄHLEN",
+      "clues": [
+        "To pick one from several",
+        "Also: what you do at an election"
+      ]
+    },
+    {
+      "word": "BESTIMMEN",
+      "clues": [
+        "To settle what will happen",
+        "What the person in charge does"
+      ]
+    },
+    {
+      "word": "PRÜFEN",
+      "clues": [
+        "To check that something is right",
+        "What an inspector does"
+      ]
+    },
+    {
+      "word": "KONTROLLIEREN",
+      "clues": [
+        "To check that rules are being kept",
+        "What a guard does with tickets"
+      ]
+    },
+    {
+      "word": "BEOBACHTEN",
+      "clues": [
+        "To watch carefully over time",
+        "What a birdwatcher does"
+      ]
+    },
+    {
+      "word": "BEMERKEN",
+      "clues": [
+        "To notice something",
+        "What you do with a small change"
+      ]
+    },
+    {
+      "word": "ERKENNEN",
+      "clues": [
+        "To know something when you see it",
+        "What you do with an old friend in a crowd"
+      ]
+    },
+    {
+      "word": "ERINNERN",
+      "clues": [
+        "To bring back to mind",
+        "What a photograph helps you do"
+      ]
+    },
+    {
+      "word": "ERWARTEN",
+      "clues": [
+        "To think something will come",
+        "What you do with a parcel that is due"
+      ]
+    },
+    {
+      "word": "ÜBERRASCHEN",
+      "clues": [
+        "To do something nobody saw coming",
+        "What a party can be planned to do"
+      ]
+    },
+    {
+      "word": "INTERESSIEREN",
+      "clues": [
+        "To hold someone's attention",
+        "What a good subject does"
+      ]
+    },
+    {
+      "word": "GEFALLEN",
+      "clues": [
+        "To be pleasing to someone",
+        "What a good picture does"
+      ]
+    },
+    {
+      "word": "LIEBEN",
+      "clues": [
+        "To feel very strongly for someone",
+        "The strongest form of liking"
+      ]
+    },
+    {
+      "word": "HASSEN",
+      "clues": [
+        "To feel very strongly against something",
+        "The opposite of loving"
+      ]
+    },
+    {
+      "word": "MÖGEN",
+      "clues": [
+        "To find something pleasant",
+        "A milder form of loving"
+      ]
+    },
+    {
+      "word": "FEHLEN",
+      "clues": [
+        "To be absent or missing",
+        "What a pupil does when off sick"
+      ]
+    },
+    {
+      "word": "ZURÜCKKOMMEN",
+      "clues": [
+        "To come back to where you were",
+        "What a traveller eventually does"
+      ]
+    },
+    {
+      "word": "VERLASSEN",
+      "clues": [
+        "To go away from a place or person",
+        "What you do to a building at closing time"
+      ]
+    },
+    {
+      "word": "BEGLEITEN",
+      "clues": [
+        "To go along with someone",
+        "What you do to see a guest to the door"
+      ]
+    },
+    {
+      "word": "FOLGEN",
+      "clues": [
+        "To go behind someone",
+        "What a dog does to its owner"
+      ]
+    },
+    {
+      "word": "ERREICHEN",
+      "clues": [
+        "To manage to get to something",
+        "What you do with a train, just"
+      ]
+    },
+    {
+      "word": "VERPASSEN",
+      "clues": [
+        "To fail to catch something",
+        "What happens to a train if you are slow"
+      ]
+    },
+    {
+      "word": "BEGEGNEN",
+      "clues": [
+        "To come across someone by chance",
+        "What happens in the street unexpectedly"
+      ]
+    },
+    {
+      "word": "KENNEN",
+      "clues": [
+        "To be familiar with someone",
+        "What you are with an old friend"
+      ]
+    },
+    {
+      "word": "KENNENLERNEN",
+      "clues": [
+        "To get to know someone new",
+        "What happens at a first meeting"
+      ]
+    },
+    {
+      "word": "HEIRATEN",
+      "clues": [
+        "To become someone's husband or wife",
+        "What a wedding is for"
+      ]
+    },
+    {
+      "word": "UMZIEHEN",
+      "clues": [
+        "To move to a new home",
+        "Also: to change your clothes"
+      ]
+    },
+    {
+      "word": "REISEN",
+      "clues": [
+        "To go from place to place",
+        "What you do with a suitcase"
+      ]
+    },
+    {
+      "word": "WANDERN",
+      "clues": [
+        "To walk long distances in the country",
+        "What boots and a map are for"
+      ]
+    },
+    {
+      "word": "KLETTERN",
+      "clues": [
+        "To go up using hands and feet",
+        "What you do to a rock face"
+      ]
+    },
+    {
+      "word": "RENNEN",
+      "clues": [
+        "To move as fast as you can on foot",
+        "What you do for a departing bus"
+      ]
+    },
+    {
+      "word": "SPRINGEN",
+      "clues": [
+        "To push off the ground into the air",
+        "What you do over a puddle"
+      ]
+    },
+    {
+      "word": "RUDERN",
+      "clues": [
+        "To move a boat with oars",
+        "What a crew does on a river"
+      ]
+    },
+    {
+      "word": "SEGELN",
+      "clues": [
+        "To move a boat with the wind",
+        "What a yacht does"
+      ]
+    },
+    {
+      "word": "ANGELN",
+      "clues": [
+        "To catch fish with a line",
+        "What a quiet person does by a river"
+      ]
+    },
+    {
+      "word": "BRATEN",
+      "clues": [
+        "To cook in hot fat in a pan",
+        "What you do to an egg"
+      ]
+    },
+    {
+      "word": "MISCHEN",
+      "clues": [
+        "To stir things together",
+        "What you do to the ingredients"
+      ]
+    },
+    {
+      "word": "GIESSEN",
+      "clues": [
+        "To pour liquid out",
+        "What you do to the plants"
+      ]
+    },
+    {
+      "word": "FÜLLEN",
+      "clues": [
+        "To make something full",
+        "What you do to a glass"
+      ]
+    },
+    {
+      "word": "LEEREN",
+      "clues": [
+        "To make something empty",
+        "What you do to a bin"
+      ]
+    },
+    {
+      "word": "AUFRÄUMEN",
+      "clues": [
+        "To put things back in order",
+        "What you are told to do to a bedroom"
+      ]
+    },
+    {
+      "word": "BÜGELN",
+      "clues": [
+        "To press cloth flat with heat",
+        "What a shirt needs after washing"
+      ]
+    },
+    {
+      "word": "NÄHEN",
+      "clues": [
+        "To join cloth with thread",
+        "What you do to a fallen button"
+      ]
+    },
+    {
+      "word": "KLINGELN",
+      "clues": [
+        "To make a bell sound",
+        "What the phone does"
+      ]
+    },
+    {
+      "word": "RUFEN",
+      "clues": [
+        "To call out loudly",
+        "What you do across a field"
+      ]
+    },
+    {
+      "word": "FLÜSTERN",
+      "clues": [
+        "To speak very quietly",
+        "How you talk in a library"
+      ]
+    },
+    {
+      "word": "SCHREIEN",
+      "clues": [
+        "To make a very loud sound with the voice",
+        "What you do in fright"
+      ]
+    },
+    {
+      "word": "SCHWEIGEN",
+      "clues": [
+        "To say nothing at all",
+        "What you do when you have no answer"
+      ]
+    },
+    {
+      "word": "ZUHÖREN",
+      "clues": [
+        "To pay attention to what is said",
+        "What a good friend does"
+      ]
+    },
+    {
+      "word": "ÜBERSETZEN",
+      "clues": [
+        "To put words into another language",
+        "What a dictionary helps with"
+      ]
+    },
+    {
+      "word": "BUCHSTABIEREN",
+      "clues": [
+        "To say a word letter by letter",
+        "What you do with a difficult surname"
+      ]
+    },
+    {
+      "word": "UNTERSCHREIBEN",
+      "clues": [
+        "To write your name to agree",
+        "What you do at the bottom of a contract"
+      ]
+    },
+    {
+      "word": "AUSFÜLLEN",
+      "clues": [
+        "To write the answers into a form",
+        "What you do to an application"
+      ]
+    },
+    {
+      "word": "STREICHEN",
+      "clues": [
+        "To put paint on a wall",
+        "Also: to remove a line from a list"
+      ]
+    },
+    {
+      "word": "PFLANZEN",
+      "clues": [
+        "To put into the soil to grow",
+        "What a gardener does in spring"
+      ]
+    },
+    {
+      "word": "SCHÜTTELN",
+      "clues": [
+        "To move something quickly to and fro",
+        "What you do to a bottle before pouring"
+      ]
+    },
+    {
+      "word": "SCHÖN",
+      "clues": [
+        "Pleasing to look at",
+        "How a sunset is described"
+      ]
+    },
+    {
+      "word": "HÄSSLICH",
+      "clues": [
+        "Very unpleasant to look at",
+        "The opposite of beautiful"
+      ]
+    },
+    {
+      "word": "GROSS",
+      "clues": [
+        "Of considerable size",
+        "How a tall person is described"
+      ]
+    },
+    {
+      "word": "KLEIN",
+      "clues": [
+        "Of little size",
+        "How a mouse is compared with a horse"
+      ]
+    },
+    {
+      "word": "SCHNELL",
+      "clues": [
+        "Moving at speed",
+        "How a racing car goes"
+      ]
+    },
+    {
+      "word": "LANGSAM",
+      "clues": [
+        "Not moving quickly",
+        "How a snail travels"
+      ]
+    },
+    {
+      "word": "EINFACH",
+      "clues": [
+        "Not difficult",
+        "Also: only that and nothing more"
+      ]
+    },
+    {
+      "word": "SCHWIERIG",
+      "clues": [
+        "Hard to do or understand",
+        "How a tricky problem is described"
+      ]
+    },
+    {
+      "word": "WICHTIG",
+      "clues": [
+        "Mattering a great deal",
+        "What must not be forgotten"
+      ]
+    },
+    {
+      "word": "NÖTIG",
+      "clues": [
+        "Needed, not optional",
+        "What cannot be done without"
+      ]
+    },
+    {
+      "word": "MÖGLICH",
+      "clues": [
+        "Able to happen",
+        "What is not ruled out"
+      ]
+    },
+    {
+      "word": "UNMÖGLICH",
+      "clues": [
+        "Not able to happen at all",
+        "What cannot be done, however hard you try"
+      ]
+    },
+    {
+      "word": "SICHER",
+      "clues": [
+        "Free from danger",
+        "Also: certain about something"
+      ]
+    },
+    {
+      "word": "GEFÄHRLICH",
+      "clues": [
+        "Likely to cause harm",
+        "How a cliff edge is described"
+      ]
+    },
+    {
+      "word": "BEQUEM",
+      "clues": [
+        "Pleasant to sit in or wear",
+        "How a good armchair feels"
+      ]
+    },
+    {
+      "word": "FREUNDLICH",
+      "clues": [
+        "Kind and pleasant to others",
+        "How a good neighbour behaves"
+      ]
+    },
+    {
+      "word": "HÖFLICH",
+      "clues": [
+        "Showing good manners",
+        "How you should speak to strangers"
+      ]
+    },
+    {
+      "word": "UNHÖFLICH",
+      "clues": [
+        "Showing bad manners",
+        "How it is to interrupt constantly"
+      ]
+    },
+    {
+      "word": "NETT",
+      "clues": [
+        "Agreeable and likeable",
+        "How you describe a pleasant person"
+      ]
+    },
+    {
+      "word": "EHRLICH",
+      "clues": [
+        "Telling the truth",
+        "The opposite of lying"
+      ]
+    },
+    {
+      "word": "FLEISSIG",
+      "clues": [
+        "Working hard and steadily",
+        "How a diligent pupil is described"
+      ]
+    },
+    {
+      "word": "FAUL",
+      "clues": [
+        "Unwilling to work",
+        "Also: how fruit goes when it rots"
+      ]
+    },
+    {
+      "word": "KLUG",
+      "clues": [
+        "Quick to understand",
+        "How a bright pupil is described"
+      ]
+    },
+    {
+      "word": "DUMM",
+      "clues": [
+        "Slow to understand",
+        "The opposite of clever"
+      ]
+    },
+    {
+      "word": "LUSTIG",
+      "clues": [
+        "Causing laughter",
+        "How a good joke is"
+      ]
+    },
+    {
+      "word": "ERNST",
+      "clues": [
+        "Not joking at all",
+        "How a serious matter is treated"
+      ]
+    },
+    {
+      "word": "RUHIG",
+      "clues": [
+        "Free from noise or worry",
+        "How a quiet evening is"
+      ]
+    },
+    {
+      "word": "NERVÖS",
+      "clues": [
+        "Anxious and unable to settle",
+        "How you feel before an exam"
+      ]
+    },
+    {
+      "word": "ZUFRIEDEN",
+      "clues": [
+        "Content with how things are",
+        "How you feel when nothing is lacking"
+      ]
+    },
+    {
+      "word": "STOLZ",
+      "clues": [
+        "Pleased with your own achievement",
+        "How a parent feels at a graduation"
+      ]
+    },
+    {
+      "word": "MÜHSAM",
+      "clues": [
+        "Needing a lot of effort",
+        "How a long climb feels"
+      ]
+    },
+    {
+      "word": "FERTIG",
+      "clues": [
+        "Completely finished",
+        "Also: exhausted"
+      ]
+    },
+    {
+      "word": "BEREIT",
+      "clues": [
+        "Prepared to begin",
+        "How you are when the bags are packed"
+      ]
+    },
+    {
+      "word": "FREI",
+      "clues": [
+        "Not occupied or not restricted",
+        "How a seat is when nobody sits there"
+      ]
+    },
+    {
+      "word": "BESETZT",
+      "clues": [
+        "Already taken",
+        "What a phone line is when it beeps"
+      ]
+    },
+    {
+      "word": "BEKANNT",
+      "clues": [
+        "Known to many people",
+        "How a famous face is"
+      ]
+    },
+    {
+      "word": "FREMD",
+      "clues": [
+        "Not familiar; from elsewhere",
+        "How a stranger's face looks"
+      ]
+    },
+    {
+      "word": "GEMEINSAM",
+      "clues": [
+        "Done together with others",
+        "How a shared meal is eaten"
+      ]
+    },
+    {
+      "word": "EINZELN",
+      "clues": [
+        "One at a time, separately",
+        "How items are sold apart from a set"
+      ]
+    },
+    {
+      "word": "GANZ",
+      "clues": [
+        "Complete, with nothing missing",
+        "Also: quite, to a degree"
+      ]
+    },
+    {
+      "word": "HALB",
+      "clues": [
+        "Fifty per cent of the whole",
+        "How full a glass is at the midpoint"
+      ]
+    },
+    {
+      "word": "MEHR",
+      "clues": [
+        "A greater amount",
+        "What you ask for when it is not enough"
+      ]
+    },
+    {
+      "word": "WENIGER",
+      "clues": [
+        "A smaller amount",
+        "The opposite of more"
+      ]
+    },
+    {
+      "word": "GENUG",
+      "clues": [
+        "As much as is needed",
+        "When no more is required"
+      ]
+    },
+    {
+      "word": "BESSER",
+      "clues": [
+        "Of higher quality than before",
+        "How you feel after recovering"
+      ]
+    },
+    {
+      "word": "SCHLIMMER",
+      "clues": [
+        "Worse than before",
+        "How things get before they improve"
+      ]
+    },
+    {
+      "word": "BESTE",
+      "clues": [
+        "Better than all the rest",
+        "What comes first in quality"
+      ]
+    },
+    {
+      "word": "NÄCHSTE",
+      "clues": [
+        "The one immediately after this",
+        "Which week comes after this one"
+      ]
+    },
+    {
+      "word": "LETZTE",
+      "clues": [
+        "The one at the end",
+        "Which slice is left on the plate"
+      ]
+    },
+    {
+      "word": "ERSTE",
+      "clues": [
+        "Coming before all the others",
+        "Where the winner finishes"
+      ]
+    },
+    {
+      "word": "EIGEN",
+      "clues": [
+        "Belonging to yourself",
+        "How you describe your own room"
+      ]
+    },
+    {
+      "word": "BEIDE",
+      "clues": [
+        "The two of them together",
+        "Both, taken as a pair"
+      ]
+    },
+    {
+      "word": "JEDER",
+      "clues": [
+        "Every single one",
+        "Without any exception"
+      ]
+    },
+    {
+      "word": "EINIGE",
+      "clues": [
+        "A small number of them",
+        "More than one, but not many"
+      ]
+    },
+    {
+      "word": "MEISTE",
+      "clues": [
+        "The greater part of them",
+        "Almost all"
+      ]
+    },
+    {
+      "word": "GENAU",
+      "clues": [
+        "Exactly right",
+        "How a good measurement is"
+      ]
+    },
+    {
+      "word": "UNGEFÄHR",
+      "clues": [
+        "Roughly, not exactly",
+        "How you give an estimate"
+      ]
+    },
+    {
+      "word": "VIELLEICHT",
+      "clues": [
+        "Possibly, but not certainly",
+        "The answer when you have not decided"
+      ]
+    },
+    {
+      "word": "SICHERLICH",
+      "clues": [
+        "Without much doubt",
+        "How you say you are fairly certain"
+      ]
+    },
+    {
+      "word": "NATÜRLICH",
+      "clues": [
+        "Of course; as expected",
+        "Also: coming from nature"
+      ]
+    },
+    {
+      "word": "PLÖTZLICH",
+      "clues": [
+        "Happening without warning",
+        "How a storm can break"
+      ]
+    },
+    {
+      "word": "ENDLICH",
+      "clues": [
+        "After a long wait",
+        "What you say when the bus finally comes"
+      ]
+    },
+    {
+      "word": "SOFORT",
+      "clues": [
+        "Right now, without delay",
+        "How urgent help should come"
+      ]
+    },
+    {
+      "word": "FRÜHER",
+      "clues": [
+        "At an earlier time",
+        "How things were in the past"
+      ]
+    },
+    {
+      "word": "SPÄTER",
+      "clues": [
+        "At a time still to come",
+        "What you say when you cannot do it now"
+      ]
+    },
+    {
+      "word": "HEUTZUTAGE",
+      "clues": [
+        "In the present age",
+        "How things are now, unlike before"
+      ]
+    },
+    {
+      "word": "DAMALS",
+      "clues": [
+        "At that time in the past",
+        "When you were young"
+      ]
+    },
+    {
+      "word": "NÄMLICH",
+      "clues": [
+        "That is to say; for this reason",
+        "A word used to explain what precedes"
+      ]
+    },
+    {
+      "word": "DESHALB",
+      "clues": [
+        "For that reason",
+        "What links a cause to its result"
+      ]
+    },
+    {
+      "word": "TROTZDEM",
+      "clues": [
+        "In spite of that",
+        "What you say when you go out despite the rain"
+      ]
+    },
+    {
+      "word": "AUSSERDEM",
+      "clues": [
+        "In addition to that",
+        "A word for adding one more point"
+      ]
+    },
+    {
+      "word": "SEKUNDE",
+      "clues": [
+        "A very short unit of time",
+        "Sixty of these make a minute"
+      ]
+    },
+    {
+      "word": "MONTAG",
+      "clues": [
+        "The first working day of the week",
+        "The day after Sunday"
+      ]
+    },
+    {
+      "word": "DIENSTAG",
+      "clues": [
+        "The day after Monday",
+        "The second working day"
+      ]
+    },
+    {
+      "word": "MITTWOCH",
+      "clues": [
+        "The middle day of the working week",
+        "The day between Tuesday and Thursday"
+      ]
+    },
+    {
+      "word": "DONNERSTAG",
+      "clues": [
+        "The day before Friday",
+        "The fourth day of the week"
+      ]
+    },
+    {
+      "word": "FREITAG",
+      "clues": [
+        "The last working day of the week",
+        "The day before the weekend"
+      ]
+    },
+    {
+      "word": "SAMSTAG",
+      "clues": [
+        "The first day of the weekend",
+        "When the shops are busiest"
+      ]
+    },
+    {
+      "word": "SONNTAG",
+      "clues": [
+        "The day of rest",
+        "When the shops are shut in Germany"
+      ]
+    },
+    {
+      "word": "WOCHENENDE",
+      "clues": [
+        "Saturday and Sunday together",
+        "The days off at the end of the week"
+      ]
+    },
+    {
+      "word": "JANUAR",
+      "clues": [
+        "The first month of the year",
+        "The month that begins with fireworks"
+      ]
+    },
+    {
+      "word": "FEBRUAR",
+      "clues": [
+        "The shortest month",
+        "The month with an extra day every four years"
+      ]
+    },
+    {
+      "word": "MÄRZ",
+      "clues": [
+        "The month when spring begins",
+        "The month after February"
+      ]
+    },
+    {
+      "word": "APRIL",
+      "clues": [
+        "The month famous for changeable weather",
+        "When jokes are played on the first day"
+      ]
+    },
+    {
+      "word": "MAI",
+      "clues": [
+        "The month with a public holiday for workers",
+        "The month before June"
+      ]
+    },
+    {
+      "word": "JUNI",
+      "clues": [
+        "The month when summer begins",
+        "The month with the longest day"
+      ]
+    },
+    {
+      "word": "JULI",
+      "clues": [
+        "The month in the middle of summer",
+        "When the school holidays usually start"
+      ]
+    },
+    {
+      "word": "AUGUST",
+      "clues": [
+        "The last full month of summer",
+        "The month before September"
+      ]
+    },
+    {
+      "word": "SEPTEMBER",
+      "clues": [
+        "The month when school begins again",
+        "The month when autumn starts"
+      ]
+    },
+    {
+      "word": "OKTOBER",
+      "clues": [
+        "The month of the beer festival in Munich",
+        "The month before November"
+      ]
+    },
+    {
+      "word": "NOVEMBER",
+      "clues": [
+        "The grey month before December",
+        "When the clocks have already gone back"
+      ]
+    },
+    {
+      "word": "DEZEMBER",
+      "clues": [
+        "The last month of the year",
+        "The month with Christmas in it"
+      ]
+    },
+    {
+      "word": "WEIHNACHTEN",
+      "clues": [
+        "The winter festival with a decorated tree",
+        "When presents are given in December"
+      ]
+    },
+    {
+      "word": "OSTERN",
+      "clues": [
+        "The spring festival with eggs",
+        "When the rabbit is said to visit"
+      ]
+    },
+    {
+      "word": "FEIERTAG",
+      "clues": [
+        "A day when nobody has to work",
+        "A public holiday"
+      ]
+    },
+    {
+      "word": "DATUM",
+      "clues": [
+        "The day, month and year together",
+        "What you write at the top of a letter"
+      ]
+    },
+    {
+      "word": "KALENDER",
+      "clues": [
+        "What shows the days of the year",
+        "What hangs on the wall and is turned monthly"
+      ]
+    },
+    {
+      "word": "NULL",
+      "clues": [
+        "The number meaning none at all",
+        "What comes before one"
+      ]
+    },
+    {
+      "word": "EINS",
+      "clues": [
+        "The first counting number",
+        "The loneliest number"
+      ]
+    },
+    {
+      "word": "ZWEI",
+      "clues": [
+        "The number of eyes a person has",
+        "One more than one"
+      ]
+    },
+    {
+      "word": "DREI",
+      "clues": [
+        "The number of sides on a triangle",
+        "One more than two"
+      ]
+    },
+    {
+      "word": "VIER",
+      "clues": [
+        "The number of legs on a chair",
+        "Two plus two"
+      ]
+    },
+    {
+      "word": "FÜNF",
+      "clues": [
+        "The number of fingers on a hand",
+        "Half of ten"
+      ]
+    },
+    {
+      "word": "SECHS",
+      "clues": [
+        "The number of sides on a cube",
+        "One more than five"
+      ]
+    },
+    {
+      "word": "SIEBEN",
+      "clues": [
+        "The number of days in a week",
+        "The number often called lucky"
+      ]
+    },
+    {
+      "word": "ACHT",
+      "clues": [
+        "The number of legs on a spider",
+        "Two cubed"
+      ]
+    },
+    {
+      "word": "NEUN",
+      "clues": [
+        "The number of players in a baseball side",
+        "One less than ten"
+      ]
+    },
+    {
+      "word": "ZEHN",
+      "clues": [
+        "The number of fingers on two hands",
+        "The base of our counting system"
+      ]
+    },
+    {
+      "word": "ELF",
+      "clues": [
+        "One more than ten",
+        "The number in a football team"
+      ]
+    },
+    {
+      "word": "ZWÖLF",
+      "clues": [
+        "The number of months in a year",
+        "A dozen"
+      ]
+    },
+    {
+      "word": "ZWANZIG",
+      "clues": [
+        "Twice ten",
+        "The number of fingers and toes together"
+      ]
+    },
+    {
+      "word": "HUNDERT",
+      "clues": [
+        "Ten times ten",
+        "How many years in a century"
+      ]
+    },
+    {
+      "word": "TAUSEND",
+      "clues": [
+        "Ten times a hundred",
+        "How many metres in a kilometre"
+      ]
+    },
+    {
+      "word": "MILLION",
+      "clues": [
+        "A thousand thousand",
+        "A number with six noughts"
+      ]
+    },
+    {
+      "word": "FARBE",
+      "clues": [
+        "What red, blue and green all are",
+        "What paint adds to a wall"
+      ]
+    },
+    {
+      "word": "ROT",
+      "clues": [
+        "The colour of blood",
+        "The colour of a stop signal"
+      ]
+    },
+    {
+      "word": "BLAU",
+      "clues": [
+        "The colour of a clear sky",
+        "The colour of the deep sea"
+      ]
+    },
+    {
+      "word": "GRÜN",
+      "clues": [
+        "The colour of grass",
+        "The colour meaning go"
+      ]
+    },
+    {
+      "word": "GELB",
+      "clues": [
+        "The colour of a lemon",
+        "The colour of the sun in a child's drawing"
+      ]
+    },
+    {
+      "word": "SCHWARZ",
+      "clues": [
+        "The colour of night",
+        "The darkest colour there is"
+      ]
+    },
+    {
+      "word": "WEISS",
+      "clues": [
+        "The colour of snow",
+        "The lightest colour there is"
+      ]
+    },
+    {
+      "word": "GRAU",
+      "clues": [
+        "The colour between black and white",
+        "The colour of a rainy sky"
+      ]
+    },
+    {
+      "word": "BRAUN",
+      "clues": [
+        "The colour of earth and wood",
+        "The colour of chocolate"
+      ]
+    },
+    {
+      "word": "ROSA",
+      "clues": [
+        "A pale shade of red",
+        "The colour often given to baby girls"
+      ]
+    },
+    {
+      "word": "LILA",
+      "clues": [
+        "A colour between blue and red",
+        "The colour of lavender"
+      ]
+    },
+    {
+      "word": "HELLBLAU",
+      "clues": [
+        "A pale shade of the sky's colour",
+        "The lighter of two blues"
+      ]
+    },
+    {
+      "word": "DUNKELGRÜN",
+      "clues": [
+        "A deep shade of the colour of leaves",
+        "The darker of two greens"
+      ]
+    },
+    {
+      "word": "FORM",
+      "clues": [
+        "The outline or shape of a thing",
+        "Whether it is round or square"
+      ]
+    },
+    {
+      "word": "RUND",
+      "clues": [
+        "Shaped like a circle",
+        "How a ball is"
+      ]
+    },
+    {
+      "word": "ECKIG",
+      "clues": [
+        "Having corners",
+        "How a box is, unlike a ball"
+      ]
+    },
+    {
+      "word": "GERADE",
+      "clues": [
+        "Without any bend",
+        "How a good line is drawn"
+      ]
+    },
+    {
+      "word": "KRUMM",
+      "clues": [
+        "Bent out of line",
+        "How an old nail becomes"
+      ]
+    },
+    {
+      "word": "SPITZ",
+      "clues": [
+        "Coming to a sharp point",
+        "How a sharpened pencil ends"
+      ]
+    },
+    {
+      "word": "FLACH",
+      "clues": [
+        "Level, without depth",
+        "How a pancake is"
+      ]
+    },
+    {
+      "word": "METER",
+      "clues": [
+        "The basic unit of length",
+        "A hundred centimetres"
+      ]
+    },
+    {
+      "word": "KILOMETER",
+      "clues": [
+        "A thousand of the basic length units",
+        "How far is measured on a road sign"
+      ]
+    },
+    {
+      "word": "ZENTIMETER",
+      "clues": [
+        "A hundredth of a metre",
+        "The small marks on a ruler"
+      ]
+    },
+    {
+      "word": "KILO",
+      "clues": [
+        "A thousand grams",
+        "How potatoes are sold"
+      ]
+    },
+    {
+      "word": "GRAMM",
+      "clues": [
+        "A very small unit of weight",
+        "A thousandth of a kilo"
+      ]
+    },
+    {
+      "word": "LITER",
+      "clues": [
+        "The unit for measuring liquid",
+        "How milk is sold"
+      ]
+    },
+    {
+      "word": "STÜCK",
+      "clues": [
+        "One single item from many",
+        "How cake is counted"
+      ]
+    },
+    {
+      "word": "PAAR",
+      "clues": [
+        "Two things that go together",
+        "How shoes and gloves are counted"
+      ]
+    },
+    {
+      "word": "DUTZEND",
+      "clues": [
+        "A group of twelve",
+        "How eggs used to be sold"
+      ]
+    },
+    {
+      "word": "TEIL",
+      "clues": [
+        "One piece of a larger whole",
+        "Not the whole thing"
+      ]
+    },
+    {
+      "word": "SEITE",
+      "clues": [
+        "One face of a thing",
+        "Also: one leaf of a book"
+      ]
+    },
+    {
+      "word": "MITTE",
+      "clues": [
+        "The point equally far from the edges",
+        "The centre of something"
+      ]
+    },
+    {
+      "word": "RAND",
+      "clues": [
+        "The outer edge of something",
+        "Where a page stops"
+      ]
+    },
+    {
+      "word": "OBEN",
+      "clues": [
+        "In the higher position",
+        "Where the roof is, from inside"
+      ]
+    },
+    {
+      "word": "UNTEN",
+      "clues": [
+        "In the lower position",
+        "Where the cellar is, from upstairs"
+      ]
+    },
+    {
+      "word": "LINKS",
+      "clues": [
+        "On the side of the heart",
+        "The opposite of right"
+      ]
+    },
+    {
+      "word": "RECHTS",
+      "clues": [
+        "On the side most people write with",
+        "The opposite of left"
+      ]
+    },
+    {
+      "word": "VORNE",
+      "clues": [
+        "At the front",
+        "Where the driver sits in a bus"
+      ]
+    },
+    {
+      "word": "HINTEN",
+      "clues": [
+        "At the back",
+        "Where the boot of a car is"
+      ]
+    },
+    {
+      "word": "DRAUSSEN",
+      "clues": [
+        "Not inside a building",
+        "Where the weather is"
+      ]
+    },
+    {
+      "word": "DRINNEN",
+      "clues": [
+        "Inside a building",
+        "Where you go when it rains"
+      ]
+    },
+    {
+      "word": "ÜBERALL",
+      "clues": [
+        "In every place",
+        "Where dust seems to get"
+      ]
+    },
+    {
+      "word": "NIRGENDS",
+      "clues": [
+        "In no place at all",
+        "Where the missing keys seem to be"
+      ]
+    },
+    {
+      "word": "IRGENDWO",
+      "clues": [
+        "In some place or other",
+        "Where you left it, but you forget where"
+      ]
+    },
+    {
+      "word": "HIER",
+      "clues": [
+        "In this place",
+        "Where you are now"
+      ]
+    },
+    {
+      "word": "DORT",
+      "clues": [
+        "In that place, not this one",
+        "Where you point to"
+      ]
+    },
+    {
+      "word": "WOHIN",
+      "clues": [
+        "To what place",
+        "The question word for a destination"
+      ]
+    },
+    {
+      "word": "WOHER",
+      "clues": [
+        "From what place",
+        "The question word for an origin"
+      ]
+    },
+    {
+      "word": "WARUM",
+      "clues": [
+        "For what reason",
+        "The question a child asks endlessly"
+      ]
+    },
+    {
+      "word": "WIESO",
+      "clues": [
+        "For what reason; another way of asking why",
+        "What you say when a reason is missing"
+      ]
+    },
+    {
+      "word": "WANN",
+      "clues": [
+        "At what time",
+        "The question word for a moment"
+      ]
+    },
+    {
+      "word": "WELCHE",
+      "clues": [
+        "Which one of them",
+        "The question word for a choice"
+      ]
+    },
+    {
+      "word": "WIEVIEL",
+      "clues": [
+        "What amount",
+        "The question word for a quantity"
+      ]
+    },
+    {
+      "word": "DEUTSCHLAND",
+      "clues": [
+        "The country whose capital is Berlin",
+        "Where this language is mostly spoken"
+      ]
+    },
+    {
+      "word": "ÖSTERREICH",
+      "clues": [
+        "The alpine country whose capital is Vienna",
+        "Where Mozart was born"
+      ]
+    },
+    {
+      "word": "SCHWEIZ",
+      "clues": [
+        "The country of mountains, banks and four languages",
+        "The neutral alpine state"
+      ]
+    },
+    {
+      "word": "FRANKREICH",
+      "clues": [
+        "The country whose capital is Paris",
+        "Where the Eiffel Tower stands"
+      ]
+    },
+    {
+      "word": "ENGLAND",
+      "clues": [
+        "The country whose capital is London",
+        "Where this crossword's clues are written"
+      ]
+    },
+    {
+      "word": "SPANIEN",
+      "clues": [
+        "The country whose capital is Madrid",
+        "Where flamenco comes from"
+      ]
+    },
+    {
+      "word": "ITALIEN",
+      "clues": [
+        "The country shaped like a boot",
+        "Where Rome is"
+      ]
+    },
+    {
+      "word": "POLEN",
+      "clues": [
+        "The country east of Germany",
+        "Whose capital is Warsaw"
+      ]
+    },
+    {
+      "word": "EUROPA",
+      "clues": [
+        "The continent Germany lies in",
+        "The smallest continent but one"
+      ]
+    },
+    {
+      "word": "LAND",
+      "clues": [
+        "A country, or the ground itself",
+        "What a farmer works"
+      ]
+    },
+    {
+      "word": "WELT",
+      "clues": [
+        "The whole earth and everyone on it",
+        "What a globe represents"
+      ]
+    },
+    {
+      "word": "HAUPTSTADT",
+      "clues": [
+        "The city where a country is governed",
+        "Where the parliament sits"
+      ]
+    },
+    {
+      "word": "DEUTSCH",
+      "clues": [
+        "The language spoken in Berlin and Vienna",
+        "The subject of this word list"
+      ]
+    },
+    {
+      "word": "ENGLISCH",
+      "clues": [
+        "The language of London and New York",
+        "What these clues are written in"
+      ]
+    },
+    {
+      "word": "AUSLÄNDER",
+      "clues": [
+        "A person from another country",
+        "Someone who needs a visa"
+      ]
+    },
+    {
+      "word": "PLAN",
+      "clues": [
+        "What you intend to do",
+        "Also: a drawing of a building from above"
+      ]
+    },
+    {
+      "word": "IDEE",
+      "clues": [
+        "A thought about what could be done",
+        "What a light bulb stands for"
+      ]
+    },
+    {
+      "word": "GRUND",
+      "clues": [
+        "The reason behind something",
+        "Also: the bottom of a lake"
+      ]
+    },
+    {
+      "word": "PROBLEM",
+      "clues": [
+        "A difficulty needing a solution",
+        "What has to be solved"
+      ]
+    },
+    {
+      "word": "LÖSUNG",
+      "clues": [
+        "The answer to a difficulty",
+        "What ends a problem"
+      ]
+    },
+    {
+      "word": "MEINUNG",
+      "clues": [
+        "What a person thinks about something",
+        "What a poll collects"
+      ]
+    },
+    {
+      "word": "REGEL",
+      "clues": [
+        "Something that must be obeyed",
+        "What a game has a list of"
+      ]
+    },
+    {
+      "word": "GESETZ",
+      "clues": [
+        "A rule made by the state",
+        "What parliament passes"
+      ]
+    },
+    {
+      "word": "RECHT",
+      "clues": [
+        "What you are allowed to claim",
+        "Also: correct"
+      ]
+    },
+    {
+      "word": "PFLICHT",
+      "clues": [
+        "Something you must do",
+        "The opposite of a right"
+      ]
+    },
+    {
+      "word": "ORDNUNG",
+      "clues": [
+        "Everything in its proper place",
+        "What Germans are said to love"
+      ]
+    },
+    {
+      "word": "CHANCE",
+      "clues": [
+        "A possibility of success",
+        "What you take when it comes"
+      ]
+    },
+    {
+      "word": "GLÜCK",
+      "clues": [
+        "Good fortune",
+        "What a four-leafed clover brings"
+      ]
+    },
+    {
+      "word": "PECH",
+      "clues": [
+        "Bad fortune",
+        "The opposite of luck"
+      ]
+    },
+    {
+      "word": "ZUFALL",
+      "clues": [
+        "Something happening by chance",
+        "Not planned at all"
+      ]
+    },
+    {
+      "word": "SITUATION",
+      "clues": [
+        "How things stand at a moment",
+        "The circumstances you are in"
+      ]
+    },
+    {
+      "word": "BEDINGUNG",
+      "clues": [
+        "Something that must be true first",
+        "What an offer may depend on"
+      ]
+    },
+    {
+      "word": "UNTERSCHIED",
+      "clues": [
+        "The way two things are not the same",
+        "What comparing reveals"
+      ]
+    },
+    {
+      "word": "VORTEIL",
+      "clues": [
+        "A point in something's favour",
+        "The good side of a choice"
+      ]
+    },
+    {
+      "word": "NACHTEIL",
+      "clues": [
+        "A point against something",
+        "The bad side of a choice"
+      ]
+    },
+    {
+      "word": "ZIEL",
+      "clues": [
+        "What you are aiming at",
+        "Also: the finish of a race"
+      ]
+    },
+    {
+      "word": "ERFOLG",
+      "clues": [
+        "Achieving what you set out to do",
+        "What hard work is meant to bring"
+      ]
+    },
+    {
+      "word": "ZUKUNFT",
+      "clues": [
+        "The time still to come",
+        "What nobody can be sure of"
+      ]
+    },
+    {
+      "word": "VERGANGENHEIT",
+      "clues": [
+        "The time already gone",
+        "What history studies"
+      ]
+    },
+    {
+      "word": "GEGENWART",
+      "clues": [
+        "The time happening now",
+        "Neither past nor future"
+      ]
+    },
+    {
+      "word": "GESCHICHTE",
+      "clues": [
+        "A story, or the study of the past",
+        "What a grandparent tells at bedtime"
+      ]
+    },
+    {
+      "word": "ERFAHRUNG",
+      "clues": [
+        "What you have learned by living",
+        "What years of work give you"
+      ]
+    },
+    {
+      "word": "GEWOHNHEIT",
+      "clues": [
+        "Something done again and again without thinking",
+        "What is hard to break"
+      ]
+    },
+    {
+      "word": "ART",
+      "clues": [
+        "The kind or manner of something",
+        "Also: a species of animal"
+      ]
+    },
+    {
+      "word": "SACHE",
+      "clues": [
+        "A thing, or a matter to be dealt with",
+        "What is under discussion"
+      ]
+    },
+    {
+      "word": "DING",
+      "clues": [
+        "An object of no particular name",
+        "A thing, plainly"
+      ]
+    },
+    {
+      "word": "GEGENSTAND",
+      "clues": [
+        "A physical object",
+        "Something you can pick up"
+      ]
+    },
+    {
+      "word": "MATERIAL",
+      "clues": [
+        "What a thing is made of",
+        "Wood, metal or cloth, for instance"
+      ]
+    },
+    {
+      "word": "HOLZ",
+      "clues": [
+        "The hard material from a tree",
+        "What a table may be made of"
+      ]
+    },
+    {
+      "word": "METALL",
+      "clues": [
+        "A hard shiny material that conducts heat",
+        "Iron, copper or gold"
+      ]
+    },
+    {
+      "word": "PLASTIK",
+      "clues": [
+        "A light artificial material",
+        "What most bottles are made of"
+      ]
+    },
+    {
+      "word": "STOFF",
+      "clues": [
+        "Woven material for clothes",
+        "What a tailor cuts"
+      ]
+    },
+    {
+      "word": "STEIN",
+      "clues": [
+        "A hard piece of rock",
+        "What a wall may be built from"
+      ]
+    },
+    {
+      "word": "SAND",
+      "clues": [
+        "The tiny grains on a beach",
+        "What runs through an hourglass"
+      ]
+    },
+    {
+      "word": "PAPIERKORB",
+      "clues": [
+        "The basket for waste paper",
+        "Where a failed draft goes"
+      ]
+    },
+    {
+      "word": "WERKZEUG",
+      "clues": [
+        "Something used to do a job with the hands",
+        "A hammer or a saw"
+      ]
+    },
+    {
+      "word": "HAMMER",
+      "clues": [
+        "The tool for driving nails",
+        "What has a head and a handle"
+      ]
+    },
+    {
+      "word": "NAGEL",
+      "clues": [
+        "The small metal spike driven into wood",
+        "Also: what grows at the end of a finger"
+      ]
+    },
+    {
+      "word": "SÄGE",
+      "clues": [
+        "The tool with teeth for cutting wood",
+        "What makes sawdust"
+      ]
+    },
+    {
+      "word": "MASCHINE",
+      "clues": [
+        "A device that does work by itself",
+        "What a factory is full of"
+      ]
+    },
+    {
+      "word": "MOTOR",
+      "clues": [
+        "The part that makes a vehicle move",
+        "What is under the bonnet"
+      ]
+    },
+    {
+      "word": "RAD",
+      "clues": [
+        "A round part that turns",
+        "What a bicycle has two of"
+      ]
+    },
+    {
+      "word": "BENZIN",
+      "clues": [
+        "The fuel that petrol engines burn",
+        "What you fill a tank with"
+      ]
+    },
+    {
+      "word": "SCHILD",
+      "clues": [
+        "A board carrying a sign",
+        "What tells drivers the speed limit"
+      ]
+    },
+    {
+      "word": "AMPEL",
+      "clues": [
+        "The lights that control traffic",
+        "What shows red, amber and green"
+      ]
+    },
+    {
+      "word": "UNTERSCHRIFT",
+      "clues": [
+        "Your name written to show agreement",
+        "What goes at the bottom of a form"
+      ]
+    },
+    {
+      "word": "FORMULAR",
+      "clues": [
+        "A printed sheet with spaces to fill",
+        "What an office hands you"
+      ]
+    },
+    {
+      "word": "AUSWEIS",
+      "clues": [
+        "A card proving who you are",
+        "What you show to prove your age"
+      ]
+    },
+    {
+      "word": "FÜHRERSCHEIN",
+      "clues": [
+        "The card allowing you to drive",
+        "What you can lose for speeding"
+      ]
+    },
+    {
+      "word": "ANTRAG",
+      "clues": [
+        "A formal request to an authority",
+        "What you submit for a permit"
+      ]
+    },
+    {
+      "word": "GEBÄUDE",
+      "clues": [
+        "A structure with walls and a roof",
+        "What an architect designs"
+      ]
+    },
+    {
+      "word": "STOCK",
+      "clues": [
+        "One level of a building",
+        "Also: a long thin piece of wood"
+      ]
+    },
+    {
+      "word": "MAUER",
+      "clues": [
+        "A wall of stone or brick outdoors",
+        "What once divided Berlin"
+      ]
+    },
+    {
+      "word": "ZAUN",
+      "clues": [
+        "A barrier of wood or wire round a garden",
+        "What neighbours argue over"
+      ]
+    },
+    {
+      "word": "HOF",
+      "clues": [
+        "The open space enclosed by buildings",
+        "Where children play behind the flats"
+      ]
+    },
+    {
+      "word": "WERT",
+      "clues": [
+        "How much something is worth",
+        "What an old painting may have a lot of"
+      ]
+    },
+    {
+      "word": "QUALITÄT",
+      "clues": [
+        "How good something is",
+        "What you pay more for"
+      ]
+    },
+    {
+      "word": "MENGE",
+      "clues": [
+        "How much of something there is",
+        "Also: a crowd of people"
+      ]
+    },
+    {
+      "word": "ANZAHL",
+      "clues": [
+        "How many there are",
+        "What counting gives you"
+      ]
+    },
+    {
+      "word": "LISTE",
+      "clues": [
+        "Items written one below another",
+        "What you take to the supermarket"
+      ]
+    },
+    {
+      "word": "REIHE",
+      "clues": [
+        "Things arranged one after another",
+        "Also: where you sit in a theatre"
+      ]
+    },
+    {
+      "word": "GRUPPE",
+      "clues": [
+        "Several people or things together",
+        "What a tour guide leads"
+      ]
+    },
+    {
+      "word": "VEREIN",
+      "clues": [
+        "A club people join for a shared interest",
+        "What a German town has many of"
+      ]
+    },
+    {
+      "word": "MITGLIED",
+      "clues": [
+        "Someone who belongs to a club",
+        "Who pays the annual fee"
+      ]
+    },
+    {
+      "word": "GESELLSCHAFT",
+      "clues": [
+        "People living together as a whole",
+        "Also: company, in the sense of being with others"
+      ]
+    },
+    {
+      "word": "STAAT",
+      "clues": [
+        "The organised political body of a country",
+        "What collects the taxes"
+      ]
+    },
+    {
+      "word": "REGIERUNG",
+      "clues": [
+        "The people who run the country",
+        "Who sit in the cabinet"
+      ]
+    },
+    {
+      "word": "WAHL",
+      "clues": [
+        "The process of choosing by vote",
+        "What happens every few years"
+      ]
+    },
+    {
+      "word": "STIMME",
+      "clues": [
+        "The sound you speak with",
+        "Also: what you cast at an election"
+      ]
+    },
+    {
+      "word": "FRIEDEN",
+      "clues": [
+        "The absence of war",
+        "What a treaty is meant to bring"
+      ]
+    },
+    {
+      "word": "KRIEG",
+      "clues": [
+        "Armed fighting between countries",
+        "The opposite of peace"
+      ]
+    },
+    {
+      "word": "SCHUTZ",
+      "clues": [
+        "Keeping something safe from harm",
+        "What a roof gives against rain"
+      ]
+    },
+    {
+      "word": "BEDEUTUNG",
+      "clues": [
+        "What something means",
+        "What a dictionary explains"
+      ]
+    },
+    {
+      "word": "ZEICHEN",
+      "clues": [
+        "A mark that stands for something",
+        "What a symbol is"
+      ]
+    },
+    {
+      "word": "SYMBOL",
+      "clues": [
+        "A mark standing for an idea",
+        "What a heart is, for love"
+      ]
+    },
+    {
+      "word": "BILD",
+      "clues": [
+        "A picture of something",
+        "What hangs in a gallery"
+      ]
+    },
+    {
+      "word": "KUNST",
+      "clues": [
+        "Painting, music and sculpture together",
+        "What a gallery is full of"
+      ]
+    },
+    {
+      "word": "MUSTER",
+      "clues": [
+        "A design that repeats",
+        "What wallpaper has"
+      ]
+    },
+    {
+      "word": "KOPIE",
+      "clues": [
+        "A second one made to match the first",
+        "What a photocopier produces"
+      ]
+    },
+    {
+      "word": "ORIGINAL",
+      "clues": [
+        "The first one, not a copy",
+        "What a museum wants and a forger imitates"
+      ]
+    },
+    {
+      "word": "VORSICHT",
+      "clues": [
+        "Care taken to avoid danger",
+        "What a warning sign asks for"
+      ]
+    },
+    {
+      "word": "ACHTUNG",
+      "clues": [
+        "A call for care or notice",
+        "What is shouted before something falls"
+      ]
+    },
+    {
+      "word": "GEDULD",
+      "clues": [
+        "The ability to wait calmly",
+        "What a long queue tests"
+      ]
+    },
+    {
+      "word": "EILE",
+      "clues": [
+        "The need to move fast",
+        "What makes you leave without your keys"
+      ]
+    },
+    {
+      "word": "MÜHE",
+      "clues": [
+        "Effort spent on something hard",
+        "What a difficult task costs you"
+      ]
+    },
+    {
+      "word": "VERTRAUEN",
+      "clues": [
+        "Believing someone will not let you down",
+        "What a friendship rests on"
+      ]
+    },
+    {
+      "word": "RESPEKT",
+      "clues": [
+        "Regard for someone's worth",
+        "What is owed to the old"
+      ]
+    },
+    {
+      "word": "VERANTWORTUNG",
+      "clues": [
+        "Being the one who must answer for something",
+        "What a manager carries"
+      ]
+    },
+    {
+      "word": "BEZIEHUNG",
+      "clues": [
+        "The way two people stand to each other",
+        "What a couple is said to be in"
+      ]
+    },
+    {
+      "word": "GEFÜHL",
+      "clues": [
+        "Something felt rather than thought",
+        "Joy, fear or sadness"
+      ]
+    },
+    {
+      "word": "GEDANKE",
+      "clues": [
+        "Something that passes through the mind",
+        "What you have when you think"
+      ]
+    },
+    {
+      "word": "TRAUM",
+      "clues": [
+        "The pictures the mind makes in sleep",
+        "Also: something you hope for"
+      ]
+    },
+    {
+      "word": "WUNSCH",
+      "clues": [
+        "Something you would like to have",
+        "What you make before blowing out candles"
+      ]
+    },
+    {
+      "word": "ÜBERRASCHUNG",
+      "clues": [
+        "Something unexpected",
+        "What a party can be planned as"
+      ]
+    },
+    {
+      "word": "GEHEIMNIS",
+      "clues": [
+        "Something not to be told",
+        "What you promise to keep"
+      ]
+    },
+    {
+      "word": "WAHRHEIT",
+      "clues": [
+        "What really is the case",
+        "What a witness swears to tell"
+      ]
+    },
+    {
+      "word": "LÜGE",
+      "clues": [
+        "Something said that is not true",
+        "The opposite of the truth"
+      ]
+    },
+    {
+      "word": "WITZ",
+      "clues": [
+        "A short story meant to make you laugh",
+        "What has a punchline"
+      ]
+    },
+    {
+      "word": "MÄRCHEN",
+      "clues": [
+        "An old story with kings and magic",
+        "What the Grimm brothers collected"
+      ]
+    },
+    {
+      "word": "ROMAN",
+      "clues": [
+        "A long story in a book",
+        "What a novelist writes"
+      ]
+    },
+    {
+      "word": "SEITENZAHL",
+      "clues": [
+        "The number printed on a page",
+        "What tells you how far you have read"
+      ]
+    },
+    {
+      "word": "KAPITEL",
+      "clues": [
+        "One numbered part of a book",
+        "What you stop reading at the end of"
+      ]
+    },
+    {
+      "word": "TITEL",
+      "clues": [
+        "The name of a book or film",
+        "What is printed largest on the cover"
+      ]
+    },
+    {
+      "word": "AUTOR",
+      "clues": [
+        "The person who wrote the book",
+        "Whose name is under the title"
+      ]
+    },
+    {
+      "word": "LESER",
+      "clues": [
+        "The person who reads the book",
+        "Who the author writes for"
+      ]
+    },
+    {
+      "word": "BERICHT",
+      "clues": [
+        "An account of what happened",
+        "What a journalist files"
+      ]
+    },
+    {
+      "word": "INFORMATION",
+      "clues": [
+        "Facts given or received",
+        "What a desk at the station provides"
+      ]
+    },
+    {
+      "word": "ERKLÄRUNG",
+      "clues": [
+        "An account making something clear",
+        "What a teacher gives after a hard question"
+      ]
+    },
+    {
+      "word": "VORTRAG",
+      "clues": [
+        "A talk given to an audience",
+        "What a speaker delivers with slides"
+      ]
+    },
+    {
+      "word": "GESPRÄCH",
+      "clues": [
+        "Two or more people talking",
+        "What happens over coffee"
+      ]
+    },
+    {
+      "word": "DISKUSSION",
+      "clues": [
+        "A talk in which views differ",
+        "What a panel holds"
+      ]
+    },
+    {
+      "word": "STREIT",
+      "clues": [
+        "An angry disagreement",
+        "What neighbours have over a hedge"
+      ]
+    },
+    {
+      "word": "KOMPROMISS",
+      "clues": [
+        "A settlement where both sides give way",
+        "How a long argument usually ends"
+      ]
+    },
+    {
+      "word": "REST",
+      "clues": [
+        "What is left over when the others are gone",
+        "The part still remaining at the end"
       ]
     }
   ]
