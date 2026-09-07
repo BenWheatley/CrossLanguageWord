@@ -323,9 +323,16 @@
       minC = Math.min(minC, col); maxC = Math.max(maxC, endC);
     }
 
-    // A placement beats another if it crosses more letters, or - for a tie on crossings -
-    // if it results in a smaller overall grid. Crossings come first because a denser, more
-    // interlocked grid also tends to end up more compact on its own; area only breaks ties.
+    // A placement beats another if it crosses more letters, or - for a tie on crossings - if it
+    // keeps the grid smaller.
+    //
+    // A third term was tried here and removed: preferring placements that leave more room for
+    // later words to cross them. It measured worse on every count that matters. Counting open
+    // squares favours long words, which have more of them, so it became a length bonus in
+    // disguise - mean word length rose a full letter above the bank's own average and the number
+    // of distinct words ever seen fell by a tenth - and the share of checked letters did not
+    // improve at all. Normalising by word length changed nothing, because the comparison that
+    // decides most placements is between spots for the same word.
     function better(a, b){
       if(!b) return true;
       if(a.crossCount !== b.crossCount) return a.crossCount > b.crossCount;
@@ -484,6 +491,29 @@
     return subset;
   }
 
+  /**
+   * How many squares belong to two words at once.
+   *
+   * The measure of a crossword, really: a letter shared between an across word and a down one is
+   * checked, and a solver who does not know a word can still recover it from what crosses it. A
+   * grid can be small and still be a handful of separate words lying near each other.
+   */
+  function countCrossings(placements){
+    const owners = new Map();
+    for(const p of placements){
+      const len = p.letters ? p.letters.length : p.len;
+      for(let i=0;i<len;i++){
+        const r = p.dir==='across' ? p.row : p.row+i;
+        const c = p.dir==='across' ? p.col+i : p.col;
+        const k = key(r,c);
+        owners.set(k, (owners.get(k) || 0) + 1);
+      }
+    }
+    let crossings = 0;
+    for(const count of owners.values()) if(count > 1) crossings++;
+    return crossings;
+  }
+
   // Shared bounding-box calculation, used both to size the final grid and to compare
   // candidate layouts by area.
   function computeBounds(placements){
@@ -508,6 +538,8 @@
   // 58ms at 40, 113ms at 60, 729ms at 120, growing far faster than the word count does - to keep
   // every size in roughly the same few-hundred-millisecond band. Wall-clock time still varies
   // with the machine; which puzzle you get does not.
+  const OVERDRAW = 1.5;
+
   function attemptsFor(target){
     if(target <= 10) return 120;
     if(target <= 15) return 60;
@@ -535,22 +567,37 @@
     const target = Math.min(targetCount, bank.length);
     const attempts = Math.max(1, options.attempts || attemptsFor(target));
 
-    // Which words appear is decided once, uniformly at random - not re-rolled per attempt, or
-    // whichever random sample happens to be easier to interlock would win more often, silently
-    // favoring some vocabulary over the rest across repeated generations.
-    const subset = pickRandomSubset(bank, target, maxCols, rnd);
+    // Draw rather more words than the puzzle needs and let placement keep the ones that fit
+    // together, stopping once it has enough.
+    //
+    // The pool is still drawn uniformly, and once per build rather than per attempt: re-rolling
+    // per attempt would let whichever sample interlocked most easily win, and awkward vocabulary
+    // - the sort that most wants practising - would quietly stop appearing. Over-drawing pulls in
+    // the same direction, which is why the margin is small. It buys a denser grid and removes the
+    // need to scatter unplaceable words about in regions of their own; a wider margin would buy a
+    // little more at the cost of only ever showing the words that interlock easily.
+    const poolSize = Math.min(bank.length, Math.ceil(target * (options.overdraw || OVERDRAW)));
+    const subset = pickRandomSubset(bank, poolSize, maxCols, rnd);
 
-    let best = null, bestArea = Infinity, bestPlacedCount = -1;
+    // Attempts are ranked by how many words got placed, then by how interlocked they are, and
+    // only then by how small the grid came out. Area alone was a poor proxy: it rewards packing
+    // words tightly together whether or not they actually cross, and a crossword whose words do
+    // not cross is a word search.
+    let best = null, bestArea = Infinity, bestPlacedCount = -1, bestCrossings = -1;
     for(let i=0;i<attempts;i++){
-      // What varies between attempts is purely the processing order of this same fixed subset -
-      // attemptPlacement's disjoint-region fallback means the whole subset gets placed regardless
-      // of order, so different shuffles just explore different resulting layouts.
+      // What varies between attempts is purely the processing order of the same pool - different
+      // shuffles explore different layouts.
       const result = attemptPlacement(shuffle(subset, rnd), target, maxCols);
       const bounds = computeBounds(result.placements);
       const placedCount = result.placements.length;
+      const crossings = countCrossings(result.placements);
       const area = bounds.rows * bounds.cols;
-      if(!best || placedCount > bestPlacedCount || (placedCount === bestPlacedCount && area < bestArea)){
-        best = result; bestPlacedCount = placedCount; bestArea = area;
+      const better = !best
+        || placedCount > bestPlacedCount
+        || (placedCount === bestPlacedCount && crossings > bestCrossings)
+        || (placedCount === bestPlacedCount && crossings === bestCrossings && area < bestArea);
+      if(better){
+        best = result; bestPlacedCount = placedCount; bestCrossings = crossings; bestArea = area;
       }
     }
 
@@ -610,6 +657,7 @@
     attemptPlacement,
     pickRandomSubset,
     computeBounds,
+    countCrossings,
     buildCrossword,
     trimAndIndex,
     numberGrid

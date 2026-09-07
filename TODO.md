@@ -69,19 +69,24 @@ appears at the end.
   present it marks every wrong letter in the puzzle, which is a blunt
   instrument and the only setting on offer.
 
-## 7. One difficulty lever, and thin crossings
+## 7. One difficulty lever, and still-thin crossings
 
-Word count is the only control. Measured interlock, 25 trials per size:
+Word count is the only control. Interlock, 40 trials per size, after ranking
+attempts by crossings and over-drawing the pool by half:
 
-| words | crossings/word | isolated words | grid fill |
-| --- | --- | --- | --- |
-| 15 | 1.96 | 3.2% | 41.8% |
-| 30 | 2.09 | 1.1% | 38.6% |
+| words | crossings/word | checked letters | isolated words | grid fill |
+| --- | --- | --- | --- | --- |
+| 15 | 2.38 | 23.3% | 0% | 40.5% |
+| 30 | 2.35 | 23.4% | 0% | 40.2% |
 
-Respectable for arbitrary word lists, but most letters are unchecked, so an
-unknown word usually cannot be inferred from its crossings the way it can in a
-dense crossword. That is inherent to building from a supplied list rather than a
-curated grid — and it is part of why 2 matters.
+Up from 1.99 and 17.1% at fifteen words, with isolated words gone. Still a long
+way from a professional grid, where every letter is checked — but that gap is
+structural, not a defect: a professional works grid-first, designing a symmetric
+black-square pattern and filling it from a lexicon of a hundred thousand entries
+with backtracking. This works word-first, from a fixed handful of specific words
+that must all appear. Closing the gap much further means either a far larger word
+list or giving up the guarantee that the words you asked for are the words you
+get.
 
 - Filter by word length, or by level within a list.
 - "Only words I have missed" — which is 1 again, from the other end.

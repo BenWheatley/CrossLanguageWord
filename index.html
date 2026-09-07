@@ -518,9 +518,8 @@
 
   wideFitBtn.addEventListener('click', () => {
     hideWideChoice();
-    // Same seed, this screen's budget: the word choice does not depend on the budget, so this is
-    // the same vocabulary laid out afresh rather than a different puzzle.
-    generate(currentSeed, computeMaxCols());
+    // The same words and clues, at this screen's width.
+    generate(currentSeed, computeMaxCols(), true);
   });
 
   function startPuzzle(){
@@ -1749,7 +1748,12 @@
   // consequence of it, so a link has to carry it for a seed to name one particular puzzle: the
   // same seed at two different budgets draws the same words and clues but arranges them
   // differently. Defaults to whatever this screen can show.
-  function generate(seed, budget){
+  // `keepWords` rebuilds the puzzle now on screen at a different width, rather than drawing
+  // afresh. Needed because the generator draws a larger pool than it places and lets the fitting
+  // decide which of them to use, so the same seed at two widths keeps only about four words in
+  // five. Handing it exactly the words already placed is what makes "the same words, arranged to
+  // fit" true rather than nearly true.
+  function generate(seed, budget, keepWords){
     if(!wordBank.length){
       setStatus('Load a word list first.', true);
       return;
@@ -1767,7 +1771,14 @@
     // values - so tuning attemptsFor() can never silently reword every existing shared puzzle.
     const rngClues = makeRng(seed + '#clues');
     const rngLayout = makeRng(seed + '#layout');
-    const result = buildCrossword(pickClues(wordBank, rngClues), n, { maxCols, rng: rngLayout });
+    const clued = keepWords && placedWords.length
+      ? placedWords.map(w => ({ answer: w.answer, clue: w.clue }))
+      : pickClues(wordBank, rngClues);
+    const result = buildCrossword(clued, keepWords ? clued.length : n, {
+      maxCols,
+      rng: rngLayout,
+      overdraw: keepWords ? 1 : undefined   // every word given must appear; there is no pool to pick from
+    });
     const built = trimAndIndex(result);
     const numbering = numberGrid(built);
     renderGrid(built, numbering);
