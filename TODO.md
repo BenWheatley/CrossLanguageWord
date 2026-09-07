@@ -91,6 +91,54 @@ get.
 - Filter by word length, or by level within a list.
 - "Only words I have missed" — which is 1 again, from the other end.
 
+## 7a. Skip bias from over-drawing — REVISIT, no decision made yet
+
+**Open question. Nothing has been implemented. Come back to this.**
+
+Over-drawing the pool (7 above) buys the denser grid, but it introduces a bias
+the uniform draw did not have. The generator now draws about 22 words to place
+15, and placement keeps whichever fit together. A word that is hard to interlock
+— unusual letters, no common vowel pattern, very short or very long — gets drawn
+and then silently dropped, again and again. The draw is still uniform; what
+survives it is not.
+
+That matters more here than it would in a puzzle app, because awkward vocabulary
+is disproportionately the vocabulary worth practising. The bias points the wrong
+way.
+
+Three ways out, none chosen:
+
+- **A. Count the skips and use them as a tiebreak.** Record how many times each
+  word has been drawn without being placed; prefer high counts on the next draw.
+  Cheap, and it needs no other machinery. The risk is a queue of words that are
+  never placeable at all, whose counts climb forever while they keep winning a
+  draw they then lose again — so it needs a ceiling that forces a word into the
+  *puzzle*, not merely the pool, after N skips.
+
+- **B. Guarantee the drawn N and over-draw only the remainder.** Draw 15 that
+  must appear plus ~7 optional, and let placement choose only among the optional
+  ones. This removes the bias rather than compensating for it, which is the
+  honest fix. It costs some of the density that over-drawing bought, because the
+  guaranteed 15 have to be made to fit whatever they are.
+
+- **C. Fold it into the learning record (1).** A skip becomes one signal among
+  "got it wrong", "needed a hint", "not seen recently", and selection weighting
+  handles all of them together. The right long-term home — a word skipped by the
+  generator and a word the learner keeps missing both want the same treatment —
+  but it cannot be built before 1 is.
+
+**Recommendation: measure B first.** It is the only one of the three that removes
+the bias instead of correcting for it after the fact, and the cost is a number we
+can measure directly — rebuild the interlock table in 7 with the guarantee in
+place and see what the density actually drops to. If the drop is small, B is
+simply correct and A becomes unnecessary. If it is large, that number is what
+justifies the extra machinery of A or C.
+
+Note for whichever is built: skip counts are per word list, not global, and under
+the append-only convention (README section 3) a word's position in its list is
+stable forever — so they can be stored by index rather than by text, which is
+much more compact than keying on the answer.
+
 ## 8. Smaller things
 
 - **Tab moves square by square, not clue to clue.** Every major crossword uses
