@@ -658,6 +658,7 @@
     pickRandomSubset,
     computeBounds,
     countCrossings,
+    OVERDRAW,
     buildCrossword,
     trimAndIndex,
     numberGrid

@@ -53,6 +53,13 @@
           <label for="wordCount">Words in puzzle</label>
           <input type="number" id="wordCount" min="2" max="120" value="15">
         </div>
+        <div class="field">
+          <label for="puzzleMode">Puzzle</label>
+          <select id="puzzleMode">
+            <option value="shareable">Shareable — one for everyone</option>
+            <option value="smart">Smart — learns what you miss</option>
+          </select>
+        </div>
         <label class="check-field">
           <input type="checkbox" id="printAnswers"> Show my typed answers when printing, instead of a blank puzzle
         </label>
@@ -135,6 +142,7 @@
 </div>
 
 <script src="crossword-engine.js"></script>
+<script src="learning-record.js"></script>
 <script>
 (function(){
   "use strict";
@@ -153,6 +161,12 @@
   const STORAGE_KEY = 'crossword-trainer-state';
   const SAVE_VERSION = 5; // bumped when custom lists moved into their own keyed store
   const LIBRARY_KEY = 'crossword-trainer-lists';
+  const RECORD_KEY = 'crossword-trainer-record';   // what the trainer remembers about each word
+  const MODE_KEY = 'crossword-trainer-mode';       // 'shareable' or 'smart'; a preference, not a puzzle
+  const MODES = { shareable: 'shareable', smart: 'smart' };
+  let puzzleMode = MODES.shareable;
+  let checkedWrong = {};       // wid -> true once "Check answers" has ever marked that word wrong
+  let recordCommitted = false; // this puzzle's outcomes have been written to the record
   let pendingRestore = null; // a saved puzzle waiting to be restored on first load, if any
   let pendingSeed = null;    // a seed from the URL, waiting for the word list to finish loading
   let pendingBudget = null;  // and the column budget it was built against, if the link named one
@@ -190,6 +204,7 @@
   const celebrateCloseBtn = document.getElementById('celebrateCloseBtn');
   const fireworksCanvas = document.getElementById('fireworksCanvas');
   const wordCountInput = document.getElementById('wordCount');
+  const puzzleModeSelect = document.getElementById('puzzleMode');
   const generateBtn = document.getElementById('generateBtn');
   const printBtn = document.getElementById('printBtn');
   const checkBtn = document.getElementById('checkBtn');
@@ -226,8 +241,10 @@
   // ---------- crossword generation engine (crossword-engine.js) ----------
   const {
     toUpperGrapheme, normalizeText, graphemes, key, makeRng, randomSeed, isValidSeed,
-    wordListFingerprint, wordListShape, pickClue, buildCrossword, trimAndIndex, numberGrid
+    wordListFingerprint, wordListShape, pickClue, buildCrossword, trimAndIndex, numberGrid,
+    OVERDRAW
   } = CrosswordEngine;
+  const Record = LearningRecord;
 
   // ---------- word lists ----------
   // One table, so the <select>, the ?list= parameter and the saved-state check can never disagree
@@ -543,7 +560,7 @@
     currentListLanguage = language || null;
     pageTitle.textContent = title;
     document.documentElement.lang = language || 'en';
-    pageTagline.textContent = wordBank.length + ' words available';
+    updateTagline();
     wordCountInput.max = Math.min(MAX_WORDS, wordBank.length);
     wordCountInput.value = clampWordCount(parseInt(wordCountInput.value, 10) || DEFAULT_WORDS);
     generateBtn.disabled = false;
@@ -978,6 +995,15 @@
         }
       }
     }
+    // A word the check had to catch out is not one you knew, however it ends up. Remembered per
+    // word so the record can say so when the puzzle is done.
+    for(const word of placedWords){
+      const wid = word.dir + '-' + word.number;
+      if(squaresOf(word).some(s => s.cell && s.cell.wrap.classList.contains('check-incorrect'))){
+        checkedWrong[wid] = true;
+      }
+    }
+    scheduleSave();
   }
 
   function isSolved(){
@@ -1000,7 +1026,7 @@
         gridEl.classList.remove('solved');
         void gridEl.offsetWidth; // force reflow so the pop animation can replay
         gridEl.classList.add('solved');
-        openCelebration();
+        openCelebration(commitOutcomes());
       }
     } else if(celebrated){
       celebrated = false;
@@ -1064,7 +1090,7 @@
     }
   }
 
-  function openCelebration(){
+  function openCelebration(recorded){
     const elapsedSeconds = puzzleStartTime ? Math.max(0, Math.round((Date.now() - puzzleStartTime)/1000)) : 0;
     celebrateTime.textContent = formatTime(elapsedSeconds);
     let sub = '';
@@ -1080,6 +1106,12 @@
     const hardest = hardestWord();
     const summary = [hints === 0 ? 'No hints' : hints === 1 ? 'One hint' : hints + ' hints'];
     if(hardest) summary.push('hardest: ' + hardest.answer + ' (' + describeEffort(hardest) + ')');
+    if(recorded && (recorded.up || recorded.back)){
+      const moved = [];
+      if(recorded.up) moved.push(recorded.up + ' up');
+      if(recorded.back) moved.push(recorded.back + ' back');
+      summary.push(moved.join(', '));
+    }
     celebrateSub.textContent = [sub, summary.join(' \u00b7 ')].filter(Boolean).join(' \u2014 ');
     celebrateReturnFocus = document.activeElement;
     celebrateOverlay.hidden = false;
@@ -1452,13 +1484,138 @@
     restoreFocusToCurrentCell();
   });
 
+  // ---------- the learning record ----------
+  // One record per word list, keyed by the word's answer rather than its position. Position
+  // would be smaller, but the bank is derived from the file - duplicates merged, one-letter
+  // entries dropped - so its indices are a step removed from anything the list author sees,
+  // and a record that survives someone reordering a custom file is worth a few kilobytes.
+  //
+  // Outcomes are written in every mode, not only smart mode: a shared puzzle you solve says
+  // just as much about what you know. Only the *draw* differs between modes.
+  function listRecordKey(){
+    if(currentListId === CUSTOM_LIST_ID) return currentListSum ? 'custom:' + currentListSum : null;
+    return currentListId || null;
+  }
+
+  function loadRecords(){
+    try{
+      const raw = localStorage.getItem(RECORD_KEY);
+      const all = raw ? JSON.parse(raw) : null;
+      return all && typeof all === 'object' ? all : {};
+    }catch(e){
+      return {};
+    }
+  }
+
+  function saveRecords(all){
+    try{ localStorage.setItem(RECORD_KEY, JSON.stringify(all)); }catch(e){ /* no persistence */ }
+  }
+
+  function recordForCurrentList(){
+    const key_ = listRecordKey();
+    if(!key_) return Record.emptyRecord();   // nothing to key on; a throwaway that is never saved
+    const all = loadRecords();
+    return all[key_] || Record.emptyRecord();
+  }
+
+  function storeRecord(record){
+    const key_ = listRecordKey();
+    if(!key_) return;
+    const all = loadRecords();
+    all[key_] = record;
+    saveRecords(all);
+  }
+
+  /** How a word went: solved on its own, solved with help, or not solved. */
+  function outcomeOf(word){
+    const wid = word.dir + '-' + word.number;
+    const correct = squaresOf(word).every(s =>
+      s.cell && toUpperGrapheme(normalizeText(s.cell.input.value)) === s.expected);
+    if(!correct || checkedWrong[wid]) return 'missed';
+    return (hintsByWord[wid] || 0) > 0 ? 'hinted' : 'unaided';
+  }
+
+  /**
+   * Writes this puzzle's outcomes to the record, once. Returns what changed, for the finish
+   * screen and for undo - `before` holds each touched entry as it was, so a puzzle brought back
+   * with Undo can have its verdicts taken back too.
+   *
+   * A puzzle nobody typed into is not judged at all. Every word in it would count as missed,
+   * and two clicks of "New crossword" in a row would then fill the next puzzle with the words
+   * from the one just skipped past. The rule is that a word *left* blank counts against you,
+   * and a puzzle never started was not left.
+   */
+  function commitOutcomes(){
+    if(recordCommitted || !placedWords.length || !hasTypedLetters()) return null;
+    recordCommitted = true;
+    const record = recordForCurrentList();
+    const before = {};
+    const now = Date.now();
+    let up = 0, back = 0;
+    for(const word of placedWords){
+      const prior = Record.entryFor(record, word.answer);
+      before[word.answer] = prior ? JSON.parse(JSON.stringify(prior)) : null;
+      const priorBox = prior ? prior.box : 1;
+      const after = Record.applyOutcome(record, word.answer, outcomeOf(word), now);
+      if(after.box > priorBox) up++;
+      else if(after.box < priorBox) back++;
+    }
+    storeRecord(record);
+    updateTagline();
+    return { before, up, back };
+  }
+
+  /** Puts back the entries a commit changed. */
+  function revertOutcomes(before){
+    if(!before) return;
+    const record = recordForCurrentList();
+    for(const answer of Object.keys(before)){
+      if(before[answer]) record.words[answer] = before[answer];
+      else delete record.words[answer];
+    }
+    storeRecord(record);
+    updateTagline();
+  }
+
+  /** Words drawn for a smart puzzle that its grid then had no room for. */
+  function commitSkips(pool, placements){
+    const placed = new Set(placements.map(p => p.answer));
+    const skipped = pool.filter(w => !placed.has(w.answer));
+    if(!skipped.length) return;
+    const record = recordForCurrentList();
+    for(const w of skipped) Record.applySkip(record, w.answer);
+    storeRecord(record);
+  }
+
+  function updateTagline(){
+    if(!wordBank.length){ pageTagline.textContent = 'load a word list to begin'; return; }
+    if(puzzleMode !== MODES.smart){
+      pageTagline.textContent = wordBank.length + ' words available';
+      return;
+    }
+    const s = Record.summarise(recordForCurrentList(), wordBank);
+    pageTagline.textContent = s.total + ' words \u00b7 ' + s.seen + ' seen \u00b7 ' + s.known + ' known';
+  }
+
+  function setPuzzleMode(mode){
+    puzzleMode = MODES[mode] ? mode : MODES.shareable;
+    if(puzzleModeSelect) puzzleModeSelect.value = puzzleMode;
+    try{ localStorage.setItem(MODE_KEY, puzzleMode); }catch(e){ /* no persistence */ }
+    updateTagline();
+  }
+
+  function loadPuzzleMode(){
+    try{ return localStorage.getItem(MODE_KEY) || MODES.shareable; }catch(e){ return MODES.shareable; }
+  }
+
   // ---------- generate ----------
   function updateUrlParams(){
     const params = new URLSearchParams(window.location.search);
     // Describes the puzzle on screen, so the address stays a way of getting back to *this* one
     // even while the controls have moved on to whatever is being asked for next.
     const shown = currentPuzzle || {
-      list: currentListId, sum: currentListSum, words: Number(wordCountInput.value), seed: currentSeed
+      list: currentListId, sum: currentListSum, words: Number(wordCountInput.value), seed: currentSeed,
+      mode: puzzleMode
     };
     const currentListId_ = shown.list;
     if(currentListId_) params.set('list', currentListId_);
@@ -1475,8 +1632,14 @@
     // copy it to anyone and they get this grid, these words and these clues, not merely a puzzle
     // of the same size. A custom-loaded file still has no URL representation, so a seed alone
     // couldn't rebuild it; leave it out rather than imply otherwise.
-    if(shown.seed && currentListId_) params.set('seed', shown.seed);
+    // A smart puzzle's seed only ever chose its layout; the words came from this reader's
+    // record, so a link with the seed would promise a puzzle nobody else can get. Leave it out,
+    // and say instead which kind of puzzle the link asks for.
+    const smartShown = shown.mode === MODES.smart;
+    if(shown.seed && currentListId_ && !smartShown) params.set('seed', shown.seed);
     else params.delete('seed');
+    if(puzzleMode === MODES.smart) params.set('mode', MODES.smart);
+    else params.delete('mode');
     const query = params.toString();
     const newUrl = window.location.pathname + (query ? '?' + query : '');
     if(newUrl === window.location.pathname + window.location.search) return; // nothing to say
@@ -1552,7 +1715,8 @@
           sum: describes.list === CUSTOM_LIST_ID ? describes.sum : null,
           words: describes.words,
           seed: describes.seed,
-          cols: describes.cols
+          cols: describes.cols,
+          mode: describes.mode || MODES.shareable
         },
       };
       if(describes.list === CUSTOM_LIST_ID){
@@ -1565,6 +1729,8 @@
       // Hints belong to the puzzle, so a resumed one remembers what it has already given away.
       state.hintsByWord = hintsByWord;
       state.cluesShownFor = cluesShownFor;
+      state.checkedWrong = checkedWrong;
+      state.recordCommitted = recordCommitted;
     return state;
   }
 
@@ -1609,14 +1775,25 @@
 
   /** Called just before a new puzzle replaces the current one. */
   function captureUndo(){
-    if(placedWords.length && hasTypedLetters()) undoState = snapshotState();
-    else undoState = null;
+    if(placedWords.length && hasTypedLetters()){
+      // The snapshot is taken first, so it carries recordCommitted as it stood *before* this
+      // judgement: false for a puzzle left unfinished, true for one already solved and counted.
+      // Restoring that value is what stops a solved puzzle being counted twice after Undo.
+      undoState = snapshotState();
+      // Judged now, because this is the moment the puzzle is being left. One brought back with
+      // Undo has its verdicts taken back.
+      const recorded = commitOutcomes();
+      undoState.recordBefore = recorded ? recorded.before : null;
+    } else {
+      undoState = null;
+    }
   }
 
   function performUndo(){
     const snapshot = undoState;
     if(!snapshot) return;
     clearUndo();
+    revertOutcomes(snapshot.recordBefore);
 
     const listId = snapshot.params && snapshot.params.list;
     if(listId && listId !== currentListId){
@@ -1702,6 +1879,8 @@
     }
     hintsByWord = (saved.hintsByWord && typeof saved.hintsByWord === 'object') ? saved.hintsByWord : {};
     cluesShownFor = (saved.cluesShownFor && typeof saved.cluesShownFor === 'object') ? saved.cluesShownFor : {};
+    checkedWrong = (saved.checkedWrong && typeof saved.checkedWrong === 'object') ? saved.checkedWrong : {};
+    recordCommitted = !!saved.recordCommitted;
     puzzleStartTime = Date.now() - (saved.elapsedMs || 0);
     celebrated = !!saved.celebrated; // don't replay the solved animation/confetti on a reload
     if(saved.params && saved.params.list) wordListSelect.value = saved.params.list;
@@ -1720,6 +1899,7 @@
       words: (saved.params && saved.params.words) || Number(wordCountInput.value),
       seed: (saved.params && saved.params.seed) || currentSeed,
       cols: (saved.params && saved.params.cols) || saved.cols,
+      mode: (saved.params && saved.params.mode) || MODES.shareable,
       title: saved.customTitle || currentListTitle,
       language: currentListLanguage,
       shape: saved.customShape || currentListShape
@@ -1759,8 +1939,14 @@
       return;
     }
     captureUndo();
-    seed = isValidSeed(seed) ? seed : randomSeed();
+    // A smart puzzle's words come from this reader's record, so no seed could name it for
+    // anyone else; one is still drawn, for the layout, but a seed arriving from outside is
+    // not honoured unless the words already on screen are being kept.
+    const smart = puzzleMode === MODES.smart && !keepWords;
+    seed = !smart && isValidSeed(seed) ? seed : randomSeed();
     currentSeed = seed;
+    checkedWrong = {};
+    recordCommitted = false;
     const maxCols = Number.isFinite(budget) && budget >= 3 ? budget : computeMaxCols();
     const n = clampWordCount(parseInt(wordCountInput.value, 10) || DEFAULT_WORDS);
     // Reflect the clamp back, so the field never shows a number the puzzle didn't use.
@@ -1771,9 +1957,18 @@
     // values - so tuning attemptsFor() can never silently reword every existing shared puzzle.
     const rngClues = makeRng(seed + '#clues');
     const rngLayout = makeRng(seed + '#layout');
-    const clued = keepWords && placedWords.length
-      ? placedWords.map(w => ({ answer: w.answer, clue: w.clue }))
-      : pickClues(wordBank, rngClues);
+    let clued;
+    if(keepWords && placedWords.length){
+      clued = placedWords.map(w => ({ answer: w.answer, clue: w.clue }));
+    } else if(smart){
+      // Hand the generator a bank exactly the size of the pool it would have drawn, chosen by
+      // the record instead of at random. It takes all of a bank no larger than its pool, so the
+      // choice is made here and the engine is none the wiser.
+      const pool = Record.pickPool(wordBank, recordForCurrentList(), Math.ceil(n * OVERDRAW), makeRng(seed + '#pool'), Date.now());
+      clued = pickClues(pool, rngClues);
+    } else {
+      clued = pickClues(wordBank, rngClues);
+    }
     const result = buildCrossword(clued, keepWords ? clued.length : n, {
       maxCols,
       rng: rngLayout,
@@ -1781,6 +1976,7 @@
     });
     const built = trimAndIndex(result);
     const numbering = numberGrid(built);
+    if(smart) commitSkips(clued, numbering.placements);
     renderGrid(built, numbering);
     puzzleStartTime = Date.now();
     currentPuzzle = {
@@ -1789,6 +1985,8 @@
       words: n,                       // the count actually used, after clamping
       seed: currentSeed,
       cols: maxCols,                  // the budget it was built against, not the width it came out
+      // Which draw built it. A fitted rebuild keeps the mode of the puzzle it rebuilds.
+      mode: keepWords && currentPuzzle ? currentPuzzle.mode : (smart ? MODES.smart : MODES.shareable),
 
       title: currentListTitle,
       language: currentListLanguage,
@@ -1869,6 +2067,14 @@
   // triggers generation itself, from within loadWordBank). Debounced, because a number field
   // fires change on every press of its arrows: stepping from 15 to 25 would otherwise build ten
   // puzzles and discard nine.
+  puzzleModeSelect.addEventListener('change', () => {
+    setPuzzleMode(puzzleModeSelect.value);
+    // A new mode means a new draw; nothing on screen would change otherwise, and the reader
+    // would be left wondering whether the switch had taken. Undo protects the old puzzle.
+    if(wordBank.length) generate();
+    else updateUrlParams();
+  });
+
   let wordCountTimer = null;
   wordCountInput.addEventListener('change', () => {
     clearTimeout(wordCountTimer);
@@ -1956,7 +2162,9 @@
     const sumParam = (p.get('sum') || '').toLowerCase();
     const colsParam = parseInt(p.get('cols'), 10);
     const known = LISTS[listParam] || listParam === CUSTOM_LIST_ID;
+    const modeParam = p.get('mode');
     return {
+      mode: MODES[modeParam] ? modeParam : null,
       list: known ? listParam : DEFAULT_LIST,
       sum: /^[a-z0-9]{1,16}$/.test(sumParam) ? sumParam : null,
       words: Number.isFinite(wordsParam) && wordsParam >= 2 ? Math.min(wordsParam, MAX_WORDS) : DEFAULT_WORDS,
@@ -1989,6 +2197,7 @@
   (function initFromUrl(){
     const requested = readPuzzleParams(window.location.search);
     const saved = loadSavedState();
+    setPuzzleMode(requested.mode || loadPuzzleMode());
 
     // Deciding between "resume what I was doing" and "give me the puzzle this link names" is
     // awkward because the app writes its own parameters into the address bar after every

@@ -50,22 +50,31 @@ below. Nothing about smart mode may alter what an existing link opens.
   and new words keep arriving.
 - *Skip bias in this mode:* "drawn but not placed" is recorded like any other
   outcome, which is option C of 7a for free. Shareable mode still needs B.
-- *Record storage:* per list, keyed by the list's fingerprint, one entry per word
-  by index — safe because lists are append-only. Kept in localStorage alongside
-  the puzzle state; it never leaves the device.
+- *Record storage:* per list, one entry per word, keyed by the word's answer.
+  Index was the plan — smaller, and safe under the append-only convention — but
+  the bank is derived from the file with duplicates merged and one-letter entries
+  dropped, so its indices are a step removed from anything a list author sees,
+  and a record that survives someone reordering a custom file is worth a few
+  kilobytes. Bundled lists are keyed by id, custom ones by fingerprint. Kept in
+  localStorage alongside the puzzle state; it never leaves the device.
 - *Identity:* a smart puzzle has no shareable seed, because its word choice is
   private history. Placement is still seeded so the puzzle resumes after a
   reload. `?mode=smart` in the URL means "open smart mode on this list", not "open
   this puzzle".
 
-- Record a per-answer outcome: solved unaided / needed checking / hinted. Hints
-  per word and attention per word are already tracked for the end-of-puzzle
-  summary; they are thrown away when the puzzle changes, and want keeping.
-- Weight selection toward words with a poor record, without abandoning variety
-  altogether — a mostly-random draw with a modest bias is probably right.
-- Show something about vocabulary, not just elapsed time, when a puzzle is done.
+**Built** (see Done). What is left of it:
 
-Depends on nothing. Feeds on 2.
+- Show each word's box in the clue list, or on the finish screen, so the reader
+  can see a word climbing. The finish screen says "12 up, 2 back" and no more.
+- A way to see and to clear the record. There is none; it can only be cleared
+  by clearing the browser's storage.
+- The uniform third of a smart draw is placement's to keep or drop, exactly as
+  in shareable mode, and the same skip bias applies — measured at eight missed
+  words handed to a twelve-word pool, only four or five come back in the puzzle;
+  the rest are recorded as skipped and lead the next draw. So the record
+  converges, but over two or three puzzles rather than one. 7a option B would
+  close that.
+- "Only words I have missed" (7) is now a one-line change to the draw share.
 
 ## 4. Phone ergonomics — mostly done
 
@@ -210,6 +219,12 @@ much more compact than keying on the answer.
   EMOTION/FEELING. Data fixes, not code.
 
 ## Done
+
+- 1 — the trainer now trains. A per-list record of how every word went, Leitner
+  boxes with waiting times, and a smart mode whose draw is two-thirds the words
+  most due and one-third uniform. Outcomes are judged when a puzzle is solved or
+  left, taken back by Undo, and never counted twice. Shareable mode is untouched:
+  a seed still names one puzzle for everyone, whatever the record says.
 
 - 3 — losing a puzzle to a stray keystroke, with no way back. Undo, plus a
   debounce on the word count.

@@ -816,4 +816,162 @@ test('solving the puzzle correctly triggers the celebration overlay', async () =
     assertEqual(again.document.querySelectorAll('#grid .cell.revealed').length, 0,
       'a restored puzzle shows the letters, and the record of them is in the save');
   });
+
+  // ---------- the learning record and smart mode ----------
+  const RECORD_KEY = 'crossword-trainer-record';
+  const readRecord = (app, listId) => {
+    const all = JSON.parse(app.window.localStorage.getItem(RECORD_KEY) || '{}');
+    return all[listId] || { words: {} };
+  };
+  const answersOf = (doc) => Array.from(doc.querySelectorAll('#printAnswerAcross li, #printAnswerDown li'))
+    .map((li) => li.textContent.replace(/^\d+\.\s*/, ''));
+  /** Types one wrong letter into the first square, so the puzzle counts as played. */
+  function touchPuzzle(app){
+    const input = app.document.querySelector('#grid .cell input');
+    typeInto(input, app.window, 'Q');
+  }
+
+  test('a puzzle nobody typed into is not judged when it is replaced', async () => {
+    const app = await bootApp('?list=english&words=6');
+    app.document.getElementById('generateBtn').click();
+    assertEqual(Object.keys(readRecord(app, 'english').words).length, 0);
+  });
+
+  test('leaving a puzzle half done marks its words missed, and solving one moves them up', async () => {
+    const app = await bootApp('?list=english&words=4');
+    const doc = app.document;
+    const first = answersOf(doc);
+    touchPuzzle(app);
+    doc.getElementById('generateBtn').click();
+    let record = readRecord(app, 'english');
+    for(const a of first){
+      assertTrue(record.words[a], `${a} should be in the record`);
+      assertEqual(record.words[a].box, 1, `${a} left blank should be in box 1`);
+      assertEqual(record.words[a].missed, 1);
+    }
+    const second = answersOf(doc);
+    if(!solvePuzzle(app)) return;
+    record = readRecord(app, 'english');
+    for(const a of second){
+      assertEqual(record.words[a].box, 2, `${a} solved unaided should have moved up`);
+      assertEqual(record.words[a].unaided, 1);
+    }
+  });
+
+  test('a hint holds a word in place and a failed check sends it back, even once corrected', async () => {
+    const app = await bootApp('?list=english&words=3');
+    const { document: doc, window: win } = app;
+    const across = doc.querySelector('#acrossList li') || doc.querySelector('#downList li');
+    across.click();
+    await waitFor(() => doc.activeElement && doc.activeElement.tagName === 'INPUT', 2000);
+    // Wrong letter, check, then take a hint on the same word.
+    const input = doc.activeElement;
+    typeInto(input, win, 'Q');
+    doc.getElementById('checkBtn').click();
+    const wid = across.dataset.wid || null;
+    doc.getElementById('hintBtn').click();     // rung one: another clue (a hint all the same)
+    if(!solvePuzzle(app)) return;
+    const record = readRecord(app, 'english');
+    const answers = answersOf(doc);
+    // The word we checked wrong is missed; every other word was solved by the fill, unaided.
+    const boxes = answers.map(a => record.words[a].box);
+    assertTrue(boxes.includes(1), 'the checked-wrong word should be back in box 1: ' + JSON.stringify(boxes));
+    assertTrue(boxes.includes(2), 'the untouched words should have gone up: ' + JSON.stringify(boxes));
+  });
+
+  test('Undo takes back the verdicts of the puzzle it brings back', async () => {
+    const app = await bootApp('?list=english&words=4');
+    const doc = app.document;
+    const first = answersOf(doc);
+    touchPuzzle(app);
+    doc.getElementById('generateBtn').click();
+    assertTrue(readRecord(app, 'english').words[first[0]], 'replacing should have judged the puzzle');
+    doc.getElementById('undoBtn').click();
+    const record = readRecord(app, 'english');
+    for(const a of first) assertTrue(!record.words[a], `${a} should have been struck from the record by Undo`);
+    // And the restored puzzle can still be finished and counted, once.
+    if(!solvePuzzle(app)) return;
+    assertEqual(readRecord(app, 'english').words[first[0]].box, 2);
+  });
+
+  test('a solved puzzle resumed after a reload is not counted a second time', async () => {
+    const app = await bootApp('?list=english&words=3');
+    if(!solvePuzzle(app)) return;
+    const answers = answersOf(app.document);
+    assertEqual(readRecord(app, 'english').words[answers[0]].seen, 1);
+    const again = await bootApp('?list=english&words=3', { keepSavedState: true });
+    assertEqual(answersOf(again.document).join('|'), answers.join('|'), 'should have resumed the same puzzle');
+    again.document.getElementById('generateBtn').click();
+    assertEqual(readRecord(again, 'english').words[answers[0]].seen, 1, 'replacing a resumed solved puzzle must not judge it again');
+  });
+
+  test('shareable mode: a seed names the same puzzle whatever the record says', async () => {
+    const app = await bootApp('?list=english&words=5&seed=abc123');
+    const before = answersOf(app.document).join('|');
+    // Poison the record: every word in the puzzle missed, plus a few others.
+    touchPuzzle(app);
+    app.document.getElementById('generateBtn').click();
+    const again = await bootApp('?list=english&words=5&seed=abc123', { keepSavedState: true });
+    assertEqual(answersOf(again.document).join('|'), before);
+    assertTrue(!again.window.location.search.includes('mode='), 'shareable is the default and says nothing');
+  });
+
+  test('smart mode: the link says so and carries no seed', async () => {
+    const app = await bootApp('?list=english&words=5&mode=smart');
+    const search = app.window.location.search;
+    assertTrue(search.includes('mode=smart'), search);
+    assertTrue(!search.includes('seed='), 'a smart puzzle has no seed to share: ' + search);
+    assertEqual(app.document.getElementById('puzzleMode').value, 'smart');
+    assertTrue(/seen/.test(app.document.getElementById('pageTagline').textContent), 'the tagline should describe the record');
+  });
+
+  test('smart mode: the mode is remembered across visits', async () => {
+    await bootApp('?list=english&words=5&mode=smart');
+    const again = await bootApp('?list=english&words=5', { keepSavedState: true });
+    assertEqual(again.document.getElementById('puzzleMode').value, 'smart');
+  });
+
+  test('smart mode: words missed come straight back in the next puzzle', async () => {
+    const app = await bootApp('?list=german_a2&words=8&mode=smart');
+    const doc = app.document;
+    const first = answersOf(doc);
+    touchPuzzle(app);
+    doc.getElementById('generateBtn').click();
+    const second = answersOf(doc);
+    const record = readRecord(app, 'german_a2');
+    // Eight missed words fill the whole priority share of a twelve-word pool, so every one of
+    // them is handed to the generator. It keeps whichever interlock - measured at about half
+    // when this was written - and the rest are recorded as skipped, which is what lifts them
+    // to the front of the next draw. Out of a list of over a thousand, chance alone would
+    // bring back none at all.
+    const back = first.filter(a => second.includes(a));
+    const skipped = first.filter(a => !second.includes(a) && record.words[a].skipped === 1);
+    assertEqual(back.length + skipped.length, first.length,
+      `every missed word should be back or skipped: back ${back.join(',')}; skipped ${skipped.join(',')}; of ${first.join(',')}`);
+    assertTrue(back.length >= 2, `expected at least a couple back, got ${back.length}`);
+  });
+
+  test('smart mode: a seed in the link is not honoured, because the words are yours alone', async () => {
+    const a = await bootApp('?list=english&words=5&mode=smart&seed=abc123');
+    const smartSearch = a.window.location.search;   // read now: the next boot reuses the frame
+    const b = await bootApp('?list=english&words=5&seed=abc123');
+    // Same seed; a shareable puzzle is fixed by it, a smart one is not obliged to match.
+    assertTrue(!smartSearch.includes('seed='), smartSearch);
+    assertTrue(b.window.location.search.includes('seed=abc123'), b.window.location.search);
+  });
+
+  test('switching mode in the menu builds a new puzzle and keeps the old one for Undo', async () => {
+    const app = await bootApp('?list=english&words=5');
+    const { document: doc, window: win } = app;
+    touchPuzzle(app);
+    const select = doc.getElementById('puzzleMode');
+    select.value = 'smart';
+    select.dispatchEvent(new win.Event('change', { bubbles: true }));
+    assertTrue(win.location.search.includes('mode=smart'));
+    // Not "different words": the switch judged the old puzzle, which marks its words missed,
+    // and a smart draw then brings exactly those words back - that is the mode doing its job.
+    // What shows a new puzzle was built is that the letter typed into the old one is gone.
+    assertEqual(doc.querySelector('#grid .cell input').value, '', 'a fresh grid should be empty');
+    assertEqual(doc.getElementById('undoBtn').hidden, false, 'the old puzzle should be recoverable');
+  });
 }

@@ -48,7 +48,7 @@ Four word lists are included:
 | List | Contents |
 | --- | --- |
 | English | 1000 English words, English clues |
-| Deutsch A2 | 1167 German words at CEFR level A2 |
+| Deutsch A2 | 1164 German words at CEFR level A2 |
 | Deutsch B1 | 1000 German words at CEFR level B1 |
 | Deutsch B1 → Englisch | 1000 English words at CEFR level B1, German clues |
 
@@ -292,6 +292,39 @@ tomorrow, and you will be returned to the same grid with your answers intact.
 
 Saving is silent and requires nothing of you. If your browser forbids it —
 private browsing modes usually do — the program carries on without it.
+
+## 9a. THE SMART PUZZLE
+
+Under **Puzzle** in the options menu you may choose between two kinds.
+
+A **Shareable** puzzle is what the program has always made: fifteen words
+drawn at random, named by a seed, the same for anyone who opens the address.
+Section 6 describes it.
+
+A **Smart** puzzle is drawn from what the program has learned about you. It
+keeps a record of every word you have met and how it went — solved on your
+own, solved with a hint, or not solved — and chooses the next puzzle's words
+accordingly. About two-thirds of them are the words most in need of practice;
+the rest are drawn at random, so no puzzle is only the words you got wrong.
+
+The record works by boxes, five of them, of the kind a diligent student keeps
+for vocabulary cards. Every word begins in the first box. Solve it unaided and
+it moves up one; take a hint and it stays put; get it wrong, or leave it blank
+when you move on, and it goes back to the first. Each box has a waiting time —
+none at all for the first, then one day, three, seven and fourteen — and a
+word is not offered again until its time is up. A word you have just missed
+is therefore eligible for the very next puzzle, and a word you have got right
+four times running will not trouble you for a fortnight.
+
+The record is kept for shareable puzzles too — a puzzle a friend sent you says
+just as much about what you know — and only the *drawing* differs. It lives in
+the browser's own storage, beside your puzzle, and is never sent anywhere. Each
+word list has its own.
+
+A smart puzzle cannot be shared. Its words were chosen for you, from your
+record, and nobody else's copy of the program could arrive at the same ones;
+so its address carries no seed, and says instead that a smart puzzle is wanted.
+Sending that address to someone gives them a smart puzzle of their own.
 
 ## 10. KEEPING IT ON A TELEPHONE
 
