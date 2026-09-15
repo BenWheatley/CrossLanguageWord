@@ -35,6 +35,29 @@ Daily is a variant of shareable rather than of smart: same uniform draw, with th
 seed derived from the date instead of chosen at random. It is in the Later pile
 below. Nothing about smart mode may alter what an existing link opens.
 
+**Settled, for smart mode (2026-09-15):**
+
+- *Scheduler:* Leitner boxes, five of them. Solved unaided moves a word up one
+  box; a miss sends it back to box 1. The draw is weighted toward low boxes.
+  Chosen over per-word review dates because a puzzle draws fifteen words at once
+  and cannot honour individual dates; boxes also give the reader something
+  legible to be shown.
+- *Outcomes, three-way:* solved unaided → up. Solved with any hint → stays put.
+  Wrong after Check, or still blank when the puzzle is left → down. A puzzle
+  abandoned half-done therefore does teach the record something.
+- *Bias:* about two-thirds of the draw from words that are due (low box, or long
+  unseen), the remaining third uniform from the whole list, so variety survives
+  and new words keep arriving.
+- *Skip bias in this mode:* "drawn but not placed" is recorded like any other
+  outcome, which is option C of 7a for free. Shareable mode still needs B.
+- *Record storage:* per list, keyed by the list's fingerprint, one entry per word
+  by index — safe because lists are append-only. Kept in localStorage alongside
+  the puzzle state; it never leaves the device.
+- *Identity:* a smart puzzle has no shareable seed, because its word choice is
+  private history. Placement is still seeded so the puzzle resumes after a
+  reload. `?mode=smart` in the URL means "open smart mode on this list", not "open
+  this puzzle".
+
 - Record a per-answer outcome: solved unaided / needed checking / hinted. Hints
   per word and attention per word are already tracked for the end-of-puzzle
   summary; they are thrown away when the puzzle changes, and want keeping.
