@@ -99,6 +99,54 @@ is probably the wrong place. Options considered, none chosen:
 
 F chosen for desktop (above). B, C, D and E are out.
 
+### Phone plan — OPTIONS, not yet chosen
+
+The phone shell is title row (list name + options button), grid pane, clue pane;
+the tagline is hidden and every button is in the menu. With the keyboard up
+about a third of the screen is left, so any permanent row costs a tenth of the
+puzzle. Two things a phone user needs: to *see* which mode's puzzle is on
+screen, and — rarely, since a mode is lived in for weeks — to switch.
+
+| | For | Against |
+| --- | --- | --- |
+| **P1. Mode chip in the title row** — "Smart ▾" beside the options button; tap opens a small sheet listing each mode with its puzzle's state ("Smart · 7 of 15", "Shareable · solved", "Today's · not started") | Zero height: the row exists already. Mode always visible. Scales to three. The sheet doubles as a progress view | Width: the title has to fit on one line beside it, which it does not today for the long-titled list (below). A new element in a row Ben asked to keep spare |
+| **P2. Segmented control at the top of the options menu** | Zero height; consistent with the phone rule that everything lives in the menu | Mode not visible without opening the menu — you cannot tell which puzzle you are looking at |
+| **P3. Swipe between mode pages, with dots** | Zero chrome; native on a phone; the grid has no horizontal scroll on a phone, so the gesture is free | Undiscoverable without teaching; dots are a poor label for three named things; switching is rare, so a gesture is over-provision |
+| **P4. Bottom tab bar** | The conventional phone pattern; thumb reach | 50px plus safe-area exactly where the keyboard rises; a typing app cannot spend the bottom edge |
+| **P5. Compact tab strip** (desktop tabs, shrunk) | Identical mental model to desktop | 28–32px permanently for a rare action; the height section 4 fought for |
+| **P6. Options button shows the mode** — its label becomes "Smart" | Zero height, zero new elements | Muddles two things: the button opens settings, the label describes a puzzle. The options button also stops looking like one |
+
+Leaning: **P1, with P2 as the second road to the same sheet.** P1 is the only
+option that is both free of height and shows the mode at a glance; P2 costs
+nothing and catches anyone who looks in the menu first. P4 and P5 spend height
+we do not have; P3 solves a frequency problem we do not have; P6 muddles.
+
+Prerequisite for P1: **the title must fit on one line on a phone.** The page
+shows the file's `metadata.title`, and "Deutsch B1: Fragen auf Deutsch,
+Antworten auf Englisch" wraps to three lines at 375px and pushes the options
+button onto a fourth — 148px of header against 94px with a short title. On a
+phone use the short label from LISTS ("Deutsch B1 → Englisch") where there is
+one, and truncate with an ellipsis where there is not (a loaded file). Worth
+doing whichever option is chosen.
+
+Tablet, phablet and landscape phone all sit above the 640px breakpoint and get
+the desktop tabs. A landscape phone has 375px of height and a tab row is a tenth
+of it; if that proves painful, gate the tab row on a minimum height as well and
+fall back to the phone control. Not worth deciding until seen.
+
+### Model, same on every screen
+
+- Saved state becomes one puzzle per mode plus which is active. Migrate the
+  current single-puzzle save by filing it under its own `params.mode`, so
+  nobody loses a puzzle in progress to the upgrade.
+- The address describes the visible puzzle, as now: switching tabs rewrites it.
+- Undo restores the discarded puzzle into its own mode and switches to it.
+- The word list and word count controls act on the active mode's next puzzle;
+  each puzzle carries its own list, so the title may change with the tab.
+- Each tab shows its puzzle's state (a dot or "7/15"), on desktop as well.
+- Daily is the third tab when it comes; the layout should leave room for it
+  and nothing more.
+
 ## 4. Phone ergonomics — mostly done
 
 The grid and the clues have a scrolling pane each, the controls have folded into
