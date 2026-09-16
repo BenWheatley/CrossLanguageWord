@@ -76,6 +76,24 @@ below. Nothing about smart mode may alter what an existing link opens.
   close that.
 - "Only words I have missed" (7) is now a one-line change to the draw share.
 
+## 1a. Where the mode is chosen — OPEN, options put to Ben 2026-09-16
+
+The smart/shareable choice is a `<select>` in the options menu. It works, and it
+is probably the wrong place. Options considered, none chosen:
+
+| | For | Against |
+| --- | --- | --- |
+| **A. Select in the menu** (now) | Sits with the other "what puzzle" settings; no toolbar cost, which matters on a phone; the preference is visible when you look. | Hidden — nobody finds smart mode; a setting that *acts* (regenerates) is a surprise; the most important choice in the app is a modal detour on a phone. |
+| **B. One button per mode** — "New crossword" and "Practise" (and later "Today's") | Verbs, not settings: the puzzle you get is what you pressed; discoverable; one tap; scales to three. On a phone they fold into the menu as the buttons already do. | Toolbar space on a desktop; two or three primary actions compete; there is still hidden state, because the finish screen's "New puzzle" has to pick one — whichever was pressed last. |
+| **C. Popup on New crossword** | The choice is made when it matters and can be explained in place; everyone sees it once. | An interstitial on the commonest action in the app — the same objection that ruled out a confirm on Undo. "Remember my choice" reintroduces hidden state and needs a home, which is A again. |
+| **D. Segmented control in the toolbar** ("Random / Smart") | Always visible; reads as state, so not regenerating on change is natural; one tap. | Toolbar space; on a phone it folds into the menu and becomes A. |
+| **E. Split button** "New crossword ▾" | One button's footprint; scales to three; the default is what you did last. | Fiddly on touch; the caret is a small target and hides the alternatives. |
+| **F. Tabs, one puzzle in progress per mode** | The three-mode future fits exactly; switching is not destructive — the practice puzzle and the one a friend sent coexist; the most discoverable of all. | The most work: saved state per mode, and 30–40px of vertical space on a phone that section 4 fought for. |
+
+Leaning: F is the right destination and B the honest cheap version — modes as
+verbs, with "mode" meaning nothing more than what you last asked for. C is out.
+A stays only until one of the others is built.
+
 ## 4. Phone ergonomics — mostly done
 
 The grid and the clues have a scrolling pane each, the controls have folded into
