@@ -134,6 +134,53 @@ the desktop tabs. A landscape phone has 375px of height and a tab row is a tenth
 of it; if that proves painful, gate the tab row on a minimum height as well and
 fall back to the phone control. Not worth deciding until seen.
 
+### Addenda, 2026-09-16
+
+**P7. Interstitial on New crossword, phone only** (Ben's suggestion). Under the
+one-puzzle-per-mode model, New makes a puzzle *in the active mode*, so a dialog
+on New can only ask "new puzzle in which mode?" — it is not a way to *look at*
+the other mode's puzzle without replacing it, and a separate switch is still
+needed for that. For: no title-row space; room to explain each mode in place,
+with each puzzle's state beside it; desktop untouched. Against: a tap on the
+commonest action, whose answer is the same 95% of the time once someone lives
+in smart mode; does not show which mode's puzzle is on screen, which is the
+need a phone user has most; the keyboard drops when a dialog opens. A worthwhile
+hybrid: the P1 sheet carries both *Continue* and *New* per mode, so it explains
+and shows state the way P7 would, opened from the chip rather than from New.
+
+**Does the short label leave room for a chip?** Measured at 375px, title at
+24px, options button 40px: English / Deutsch A2 / Deutsch B1 leave ~150px,
+enough for "Shareable ▾" (93px) with margin. "Deutsch B1 → Englisch" is 270px
+and leaves 21px; at 360px, nothing. So the short-label fix is necessary and not
+sufficient for that list. Choices: a still-shorter phone label ("B1 → Englisch",
+~186px, leaves ~105px at 375 and ~90 at 360, which fits "Smart ▾" but not
+"Shareable ▾"); or a smaller title on phones; or let the chip win and the title
+truncate with an ellipsis (`min-width:0` on the h1, `flex-shrink:0` on the
+chip) as the safety net whatever else is done. Recommend the safety net plus
+the shorter label.
+
+**Breakpoint.** Material's window size classes put *compact width* below 600dp
+and *compact height* below 480dp; Apple's size classes make every iPhone
+compact-width in portrait and every iPad regular. Bootstrap breaks at 576 and
+768, Tailwind at 640 and 768. Today's phones top out around 440pt wide (iPhone
+Pro Max) and 412dp (Pixel XL); iPad mini portrait is 744pt; unfolded foldables
+sit at 673dp (Pixel Fold) and above. So: **phone control below 600px wide, or
+below 480px tall** — the height test is what catches a landscape phone (an
+iPhone Pro Max is 956×440 on its side), and it is Material's own line. Our
+current 640 is defensible but 600 is the documented consensus and separates
+phablets from small tablets cleanly; nothing sits between 600 and 640 in
+practice.
+
+**Forcing portrait.** Not possible on iPhone: Safari does not implement
+`screen.orientation.lock()` and iOS ignores the manifest's `orientation` member
+(Apple's manifest support is partial and undocumented). On Android an installed
+PWA honours `"orientation": "portrait"` in the manifest, and `portrait` includes
+`portrait-secondary` (upside-down) where the device allows it — so adding the
+member is free and correct, it just does nothing on iOS. The iOS fallback is a
+"turn your phone" overlay under `(orientation: landscape) and (max-height:
+480px)`; cheap, and honest about the limit. Not doing anything is also fine, per
+Ben: landscape with the keyboard up is hopeless anyway.
+
 ### Model, same on every screen
 
 - Saved state becomes one puzzle per mode plus which is active. Migrate the
