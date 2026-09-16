@@ -660,14 +660,38 @@ test('solving the puzzle correctly triggers the celebration overlay', async () =
       'an untouched puzzle is not worth offering back');
   });
 
-  test('undo retires once you start work on the new puzzle', async () => {
+  test('undo survives an untouched puzzle in between, and steps back through several', async () => {
     const app = await bootApp('?list=german&words=12&seed=undoa3');
+    const doc = app.document;
     typeInFirstCells(app, 'ABCD');
-    app.document.getElementById('generateBtn').click();
-    assertTrue(!app.document.getElementById('undoBtn').hidden);
-    typeInFirstCells(app, 'Z');
-    assertTrue(app.document.getElementById('undoBtn').hidden,
-      'working on the new puzzle means it is the one you wanted');
+    const A = { typed: typedCells(doc), puzzle: puzzleId(doc) };
+    doc.getElementById('generateBtn').click();            // B, never touched
+    doc.getElementById('generateBtn').click();            // C - with one slot this emptied it
+    assertTrue(!doc.getElementById('undoBtn').hidden, 'A is still worth going back to');
+    typeInFirstCells(app, 'XY');
+    const C = { typed: typedCells(doc), puzzle: puzzleId(doc) };
+    assertTrue(!doc.getElementById('undoBtn').hidden, 'working on C does not forget A');
+    doc.getElementById('generateBtn').click();            // D
+    doc.getElementById('undoBtn').click();
+    assertEqual(puzzleId(doc), C.puzzle, 'first step back is to C');
+    assertEqual(typedCells(doc), C.typed);
+    doc.getElementById('undoBtn').click();
+    assertEqual(puzzleId(doc), A.puzzle, 'second step back is to A, past the untouched B');
+    assertEqual(typedCells(doc), A.typed);
+    assertTrue(doc.getElementById('undoBtn').hidden, 'nothing left to go back to');
+    doc.getElementById('undoBtn').click();                // must be harmless
+    assertEqual(puzzleId(doc), A.puzzle);
+  });
+
+  test('the undo button appearing does not move the puzzle', async () => {
+    const app = await bootApp('?list=german&words=12&seed=undoa5');
+    const doc = app.document;
+    const before = doc.getElementById('gridHost').getBoundingClientRect().top;
+    typeInFirstCells(app, 'ABCD');
+    doc.getElementById('generateBtn').click();
+    assertTrue(!doc.getElementById('undoBtn').hidden);
+    const after = doc.getElementById('gridHost').getBoundingClientRect().top;
+    assertEqual(after, before, 'the grid should not jump when the button appears');
   });
 
   test('changing the word list can be undone, list and all', async () => {

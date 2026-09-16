@@ -1013,8 +1013,6 @@
     cell.input.value = ch;
     cell.wrap.classList.remove('check-correct', 'check-incorrect');
     noteActivity();
-    // Working on the new puzzle is as clear a sign as any that it is the one you wanted.
-    if(ch) clearUndo();
     if(ch) advanceAfterInput(r,c);
     checkAndCelebrate();
     scheduleSave();
@@ -1815,8 +1813,14 @@
   // button does not return the old puzzle either, and its seed is gone the moment it is replaced.
   //
   // Rather than putting a confirmation in front of an action people take on purpose dozens of
-  // times a session, keep the discarded puzzle and offer it back.
-  let undoState = null;
+  // times a session, keep the discarded puzzles and offer them back, most recent first.
+  //
+  // A stack, not a slot. With one slot, pressing New twice - the second time on an untouched
+  // puzzle, which is not worth keeping - emptied the slot and left the button on screen doing
+  // nothing, and the puzzle from before both presses was gone. Only puzzles with something typed
+  // in them are kept; the rest were never worth going back to.
+  const UNDO_DEPTH = 10;
+  let undoStack = [];
 
   function hasTypedLetters(){
     for(let r=0;r<rows;r++){
@@ -1828,13 +1832,13 @@
     return false;
   }
 
-  function showUndo(){
-    undoBtn.hidden = false;
+  function updateUndoButton(){
+    undoBtn.hidden = undoStack.length === 0;
   }
 
   function clearUndo(){
-    undoState = null;
-    undoBtn.hidden = true;
+    undoStack = [];
+    updateUndoButton();
   }
 
   /** Called just before a new puzzle replaces the current one. */
@@ -1843,20 +1847,24 @@
       // The snapshot is taken first, so it carries recordCommitted as it stood *before* this
       // judgement: false for a puzzle left unfinished, true for one already solved and counted.
       // Restoring that value is what stops a solved puzzle being counted twice after Undo.
-      undoState = snapshotState();
+      const snapshot = snapshotState();
       // Judged now, because this is the moment the puzzle is being left. One brought back with
       // Undo has its verdicts taken back.
       const recorded = commitOutcomes();
-      undoState.recordBefore = recorded ? recorded.before : null;
-    } else {
-      undoState = null;
+      snapshot.recordBefore = recorded ? recorded.before : null;
+      undoStack.push(snapshot);
+      if(undoStack.length > UNDO_DEPTH) undoStack.shift();
     }
+    updateUndoButton();
   }
 
   function performUndo(){
-    const snapshot = undoState;
+    const snapshot = undoStack.pop();
     if(!snapshot) return;
-    clearUndo();
+    updateUndoButton();
+    // The puzzle being stepped away from is judged like any other that is left with work in it.
+    // It is not kept: Undo means "back", and back does not need a way forward again.
+    if(placedWords.length && hasTypedLetters()) commitOutcomes();
     revertOutcomes(snapshot.recordBefore);
 
     const listId = snapshot.params && snapshot.params.list;
@@ -1980,7 +1988,6 @@
     checkBtn.disabled = false;
     updateHintButton();
     setStatus('');
-    clearUndo();
     updateUrlParams();
   }
 
@@ -2070,12 +2077,12 @@
     updateUrlParams();
     if(numbering.placements.length < n){
       setStatus(`Placed ${numbering.placements.length} of ${n} requested words (the rest didn't fit this layout). Click "New crossword" for another attempt.`, true);
-    } else if(undoState){
+    } else if(undoStack.length){
       setStatus('New puzzle. Your previous answers have not been thrown away.');
     } else {
       setStatus('');
     }
-    if(undoState) showUndo();
+    updateUndoButton();
     saveState();
   }
 
