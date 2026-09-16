@@ -76,7 +76,14 @@ below. Nothing about smart mode may alter what an existing link opens.
   close that.
 - "Only words I have missed" (7) is now a one-line change to the draw share.
 
-## 1a. Where the mode is chosen — OPEN, options put to Ben 2026-09-16
+## 1a. Where the mode is chosen — DECIDED for desktop, phone layout OPEN
+
+**Settled 2026-09-16: F on laptop and desktop** — tabs, one puzzle in progress
+per mode, switching non-destructive. Tablet and phablet take the desktop tabs
+too unless the phone plan below says otherwise. The phone presentation is still
+to be chosen; the *model* (one puzzle per mode) is the same on every screen, only
+the control differs. Ben has said the UI may differ between small phone,
+tablet/phablet and desktop.
 
 The smart/shareable choice is a `<select>` in the options menu. It works, and it
 is probably the wrong place. Options considered, none chosen:
@@ -90,9 +97,7 @@ is probably the wrong place. Options considered, none chosen:
 | **E. Split button** "New crossword ▾" | One button's footprint; scales to three; the default is what you did last. | Fiddly on touch; the caret is a small target and hides the alternatives. |
 | **F. Tabs, one puzzle in progress per mode** | The three-mode future fits exactly; switching is not destructive — the practice puzzle and the one a friend sent coexist; the most discoverable of all. | The most work: saved state per mode, and 30–40px of vertical space on a phone that section 4 fought for. |
 
-Leaning: F is the right destination and B the honest cheap version — modes as
-verbs, with "mode" meaning nothing more than what you last asked for. C is out.
-A stays only until one of the others is built.
+F chosen for desktop (above). B, C, D and E are out.
 
 ## 4. Phone ergonomics — mostly done
 
