@@ -890,7 +890,10 @@
     const w = placedWords.find(x => x.dir===dir && x.number===number);
     if(!w) return;
     currentDir = dir;
-    if(focusStart) focusCell(w.row, w.col, dir);
+    if(focusStart){
+      const start = firstEditableOf(w);
+      focusCell(start.r, start.c, dir);
+    }
   }
 
   function hideDirPopup(){
@@ -947,6 +950,32 @@
     focusCell(r,c);
   }
 
+  // ---------- squares known to be right ----------
+  // A letter the program has vouched for - filled in by a hint, or marked correct by Check - is
+  // settled, and stays settled until the puzzle is replaced. Letting it be overtyped only ever
+  // turned a right answer into a wrong one, usually by accident on the way to the next square.
+  // `how` says which of the two vouched for it, so a reload can show the same mark.
+  function lockCell(cell, how){
+    cell.locked = how;
+    cell.input.readOnly = true;
+    cell.wrap.classList.add('locked', how);
+  }
+
+  /** The next square in the current word that can still be typed into, or null. */
+  function nextEditableInWord(r,c,dir,delta){
+    let pos = nextCellInWord(r,c,dir,delta);
+    while(pos && cellAt(pos.r,pos.c).locked) pos = nextCellInWord(pos.r,pos.c,dir,delta);
+    return pos;
+  }
+
+  /** Where typing should begin in a word: its first square, unless that one is settled. */
+  function firstEditableOf(word){
+    for(const s of squaresOf(word)){
+      if(s.cell && !s.cell.locked) return { r: s.r, c: s.c };
+    }
+    return { r: word.row, c: word.col };
+  }
+
   function nextCellInWord(r,c,dir,delta){
     const nr = dir==='across' ? r : r+delta;
     const nc = dir==='across' ? c+delta : c;
@@ -959,18 +988,20 @@
   }
 
   function advanceAfterInput(r,c){
-    const next = nextCellInWord(r,c,currentDir,1);
+    const next = nextEditableInWord(r,c,currentDir,1);
     if(next){ focusCell(next.r, next.c, currentDir); return; }
     // reached end of word: jump to the next word in sequence (across list then down list)
     const idx = placedWords.findIndex(w => w.dir===currentDir && w.number === wordInfo(currentWordKey).number);
     if(idx >= 0){
       const nextWord = placedWords[(idx+1) % placedWords.length];
-      focusCell(nextWord.row, nextWord.col, nextWord.dir);
+      const start = firstEditableOf(nextWord);
+      focusCell(start.r, start.c, nextWord.dir);
     }
   }
 
   function onInput(e,r,c){
     const cell = cellAt(r,c);
+    if(cell.locked){ cell.input.value = gridData[r][c]; return; }
     // Uppercase first, then take the last grapheme - not the other way round. A cell holds one
     // letter, but uppercasing can lengthen what it is given: type ß and toUpperGrapheme returns
     // SS, which the old order wrote into the cell whole, leaving a two-character square that
@@ -999,7 +1030,7 @@
         if(!val) continue; // only mark cells the user actually filled in
         const letter = gridData[r][c];
         if(toUpperGrapheme(normalizeText(val)) === letter){
-          cell.wrap.classList.add('check-correct');
+          lockCell(cell, 'check-correct');
         } else {
           cell.wrap.classList.add('check-incorrect');
         }
@@ -1320,6 +1351,19 @@
   function onKeyDown(e,r,c){
     const cell = cellAt(r,c);
     if(!cell) return;
+    // A letter typed at a settled square is meant for the next open one - the reader is working
+    // along the word and should not have to step over what is already right.
+    if(cell.locked && e.key.length === 1 && !e.ctrlKey && !e.metaKey && !e.altKey){
+      e.preventDefault();
+      const next = nextEditableInWord(r,c,currentDir,1);
+      if(next){
+        const target = cellAt(next.r,next.c);
+        focusCell(next.r, next.c, currentDir);
+        target.input.value = e.key;
+        onInput({ target: target.input }, next.r, next.c);
+      }
+      return;
+    }
     switch(e.key){
       case 'ArrowLeft': e.preventDefault(); focusCell(r,c-1,'across'); break;
       case 'ArrowRight': e.preventDefault(); focusCell(r,c+1,'across'); break;
@@ -1327,11 +1371,11 @@
       case 'ArrowDown': e.preventDefault(); focusCell(r+1,c,'down'); break;
       case 'Backspace': {
         e.preventDefault();
-        if(cell.input.value){
+        if(cell.input.value && !cell.locked){
           cell.input.value = '';
           cell.wrap.classList.remove('check-correct', 'check-incorrect');
         } else {
-          const prev = nextCellInWord(r,c,currentDir,-1);
+          const prev = nextEditableInWord(r,c,currentDir,-1);
           if(prev){
             focusCell(prev.r, prev.c, currentDir);
             const prevCell = cellAt(prev.r,prev.c);
@@ -1345,6 +1389,7 @@
       }
       case 'Delete':
         e.preventDefault();
+        if(cell.locked) break;
         cell.input.value='';
         cell.wrap.classList.remove('check-correct', 'check-incorrect');
         checkAndCelebrate();
@@ -1473,8 +1518,8 @@
 
     const square = wrong[0];   // earliest empty or wrong square
     square.cell.input.value = square.expected;
-    square.cell.wrap.classList.add('revealed');
     square.cell.wrap.classList.remove('check-correct', 'check-incorrect');
+    lockCell(square.cell, 'revealed');
     hintsByWord[wid] = (hintsByWord[wid] || 0) + 1;
     setStatus('');
     checkAndCelebrate();
@@ -1741,6 +1786,15 @@
       state.cluesShownFor = cluesShownFor;
       state.checkedWrong = checkedWrong;
       state.recordCommitted = recordCommitted;
+      // Squares the program has vouched for, and which way: they come back read-only and marked.
+      const locked = {};
+      for(let r=0;r<rows;r++){
+        for(let c=0;c<cols;c++){
+          const cell = cellEls[r] && cellEls[r][c];
+          if(cell && cell.locked) locked[r + ',' + c] = cell.locked;
+        }
+      }
+      state.locked = locked;
     return state;
   }
 
@@ -1885,6 +1939,14 @@
       for(let c=0;c<saved.cols;c++){
         const val = saved.answers[r] && saved.answers[r][c];
         if(val && cellEls[r] && cellEls[r][c]) cellEls[r][c].input.value = val;
+      }
+    }
+    if(saved.locked && typeof saved.locked === 'object'){
+      for(const k of Object.keys(saved.locked)){
+        const [r, c] = k.split(',').map(Number);
+        const cell = cellEls[r] && cellEls[r][c];
+        const how = saved.locked[k] === 'revealed' ? 'revealed' : 'check-correct';
+        if(cell) lockCell(cell, how);
       }
     }
     hintsByWord = (saved.hintsByWord && typeof saved.hintsByWord === 'object') ? saved.hintsByWord : {};

@@ -817,8 +817,67 @@ test('solving the puzzle correctly triggers the celebration overlay', async () =
 
     const again = await bootApp(app.window.location.search, { keepSavedState: true });
     assertEqual(activeClue(again), clueAfterHint, 'the clue a hint added should come back');
-    assertEqual(again.document.querySelectorAll('#grid .cell.revealed').length, 0,
-      'a restored puzzle shows the letters, and the record of them is in the save');
+    assertEqual(again.document.querySelectorAll('#grid .cell.revealed').length, 1,
+      'a letter a hint gave should come back marked as given, and settled');
+    assertEqual(again.document.querySelector('#grid .cell.revealed input').readOnly, true);
+  });
+
+  // ---------- squares known to be right stay put ----------
+  test('a letter given by a hint cannot be typed over or deleted', async () => {
+    const app = await bootApp('?list=german&words=12&seed=hint1');
+    const { document: doc, window: win } = app;
+    doc.getElementById('hintBtn').click();                 // another clue
+    const first = wordSquares(app)[0];
+    typeInto(first, win, 'X');
+    doc.getElementById('hintBtn').click();                 // a letter, into the first square
+    const given = first.value;
+    assertTrue(given && given !== 'X', 'the hint should have corrected the first square');
+    assertEqual(first.readOnly, true);
+    typeInto(first, win, 'Q');
+    assertEqual(first.value, given, 'typing should not change a settled square');
+    first.dispatchEvent(new win.KeyboardEvent('keydown', { key: 'Backspace', bubbles: true }));
+    assertEqual(first.value, given, 'Backspace should not clear a settled square');
+    first.dispatchEvent(new win.KeyboardEvent('keydown', { key: 'Delete', bubbles: true }));
+    assertEqual(first.value, given, 'Delete should not clear a settled square');
+  });
+
+  test('Check answers settles the squares it marks right and leaves the wrong ones open', async () => {
+    const app = await bootApp('?list=german&words=12&seed=hint1');
+    const { document: doc, window: win } = app;
+    const squares = wordSquares(app);
+    const answer = Array.from(doc.querySelector('#printAnswerAcross li, #printAnswerDown li').textContent
+      .replace(/^\d+\.\s*/, ''));
+    // The active word is 1 across, whose answer is first in the key; put one right and one wrong.
+    typeInto(squares[0], win, answer[0]);
+    typeInto(squares[1], win, answer[1] === 'Q' ? 'X' : 'Q');
+    doc.getElementById('checkBtn').click();
+    assertEqual(squares[0].readOnly, true, 'a square marked right should be settled');
+    assertEqual(squares[1].readOnly, false, 'a square marked wrong should still be open');
+    typeInto(squares[1], win, answer[1]);
+    assertEqual(squares[1].value, answer[1], 'the wrong square should accept a correction');
+  });
+
+  test('typing at a settled square flows on to the next open one', async () => {
+    const app = await bootApp('?list=german&words=12&seed=hint1');
+    const { document: doc, window: win } = app;
+    doc.getElementById('hintBtn').click();
+    const squares = wordSquares(app);
+    typeInto(squares[0], win, 'X');
+    doc.getElementById('hintBtn').click();                 // settles squares[0]
+    squares[0].focus();
+    squares[0].dispatchEvent(new win.KeyboardEvent('keydown', { key: 'M', bubbles: true, cancelable: true }));
+    assertEqual(squares[1].value, 'M', 'the letter should have landed in the next open square');
+  });
+
+  test('a new puzzle starts with nothing settled', async () => {
+    const app = await bootApp('?list=german&words=12&seed=hint1');
+    const { document: doc, window: win } = app;
+    doc.getElementById('hintBtn').click();
+    typeInto(wordSquares(app)[0], win, 'X');
+    doc.getElementById('hintBtn').click();
+    assertTrue(doc.querySelector('#grid input[readonly]'), 'precondition: something settled');
+    doc.getElementById('generateBtn').click();
+    assertEqual(doc.querySelectorAll('#grid input[readonly]').length, 0);
   });
 
   // ---------- the learning record and smart mode ----------
