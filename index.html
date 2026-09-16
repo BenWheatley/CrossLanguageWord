@@ -686,13 +686,23 @@
       n.className = 'n'; n.textContent = w.number;
       const t = document.createElement('span');
       t.textContent = w.clue;
+      // A clue given as a hint sits under the first rather than in its place: two descriptions
+      // of one word are worth more together than either alone, and the reader keeps whatever
+      // footing the first had already given them.
+      if(w.hintClue){
+        const extra = document.createElement('span');
+        extra.className = 'hint-clue';
+        extra.textContent = w.hintClue;
+        t.appendChild(extra);
+      }
       li.appendChild(n); li.appendChild(t);
       // A clue was a click target and nothing else: no tab stop, no keyboard activation, so
       // jumping to a word was mouse-only. role/tabindex plus Enter and Space make it operable
       // the way its appearance already implies.
       li.setAttribute('role', 'button');
       li.setAttribute('tabindex', '0');
-      li.setAttribute('aria-label', `${w.number} ${w.dir}, ${w.len} letters: ${w.clue}`);
+      li.setAttribute('aria-label', `${w.number} ${w.dir}, ${w.len} letters: ${w.clue}`
+        + (w.hintClue ? `; also: ${w.hintClue}` : ''));
       li.addEventListener('click', () => selectWord(w.dir, w.number, true));
       li.addEventListener('keydown', (e) => {
         if(e.key === 'Enter' || e.key === ' '){
@@ -1439,13 +1449,13 @@
       return;
     }
 
-    // Rung one: a different clue, if this word has another and has not had it yet.
+    // Rung one: a second clue alongside the first, if this word has another and has not had it yet.
     const alternatives = cluesForAnswer(word.answer);
     if(cluesShownFor[wid] === undefined && alternatives.length > 1){
       const different = alternatives.find(text => text !== word.clue);
       if(different){
         cluesShownFor[wid] = 1;
-        word.clue = different;
+        word.hintClue = different;
         hintsByWord[wid] = (hintsByWord[wid] || 0) + 1;
         renderClueLists();
         highlightWord(wid);

@@ -468,6 +468,13 @@
     color:var(--ink-soft);
     min-width:18px;
   }
+  .clue-list .hint-clue{
+    display:block;
+    margin-top:2px;
+    color:var(--ink-soft);
+    font-style:italic;
+  }
+  .clue-list .hint-clue::before{ content:'also: '; font-style:normal; }
 
   .no-print{}
   footer.hint{

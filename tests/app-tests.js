@@ -727,11 +727,15 @@ test('solving the puzzle correctly triggers the celebration overlay', async () =
     return li ? li.textContent.replace(/^\d+/, '').trim() : null;
   };
 
-  test('the first hint offers a different clue, not a letter', async () => {
+  test('the first hint adds a second clue beside the first, not a letter', async () => {
     const app = await bootApp('?list=german&words=12&seed=hint1');
     const before = activeClue(app);
     app.document.getElementById('hintBtn').click();
-    assertNotEqual(activeClue(app), before, 'the clue should have been replaced');
+    const li = app.document.querySelector('.clue-list li.active');
+    const extra = li.querySelector('.hint-clue');
+    assertTrue(extra && extra.textContent.trim(), 'a second clue should have been added');
+    assertTrue(activeClue(app).startsWith(before), 'the first clue should still be there, first');
+    assertNotEqual(extra.textContent.trim(), before, 'the second clue should say something different');
     assertEqual(wordText(app).replace(/\./g, ''), '', 'no letters should have been given away');
   });
 
@@ -812,7 +816,7 @@ test('solving the puzzle correctly triggers the celebration overlay', async () =
     await waitFor(() => false, 400);
 
     const again = await bootApp(app.window.location.search, { keepSavedState: true });
-    assertEqual(activeClue(again), clueAfterHint, 'the clue a hint swapped in should come back');
+    assertEqual(activeClue(again), clueAfterHint, 'the clue a hint added should come back');
     assertEqual(again.document.querySelectorAll('#grid .cell.revealed').length, 0,
       'a restored puzzle shows the letters, and the record of them is in the save');
   });
