@@ -2,7 +2,7 @@
   "metadata": {
     "title": "English",
     "language": "en",
-    "version": 2,
+    "version": 3,
     "wordOrder": "append-only",
     "note": "Append-only. Shared puzzles identify words and clues by position, so links made today must still mean the same thing tomorrow: add new words and new clues at the end, never reorder or remove, and never rewrite a clue in place - append the better wording instead. Raise version when you append."
   },
@@ -2254,7 +2254,8 @@
       "clues": [
         "The gradual change of species over generations",
         "Gradual change in species over generations",
-        "Explains how species change over generations"
+        "Explains how species change over generations",
+        "What Darwin's finches illustrated"
       ]
     },
     {
@@ -4718,7 +4719,8 @@
       "word": "YEAR",
       "clues": [
         "Twelve months",
-        "Divided into twelve months"
+        "Divided into twelve months",
+        "The time it takes the Earth to go once round the Sun"
       ]
     },
     {
@@ -4837,7 +4839,8 @@
       "word": "BLUE",
       "clues": [
         "The color of the sky on a clear day",
-        "The color of the ocean on a clear day"
+        "The color of the ocean on a clear day",
+        "Also: how you feel when you are sad"
       ]
     },
     {
@@ -5467,7 +5470,8 @@
       "word": "ALREADY",
       "clues": [
         "By this time, sooner than expected",
-        "Happened sooner than you expected"
+        "Happened sooner than you expected",
+        "'Have you finished ___?' - asked before the deadline"
       ]
     },
     {
@@ -5831,7 +5835,8 @@
       "word": "CHIMNEY",
       "clues": [
         "Carries smoke out of a house",
-        "Smoke rises out of the house through this"
+        "Smoke rises out of the house through this",
+        "What Santa is said to climb down"
       ]
     },
     {
@@ -6378,7 +6383,8 @@
       "word": "EVENTUALLY",
       "clues": [
         "At the end, after some time",
-        "After some time, in the end"
+        "After some time, in the end",
+        "'The bus came, ___' - late, but it came"
       ]
     },
     {
@@ -6525,7 +6531,8 @@
       "word": "CHOICE",
       "clues": [
         "A decision made between options",
-        "Made between two or more options"
+        "Made between two or more options",
+        "What a menu gives you and a set meal does not"
       ]
     },
     {
@@ -6665,7 +6672,8 @@
       "word": "BUTTON",
       "clues": [
         "A small fastener pushed through a hole",
-        "Pushed through a small hole to fasten clothing"
+        "Pushed through a small hole to fasten clothing",
+        "Also: what you press to switch a machine on"
       ]
     },
     {
@@ -7071,7 +7079,8 @@
       "word": "DOORKNOB",
       "clues": [
         "Turned to open a door",
-        "Twisted to open a door"
+        "Twisted to open a door",
+        "The round handle in the middle of a panelled door"
       ]
     },
     {

@@ -2,7 +2,7 @@
   "metadata": {
     "title": "Deutsch B1: Fragen auf Deutsch, Antworten auf Englisch",
     "language": "de-en",
-    "version": 2,
+    "version": 4,
     "wordOrder": "append-only",
     "note": "Append-only. Shared puzzles identify words and clues by position, so links made today must still mean the same thing tomorrow: add new words and new clues at the end, never reorder or remove, and never rewrite a clue in place - append the better wording instead. Raise version when you append."
   },
@@ -717,7 +717,8 @@
       "clues": [
         "Wird um eine Wunde gewickelt, zum Schutz",
         "Wird um eine Wunde gewickelt",
-        "Wird um eine Wunde gewickelt"
+        "Wird um eine Wunde gewickelt",
+        "Was der Arzt nach dem Nähen um den Arm legt"
       ]
     },
     {
@@ -1720,7 +1721,8 @@
       "word": "VOLUNTEER",
       "clues": [
         "Jemand, der unbezahlt arbeitet, um anderen zu helfen",
-        "Arbeitet unbezahlt, um anderen zu helfen"
+        "Arbeitet unbezahlt, um anderen zu helfen",
+        "Feuerwehrleute in kleinen Dörfern sind es meistens"
       ]
     },
     {
@@ -2083,7 +2085,8 @@
       "word": "ANIMAL",
       "clues": [
         "Ein Lebewesen, keine Pflanze",
-        "Kein Pflanze, sondern ein Lebewesen"
+        "Kein Pflanze, sondern ein Lebewesen",
+        "Hund, Katze, Kuh oder Elefant - der Oberbegriff"
       ]
     },
     {
@@ -2111,7 +2114,8 @@
       "word": "PREDATOR",
       "clues": [
         "Ein Tier, das andere zur Nahrung jagt",
-        "Jagt andere Tiere zur Nahrung"
+        "Jagt andere Tiere zur Nahrung",
+        "Der Löwe für das Zebra; der Wolf für das Schaf"
       ]
     },
     {
@@ -2471,7 +2475,8 @@
       "word": "RING",
       "clues": [
         "Wird am Finger getragen, oft zur Hochzeit",
-        "Getragen an einem Finger, oft zur Hochzeit"
+        "Getragen an einem Finger, oft zur Hochzeit",
+        "Was man beim Heiraten an den Finger steckt"
       ]
     },
     {
@@ -2741,7 +2746,8 @@
       "word": "TEMPLE",
       "clues": [
         "Ein religiöses Gebäude, oft im asiatischen Kontext",
-        "Ein religiöses Gebäude, oft in Asien"
+        "Ein religiöses Gebäude, oft in Asien",
+        "Wo Buddhisten und Hindus beten"
       ]
     },
     {
@@ -2931,21 +2937,24 @@
       "word": "FREQUENTLY",
       "clues": [
         "Oft wiederholt",
-        "Wiederholt sich oft"
+        "Wiederholt sich oft",
+        "Wie oft man den Bus nimmt, wenn man kein Auto hat"
       ]
     },
     {
       "word": "EVENTUALLY",
       "clues": [
         "Am Ende, nach einiger Zeit",
-        "Nach einiger Zeit, am Ende"
+        "Nach einiger Zeit, am Ende",
+        "'Der Zug kam ___' - spät, aber er kam"
       ]
     },
     {
       "word": "IMMEDIATELY",
       "clues": [
         "Sofort, ohne Verzögerung",
-        "Sofort, ohne Verzögerung"
+        "Sofort, ohne Verzögerung",
+        "Was man tut, wenn es brennt: nicht warten, sondern ___ gehen"
       ]
     },
     {
@@ -4251,7 +4260,8 @@
       "word": "BLUE",
       "clues": [
         "Die Farbe des Himmels an einem klaren Tag",
-        "Die Farbe des Meeres an einem klaren Tag"
+        "Die Farbe des Meeres an einem klaren Tag",
+        "Die Farbe der Jeans"
       ]
     },
     {
@@ -4286,7 +4296,8 @@
       "word": "ORANGE",
       "clues": [
         "Eine Farbe, benannt nach einer Frucht",
-        "Benannt nach einer Frucht, nicht umgekehrt"
+        "Benannt nach einer Frucht, nicht umgekehrt",
+        "Die Farbe einer Karotte"
       ]
     },
     {
@@ -4818,7 +4829,8 @@
       "word": "ALWAYS",
       "clues": [
         "Zu jeder Zeit, ohne Ausnahme",
-        "Ausnahmslos, zu jeder Zeit"
+        "Ausnahmslos, zu jeder Zeit",
+        "Wie oft die Sonne im Osten aufgeht"
       ]
     },
     {
@@ -4832,7 +4844,8 @@
       "word": "SOMETIMES",
       "clues": [
         "Gelegentlich, nicht immer",
-        "Nicht immer, aber gelegentlich schon"
+        "Nicht immer, aber gelegentlich schon",
+        "Wie oft es im Sommer regnet: nicht oft, nicht nie"
       ]
     },
     {
@@ -4867,7 +4880,8 @@
       "word": "ALREADY",
       "clues": [
         "Bereits, früher als erwartet",
-        "Früher als erwartet eingetreten"
+        "Früher als erwartet eingetreten",
+        "'Bist du ___ fertig?' - gefragt, bevor die Zeit um ist"
       ]
     },
     {
@@ -5568,14 +5582,16 @@
       "word": "GOES",
       "clues": [
         "gehen: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'gehen'"
+        "Praesens, er/sie/es-Form, des Verbs 'gehen'",
+        "Er geht jeden Tag zur Schule. — He ___ to school every day."
       ]
     },
     {
       "word": "WENT",
       "clues": [
         "gehen: Simple Past",
-        "Simple Past des Verbs 'gehen'"
+        "Simple Past des Verbs 'gehen'",
+        "Sie ging gestern ins Kino. — She ___ to the cinema yesterday."
       ]
     },
     {
@@ -5589,14 +5605,16 @@
       "word": "EATS",
       "clues": [
         "essen: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'essen'"
+        "Praesens, er/sie/es-Form, des Verbs 'essen'",
+        "Er isst kein Fleisch. — He ___ no meat."
       ]
     },
     {
       "word": "ATE",
       "clues": [
         "essen: Simple Past",
-        "Simple Past des Verbs 'essen'"
+        "Simple Past des Verbs 'essen'",
+        "Ich aß drei Stück Kuchen. — I ___ three pieces of cake."
       ]
     },
     {
@@ -5610,14 +5628,16 @@
       "word": "SEES",
       "clues": [
         "sehen: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'sehen'"
+        "Praesens, er/sie/es-Form, des Verbs 'sehen'",
+        "Sie sieht den Vogel im Baum. — She ___ the bird in the tree."
       ]
     },
     {
       "word": "SAW",
       "clues": [
         "sehen: Simple Past",
-        "Simple Past des Verbs 'sehen'"
+        "Simple Past des Verbs 'sehen'",
+        "Ich sah ihn gestern in der Stadt. — I ___ him in town yesterday."
       ]
     },
     {
@@ -5631,14 +5651,16 @@
       "word": "TAKES",
       "clues": [
         "nehmen: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'nehmen'"
+        "Praesens, er/sie/es-Form, des Verbs 'nehmen'",
+        "Er nimmt immer den Bus. — He always ___ the bus."
       ]
     },
     {
       "word": "TOOK",
       "clues": [
         "nehmen: Simple Past",
-        "Simple Past des Verbs 'nehmen'"
+        "Simple Past des Verbs 'nehmen'",
+        "Sie nahm ihren Mantel und ging. — She ___ her coat and left."
       ]
     },
     {
@@ -5652,14 +5674,16 @@
       "word": "GIVES",
       "clues": [
         "geben: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'geben'"
+        "Praesens, er/sie/es-Form, des Verbs 'geben'",
+        "Sie gibt dem Hund ein Leckerli. — She ___ the dog a treat."
       ]
     },
     {
       "word": "GAVE",
       "clues": [
         "geben: Simple Past",
-        "Simple Past des Verbs 'geben'"
+        "Simple Past des Verbs 'geben'",
+        "Er gab mir seine Nummer. — He ___ me his number."
       ]
     },
     {
@@ -5673,14 +5697,16 @@
       "word": "COMES",
       "clues": [
         "kommen: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'kommen'"
+        "Praesens, er/sie/es-Form, des Verbs 'kommen'",
+        "Der Zug kommt um acht. — The train ___ at eight."
       ]
     },
     {
       "word": "CAME",
       "clues": [
         "kommen: Simple Past",
-        "Simple Past des Verbs 'kommen'"
+        "Simple Past des Verbs 'kommen'",
+        "Sie kam eine Stunde zu spät. — She ___ an hour late."
       ]
     },
     {
@@ -5694,14 +5720,16 @@
       "word": "KNOWS",
       "clues": [
         "wissen/kennen: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'wissen/kennen'"
+        "Praesens, er/sie/es-Form, des Verbs 'wissen/kennen'",
+        "Er weiß die Antwort. — He ___ the answer."
       ]
     },
     {
       "word": "KNEW",
       "clues": [
         "wissen/kennen: Simple Past",
-        "Simple Past des Verbs 'wissen/kennen'"
+        "Simple Past des Verbs 'wissen/kennen'",
+        "Ich wusste nichts davon. — I ___ nothing about it."
       ]
     },
     {
@@ -5715,14 +5743,16 @@
       "word": "SPEAKS",
       "clues": [
         "sprechen: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'sprechen'"
+        "Praesens, er/sie/es-Form, des Verbs 'sprechen'",
+        "Sie spricht drei Sprachen. — She ___ three languages."
       ]
     },
     {
       "word": "SPOKE",
       "clues": [
         "sprechen: Simple Past",
-        "Simple Past des Verbs 'sprechen'"
+        "Simple Past des Verbs 'sprechen'",
+        "Er sprach sehr leise. — He ___ very quietly."
       ]
     },
     {
@@ -5736,14 +5766,16 @@
       "word": "WRITES",
       "clues": [
         "schreiben: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'schreiben'"
+        "Praesens, er/sie/es-Form, des Verbs 'schreiben'",
+        "Sie schreibt ein Buch. — She ___ a book."
       ]
     },
     {
       "word": "WROTE",
       "clues": [
         "schreiben: Simple Past",
-        "Simple Past des Verbs 'schreiben'"
+        "Simple Past des Verbs 'schreiben'",
+        "Er schrieb mir jeden Tag. — He ___ to me every day."
       ]
     },
     {
@@ -5757,28 +5789,32 @@
       "word": "READS",
       "clues": [
         "lesen: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'lesen'"
+        "Praesens, er/sie/es-Form, des Verbs 'lesen'",
+        "Er liest die Zeitung beim Frühstück. — He ___ the paper at breakfast."
       ]
     },
     {
       "word": "READ",
       "clues": [
         "lesen: Simple Past",
-        "Simple Past des Verbs 'lesen'"
+        "Simple Past des Verbs 'lesen'",
+        "Sie las das Buch in zwei Tagen. — She ___ the book in two days."
       ]
     },
     {
       "word": "DRINKS",
       "clues": [
         "trinken: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'trinken'"
+        "Praesens, er/sie/es-Form, des Verbs 'trinken'",
+        "Er trinkt morgens Tee. — He ___ tea in the morning."
       ]
     },
     {
       "word": "DRANK",
       "clues": [
         "trinken: Simple Past",
-        "Simple Past des Verbs 'trinken'"
+        "Simple Past des Verbs 'trinken'",
+        "Sie trank das Glas leer. — She ___ the glass dry."
       ]
     },
     {
@@ -5792,14 +5828,16 @@
       "word": "SINGS",
       "clues": [
         "singen: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'singen'"
+        "Praesens, er/sie/es-Form, des Verbs 'singen'",
+        "Der Chor singt jeden Sonntag. — The choir ___ every Sunday."
       ]
     },
     {
       "word": "SANG",
       "clues": [
         "singen: Simple Past",
-        "Simple Past des Verbs 'singen'"
+        "Simple Past des Verbs 'singen'",
+        "Sie hat das Kind in den Schlaf gesungen. — She ___ the child to sleep."
       ]
     },
     {
@@ -5813,14 +5851,16 @@
       "word": "RUNS",
       "clues": [
         "laufen/rennen: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'laufen/rennen'"
+        "Praesens, er/sie/es-Form, des Verbs 'laufen/rennen'",
+        "Er läuft jeden Morgen im Park. — He ___ in the park every morning."
       ]
     },
     {
       "word": "RAN",
       "clues": [
         "laufen/rennen: Simple Past",
-        "Simple Past des Verbs 'laufen/rennen'"
+        "Simple Past des Verbs 'laufen/rennen'",
+        "Der Hund lief hinter dem Ball her. — The dog ___ after the ball."
       ]
     },
     {
@@ -5834,14 +5874,16 @@
       "word": "SWIMS",
       "clues": [
         "schwimmen: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'schwimmen'"
+        "Praesens, er/sie/es-Form, des Verbs 'schwimmen'",
+        "Das Kind schwimmt schon allein. — The child already ___ on its own."
       ]
     },
     {
       "word": "SWAM",
       "clues": [
         "schwimmen: Simple Past",
-        "Simple Past des Verbs 'schwimmen'"
+        "Simple Past des Verbs 'schwimmen'",
+        "Ich schwamm bis zur Insel. — I ___ out to the island."
       ]
     },
     {
@@ -5855,14 +5897,16 @@
       "word": "BEGINS",
       "clues": [
         "beginnen: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'beginnen'"
+        "Praesens, er/sie/es-Form, des Verbs 'beginnen'",
+        "Der Unterricht beginnt um acht. — Lessons ___ at eight."
       ]
     },
     {
       "word": "BEGAN",
       "clues": [
         "beginnen: Simple Past",
-        "Simple Past des Verbs 'beginnen'"
+        "Simple Past des Verbs 'beginnen'",
+        "Der Unterricht fing um acht an. — Lessons ___ at eight."
       ]
     },
     {
@@ -5876,14 +5920,16 @@
       "word": "BREAKS",
       "clues": [
         "brechen: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'brechen'"
+        "Praesens, er/sie/es-Form, des Verbs 'brechen'",
+        "Glas bricht leicht. — Glass ___ easily."
       ]
     },
     {
       "word": "BROKE",
       "clues": [
         "brechen: Simple Past",
-        "Simple Past des Verbs 'brechen'"
+        "Simple Past des Verbs 'brechen'",
+        "Er brach sich das Bein. — He ___ his leg."
       ]
     },
     {
@@ -5897,14 +5943,16 @@
       "word": "CHOOSES",
       "clues": [
         "wählen: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'wählen'"
+        "Praesens, er/sie/es-Form, des Verbs 'wählen'",
+        "Sie wählt immer das Blaue. — She always ___ the blue one."
       ]
     },
     {
       "word": "CHOSE",
       "clues": [
         "wählen: Simple Past",
-        "Simple Past des Verbs 'wählen'"
+        "Simple Past des Verbs 'wählen'",
+        "Er wählte den kürzeren Weg. — He ___ the shorter route."
       ]
     },
     {
@@ -5918,14 +5966,16 @@
       "word": "FALLS",
       "clues": [
         "fallen: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'fallen'"
+        "Praesens, er/sie/es-Form, des Verbs 'fallen'",
+        "Im Herbst fällt das Laub. — In autumn the leaves fall; a leaf ___."
       ]
     },
     {
       "word": "FELL",
       "clues": [
         "fallen: Simple Past",
-        "Simple Past des Verbs 'fallen'"
+        "Simple Past des Verbs 'fallen'",
+        "Das Glas fiel vom Tisch. — The glass ___ off the table."
       ]
     },
     {
@@ -5939,14 +5989,16 @@
       "word": "FLIES",
       "clues": [
         "fliegen: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'fliegen'"
+        "Praesens, er/sie/es-Form, des Verbs 'fliegen'",
+        "Das Flugzeug fliegt über die Alpen. — The plane ___ over the Alps."
       ]
     },
     {
       "word": "FLEW",
       "clues": [
         "fliegen: Simple Past",
-        "Simple Past des Verbs 'fliegen'"
+        "Simple Past des Verbs 'fliegen'",
+        "Der Vogel flog davon. — The bird ___ away."
       ]
     },
     {
@@ -5960,14 +6012,16 @@
       "word": "GROWS",
       "clues": [
         "wachsen: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'wachsen'"
+        "Praesens, er/sie/es-Form, des Verbs 'wachsen'",
+        "Das Gras wächst schnell im Mai. — The grass ___ fast in May."
       ]
     },
     {
       "word": "GREW",
       "clues": [
         "wachsen: Simple Past",
-        "Simple Past des Verbs 'wachsen'"
+        "Simple Past des Verbs 'wachsen'",
+        "Er wuchs in Hamburg auf. — He ___ up in Hamburg."
       ]
     },
     {
@@ -5981,252 +6035,288 @@
       "word": "WALKS",
       "clues": [
         "laufen (zu Fuss gehen): er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'laufen (zu Fuss gehen)'"
+        "Praesens, er/sie/es-Form, des Verbs 'laufen (zu Fuss gehen)'",
+        "Sie geht jeden Tag zu Fuß zur Arbeit. — She ___ to work every day."
       ]
     },
     {
       "word": "WALKED",
       "clues": [
         "laufen (zu Fuss gehen): Simple Past",
-        "Simple Past des Verbs 'laufen (zu Fuss gehen)'"
+        "Simple Past des Verbs 'laufen (zu Fuss gehen)'",
+        "'Gestern bin ich zu Fuss zur Arbeit gegangen' - das Verb, auf Englisch, in der Vergangenheit"
       ]
     },
     {
       "word": "TALKS",
       "clues": [
         "reden: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'reden'"
+        "Praesens, er/sie/es-Form, des Verbs 'reden'",
+        "Er redet zu viel. — He ___ too much."
       ]
     },
     {
       "word": "TALKED",
       "clues": [
         "reden: Simple Past",
-        "Simple Past des Verbs 'reden'"
+        "Simple Past des Verbs 'reden'",
+        "Wir redeten die ganze Nacht. — We ___ all night."
       ]
     },
     {
       "word": "WORKS",
       "clues": [
         "arbeiten: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'arbeiten'"
+        "Praesens, er/sie/es-Form, des Verbs 'arbeiten'",
+        "Sie arbeitet in einer Bank. — She ___ in a bank."
       ]
     },
     {
       "word": "WORKED",
       "clues": [
         "arbeiten: Simple Past",
-        "Simple Past des Verbs 'arbeiten'"
+        "Simple Past des Verbs 'arbeiten'",
+        "Er arbeitete bis Mitternacht. — He ___ until midnight."
       ]
     },
     {
       "word": "PLAYS",
       "clues": [
         "spielen: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'spielen'"
+        "Praesens, er/sie/es-Form, des Verbs 'spielen'",
+        "Das Kind spielt im Garten. — The child ___ in the garden."
       ]
     },
     {
       "word": "PLAYED",
       "clues": [
         "spielen: Simple Past",
-        "Simple Past des Verbs 'spielen'"
+        "Simple Past des Verbs 'spielen'",
+        "Als Kind spielte ich Klavier. — As a child I ___ the piano."
       ]
     },
     {
       "word": "LOOKS",
       "clues": [
         "schauen: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'schauen'"
+        "Praesens, er/sie/es-Form, des Verbs 'schauen'",
+        "Sie schaut aus dem Fenster. — She ___ out of the window."
       ]
     },
     {
       "word": "LOOKED",
       "clues": [
         "schauen: Simple Past",
-        "Simple Past des Verbs 'schauen'"
+        "Simple Past des Verbs 'schauen'",
+        "Er schaute auf die Uhr. — He ___ at his watch."
       ]
     },
     {
       "word": "WANTS",
       "clues": [
         "wollen: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'wollen'"
+        "Praesens, er/sie/es-Form, des Verbs 'wollen'",
+        "Er will ein Eis. — He ___ an ice cream."
       ]
     },
     {
       "word": "WANTED",
       "clues": [
         "wollen: Simple Past",
-        "Simple Past des Verbs 'wollen'"
+        "Simple Past des Verbs 'wollen'",
+        "Ich wollte dich nur anrufen. — I only ___ to call you."
       ]
     },
     {
       "word": "NEEDS",
       "clues": [
         "brauchen: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'brauchen'"
+        "Praesens, er/sie/es-Form, des Verbs 'brauchen'",
+        "Das Kind braucht neue Schuhe. — The child ___ new shoes."
       ]
     },
     {
       "word": "NEEDED",
       "clues": [
         "brauchen: Simple Past",
-        "Simple Past des Verbs 'brauchen'"
+        "Simple Past des Verbs 'brauchen'",
+        "Ich brauchte eine Pause. — I ___ a break."
       ]
     },
     {
       "word": "USES",
       "clues": [
         "benutzen: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'benutzen'"
+        "Praesens, er/sie/es-Form, des Verbs 'benutzen'",
+        "Sie benutzt den Computer jeden Tag. — She ___ the computer every day."
       ]
     },
     {
       "word": "USED",
       "clues": [
         "benutzen: Simple Past",
-        "Simple Past des Verbs 'benutzen'"
+        "Simple Past des Verbs 'benutzen'",
+        "Er benutzte mein Handtuch. — He ___ my towel."
       ]
     },
     {
       "word": "TRIES",
       "clues": [
         "versuchen: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'versuchen'"
+        "Praesens, er/sie/es-Form, des Verbs 'versuchen'",
+        "Er versucht es noch einmal. — He ___ once more."
       ]
     },
     {
       "word": "TRIED",
       "clues": [
         "versuchen: Simple Past",
-        "Simple Past des Verbs 'versuchen'"
+        "Simple Past des Verbs 'versuchen'",
+        "Ich versuchte anzurufen. — I ___ to call."
       ]
     },
     {
       "word": "ASKS",
       "clues": [
         "fragen: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'fragen'"
+        "Praesens, er/sie/es-Form, des Verbs 'fragen'",
+        "Das Kind fragt die ganze Zeit „warum?“ — The child ___ 'why?' all the time."
       ]
     },
     {
       "word": "ASKED",
       "clues": [
         "fragen: Simple Past",
-        "Simple Past des Verbs 'fragen'"
+        "Simple Past des Verbs 'fragen'",
+        "Sie fragte nach dem Weg. — She ___ the way."
       ]
     },
     {
       "word": "CALLS",
       "clues": [
         "anrufen (nennen): er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'anrufen (nennen)'"
+        "Praesens, er/sie/es-Form, des Verbs 'anrufen (nennen)'",
+        "Er ruft mich jeden Abend an. — He ___ me every evening."
       ]
     },
     {
       "word": "CALLED",
       "clues": [
         "anrufen (nennen): Simple Past",
-        "Simple Past des Verbs 'anrufen (nennen)'"
+        "Simple Past des Verbs 'anrufen (nennen)'",
+        "Jemand rief meinen Namen. — Someone ___ my name."
       ]
     },
     {
       "word": "MOVES",
       "clues": [
         "bewegen: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'bewegen'"
+        "Praesens, er/sie/es-Form, des Verbs 'bewegen'",
+        "Die Katze bewegt sich nicht. — The cat does not move; it never ___."
       ]
     },
     {
       "word": "MOVED",
       "clues": [
         "bewegen: Simple Past",
-        "Simple Past des Verbs 'bewegen'"
+        "Simple Past des Verbs 'bewegen'",
+        "Er bewegte die Hand langsam. — He ___ his hand slowly."
       ]
     },
     {
       "word": "LIVES",
       "clues": [
         "leben (wohnen): er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'leben (wohnen)'"
+        "Praesens, er/sie/es-Form, des Verbs 'leben (wohnen)'",
+        "Sie wohnt noch bei ihren Eltern. — She still ___ with her parents."
       ]
     },
     {
       "word": "LIVED",
       "clues": [
         "leben (wohnen): Simple Past",
-        "Simple Past des Verbs 'leben (wohnen)'"
+        "Simple Past des Verbs 'leben (wohnen)'",
+        "Er lebte lange in Paris. — He ___ in Paris for a long time."
       ]
     },
     {
       "word": "BELIEVES",
       "clues": [
         "glauben: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'glauben'"
+        "Praesens, er/sie/es-Form, des Verbs 'glauben'",
+        "Er glaubt alles, was er liest. — He ___ everything he reads."
       ]
     },
     {
       "word": "BELIEVED",
       "clues": [
         "glauben: Simple Past",
-        "Simple Past des Verbs 'glauben'"
+        "Simple Past des Verbs 'glauben'",
+        "Ich glaubte ihm. — I ___ him."
       ]
     },
     {
       "word": "HAPPENS",
       "clues": [
         "passieren: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'passieren'"
+        "Praesens, er/sie/es-Form, des Verbs 'passieren'",
+        "So etwas passiert selten. — Such a thing rarely ___."
       ]
     },
     {
       "word": "HAPPENED",
       "clues": [
         "passieren: Simple Past",
-        "Simple Past des Verbs 'passieren'"
+        "Simple Past des Verbs 'passieren'",
+        "Was ist gestern passiert? — What ___ yesterday?"
       ]
     },
     {
       "word": "SEEMS",
       "clues": [
         "scheinen: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'scheinen'"
+        "Praesens, er/sie/es-Form, des Verbs 'scheinen'",
+        "Er scheint müde zu sein. — He ___ to be tired."
       ]
     },
     {
       "word": "SEEMED",
       "clues": [
         "scheinen: Simple Past",
-        "Simple Past des Verbs 'scheinen'"
+        "Simple Past des Verbs 'scheinen'",
+        "Sie schien glücklich. — She ___ happy."
       ]
     },
     {
       "word": "HELPS",
       "clues": [
         "helfen: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'helfen'"
+        "Praesens, er/sie/es-Form, des Verbs 'helfen'",
+        "Tee hilft gegen Halsschmerzen. — Tea ___ with a sore throat."
       ]
     },
     {
       "word": "HELPED",
       "clues": [
         "helfen: Simple Past",
-        "Simple Past des Verbs 'helfen'"
+        "Simple Past des Verbs 'helfen'",
+        "Niemand half mir. — Nobody ___ me."
       ]
     },
     {
       "word": "SHOWS",
       "clues": [
         "zeigen: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'zeigen'"
+        "Praesens, er/sie/es-Form, des Verbs 'zeigen'",
+        "Die Uhr zeigt halb drei. — The clock ___ half past two."
       ]
     },
     {
       "word": "SHOWED",
       "clues": [
         "zeigen: Simple Past",
-        "Simple Past des Verbs 'zeigen'"
+        "Simple Past des Verbs 'zeigen'",
+        "Er zeigte auf das Haus. — He ___ me the house, pointing."
       ]
     },
     {
@@ -6240,336 +6330,384 @@
       "word": "TURNS",
       "clues": [
         "drehen: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'drehen'"
+        "Praesens, er/sie/es-Form, des Verbs 'drehen'",
+        "Sie dreht den Schlüssel im Schloss. — She ___ the key in the lock."
       ]
     },
     {
       "word": "TURNED",
       "clues": [
         "drehen: Simple Past",
-        "Simple Past des Verbs 'drehen'"
+        "Simple Past des Verbs 'drehen'",
+        "Er drehte sich um. — He ___ around."
       ]
     },
     {
       "word": "STARTS",
       "clues": [
         "anfangen (starten): er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'anfangen (starten)'"
+        "Praesens, er/sie/es-Form, des Verbs 'anfangen (starten)'",
+        "Der Film fängt um acht an. — The film ___ at eight."
       ]
     },
     {
       "word": "STARTED",
       "clues": [
         "anfangen (starten): Simple Past",
-        "Simple Past des Verbs 'anfangen (starten)'"
+        "Simple Past des Verbs 'anfangen (starten)'",
+        "Das Spiel fing schon an. — The game already ___."
       ]
     },
     {
       "word": "HEARS",
       "clues": [
         "hören: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'hören'"
+        "Praesens, er/sie/es-Form, des Verbs 'hören'",
+        "Er hört nie zu. — He never listens; he ___ nothing."
       ]
     },
     {
       "word": "HEARD",
       "clues": [
         "hören: Simple Past",
-        "Simple Past des Verbs 'hören'"
+        "Simple Past des Verbs 'hören'",
+        "Ich hörte ein Geräusch im Keller. — I ___ a noise in the cellar."
       ]
     },
     {
       "word": "WATCHES",
       "clues": [
         "beobachten (zuschauen): er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'beobachten (zuschauen)'"
+        "Praesens, er/sie/es-Form, des Verbs 'beobachten (zuschauen)'",
+        "Er schaut jeden Abend Fernsehen. — He ___ television every evening."
       ]
     },
     {
       "word": "WATCHED",
       "clues": [
         "beobachten (zuschauen): Simple Past",
-        "Simple Past des Verbs 'beobachten (zuschauen)'"
+        "Simple Past des Verbs 'beobachten (zuschauen)'",
+        "Wir schauten das Spiel zusammen. — We ___ the match together."
       ]
     },
     {
       "word": "FOLLOWS",
       "clues": [
         "folgen: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'folgen'"
+        "Praesens, er/sie/es-Form, des Verbs 'folgen'",
+        "Der Hund folgt seinem Herrn. — The dog ___ its master."
       ]
     },
     {
       "word": "FOLLOWED",
       "clues": [
         "folgen: Simple Past",
-        "Simple Past des Verbs 'folgen'"
+        "Simple Past des Verbs 'folgen'",
+        "Sie folgte ihm nach Hause. — She ___ him home."
       ]
     },
     {
       "word": "STOPS",
       "clues": [
         "anhalten (aufhören): er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'anhalten (aufhören)'"
+        "Praesens, er/sie/es-Form, des Verbs 'anhalten (aufhören)'",
+        "Der Zug hält nicht in jedem Dorf. — The train does not stop in every village; it only ___ in towns."
       ]
     },
     {
       "word": "STOPPED",
       "clues": [
         "anhalten (aufhören): Simple Past",
-        "Simple Past des Verbs 'anhalten (aufhören)'"
+        "Simple Past des Verbs 'anhalten (aufhören)'",
+        "Der Regen hörte auf. — The rain ___."
       ]
     },
     {
       "word": "CREATES",
       "clues": [
         "erschaffen: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'erschaffen'"
+        "Praesens, er/sie/es-Form, des Verbs 'erschaffen'",
+        "Der Künstler erschafft ein neues Werk. — The artist ___ a new work."
       ]
     },
     {
       "word": "CREATED",
       "clues": [
         "erschaffen: Simple Past",
-        "Simple Past des Verbs 'erschaffen'"
+        "Simple Past des Verbs 'erschaffen'",
+        "Sie erschuf eine ganze Welt. — She ___ a whole world."
       ]
     },
     {
       "word": "LEARNS",
       "clues": [
         "lernen: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'lernen'"
+        "Praesens, er/sie/es-Form, des Verbs 'lernen'",
+        "Man lernt nie aus. — One never stops learning; one always ___ something new."
       ]
     },
     {
       "word": "LEARNED",
       "clues": [
         "lernen: Simple Past",
-        "Simple Past des Verbs 'lernen'"
+        "Simple Past des Verbs 'lernen'",
+        "In der Schule lernte ich Französisch. — At school I ___ French."
       ]
     },
     {
       "word": "CHANGES",
       "clues": [
         "ändern (wechseln): er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'ändern (wechseln)'"
+        "Praesens, er/sie/es-Form, des Verbs 'ändern (wechseln)'",
+        "Das Wetter ändert sich ständig. — The weather ___ constantly."
       ]
     },
     {
       "word": "CHANGED",
       "clues": [
         "ändern (wechseln): Simple Past",
-        "Simple Past des Verbs 'ändern (wechseln)'"
+        "Simple Past des Verbs 'ändern (wechseln)'",
+        "Sie änderte ihre Meinung. — She ___ her mind."
       ]
     },
     {
       "word": "COOKS",
       "clues": [
         "kochen: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'kochen'"
+        "Praesens, er/sie/es-Form, des Verbs 'kochen'",
+        "Er kocht jeden Sonntag. — He ___ every Sunday."
       ]
     },
     {
       "word": "COOKED",
       "clues": [
         "kochen: Simple Past",
-        "Simple Past des Verbs 'kochen'"
+        "Simple Past des Verbs 'kochen'",
+        "Oma kochte die beste Suppe. — Grandma ___ the best soup."
       ]
     },
     {
       "word": "CLEANS",
       "clues": [
         "putzen (reinigen): er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'putzen (reinigen)'"
+        "Praesens, er/sie/es-Form, des Verbs 'putzen (reinigen)'",
+        "Sie putzt das Bad jeden Samstag. — She ___ the bathroom every Saturday."
       ]
     },
     {
       "word": "CLEANED",
       "clues": [
         "putzen (reinigen): Simple Past",
-        "Simple Past des Verbs 'putzen (reinigen)'"
+        "Simple Past des Verbs 'putzen (reinigen)'",
+        "Er putzte das ganze Haus. — He ___ the whole house."
       ]
     },
     {
       "word": "WASHES",
       "clues": [
         "waschen: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'waschen'"
+        "Praesens, er/sie/es-Form, des Verbs 'waschen'",
+        "Er wäscht das Auto. — He ___ the car."
       ]
     },
     {
       "word": "WASHED",
       "clues": [
         "waschen: Simple Past",
-        "Simple Past des Verbs 'waschen'"
+        "Simple Past des Verbs 'waschen'",
+        "Sie wusch das Geschirr ab. — She ___ the dishes."
       ]
     },
     {
       "word": "OPENS",
       "clues": [
         "öffnen: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'öffnen'"
+        "Praesens, er/sie/es-Form, des Verbs 'öffnen'",
+        "Der Laden öffnet um neun. — The shop ___ at nine."
       ]
     },
     {
       "word": "OPENED",
       "clues": [
         "öffnen: Simple Past",
-        "Simple Past des Verbs 'öffnen'"
+        "Simple Past des Verbs 'öffnen'",
+        "Sie öffnete das Fenster. — She ___ the window."
       ]
     },
     {
       "word": "CLOSES",
       "clues": [
         "schliessen: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'schliessen'"
+        "Praesens, er/sie/es-Form, des Verbs 'schliessen'",
+        "Die Bank schließt um vier. — The bank ___ at four."
       ]
     },
     {
       "word": "CLOSED",
       "clues": [
         "schliessen: Simple Past",
-        "Simple Past des Verbs 'schliessen'"
+        "Simple Past des Verbs 'schliessen'",
+        "Er schloss die Tür leise. — He ___ the door quietly."
       ]
     },
     {
       "word": "PUSHES",
       "clues": [
         "schieben (drücken): er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'schieben (drücken)'"
+        "Praesens, er/sie/es-Form, des Verbs 'schieben (drücken)'",
+        "Er schiebt den Wagen. — He ___ the trolley."
       ]
     },
     {
       "word": "PUSHED",
       "clues": [
         "schieben (drücken): Simple Past",
-        "Simple Past des Verbs 'schieben (drücken)'"
+        "Simple Past des Verbs 'schieben (drücken)'",
+        "Sie drückte den Knopf. — She ___ the button."
       ]
     },
     {
       "word": "PULLS",
       "clues": [
         "ziehen: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'ziehen'"
+        "Praesens, er/sie/es-Form, des Verbs 'ziehen'",
+        "Das Pferd zieht den Wagen. — The horse ___ the cart."
       ]
     },
     {
       "word": "PULLED",
       "clues": [
         "ziehen: Simple Past",
-        "Simple Past des Verbs 'ziehen'"
+        "Simple Past des Verbs 'ziehen'",
+        "Er zog die Vorhänge zu. — He ___ the curtains shut."
       ]
     },
     {
       "word": "CARRIES",
       "clues": [
         "tragen: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'tragen'"
+        "Praesens, er/sie/es-Form, des Verbs 'tragen'",
+        "Sie trägt die Tasche auf dem Rücken. — She ___ the bag on her back."
       ]
     },
     {
       "word": "CARRIED",
       "clues": [
         "tragen: Simple Past",
-        "Simple Past des Verbs 'tragen'"
+        "Simple Past des Verbs 'tragen'",
+        "Er trug den Koffer nach oben. — He ___ the case upstairs."
       ]
     },
     {
       "word": "WAITS",
       "clues": [
         "warten: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'warten'"
+        "Praesens, er/sie/es-Form, des Verbs 'warten'",
+        "Er wartet an der Haltestelle. — He ___ at the bus stop."
       ]
     },
     {
       "word": "WAITED",
       "clues": [
         "warten: Simple Past",
-        "Simple Past des Verbs 'warten'"
+        "Simple Past des Verbs 'warten'",
+        "Ich wartete eine Stunde. — I ___ an hour."
       ]
     },
     {
       "word": "VISITS",
       "clues": [
         "besuchen: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'besuchen'"
+        "Praesens, er/sie/es-Form, des Verbs 'besuchen'",
+        "Sie besucht ihre Oma jeden Sonntag. — She ___ her grandmother every Sunday."
       ]
     },
     {
       "word": "VISITED",
       "clues": [
         "besuchen: Simple Past",
-        "Simple Past des Verbs 'besuchen'"
+        "Simple Past des Verbs 'besuchen'",
+        "Wir besuchten das Museum. — We ___ the museum."
       ]
     },
     {
       "word": "TRAVELS",
       "clues": [
         "reisen: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'reisen'"
+        "Praesens, er/sie/es-Form, des Verbs 'reisen'",
+        "Er reist viel für seine Arbeit. — He ___ a lot for work."
       ]
     },
     {
       "word": "TRAVELED",
       "clues": [
         "reisen: Simple Past",
-        "Simple Past des Verbs 'reisen'"
+        "Simple Past des Verbs 'reisen'",
+        "Sie reiste allein durch Asien. — She ___ alone through Asia."
       ]
     },
     {
       "word": "ARRIVES",
       "clues": [
         "ankommen: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'ankommen'"
+        "Praesens, er/sie/es-Form, des Verbs 'ankommen'",
+        "Der Zug kommt um acht an. — The train ___ at eight."
       ]
     },
     {
       "word": "ARRIVED",
       "clues": [
         "ankommen: Simple Past",
-        "Simple Past des Verbs 'ankommen'"
+        "Simple Past des Verbs 'ankommen'",
+        "Wir kamen spät an. — We ___ late."
       ]
     },
     {
       "word": "DECIDES",
       "clues": [
         "entscheiden: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'entscheiden'"
+        "Praesens, er/sie/es-Form, des Verbs 'entscheiden'",
+        "Sie entscheidet immer schnell. — She always ___ quickly."
       ]
     },
     {
       "word": "DECIDED",
       "clues": [
         "entscheiden: Simple Past",
-        "Simple Past des Verbs 'entscheiden'"
+        "Simple Past des Verbs 'entscheiden'",
+        "Er entschied sich für das rote Auto. — He ___ on the red car."
       ]
     },
     {
       "word": "REMEMBERS",
       "clues": [
         "sich erinnern: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'sich erinnern'"
+        "Praesens, er/sie/es-Form, des Verbs 'sich erinnern'",
+        "Er erinnert sich an alles. — He ___ everything."
       ]
     },
     {
       "word": "REMEMBERED",
       "clues": [
         "sich erinnern: Simple Past",
-        "Simple Past des Verbs 'sich erinnern'"
+        "Simple Past des Verbs 'sich erinnern'",
+        "Sie erinnerte sich an den Namen. — She ___ the name."
       ]
     },
     {
       "word": "FORGETS",
       "clues": [
         "vergessen: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'vergessen'"
+        "Praesens, er/sie/es-Form, des Verbs 'vergessen'",
+        "Er vergisst immer die Namen. — He always ___ names."
       ]
     },
     {
       "word": "FORGOT",
       "clues": [
         "vergessen: Simple Past",
-        "Simple Past des Verbs 'vergessen'"
+        "Simple Past des Verbs 'vergessen'",
+        "Ich vergaß den Termin. — I ___ the appointment."
       ]
     },
     {
@@ -6583,420 +6721,480 @@
       "word": "EXPLAINS",
       "clues": [
         "erklären: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'erklären'"
+        "Praesens, er/sie/es-Form, des Verbs 'erklären'",
+        "Der Lehrer erklärt die Regel. — The teacher ___ the rule."
       ]
     },
     {
       "word": "EXPLAINED",
       "clues": [
         "erklären: Simple Past",
-        "Simple Past des Verbs 'erklären'"
+        "Simple Past des Verbs 'erklären'",
+        "Sie erklärte alles zweimal. — She ___ everything twice."
       ]
     },
     {
       "word": "ANSWERS",
       "clues": [
         "antworten: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'antworten'"
+        "Praesens, er/sie/es-Form, des Verbs 'antworten'",
+        "Er antwortet nie auf E-Mails. — He never ___ emails."
       ]
     },
     {
       "word": "ANSWERED",
       "clues": [
         "antworten: Simple Past",
-        "Simple Past des Verbs 'antworten'"
+        "Simple Past des Verbs 'antworten'",
+        "Sie antwortete sofort. — She ___ at once."
       ]
     },
     {
       "word": "LISTENS",
       "clues": [
         "zuhören: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'zuhören'"
+        "Praesens, er/sie/es-Form, des Verbs 'zuhören'",
+        "Sie hört ihrer Oma gern zu. — She likes to listen to her grandmother; she ___ closely."
       ]
     },
     {
       "word": "LISTENED",
       "clues": [
         "zuhören: Simple Past",
-        "Simple Past des Verbs 'zuhören'"
+        "Simple Past des Verbs 'zuhören'",
+        "Er hörte mir nicht zu. — He never ___ to me."
       ]
     },
     {
       "word": "OFFERS",
       "clues": [
         "anbieten: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'anbieten'"
+        "Praesens, er/sie/es-Form, des Verbs 'anbieten'",
+        "Der Laden bietet Rabatt an. — The shop ___ a discount."
       ]
     },
     {
       "word": "OFFERED",
       "clues": [
         "anbieten: Simple Past",
-        "Simple Past des Verbs 'anbieten'"
+        "Simple Past des Verbs 'anbieten'",
+        "Er bot mir einen Kaffee an. — He ___ me a coffee."
       ]
     },
     {
       "word": "PLANS",
       "clues": [
         "planen: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'planen'"
+        "Praesens, er/sie/es-Form, des Verbs 'planen'",
+        "Sie plant eine Reise nach Rom. — She ___ a trip to Rome."
       ]
     },
     {
       "word": "PLANNED",
       "clues": [
         "planen: Simple Past",
-        "Simple Past des Verbs 'planen'"
+        "Simple Past des Verbs 'planen'",
+        "Wir planten alles im Voraus. — We ___ everything in advance."
       ]
     },
     {
       "word": "BUILDS",
       "clues": [
         "bauen: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'bauen'"
+        "Praesens, er/sie/es-Form, des Verbs 'bauen'",
+        "Er baut ein Haus im Dorf. — He ___ a house in the village."
       ]
     },
     {
       "word": "BUILT",
       "clues": [
         "bauen: Simple Past",
-        "Simple Past des Verbs 'bauen'"
+        "Simple Past des Verbs 'bauen'",
+        "Sie bauten die Brücke in zwei Jahren. — They ___ the bridge in two years."
       ]
     },
     {
       "word": "SENDS",
       "clues": [
         "senden (schicken): er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'senden (schicken)'"
+        "Praesens, er/sie/es-Form, des Verbs 'senden (schicken)'",
+        "Sie schickt mir jeden Tag eine Nachricht. — She ___ me a message every day."
       ]
     },
     {
       "word": "SENT",
       "clues": [
         "senden (schicken): Simple Past",
-        "Simple Past des Verbs 'senden (schicken)'"
+        "Simple Past des Verbs 'senden (schicken)'",
+        "Er schickte das Paket gestern. — He ___ the parcel yesterday."
       ]
     },
     {
       "word": "SPENDS",
       "clues": [
         "ausgeben (verbringen): er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'ausgeben (verbringen)'"
+        "Praesens, er/sie/es-Form, des Verbs 'ausgeben (verbringen)'",
+        "Er gibt zu viel Geld aus. — He ___ too much money."
       ]
     },
     {
       "word": "SPENT",
       "clues": [
         "ausgeben (verbringen): Simple Past",
-        "Simple Past des Verbs 'ausgeben (verbringen)'"
+        "Simple Past des Verbs 'ausgeben (verbringen)'",
+        "Wir verbrachten den Sommer am Meer. — We ___ the summer by the sea."
       ]
     },
     {
       "word": "PAYS",
       "clues": [
         "bezahlen: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'bezahlen'"
+        "Praesens, er/sie/es-Form, des Verbs 'bezahlen'",
+        "Sie bezahlt immer mit Karte. — She always ___ by card."
       ]
     },
     {
       "word": "PAID",
       "clues": [
         "bezahlen: Simple Past",
-        "Simple Past des Verbs 'bezahlen'"
+        "Simple Past des Verbs 'bezahlen'",
+        "Er bezahlte die Rechnung. — He ___ the bill."
       ]
     },
     {
       "word": "BUYS",
       "clues": [
         "kaufen: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'kaufen'"
+        "Praesens, er/sie/es-Form, des Verbs 'kaufen'",
+        "Er kauft jeden Tag eine Zeitung. — He ___ a newspaper every day."
       ]
     },
     {
       "word": "BOUGHT",
       "clues": [
         "kaufen: Simple Past",
-        "Simple Past des Verbs 'kaufen'"
+        "Simple Past des Verbs 'kaufen'",
+        "Sie kaufte sich ein Fahrrad. — She ___ herself a bicycle."
       ]
     },
     {
       "word": "SELLS",
       "clues": [
         "verkaufen: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'verkaufen'"
+        "Praesens, er/sie/es-Form, des Verbs 'verkaufen'",
+        "Der Laden verkauft frisches Brot. — The shop ___ fresh bread."
       ]
     },
     {
       "word": "SOLD",
       "clues": [
         "verkaufen: Simple Past",
-        "Simple Past des Verbs 'verkaufen'"
+        "Simple Past des Verbs 'verkaufen'",
+        "Er verkaufte sein altes Auto. — He ___ his old car."
       ]
     },
     {
       "word": "TEACHES",
       "clues": [
         "unterrichten (lehren): er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'unterrichten (lehren)'"
+        "Praesens, er/sie/es-Form, des Verbs 'unterrichten (lehren)'",
+        "Sie unterrichtet Mathematik. — She ___ maths."
       ]
     },
     {
       "word": "TAUGHT",
       "clues": [
         "unterrichten (lehren): Simple Past",
-        "Simple Past des Verbs 'unterrichten (lehren)'"
+        "Simple Past des Verbs 'unterrichten (lehren)'",
+        "Mein Vater lehrte mich Schach. — My father ___ me chess."
       ]
     },
     {
       "word": "CATCHES",
       "clues": [
         "fangen: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'fangen'"
+        "Praesens, er/sie/es-Form, des Verbs 'fangen'",
+        "Die Katze fängt Mäuse. — The cat ___ mice."
       ]
     },
     {
       "word": "CAUGHT",
       "clues": [
         "fangen: Simple Past",
-        "Simple Past des Verbs 'fangen'"
+        "Simple Past des Verbs 'fangen'",
+        "Er fing den Ball mit einer Hand. — He ___ the ball with one hand."
       ]
     },
     {
       "word": "LOSES",
       "clues": [
         "verlieren: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'verlieren'"
+        "Praesens, er/sie/es-Form, des Verbs 'verlieren'",
+        "Er verliert ständig seinen Schlüssel. — He is always losing his key; he ___ it weekly."
       ]
     },
     {
       "word": "LOST",
       "clues": [
         "verlieren: Simple Past",
-        "Simple Past des Verbs 'verlieren'"
+        "Simple Past des Verbs 'verlieren'",
+        "Ich verlor meine Brille. — I ___ my glasses."
       ]
     },
     {
       "word": "WINS",
       "clues": [
         "gewinnen: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'gewinnen'"
+        "Praesens, er/sie/es-Form, des Verbs 'gewinnen'",
+        "Die beste Mannschaft gewinnt. — The best team ___."
       ]
     },
     {
       "word": "WON",
       "clues": [
         "gewinnen: Simple Past",
-        "Simple Past des Verbs 'gewinnen'"
+        "Simple Past des Verbs 'gewinnen'",
+        "Sie gewann den ersten Preis. — She ___ first prize."
       ]
     },
     {
       "word": "MEETS",
       "clues": [
         "treffen: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'treffen'"
+        "Praesens, er/sie/es-Form, des Verbs 'treffen'",
+        "Er trifft sich heute mit Anna. — He ___ Anna today."
       ]
     },
     {
       "word": "MET",
       "clues": [
         "treffen: Simple Past",
-        "Simple Past des Verbs 'treffen'"
+        "Simple Past des Verbs 'treffen'",
+        "Ich traf ihn zufällig im Supermarkt. — I ___ him by chance at the supermarket."
       ]
     },
     {
       "word": "FEELS",
       "clues": [
         "fühlen: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'fühlen'"
+        "Praesens, er/sie/es-Form, des Verbs 'fühlen'",
+        "Sie fühlt sich heute besser. — She ___ better today."
       ]
     },
     {
       "word": "FELT",
       "clues": [
         "fühlen: Simple Past",
-        "Simple Past des Verbs 'fühlen'"
+        "Simple Past des Verbs 'fühlen'",
+        "Ich fühlte mich allein. — I ___ alone."
       ]
     },
     {
       "word": "KEEPS",
       "clues": [
         "behalten: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'behalten'"
+        "Praesens, er/sie/es-Form, des Verbs 'behalten'",
+        "Er behält immer das Wechselgeld. — He always ___ the change."
       ]
     },
     {
       "word": "KEPT",
       "clues": [
         "behalten: Simple Past",
-        "Simple Past des Verbs 'behalten'"
+        "Simple Past des Verbs 'behalten'",
+        "Sie behielt das Geheimnis für sich. — She ___ the secret to herself."
       ]
     },
     {
       "word": "LEAVES",
       "clues": [
         "verlassen (weggehen): er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'verlassen (weggehen)'"
+        "Praesens, er/sie/es-Form, des Verbs 'verlassen (weggehen)'",
+        "Der Zug verlässt den Bahnhof um neun. — The train ___ the station at nine."
       ]
     },
     {
       "word": "LEFT",
       "clues": [
         "verlassen (weggehen): Simple Past",
-        "Simple Past des Verbs 'verlassen (weggehen)'"
+        "Simple Past des Verbs 'verlassen (weggehen)'",
+        "Sie verließ das Haus um sieben. — She ___ the house at seven."
       ]
     },
     {
       "word": "STANDS",
       "clues": [
         "stehen: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'stehen'"
+        "Praesens, er/sie/es-Form, des Verbs 'stehen'",
+        "Der Bus steht schon an der Haltestelle. — The bus already ___ at the stop."
       ]
     },
     {
       "word": "STOOD",
       "clues": [
         "stehen: Simple Past",
-        "Simple Past des Verbs 'stehen'"
+        "Simple Past des Verbs 'stehen'",
+        "Er stand vor der Tür und wartete. — He ___ at the door and waited."
       ]
     },
     {
       "word": "SITS",
       "clues": [
         "sitzen: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'sitzen'"
+        "Praesens, er/sie/es-Form, des Verbs 'sitzen'",
+        "Sie sitzt am Fenster. — She ___ by the window."
       ]
     },
     {
       "word": "SAT",
       "clues": [
         "sitzen: Simple Past",
-        "Simple Past des Verbs 'sitzen'"
+        "Simple Past des Verbs 'sitzen'",
+        "Er saß den ganzen Tag am Computer. — He ___ at the computer all day."
       ]
     },
     {
       "word": "HOLDS",
       "clues": [
         "halten: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'halten'"
+        "Praesens, er/sie/es-Form, des Verbs 'halten'",
+        "Sie hält das Kind fest an der Hand. — She ___ the child firmly by the hand."
       ]
     },
     {
       "word": "HELD",
       "clues": [
         "halten: Simple Past",
-        "Simple Past des Verbs 'halten'"
+        "Simple Past des Verbs 'halten'",
+        "Er hielt die Tür auf. — He ___ the door open."
       ]
     },
     {
       "word": "TELLS",
       "clues": [
         "erzählen: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'erzählen'"
+        "Praesens, er/sie/es-Form, des Verbs 'erzählen'",
+        "Oma erzählt die besten Geschichten. — Grandma ___ the best stories."
       ]
     },
     {
       "word": "TOLD",
       "clues": [
         "erzählen: Simple Past",
-        "Simple Past des Verbs 'erzählen'"
+        "Simple Past des Verbs 'erzählen'",
+        "Er erzählte mir alles. — He ___ me everything."
       ]
     },
     {
       "word": "THINKS",
       "clues": [
         "denken: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'denken'"
+        "Praesens, er/sie/es-Form, des Verbs 'denken'",
+        "Er denkt nur an Fußball. — He ___ only of football."
       ]
     },
     {
       "word": "THOUGHT",
       "clues": [
         "denken: Simple Past",
-        "Simple Past des Verbs 'denken'"
+        "Simple Past des Verbs 'denken'",
+        "Ich dachte, du wärst schon weg. — I ___ you had already gone."
       ]
     },
     {
       "word": "BRINGS",
       "clues": [
         "bringen: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'bringen'"
+        "Praesens, er/sie/es-Form, des Verbs 'bringen'",
+        "Der Postbote bringt ein Paket. — The postman ___ a parcel."
       ]
     },
     {
       "word": "BROUGHT",
       "clues": [
         "bringen: Simple Past",
-        "Simple Past des Verbs 'bringen'"
+        "Simple Past des Verbs 'bringen'",
+        "Sie brachte mir Blumen. — She ___ me flowers."
       ]
     },
     {
       "word": "UNDERSTANDS",
       "clues": [
         "verstehen: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'verstehen'"
+        "Praesens, er/sie/es-Form, des Verbs 'verstehen'",
+        "Sie versteht kein Wort. — She ___ not a word."
       ]
     },
     {
       "word": "UNDERSTOOD",
       "clues": [
         "verstehen: Simple Past",
-        "Simple Past des Verbs 'verstehen'"
+        "Simple Past des Verbs 'verstehen'",
+        "Ich verstand die Frage nicht. — I never ___ the question."
       ]
     },
     {
       "word": "FINDS",
       "clues": [
         "finden: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'finden'"
+        "Praesens, er/sie/es-Form, des Verbs 'finden'",
+        "Er findet seinen Schlüssel nicht. — He cannot find his key; he never ___ anything."
       ]
     },
     {
       "word": "FOUND",
       "clues": [
         "finden: Simple Past",
-        "Simple Past des Verbs 'finden'"
+        "Simple Past des Verbs 'finden'",
+        "Ich fand den Film langweilig. — I ___ the film boring."
       ]
     },
     {
       "word": "PUTS",
       "clues": [
         "legen (stellen): er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'legen (stellen)'"
+        "Praesens, er/sie/es-Form, des Verbs 'legen (stellen)'",
+        "Sie stellt die Vase auf den Tisch. — She ___ the vase on the table."
       ]
     },
     {
       "word": "PUT",
       "clues": [
         "legen (stellen): Simple Past",
-        "Simple Past des Verbs 'legen (stellen)'"
+        "Simple Past des Verbs 'legen (stellen)'",
+        "Er legte den Brief in die Schublade. — He ___ the letter in the drawer."
       ]
     },
     {
       "word": "CUTS",
       "clues": [
         "schneiden: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'schneiden'"
+        "Praesens, er/sie/es-Form, des Verbs 'schneiden'",
+        "Er schneidet das Brot. — He ___ the bread."
       ]
     },
     {
       "word": "CUT",
       "clues": [
         "schneiden: Simple Past",
-        "Simple Past des Verbs 'schneiden'"
+        "Simple Past des Verbs 'schneiden'",
+        "Sie schnitt sich in den Finger. — She ___ her finger."
       ]
     },
     {
       "word": "DRAWS",
       "clues": [
         "zeichnen: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'zeichnen'"
+        "Praesens, er/sie/es-Form, des Verbs 'zeichnen'",
+        "Das Kind zeichnet ein Haus. — The child ___ a house."
       ]
     },
     {
       "word": "DREW",
       "clues": [
         "zeichnen: Simple Past",
-        "Simple Past des Verbs 'zeichnen'"
+        "Simple Past des Verbs 'zeichnen'",
+        "Er zeichnete eine Karte. — He ___ a map."
       ]
     },
     {
@@ -7010,14 +7208,16 @@
       "word": "DRIVES",
       "clues": [
         "fahren: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'fahren'"
+        "Praesens, er/sie/es-Form, des Verbs 'fahren'",
+        "Sie fährt jeden Tag zur Arbeit. — She ___ to work every day."
       ]
     },
     {
       "word": "DROVE",
       "clues": [
         "fahren: Simple Past",
-        "Simple Past des Verbs 'fahren'"
+        "Simple Past des Verbs 'fahren'",
+        "Er fuhr die ganze Nacht. — He ___ the whole night."
       ]
     },
     {
@@ -7031,14 +7231,16 @@
       "word": "RIDES",
       "clues": [
         "reiten (fahren): er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'reiten (fahren)'"
+        "Praesens, er/sie/es-Form, des Verbs 'reiten (fahren)'",
+        "Sie reitet jeden Samstag. — She ___ every Saturday."
       ]
     },
     {
       "word": "RODE",
       "clues": [
         "reiten (fahren): Simple Past",
-        "Simple Past des Verbs 'reiten (fahren)'"
+        "Simple Past des Verbs 'reiten (fahren)'",
+        "Er ritt durch den Wald. — He ___ through the forest."
       ]
     },
     {
@@ -7052,14 +7254,16 @@
       "word": "THROWS",
       "clues": [
         "werfen: er/sie/es, Praesens",
-        "Praesens, er/sie/es-Form, des Verbs 'werfen'"
+        "Praesens, er/sie/es-Form, des Verbs 'werfen'",
+        "Er wirft den Ball. — He ___ the ball."
       ]
     },
     {
       "word": "THREW",
       "clues": [
         "werfen: Simple Past",
-        "Simple Past des Verbs 'werfen'"
+        "Simple Past des Verbs 'werfen'",
+        "Sie warf den Brief weg. — She ___ the letter away."
       ]
     },
     {

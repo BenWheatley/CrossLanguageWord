@@ -2,7 +2,7 @@
   "metadata": {
     "title": "Deutsch A2",
     "language": "de",
-    "version": 2,
+    "version": 3,
     "wordOrder": "append-only",
     "note": "Append-only. Shared puzzles identify words and clues by position, so links made today must still mean the same thing tomorrow: add new words and new clues at the end, never reorder or remove, and never rewrite a clue in place - append the better wording instead. Raise version when you append."
   },
@@ -753,7 +753,8 @@
       "word": "JEMAND",
       "clues": [
         "Some person",
-        "An unknown person"
+        "An unknown person",
+        "'Es hat ___ geklingelt' - the doorbell rang, and you do not know who"
       ]
     },
     {
