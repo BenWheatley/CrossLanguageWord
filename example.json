@@ -2,7 +2,7 @@
   "metadata": {
     "title": "English",
     "language": "en",
-    "version": 3,
+    "version": 4,
     "wordOrder": "append-only",
     "note": "Append-only. Shared puzzles identify words and clues by position, so links made today must still mean the same thing tomorrow: add new words and new clues at the end, never reorder or remove, and never rewrite a clue in place - append the better wording instead. Raise version when you append."
   },
@@ -182,7 +182,6 @@
       "word": "ATTIC",
       "clues": [
         "Storage space right under the roof",
-        "The storage space right under the roof",
         "Old boxes and holiday decorations often end up here"
       ]
     },
@@ -299,7 +298,6 @@
       "clues": [
         "The latest moment something is due",
         "The final date something is due",
-        "The final date something must be finished by",
         "Missing it can mean a late fee or a rejected submission"
       ]
     },
@@ -307,7 +305,6 @@
       "word": "INTERVIEW",
       "clues": [
         "A formal conversation to assess a job candidate",
-        "A formal conversation, often for a job",
         "You dress especially neatly for this"
       ]
     },
@@ -379,7 +376,6 @@
       "word": "UNION",
       "clues": [
         "An organized group of workers advocating together",
-        "An organized group of workers",
         "Might organize a strike over pay or conditions"
       ]
     },
@@ -429,7 +425,6 @@
       "word": "DISCOUNT",
       "clues": [
         "A price reduction",
-        "A reduction in price",
         "Marked with a percentage sign on a sale sign"
       ]
     },
@@ -465,7 +460,6 @@
       "word": "CURRENCY",
       "clues": [
         "The money system used in a country",
-        "A country's money system",
         "Changes when you cross into a different country"
       ]
     },
@@ -494,7 +488,6 @@
       "word": "WALLET",
       "clues": [
         "A small case for carrying cash and cards",
-        "A small case for cash and cards",
         "Folds flat to fit in a pocket"
       ]
     },
@@ -616,7 +609,6 @@
       "word": "DIAGNOSIS",
       "clues": [
         "A doctor's identification of what's wrong",
-        "A doctor's determination of what's wrong",
         "A medical determination of an illness",
         "Often follows a round of tests"
       ]
@@ -654,7 +646,6 @@
       "word": "THERAPY",
       "clues": [
         "Ongoing treatment for a physical or mental condition",
-        "Regular treatment, physical or mental",
         "Often happens in regular weekly sessions"
       ]
     },
@@ -662,7 +653,6 @@
       "word": "WHEELCHAIR",
       "clues": [
         "A chair on wheels for someone who can't walk",
-        "A chair on wheels for people who can't walk",
         "Has large wheels someone can push with their own hands"
       ]
     },
@@ -670,7 +660,6 @@
       "word": "BANDAGE",
       "clues": [
         "Wrapped around a wound to protect it",
-        "Wrapped around a wound",
         "Comes off eventually once a wound has healed"
       ]
     },
@@ -834,7 +823,6 @@
       "word": "ACQUAINTANCE",
       "clues": [
         "Someone you know only slightly",
-        "Someone known only slightly",
         "Not quite a friend, but more than a stranger"
       ]
     },
@@ -928,7 +916,6 @@
       "word": "CURRICULUM",
       "clues": [
         "The set subjects taught in a course",
-        "The set subjects of a course",
         "Set by a school board or education ministry"
       ]
     },
@@ -971,7 +958,6 @@
       "word": "DICTIONARY",
       "clues": [
         "A book that defines words",
-        "A book that explains words",
         "You look here if you don't know a word"
       ]
     },
@@ -1126,7 +1112,6 @@
       "word": "RAINFOREST",
       "clues": [
         "A dense, tropical forest with heavy rainfall",
-        "A dense, tropical forest with heavy rain",
         "Home to a huge share of the planet's species"
       ]
     },
@@ -1134,7 +1119,6 @@
       "word": "GLACIER",
       "clues": [
         "A huge, slow-moving mass of ice",
-        "A huge, slowly moving mass of ice",
         "Melting faster due to rising global temperatures"
       ]
     },
@@ -1177,7 +1161,6 @@
       "word": "DELAY",
       "clues": [
         "Arriving later than scheduled",
-        "Arriving later than planned",
         "An announcement might apologize for this"
       ]
     },
@@ -1185,7 +1168,6 @@
       "word": "PASSENGER",
       "clues": [
         "Someone riding in a vehicle, not driving it",
-        "Someone riding in a vehicle without driving it",
         "Buckles a seatbelt without touching the steering wheel"
       ]
     },
@@ -1200,7 +1182,6 @@
       "word": "SUITCASE",
       "clues": [
         "A case for packing clothes when traveling",
-        "A case for packing clothes",
         "Rolls along on wheels through the airport"
       ]
     },
@@ -1279,7 +1260,6 @@
       "word": "COMPASS",
       "clues": [
         "A tool that points toward magnetic north",
-        "A tool that points north",
         "The needle always settles pointing north"
       ]
     },
@@ -1336,7 +1316,6 @@
       "word": "WAITER",
       "clues": [
         "Brings your food to the table",
-        "Brings food to your table at a restaurant",
         "Also brings the bill at the end of the meal"
       ]
     },
@@ -1499,7 +1478,6 @@
       "word": "WEBSITE",
       "clues": [
         "A page or set of pages viewable online",
-        "A page or pages viewed online",
         "Has its own address, often starting with www"
       ]
     },
@@ -1507,7 +1485,6 @@
       "word": "FIREWALL",
       "clues": [
         "Software that blocks unwanted network access",
-        "Software that blocks unauthorized network access",
         "Quietly works in the background to keep hackers out"
       ]
     },
@@ -1622,7 +1599,6 @@
       "clues": [
         "People watching, reading, or listening to something",
         "The people watching a performance",
-        "People watching or listening to something",
         "Applauds at the end of a performance"
       ]
     },
@@ -1658,7 +1634,6 @@
       "word": "ELECTION",
       "clues": [
         "Citizens choosing their leaders",
-        "When citizens choose their leaders",
         "Held every few years to pick a new government"
       ]
     },
@@ -1715,7 +1690,6 @@
       "word": "VOLUNTEER",
       "clues": [
         "Someone who works without being paid, to help others",
-        "Someone who works unpaid to help others",
         "Not paid, but gives their time anyway"
       ]
     },
@@ -1824,7 +1798,6 @@
       "word": "EXCITEMENT",
       "clues": [
         "A lively feeling of eager anticipation",
-        "A lively feeling of joyful anticipation",
         "Builds in the days before a long-awaited trip"
       ]
     },
@@ -1840,7 +1813,6 @@
       "word": "SYMPATHY",
       "clues": [
         "Feeling sorry for someone else's misfortune",
-        "Compassion for someone else's misfortune",
         "Often expressed with a condolence card"
       ]
     },
@@ -1926,7 +1898,6 @@
       "word": "THUNDER",
       "clues": [
         "The loud sound that follows lightning",
-        "The loud sound after lightning",
         "You count seconds after seeing lightning to estimate the distance to this"
       ]
     },
@@ -1941,7 +1912,6 @@
       "word": "HUMIDITY",
       "clues": [
         "The amount of moisture in the air",
-        "The moisture in the air",
         "Makes hot weather feel even stickier"
       ]
     },
@@ -1956,7 +1926,6 @@
       "word": "FORECAST",
       "clues": [
         "A prediction of future weather",
-        "A prediction about future weather",
         "Checked before deciding whether to pack a coat"
       ]
     },
@@ -1979,7 +1948,6 @@
       "word": "UNIFORM",
       "clues": [
         "Matching clothing worn by members of a group",
-        "Matching clothing worn by a group",
         "Everyone on the same team wears matching ones"
       ]
     },
@@ -2085,7 +2053,6 @@
       "word": "MYSTERIOUS",
       "clues": [
         "Difficult to understand or explain",
-        "Hard to understand or explain",
         "Hard to explain without all the facts"
       ]
     },
@@ -2156,7 +2123,6 @@
       "word": "EFFICIENT",
       "clues": [
         "Achieving results without wasted effort",
-        "Achieves results without wasted effort",
         "Gets the job done without wasting time or resources"
       ]
     },
@@ -2199,7 +2165,6 @@
       "word": "MIGRATION",
       "clues": [
         "Seasonal travel by animals between regions",
-        "Seasonal movement of animals between regions",
         "Birds do this to escape the winter cold"
       ]
     },
@@ -2214,7 +2179,6 @@
       "word": "MOLECULE",
       "clues": [
         "The smallest unit a compound can be divided into",
-        "The smallest unit of a chemical compound",
         "Made of two or more atoms bonded together"
       ]
     },
@@ -2222,7 +2186,6 @@
       "word": "TELESCOPE",
       "clues": [
         "A tool for viewing distant objects, like stars",
-        "A tool for viewing distant objects",
         "Astronomers use one to study distant galaxies"
       ]
     },
@@ -2230,7 +2193,6 @@
       "word": "MICROSCOPE",
       "clues": [
         "A tool for viewing very small objects up close",
-        "A tool for viewing very small objects",
         "A biologist peers through one to study cells"
       ]
     },
@@ -2245,7 +2207,6 @@
       "word": "HYPOTHESIS",
       "clues": [
         "An educated guess to be tested",
-        "An educated guess that gets tested",
         "An experiment is designed to test whether this holds up"
       ]
     },
@@ -2253,8 +2214,6 @@
       "word": "EVOLUTION",
       "clues": [
         "The gradual change of species over generations",
-        "Gradual change in species over generations",
-        "Explains how species change over generations",
         "What Darwin's finches illustrated"
       ]
     },
@@ -2269,7 +2228,6 @@
       "word": "ASTRONAUT",
       "clues": [
         "A person trained to travel into space",
-        "A person trained for space travel",
         "Trains for years before ever leaving the ground"
       ]
     },
@@ -2277,7 +2235,6 @@
       "word": "PLANET",
       "clues": [
         "A large body that orbits a star, like Earth",
-        "A large body that orbits a star",
         "Earth is a well-known example of one"
       ]
     },
@@ -2285,7 +2242,6 @@
       "word": "ATMOSPHERE",
       "clues": [
         "The layer of gases surrounding a planet",
-        "The layer of gases around a planet",
         "Without it, we couldn't breathe"
       ]
     },
@@ -2293,7 +2249,6 @@
       "word": "CHEMICAL",
       "clues": [
         "A substance with a distinct composition",
-        "A substance with a specific composition",
         "A label might warn against skin contact with this"
       ]
     },
@@ -2323,7 +2278,6 @@
       "word": "PAINTING",
       "clues": [
         "A picture made with paint",
-        "An artwork made with paint",
         "An artist uses a brush and canvas for this"
       ]
     },
@@ -2367,7 +2321,6 @@
       "word": "REFEREE",
       "clues": [
         "Enforces the rules during a sports match",
-        "Enforces the rules during a sports game",
         "Carries a whistle and wears a distinctive uniform"
       ]
     },
@@ -2544,7 +2497,6 @@
       "word": "MILK",
       "clues": [
         "A white liquid from cows, often drunk at breakfast",
-        "A white liquid from cows",
         "Often ends up in coffee or cereal"
       ]
     },
@@ -2588,7 +2540,6 @@
       "word": "ROAD",
       "clues": [
         "A route cars travel along",
-        "A route cars travel on",
         "Often has painted lines marking the lanes"
       ]
     },
@@ -2611,7 +2562,6 @@
       "word": "RING",
       "clues": [
         "Worn on a finger, often for marriage",
-        "Worn on a finger, often for a wedding",
         "Comes in a small box at a proposal"
       ]
     },
@@ -2854,7 +2804,6 @@
       "word": "EMBASSY",
       "clues": [
         "A country's official representation in another country",
-        "A country's official representation abroad",
         "Where you'd go to replace a lost passport abroad"
       ]
     },
@@ -3072,7 +3021,6 @@
       "word": "INVITATION",
       "clues": [
         "Asks someone to come to an event",
-        "Asks someone to attend an event",
         "Might arrive by mail with an RSVP card"
       ]
     },
@@ -3360,7 +3308,6 @@
       "word": "BORDER",
       "clues": [
         "The line dividing two countries",
-        "The line between two countries",
         "Marked by checkpoints and sometimes a fence"
       ]
     },
@@ -3565,7 +3512,6 @@
       "word": "OPPORTUNITY",
       "clues": [
         "A good moment to do something",
-        "A good chance to do something",
         "Sometimes described as knocking only once"
       ]
     },
@@ -3715,7 +3661,6 @@
       "word": "MISTAKE",
       "clues": [
         "An unintentional error",
-        "An error",
         "Everyone makes a few now and then"
       ]
     },
@@ -3849,7 +3794,6 @@
       "word": "FILE",
       "clues": [
         "A single saved document on a computer",
-        "A single saved document",
         "Might get accidentally deleted if you're not careful"
       ]
     },
@@ -4376,7 +4320,6 @@
       "word": "CONTINENT",
       "clues": [
         "A huge landmass, like Europe or Africa",
-        "A huge landmass, like Africa or Asia",
         "There are seven of these on Earth"
       ]
     },
@@ -4384,7 +4327,6 @@
       "word": "CAPITAL",
       "clues": [
         "The main city of a country, where government is based",
-        "The main city of a country",
         "Washington DC holds this title for the United States"
       ]
     },
@@ -4491,7 +4433,6 @@
       "clues": [
         "An open paved area in the middle of a town",
         "A shape with four equal sides",
-        "An open public area in a town",
         "Cafes often set up outdoor tables around the edge of one"
       ]
     },
@@ -4499,7 +4440,6 @@
       "word": "MONUMENT",
       "clues": [
         "A structure built to remember a person or event",
-        "A structure built to honor a person or event",
         "Tourists often take photos in front of one"
       ]
     },
@@ -4563,7 +4503,6 @@
       "word": "ENVELOPE",
       "clues": [
         "A letter is sent inside this",
-        "A letter is mailed inside this",
         "Sealed shut before being dropped in a mailbox"
       ]
     },
@@ -4719,7 +4658,6 @@
       "word": "YEAR",
       "clues": [
         "Twelve months",
-        "Divided into twelve months",
         "The time it takes the Earth to go once round the Sun"
       ]
     },
@@ -4839,7 +4777,6 @@
       "word": "BLUE",
       "clues": [
         "The color of the sky on a clear day",
-        "The color of the ocean on a clear day",
         "Also: how you feel when you are sad"
       ]
     },
@@ -5470,7 +5407,6 @@
       "word": "ALREADY",
       "clues": [
         "By this time, sooner than expected",
-        "Happened sooner than you expected",
         "'Have you finished ___?' - asked before the deadline"
       ]
     },
@@ -5835,7 +5771,6 @@
       "word": "CHIMNEY",
       "clues": [
         "Carries smoke out of a house",
-        "Smoke rises out of the house through this",
         "What Santa is said to climb down"
       ]
     },
@@ -6383,7 +6318,6 @@
       "word": "EVENTUALLY",
       "clues": [
         "At the end, after some time",
-        "After some time, in the end",
         "'The bus came, ___' - late, but it came"
       ]
     },
@@ -6531,7 +6465,6 @@
       "word": "CHOICE",
       "clues": [
         "A decision made between options",
-        "Made between two or more options",
         "What a menu gives you and a set meal does not"
       ]
     },
@@ -6672,7 +6605,6 @@
       "word": "BUTTON",
       "clues": [
         "A small fastener pushed through a hole",
-        "Pushed through a small hole to fasten clothing",
         "Also: what you press to switch a machine on"
       ]
     },
@@ -7079,7 +7011,6 @@
       "word": "DOORKNOB",
       "clues": [
         "Turned to open a door",
-        "Twisted to open a door",
         "The round handle in the middle of a panelled door"
       ]
     },

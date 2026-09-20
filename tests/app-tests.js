@@ -763,17 +763,14 @@ test('solving the puzzle correctly triggers the celebration overlay', async () =
     assertEqual(wordText(app).replace(/\./g, ''), '', 'no letters should have been given away');
   });
 
-  test('the first hint offers the clue least like the one shown, and skips a mere rewording', async () => {
-    // Fed through the file input: one word with a rewording and a real alternative, one with
-    // only a rewording. The hint must choose the alternative for the first and give nothing
-    // but a letter for the second - a restatement is not a hint and must not count as one.
+  test('the first hint never offers the clue already shown, nor one that prints the answer', async () => {
     const app = await bootApp('?words=2');
     const { document: doc, window: win } = app;
     const list = {
       metadata: { title: 'Hint Fixture', language: 'de', version: 1 },
       words: [
-        { word: 'ALPHA', clues: ['A price reduction', 'A reduction in price', 'What a sale offers'] },
-        { word: 'OMEGA', clues: ['Storage space right under the roof', 'The storage space right under the roof'] }
+        { word: 'ALPHA', clues: ['The first Greek letter', 'Alpha, the start of it all', 'The top dog in a pack'] },
+        { word: 'OMEGA', clues: ['The last Greek letter', 'What the alphabet ends with in Athens'] }
       ]
     };
     const transfer = new win.DataTransfer();
@@ -782,30 +779,22 @@ test('solving the puzzle correctly triggers the celebration overlay', async () =
     input.files = transfer.files;
     input.dispatchEvent(new win.Event('change', { bubbles: true }));
     await waitFor(() => doc.getElementById('pageTitle').textContent === 'Hint Fixture');
-
     // The clue list is rebuilt after a hint, so look the item up by its id each time rather
     // than holding on to an element.
     const widFor = (answer) => {
       const key = Array.from(doc.querySelectorAll('#printAnswerAcross li, #printAnswerDown li'))
         .find((k) => k.textContent.replace(/^\d+\.\s*/, '') === answer);
       const number = key.textContent.match(/^(\d+)\./)[1];
-      const dir = key.closest('#printAnswerAcross') ? 'across' : 'down';
-      return dir + '-' + number;
+      return (key.closest('#printAnswerAcross') ? 'across' : 'down') + '-' + number;
     };
     const liFor = (answer) => doc.querySelector(`.clue-list li[data-wid="${widFor(answer)}"]`);
-    // ALPHA: whichever of its clues was drawn, the hint must not be the rewording of it.
     liFor('ALPHA').click();
     const shown = liFor('ALPHA').querySelector('span:nth-child(2)').firstChild.textContent;
     doc.getElementById('hintBtn').click();
     const extra = liFor('ALPHA').querySelector('.hint-clue');
     assertTrue(extra, 'ALPHA should have been given a second clue');
-    assertTrue(win.CrosswordEngine.clueSimilarity(shown, extra.textContent) < win.CrosswordEngine.RESTATEMENT,
-      `the hint "${extra.textContent}" merely rewords "${shown}"`);
-    // OMEGA: its only other clue is a rewording, so the clue rung is skipped.
-    liFor('OMEGA').click();
-    doc.getElementById('hintBtn').click();
-    assertTrue(!liFor('OMEGA').querySelector('.hint-clue'), 'a rewording must not be offered as a hint');
-    assertTrue(/have a go/i.test(doc.getElementById('status').textContent), 'it should move on to the letter rung');
+    assertNotEqual(extra.textContent, shown, 'the second clue must not be the one already shown');
+    assertTrue(!/alpha/i.test(extra.textContent), 'the second clue must not print the answer');
   });
 
   test('a letter is not given until the word has been attempted', async () => {

@@ -228,6 +228,13 @@ Kept to, links stay valid indefinitely and stay short. Broken, an old link quiet
 opens a puzzle with somebody else's clues in it, which is the sort of fault nobody
 thinks to look for.
 
+The rule has been broken once, on purpose, on 20 September 2026: six entries in
+Deutsch B1 turned out to be non-words (a misspelt *schauen*) and were corrected,
+and every clue that merely reworded another clue for the same word was removed
+from all four lists. A non-word is worse than a broken link, and a hint that
+restates the clue is no hint. Links made before that date may open with a
+different clue for a word than they did; the words are the same.
+
 Points to observe:
 
 * `word` is the answer, and goes in the grid. `clues` is a list, and the

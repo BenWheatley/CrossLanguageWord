@@ -182,42 +182,6 @@
     return false;
   }
 
-  const CLUE_STOPWORDS = new Set(('a an the of to in on for with and or is are be been being this that these ' +
-    'those it its as by at from into than then so such very not no nor but if which who whom whose what when ' +
-    'where how all any some one you your he she they them their his her him we our us i me my do does did have ' +
-    'has had will would can could may might shall should must was were').split(' '));
-
-  function clueTokens(clue){
-    const tokens = clue.toLowerCase().match(/\p{L}+/gu) || [];
-    return tokens.filter(t => !CLUE_STOPWORDS.has(t));
-  }
-
-  /**
-   * How much two clues for the same word say the same thing, from 0 (nothing in common) to 1.
-   *
-   * Two clues sharing a quoted gloss - "('to be able to')" - count as saying the same thing
-   * outright, whatever surrounds it: the gloss *is* the clue, and the wrapper is decoration.
-   * Otherwise it is the overlap of their vocabulary, with function words left out so that
-   * "a reduction in price" and "the price reduction" are recognised as one clue twice.
-   *
-   * Exists for the hint ladder, whose first rung offers another clue. A second clue that only
-   * rewords the first is no help at all, and it was measured to be the case for 444 of the
-   * 1000 words in the B1 list before the lists gained example sentences.
-   */
-  function clueSimilarity(a, b){
-    if(typeof a !== 'string' || typeof b !== 'string') return 0;
-    const glossA = new Set((a.match(/'([^']+)'/g) || []));
-    if(glossA.size && (b.match(/'([^']+)'/g) || []).some(g => glossA.has(g))) return 1;
-    const ta = new Set(clueTokens(a)), tb = new Set(clueTokens(b));
-    if(!ta.size && !tb.size) return a === b ? 1 : 0;
-    let shared = 0;
-    for(const t of ta) if(tb.has(t)) shared++;
-    return shared / (ta.size + tb.size - shared);
-  }
-
-  /** Below this, a second clue is different enough to be worth offering as a hint. */
-  const RESTATEMENT = 0.5;
-
   /**
    * Chooses a clue for `word` using one draw from `rnd`, skipping past any that print the answer.
    *
@@ -684,8 +648,6 @@
     wordListFingerprint,
     wordListShape,
     clueRevealsAnswer,
-    clueSimilarity,
-    RESTATEMENT,
     pickClue,
     randomSeed,
     isValidSeed,
