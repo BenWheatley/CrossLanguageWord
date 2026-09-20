@@ -3,6 +3,51 @@
 Findings from the gameplay and UX review that are not yet done. Roughly in the
 order I would tackle them; the numbering matches the review.
 
+## 0. Where things stand — 2026-09-20
+
+Recap for coming back to after time away. Everything below is on branch
+`review-fixes`, nothing pushed.
+
+### Decisions waiting on Ben
+
+1. **Phone mode control** (1a): P1 chip in the title row (+ P2 in the menu, +
+   a sheet with Continue/New per mode), or P7 an interstitial on New. The
+   findings are under 1a. Desktop is decided: tabs, one puzzle per mode.
+2. **Breakpoint**: phone control below 600px wide *or* 480px tall (Material's
+   compact classes), replacing today's 640. Recommended; not yet done.
+3. **iOS landscape overlay**: a "turn your phone" panel for landscape phones,
+   since iOS cannot be locked to portrait. The manifest already asks for
+   portrait, which Android honours. Cheap; optional.
+4. **The six broken "schauen" forms in Deutsch B1** — SCHAE, SCHAST, SCHAT,
+   SCHAÜN, SCHATE, GESCHAT. Non-words. The append-only rule forbids rewriting
+   in place; a non-word is arguably the exception it should allow. Fix in place
+   with a version bump, or append the correct forms and leave the broken ones
+   to be drawn?
+5. **Skip bias** (7a): A, B or C for smart mode. B is the only option that also
+   fixes shareable mode. Measured: eight missed words handed to a twelve-word
+   pool come back four or five at a time.
+6. **Long titles on a phone**: use the short LISTS label, ellipsis for loaded
+   files. Agreed in principle; not yet done.
+
+### Things to play-test
+
+- **Smart mode**: leave a puzzle half done, start another, see the missed words
+  come back; solve one and see "N up" on the finish screen; check the tagline
+  counts move; check a shared link still opens the same puzzle for someone else.
+- **Hints**: the second clue now sits under the first, and is the *least* like
+  it; where no different clue exists the rung is skipped and a letter is
+  offered instead (after an attempt). Check the "also:" line reads well on a
+  phone.
+- **Settled squares**: a hint letter or a green-checked letter cannot be typed
+  over or deleted; typing at one flows to the next open square; Backspace steps
+  over them; a reload brings them back read-only and marked. Check it does not
+  get in the way when a word is mostly settled.
+- **Undo**: it is a stack now, ten deep. New, New, New, then Undo three times.
+  Check the button no longer moves the grid when it appears.
+- **The new example-sentence clues** in B1 and the German-to-English list: 627
+  of them, written by hand and checked by machine only for giveaways and
+  difference. Errors of German are possible and would be worth a note.
+
 ## 1. Nothing is remembered, so nothing is trained
 
 The only thing kept between sessions is the puzzle you are in the middle of:
