@@ -610,3 +610,42 @@ test('acting from the options menu closes it', async ({ page }) => {
   }
 });
 
+
+test('a long list title stays on one line, with the options button beside it', async ({ page }) => {
+  // "Deutsch B1: Fragen auf Deutsch, Antworten auf Englisch" wrapped to three lines at phone
+  // width and pushed the options button onto a fourth: 148px of header against 48 for a short
+  // title. Bundled lists show their short menu label instead; a loaded file's title is cut to
+  // the line with an ellipsis.
+  await openPuzzle(page, '?list=german_to_english&words=8&seed=title1');
+  const bundled = await page.evaluate(() => ({
+    title: document.getElementById('pageTitle').textContent,
+    header: document.querySelector('header.app-head').getBoundingClientRect().height,
+    sameRow: Math.abs(document.getElementById('pageTitle').getBoundingClientRect().top
+      - document.getElementById('hamburgerBtn').getBoundingClientRect().top) < 20
+  }));
+  expect(bundled.title).toBe('Deutsch B1 → Englisch');
+  expect(bundled.header, 'header height with the short label').toBeLessThan(60);
+  expect(bundled.sameRow, 'the options button should share the title row').toBe(true);
+
+  await page.evaluate(() => {
+    const list = { metadata: { title: 'Een veel te lange titel voor een woordenlijst op een telefoon', language: 'nl', version: 1 },
+      words: [{ word: 'ALPHA', clues: ['a', 'b'] }, { word: 'BETA', clues: ['c', 'd'] }, { word: 'GAMMA', clues: ['e', 'f'] }] };
+    const transfer = new DataTransfer();
+    transfer.items.add(new File([JSON.stringify(list)], 'long.json', { type: 'application/json' }));
+    const input = document.getElementById('fileInput');
+    input.files = transfer.files;
+    input.dispatchEvent(new Event('change', { bubbles: true }));
+  });
+  await page.waitForFunction(() => document.getElementById('pageTitle').textContent.startsWith('Een veel'));
+  const loaded = await page.evaluate(() => {
+    const h1 = document.getElementById('pageTitle');
+    return {
+      clipped: h1.scrollWidth > h1.clientWidth && getComputedStyle(h1).textOverflow === 'ellipsis',
+      header: document.querySelector('header.app-head').getBoundingClientRect().height,
+      sameRow: Math.abs(h1.getBoundingClientRect().top - document.getElementById('hamburgerBtn').getBoundingClientRect().top) < 20
+    };
+  });
+  expect(loaded.clipped, 'a loaded file\'s long title should be cut with an ellipsis').toBe(true);
+  expect(loaded.header).toBeLessThan(60);
+  expect(loaded.sameRow).toBe(true);
+});

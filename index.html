@@ -558,13 +558,24 @@
     wordBank = words;
     currentListTitle = title;
     currentListLanguage = language || null;
-    pageTitle.textContent = title;
+    renderTitle();
     document.documentElement.lang = language || 'en';
     updateTagline();
     wordCountInput.max = Math.min(MAX_WORDS, wordBank.length);
     wordCountInput.value = clampWordCount(parseInt(wordCountInput.value, 10) || DEFAULT_WORDS);
     generateBtn.disabled = false;
     setStatus('');
+  }
+
+  // A list's own title can run long - "Deutsch B1: Fragen auf Deutsch, Antworten auf Englisch"
+  // wrapped to three lines on a phone and pushed the options button onto a fourth, which cost
+  // more of the screen than the whole toolbar had. On a narrow screen the bundled lists show the
+  // short label from the menu instead; a loaded file has no short label, so its title is cut to
+  // the line with an ellipsis by the stylesheet.
+  function renderTitle(){
+    const short = compactLayout.matches && currentListId && LISTS[currentListId] ? LISTS[currentListId].label : null;
+    pageTitle.textContent = short || currentListTitle;
+    pageTitle.title = short && short !== currentListTitle ? currentListTitle : '';
   }
 
   // ---------- render ----------
@@ -2171,10 +2182,11 @@
   // Done by moving the elements rather than duplicating them, so there is only ever one Check
   // answers button with one set of listeners on it, wherever it currently sits.
   const compactLayout = typeof matchMedia === 'function'
-    ? matchMedia('(max-width: 640px)')
+    ? matchMedia('(max-width: 599.98px), (max-height: 479.98px)')
     : { matches: false, addEventListener: () => {} };
 
   function applyCompactLayout(){
+    renderTitle();
     if(compactLayout.matches){
       if(hamburgerWrap.parentElement !== headerEl) headerEl.appendChild(hamburgerWrap);
       menuActions.append(hintBtn, checkBtn, printBtn, generateBtn);

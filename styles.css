@@ -612,7 +612,10 @@
      sheet from a desktop: one column of clues instead of two, the panes' borders and padding, a
      board still carrying the height of the screen it was sized for. A printed page should not
      record what it was printed from. */
-  @media screen and (max-width:640px){
+  /* Below 600px wide, or below 480px tall: Material's compact width and compact height. The
+     height test is what catches a phone on its side, which is wide but has no room for a row of
+     anything once the keyboard is up. */
+  @media screen and (max-width:599.98px), screen and (max-height:479.98px){
     #grid{ --cell-size:30px; }
     /* Narrow enough that the toolbar wraps, and a wrapped item pushed by margin-left:auto ends
        up stranded on the right of its own row. Let it sit in line instead; the order still puts
@@ -635,7 +638,12 @@
       align-items:center;
       gap:12px;
     }
-    header.app-head h1{ font-size:24px; }
+    /* One line, whatever the list is called; the options button must stay in this row. The
+       title block may shrink to nothing and the button may not. */
+    header.app-head{ flex-wrap:nowrap; }
+    header.app-head > div:first-child{ min-width:0; flex:1 1 auto; }
+    header.app-head > .hamburger-wrap{ flex:0 0 auto; }
+    header.app-head h1{ font-size:24px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
     #pageTagline{ display:none; }
     .toolbar{ display:none; }
     footer.hint{ display:none; }

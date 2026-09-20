@@ -10,24 +10,31 @@ Recap for coming back to after time away. Everything below is on branch
 
 ### Decisions waiting on Ben
 
-1. **Phone mode control** (1a): P1 chip in the title row (+ P2 in the menu, +
-   a sheet with Continue/New per mode), or P7 an interstitial on New. The
-   findings are under 1a. Desktop is decided: tabs, one puzzle per mode.
-2. **Breakpoint**: phone control below 600px wide *or* 480px tall (Material's
-   compact classes), replacing today's 640. Recommended; not yet done.
-3. **iOS landscape overlay**: a "turn your phone" panel for landscape phones,
-   since iOS cannot be locked to portrait. The manifest already asks for
-   portrait, which Android honours. Cheap; optional.
-4. **The six broken "schauen" forms in Deutsch B1** — SCHAE, SCHAST, SCHAT,
-   SCHAÜN, SCHATE, GESCHAT. Non-words. The append-only rule forbids rewriting
-   in place; a non-word is arguably the exception it should allow. Fix in place
-   with a version bump, or append the correct forms and leave the broken ones
-   to be drawn?
-5. **Skip bias** (7a): A, B or C for smart mode. B is the only option that also
-   fixes shareable mode. Measured: eight missed words handed to a twelve-word
-   pool come back four or five at a time.
-6. **Long titles on a phone**: use the short LISTS label, ellipsis for loaded
-   files. Agreed in principle; not yet done.
+1. ~~Phone mode control~~ **Decided 2026-09-20: P1 + P2** — a chip in the
+   title row and the same sheet from the menu, with Continue/New per mode.
+   Desktop: tabs, one puzzle per mode. To build.
+2. ~~Breakpoint~~ **Done**: phone layout below 600px wide *or* 480px tall.
+3. ~~iOS landscape overlay~~ **Decided: yes.** To build with the tabs.
+4. ~~Broken "schauen" forms~~ **Done**, corrected in place under a sanctioned
+   one-time break of the append-only rule (README, section 7).
+5. **Skip bias** (7a) — still open; explained again in plain words below.
+6. ~~Long titles on a phone~~ **Done**: short label for bundled lists,
+   ellipsis for loaded files; header 148px → 48px for the long-titled list.
+
+**7a in plain words.** To build a denser grid the generator now draws about 22
+words for a 15-word puzzle and keeps whichever 15 fit together best. The 7 it
+drops are the awkward ones — odd letters, no common vowels — and those are
+disproportionately the words worth practising. So awkward words quietly appear
+less often than they should. Three ways to fix it:
+- **A.** Count how often each word gets drawn-and-dropped, and favour those
+  words next time.
+- **B.** Guarantee the 15 you asked for and let *only* the extra 7 be optional.
+- **C.** Treat a drop like a miss in the smart-mode record.
+A and C both use history stored on *this device* to choose words, so the same
+link would give two people different puzzles — they can only ever apply to
+smart mode. B changes nothing but how the pool is drawn from the seed, so a
+link still means one puzzle. That is why B is the only one that can fix
+shareable mode. Recommendation: build B, measure what density it costs.
 
 ### Things to play-test
 
