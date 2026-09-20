@@ -607,6 +607,7 @@ test('solving the puzzle correctly triggers the celebration overlay', async () =
   test('the toolbar reads options, hint, check, print, then new crossword last', async () => {
     const doc = (await bootApp('?list=german&words=10')).document;
     const order = Array.from(doc.querySelectorAll('.toolbar button'))
+      .filter((b) => !b.closest('#optionsMenu'))          // the menu's own buttons are not the toolbar's
       .filter((b) => b.offsetParent !== null || b.id)   // the hamburger has no text of its own
       .map((b) => b.id);
     assertEqual(order.join(','), 'hamburgerBtn,hintBtn,checkBtn,printBtn,generateBtn');
@@ -1042,14 +1043,14 @@ test('solving the puzzle correctly triggers the celebration overlay', async () =
     const search = app.window.location.search;
     assertTrue(search.includes('mode=smart'), search);
     assertTrue(!search.includes('seed='), 'a smart puzzle has no seed to share: ' + search);
-    assertEqual(app.document.getElementById('puzzleMode').value, 'smart');
+    assertEqual(app.document.querySelector('#modeTabs [aria-selected="true"]').dataset.mode, 'smart');
     assertTrue(/seen/.test(app.document.getElementById('pageTagline').textContent), 'the tagline should describe the record');
   });
 
   test('smart mode: the mode is remembered across visits', async () => {
     await bootApp('?list=english&words=5&mode=smart');
     const again = await bootApp('?list=english&words=5', { keepSavedState: true });
-    assertEqual(again.document.getElementById('puzzleMode').value, 'smart');
+    assertEqual(again.document.querySelector('#modeTabs [aria-selected="true"]').dataset.mode, 'smart');
   });
 
   test('smart mode: words missed come straight back in the next puzzle', async () => {
@@ -1081,18 +1082,105 @@ test('solving the puzzle correctly triggers the celebration overlay', async () =
     assertTrue(b.window.location.search.includes('seed=abc123'), b.window.location.search);
   });
 
-  test('switching mode in the menu builds a new puzzle and keeps the old one for Undo', async () => {
+  test('each kind keeps its own puzzle: switching tabs parks one and brings back the other, untouched', async () => {
     const app = await bootApp('?list=english&words=5');
     const { document: doc, window: win } = app;
-    touchPuzzle(app);
-    const select = doc.getElementById('puzzleMode');
-    select.value = 'smart';
-    select.dispatchEvent(new win.Event('change', { bubbles: true }));
+    const tab = (mode) => doc.querySelector(`#modeTabs [data-mode="${mode}"]`);
+    typeInFirstCells(app, 'ABC');
+    const shareable = { typed: typedCells(doc), puzzle: puzzleId(doc) };
+
+    tab('smart').click();
+    assertEqual(tab('smart').getAttribute('aria-selected'), 'true');
     assertTrue(win.location.search.includes('mode=smart'));
-    // Not "different words": the switch judged the old puzzle, which marks its words missed,
-    // and a smart draw then brings exactly those words back - that is the mode doing its job.
-    // What shows a new puzzle was built is that the letter typed into the old one is gone.
-    assertEqual(doc.querySelector('#grid .cell input').value, '', 'a fresh grid should be empty');
-    assertEqual(doc.getElementById('undoBtn').hidden, false, 'the old puzzle should be recoverable');
+    assertNotEqual(puzzleId(doc), shareable.puzzle, 'the smart tab should have built its own puzzle');
+    assertEqual(doc.getElementById('undoBtn').hidden, true, 'a parked puzzle is not a discarded one');
+    const judged = Object.values(readRecord(app, 'english').words).filter((e) => e.seen > 0).length;
+    assertEqual(judged, 0, 'a parked puzzle is not judged (skips from the smart draw are not verdicts)');
+    typeInFirstCells(app, 'XY');
+    const smart = { typed: typedCells(doc), puzzle: puzzleId(doc) };
+
+    tab('shareable').click();
+    assertEqual(puzzleId(doc), shareable.puzzle, 'the shareable puzzle should be back');
+    assertEqual(typedCells(doc), shareable.typed, 'with its letters');
+    assertTrue(!win.location.search.includes('mode='), 'and its address');
+    tab('smart').click();
+    assertEqual(puzzleId(doc), smart.puzzle);
+    assertEqual(typedCells(doc), smart.typed);
+  });
+
+  test('the tab labels show how far each puzzle has got', async () => {
+    const app = await bootApp('?list=english&words=3');
+    const doc = app.document;
+    const state = (mode) => doc.querySelector(`#modeTabs [data-mode="${mode}"] .tab-state`).textContent;
+    assertEqual(state('smart'), '', 'no smart puzzle yet');
+    assertEqual(state('shareable'), 'not started');
+    typeInFirstCells(app, 'A');
+    await waitFor(() => /\d+\/\d+/.test(state('shareable')), 1000);
+    assertTrue(/^1\/\d+$/.test(state('shareable')), `expected one letter of many, got "${state('shareable')}"`);
+    if(!solvePuzzle(app)) return;
+    await waitFor(() => state('shareable') === 'solved', 1000);
+    assertEqual(state('shareable'), 'solved');
+  });
+
+  test('both puzzles survive a reload, and the one on screen comes back on screen', async () => {
+    const app = await bootApp('?list=english&words=4');
+    const doc = app.document;
+    typeInFirstCells(app, 'AB');
+    const shareable = puzzleId(doc);
+    doc.querySelector('#modeTabs [data-mode="smart"]').click();
+    typeInFirstCells(app, 'Q');
+    const smart = puzzleId(doc);
+    await waitFor(() => false, 400);   // let the debounced save land
+
+    const again = await bootApp('?list=english&words=4', { keepSavedState: true });
+    assertEqual(puzzleId(again.document), smart, 'the smart puzzle was on screen and should be again');
+    again.document.querySelector('#modeTabs [data-mode="shareable"]').click();
+    assertEqual(puzzleId(again.document), shareable, 'the parked shareable puzzle should have survived too');
+  });
+
+  test('a seed link opens in the shareable tab and parks the smart puzzle rather than replacing it', async () => {
+    const app = await bootApp('?list=english&words=4&mode=smart');
+    const doc = app.document;
+    typeInFirstCells(app, 'ZZ');
+    const smart = puzzleId(doc);
+    await waitFor(() => false, 400);
+
+    const again = await bootApp('?list=english&words=4&seed=abc123', { keepSavedState: true });
+    assertEqual(again.document.querySelector('#modeTabs [aria-selected="true"]').dataset.mode, 'shareable');
+    assertTrue(again.window.location.search.includes('seed=abc123'));
+    again.document.querySelector('#modeTabs [data-mode="smart"]').click();
+    assertEqual(puzzleId(again.document), smart, 'the smart puzzle should have been waiting in its tab');
+  });
+
+  test('Undo of a puzzle from the other kind goes back to that kind', async () => {
+    const app = await bootApp('?list=english&words=4');
+    const doc = app.document;
+    typeInFirstCells(app, 'AB');
+    const first = puzzleId(doc);
+    doc.getElementById('generateBtn').click();                       // shareable: first -> second
+    doc.querySelector('#modeTabs [data-mode="smart"]').click();      // now in smart
+    doc.getElementById('undoBtn').click();
+    assertEqual(doc.querySelector('#modeTabs [aria-selected="true"]').dataset.mode, 'shareable', 'undo should switch back');
+    assertEqual(puzzleId(doc), first);
+  });
+
+  test('the sheet lists both kinds with their state and offers to continue or start afresh', async () => {
+    const app = await bootApp('?list=english&words=3');
+    const doc = app.document;
+    typeInFirstCells(app, 'A');
+    doc.getElementById('menuModeBtn').click();
+    const sheet = doc.getElementById('modeSheet');
+    assertEqual(sheet.hidden, false);
+    const rows = Array.from(sheet.querySelectorAll('.mode-row'));
+    assertEqual(rows.length, 2);
+    assertTrue(rows[0].classList.contains('active'));
+    assertTrue(/\d+\/\d+/.test(rows[0].querySelector('.mode-state').textContent));
+    assertEqual(rows[1].querySelector('.mode-state').textContent, 'nothing yet');
+    const buttons = Array.from(rows[1].querySelectorAll('button')).map((b) => b.textContent);
+    assertEqual(buttons.join(','), 'Continue,New');
+    assertEqual(rows[1].querySelector('button').disabled, true, 'nothing to continue yet');
+    rows[1].querySelectorAll('button')[1].click();                  // New, in smart
+    assertEqual(sheet.hidden, true);
+    assertEqual(doc.querySelector('#modeTabs [aria-selected="true"]').dataset.mode, 'smart');
   });
 }

@@ -480,6 +480,107 @@
   }
   .clue-list .hint-clue::before{ content:'also: '; font-style:normal; }
 
+  /* ---------- one puzzle per kind: tabs on a wide screen, a chip and a sheet on a phone ---------- */
+  .mode-tabs{
+    display:flex;
+    gap:4px;
+    margin:0 0 14px;
+    border-bottom:1.5px solid var(--ink);
+  }
+  .mode-tabs [role="tab"]{
+    appearance:none;
+    background:transparent;
+    border:1.5px solid transparent;
+    border-bottom:0;
+    border-radius:6px 6px 0 0;
+    padding:7px 14px 8px;
+    font-family:'Inter',sans-serif;
+    font-weight:600;
+    font-size:13.5px;
+    color:var(--ink-soft);
+    cursor:pointer;
+    display:flex;
+    gap:8px;
+    align-items:baseline;
+    margin-bottom:-1.5px;
+  }
+  .mode-tabs [role="tab"]:hover{ color:var(--ink); }
+  .mode-tabs [role="tab"]:focus-visible{ outline:2px solid var(--accent); outline-offset:-2px; }
+  .mode-tabs [role="tab"][aria-selected="true"]{
+    color:var(--ink);
+    background:var(--bg);
+    border-color:var(--ink);
+    border-bottom:1.5px solid var(--bg);
+  }
+  .mode-tabs .tab-state{
+    font-family:'IBM Plex Mono',monospace;
+    font-weight:400;
+    font-size:11.5px;
+    color:var(--ink-soft);
+  }
+  .mode-tabs .tab-state:empty{ display:none; }
+  .mode-chip{ display:none; }
+
+  #modeSheet{
+    position:fixed;
+    inset:0;
+    z-index:60;
+    background:rgba(43,42,40,0.45);
+    display:flex;
+    align-items:flex-end;
+    justify-content:center;
+  }
+  #modeSheet[hidden]{ display:none; }
+  .mode-sheet-panel{
+    background:var(--panel);
+    border:1.5px solid var(--ink);
+    border-radius:10px 10px 0 0;
+    padding:16px 16px calc(16px + env(safe-area-inset-bottom, 0px));
+    width:100%;
+    max-width:480px;
+  }
+  .mode-sheet-panel h2{ margin:0 0 12px; font-size:18px; }
+  .mode-row{
+    display:grid;
+    grid-template-columns:1fr auto auto;
+    gap:8px;
+    align-items:center;
+    padding:10px 0;
+    border-top:1px solid var(--rule);
+  }
+  .mode-row:first-child{ border-top:0; }
+  .mode-row .mode-name{ font-weight:600; }
+  .mode-row .mode-name small{ display:block; font-weight:400; color:var(--ink-soft); font-size:12px; margin-top:2px; }
+  .mode-row .mode-state{
+    grid-column:1;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11.5px;
+    color:var(--ink-soft);
+  }
+  .mode-row button{ padding:6px 12px; font-size:13px; }
+  #modeSheetClose{ margin-top:12px; width:100%; }
+
+  /* Only where it is a phone being held wrong: a touch screen, wider than it is tall, and too
+     short for a puzzle. A short desktop window is none of those. */
+  #rotateNotice{ display:none; }
+  @media screen and (orientation:landscape) and (max-height:479.98px) and (hover:none) and (pointer:coarse){
+    #rotateNotice{
+      display:flex;
+      position:fixed;
+      inset:0;
+      z-index:70;
+      background:var(--bg);
+      align-items:center;
+      justify-content:center;
+      font-family:'Inter',sans-serif;
+      font-weight:600;
+      font-size:18px;
+      text-align:center;
+      padding:24px;
+    }
+    .rotate-glyph{ display:block; font-size:40px; margin-bottom:10px; }
+  }
+
   .no-print{}
   footer.hint{
     margin-top:22px;
@@ -643,6 +744,14 @@
     header.app-head{ flex-wrap:nowrap; }
     header.app-head > div:first-child{ min-width:0; flex:1 1 auto; }
     header.app-head > .hamburger-wrap{ flex:0 0 auto; }
+    .mode-tabs{ display:none; }
+    .mode-chip{
+      display:inline-block;
+      flex:0 0 auto;
+      padding:6px 10px;
+      font-size:12.5px;
+      white-space:nowrap;
+    }
     header.app-head h1{ font-size:24px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
     #pageTagline{ display:none; }
     .toolbar{ display:none; }

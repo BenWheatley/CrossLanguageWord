@@ -10,11 +10,13 @@ Recap for coming back to after time away. Everything below is on branch
 
 ### Decisions waiting on Ben
 
-1. ~~Phone mode control~~ **Decided 2026-09-20: P1 + P2** — a chip in the
-   title row and the same sheet from the menu, with Continue/New per mode.
-   Desktop: tabs, one puzzle per mode. To build.
+1. ~~Phone mode control~~ **Built 2026-09-20**: tabs on a wide screen, a
+   chip in the title row on a phone, one sheet (Continue/New per kind) from the
+   chip and from the options menu; one puzzle in progress per kind, parked and
+   restored whole.
 2. ~~Breakpoint~~ **Done**: phone layout below 600px wide *or* 480px tall.
-3. ~~iOS landscape overlay~~ **Decided: yes.** To build with the tabs.
+3. ~~iOS landscape overlay~~ **Built**: a "turn your phone upright" notice on
+   a touch screen wider than tall and under 480px high.
 4. ~~Broken "schauen" forms~~ **Done**, corrected in place under a sanctioned
    one-time break of the append-only rule (README, section 7).
 5. **Skip bias** (7a) — still open; explained again in plain words below.

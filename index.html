@@ -26,7 +26,16 @@
       <h1 id="pageTitle">Crossword Trainer</h1>
       <div class="tagline" id="pageTagline">load a word list to begin</div>
     </div>
+    <!-- Narrow screens only: which kind of puzzle is on screen, and the way to the others.
+         On a wide screen the tabs below do this and the chip is hidden. -->
+    <button id="modeChip" class="secondary mode-chip no-print" aria-haspopup="dialog" aria-expanded="false">Shareable ▾</button>
   </header>
+
+  <!-- One puzzle in progress per kind. Wide screens only; the chip above serves a phone. -->
+  <div id="modeTabs" class="mode-tabs no-print" role="tablist" aria-label="Which puzzle">
+    <button role="tab" data-mode="shareable" aria-selected="true"><span class="tab-name">Shareable</span><span class="tab-state"></span></button>
+    <button role="tab" data-mode="smart" aria-selected="false"><span class="tab-name">Smart</span><span class="tab-state"></span></button>
+  </div>
 
   <div class="toolbar no-print">
     <!-- no-print on the wrap itself, not just the toolbar around it: on a narrow screen this
@@ -54,11 +63,8 @@
           <input type="number" id="wordCount" min="2" max="120" value="15">
         </div>
         <div class="field">
-          <label for="puzzleMode">Puzzle</label>
-          <select id="puzzleMode">
-            <option value="shareable">Shareable — one for everyone</option>
-            <option value="smart">Smart — learns what you miss</option>
-          </select>
+          <label for="menuModeBtn">Puzzle</label>
+          <button id="menuModeBtn" class="secondary" aria-haspopup="dialog">Shareable — switch…</button>
         </div>
         <label class="check-field">
           <input type="checkbox" id="printAnswers"> Show my typed answers when printing, instead of a blank puzzle
@@ -80,6 +86,22 @@
   <div id="statusRow" class="no-print">
     <div id="status" role="status" aria-live="polite"></div>
     <button id="undoBtn" class="secondary" hidden>Undo new puzzle</button>
+  </div>
+
+  <!-- The two kinds of puzzle, each with its state and a way to continue or start afresh. Opened
+       from the chip on a phone and from the options menu anywhere. -->
+  <div id="modeSheet" class="no-print" role="dialog" aria-modal="true" aria-labelledby="modeSheetTitle" hidden>
+    <div class="mode-sheet-panel">
+      <h2 id="modeSheetTitle">Which puzzle?</h2>
+      <div id="modeSheetRows"></div>
+      <button id="modeSheetClose" class="secondary">Close</button>
+    </div>
+  </div>
+
+  <!-- A phone on its side has no room for a puzzle once the keyboard is up, and iOS will not let
+       a web app ask to be held upright, so ask in words. Touch screens only, by the stylesheet. -->
+  <div id="rotateNotice" class="no-print" aria-hidden="true">
+    <div><span class="rotate-glyph">⟳</span>Turn your phone upright to play.</div>
   </div>
 
   <div id="widePrompt" class="no-print" hidden>
@@ -162,9 +184,15 @@
   const SAVE_VERSION = 5; // bumped when custom lists moved into their own keyed store
   const LIBRARY_KEY = 'crossword-trainer-lists';
   const RECORD_KEY = 'crossword-trainer-record';   // what the trainer remembers about each word
-  const MODE_KEY = 'crossword-trainer-mode';       // 'shareable' or 'smart'; a preference, not a puzzle
+  const MODE_KEY = 'crossword-trainer-mode';       // which kind of puzzle is on screen
+  const PARKED_KEY = 'crossword-trainer-parked';   // the other kind's puzzle, waiting its turn
   const MODES = { shareable: 'shareable', smart: 'smart' };
+  const MODE_LABEL = { shareable: 'Shareable', smart: 'Smart' };
+  const MODE_BLURB = { shareable: 'One puzzle for everyone with the link', smart: 'Learns what you miss and asks again' };
   let puzzleMode = MODES.shareable;
+  // One puzzle in progress per kind. The one on screen lives in the grid; the other is kept here
+  // as a saved snapshot, exactly as it would be saved for a reload, and swapped back in whole.
+  let parked = {};
   let checkedWrong = {};       // wid -> true once "Check answers" has ever marked that word wrong
   let recordCommitted = false; // this puzzle's outcomes have been written to the record
   let pendingRestore = null; // a saved puzzle waiting to be restored on first load, if any
@@ -204,7 +232,12 @@
   const celebrateCloseBtn = document.getElementById('celebrateCloseBtn');
   const fireworksCanvas = document.getElementById('fireworksCanvas');
   const wordCountInput = document.getElementById('wordCount');
-  const puzzleModeSelect = document.getElementById('puzzleMode');
+  const modeTabs = document.getElementById('modeTabs');
+  const modeChip = document.getElementById('modeChip');
+  const menuModeBtn = document.getElementById('menuModeBtn');
+  const modeSheet = document.getElementById('modeSheet');
+  const modeSheetRows = document.getElementById('modeSheetRows');
+  const modeSheetClose = document.getElementById('modeSheetClose');
   const generateBtn = document.getElementById('generateBtn');
   const printBtn = document.getElementById('printBtn');
   const checkBtn = document.getElementById('checkBtn');
@@ -253,7 +286,9 @@
     english:           { file: 'example.json',                label: 'English' },
     german_a2:         { file: 'Deutsch-A2.json',             label: 'Deutsch A2' },
     german:            { file: 'german.json',                 label: 'Deutsch B1' },
-    german_to_english: { file: 'deutsch-fragen-english.json', label: 'Deutsch B1 \u2192 Englisch' }
+    // `short` is for the title row of a phone, where the label has to share a line with two
+    // buttons: 'Deutsch B1 → Englisch' is 270px at that size and leaves room for neither.
+    german_to_english: { file: 'deutsch-fragen-english.json', label: 'Deutsch B1 \u2192 Englisch', short: 'B1 \u2192 Englisch' }
   };
   const DEFAULT_LIST = 'german';
   const DEFAULT_WORDS = 15;
@@ -573,7 +608,8 @@
   // short label from the menu instead; a loaded file has no short label, so its title is cut to
   // the line with an ellipsis by the stylesheet.
   function renderTitle(){
-    const short = compactLayout.matches && currentListId && LISTS[currentListId] ? LISTS[currentListId].label : null;
+    const entry = compactLayout.matches && currentListId ? LISTS[currentListId] : null;
+    const short = entry ? (entry.short || entry.label) : null;
     pageTitle.textContent = short || currentListTitle;
     pageTitle.title = short && short !== currentListTitle ? currentListTitle : '';
   }
@@ -1665,10 +1701,166 @@
 
   function setPuzzleMode(mode){
     puzzleMode = MODES[mode] ? mode : MODES.shareable;
-    if(puzzleModeSelect) puzzleModeSelect.value = puzzleMode;
     try{ localStorage.setItem(MODE_KEY, puzzleMode); }catch(e){ /* no persistence */ }
     updateTagline();
+    renderModeControls();
   }
+
+  // ---------- one puzzle per kind ----------
+  function loadParked(){
+    try{
+      const raw = localStorage.getItem(PARKED_KEY);
+      const all = raw ? JSON.parse(raw) : null;
+      const out = {};
+      for(const m of Object.keys(MODES)){
+        const s = all && all[m];
+        if(s && s.version === SAVE_VERSION && Array.isArray(s.gridData) && Array.isArray(s.placedWords)) out[m] = s;
+      }
+      return out;
+    }catch(e){ return {}; }
+  }
+
+  function saveParked(){
+    try{ localStorage.setItem(PARKED_KEY, JSON.stringify(parked)); }catch(e){ /* no persistence */ }
+  }
+
+  /** How far along a puzzle is, from a snapshot: "solved", "7/15", "not started", or "" for none. */
+  function describeProgress(snapshot){
+    if(!snapshot || !snapshot.placedWords || !snapshot.placedWords.length) return '';
+    if(snapshot.celebrated) return 'solved';
+    let filled = 0, total = 0;
+    for(let r = 0; r < snapshot.rows; r++){
+      for(let c = 0; c < snapshot.cols; c++){
+        if(snapshot.gridData[r][c] === null) continue;
+        total++;
+        if(snapshot.answers[r] && snapshot.answers[r][c]) filled++;
+      }
+    }
+    return filled ? filled + '/' + total : 'not started';
+  }
+
+  function progressOf(mode){
+    if(mode === puzzleMode) return placedWords.length ? describeProgress(snapshotState()) : '';
+    return describeProgress(parked[mode]);
+  }
+
+  function renderModeControls(){
+    for(const tab of modeTabs.querySelectorAll('[role="tab"]')){
+      const mode = tab.dataset.mode;
+      tab.setAttribute('aria-selected', mode === puzzleMode ? 'true' : 'false');
+      tab.querySelector('.tab-state').textContent = progressOf(mode);
+    }
+    modeChip.textContent = MODE_LABEL[puzzleMode] + ' \u25be';
+    menuModeBtn.textContent = MODE_LABEL[puzzleMode] + ' \u2014 switch\u2026';
+  }
+
+  /** Sets the puzzle on screen aside for its kind - not judged, not offered back, just kept. */
+  function parkActive(){
+    if(!placedWords.length) return;
+    parked[puzzleMode] = snapshotState();
+    placedWords = [];   // emptied so the next build neither judges it nor offers it back
+  }
+
+  /**
+   * Brings the other kind's puzzle to the screen, parking the one that is there. The parked
+   * puzzle comes back exactly as it was left. Where the other kind has no puzzle yet, one is built.
+   */
+  function switchMode(mode){
+    if(!MODES[mode] || mode === puzzleMode) return;
+    parkActive();
+    setPuzzleMode(mode);
+    const next = parked[mode];
+    delete parked[mode];
+    saveParked();
+    if(next) activateSnapshot(next);
+    else if(wordBank.length) generate();
+    else updateUrlParams();
+  }
+
+  /** Puts a saved puzzle on screen, fetching its word list first if that is not the one loaded. */
+  function activateSnapshot(snapshot){
+    const listId = snapshot.params && snapshot.params.list;
+    if(listId && listId !== currentListId){
+      pendingRestore = snapshot;
+      if(listId === CUSTOM_LIST_ID){
+        const stored = snapshot.params.sum ? findSavedList(snapshot.params.sum) : null;
+        if(!stored){
+          pendingRestore = null;
+          setStatus('That puzzle came from a word list this browser no longer holds, so it cannot be brought back.', true);
+          if(wordBank.length) generate();
+          return;
+        }
+        currentListId = CUSTOM_LIST_ID;
+        currentListSum = snapshot.params.sum;
+        wordListSelect.value = '';
+        adoptWordBank(stored.words, stored.title, stored.language);
+        startPuzzle();
+      } else if(LISTS[listId]){
+        currentListId = listId;
+        wordListSelect.value = listId;
+        fetchWordList(LISTS[listId].file, LISTS[listId].label);
+      }
+      return;
+    }
+    restoreFromSaved(snapshot);
+    saveState();
+  }
+
+  function openModeSheet(){
+    modeSheetRows.innerHTML = '';
+    for(const mode of Object.keys(MODES)){
+      const row = document.createElement('div');
+      row.className = 'mode-row' + (mode === puzzleMode ? ' active' : '');
+      const name = document.createElement('div');
+      name.className = 'mode-name';
+      name.textContent = MODE_LABEL[mode];
+      const blurb = document.createElement('small');
+      blurb.textContent = MODE_BLURB[mode];
+      name.appendChild(blurb);
+      const cont = document.createElement('button');
+      cont.className = 'secondary';
+      cont.textContent = mode === puzzleMode ? 'Back to it' : 'Continue';
+      cont.disabled = !progressOf(mode);
+      cont.addEventListener('click', () => { closeModeSheet(); switchMode(mode); restoreFocusToCurrentCell(); });
+      const fresh = document.createElement('button');
+      fresh.textContent = 'New';
+      fresh.addEventListener('click', () => {
+        closeModeSheet();
+        if(mode !== puzzleMode){
+          parkActive();
+          setPuzzleMode(mode);
+          delete parked[mode];   // that kind's old puzzle is what "New" replaces
+          saveParked();
+        }
+        if(wordBank.length) generate();
+        restoreFocusToCurrentCell();
+      });
+      const state = document.createElement('div');
+      state.className = 'mode-state';
+      state.textContent = (mode === puzzleMode ? 'on screen \u00b7 ' : '') + (progressOf(mode) || 'nothing yet');
+      row.append(name, cont, fresh, state);
+      modeSheetRows.appendChild(row);
+    }
+    closeOptionsMenu();
+    modeSheet.hidden = false;
+    modeChip.setAttribute('aria-expanded', 'true');
+    modeSheetClose.focus();
+  }
+
+  function closeModeSheet(){
+    modeSheet.hidden = true;
+    modeChip.setAttribute('aria-expanded', 'false');
+  }
+
+  modeChip.addEventListener('click', openModeSheet);
+  menuModeBtn.addEventListener('click', openModeSheet);
+  modeSheetClose.addEventListener('click', () => { closeModeSheet(); restoreFocusToCurrentCell(); });
+  modeSheet.addEventListener('click', (e) => { if(e.target === modeSheet) closeModeSheet(); });
+  document.addEventListener('keydown', (e) => { if(e.key === 'Escape' && !modeSheet.hidden) closeModeSheet(); });
+  modeTabs.addEventListener('click', (e) => {
+    const tab = e.target.closest('[role="tab"]');
+    if(tab){ switchMode(tab.dataset.mode); restoreFocusToCurrentCell(); }
+  });
 
   function loadPuzzleMode(){
     try{ return localStorage.getItem(MODE_KEY) || MODES.shareable; }catch(e){ return MODES.shareable; }
@@ -1810,6 +2002,7 @@
   }
 
   function saveState(){
+    renderModeControls();
     try{
       localStorage.setItem(STORAGE_KEY, JSON.stringify(snapshotState()));
     }catch(e){
@@ -1879,6 +2072,15 @@
     // It is not kept: Undo means "back", and back does not need a way forward again.
     if(placedWords.length && hasTypedLetters()) commitOutcomes();
     revertOutcomes(snapshot.recordBefore);
+    // It comes back in its own kind's tab. Whatever that tab held meanwhile is parked, as any
+    // switch would park it, so that nothing is lost by going back.
+    const from = (snapshot.params && snapshot.params.mode) || MODES.shareable;
+    if(from !== puzzleMode){
+      parkActive();
+      setPuzzleMode(from);
+      delete parked[from];
+      saveParked();
+    }
 
     const listId = snapshot.params && snapshot.params.list;
     if(listId && listId !== currentListId){
@@ -1977,6 +2179,7 @@
     puzzleStartTime = Date.now() - (saved.elapsedMs || 0);
     celebrated = !!saved.celebrated; // don't replay the solved animation/confetti on a reload
     if(saved.params && saved.params.list) wordListSelect.value = saved.params.list;
+    if(saved.params && saved.params.mode && saved.params.mode !== puzzleMode) setPuzzleMode(saved.params.mode);
     if(saved.params && saved.params.words) wordCountInput.value = saved.params.words;
     if(saved.params && saved.params.seed) currentSeed = saved.params.seed;
     if(saved.params && saved.params.sum) currentListSum = saved.params.sum;
@@ -2159,14 +2362,6 @@
   // triggers generation itself, from within loadWordBank). Debounced, because a number field
   // fires change on every press of its arrows: stepping from 15 to 25 would otherwise build ten
   // puzzles and discard nine.
-  puzzleModeSelect.addEventListener('change', () => {
-    setPuzzleMode(puzzleModeSelect.value);
-    // A new mode means a new draw; nothing on screen would change otherwise, and the reader
-    // would be left wondering whether the switch had taken. Undo protects the old puzzle.
-    if(wordBank.length) generate();
-    else updateUrlParams();
-  });
-
   let wordCountTimer = null;
   wordCountInput.addEventListener('change', () => {
     clearTimeout(wordCountTimer);
@@ -2290,7 +2485,9 @@
   (function initFromUrl(){
     const requested = readPuzzleParams(window.location.search);
     const saved = loadSavedState();
-    setPuzzleMode(requested.mode || loadPuzzleMode());
+    parked = loadParked();
+    // A link with a seed names a shareable puzzle, whatever kind was on screen last time.
+    setPuzzleMode(requested.mode || (requested.seed ? MODES.shareable : loadPuzzleMode()));
 
     // Deciding between "resume what I was doing" and "give me the puzzle this link names" is
     // awkward because the app writes its own parameters into the address bar after every
@@ -2301,10 +2498,22 @@
     // ones the saved puzzle was generated from: matching means this is the same puzzle you were
     // already working on, so resume it with your answers intact. Differing means you asked for
     // something else, and the link wins.
-    const resume = !!saved && (!requested.explicit || sameParams(requested, saved.params));
+    let resume = !!saved && (!requested.explicit || sameParams(requested, saved.params));
+    // The saved puzzle is of one kind; the link may ask for the other. Then the saved one is
+    // parked under its own kind, not thrown away, and this kind resumes what it holds - or, if
+    // the link names a particular puzzle, builds that.
+    const savedMode = saved && saved.params ? (saved.params.mode || MODES.shareable) : null;
+    if(saved && savedMode !== puzzleMode){
+      parked[savedMode] = saved;
+      saveParked();
+      resume = false;
+    }
+    const waiting = !resume ? parked[puzzleMode] : null;
+    const parkedHere = waiting && (!requested.explicit || sameParams(requested, waiting.params)) ? waiting : null;
+    if(parkedHere) delete parked[puzzleMode];
 
-    const active = resume && saved.params ? saved.params : requested;
-    pendingRestore = resume ? saved : null;
+    const active = resume && saved.params ? saved.params : (parkedHere ? parkedHere.params : requested);
+    pendingRestore = resume ? saved : parkedHere;
     // A link carrying a seed asks for one specific puzzle; hand it, and the width it was built
     // at, to the first generate().
     pendingSeed = active.seed || null;

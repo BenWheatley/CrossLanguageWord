@@ -623,7 +623,7 @@ test('a long list title stays on one line, with the options button beside it', a
     sameRow: Math.abs(document.getElementById('pageTitle').getBoundingClientRect().top
       - document.getElementById('hamburgerBtn').getBoundingClientRect().top) < 20
   }));
-  expect(bundled.title).toBe('Deutsch B1 → Englisch');
+  expect(bundled.title).toBe('B1 → Englisch');   // shorter still than the menu label: it shares the row with two buttons
   expect(bundled.header, 'header height with the short label').toBeLessThan(60);
   expect(bundled.sameRow, 'the options button should share the title row').toBe(true);
 
@@ -648,4 +648,16 @@ test('a long list title stays on one line, with the options button beside it', a
   expect(loaded.clipped, 'a loaded file\'s long title should be cut with an ellipsis').toBe(true);
   expect(loaded.header).toBeLessThan(60);
   expect(loaded.sameRow).toBe(true);
+});
+
+test('a phone on its side is asked to turn upright; a phone held upright is not', async ({ page }) => {
+  await openPuzzle(page);
+  const shown = () => page.evaluate(() => getComputedStyle(document.getElementById('rotateNotice')).display !== 'none');
+  expect(await shown(), 'upright: no notice').toBe(false);
+  await page.setViewportSize({ width: 844, height: 390 });
+  await page.waitForTimeout(200);
+  expect(await shown(), 'on its side, 390px tall: the notice').toBe(true);
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.waitForTimeout(200);
+  expect(await shown(), 'upright again: gone').toBe(false);
 });

@@ -15,7 +15,7 @@
 // state that a resume test had just set up. Doing it here removes the ambiguity - the clear runs,
 // this document finishes, and only then does the app load and read.
 if(new URLSearchParams(location.search).get('clear') === '1'){
-  for(const k of ['crossword-trainer-state', 'crossword-trainer-record', 'crossword-trainer-mode']){
+  for(const k of ['crossword-trainer-state', 'crossword-trainer-record', 'crossword-trainer-mode', 'crossword-trainer-parked']){
     try{ localStorage.removeItem(k); }catch(e){}
   }
 }

@@ -302,7 +302,13 @@ private browsing modes usually do — the program carries on without it.
 
 ## 9a. THE SMART PUZZLE
 
-Under **Puzzle** in the options menu you may choose between two kinds.
+There are two kinds of puzzle, and you may have one of each on the go. On a
+wide screen they are two tabs above the puzzle, each showing how far along it
+is; on a telephone the same choice sits beside the title as a small button —
+*Shareable ▾* or *Smart ▾* — and opens a sheet from which you may return to
+either puzzle where you left it, or start it afresh. The **Puzzle** entry in
+the options menu opens the same sheet. Switching sets one puzzle aside and
+brings the other back exactly as it was; nothing is judged or lost by it.
 
 A **Shareable** puzzle is what the program has always made: fifteen words
 drawn at random, named by a seed, the same for anyone who opens the address.
