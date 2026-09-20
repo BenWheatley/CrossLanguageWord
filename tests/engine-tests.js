@@ -23,6 +23,44 @@ function registerEngineTests(test){
     }));
   }
 
+  test('clueSimilarity treats a reworded clue as the same clue', () => {
+    assertEqual(engine.clueSimilarity('A price reduction', 'A reduction in price'), 1);
+    assertTrue(engine.clueSimilarity('Storage space right under the roof', 'The storage space right under the roof') >= engine.RESTATEMENT);
+  });
+
+  test('clueSimilarity treats a shared quoted gloss as identical, whatever wraps it', () => {
+    const a = "Past participle of sollen ('to be supposed to (should)')";
+    const b = "The past-participle (completed) form of the verb meaning 'to be supposed to (should)'";
+    assertEqual(engine.clueSimilarity(a, b), 1);
+  });
+
+  test('clueSimilarity finds an example sentence far from a paradigm clue', () => {
+    const a = "ich ___ (sein, 'to be': present tense)";
+    const b = 'Ich ___ heute sehr müde. (I am very tired today.)';
+    assertTrue(engine.clueSimilarity(a, b) < engine.RESTATEMENT, 'expected well under the restatement line');
+    assertEqual(engine.clueSimilarity('Twelve months', 'The time it takes the Earth to go once round the Sun'), 0);
+  });
+
+  test('every bundled word has a second clue different enough to be a hint', async () => {
+    // The B1 list had 444 words whose clues only reworded each other; example sentences were
+    // appended for all of them. The six forms of "schauen" are broken entries (SCHAE, SCHAÜN...)
+    // and are the only ones left, deliberately - a non-word gets no new clue.
+    const known = new Set(['SCHAE', 'SCHAST', 'SCHAT', 'SCHAÜN', 'SCHATE', 'GESCHAT']);
+    for(const file of ['german.json', 'Deutsch-A2.json', 'example.json', 'deutsch-fragen-english.json']){
+      const data = await (await fetch('../' + file)).json();
+      const stuck = [];
+      for(const w of data.words){
+        if(known.has(w.word)) continue;
+        let best = Infinity;
+        for(let i = 0; i < w.clues.length; i++){
+          for(let j = i + 1; j < w.clues.length; j++) best = Math.min(best, engine.clueSimilarity(w.clues[i], w.clues[j]));
+        }
+        if(best >= engine.RESTATEMENT) stuck.push(w.word);
+      }
+      assertEqual(stuck.length, 0, `${file}: no different-enough clue for ${stuck.slice(0, 8).join(', ')}`);
+    }
+  });
+
   test('graphemes() splits astral/surrogate-pair characters as single units', () => {
     const result = engine.graphemes('a\uD835\uDD18b');
     assertEqual(result.length, 3, `expected 3 graphemes, got ${JSON.stringify(result)}`);

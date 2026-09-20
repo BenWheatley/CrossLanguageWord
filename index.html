@@ -242,7 +242,7 @@
   const {
     toUpperGrapheme, normalizeText, graphemes, key, makeRng, randomSeed, isValidSeed,
     wordListFingerprint, wordListShape, pickClue, buildCrossword, trimAndIndex, numberGrid,
-    OVERDRAW
+    OVERDRAW, clueRevealsAnswer, clueSimilarity, RESTATEMENT
   } = CrosswordEngine;
   const Record = LearningRecord;
 
@@ -1492,10 +1492,19 @@
       return;
     }
 
-    // Rung one: a second clue alongside the first, if this word has another and has not had it yet.
+    // Rung one: a second clue alongside the first, if this word has one that says something
+    // the first does not. The least similar is chosen, and if even that only rewords the first
+    // the rung is skipped rather than spent - a restatement is no hint, and counting it as one
+    // would make "3 hints used" a lie. Clues that print the answer are passed over too.
     const alternatives = cluesForAnswer(word.answer);
     if(cluesShownFor[wid] === undefined && alternatives.length > 1){
-      const different = alternatives.find(text => text !== word.clue);
+      let different = null, least = Infinity;
+      for(const text of alternatives){
+        if(text === word.clue || clueRevealsAnswer(word.answer, text)) continue;
+        const s = clueSimilarity(word.clue, text);
+        if(s < least){ least = s; different = text; }
+      }
+      if(different && least >= RESTATEMENT) different = null;
       if(different){
         cluesShownFor[wid] = 1;
         word.hintClue = different;
