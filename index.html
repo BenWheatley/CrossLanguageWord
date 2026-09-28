@@ -2382,7 +2382,7 @@
     // values - so tuning attemptsFor() can never silently reword every existing shared puzzle.
     const rngClues = makeRng(seed + '#clues');
     const rngLayout = makeRng(seed + '#layout');
-    let clued;
+    let clued, required = null;
     if(keepWords && placedWords.length){
       clued = placedWords.map(w => ({ answer: w.answer, clue: w.clue }));
     } else if(smart){
@@ -2391,12 +2391,17 @@
       // choice is made here and the engine is none the wiser.
       const pool = Record.pickPool(wordBank, recordForCurrentList(), Math.ceil(n * OVERDRAW), makeRng(seed + '#pool'), Date.now());
       clued = pickClues(pool, rngClues);
+      // Words the grid has turned away too often stop being candidates and become requirements.
+      // Only here: a shareable or daily puzzle is built for its own sake, and its reader is not
+      // owed the vocabulary they have been quietly missing.
+      required = Record.stuckIn(pool, recordForCurrentList());
     } else {
       clued = pickClues(wordBank, rngClues);
     }
     const result = buildCrossword(clued, keepWords ? clued.length : n, {
       maxCols,
       rng: rngLayout,
+      required,
       overdraw: keepWords ? 1 : undefined   // every word given must appear; there is no pool to pick from
     });
     const built = trimAndIndex(result);

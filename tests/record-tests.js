@@ -48,6 +48,60 @@ function registerRecordTests(test){
     assertTrue(threw);
   });
 
+  test('a word appearing in a puzzle clears whatever the grid owed it', () => {
+    const r = R.emptyRecord();
+    R.applySkip(r, 'HAUS');
+    assertEqual(R.entryFor(r, 'HAUS').skipped, 1);
+    R.applyOutcome(r, 'HAUS', 'unaided', T0);
+    assertEqual(R.entryFor(r, 'HAUS').skipped, 0, 'it reached a grid; the debt is paid');
+  });
+
+  test('the skip count stops at its ceiling, however often the grid refuses', () => {
+    const r = R.emptyRecord();
+    for(let i = 0; i < 10; i++) R.applySkip(r, 'HAUS');
+    assertEqual(R.entryFor(r, 'HAUS').skipped, R.SKIP_CAP);
+  });
+
+  test('a word the grid has refused outranks the merely due, but not one the reader failed', () => {
+    const r = R.emptyRecord();
+    R.applySkip(r, 'REFUSED');                                    // never met, and turned away
+    R.applyOutcome(r, 'FAILED', 'missed', T0);                    // met, and got wrong
+    R.applyOutcome(r, 'DUE', 'unaided', T0);                      // met, box 2
+    const later = T0 + 10 * DAY;                                  // by now DUE is due again
+    const refused = R.priority(R.entryFor(r, 'REFUSED'), later);
+    const failed = R.priority(R.entryFor(r, 'FAILED'), later);
+    const due = R.priority(R.entryFor(r, 'DUE'), later);
+    assertTrue(failed > refused, `failed ${failed} should outrank refused ${refused}`);
+    assertTrue(refused > due, `refused ${refused} should outrank merely due ${due}`);
+    assertTrue(due > R.priority(null, later), 'and due should outrank never-met');
+  });
+
+  test('no amount of any one signal lets a word jump a band', () => {
+    const r = R.emptyRecord();
+    // The most urgent possible due word: lowest box above one, as overdue as counts, refused too.
+    R.applyOutcome(r, 'MAX', 'unaided', T0);
+    R.applySkip(r, 'MAX');
+    const veryLate = R.priority(R.entryFor(r, 'MAX'), T0 + 400 * DAY);
+    R.applySkip(r, 'REFUSED');
+    assertTrue(veryLate < R.priority(R.entryFor(r, 'REFUSED'), T0),
+      `a due word at its most urgent (${veryLate}) must still rank below a refused one`);
+  });
+
+  test('stuckIn names the pool words the grid has refused to its ceiling, and only those', () => {
+    const r = R.emptyRecord();
+    const bank = bankOf('A', 'B', 'C');
+    R.applySkip(r, 'A');
+    R.applyOutcome(r, 'B', 'missed', T0);
+    const stuck = R.stuckIn(bank, r);
+    assertTrue(stuck.has('A'), 'A was refused');
+    assertTrue(!stuck.has('B'), 'B was seen, not refused');
+    assertTrue(!stuck.has('C'), 'C has no record at all');
+    assertEqual(stuck.size, 1);
+    // A word refused then shown is no longer stuck.
+    R.applyOutcome(r, 'A', 'unaided', T0);
+    assertEqual(R.stuckIn(bank, r).size, 0);
+  });
+
   test('a skip counts but does not touch the box or the date', () => {
     const r = R.emptyRecord();
     R.applyOutcome(r, 'HAUS', 'unaided', T0);

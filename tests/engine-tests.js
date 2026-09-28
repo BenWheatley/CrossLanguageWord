@@ -36,6 +36,39 @@ function registerEngineTests(test){
     }
   });
 
+  test('a required word is seated even when the grid would rather not have it', async () => {
+    // A word sharing no letter with any other cannot cross anything, so placement drops it every
+    // time - which is the bias the smart puzzle exists to correct. Named as required, it is
+    // tried first, while the grid is still open, and gets in.
+    const bank = [
+      { answer: 'ALPHA', clue: 'a' }, { answer: 'ALTAR', clue: 'b' }, { answer: 'SALAD', clue: 'c' },
+      { answer: 'LLAMA', clue: 'd' }, { answer: 'PLAZA', clue: 'e' }, { answer: 'XYZ', clue: 'f' }
+    ];
+    let withoutIt = 0, withIt = 0;
+    for(let i = 0; i < 20; i++){
+      const plain = engine.buildCrossword(bank, 5, { maxCols: 20, rng: engine.makeRng('req' + i) });
+      if(plain.placements.some((p) => p.word.answer === 'XYZ')) withoutIt++;
+      const forced = engine.buildCrossword(bank, 5, {
+        maxCols: 20, rng: engine.makeRng('req' + i), required: new Set(['XYZ'])
+      });
+      if(forced.placements.some((p) => p.word.answer === 'XYZ')) withIt++;
+    }
+    assertEqual(withIt, 20, `required should be seated every time, got ${withIt} of 20`);
+    assertTrue(withoutIt < 20, `precondition: it should not always get in unasked (${withoutIt} of 20)`);
+  });
+
+  test('passing no required set builds exactly the puzzle it always did', async () => {
+    // Shareable and daily puzzles must not shift because the smart one gained a lever.
+    const data = await (await fetch('../german.json')).json();
+    const bank = data.words.slice(0, 200).map((w) => ({ answer: engine.toUpperGrapheme(w.word), clue: w.clues[0] }));
+    for(const seed of ['keep01', 'keep02', 'keep03']){
+      const a = engine.buildCrossword(bank, 15, { maxCols: 29, rng: engine.makeRng(seed) });
+      const b = engine.buildCrossword(bank, 15, { maxCols: 29, rng: engine.makeRng(seed), required: undefined });
+      const words = (r) => r.placements.map((p) => p.word.answer + '@' + p.row + ',' + p.col + p.dir).join('|');
+      assertEqual(words(a), words(b), 'an absent required set must change nothing');
+    }
+  });
+
   test('graphemes() splits astral/surrogate-pair characters as single units', () => {
     const result = engine.graphemes('a\uD835\uDD18b');
     assertEqual(result.length, 3, `expected 3 graphemes, got ${JSON.stringify(result)}`);

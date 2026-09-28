@@ -583,21 +583,47 @@
     // only then by how small the grid came out. Area alone was a poor proxy: it rewards packing
     // words tightly together whether or not they actually cross, and a crossword whose words do
     // not cross is a word search.
-    let best = null, bestArea = Infinity, bestPlacedCount = -1, bestCrossings = -1;
+    // `required` names words the caller will not have dropped, whatever it costs the grid: an
+    // attempt that seats more of them beats one that seats fewer, before anything else is
+    // weighed. Without it a word the grid finds awkward is drawn and discarded for ever - over a
+    // simulated year of daily puzzles, 95 words of 1000 were drawn repeatedly and never once
+    // placed. Nothing passes this unless it means to; a puzzle built for its own sake does not.
+    const required = options.required instanceof Set ? options.required : null;
+    const requiredIn = (placements) => {
+      if(!required) return 0;
+      let n = 0;
+      for(const p of placements) if(required.has(p.word.answer)) n++;
+      return n;
+    };
+
+    let best = null, bestArea = Infinity, bestPlacedCount = -1, bestCrossings = -1, bestRequired = -1;
     for(let i=0;i<attempts;i++){
       // What varies between attempts is purely the processing order of the same pool - different
       // shuffles explore different layouts.
-      const result = attemptPlacement(shuffle(subset, rnd), target, maxCols);
+      //
+      // Required words go to the head of that order, because placement is greedy and the order
+      // is what decides: the first word seats the grid outright, and the words after it are
+      // fitted against whatever is already down. Ranking attempts by how many required words
+      // they seated turned out to change nothing on its own - a word the grid finds awkward was
+      // simply never seated by *any* attempt, so there was nothing better to choose. Trying it
+      // while the grid is still open is what actually gets it in.
+      const order = shuffle(subset, rnd);
+      const result = attemptPlacement(
+        required ? order.slice().sort((a, b) => (required.has(b.answer) ? 1 : 0) - (required.has(a.answer) ? 1 : 0)) : order,
+        target, maxCols);
       const bounds = computeBounds(result.placements);
       const placedCount = result.placements.length;
       const crossings = countCrossings(result.placements);
       const area = bounds.rows * bounds.cols;
+      const requiredCount = requiredIn(result.placements);
       const better = !best
-        || placedCount > bestPlacedCount
-        || (placedCount === bestPlacedCount && crossings > bestCrossings)
-        || (placedCount === bestPlacedCount && crossings === bestCrossings && area < bestArea);
+        || requiredCount > bestRequired
+        || (requiredCount === bestRequired && placedCount > bestPlacedCount)
+        || (requiredCount === bestRequired && placedCount === bestPlacedCount && crossings > bestCrossings)
+        || (requiredCount === bestRequired && placedCount === bestPlacedCount && crossings === bestCrossings && area < bestArea);
       if(better){
         best = result; bestPlacedCount = placedCount; bestCrossings = crossings; bestArea = area;
+        bestRequired = requiredCount;
       }
     }
 

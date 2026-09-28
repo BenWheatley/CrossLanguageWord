@@ -30,6 +30,25 @@
   /** How much of a draw goes to due words. The rest is uniform, so variety survives. */
   const DUE_SHARE = 2 / 3;
 
+  // How many times the grid may refuse a word before the next puzzle has to seat it. Also the
+  // ceiling on the stored count: without one, a word the grid keeps refusing climbs for ever and
+  // ends up outranking words the reader has actually got wrong.
+  //
+  // One, because the whole cost of this was measured over a simulated year of daily puzzles and
+  // one is where the bias disappears rather than merely shrinking:
+  //
+  //   refusals allowed   words met   drawn but never once placed   crossings/word   checked
+  //           1           958/1000                 0                   2.25          20.2%
+  //           2           896/1000                60                   2.37          21.8%
+  //           3           867/1000                88                   2.39          22.2%
+  //
+  // Refusing twice leaves sixty words that a year of daily practice never once showed, and the
+  // grid it buys is barely denser. The density given up is smaller than the alternative fix
+  // considered for this - guaranteeing the whole draw - would have cost, and unlike that one it
+  // touches only the smart puzzle.
+  const SKIP_CAP = 1;
+  const SKIP_WEIGHT = 8;
+
   function emptyRecord(){
     return { version: 1, words: {} };
   }
@@ -64,6 +83,9 @@
     }
     e.seen++;
     e.last = now;
+    // The word reached a grid, so whatever debt the generator owed it is paid. Left standing,
+    // a word skipped five times before it appeared would go on outranking its peers for ever.
+    e.skipped = 0;
     return e;
   }
 
@@ -75,7 +97,7 @@
    */
   function applySkip(record, answer){
     const e = ensureEntry(record, answer);
-    e.skipped++;
+    e.skipped = Math.min(SKIP_CAP, e.skipped + 1);
     return e;
   }
 
@@ -91,22 +113,38 @@
     return daysSince(entry, now) >= WAIT_DAYS[entry.box];
   }
 
+  /** A word's skips, as a bounded nudge that can never lift it out of the band it belongs in. */
+  function skipBonus(entry){
+    return entry ? SKIP_WEIGHT * Math.min(SKIP_CAP, entry.skipped || 0) : 0;
+  }
+
   /**
    * How urgently a word wants to be in the next puzzle, or -1 if it is not due at all.
    *
-   * Tiers, highest first: a word missed or hinted last time (box 1 and seen) comes back
-   * before anything else; then words whose waiting time is up, lowest box first and most
-   * overdue first; then words never yet seen. Skips lift a word within its tier - a word the
-   * grid keeps rejecting would otherwise sit in the never-seen tier forever, which is the bias
-   * the skip count exists to correct. The gaps between tiers are wide enough that a small
-   * random jitter, added by the caller, shuffles within a tier without crossing one.
+   * Bands a hundred apart, with everything that varies inside a band bounded below that
+   * hundred - so the order between bands is absolute whatever the other signals say, and the
+   * small random jitter the caller adds shuffles within a band without ever crossing one:
+   *
+   *   300  got it wrong or needed a hint last time (box 1, and seen)
+   *   200  never met, and the grid has refused it to the ceiling
+   *   100  waiting time up: lowest box first, most overdue first
+   *     0  never met
+   *    -1  still waiting; not a candidate at all
+   *
+   * A word the reader has actually failed comes first; nothing promotes past that. But a word
+   * the grid has refused sits above the merely-due, and that placing is what makes the skip
+   * count worth keeping at all. Measured over a simulated year of daily puzzles: with skips as
+   * a nudge inside the never-met band, a reader met 847 of 1000 words and the same awkward
+   * vocabulary was drawn and dropped all year - because some 760 words are due at any moment,
+   * and a nudge of 24 never clears them. Given a band of its own it is drawn next, and required
+   * when it is: see stuckIn().
    */
   function priority(entry, now){
-    if(!entry || !entry.seen) return (entry && entry.skipped) ? 50 + 10 * entry.skipped : 0;
+    if(!entry || !entry.seen) return (entry && entry.skipped >= SKIP_CAP) ? 200 : skipBonus(entry);
     if(!isDue(entry, now)) return -1;
-    if(entry.box === 1) return 100 + 10 * entry.skipped;
+    if(entry.box === 1) return 300 + skipBonus(entry);
     const overdue = Math.min(30, daysSince(entry, now) - WAIT_DAYS[entry.box]);
-    return 60 + 5 * (BOXES - entry.box) + overdue + 10 * entry.skipped;
+    return 100 + 5 * (BOXES - entry.box) + overdue + skipBonus(entry);
   }
 
   /**
@@ -134,6 +172,26 @@
     return chosen.concat(rest.slice(0, size - chosen.length)).map(s => s.word);
   }
 
+  /**
+   * Words the grid has turned away as often as is tolerated, and which the next puzzle should
+   * seat whatever it costs the layout.
+   *
+   * The counting alone is not enough. Raising a word's priority gets it drawn more often, not
+   * placed more often, and a word the grid finds awkward loses every time it is drawn: over a
+   * simulated year of daily puzzles, 95 words of 1000 were drawn again and again and never once
+   * appeared. Since awkward words are disproportionately the ones worth practising, that is the
+   * whole bias rather than a corner of it. So at the ceiling the word stops being a candidate
+   * and becomes a requirement, and the generator seats it whatever it costs the layout.
+   */
+  function stuckIn(pool, record){
+    const out = new Set();
+    for(const word of pool){
+      const e = entryFor(record, word.answer);
+      if(e && e.skipped >= SKIP_CAP) out.add(word.answer);
+    }
+    return out;
+  }
+
   /** Headline numbers for a list: how many words have been met, and how many are in the top box. */
   function summarise(record, bank){
     let seen = 0, known = 0, due = 0;
@@ -153,6 +211,8 @@
     BOXES,
     WAIT_DAYS,
     DUE_SHARE,
+    SKIP_CAP,
+    SKIP_WEIGHT,
     emptyRecord,
     entryFor,
     applyOutcome,
@@ -161,6 +221,7 @@
     daysSince,
     priority,
     pickPool,
+    stuckIn,
     summarise
   };
 });

@@ -19,24 +19,10 @@ Recap for coming back to after time away. Everything below is on branch
    a touch screen wider than tall and under 480px high.
 4. ~~Broken "schauen" forms~~ **Done**, corrected in place under a sanctioned
    one-time break of the append-only rule (README, section 7).
-5. **Skip bias** (7a) — still open; explained again in plain words below.
+5. ~~Skip bias~~ **Done 2026-09-28**: option C, smart mode only. Shareable and
+   daily keep over-drawing for density. See 7a for the measurements.
 6. ~~Long titles on a phone~~ **Done**: short label for bundled lists,
    ellipsis for loaded files; header 148px → 48px for the long-titled list.
-
-**7a in plain words.** To build a denser grid the generator now draws about 22
-words for a 15-word puzzle and keeps whichever 15 fit together best. The 7 it
-drops are the awkward ones — odd letters, no common vowels — and those are
-disproportionately the words worth practising. So awkward words quietly appear
-less often than they should. Three ways to fix it:
-- **A.** Count how often each word gets drawn-and-dropped, and favour those
-  words next time.
-- **B.** Guarantee the 15 you asked for and let *only* the extra 7 be optional.
-- **C.** Treat a drop like a miss in the smart-mode record.
-A and C both use history stored on *this device* to choose words, so the same
-link would give two people different puzzles — they can only ever apply to
-smart mode. B changes nothing but how the pool is drawn from the seed, so a
-link still means one puzzle. That is why B is the only one that can fix
-shareable mode. Recommendation: build B, measure what density it costs.
 
 ### Things to play-test
 
@@ -316,61 +302,50 @@ get.
 - Filter by word length, or by level within a list.
 - "Only words I have missed" — which is 1 again, from the other end.
 
-## 7a. Skip bias from over-drawing — REVISIT, no decision made yet
+## 7a. Skip bias from over-drawing — DONE, option C, smart mode only
 
-**Open question. Nothing has been implemented. Come back to this.**
+**Decided 2026-09-28: C for the smart puzzle; shareable and daily keep over-drawing.**
+The intents differ, so the generators should. A shareable or daily puzzle is a
+crossword to enjoy once, and a denser grid is the better crossword. The smart
+puzzle is for somebody working through a list again and again, and there
+coverage beats density: a word never shown is a word never learned.
 
-Over-drawing the pool (7 above) buys the denser grid, but it introduces a bias
-the uniform draw did not have. The generator now draws about 22 words to place
-15, and placement keeps whichever fit together. A word that is hard to interlock
-— unusual letters, no common vowel pattern, very short or very long — gets drawn
-and then silently dropped, again and again. The draw is still uniform; what
-survives it is not.
+The bias: to build a denser grid the generator draws about 22 words to place 15
+and keeps whichever interlock best. The 7 it drops are the awkward ones - odd
+letters, awkward lengths - and they are the same words every time, which is
+exactly the vocabulary most worth practising.
 
-That matters more here than it would in a puzzle app, because awkward vocabulary
-is disproportionately the vocabulary worth practising. The bias points the wrong
-way.
+Built, in smart mode only:
 
-Three ways out, none chosen:
+- A refusal is recorded against the word, like a miss or a hint (`applySkip`).
+- It is cleared the moment the word appears in a puzzle: the debt is paid.
+- A word the grid has refused and the reader has never met gets a priority band
+  of its own, above the merely-due and below anything the reader actually got
+  wrong. Without that band it never even gets *drawn*: some 760 words are due at
+  any moment and a small nudge never clears them.
+- On the next draw it is not a candidate but a **requirement**: the engine takes
+  an optional `required` set and tries those words first, while the grid is
+  still open. Ranking attempts by how many they seated changed nothing on its
+  own - an awkward word was never seated by *any* attempt, so there was nothing
+  better to choose. Order is what decides, placement being greedy.
 
-- **A. Count the skips and use them as a tiebreak.** Record how many times each
-  word has been drawn without being placed; prefer high counts on the next draw.
-  Cheap, and it needs no other machinery. The risk is a queue of words that are
-  never placeable at all, whose counts climb forever while they keep winning a
-  draw they then lose again — so it needs a ceiling that forces a word into the
-  *puzzle*, not merely the pool, after N skips.
+Measured over a simulated year of one 15-word puzzle a day against Deutsch B1,
+solving 80% unaided:
 
-- **B. Guarantee the drawn N and over-draw only the remainder.** Draw 15 that
-  must appear plus ~7 optional, and let placement choose only among the optional
-  ones. This removes the bias rather than compensating for it, which is the
-  honest fix. It costs some of the density that over-drawing bought, because the
-  guaranteed 15 have to be made to fit whatever they are.
+| refusals allowed | words met | drawn but never once placed | crossings/word | checked letters |
+| --- | --- | --- | --- | --- |
+| 1 (chosen) | 958/1000 | 0 | 2.25 | 20.2% |
+| 2 | 896/1000 | 60 | 2.37 | 21.8% |
+| 3 | 867/1000 | 88 | 2.39 | 22.2% |
+| before this work | 847/1000 | 95 | 2.38 | 23.1% |
 
-- **C. Fold it into the learning record (1).** A skip becomes one signal among
-  "got it wrong", "needed a hint", "not seen recently", and selection weighting
-  handles all of them together. The right long-term home — a word skipped by the
-  generator and a word the learner keeps missing both want the same treatment —
-  but it cannot be built before 1 is.
+One refusal is where the bias disappears rather than merely shrinks. It costs
+2.38 → 2.25 crossings per word and 23.1% → 20.2% checked letters, in smart mode
+alone - less than option B would have cost everywhere (2.22 and 19.6%, measured
+2026-09-20), and B would have taken that from the shareable puzzle too.
 
-**The mode split (1) narrows this.** In shareable mode the draw must be a pure
-function of the seed, or a link stops opening the same puzzle for two people. A
-and C both consult counts accumulated locally, so both would break that — they
-are usable in smart mode only, and shareable mode would still need its own
-answer. B changes only how the pool is drawn from a given seed, so it holds in
-every mode. That is a real narrowing rather than a preference: B is the only one
-of the three that can fix shareable mode at all.
-
-**Recommendation: measure B first.** It is the only one of the three that removes
-the bias instead of correcting for it after the fact, and the cost is a number we
-can measure directly — rebuild the interlock table in 7 with the guarantee in
-place and see what the density actually drops to. If the drop is small, B is
-simply correct and A becomes unnecessary. If it is large, that number is what
-justifies the extra machinery of A or C.
-
-Note for whichever is built: skip counts are per word list, not global, and under
-the append-only convention (README section 3) a word's position in its list is
-stable forever — so they can be stored by index rather than by text, which is
-much more compact than keying on the answer.
+A and B are therefore not needed. B's measurement is kept above in case the
+daily puzzle ever wants it.
 
 ## 8. Smaller things
 
