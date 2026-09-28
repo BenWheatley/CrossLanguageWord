@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Crossword Trainer">
+  <!-- Source for the app icons. The PNGs beside it are rendered from this; see the note in
+       README section 3. Palette matches the program: paper, ink, and the square you are on. -->
+  <rect width="512" height="512" fill="#F3EFE6"/>
+  <g transform="translate(76 76)">
+    <rect x="-12" y="-12" width="384" height="384" rx="10" fill="#2B2A28"/>
+    <g fill="#FFFDF8">
+      <rect x="0"   y="0"   width="112" height="112"/>
+      <rect x="124" y="0"   width="112" height="112"/>
+      <rect x="248" y="124" width="112" height="112"/>
+      <rect x="0"   y="248" width="112" height="112"/>
+      <rect x="124" y="248" width="112" height="112"/>
+      <rect x="248" y="248" width="112" height="112"/>
+    </g>
+    <rect x="124" y="124" width="112" height="112" fill="#F3C13B"/>
+    <g fill="#2B2A28" font-family="Georgia, 'Times New Roman', serif" font-weight="700"
+       font-size="86" text-anchor="middle">
+      <text x="56"  y="88">C</text>
+      <text x="180" y="212">W</text>
+      <text x="304" y="336">D</text>
+    </g>
+  </g>
+</svg>

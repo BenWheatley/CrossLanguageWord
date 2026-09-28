@@ -7,6 +7,9 @@
 function registerEngineTests(test){
   const engine = window.CrosswordEngine;
 
+  /** Runs pickClue with a generator that returns one fixed value. */
+  const pickWith = (word, value) => engine.pickClue(word, () => value);
+
   const GOLDEN_FINGERPRINT = '1nkful2ldp2';
   const GOLDEN_SHAPE = 'yran4iwdvv';
   const GOLDEN_RNG_VALUES = ['0.012550512096', '0.860431064852', '0.447748388397', '0.767062008381'];
@@ -19,6 +22,52 @@ function registerEngineTests(test){
       clue: w.clues[0]
     }));
   }
+
+  test('no bundled word repeats a clue word for word, and every word has a clue that does not print its answer', async () => {
+    // Whether two clues merely reword each other is a judgement, made when the lists are edited;
+    // what can be checked mechanically is that none are identical and that pickClue always has
+    // somewhere to go.
+    for(const file of ['german.json', 'Deutsch-A2.json', 'example.json', 'deutsch-fragen-english.json']){
+      const data = await (await fetch('../' + file)).json();
+      const repeated = data.words.filter((w) => new Set(w.clues).size < w.clues.length).map((w) => w.word);
+      assertEqual(repeated.length, 0, `${file}: identical clues for ${repeated.slice(0, 8).join(', ')}`);
+      const stuck = data.words.filter((w) => w.clues.every((c) => engine.clueRevealsAnswer(w.word, c))).map((w) => w.word);
+      assertEqual(stuck.length, 0, `${file}: every clue prints the answer for ${stuck.slice(0, 8).join(', ')}`);
+    }
+  });
+
+  test('a required word is seated even when the grid would rather not have it', async () => {
+    // A word sharing no letter with any other cannot cross anything, so placement drops it every
+    // time - which is the bias the smart puzzle exists to correct. Named as required, it is
+    // tried first, while the grid is still open, and gets in.
+    const bank = [
+      { answer: 'ALPHA', clue: 'a' }, { answer: 'ALTAR', clue: 'b' }, { answer: 'SALAD', clue: 'c' },
+      { answer: 'LLAMA', clue: 'd' }, { answer: 'PLAZA', clue: 'e' }, { answer: 'XYZ', clue: 'f' }
+    ];
+    let withoutIt = 0, withIt = 0;
+    for(let i = 0; i < 20; i++){
+      const plain = engine.buildCrossword(bank, 5, { maxCols: 20, rng: engine.makeRng('req' + i) });
+      if(plain.placements.some((p) => p.word.answer === 'XYZ')) withoutIt++;
+      const forced = engine.buildCrossword(bank, 5, {
+        maxCols: 20, rng: engine.makeRng('req' + i), required: new Set(['XYZ'])
+      });
+      if(forced.placements.some((p) => p.word.answer === 'XYZ')) withIt++;
+    }
+    assertEqual(withIt, 20, `required should be seated every time, got ${withIt} of 20`);
+    assertTrue(withoutIt < 20, `precondition: it should not always get in unasked (${withoutIt} of 20)`);
+  });
+
+  test('passing no required set builds exactly the puzzle it always did', async () => {
+    // Shareable and daily puzzles must not shift because the smart one gained a lever.
+    const data = await (await fetch('../german.json')).json();
+    const bank = data.words.slice(0, 200).map((w) => ({ answer: engine.toUpperGrapheme(w.word), clue: w.clues[0] }));
+    for(const seed of ['keep01', 'keep02', 'keep03']){
+      const a = engine.buildCrossword(bank, 15, { maxCols: 29, rng: engine.makeRng(seed) });
+      const b = engine.buildCrossword(bank, 15, { maxCols: 29, rng: engine.makeRng(seed), required: undefined });
+      const words = (r) => r.placements.map((p) => p.word.answer + '@' + p.row + ',' + p.col + p.dir).join('|');
+      assertEqual(words(a), words(b), 'an absent required set must change nothing');
+    }
+  });
 
   test('graphemes() splits astral/surrogate-pair characters as single units', () => {
     const result = engine.graphemes('a\uD835\uDD18b');
@@ -379,5 +428,51 @@ function registerEngineTests(test){
     // means every link anyone has saved stops finding its list.
     assertEqual(engine.wordListFingerprint(bankA), GOLDEN_FINGERPRINT);
     assertEqual(engine.wordListShape(bankA), GOLDEN_SHAPE);
+  });
+
+  // ---------- clues that give the answer away ----------
+
+  test('clueRevealsAnswer() catches the answer printed in its own clue', () => {
+    assertTrue(engine.clueRevealsAnswer('WISSEN', "wir ___ (wissen, 'to know (a fact)': present tense)"));
+    assertTrue(engine.clueRevealsAnswer('ESSEN', "wir ___ (essen, 'to eat': present tense)"));
+    assertTrue(engine.clueRevealsAnswer('SNOW', 'Perfect for building a snowman'));
+  });
+
+  test('clueRevealsAnswer() catches the answer with an ending still attached', () => {
+    assertTrue(engine.clueRevealsAnswer('MIETE', "ich ___ (mieten, 'to rent': present tense)"));
+    assertTrue(engine.clueRevealsAnswer('HABE', "ich ___ (haben, 'to have': present tense)"));
+  });
+
+  test('clueRevealsAnswer() does not fire on short answers hiding inside ordinary words', () => {
+    // The reason for the length floors: two- and three-letter answers are substrings of half the
+    // dictionary, and treating that as a giveaway would throw away perfectly good clues.
+    assertTrue(!engine.clueRevealsAnswer('EI', 'Sein Freund kam vorbei'));
+    assertTrue(!engine.clueRevealsAnswer('IN', 'Inside a place'));
+    assertTrue(!engine.clueRevealsAnswer('ER', 'A male person'));
+    assertTrue(!engine.clueRevealsAnswer('HAUS', 'Where a family lives'));
+  });
+
+  test('pickClue() skips a giveaway and takes the next clue instead', () => {
+    const word = { answer: 'WISSEN', clues: ['wir ___ (wissen, ...)', 'To have knowledge of a fact'] };
+    // whatever the draw lands on, the clean clue is what comes back
+    for(const value of [0, 0.4, 0.6, 0.99]){
+      assertEqual(pickWith(word, value), 'To have knowledge of a fact');
+    }
+  });
+
+  test('pickClue() keeps the drawn clue when every clue gives the answer away', () => {
+    // A revealed answer still beats no clue at all.
+    const word = { answer: 'STAND', clues: ['a stand', 'the stand'] };
+    assertEqual(pickWith(word, 0), 'a stand');
+    assertEqual(pickWith(word, 0.99), 'the stand');
+  });
+
+  test('pickClue() takes exactly one draw, so seeds keep meaning the same puzzle', () => {
+    // The draw is scaled by clues.length. Filtering the list first, or drawing more than once,
+    // would shift every later word's clue and change what an already-shared seed opens.
+    let draws = 0;
+    const rnd = () => { draws++; return 0.5; };
+    engine.pickClue({ answer: 'WISSEN', clues: ['wir ___ (wissen, ...)', 'ok', 'also ok'] }, rnd);
+    assertEqual(draws, 1);
   });
 }

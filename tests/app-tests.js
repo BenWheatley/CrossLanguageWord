@@ -282,7 +282,9 @@ test('solving the puzzle correctly triggers the celebration overlay', async () =
   });
 
   test('regenerating can show a different clue for a word, not the one it was stuck with on load', async () => {
-    // Deutsch A2 is the smallest bundled list, so words recur quickly across regenerations.
+    // Any bundled list will do: 30 words drawn 25 times over is far more draws than the list is
+    // long, so words recur, and each carries exactly two clues - so a recurrence has an even
+    // chance of showing the other one.
     const app = await bootApp('?list=german_a2&words=30');
     const doc = app.document;
     const seen = new Map();
@@ -308,7 +310,8 @@ test('solving the puzzle correctly triggers the celebration overlay', async () =
   });
 
   test('no puzzle contains the same answer twice, even from a list with duplicate entries', async () => {
-    // Deutsch A2 lists kaufen, brauchen and morgen twice each.
+    // Deutsch A2 lists kaufen, brauchen and morgen twice each - the list is append-only, so those
+    // duplicates stay put however much it grows, and a 60-word draw can still turn one up.
     const app = await bootApp('?list=german_a2&words=60');
     const doc = app.document;
     for(let i = 0; i < 20; i++){
@@ -324,10 +327,33 @@ test('solving the puzzle correctly triggers the celebration overlay', async () =
   });
 
   test('duplicate list entries merge their clues rather than competing as two words', async () => {
-    const app = await bootApp('?list=german_a2&words=60');
+    // Fed through the real file input rather than taken from a bundled list. The bundled lists do
+    // contain accidental duplicates, but how often one is drawn depends on how long the list has
+    // grown - this test used to lean on Deutsch A2 being short, and stopped proving anything the
+    // moment that list was expanded. A fixture with one duplicate and nothing else makes the draw
+    // certain regardless.
+    const app = await bootApp('?words=4');
     const doc = app.document;
-    const cluesForKaufen = new Set();
-    for(let i = 0; i < 60 && cluesForKaufen.size <= 2; i++){
+    const list = {
+      metadata: { title: 'Merge Fixture', language: 'de', version: 1 },
+      words: [
+        { word: 'ALPHA',  clues: ['first clue for alpha', 'second clue for alpha'] },
+        { word: 'BETA',   clues: ['a clue for beta', 'another clue for beta'] },
+        { word: 'GAMMA',  clues: ['a clue for gamma', 'another clue for gamma'] },
+        { word: 'DELTA',  clues: ['a clue for delta', 'another clue for delta'] },
+        { word: 'ALPHA',  clues: ['third clue for alpha', 'fourth clue for alpha'] }
+      ]
+    };
+    const win = app.window;
+    const transfer = new win.DataTransfer();
+    transfer.items.add(new win.File([JSON.stringify(list)], 'merge-fixture.json', { type: 'application/json' }));
+    const input = doc.getElementById('fileInput');
+    input.files = transfer.files;
+    input.dispatchEvent(new win.Event('change', { bubbles: true }));
+    await waitFor(() => doc.getElementById('pageTitle').textContent === 'Merge Fixture');
+
+    const cluesForAlpha = new Set();
+    for(let i = 0; i < 40 && cluesForAlpha.size <= 2; i++){
       doc.getElementById('generateBtn').click();
       const pairs = [['#printAnswerAcross', '#acrossList'], ['#printAnswerDown', '#downList']];
       for(const [answerSel, clueSel] of pairs){
@@ -335,14 +361,14 @@ test('solving the puzzle correctly triggers the celebration overlay', async () =
           .map((li) => li.textContent.replace(/^\d+\.\s*/, ''));
         const clues = Array.from(doc.querySelectorAll(clueSel + ' li'))
           .map((li) => li.textContent.replace(/^\d+/, '').trim());
-        answers.forEach((answer, ix) => { if(answer === 'KAUFEN') cluesForKaufen.add(clues[ix]); });
+        answers.forEach((answer, ix) => { if(answer === 'ALPHA') cluesForAlpha.add(clues[ix]); });
       }
     }
     // Each source entry carries exactly two clues, so a third distinct clue is only reachable if
     // the two entries merged into one word. Asserting on all four would just be testing how
     // evenly a random draw covers four options.
-    assertTrue(cluesForKaufen.size > 2,
-      `only saw ${cluesForKaufen.size} distinct clues for KAUFEN; a merged word should offer more than one entry's worth`);
+    assertTrue(cluesForAlpha.size > 2,
+      `only saw ${cluesForAlpha.size} distinct clues for ALPHA; a merged word should offer more than one entry's worth`);
   });
 
   test('the word count is capped at 120, from the URL and from the field alike', async () => {
@@ -578,12 +604,13 @@ test('solving the puzzle correctly triggers the celebration overlay', async () =
       'the bound should divide the page width by the actual column count');
   });
 
-  test('the toolbar reads options, check, print, then new crossword last', async () => {
+  test('the toolbar reads options, hint, check, print, then new crossword last', async () => {
     const doc = (await bootApp('?list=german&words=10')).document;
     const order = Array.from(doc.querySelectorAll('.toolbar button'))
+      .filter((b) => !b.closest('#optionsMenu'))          // the menu's own buttons are not the toolbar's
       .filter((b) => b.offsetParent !== null || b.id)   // the hamburger has no text of its own
       .map((b) => b.id);
-    assertEqual(order.join(','), 'hamburgerBtn,checkBtn,printBtn,generateBtn');
+    assertEqual(order.join(','), 'hamburgerBtn,hintBtn,checkBtn,printBtn,generateBtn');
   });
 
   test('the footer describes what a shared start cell actually does', async () => {
@@ -593,5 +620,567 @@ test('solving the puzzle correctly triggers the celebration overlay', async () =
     assertTrue(!/ask which one you mean/i.test(hint), 'the old, inaccurate wording is still there');
     assertTrue(/highlighted/i.test(hint), 'the hint should mention the highlight');
     assertTrue(/space/i.test(hint), 'and how to switch direction');
+  });
+
+  // ---------- not losing a puzzle you were working on ----------
+
+  const typedCells = (doc) => Array.from(doc.querySelectorAll('#grid .cell input'))
+    .filter((i) => i.value).map((i) => `${i.dataset.r},${i.dataset.c}=${i.value}`).join(' ');
+  // Identify a puzzle by the puzzle, not by the address. WebKit rate-limits replaceState, and the
+  // app is deliberately willing to leave the address stale rather than let a refusal derail a
+  // rebuild - so under a fast run the URL can lag behind what is on screen.
+  const puzzleId = (doc) => Array.from(doc.querySelectorAll('#printAnswerAcross li, #printAnswerDown li'))
+    .map((li) => li.textContent).join('|');
+  function typeInFirstCells(app, text){
+    Array.from(app.document.querySelectorAll('#grid .cell input')).slice(0, text.length)
+      .forEach((input, i) => {
+        input.value = text[i];
+        input.dispatchEvent(new app.window.Event('input', { bubbles: true }));
+      });
+  }
+
+  test('a new puzzle can be undone, bringing the answers back', async () => {
+    const app = await bootApp('?list=german&words=12&seed=undoa1');
+    const doc = app.document;
+    typeInFirstCells(app, 'ABCD');
+    const before = { typed: typedCells(doc), puzzle: puzzleId(doc) };
+
+    doc.getElementById('generateBtn').click();
+    assertTrue(!doc.getElementById('undoBtn').hidden, 'undo should be offered');
+    assertNotEqual(puzzleId(doc), before.puzzle, 'a new puzzle was expected');
+
+    doc.getElementById('undoBtn').click();
+    assertEqual(typedCells(doc), before.typed, 'the answers should come back');
+    assertEqual(puzzleId(doc), before.puzzle, 'and the same puzzle with them');
+  });
+
+  test('undo is not offered when there was nothing typed to lose', async () => {
+    const app = await bootApp('?list=german&words=12&seed=undoa2');
+    app.document.getElementById('generateBtn').click();
+    assertTrue(app.document.getElementById('undoBtn').hidden,
+      'an untouched puzzle is not worth offering back');
+  });
+
+  test('undo survives an untouched puzzle in between, and steps back through several', async () => {
+    const app = await bootApp('?list=german&words=12&seed=undoa3');
+    const doc = app.document;
+    typeInFirstCells(app, 'ABCD');
+    const A = { typed: typedCells(doc), puzzle: puzzleId(doc) };
+    doc.getElementById('generateBtn').click();            // B, never touched
+    doc.getElementById('generateBtn').click();            // C - with one slot this emptied it
+    assertTrue(!doc.getElementById('undoBtn').hidden, 'A is still worth going back to');
+    typeInFirstCells(app, 'XY');
+    const C = { typed: typedCells(doc), puzzle: puzzleId(doc) };
+    assertTrue(!doc.getElementById('undoBtn').hidden, 'working on C does not forget A');
+    doc.getElementById('generateBtn').click();            // D
+    doc.getElementById('undoBtn').click();
+    assertEqual(puzzleId(doc), C.puzzle, 'first step back is to C');
+    assertEqual(typedCells(doc), C.typed);
+    doc.getElementById('undoBtn').click();
+    assertEqual(puzzleId(doc), A.puzzle, 'second step back is to A, past the untouched B');
+    assertEqual(typedCells(doc), A.typed);
+    assertTrue(doc.getElementById('undoBtn').hidden, 'nothing left to go back to');
+    doc.getElementById('undoBtn').click();                // must be harmless
+    assertEqual(puzzleId(doc), A.puzzle);
+  });
+
+  test('the undo button appearing does not move the puzzle', async () => {
+    const app = await bootApp('?list=german&words=12&seed=undoa5');
+    const doc = app.document;
+    const before = doc.getElementById('gridHost').getBoundingClientRect().top;
+    typeInFirstCells(app, 'ABCD');
+    doc.getElementById('generateBtn').click();
+    assertTrue(!doc.getElementById('undoBtn').hidden);
+    const after = doc.getElementById('gridHost').getBoundingClientRect().top;
+    assertEqual(after, before, 'the grid should not jump when the button appears');
+  });
+
+  test('changing the word list can be undone, list and all', async () => {
+    const app = await bootApp('?list=german&words=12&seed=undoa4');
+    const { document: doc, window: win } = app;
+    typeInFirstCells(app, 'ABCD');
+    const before = { typed: typedCells(doc), puzzle: puzzleId(doc), title: doc.getElementById('pageTitle').textContent };
+
+    const select = doc.getElementById('wordListSelect');
+    select.value = 'english';
+    select.dispatchEvent(new win.Event('change', { bubbles: true }));
+    await waitFor(() => doc.getElementById('pageTitle').textContent === 'English');
+
+    doc.getElementById('undoBtn').click();
+    await waitFor(() => doc.getElementById('pageTitle').textContent === before.title);
+    assertEqual(typedCells(doc), before.typed);
+    assertEqual(puzzleId(doc), before.puzzle);
+  });
+
+  test('holding the word-count arrows builds one puzzle, not one per press', async () => {
+    const app = await bootApp('?list=german&words=12&seed=undoa5');
+    const { document: doc, window: win } = app;
+    let builds = 0;
+    new win.MutationObserver(() => { builds++; })
+      .observe(doc.getElementById('grid'), { childList: true });
+
+    const field = doc.getElementById('wordCount');
+    for(let i = 0; i < 6; i++){
+      field.value = String(12 + i + 1);
+      field.dispatchEvent(new win.Event('change', { bubbles: true }));
+    }
+    await waitFor(() => builds > 0, 3000);
+    await waitFor(() => false, 400);   // let any stragglers land
+    assertEqual(builds, 1, `six changes should settle into one rebuild, saw ${builds}`);
+    assertEqual(field.value, '18');
+  });
+
+  test('the address describes the puzzle on screen, not where the controls have got to', async () => {
+    // These part company mid-change: the word count moves before the rebuild it triggers runs.
+    const app = await bootApp('?list=german&words=12&seed=undoa6');
+    const { document: doc, window: win } = app;
+    const field = doc.getElementById('wordCount');
+    field.value = '20';
+    field.dispatchEvent(new win.Event('change', { bubbles: true }));
+    // before the debounce fires, the puzzle is still the twelve-word one
+    assertTrue(win.location.search.includes('words=12'),
+      `address said ${win.location.search} while the old puzzle was still on screen`);
+    await waitFor(() => win.location.search.includes('words=20'), 3000);
+  });
+
+  // ---------- hints ----------
+
+  const wordSquares = (app) => Array.from(app.document.querySelectorAll('#grid .cell.in-word input'));
+  const wordText = (app) => wordSquares(app).map((i) => i.value || '.').join('');
+  const activeClue = (app) => {
+    const li = app.document.querySelector('.clue-list li.active');
+    return li ? li.textContent.replace(/^\d+/, '').trim() : null;
+  };
+
+  test('the first hint adds a second clue beside the first, not a letter', async () => {
+    const app = await bootApp('?list=german&words=12&seed=hint1');
+    const before = activeClue(app);
+    app.document.getElementById('hintBtn').click();
+    const li = app.document.querySelector('.clue-list li.active');
+    const extra = li.querySelector('.hint-clue');
+    assertTrue(extra && extra.textContent.trim(), 'a second clue should have been added');
+    assertTrue(activeClue(app).startsWith(before), 'the first clue should still be there, first');
+    assertNotEqual(extra.textContent.trim(), before, 'the second clue should say something different');
+    assertEqual(wordText(app).replace(/\./g, ''), '', 'no letters should have been given away');
+  });
+
+  test('the first hint never offers the clue already shown, nor one that prints the answer', async () => {
+    const app = await bootApp('?words=2');
+    const { document: doc, window: win } = app;
+    const list = {
+      metadata: { title: 'Hint Fixture', language: 'de', version: 1 },
+      words: [
+        { word: 'ALPHA', clues: ['The first Greek letter', 'Alpha, the start of it all', 'The top dog in a pack'] },
+        { word: 'OMEGA', clues: ['The last Greek letter', 'What the alphabet ends with in Athens'] }
+      ]
+    };
+    const transfer = new win.DataTransfer();
+    transfer.items.add(new win.File([JSON.stringify(list)], 'hint-fixture.json', { type: 'application/json' }));
+    const input = doc.getElementById('fileInput');
+    input.files = transfer.files;
+    input.dispatchEvent(new win.Event('change', { bubbles: true }));
+    await waitFor(() => doc.getElementById('pageTitle').textContent === 'Hint Fixture');
+    // The clue list is rebuilt after a hint, so look the item up by its id each time rather
+    // than holding on to an element.
+    const widFor = (answer) => {
+      const key = Array.from(doc.querySelectorAll('#printAnswerAcross li, #printAnswerDown li'))
+        .find((k) => k.textContent.replace(/^\d+\.\s*/, '') === answer);
+      const number = key.textContent.match(/^(\d+)\./)[1];
+      return (key.closest('#printAnswerAcross') ? 'across' : 'down') + '-' + number;
+    };
+    const liFor = (answer) => doc.querySelector(`.clue-list li[data-wid="${widFor(answer)}"]`);
+    liFor('ALPHA').click();
+    const shown = liFor('ALPHA').querySelector('span:nth-child(2)').firstChild.textContent;
+    doc.getElementById('hintBtn').click();
+    const extra = liFor('ALPHA').querySelector('.hint-clue');
+    assertTrue(extra, 'ALPHA should have been given a second clue');
+    assertNotEqual(extra.textContent, shown, 'the second clue must not be the one already shown');
+    assertTrue(!/alpha/i.test(extra.textContent), 'the second clue must not print the answer');
+  });
+
+  test('a letter is not given until the word has been attempted', async () => {
+    const app = await bootApp('?list=german&words=12&seed=hint1');
+    const { document: doc } = app;
+    doc.getElementById('hintBtn').click();       // uses up the alternative clue
+    doc.getElementById('hintBtn').click();       // asks for a letter, having tried nothing
+    assertEqual(wordText(app).replace(/\./g, ''), '', 'a letter was given for an untouched word');
+    assertTrue(/have a go/i.test(doc.getElementById('status').textContent),
+      'it should say why nothing happened');
+  });
+
+  test('once attempted, hints fill the word from the front', async () => {
+    const app = await bootApp('?list=german&words=12&seed=hint1');
+    const { document: doc, window: win } = app;
+    doc.getElementById('hintBtn').click();       // the alternative clue
+
+    // a wrong letter counts as an attempt, and should itself be corrected
+    const first = wordSquares(app)[0];
+    first.value = 'X';
+    first.dispatchEvent(new win.Event('input', { bubbles: true }));
+
+    doc.getElementById('hintBtn').click();
+    const afterOne = wordText(app);
+    assertNotEqual(afterOne[0], 'X', 'the wrong letter should have been put right');
+    assertEqual(afterOne.slice(1).replace(/\./g, ''), '', 'only the first square should be filled');
+
+    doc.getElementById('hintBtn').click();
+    const afterTwo = wordText(app);
+    assertEqual(afterTwo[0], afterOne[0], 'the first letter should not change');
+    assertNotEqual(afterTwo[1], '.', 'the second square should now be filled');
+    // Recall runs forwards, so hints extend the prefix rather than filling in gaps elsewhere.
+    assertEqual(afterTwo.slice(2).replace(/\./g, ''), '');
+  });
+
+  test('a square filled by a hint is marked as given, not as worked out', async () => {
+    const app = await bootApp('?list=german&words=12&seed=hint1');
+    const { document: doc, window: win } = app;
+    doc.getElementById('hintBtn').click();
+    const first = wordSquares(app)[0];
+    first.value = 'X';
+    first.dispatchEvent(new win.Event('input', { bubbles: true }));
+    doc.getElementById('hintBtn').click();
+    assertEqual(doc.querySelectorAll('#grid .cell.revealed').length, 1);
+  });
+
+  test('the finish says how much help was taken', async () => {
+    const clean = await bootApp('?list=english&words=2&seed=hfin');
+    if(solvePuzzle(clean)){
+      assertTrue(/no hints/i.test(clean.document.getElementById('celebrateSub').textContent),
+        'a puzzle solved unaided should say so');
+    }
+
+    const helped = await bootApp('?list=english&words=2&seed=hfin');
+    const { document: doc, window: win } = helped;
+    doc.getElementById('hintBtn').click();
+    const square = wordSquares(helped)[0];
+    square.value = 'Z';
+    square.dispatchEvent(new win.Event('input', { bubbles: true }));
+    doc.getElementById('hintBtn').click();
+    if(solvePuzzle(helped)){
+      const sub = doc.getElementById('celebrateSub').textContent;
+      assertTrue(/hint/i.test(sub), `the summary should mention hints, got "${sub}"`);
+      assertTrue(!/no hints/i.test(sub), 'it should not claim the puzzle was solved unaided');
+    }
+  });
+
+  test('hints already taken survive a reload', async () => {
+    const app = await bootApp('?list=german&words=12&seed=hkeep');
+    const { document: doc, window: win } = app;
+    doc.getElementById('hintBtn').click();
+    const clueAfterHint = activeClue(app);
+    const square = wordSquares(app)[0];
+    square.value = 'X';
+    square.dispatchEvent(new win.Event('input', { bubbles: true }));
+    doc.getElementById('hintBtn').click();
+    await waitFor(() => false, 400);
+
+    const again = await bootApp(app.window.location.search, { keepSavedState: true });
+    assertEqual(activeClue(again), clueAfterHint, 'the clue a hint added should come back');
+    assertEqual(again.document.querySelectorAll('#grid .cell.revealed').length, 1,
+      'a letter a hint gave should come back marked as given, and settled');
+    assertEqual(again.document.querySelector('#grid .cell.revealed input').readOnly, true);
+  });
+
+  // ---------- squares known to be right stay put ----------
+  test('a letter given by a hint cannot be typed over or deleted', async () => {
+    const app = await bootApp('?list=german&words=12&seed=hint1');
+    const { document: doc, window: win } = app;
+    doc.getElementById('hintBtn').click();                 // another clue
+    const first = wordSquares(app)[0];
+    typeInto(first, win, 'X');
+    doc.getElementById('hintBtn').click();                 // a letter, into the first square
+    const given = first.value;
+    assertTrue(given && given !== 'X', 'the hint should have corrected the first square');
+    assertEqual(first.readOnly, true);
+    typeInto(first, win, 'Q');
+    assertEqual(first.value, given, 'typing should not change a settled square');
+    first.dispatchEvent(new win.KeyboardEvent('keydown', { key: 'Backspace', bubbles: true }));
+    assertEqual(first.value, given, 'Backspace should not clear a settled square');
+    first.dispatchEvent(new win.KeyboardEvent('keydown', { key: 'Delete', bubbles: true }));
+    assertEqual(first.value, given, 'Delete should not clear a settled square');
+  });
+
+  test('Check answers settles the squares it marks right and leaves the wrong ones open', async () => {
+    const app = await bootApp('?list=german&words=12&seed=hint1');
+    const { document: doc, window: win } = app;
+    const squares = wordSquares(app);
+    const answer = Array.from(doc.querySelector('#printAnswerAcross li, #printAnswerDown li').textContent
+      .replace(/^\d+\.\s*/, ''));
+    // The active word is 1 across, whose answer is first in the key; put one right and one wrong.
+    typeInto(squares[0], win, answer[0]);
+    typeInto(squares[1], win, answer[1] === 'Q' ? 'X' : 'Q');
+    doc.getElementById('checkBtn').click();
+    assertEqual(squares[0].readOnly, true, 'a square marked right should be settled');
+    assertEqual(squares[1].readOnly, false, 'a square marked wrong should still be open');
+    typeInto(squares[1], win, answer[1]);
+    assertEqual(squares[1].value, answer[1], 'the wrong square should accept a correction');
+  });
+
+  test('typing at a settled square flows on to the next open one', async () => {
+    const app = await bootApp('?list=german&words=12&seed=hint1');
+    const { document: doc, window: win } = app;
+    doc.getElementById('hintBtn').click();
+    const squares = wordSquares(app);
+    typeInto(squares[0], win, 'X');
+    doc.getElementById('hintBtn').click();                 // settles squares[0]
+    squares[0].focus();
+    squares[0].dispatchEvent(new win.KeyboardEvent('keydown', { key: 'M', bubbles: true, cancelable: true }));
+    assertEqual(squares[1].value, 'M', 'the letter should have landed in the next open square');
+  });
+
+  test('a new puzzle starts with nothing settled', async () => {
+    const app = await bootApp('?list=german&words=12&seed=hint1');
+    const { document: doc, window: win } = app;
+    doc.getElementById('hintBtn').click();
+    typeInto(wordSquares(app)[0], win, 'X');
+    doc.getElementById('hintBtn').click();
+    assertTrue(doc.querySelector('#grid input[readonly]'), 'precondition: something settled');
+    doc.getElementById('generateBtn').click();
+    assertEqual(doc.querySelectorAll('#grid input[readonly]').length, 0);
+  });
+
+  // ---------- the learning record and smart mode ----------
+  const RECORD_KEY = 'crossword-trainer-record';
+  const readRecord = (app, listId) => {
+    const all = JSON.parse(app.window.localStorage.getItem(RECORD_KEY) || '{}');
+    return all[listId] || { words: {} };
+  };
+  const answersOf = (doc) => Array.from(doc.querySelectorAll('#printAnswerAcross li, #printAnswerDown li'))
+    .map((li) => li.textContent.replace(/^\d+\.\s*/, ''));
+  /** Types one wrong letter into the first square, so the puzzle counts as played. */
+  function touchPuzzle(app){
+    const input = app.document.querySelector('#grid .cell input');
+    typeInto(input, app.window, 'Q');
+  }
+
+  test('a puzzle nobody typed into is not judged when it is replaced', async () => {
+    const app = await bootApp('?list=english&words=6');
+    app.document.getElementById('generateBtn').click();
+    assertEqual(Object.keys(readRecord(app, 'english').words).length, 0);
+  });
+
+  test('leaving a puzzle half done marks its words missed, and solving one moves them up', async () => {
+    const app = await bootApp('?list=english&words=4');
+    const doc = app.document;
+    const first = answersOf(doc);
+    touchPuzzle(app);
+    doc.getElementById('generateBtn').click();
+    let record = readRecord(app, 'english');
+    for(const a of first){
+      assertTrue(record.words[a], `${a} should be in the record`);
+      assertEqual(record.words[a].box, 1, `${a} left blank should be in box 1`);
+      assertEqual(record.words[a].missed, 1);
+    }
+    const second = answersOf(doc);
+    if(!solvePuzzle(app)) return;
+    record = readRecord(app, 'english');
+    for(const a of second){
+      assertEqual(record.words[a].box, 2, `${a} solved unaided should have moved up`);
+      assertEqual(record.words[a].unaided, 1);
+    }
+  });
+
+  test('a hint holds a word in place and a failed check sends it back, even once corrected', async () => {
+    const app = await bootApp('?list=english&words=3');
+    const { document: doc, window: win } = app;
+    const across = doc.querySelector('#acrossList li') || doc.querySelector('#downList li');
+    across.click();
+    await waitFor(() => doc.activeElement && doc.activeElement.tagName === 'INPUT', 2000);
+    // Wrong letter, check, then take a hint on the same word.
+    const input = doc.activeElement;
+    typeInto(input, win, 'Q');
+    doc.getElementById('checkBtn').click();
+    const wid = across.dataset.wid || null;
+    doc.getElementById('hintBtn').click();     // rung one: another clue (a hint all the same)
+    if(!solvePuzzle(app)) return;
+    const record = readRecord(app, 'english');
+    const answers = answersOf(doc);
+    // The word we checked wrong is missed; every other word was solved by the fill, unaided.
+    const boxes = answers.map(a => record.words[a].box);
+    assertTrue(boxes.includes(1), 'the checked-wrong word should be back in box 1: ' + JSON.stringify(boxes));
+    assertTrue(boxes.includes(2), 'the untouched words should have gone up: ' + JSON.stringify(boxes));
+  });
+
+  test('Undo takes back the verdicts of the puzzle it brings back', async () => {
+    const app = await bootApp('?list=english&words=4');
+    const doc = app.document;
+    const first = answersOf(doc);
+    touchPuzzle(app);
+    doc.getElementById('generateBtn').click();
+    assertTrue(readRecord(app, 'english').words[first[0]], 'replacing should have judged the puzzle');
+    doc.getElementById('undoBtn').click();
+    const record = readRecord(app, 'english');
+    for(const a of first) assertTrue(!record.words[a], `${a} should have been struck from the record by Undo`);
+    // And the restored puzzle can still be finished and counted, once.
+    if(!solvePuzzle(app)) return;
+    assertEqual(readRecord(app, 'english').words[first[0]].box, 2);
+  });
+
+  test('a solved puzzle resumed after a reload is not counted a second time', async () => {
+    const app = await bootApp('?list=english&words=3');
+    if(!solvePuzzle(app)) return;
+    const answers = answersOf(app.document);
+    assertEqual(readRecord(app, 'english').words[answers[0]].seen, 1);
+    const again = await bootApp('?list=english&words=3', { keepSavedState: true });
+    assertEqual(answersOf(again.document).join('|'), answers.join('|'), 'should have resumed the same puzzle');
+    again.document.getElementById('generateBtn').click();
+    assertEqual(readRecord(again, 'english').words[answers[0]].seen, 1, 'replacing a resumed solved puzzle must not judge it again');
+  });
+
+  test('shareable mode: a seed names the same puzzle whatever the record says', async () => {
+    const app = await bootApp('?list=english&words=5&seed=abc123');
+    const before = answersOf(app.document).join('|');
+    // Poison the record: every word in the puzzle missed, plus a few others.
+    touchPuzzle(app);
+    app.document.getElementById('generateBtn').click();
+    const again = await bootApp('?list=english&words=5&seed=abc123', { keepSavedState: true });
+    assertEqual(answersOf(again.document).join('|'), before);
+    assertTrue(!again.window.location.search.includes('mode='), 'shareable is the default and says nothing');
+  });
+
+  test('smart mode: the link says so and carries no seed', async () => {
+    const app = await bootApp('?list=english&words=5&mode=smart');
+    const search = app.window.location.search;
+    assertTrue(search.includes('mode=smart'), search);
+    assertTrue(!search.includes('seed='), 'a smart puzzle has no seed to share: ' + search);
+    assertEqual(app.document.querySelector('#modeTabs [aria-selected="true"]').dataset.mode, 'smart');
+    assertTrue(/seen/.test(app.document.getElementById('pageTagline').textContent), 'the tagline should describe the record');
+  });
+
+  test('smart mode: the mode is remembered across visits', async () => {
+    await bootApp('?list=english&words=5&mode=smart');
+    const again = await bootApp('?list=english&words=5', { keepSavedState: true });
+    assertEqual(again.document.querySelector('#modeTabs [aria-selected="true"]').dataset.mode, 'smart');
+  });
+
+  test('smart mode: words missed come straight back in the next puzzle', async () => {
+    const app = await bootApp('?list=german_a2&words=8&mode=smart');
+    const doc = app.document;
+    const first = answersOf(doc);
+    touchPuzzle(app);
+    doc.getElementById('generateBtn').click();
+    const second = answersOf(doc);
+    const record = readRecord(app, 'german_a2');
+    // Eight missed words fill the whole priority share of a twelve-word pool, so every one of
+    // them is handed to the generator. It keeps whichever interlock - measured at about half
+    // when this was written - and the rest are recorded as skipped, which is what lifts them
+    // to the front of the next draw. Out of a list of over a thousand, chance alone would
+    // bring back none at all.
+    const back = first.filter(a => second.includes(a));
+    const skipped = first.filter(a => !second.includes(a) && record.words[a].skipped === 1);
+    assertEqual(back.length + skipped.length, first.length,
+      `every missed word should be back or skipped: back ${back.join(',')}; skipped ${skipped.join(',')}; of ${first.join(',')}`);
+    assertTrue(back.length >= 2, `expected at least a couple back, got ${back.length}`);
+  });
+
+  test('smart mode: a seed in the link is not honoured, because the words are yours alone', async () => {
+    const a = await bootApp('?list=english&words=5&mode=smart&seed=abc123');
+    const smartSearch = a.window.location.search;   // read now: the next boot reuses the frame
+    const b = await bootApp('?list=english&words=5&seed=abc123');
+    // Same seed; a shareable puzzle is fixed by it, a smart one is not obliged to match.
+    assertTrue(!smartSearch.includes('seed='), smartSearch);
+    assertTrue(b.window.location.search.includes('seed=abc123'), b.window.location.search);
+  });
+
+  test('each kind keeps its own puzzle: switching tabs parks one and brings back the other, untouched', async () => {
+    const app = await bootApp('?list=english&words=5');
+    const { document: doc, window: win } = app;
+    const tab = (mode) => doc.querySelector(`#modeTabs [data-mode="${mode}"]`);
+    typeInFirstCells(app, 'ABC');
+    const shareable = { typed: typedCells(doc), puzzle: puzzleId(doc) };
+
+    tab('smart').click();
+    assertEqual(tab('smart').getAttribute('aria-selected'), 'true');
+    assertTrue(win.location.search.includes('mode=smart'));
+    assertNotEqual(puzzleId(doc), shareable.puzzle, 'the smart tab should have built its own puzzle');
+    assertEqual(doc.getElementById('undoBtn').hidden, true, 'a parked puzzle is not a discarded one');
+    const judged = Object.values(readRecord(app, 'english').words).filter((e) => e.seen > 0).length;
+    assertEqual(judged, 0, 'a parked puzzle is not judged (skips from the smart draw are not verdicts)');
+    typeInFirstCells(app, 'XY');
+    const smart = { typed: typedCells(doc), puzzle: puzzleId(doc) };
+
+    tab('shareable').click();
+    assertEqual(puzzleId(doc), shareable.puzzle, 'the shareable puzzle should be back');
+    assertEqual(typedCells(doc), shareable.typed, 'with its letters');
+    assertTrue(!win.location.search.includes('mode='), 'and its address');
+    tab('smart').click();
+    assertEqual(puzzleId(doc), smart.puzzle);
+    assertEqual(typedCells(doc), smart.typed);
+  });
+
+  test('the tab labels show how far each puzzle has got', async () => {
+    const app = await bootApp('?list=english&words=3');
+    const doc = app.document;
+    const state = (mode) => doc.querySelector(`#modeTabs [data-mode="${mode}"] .tab-state`).textContent;
+    assertEqual(state('smart'), '', 'no smart puzzle yet');
+    assertEqual(state('shareable'), 'not started');
+    typeInFirstCells(app, 'A');
+    await waitFor(() => /\d+\/\d+/.test(state('shareable')), 1000);
+    assertTrue(/^1\/\d+$/.test(state('shareable')), `expected one letter of many, got "${state('shareable')}"`);
+    if(!solvePuzzle(app)) return;
+    await waitFor(() => state('shareable') === 'solved', 1000);
+    assertEqual(state('shareable'), 'solved');
+  });
+
+  test('both puzzles survive a reload, and the one on screen comes back on screen', async () => {
+    const app = await bootApp('?list=english&words=4');
+    const doc = app.document;
+    typeInFirstCells(app, 'AB');
+    const shareable = puzzleId(doc);
+    doc.querySelector('#modeTabs [data-mode="smart"]').click();
+    typeInFirstCells(app, 'Q');
+    const smart = puzzleId(doc);
+    await waitFor(() => false, 400);   // let the debounced save land
+
+    const again = await bootApp('?list=english&words=4', { keepSavedState: true });
+    assertEqual(puzzleId(again.document), smart, 'the smart puzzle was on screen and should be again');
+    again.document.querySelector('#modeTabs [data-mode="shareable"]').click();
+    assertEqual(puzzleId(again.document), shareable, 'the parked shareable puzzle should have survived too');
+  });
+
+  test('a seed link opens in the shareable tab and parks the smart puzzle rather than replacing it', async () => {
+    const app = await bootApp('?list=english&words=4&mode=smart');
+    const doc = app.document;
+    typeInFirstCells(app, 'ZZ');
+    const smart = puzzleId(doc);
+    await waitFor(() => false, 400);
+
+    const again = await bootApp('?list=english&words=4&seed=abc123', { keepSavedState: true });
+    assertEqual(again.document.querySelector('#modeTabs [aria-selected="true"]').dataset.mode, 'shareable');
+    assertTrue(again.window.location.search.includes('seed=abc123'));
+    again.document.querySelector('#modeTabs [data-mode="smart"]').click();
+    assertEqual(puzzleId(again.document), smart, 'the smart puzzle should have been waiting in its tab');
+  });
+
+  test('Undo of a puzzle from the other kind goes back to that kind', async () => {
+    const app = await bootApp('?list=english&words=4');
+    const doc = app.document;
+    typeInFirstCells(app, 'AB');
+    const first = puzzleId(doc);
+    doc.getElementById('generateBtn').click();                       // shareable: first -> second
+    doc.querySelector('#modeTabs [data-mode="smart"]').click();      // now in smart
+    doc.getElementById('undoBtn').click();
+    assertEqual(doc.querySelector('#modeTabs [aria-selected="true"]').dataset.mode, 'shareable', 'undo should switch back');
+    assertEqual(puzzleId(doc), first);
+  });
+
+  test('the sheet lists both kinds with their state and offers to continue or start afresh', async () => {
+    const app = await bootApp('?list=english&words=3');
+    const doc = app.document;
+    typeInFirstCells(app, 'A');
+    doc.getElementById('menuModeBtn').click();
+    const sheet = doc.getElementById('modeSheet');
+    assertEqual(sheet.hidden, false);
+    const rows = Array.from(sheet.querySelectorAll('.mode-row'));
+    assertEqual(rows.length, 2);
+    assertTrue(rows[0].classList.contains('active'));
+    assertTrue(/\d+\/\d+/.test(rows[0].querySelector('.mode-state').textContent));
+    assertEqual(rows[1].querySelector('.mode-state').textContent, 'nothing yet');
+    const buttons = Array.from(rows[1].querySelectorAll('button')).map((b) => b.textContent);
+    assertEqual(buttons.join(','), 'Continue,New');
+    assertEqual(rows[1].querySelector('button').disabled, true, 'nothing to continue yet');
+    rows[1].querySelectorAll('button')[1].click();                  // New, in smart
+    assertEqual(sheet.hidden, true);
+    assertEqual(doc.querySelector('#modeTabs [aria-selected="true"]').dataset.mode, 'smart');
   });
 }

@@ -160,6 +160,49 @@
     return cyrb53(bank.map(w => w.answer).join(RECORD_SEP));
   }
 
+  // ---------- clue quality ----------
+  // Some clues print the answer they are asking for. The German B1 list is full of conjugation
+  // drills built from the infinitive - "wir ___ (wissen, 'to know (a fact)': present tense)" for
+  // WISSEN - which hands the solver the word outright, and a few dozen more give the stem with an
+  // ending still attached ("ich ___ (mieten, ...)" for MIETE).
+  //
+  // A token has to be the answer, or the answer plus an ending. Matching a bare substring would
+  // be far too eager: two- and three-letter answers hide inside ordinary words all the time,
+  // hence the length floors. The ending case needs four characters before it is safe.
+  function clueRevealsAnswer(answer, clue){
+    if(typeof answer !== 'string' || typeof clue !== 'string') return false;
+    const target = answer.toLowerCase();
+    if(target.length < 3) return false;
+    const tokens = clue.toLowerCase().match(/\p{L}+/gu);
+    if(!tokens) return false;
+    for(const token of tokens){
+      if(token === target) return true;
+      if(target.length >= 4 && token.startsWith(target)) return true;
+    }
+    return false;
+  }
+
+  /**
+   * Chooses a clue for `word` using one draw from `rnd`, skipping past any that print the answer.
+   *
+   * Deliberately takes its draw first and then walks, rather than filtering the list and drawing
+   * from what is left. Filtering would change how many clues each word appears to have, and the
+   * draw is scaled by exactly that number - so every seed anyone has already shared would start
+   * showing different clues, and a loaded list's fingerprint would change too. Walking on from
+   * the drawn index leaves the arithmetic alone and only replaces the clues that were spoiling
+   * the puzzle. If every clue for a word gives it away, the drawn one stands: a revealed answer
+   * beats no clue at all.
+   */
+  function pickClue(word, rnd){
+    const clues = word.clues;
+    const start = Math.floor(rnd() * clues.length);
+    for(let i = 0; i < clues.length; i++){
+      const candidate = clues[(start + i) % clues.length];
+      if(!clueRevealsAnswer(word.answer, candidate)) return candidate;
+    }
+    return clues[start];
+  }
+
   const SEED_ALPHABET = 'abcdefghijklmnopqrstuvwxyz0123456789';
   const SEED_LENGTH = 6;
   /** A fresh seed, short enough to read out loud or type from a printed sheet. */
@@ -280,9 +323,16 @@
       minC = Math.min(minC, col); maxC = Math.max(maxC, endC);
     }
 
-    // A placement beats another if it crosses more letters, or - for a tie on crossings -
-    // if it results in a smaller overall grid. Crossings come first because a denser, more
-    // interlocked grid also tends to end up more compact on its own; area only breaks ties.
+    // A placement beats another if it crosses more letters, or - for a tie on crossings - if it
+    // keeps the grid smaller.
+    //
+    // A third term was tried here and removed: preferring placements that leave more room for
+    // later words to cross them. It measured worse on every count that matters. Counting open
+    // squares favours long words, which have more of them, so it became a length bonus in
+    // disguise - mean word length rose a full letter above the bank's own average and the number
+    // of distinct words ever seen fell by a tenth - and the share of checked letters did not
+    // improve at all. Normalising by word length changed nothing, because the comparison that
+    // decides most placements is between spots for the same word.
     function better(a, b){
       if(!b) return true;
       if(a.crossCount !== b.crossCount) return a.crossCount > b.crossCount;
@@ -441,6 +491,29 @@
     return subset;
   }
 
+  /**
+   * How many squares belong to two words at once.
+   *
+   * The measure of a crossword, really: a letter shared between an across word and a down one is
+   * checked, and a solver who does not know a word can still recover it from what crosses it. A
+   * grid can be small and still be a handful of separate words lying near each other.
+   */
+  function countCrossings(placements){
+    const owners = new Map();
+    for(const p of placements){
+      const len = p.letters ? p.letters.length : p.len;
+      for(let i=0;i<len;i++){
+        const r = p.dir==='across' ? p.row : p.row+i;
+        const c = p.dir==='across' ? p.col+i : p.col;
+        const k = key(r,c);
+        owners.set(k, (owners.get(k) || 0) + 1);
+      }
+    }
+    let crossings = 0;
+    for(const count of owners.values()) if(count > 1) crossings++;
+    return crossings;
+  }
+
   // Shared bounding-box calculation, used both to size the final grid and to compare
   // candidate layouts by area.
   function computeBounds(placements){
@@ -455,16 +528,18 @@
     return { minR, minC, rows: maxR-minR+1, cols: maxC-minC+1 };
   }
 
-  // How many differently-shuffled layouts to try before settling on the smallest. This used to be
-  // a wall-clock budget, which adapted nicely to machine speed but meant a fast computer tried
-  // more layouts than a slow one and therefore produced a *different* puzzle from the same
-  // inputs. A seed that only reproduces a puzzle on hardware like yours is not worth having, so
-  // the count is now a pure function of the target instead.
+  // How many differently-shuffled layouts to try before settling on the smallest.
   //
-  // The ladder tracks measured per-attempt cost on german.json (0.4ms at 5 words, 5.5ms at 20,
-  // 58ms at 40, 113ms at 60, 729ms at 120 - it grows far faster than the word count does), aiming
-  // to keep every size in roughly the same few-hundred-millisecond band. Wall-clock time still
-  // varies with the machine; which puzzle you get no longer does.
+  // A pure function of the target, deliberately, rather than however many fit in a time budget:
+  // a faster machine would try more layouts and settle on a different one, so the same seed would
+  // open a different puzzle depending on the hardware, which is no use in a shared link.
+  //
+  // The ladder tracks measured per-attempt cost on german.json - 0.4ms at 5 words, 5.5ms at 20,
+  // 58ms at 40, 113ms at 60, 729ms at 120, growing far faster than the word count does - to keep
+  // every size in roughly the same few-hundred-millisecond band. Wall-clock time still varies
+  // with the machine; which puzzle you get does not.
+  const OVERDRAW = 1.5;
+
   function attemptsFor(target){
     if(target <= 10) return 120;
     if(target <= 15) return 60;
@@ -492,22 +567,63 @@
     const target = Math.min(targetCount, bank.length);
     const attempts = Math.max(1, options.attempts || attemptsFor(target));
 
-    // Which words appear is decided once, uniformly at random - not re-rolled per attempt, or
-    // whichever random sample happens to be easier to interlock would win more often, silently
-    // favoring some vocabulary over the rest across repeated generations.
-    const subset = pickRandomSubset(bank, target, maxCols, rnd);
+    // Draw rather more words than the puzzle needs and let placement keep the ones that fit
+    // together, stopping once it has enough.
+    //
+    // The pool is still drawn uniformly, and once per build rather than per attempt: re-rolling
+    // per attempt would let whichever sample interlocked most easily win, and awkward vocabulary
+    // - the sort that most wants practising - would quietly stop appearing. Over-drawing pulls in
+    // the same direction, which is why the margin is small. It buys a denser grid and removes the
+    // need to scatter unplaceable words about in regions of their own; a wider margin would buy a
+    // little more at the cost of only ever showing the words that interlock easily.
+    const poolSize = Math.min(bank.length, Math.ceil(target * (options.overdraw || OVERDRAW)));
+    const subset = pickRandomSubset(bank, poolSize, maxCols, rnd);
 
-    let best = null, bestArea = Infinity, bestPlacedCount = -1;
+    // Attempts are ranked by how many words got placed, then by how interlocked they are, and
+    // only then by how small the grid came out. Area alone was a poor proxy: it rewards packing
+    // words tightly together whether or not they actually cross, and a crossword whose words do
+    // not cross is a word search.
+    // `required` names words the caller will not have dropped, whatever it costs the grid: an
+    // attempt that seats more of them beats one that seats fewer, before anything else is
+    // weighed. Without it a word the grid finds awkward is drawn and discarded for ever - over a
+    // simulated year of daily puzzles, 95 words of 1000 were drawn repeatedly and never once
+    // placed. Nothing passes this unless it means to; a puzzle built for its own sake does not.
+    const required = options.required instanceof Set ? options.required : null;
+    const requiredIn = (placements) => {
+      if(!required) return 0;
+      let n = 0;
+      for(const p of placements) if(required.has(p.word.answer)) n++;
+      return n;
+    };
+
+    let best = null, bestArea = Infinity, bestPlacedCount = -1, bestCrossings = -1, bestRequired = -1;
     for(let i=0;i<attempts;i++){
-      // What varies between attempts is purely the processing order of this same fixed subset -
-      // attemptPlacement's disjoint-region fallback means the whole subset gets placed regardless
-      // of order, so different shuffles just explore different resulting layouts.
-      const result = attemptPlacement(shuffle(subset, rnd), target, maxCols);
+      // What varies between attempts is purely the processing order of the same pool - different
+      // shuffles explore different layouts.
+      //
+      // Required words go to the head of that order, because placement is greedy and the order
+      // is what decides: the first word seats the grid outright, and the words after it are
+      // fitted against whatever is already down. Ranking attempts by how many required words
+      // they seated turned out to change nothing on its own - a word the grid finds awkward was
+      // simply never seated by *any* attempt, so there was nothing better to choose. Trying it
+      // while the grid is still open is what actually gets it in.
+      const order = shuffle(subset, rnd);
+      const result = attemptPlacement(
+        required ? order.slice().sort((a, b) => (required.has(b.answer) ? 1 : 0) - (required.has(a.answer) ? 1 : 0)) : order,
+        target, maxCols);
       const bounds = computeBounds(result.placements);
       const placedCount = result.placements.length;
+      const crossings = countCrossings(result.placements);
       const area = bounds.rows * bounds.cols;
-      if(!best || placedCount > bestPlacedCount || (placedCount === bestPlacedCount && area < bestArea)){
-        best = result; bestPlacedCount = placedCount; bestArea = area;
+      const requiredCount = requiredIn(result.placements);
+      const better = !best
+        || requiredCount > bestRequired
+        || (requiredCount === bestRequired && placedCount > bestPlacedCount)
+        || (requiredCount === bestRequired && placedCount === bestPlacedCount && crossings > bestCrossings)
+        || (requiredCount === bestRequired && placedCount === bestPlacedCount && crossings === bestCrossings && area < bestArea);
+      if(better){
+        best = result; bestPlacedCount = placedCount; bestCrossings = crossings; bestArea = area;
+        bestRequired = requiredCount;
       }
     }
 
@@ -557,6 +673,8 @@
     makeRng,
     wordListFingerprint,
     wordListShape,
+    clueRevealsAnswer,
+    pickClue,
     randomSeed,
     isValidSeed,
     shuffle,
@@ -565,6 +683,8 @@
     attemptPlacement,
     pickRandomSubset,
     computeBounds,
+    countCrossings,
+    OVERDRAW,
     buildCrossword,
     trimAndIndex,
     numberGrid

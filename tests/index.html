@@ -58,6 +58,9 @@
   <h2>crossword-engine.js - pure generation logic</h2>
   <ul id="engineResults"></ul>
 
+  <h2>learning-record.js - Leitner rules and the biased draw</h2>
+  <ul id="recordResults"></ul>
+
   <h2>index.html - interactive app (via a hidden iframe)</h2>
   <ul id="appResults"></ul>
 
@@ -75,9 +78,11 @@
   <iframe id="appFrame" title="app under test"></iframe>
 
   <script src="../crossword-engine.js"></script>
+  <script src="../learning-record.js"></script>
   <script src="mini-test.js"></script>
   <script src="app-helpers.js"></script>
   <script src="engine-tests.js"></script>
+  <script src="record-tests.js"></script>
   <script src="app-tests.js"></script>
   <script src="perf-bench.js"></script>
   <script>
@@ -96,6 +101,10 @@
     registerEngineTests(engineRunner.test);
     const engineResult = await engineRunner.run(document.getElementById('engineResults'));
 
+    const recordRunner = createRunner();
+    registerRecordTests(recordRunner.test);
+    const recordResult = await recordRunner.run(document.getElementById('recordResults'));
+
     const appRunner = createRunner();
     registerAppTests(appRunner.test);
     const appResult = await appRunner.run(document.getElementById('appResults'));
@@ -108,9 +117,9 @@
       document.getElementById('perfNote').textContent = 'Skipped (?perf=0).';
     }
 
-    const passed = engineResult.passed + appResult.passed;
-    const failed = engineResult.failed + appResult.failed;
-    const total = engineResult.total + appResult.total;
+    const passed = engineResult.passed + recordResult.passed + appResult.passed;
+    const failed = engineResult.failed + recordResult.failed + appResult.failed;
+    const total = engineResult.total + recordResult.total + appResult.total;
 
     summaryEl.textContent = `${passed} passed, ${failed} failed (${total} total)`;
     summaryEl.className = failed > 0 ? 'bad' : 'ok';

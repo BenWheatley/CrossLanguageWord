@@ -2,8 +2,19 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- viewport-fit=cover so the fixed layout can reach the edges of a notched screen; the
+     stylesheet then keeps content clear of the notch and the home indicator itself. -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Crossword Trainer</title>
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#F3EFE6">
+<meta name="description" content="Cross-language vocabulary crosswords.">
+<!-- Kept on a home screen, iOS uses these rather than the manifest. -->
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Crossword">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
@@ -15,10 +26,21 @@
       <h1 id="pageTitle">Crossword Trainer</h1>
       <div class="tagline" id="pageTagline">load a word list to begin</div>
     </div>
+    <!-- Narrow screens only: which kind of puzzle is on screen, and the way to the others.
+         On a wide screen the tabs below do this and the chip is hidden. -->
+    <button id="modeChip" class="secondary mode-chip no-print" aria-haspopup="dialog" aria-expanded="false">Shareable ▾</button>
   </header>
 
+  <!-- One puzzle in progress per kind. Wide screens only; the chip above serves a phone. -->
+  <div id="modeTabs" class="mode-tabs no-print" role="tablist" aria-label="Which puzzle">
+    <button role="tab" data-mode="shareable" aria-selected="true"><span class="tab-name">Shareable</span><span class="tab-state"></span></button>
+    <button role="tab" data-mode="smart" aria-selected="false"><span class="tab-name">Smart</span><span class="tab-state"></span></button>
+  </div>
+
   <div class="toolbar no-print">
-    <div class="hamburger-wrap">
+    <!-- no-print on the wrap itself, not just the toolbar around it: on a narrow screen this
+         moves into the title row, and would otherwise print. -->
+    <div class="hamburger-wrap no-print">
       <button id="hamburgerBtn" class="secondary hamburger-btn" aria-label="Options" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
@@ -40,20 +62,77 @@
           <label for="wordCount">Words in puzzle</label>
           <input type="number" id="wordCount" min="2" max="120" value="15">
         </div>
+        <div class="field">
+          <label for="menuModeBtn">Puzzle</label>
+          <button id="menuModeBtn" class="secondary" aria-haspopup="dialog">Shareable — switch…</button>
+        </div>
+        <!-- Only while the program is running in an ordinary browser tab, and only where this
+             one can actually be installed. Hidden once it is being run from the home screen. -->
+        <div class="field" id="installField" hidden>
+          <label for="installMenuBtn">This app</label>
+          <button id="installMenuBtn" class="secondary">Install this app</button>
+        </div>
         <label class="check-field">
           <input type="checkbox" id="printAnswers"> Show my typed answers when printing, instead of a blank puzzle
         </label>
         <label class="check-field">
           <input type="checkbox" id="printKey" checked> Print the answer key at the foot of the sheet
         </label>
+        <!-- On a narrow screen the toolbar buttons are moved in here, so the row of controls
+             above the puzzle collapses to a single options button. See applyCompactLayout. -->
+        <div id="menuActions"></div>
       </div>
     </div>
+    <button id="hintBtn" class="secondary" disabled>Hint</button>
     <button id="checkBtn" class="secondary" disabled>Check answers</button>
     <button id="printBtn" class="secondary" disabled>Print</button>
     <button id="generateBtn" disabled>New crossword</button>
   </div>
 
-  <div id="status" class="no-print" role="status" aria-live="polite"></div>
+  <div id="statusRow" class="no-print">
+    <div id="status" role="status" aria-live="polite"></div>
+    <button id="undoBtn" class="secondary" hidden>Undo new puzzle</button>
+  </div>
+
+  <!-- The two kinds of puzzle, each with its state and a way to continue or start afresh. Opened
+       from the chip on a phone and from the options menu anywhere. -->
+  <div id="modeSheet" class="no-print" role="dialog" aria-modal="true" aria-labelledby="modeSheetTitle" hidden>
+    <div class="mode-sheet-panel">
+      <h2 id="modeSheetTitle">Which puzzle?</h2>
+      <div id="modeSheetRows"></div>
+      <button id="modeSheetClose" class="secondary">Close</button>
+    </div>
+  </div>
+
+  <!-- A phone on its side has no room for a puzzle once the keyboard is up, and iOS will not let
+       a web app ask to be held upright, so ask in words. Touch screens only, by the stylesheet. -->
+  <div id="rotateNotice" class="no-print" aria-hidden="true">
+    <div><span class="rotate-glyph">⟳</span>Turn your phone upright to play.</div>
+  </div>
+
+  <!-- Offered once, on the first visit where the offer can actually be made. Android and desktop
+       Chromium hand us a real prompt to open; iOS hands us nothing at all, so there the panel can
+       only say where the button is. -->
+  <div id="installBanner" class="no-print" hidden>
+    <p id="installBannerText"></p>
+    <p id="installDirections" hidden>
+      Tap
+      <span class="share-glyph" aria-hidden="true">
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M10 2.5v9"/><path d="M6.8 5.3 10 2.2l3.2 3.1"/><path d="M5.2 8.6H4.1v8.4h11.8V8.6h-1.1"/>
+        </svg>
+      </span>
+      <strong>Share</strong> in the browser's toolbar, then choose <strong>Add to Home Screen</strong>.
+    </p>
+    <button id="installAcceptBtn">Install</button>
+    <button id="installDismissBtn" class="secondary">Not now</button>
+  </div>
+
+  <div id="widePrompt" class="no-print" hidden>
+    <p id="widePromptText"></p>
+    <button id="widePlayBtn" class="secondary">Play it as it is</button>
+    <button id="wideFitBtn">Make one that fits</button>
+  </div>
 
   <div id="listPrompt" class="no-print" hidden>
     <p id="listPromptText"></p>
@@ -62,14 +141,14 @@
   </div>
 
   <div class="board-area">
-    <div id="gridHost">
+    <div id="gridHost" role="region" aria-label="Puzzle" tabindex="-1">
       <div id="grid" role="group" aria-label="Crossword grid"></div>
       <div id="dirPopup" role="group" aria-label="Which word do you mean?">
         <button data-dir="across">→ Across</button>
         <button data-dir="down">↓ Down</button>
       </div>
     </div>
-    <div class="clues">
+    <div class="clues" role="region" aria-label="Clues">
       <div class="clue-col">
         <h2 id="acrossHeading">Across</h2>
         <ul class="clue-list" id="acrossList" aria-labelledby="acrossHeading"></ul>
@@ -109,6 +188,7 @@
 </div>
 
 <script src="crossword-engine.js"></script>
+<script src="learning-record.js"></script>
 <script>
 (function(){
   "use strict";
@@ -127,8 +207,21 @@
   const STORAGE_KEY = 'crossword-trainer-state';
   const SAVE_VERSION = 5; // bumped when custom lists moved into their own keyed store
   const LIBRARY_KEY = 'crossword-trainer-lists';
+  const RECORD_KEY = 'crossword-trainer-record';   // what the trainer remembers about each word
+  const MODE_KEY = 'crossword-trainer-mode';       // which kind of puzzle is on screen
+  const PARKED_KEY = 'crossword-trainer-parked';   // the other kind's puzzle, waiting its turn
+  const MODES = { shareable: 'shareable', smart: 'smart' };
+  const MODE_LABEL = { shareable: 'Shareable', smart: 'Smart' };
+  const MODE_BLURB = { shareable: 'One puzzle for everyone with the link', smart: 'Learns what you miss and asks again' };
+  let puzzleMode = MODES.shareable;
+  // One puzzle in progress per kind. The one on screen lives in the grid; the other is kept here
+  // as a saved snapshot, exactly as it would be saved for a reload, and swapped back in whole.
+  let parked = {};
+  let checkedWrong = {};       // wid -> true once "Check answers" has ever marked that word wrong
+  let recordCommitted = false; // this puzzle's outcomes have been written to the record
   let pendingRestore = null; // a saved puzzle waiting to be restored on first load, if any
   let pendingSeed = null;    // a seed from the URL, waiting for the word list to finish loading
+  let pendingBudget = null;  // and the column budget it was built against, if the link named one
   let saveTimer = null;
   let bestTimeSeconds = null; // best solve time this session (not persisted)
   let currentListId = null; // an id from LISTS, or CUSTOM_LIST_ID for a file the reader loaded
@@ -137,6 +230,14 @@
   let currentListLanguage = null;
   let currentListSum = null;   // fingerprint of the loaded list, when there is one
   let currentListShape = null; // hash of just its answers - see the engine's note on the two
+
+  // What the puzzle on screen actually is, as opposed to where the controls currently stand.
+  // The two part company during a change: picking a new word list sets currentListId and loads a
+  // bank before the new puzzle exists, and the word-count field has already moved by the time the
+  // rebuild it triggers runs. Anything describing the visible puzzle - what gets saved, and what
+  // undo has to put back - has to read from here, or it will label the outgoing puzzle with the
+  // incoming puzzle's settings.
+  let currentPuzzle = null; // {list, sum, words, seed, title, language, shape}
 
   // A list the reader loaded from their own file has no URL to fetch it back from, so the link
   // names it by fingerprint instead and the words are kept in a store of their own, keyed the
@@ -155,14 +256,37 @@
   const celebrateCloseBtn = document.getElementById('celebrateCloseBtn');
   const fireworksCanvas = document.getElementById('fireworksCanvas');
   const wordCountInput = document.getElementById('wordCount');
+  const modeTabs = document.getElementById('modeTabs');
+  const modeChip = document.getElementById('modeChip');
+  const menuModeBtn = document.getElementById('menuModeBtn');
+  const modeSheet = document.getElementById('modeSheet');
+  const modeSheetRows = document.getElementById('modeSheetRows');
+  const modeSheetClose = document.getElementById('modeSheetClose');
+  const installBanner = document.getElementById('installBanner');
+  const installBannerText = document.getElementById('installBannerText');
+  const installDirections = document.getElementById('installDirections');
+  const installAcceptBtn = document.getElementById('installAcceptBtn');
+  const installDismissBtn = document.getElementById('installDismissBtn');
+  const installField = document.getElementById('installField');
+  const installMenuBtn = document.getElementById('installMenuBtn');
   const generateBtn = document.getElementById('generateBtn');
   const printBtn = document.getElementById('printBtn');
   const checkBtn = document.getElementById('checkBtn');
+  const hintBtn = document.getElementById('hintBtn');
   const printAnswersCk = document.getElementById('printAnswers');
   const printKeyCk = document.getElementById('printKey');
   const hamburgerBtn = document.getElementById('hamburgerBtn');
+  const hamburgerWrap = document.querySelector('.hamburger-wrap');
+  const menuActions = document.getElementById('menuActions');
+  const toolbarEl = document.querySelector('.toolbar');
+  const headerEl = document.querySelector('header.app-head');
   const optionsMenu = document.getElementById('optionsMenu');
   const statusEl = document.getElementById('status');
+  const undoBtn = document.getElementById('undoBtn');
+  const widePrompt = document.getElementById('widePrompt');
+  const widePromptText = document.getElementById('widePromptText');
+  const widePlayBtn = document.getElementById('widePlayBtn');
+  const wideFitBtn = document.getElementById('wideFitBtn');
   const listPrompt = document.getElementById('listPrompt');
   const listPromptText = document.getElementById('listPromptText');
   const listPromptFresh = document.getElementById('listPromptFresh');
@@ -181,8 +305,10 @@
   // ---------- crossword generation engine (crossword-engine.js) ----------
   const {
     toUpperGrapheme, normalizeText, graphemes, key, makeRng, randomSeed, isValidSeed,
-    wordListFingerprint, wordListShape, buildCrossword, trimAndIndex, numberGrid
+    wordListFingerprint, wordListShape, pickClue, buildCrossword, trimAndIndex, numberGrid,
+    OVERDRAW, clueRevealsAnswer
   } = CrosswordEngine;
+  const Record = LearningRecord;
 
   // ---------- word lists ----------
   // One table, so the <select>, the ?list= parameter and the saved-state check can never disagree
@@ -191,16 +317,17 @@
     english:           { file: 'example.json',                label: 'English' },
     german_a2:         { file: 'Deutsch-A2.json',             label: 'Deutsch A2' },
     german:            { file: 'german.json',                 label: 'Deutsch B1' },
-    german_to_english: { file: 'deutsch-fragen-english.json', label: 'Deutsch B1 \u2192 Englisch' }
+    // `short` is for the title row of a phone, where the label has to share a line with two
+    // buttons: 'Deutsch B1 → Englisch' is 270px at that size and leaves room for neither.
+    german_to_english: { file: 'deutsch-fragen-english.json', label: 'Deutsch B1 \u2192 Englisch', short: 'B1 \u2192 Englisch' }
   };
   const DEFAULT_LIST = 'german';
   const DEFAULT_WORDS = 15;
-  // Generation cost climbs far faster than the word count does - roughly cubically, because each
-  // of the target placements rescans a grid that is itself growing. Measured on german.json:
-  // 50 words 177ms, 100 words 354ms, 200 words 2.2s, 400 words 17.3s. It is all synchronous, so
-  // those are frozen-tab seconds with no spinner and no way to cancel, and the word-count field
-  // used to offer the whole bank (1000) as its maximum while regenerating on every change.
-  // 120 keeps the worst case near a second and is already far more crossword than fits a page.
+  // Generation cost climbs far faster than the word count does - roughly cubically, since each
+  // placement rescans a grid that is itself growing. Measured on german.json: 50 words 177ms,
+  // 100 words 354ms, 200 words 2.2s, 400 words 17.3s. It is synchronous, so those are frozen-tab
+  // seconds with no spinner and no way to cancel. 120 keeps the worst case near a second, and is
+  // already more crossword than fits on a page.
   const MAX_WORDS = 120;
   function clampWordCount(n){
     return Math.max(2, Math.min(n, MAX_WORDS, wordBank.length || MAX_WORDS));
@@ -442,14 +569,52 @@
 
   // Whatever the app should do once a bank is in place on first load: pick up the puzzle that was
   // in progress, or build the one the link asked for.
+  // A puzzle's width is fixed when it is built, against the screen it was built on, so one
+  // carried to a narrower screen - a desktop puzzle picked up on a phone - does not fit. Making
+  // it fit would mean either shrinking the squares or scrolling sideways, and which of those is
+  // the lesser evil depends on why the reader opened it: to solve this exact puzzle alongside
+  // somebody else, or just to have a crossword. So ask, rather than decide for them.
+  //
+  // Answering once settles it for the visit; being asked on every link would be tiresome.
+  let alwaysPlayWide = false;
+
+  function puzzleIsTooWide(){
+    return rows > 0 && cols > computeMaxCols();
+  }
+
+  function offerWideChoice(){
+    // The puzzle is already on screen behind this, so the choice is made looking at the thing
+    // being chosen rather than at a description of it.
+    widePromptText.textContent = 'This puzzle was made for a wider screen. You can play it as it '
+      + 'is, scrolling sideways to see all of it, or have one built to fit - the same words and '
+      + 'the same clues, arranged differently.';
+    widePrompt.hidden = false;
+  }
+
+  function hideWideChoice(){ widePrompt.hidden = true; }
+
+  widePlayBtn.addEventListener('click', () => {
+    alwaysPlayWide = true;
+    hideWideChoice();
+    restoreFocusToCurrentCell();
+  });
+
+  wideFitBtn.addEventListener('click', () => {
+    hideWideChoice();
+    // The same words and clues, at this screen's width.
+    generate(currentSeed, computeMaxCols(), true);
+  });
+
   function startPuzzle(){
     if(pendingRestore){
       restoreFromSaved(pendingRestore);
       pendingRestore = null;
     } else {
-      generate(pendingSeed);
+      generate(pendingSeed, pendingBudget);
     }
     pendingSeed = null;
+    pendingBudget = null;
+    if(!alwaysPlayWide && puzzleIsTooWide()) offerWideChoice();
   }
 
   // Everything that happens once a bank of words is ready, whoever produced it: a fetched file, a
@@ -459,18 +624,35 @@
     wordBank = words;
     currentListTitle = title;
     currentListLanguage = language || null;
-    pageTitle.textContent = title;
+    renderTitle();
     document.documentElement.lang = language || 'en';
-    pageTagline.textContent = wordBank.length + ' words available';
+    updateTagline();
     wordCountInput.max = Math.min(MAX_WORDS, wordBank.length);
     wordCountInput.value = clampWordCount(parseInt(wordCountInput.value, 10) || DEFAULT_WORDS);
     generateBtn.disabled = false;
     setStatus('');
   }
 
+  // A list's own title can run long - "Deutsch B1: Fragen auf Deutsch, Antworten auf Englisch"
+  // wrapped to three lines on a phone and pushed the options button onto a fourth, which cost
+  // more of the screen than the whole toolbar had. On a narrow screen the bundled lists show the
+  // short label from the menu instead; a loaded file has no short label, so its title is cut to
+  // the line with an ellipsis by the stylesheet.
+  function renderTitle(){
+    const entry = compactLayout.matches && currentListId ? LISTS[currentListId] : null;
+    const short = entry ? (entry.short || entry.label) : null;
+    pageTitle.textContent = short || currentListTitle;
+    pageTitle.title = short && short !== currentListTitle ? currentListTitle : '';
+  }
+
   // ---------- render ----------
   function renderGrid(built, numbering){
     celebrated = false;
+    stopTimingWord();
+    hintsByWord = {};
+    cluesShownFor = {};
+    timeByWord = {};
+    lastActivityAt = 0;
     gridEl.classList.remove('solved');
     rows = built.rows; cols = built.cols;
     gridData = built.grid;
@@ -530,6 +712,16 @@
         if(!cell) continue;
         cell.input.addEventListener('mousedown', (e) => { e.preventDefault(); onCellMouseDown(r,c); });
         cell.input.addEventListener('keydown', (e) => onKeyDown(e,r,c));
+        // Focus can arrive without the app putting it there: Tab and Shift+Tab walk the squares
+        // as ordinary form fields, and assistive technology moves between them too. Without this,
+        // the highlight and the current word stayed on whichever square the app last chose, so
+        // the board showed one word highlighted while the cursor sat in another - and it only
+        // sorted itself out once a letter was typed. Follow the focus wherever it comes from.
+        cell.input.addEventListener('focus', () => {
+          if(focusingProgrammatically) return;   // focusCell is already doing the bookkeeping
+          if(r === focusedR && c === focusedC) return;
+          focusCell(r, c);
+        });
         // Composing (dead-key accents like ¨+u→ü, or IME input) fires interim 'input' events
         // mid-sequence. If we react to those immediately and advance focus, the composition gets
         // cut short - the diacritic ends up stranded in the cell it started in. So: ignore 'input'
@@ -572,13 +764,23 @@
       n.className = 'n'; n.textContent = w.number;
       const t = document.createElement('span');
       t.textContent = w.clue;
+      // A clue given as a hint sits under the first rather than in its place: two descriptions
+      // of one word are worth more together than either alone, and the reader keeps whatever
+      // footing the first had already given them.
+      if(w.hintClue){
+        const extra = document.createElement('span');
+        extra.className = 'hint-clue';
+        extra.textContent = w.hintClue;
+        t.appendChild(extra);
+      }
       li.appendChild(n); li.appendChild(t);
       // A clue was a click target and nothing else: no tab stop, no keyboard activation, so
       // jumping to a word was mouse-only. role/tabindex plus Enter and Space make it operable
       // the way its appearance already implies.
       li.setAttribute('role', 'button');
       li.setAttribute('tabindex', '0');
-      li.setAttribute('aria-label', `${w.number} ${w.dir}, ${w.len} letters: ${w.clue}`);
+      li.setAttribute('aria-label', `${w.number} ${w.dir}, ${w.len} letters: ${w.clue}`
+        + (w.hintClue ? `; also: ${w.hintClue}` : ''));
       li.addEventListener('click', () => selectWord(w.dir, w.number, true));
       li.addEventListener('keydown', (e) => {
         if(e.key === 'Enter' || e.key === ' '){
@@ -643,8 +845,58 @@
     if(li){
       li.classList.add('active');
       li.setAttribute('aria-current', 'true');
-      if(typeof li.scrollIntoView === 'function') li.scrollIntoView({block:'nearest'});
+      revealClue(li);
     }
+  }
+
+  // Set while focusCell is moving the focus itself, so the focus listener on each square can tell
+  // the app's own moves from a Tab or a screen reader's and not undo the direction it just chose.
+  let focusingProgrammatically = false;
+
+  /**
+   * Brings a clue into view without moving the page.
+   *
+   * scrollIntoView cannot be used here. It scrolls every scrollable ancestor including the
+   * document, so on a phone - where the clues sit below the puzzle - selecting a square threw the
+   * page down to the clue list, and the focus() that followed a moment later dragged it back to
+   * the square. One tap, two jumps, and the grid leaving the screen in between.
+   *
+   * Where the clues are in a scrolling pane - which is how the narrow layout arranges them, and
+   * how a long list ends up on any width - scroll that pane and leave the page alone.
+   *
+   * Where they are not, the lists sit beside the grid and both move together, so scrolling the
+   * page to the clue is the right thing and is what the layout has always done. It is only when
+   * the clue is a screenful away from the square that the two scrolls become a visible fight,
+   * and that is exactly the case the pane now covers.
+   */
+  function revealClue(li){
+    let panel = li.parentElement;
+    while(panel && panel !== document.body){
+      const style = getComputedStyle(panel);
+      const scrolls = /(auto|scroll)/.test(style.overflowY) && panel.scrollHeight > panel.clientHeight;
+      if(scrolls) break;
+      panel = panel.parentElement;
+    }
+
+    if(!panel || panel === document.body){
+      if(typeof li.scrollIntoView === 'function') li.scrollIntoView({block:'nearest'});
+      return;
+    }
+
+    const item = li.getBoundingClientRect();
+    const view = panel.getBoundingClientRect();
+
+    // The list heading sticks to the top of the pane, so the first stretch of it is covered.
+    // Scrolling a clue to the very top would tuck it underneath; keep clear of it, and show a
+    // little of the clue before as well so the current one does not sit flush against the edge.
+    const heading = li.closest('.clue-col') && li.closest('.clue-col').querySelector('h2');
+    const covered = heading && getComputedStyle(heading).position === 'sticky'
+      ? heading.getBoundingClientRect().height
+      : 0;
+    const margin = covered + 8;
+
+    if(item.top < view.top + margin) panel.scrollTop -= (view.top + margin - item.top);
+    else if(item.bottom > view.bottom - 8) panel.scrollTop += (item.bottom - view.bottom + 8);
   }
 
   function focusCell(r,c,dir){
@@ -656,6 +908,8 @@
     let wid = currentDir==='across' ? cell.across : cell.down;
     if(!wid){ wid = cell.across || cell.down; currentDir = cell.across ? 'across' : 'down'; }
     currentWordKey = wid;
+    startTimingWord(wid);
+    updateHintButton();
     highlightWord(wid);
     cell.wrap.classList.add('active');
     // A modal dialog keeps focus. Filling the final square opens the celebration, and any input
@@ -663,8 +917,43 @@
     // the grid - would otherwise drag focus back out of the dialog and into the grid behind it.
     // The highlight still follows along; only the focus is withheld.
     if(!celebrateOverlay.classList.contains('show')){
-      cell.input.focus();
-      cell.input.select();
+      focusingProgrammatically = true;
+      try{
+        // preventScroll because the browser's own idea of revealing a field is to move it just
+        // far enough to be visible, which on a short pane leaves it against an edge. Place it
+        // deliberately instead.
+        cell.input.focus({ preventScroll: true });
+        cell.input.select();
+      } finally {
+        focusingProgrammatically = false;
+      }
+      centreCell(cell);
+    }
+  }
+
+  /**
+   * Scrolls the puzzle pane to put a square as near its middle as the ends allow.
+   *
+   * On a phone the pane is a few rows deep, so a square revealed at the edge leaves nothing of
+   * the word it belongs to in view. Centring shows what surrounds it, which is what a solver
+   * needs; clamping to the ends stops it scrolling past the edges of the grid to do so.
+   */
+  function centreCell(cell){
+    const pane = document.getElementById('gridHost');
+    if(!pane) return;
+    const scrollsVertically = pane.scrollHeight > pane.clientHeight;
+    const scrollsHorizontally = pane.scrollWidth > pane.clientWidth;
+    if(!scrollsVertically && !scrollsHorizontally) return;
+
+    const box = cell.wrap.getBoundingClientRect();
+    const view = pane.getBoundingClientRect();
+    if(scrollsVertically){
+      const offset = (box.top - view.top) - (pane.clientHeight - box.height) / 2;
+      pane.scrollTop = Math.max(0, Math.min(pane.scrollTop + offset, pane.scrollHeight - pane.clientHeight));
+    }
+    if(scrollsHorizontally){
+      const offset = (box.left - view.left) - (pane.clientWidth - box.width) / 2;
+      pane.scrollLeft = Math.max(0, Math.min(pane.scrollLeft + offset, pane.scrollWidth - pane.clientWidth));
     }
   }
 
@@ -679,7 +968,10 @@
     const w = placedWords.find(x => x.dir===dir && x.number===number);
     if(!w) return;
     currentDir = dir;
-    if(focusStart) focusCell(w.row, w.col, dir);
+    if(focusStart){
+      const start = firstEditableOf(w);
+      focusCell(start.r, start.c, dir);
+    }
   }
 
   function hideDirPopup(){
@@ -688,10 +980,15 @@
 
   function showDirPopup(r,c){
     const cell = cellAt(r,c);
+    const host = document.getElementById('gridHost');
     const wrapRect = cell.wrap.getBoundingClientRect();
-    const hostRect = document.getElementById('gridHost').getBoundingClientRect();
-    dirPopup.style.left = (wrapRect.left - hostRect.left) + 'px';
-    dirPopup.style.top = (wrapRect.bottom - hostRect.top + 4) + 'px';
+    const hostRect = host.getBoundingClientRect();
+    // The popup is absolutely positioned inside the host, so it is placed against the host's
+    // padding box rather than what is currently visible of it. On a phone the host is a scrolling
+    // pane, and without adding its scroll offset the popup would appear a screenful away from the
+    // square it belongs to.
+    dirPopup.style.left = (wrapRect.left - hostRect.left + host.scrollLeft) + 'px';
+    dirPopup.style.top = (wrapRect.bottom - hostRect.top + host.scrollTop + 4) + 'px';
     dirPopup.style.display = 'block';
     dirPopup.dataset.r = r; dirPopup.dataset.c = c;
   }
@@ -731,6 +1028,32 @@
     focusCell(r,c);
   }
 
+  // ---------- squares known to be right ----------
+  // A letter the program has vouched for - filled in by a hint, or marked correct by Check - is
+  // settled, and stays settled until the puzzle is replaced. Letting it be overtyped only ever
+  // turned a right answer into a wrong one, usually by accident on the way to the next square.
+  // `how` says which of the two vouched for it, so a reload can show the same mark.
+  function lockCell(cell, how){
+    cell.locked = how;
+    cell.input.readOnly = true;
+    cell.wrap.classList.add('locked', how);
+  }
+
+  /** The next square in the current word that can still be typed into, or null. */
+  function nextEditableInWord(r,c,dir,delta){
+    let pos = nextCellInWord(r,c,dir,delta);
+    while(pos && cellAt(pos.r,pos.c).locked) pos = nextCellInWord(pos.r,pos.c,dir,delta);
+    return pos;
+  }
+
+  /** Where typing should begin in a word: its first square, unless that one is settled. */
+  function firstEditableOf(word){
+    for(const s of squaresOf(word)){
+      if(s.cell && !s.cell.locked) return { r: s.r, c: s.c };
+    }
+    return { r: word.row, c: word.col };
+  }
+
   function nextCellInWord(r,c,dir,delta){
     const nr = dir==='across' ? r : r+delta;
     const nc = dir==='across' ? c+delta : c;
@@ -743,18 +1066,20 @@
   }
 
   function advanceAfterInput(r,c){
-    const next = nextCellInWord(r,c,currentDir,1);
+    const next = nextEditableInWord(r,c,currentDir,1);
     if(next){ focusCell(next.r, next.c, currentDir); return; }
     // reached end of word: jump to the next word in sequence (across list then down list)
     const idx = placedWords.findIndex(w => w.dir===currentDir && w.number === wordInfo(currentWordKey).number);
     if(idx >= 0){
       const nextWord = placedWords[(idx+1) % placedWords.length];
-      focusCell(nextWord.row, nextWord.col, nextWord.dir);
+      const start = firstEditableOf(nextWord);
+      focusCell(start.r, start.c, nextWord.dir);
     }
   }
 
   function onInput(e,r,c){
     const cell = cellAt(r,c);
+    if(cell.locked){ cell.input.value = gridData[r][c]; return; }
     // Uppercase first, then take the last grapheme - not the other way round. A cell holds one
     // letter, but uppercasing can lengthen what it is given: type ß and toUpperGrapheme returns
     // SS, which the old order wrote into the cell whole, leaving a two-character square that
@@ -765,6 +1090,7 @@
     const ch = g.length ? g[g.length-1] : '';
     cell.input.value = ch;
     cell.wrap.classList.remove('check-correct', 'check-incorrect');
+    noteActivity();
     if(ch) advanceAfterInput(r,c);
     checkAndCelebrate();
     scheduleSave();
@@ -780,12 +1106,21 @@
         if(!val) continue; // only mark cells the user actually filled in
         const letter = gridData[r][c];
         if(toUpperGrapheme(normalizeText(val)) === letter){
-          cell.wrap.classList.add('check-correct');
+          lockCell(cell, 'check-correct');
         } else {
           cell.wrap.classList.add('check-incorrect');
         }
       }
     }
+    // A word the check had to catch out is not one you knew, however it ends up. Remembered per
+    // word so the record can say so when the puzzle is done.
+    for(const word of placedWords){
+      const wid = word.dir + '-' + word.number;
+      if(squaresOf(word).some(s => s.cell && s.cell.wrap.classList.contains('check-incorrect'))){
+        checkedWrong[wid] = true;
+      }
+    }
+    scheduleSave();
   }
 
   function isSolved(){
@@ -808,12 +1143,41 @@
         gridEl.classList.remove('solved');
         void gridEl.offsetWidth; // force reflow so the pop animation can replay
         gridEl.classList.add('solved');
-        openCelebration();
+        openCelebration(commitOutcomes());
       }
     } else if(celebrated){
       celebrated = false;
       gridEl.classList.remove('solved');
     }
+  }
+
+  /**
+   * Which word gave the most trouble.
+   *
+   * Hints weigh far more than time, because a hint is a deliberate and unambiguous admission
+   * while time is noisy: the first word of a puzzle is always slow while the grid is being read,
+   * and the last are quick because the crossings have filled them in. Time is divided by the
+   * word's length, so a long word is not called hard merely for taking longer to type.
+   */
+  function hardestWord(){
+    stopTimingWord();               // fold in whatever the current word has accrued
+    let best = null, bestScore = 0;
+    for(const word of placedWords){
+      const wid = word.dir + '-' + word.number;
+      const hints = hintsByWord[wid] || 0;
+      const seconds = (timeByWord[wid] || 0) / 1000;
+      const score = hints * 20 + seconds / Math.max(1, word.len);
+      if(score > bestScore){ bestScore = score; best = { word, hints, seconds }; }
+    }
+    if(!best || bestScore < 3) return null;   // nothing stood out; better to say nothing
+    return { answer: best.word.answer, hints: best.hints, seconds: Math.round(best.seconds) };
+  }
+
+  function describeEffort(hardest){
+    const bits = [];
+    if(hardest.hints) bits.push(hardest.hints === 1 ? '1 hint' : hardest.hints + ' hints');
+    if(hardest.seconds >= 5) bits.push(formatTime(hardest.seconds));
+    return bits.join(', ') || 'no hints';
   }
 
   function formatTime(totalSeconds){
@@ -843,7 +1207,7 @@
     }
   }
 
-  function openCelebration(){
+  function openCelebration(recorded){
     const elapsedSeconds = puzzleStartTime ? Math.max(0, Math.round((Date.now() - puzzleStartTime)/1000)) : 0;
     celebrateTime.textContent = formatTime(elapsedSeconds);
     let sub = '';
@@ -853,7 +1217,19 @@
     } else {
       sub = 'Best this session: ' + formatTime(bestTimeSeconds);
     }
-    celebrateSub.textContent = sub;
+    // Say plainly what it took. Not to scold - so that "solved unaided" stays a true thing to
+    // have been told, and so the word that gave trouble is named while it is still in mind.
+    const hints = hintsUsedTotal();
+    const hardest = hardestWord();
+    const summary = [hints === 0 ? 'No hints' : hints === 1 ? 'One hint' : hints + ' hints'];
+    if(hardest) summary.push('hardest: ' + hardest.answer + ' (' + describeEffort(hardest) + ')');
+    if(recorded && (recorded.up || recorded.back)){
+      const moved = [];
+      if(recorded.up) moved.push(recorded.up + ' up');
+      if(recorded.back) moved.push(recorded.back + ' back');
+      summary.push(moved.join(', '));
+    }
+    celebrateSub.textContent = [sub, summary.join(' \u00b7 ')].filter(Boolean).join(' \u2014 ');
     celebrateReturnFocus = document.activeElement;
     celebrateOverlay.hidden = false;
     celebrateOverlay.classList.add('show');
@@ -1051,6 +1427,19 @@
   function onKeyDown(e,r,c){
     const cell = cellAt(r,c);
     if(!cell) return;
+    // A letter typed at a settled square is meant for the next open one - the reader is working
+    // along the word and should not have to step over what is already right.
+    if(cell.locked && e.key.length === 1 && !e.ctrlKey && !e.metaKey && !e.altKey){
+      e.preventDefault();
+      const next = nextEditableInWord(r,c,currentDir,1);
+      if(next){
+        const target = cellAt(next.r,next.c);
+        focusCell(next.r, next.c, currentDir);
+        target.input.value = e.key;
+        onInput({ target: target.input }, next.r, next.c);
+      }
+      return;
+    }
     switch(e.key){
       case 'ArrowLeft': e.preventDefault(); focusCell(r,c-1,'across'); break;
       case 'ArrowRight': e.preventDefault(); focusCell(r,c+1,'across'); break;
@@ -1058,11 +1447,11 @@
       case 'ArrowDown': e.preventDefault(); focusCell(r+1,c,'down'); break;
       case 'Backspace': {
         e.preventDefault();
-        if(cell.input.value){
+        if(cell.input.value && !cell.locked){
           cell.input.value = '';
           cell.wrap.classList.remove('check-correct', 'check-incorrect');
         } else {
-          const prev = nextCellInWord(r,c,currentDir,-1);
+          const prev = nextEditableInWord(r,c,currentDir,-1);
           if(prev){
             focusCell(prev.r, prev.c, currentDir);
             const prevCell = cellAt(prev.r,prev.c);
@@ -1076,6 +1465,7 @@
       }
       case 'Delete':
         e.preventDefault();
+        if(cell.locked) break;
         cell.input.value='';
         cell.wrap.classList.remove('check-correct', 'check-incorrect');
         checkAndCelebrate();
@@ -1086,26 +1476,572 @@
     }
   }
 
+  // ---------- hints ----------
+  // A vocabulary trainer has to be able to tell you the word you did not know - that is the
+  // moment it teaches something - without becoming the easiest way through the puzzle. What
+  // stops that is not making help expensive but making it consequential: a word you needed help
+  // with is reported at the end and, once there is a record of such things, will come round
+  // again. So hints are cheap, counted, and never silent.
+  //
+  // They come in rungs, cheapest first, because being stuck usually needs unsticking rather than
+  // an answer:
+  //
+  //   1. another clue for the same word, where the list offers one. It gives nothing away -
+  //      it is the same word described differently - and for a language learner not being able
+  //      to read the clue is a different problem from not knowing the word, which is why this
+  //      rung is not gated on having tried.
+  //   2. a letter, and then another, until the word is filled. Always the earliest square that
+  //      is empty or wrong, because recall runs forwards: knowing a word starts SCH is worth
+  //      far more than knowing its seventh letter is E, even though the seventh letter would
+  //      narrow a dictionary search faster.
+  //
+  // Each rung is one press, so a whole word costs as many hints as it has letters. That is a
+  // gentler brake than any confirmation dialogue, and it makes "hints used" a real number.
+  // Time spent on each word, for reporting which one gave the most trouble. Not elapsed time:
+  // people jump about, and a word sits half-finished while three others get done. Only the time
+  // the caret is actually inside the word counts, and only while somebody is working - a phone
+  // put down mid-word would otherwise make that word look impossible.
+  const IDLE_GRACE_MS = 45000;
+  let timeByWord = {};      // wid -> milliseconds of attention
+  let timingWord = null;    // wid currently being timed
+  let timingSince = 0;
+  let lastActivityAt = 0;
+
+  function noteActivity(){ lastActivityAt = Date.now(); }
+
+  function stopTimingWord(){
+    if(!timingWord) return;
+    const until = Math.min(Date.now(), lastActivityAt + IDLE_GRACE_MS);
+    const spent = until - timingSince;
+    if(spent > 0) timeByWord[timingWord] = (timeByWord[timingWord] || 0) + spent;
+    timingWord = null;
+  }
+
+  function startTimingWord(wid){
+    if(timingWord === wid) return;
+    stopTimingWord();
+    if(!wid) return;
+    timingWord = wid;
+    timingSince = Date.now();
+    if(!lastActivityAt) lastActivityAt = timingSince;
+  }
+
+  let hintsByWord = {};     // wid -> how many hints that word has taken
+  let cluesShownFor = {};   // wid -> index into the word's clue list, once it has been changed
+
+  function hintsUsedTotal(){
+    return Object.keys(hintsByWord).reduce((sum, wid) => sum + hintsByWord[wid], 0);
+  }
+
+  /** The squares of a word, in reading order, with what is in them now. */
+  function squaresOf(word){
+    const out = [];
+    for(let i = 0; i < word.len; i++){
+      const r = word.dir === 'across' ? word.row : word.row + i;
+      const c = word.dir === 'across' ? word.col + i : word.col;
+      out.push({ r, c, cell: cellEls[r][c], expected: gridData[r][c] });
+    }
+    return out;
+  }
+
+  /** Has the reader attempted this word at all? The letter rungs wait until they have. */
+  function wordHasBeenTried(word){
+    return squaresOf(word).some(s => s.cell && s.cell.input.value);
+  }
+
+  function currentWord(){
+    return currentWordKey ? wordInfo(currentWordKey) : null;
+  }
+
+  function updateHintButton(){
+    const word = currentWord();
+    hintBtn.disabled = !word || !placedWords.length;
+  }
+
+  function takeHint(){
+    const word = currentWord();
+    if(!word) return;
+    const wid = word.dir + '-' + word.number;
+    const squares = squaresOf(word);
+    const wrong = squares.filter(s => s.cell && s.cell.input.value !== s.expected);
+
+    if(!wrong.length){
+      setStatus('That word is already filled in correctly.');
+      return;
+    }
+
+    // Rung one: a second clue alongside the first, if this word has another and has not had it
+    // yet. Any other clue will do - the lists are kept so that no two clues for a word merely
+    // reword each other - but one that prints the answer is passed over, as pickClue does.
+    const alternatives = cluesForAnswer(word.answer);
+    if(cluesShownFor[wid] === undefined && alternatives.length > 1){
+      const different = alternatives.find(text => text !== word.clue && !clueRevealsAnswer(word.answer, text));
+      if(different){
+        cluesShownFor[wid] = 1;
+        word.hintClue = different;
+        hintsByWord[wid] = (hintsByWord[wid] || 0) + 1;
+        renderClueLists();
+        highlightWord(wid);
+        setStatus('Another clue for ' + word.number + ' ' + word.dir + '.');
+        scheduleSave();
+        return;
+      }
+    }
+
+    // Rung two onwards: a letter. Wait until something has been tried.
+    if(!wordHasBeenTried(word)){
+      setStatus('Have a go at it first - then a hint will fill in a letter.', true);
+      return;
+    }
+
+    const square = wrong[0];   // earliest empty or wrong square
+    square.cell.input.value = square.expected;
+    square.cell.wrap.classList.remove('check-correct', 'check-incorrect');
+    lockCell(square.cell, 'revealed');
+    hintsByWord[wid] = (hintsByWord[wid] || 0) + 1;
+    setStatus('');
+    checkAndCelebrate();
+    scheduleSave();
+    focusCell(square.r, square.c, word.dir);
+  }
+
+  /** Every clue the loaded list holds for an answer, so a hint can offer a different one. */
+  function cluesForAnswer(answer){
+    const entry = wordBank.find(w => w.answer === answer);
+    return entry ? entry.clues : [];
+  }
+
+  hintBtn.addEventListener('click', () => {
+    closeOptionsMenu();
+    takeHint();
+    restoreFocusToCurrentCell();
+  });
+
+  // ---------- the learning record ----------
+  // One record per word list, keyed by the word's answer rather than its position. Position
+  // would be smaller, but the bank is derived from the file - duplicates merged, one-letter
+  // entries dropped - so its indices are a step removed from anything the list author sees,
+  // and a record that survives someone reordering a custom file is worth a few kilobytes.
+  //
+  // Outcomes are written in every mode, not only smart mode: a shared puzzle you solve says
+  // just as much about what you know. Only the *draw* differs between modes.
+  function listRecordKey(){
+    if(currentListId === CUSTOM_LIST_ID) return currentListSum ? 'custom:' + currentListSum : null;
+    return currentListId || null;
+  }
+
+  function loadRecords(){
+    try{
+      const raw = localStorage.getItem(RECORD_KEY);
+      const all = raw ? JSON.parse(raw) : null;
+      return all && typeof all === 'object' ? all : {};
+    }catch(e){
+      return {};
+    }
+  }
+
+  function saveRecords(all){
+    try{ localStorage.setItem(RECORD_KEY, JSON.stringify(all)); }catch(e){ /* no persistence */ }
+  }
+
+  function recordForCurrentList(){
+    const key_ = listRecordKey();
+    if(!key_) return Record.emptyRecord();   // nothing to key on; a throwaway that is never saved
+    const all = loadRecords();
+    return all[key_] || Record.emptyRecord();
+  }
+
+  function storeRecord(record){
+    const key_ = listRecordKey();
+    if(!key_) return;
+    const all = loadRecords();
+    all[key_] = record;
+    saveRecords(all);
+  }
+
+  /** How a word went: solved on its own, solved with help, or not solved. */
+  function outcomeOf(word){
+    const wid = word.dir + '-' + word.number;
+    const correct = squaresOf(word).every(s =>
+      s.cell && toUpperGrapheme(normalizeText(s.cell.input.value)) === s.expected);
+    if(!correct || checkedWrong[wid]) return 'missed';
+    return (hintsByWord[wid] || 0) > 0 ? 'hinted' : 'unaided';
+  }
+
+  /**
+   * Writes this puzzle's outcomes to the record, once. Returns what changed, for the finish
+   * screen and for undo - `before` holds each touched entry as it was, so a puzzle brought back
+   * with Undo can have its verdicts taken back too.
+   *
+   * A puzzle nobody typed into is not judged at all. Every word in it would count as missed,
+   * and two clicks of "New crossword" in a row would then fill the next puzzle with the words
+   * from the one just skipped past. The rule is that a word *left* blank counts against you,
+   * and a puzzle never started was not left.
+   */
+  function commitOutcomes(){
+    if(recordCommitted || !placedWords.length || !hasTypedLetters()) return null;
+    recordCommitted = true;
+    const record = recordForCurrentList();
+    const before = {};
+    const now = Date.now();
+    let up = 0, back = 0;
+    for(const word of placedWords){
+      const prior = Record.entryFor(record, word.answer);
+      before[word.answer] = prior ? JSON.parse(JSON.stringify(prior)) : null;
+      const priorBox = prior ? prior.box : 1;
+      const after = Record.applyOutcome(record, word.answer, outcomeOf(word), now);
+      if(after.box > priorBox) up++;
+      else if(after.box < priorBox) back++;
+    }
+    storeRecord(record);
+    updateTagline();
+    return { before, up, back };
+  }
+
+  /** Puts back the entries a commit changed. */
+  function revertOutcomes(before){
+    if(!before) return;
+    const record = recordForCurrentList();
+    for(const answer of Object.keys(before)){
+      if(before[answer]) record.words[answer] = before[answer];
+      else delete record.words[answer];
+    }
+    storeRecord(record);
+    updateTagline();
+  }
+
+  /** Words drawn for a smart puzzle that its grid then had no room for. */
+  function commitSkips(pool, placements){
+    const placed = new Set(placements.map(p => p.answer));
+    const skipped = pool.filter(w => !placed.has(w.answer));
+    if(!skipped.length) return;
+    const record = recordForCurrentList();
+    for(const w of skipped) Record.applySkip(record, w.answer);
+    storeRecord(record);
+  }
+
+  function updateTagline(){
+    if(!wordBank.length){ pageTagline.textContent = 'load a word list to begin'; return; }
+    if(puzzleMode !== MODES.smart){
+      pageTagline.textContent = wordBank.length + ' words available';
+      return;
+    }
+    const s = Record.summarise(recordForCurrentList(), wordBank);
+    pageTagline.textContent = s.total + ' words \u00b7 ' + s.seen + ' seen \u00b7 ' + s.known + ' known';
+  }
+
+  function setPuzzleMode(mode){
+    puzzleMode = MODES[mode] ? mode : MODES.shareable;
+    try{ localStorage.setItem(MODE_KEY, puzzleMode); }catch(e){ /* no persistence */ }
+    updateTagline();
+    renderModeControls();
+  }
+
+  // ---------- one puzzle per kind ----------
+  function loadParked(){
+    try{
+      const raw = localStorage.getItem(PARKED_KEY);
+      const all = raw ? JSON.parse(raw) : null;
+      const out = {};
+      for(const m of Object.keys(MODES)){
+        const s = all && all[m];
+        if(s && s.version === SAVE_VERSION && Array.isArray(s.gridData) && Array.isArray(s.placedWords)) out[m] = s;
+      }
+      return out;
+    }catch(e){ return {}; }
+  }
+
+  function saveParked(){
+    try{ localStorage.setItem(PARKED_KEY, JSON.stringify(parked)); }catch(e){ /* no persistence */ }
+  }
+
+  /** How far along a puzzle is, from a snapshot: "solved", "7/15", "not started", or "" for none. */
+  function describeProgress(snapshot){
+    if(!snapshot || !snapshot.placedWords || !snapshot.placedWords.length) return '';
+    if(snapshot.celebrated) return 'solved';
+    let filled = 0, total = 0;
+    for(let r = 0; r < snapshot.rows; r++){
+      for(let c = 0; c < snapshot.cols; c++){
+        if(snapshot.gridData[r][c] === null) continue;
+        total++;
+        if(snapshot.answers[r] && snapshot.answers[r][c]) filled++;
+      }
+    }
+    return filled ? filled + '/' + total : 'not started';
+  }
+
+  function progressOf(mode){
+    if(mode === puzzleMode) return placedWords.length ? describeProgress(snapshotState()) : '';
+    return describeProgress(parked[mode]);
+  }
+
+  function renderModeControls(){
+    for(const tab of modeTabs.querySelectorAll('[role="tab"]')){
+      const mode = tab.dataset.mode;
+      tab.setAttribute('aria-selected', mode === puzzleMode ? 'true' : 'false');
+      tab.querySelector('.tab-state').textContent = progressOf(mode);
+    }
+    modeChip.textContent = MODE_LABEL[puzzleMode] + ' \u25be';
+    menuModeBtn.textContent = MODE_LABEL[puzzleMode] + ' \u2014 switch\u2026';
+  }
+
+  /** Sets the puzzle on screen aside for its kind - not judged, not offered back, just kept. */
+  function parkActive(){
+    if(!placedWords.length) return;
+    parked[puzzleMode] = snapshotState();
+    placedWords = [];   // emptied so the next build neither judges it nor offers it back
+  }
+
+  /**
+   * Brings the other kind's puzzle to the screen, parking the one that is there. The parked
+   * puzzle comes back exactly as it was left. Where the other kind has no puzzle yet, one is built.
+   */
+  function switchMode(mode){
+    if(!MODES[mode] || mode === puzzleMode) return;
+    parkActive();
+    setPuzzleMode(mode);
+    const next = parked[mode];
+    delete parked[mode];
+    saveParked();
+    if(next) activateSnapshot(next);
+    else if(wordBank.length) generate();
+    else updateUrlParams();
+  }
+
+  /** Puts a saved puzzle on screen, fetching its word list first if that is not the one loaded. */
+  function activateSnapshot(snapshot){
+    const listId = snapshot.params && snapshot.params.list;
+    if(listId && listId !== currentListId){
+      pendingRestore = snapshot;
+      if(listId === CUSTOM_LIST_ID){
+        const stored = snapshot.params.sum ? findSavedList(snapshot.params.sum) : null;
+        if(!stored){
+          pendingRestore = null;
+          setStatus('That puzzle came from a word list this browser no longer holds, so it cannot be brought back.', true);
+          if(wordBank.length) generate();
+          return;
+        }
+        currentListId = CUSTOM_LIST_ID;
+        currentListSum = snapshot.params.sum;
+        wordListSelect.value = '';
+        adoptWordBank(stored.words, stored.title, stored.language);
+        startPuzzle();
+      } else if(LISTS[listId]){
+        currentListId = listId;
+        wordListSelect.value = listId;
+        fetchWordList(LISTS[listId].file, LISTS[listId].label);
+      }
+      return;
+    }
+    restoreFromSaved(snapshot);
+    saveState();
+  }
+
+  function openModeSheet(){
+    modeSheetRows.innerHTML = '';
+    for(const mode of Object.keys(MODES)){
+      const row = document.createElement('div');
+      row.className = 'mode-row' + (mode === puzzleMode ? ' active' : '');
+      const name = document.createElement('div');
+      name.className = 'mode-name';
+      name.textContent = MODE_LABEL[mode];
+      const blurb = document.createElement('small');
+      blurb.textContent = MODE_BLURB[mode];
+      name.appendChild(blurb);
+      const cont = document.createElement('button');
+      cont.className = 'secondary';
+      cont.textContent = mode === puzzleMode ? 'Back to it' : 'Continue';
+      cont.disabled = !progressOf(mode);
+      cont.addEventListener('click', () => { closeModeSheet(); switchMode(mode); restoreFocusToCurrentCell(); });
+      const fresh = document.createElement('button');
+      fresh.textContent = 'New';
+      fresh.addEventListener('click', () => {
+        closeModeSheet();
+        if(mode !== puzzleMode){
+          parkActive();
+          setPuzzleMode(mode);
+          delete parked[mode];   // that kind's old puzzle is what "New" replaces
+          saveParked();
+        }
+        if(wordBank.length) generate();
+        restoreFocusToCurrentCell();
+      });
+      const state = document.createElement('div');
+      state.className = 'mode-state';
+      state.textContent = (mode === puzzleMode ? 'on screen \u00b7 ' : '') + (progressOf(mode) || 'nothing yet');
+      row.append(name, cont, fresh, state);
+      modeSheetRows.appendChild(row);
+    }
+    closeOptionsMenu();
+    modeSheet.hidden = false;
+    modeChip.setAttribute('aria-expanded', 'true');
+    modeSheetClose.focus();
+  }
+
+  function closeModeSheet(){
+    modeSheet.hidden = true;
+    modeChip.setAttribute('aria-expanded', 'false');
+  }
+
+  modeChip.addEventListener('click', openModeSheet);
+  menuModeBtn.addEventListener('click', openModeSheet);
+  modeSheetClose.addEventListener('click', () => { closeModeSheet(); restoreFocusToCurrentCell(); });
+  modeSheet.addEventListener('click', (e) => { if(e.target === modeSheet) closeModeSheet(); });
+  document.addEventListener('keydown', (e) => { if(e.key === 'Escape' && !modeSheet.hidden) closeModeSheet(); });
+  modeTabs.addEventListener('click', (e) => {
+    const tab = e.target.closest('[role="tab"]');
+    if(tab){ switchMode(tab.dataset.mode); restoreFocusToCurrentCell(); }
+  });
+
+  function loadPuzzleMode(){
+    try{ return localStorage.getItem(MODE_KEY) || MODES.shareable; }catch(e){ return MODES.shareable; }
+  }
+
+  // ---------- keeping it on the home screen ----------
+  // Two quite different things behind one offer, because the platforms differ absolutely rather
+  // than by degree. Chromium fires beforeinstallprompt and hands over a prompt we can open from a
+  // button of our own; iOS has no such event and no way for a page to ask, so all a page can do
+  // there is say where Apple put the button. Everything else - desktop Firefox, say - can install
+  // from its own menus or not at all, and is not nagged about it either way.
+  const INSTALL_KEY = 'crossword-trainer-install';   // 'offered' once the banner has had its turn
+  let deferredInstall = null;
+
+  // iPadOS reports itself as a Macintosh, and has done since iPadOS 13; the touch points are what
+  // give it away, no desktop Mac having any.
+  const isIOS = /iP(hone|od|ad)/.test(navigator.userAgent)
+    || (navigator.maxTouchPoints > 1 && /Macintosh/.test(navigator.userAgent));
+
+  function isInstalled(){
+    if(navigator.standalone === true) return true;   // iOS's own flag, and the only one it sets
+    try{
+      return ['standalone', 'minimal-ui', 'fullscreen'].some(m => matchMedia('(display-mode: ' + m + ')').matches);
+    }catch(e){ return false; }
+  }
+
+  /** 'prompt' when the browser will do it for us, 'ios' when we can only give directions. */
+  function installOffer(){
+    if(isInstalled()) return null;
+    if(deferredInstall) return 'prompt';
+    return isIOS ? 'ios' : null;
+  }
+
+  function installAlreadyOffered(){
+    try{ return localStorage.getItem(INSTALL_KEY) === 'offered'; }catch(e){ return true; }
+  }
+
+  function markInstallOffered(){
+    try{ localStorage.setItem(INSTALL_KEY, 'offered'); }catch(e){ /* no persistence */ }
+  }
+
+  function showInstallBanner(offer){
+    installBannerText.textContent = offer === 'prompt'
+      ? 'Keep this on your home screen, and it will open like any other app - and work with no network at all.'
+      : 'This can live on your home screen and work with no network at all.';
+    installDirections.hidden = offer !== 'ios';
+    installAcceptBtn.hidden = offer !== 'prompt';
+    installDismissBtn.textContent = offer === 'prompt' ? 'Not now' : 'Got it';
+    installBanner.hidden = false;
+  }
+
+  function hideInstallBanner(){ installBanner.hidden = true; }
+
+  function refreshInstallUi(){
+    const offer = installOffer();
+    installField.hidden = !offer;
+    if(offer) installMenuBtn.textContent = offer === 'prompt' ? 'Install this app' : 'How to install';
+    if(!offer){ hideInstallBanner(); return; }
+    // The list prompt is a question the reader has to answer before there is a puzzle at all.
+    // Wait rather than stack two panels on top of each other.
+    if(!installAlreadyOffered() && listPrompt.hidden){
+      markInstallOffered();
+      showInstallBanner(offer);
+    }
+  }
+
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();          // keep the browser's own banner out of the way; ours replaces it
+    deferredInstall = e;
+    refreshInstallUi();
+  });
+
+  window.addEventListener('appinstalled', () => {
+    deferredInstall = null;
+    markInstallOffered();
+    refreshInstallUi();
+  });
+
+  installAcceptBtn.addEventListener('click', async () => {
+    const prompt_ = deferredInstall;
+    deferredInstall = null;      // a prompt may only be opened once
+    hideInstallBanner();
+    markInstallOffered();
+    if(prompt_){
+      try{ await prompt_.prompt(); }catch(e){ /* dismissed, or already spent */ }
+    }
+    refreshInstallUi();
+    restoreFocusToCurrentCell();
+  });
+
+  installDismissBtn.addEventListener('click', () => {
+    markInstallOffered();
+    hideInstallBanner();
+    restoreFocusToCurrentCell();
+  });
+
+  // From the menu it may be asked for again, however often, dismissal notwithstanding.
+  installMenuBtn.addEventListener('click', () => {
+    const offer = installOffer();
+    closeOptionsMenu();
+    if(offer === 'prompt') installAcceptBtn.click();
+    else if(offer) showInstallBanner(offer);
+  });
+
   // ---------- generate ----------
   function updateUrlParams(){
     const params = new URLSearchParams(window.location.search);
-    if(currentListId) params.set('list', currentListId);
+    // Describes the puzzle on screen, so the address stays a way of getting back to *this* one
+    // even while the controls have moved on to whatever is being asked for next.
+    const shown = currentPuzzle || {
+      list: currentListId, sum: currentListSum, words: Number(wordCountInput.value), seed: currentSeed,
+      mode: puzzleMode
+    };
+    const currentListId_ = shown.list;
+    if(currentListId_) params.set('list', currentListId_);
     else params.delete('list');
     // A loaded file has no id to fetch it back by, so the link carries its fingerprint instead.
     // That is enough to find it again among the lists kept here, or to check a file the reader
     // picks when it is not among them.
-    if(currentListId === CUSTOM_LIST_ID && currentListSum) params.set('sum', currentListSum);
+    if(currentListId_ === CUSTOM_LIST_ID && shown.sum) params.set('sum', shown.sum);
     else params.delete('sum');
-    params.set('words', wordCountInput.value);
+    params.set('words', shown.words);
+    if(Number.isFinite(shown.cols)) params.set('cols', shown.cols);
+    else params.delete('cols');
     // With the seed here, the address bar is a complete description of the puzzle on screen -
     // copy it to anyone and they get this grid, these words and these clues, not merely a puzzle
     // of the same size. A custom-loaded file still has no URL representation, so a seed alone
     // couldn't rebuild it; leave it out rather than imply otherwise.
-    if(currentSeed && currentListId) params.set('seed', currentSeed);
+    // A smart puzzle's seed only ever chose its layout; the words came from this reader's
+    // record, so a link with the seed would promise a puzzle nobody else can get. Leave it out,
+    // and say instead which kind of puzzle the link asks for.
+    const smartShown = shown.mode === MODES.smart;
+    if(shown.seed && currentListId_ && !smartShown) params.set('seed', shown.seed);
     else params.delete('seed');
+    if(puzzleMode === MODES.smart) params.set('mode', MODES.smart);
+    else params.delete('mode');
     const query = params.toString();
     const newUrl = window.location.pathname + (query ? '?' + query : '');
-    history.replaceState(null, '', newUrl);
+    if(newUrl === window.location.pathname + window.location.search) return; // nothing to say
+
+    // WebKit caps replaceState at 100 calls per 10 seconds and throws a SecurityError past that,
+    // which holding down the word-count arrows is enough to reach. An exception escaping here
+    // would abandon the rest of generate() or restoreFromSaved(), leaving the puzzle built and
+    // the bookkeeping half done. The address is the least important thing on the page: if it
+    // cannot be updated, let it be stale.
+    try{
+      history.replaceState(null, '', newUrl);
+    }catch(e){
+      /* rate limited, or history unavailable - carry on */
+    }
   }
 
   // How many columns wide the grid is allowed to be, based on the header bar's actual current
@@ -1133,9 +2069,8 @@
   }
 
   // ---------- persistence (resume where you left off after a reload) ----------
-  function saveState(){
-    try{
-      const answers = [];
+  function snapshotState(){
+    const answers = [];
       for(let r=0;r<rows;r++){
         const rowArr = [];
         for(let c=0;c<cols;c++){
@@ -1144,6 +2079,15 @@
         }
         answers.push(rowArr);
       }
+      const describes = currentPuzzle || {
+        list: currentListId,
+        sum: currentListId === CUSTOM_LIST_ID ? currentListSum : null,
+        words: Number(wordCountInput.value),
+        seed: currentSeed,
+        title: currentListTitle,
+        language: currentListLanguage,
+        shape: currentListShape
+      };
       const state = {
         version: SAVE_VERSION,
         rows, cols, gridData, placedWords, answers,
@@ -1155,25 +2099,150 @@
         // rather than an id, and the words themselves live in the keyed store, so two puzzles
         // from two different files do not each carry their own copy.
         params: {
-          list: currentListId,
-          sum: currentListId === CUSTOM_LIST_ID ? currentListSum : null,
-          words: Number(wordCountInput.value),
-          seed: currentSeed
+          list: describes.list,
+          sum: describes.list === CUSTOM_LIST_ID ? describes.sum : null,
+          words: describes.words,
+          seed: describes.seed,
+          cols: describes.cols,
+          mode: describes.mode || MODES.shareable
         },
       };
-      if(currentListId === CUSTOM_LIST_ID){
+      if(describes.list === CUSTOM_LIST_ID){
         // Enough to name the list when asking for it again, and to tell "same words, edited
         // clues" apart from "wrong file" if what turns up does not match. Both are a few bytes;
         // the words themselves are in the keyed store.
-        state.customTitle = currentListTitle;
-        state.customShape = currentListShape;
+        state.customTitle = describes.title;
+        state.customShape = describes.shape;
       }
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      // Hints belong to the puzzle, so a resumed one remembers what it has already given away.
+      state.hintsByWord = hintsByWord;
+      state.cluesShownFor = cluesShownFor;
+      state.checkedWrong = checkedWrong;
+      state.recordCommitted = recordCommitted;
+      // Squares the program has vouched for, and which way: they come back read-only and marked.
+      const locked = {};
+      for(let r=0;r<rows;r++){
+        for(let c=0;c<cols;c++){
+          const cell = cellEls[r] && cellEls[r][c];
+          if(cell && cell.locked) locked[r + ',' + c] = cell.locked;
+        }
+      }
+      state.locked = locked;
+    return state;
+  }
+
+  function saveState(){
+    renderModeControls();
+    try{
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(snapshotState()));
     }catch(e){
       // localStorage unavailable (private browsing, quota exceeded, etc.) - the app still
       // works fine without persistence, just silently skip saving this time.
     }
   }
+
+  // ---------- undoing a discarded puzzle ----------
+  // Building a new puzzle throws away whatever was in the old one, and there are three ways to
+  // set that off: the "New crossword" button, changing the word list, and nudging the word count
+  // - which is a single arrow key in a number field. None of them asked, and none of them could
+  // be taken back: the app rewrites its own address with replaceState, so the browser's Back
+  // button does not return the old puzzle either, and its seed is gone the moment it is replaced.
+  //
+  // Rather than putting a confirmation in front of an action people take on purpose dozens of
+  // times a session, keep the discarded puzzles and offer them back, most recent first.
+  //
+  // A stack, not a slot. With one slot, pressing New twice - the second time on an untouched
+  // puzzle, which is not worth keeping - emptied the slot and left the button on screen doing
+  // nothing, and the puzzle from before both presses was gone. Only puzzles with something typed
+  // in them are kept; the rest were never worth going back to.
+  const UNDO_DEPTH = 10;
+  let undoStack = [];
+
+  function hasTypedLetters(){
+    for(let r=0;r<rows;r++){
+      for(let c=0;c<cols;c++){
+        const cell = cellEls[r] && cellEls[r][c];
+        if(cell && cell.input.value) return true;
+      }
+    }
+    return false;
+  }
+
+  function updateUndoButton(){
+    undoBtn.hidden = undoStack.length === 0;
+  }
+
+  function clearUndo(){
+    undoStack = [];
+    updateUndoButton();
+  }
+
+  /** Called just before a new puzzle replaces the current one. */
+  function captureUndo(){
+    if(placedWords.length && hasTypedLetters()){
+      // The snapshot is taken first, so it carries recordCommitted as it stood *before* this
+      // judgement: false for a puzzle left unfinished, true for one already solved and counted.
+      // Restoring that value is what stops a solved puzzle being counted twice after Undo.
+      const snapshot = snapshotState();
+      // Judged now, because this is the moment the puzzle is being left. One brought back with
+      // Undo has its verdicts taken back.
+      const recorded = commitOutcomes();
+      snapshot.recordBefore = recorded ? recorded.before : null;
+      undoStack.push(snapshot);
+      if(undoStack.length > UNDO_DEPTH) undoStack.shift();
+    }
+    updateUndoButton();
+  }
+
+  function performUndo(){
+    const snapshot = undoStack.pop();
+    if(!snapshot) return;
+    updateUndoButton();
+    // The puzzle being stepped away from is judged like any other that is left with work in it.
+    // It is not kept: Undo means "back", and back does not need a way forward again.
+    if(placedWords.length && hasTypedLetters()) commitOutcomes();
+    revertOutcomes(snapshot.recordBefore);
+    // It comes back in its own kind's tab. Whatever that tab held meanwhile is parked, as any
+    // switch would park it, so that nothing is lost by going back.
+    const from = (snapshot.params && snapshot.params.mode) || MODES.shareable;
+    if(from !== puzzleMode){
+      parkActive();
+      setPuzzleMode(from);
+      delete parked[from];
+      saveParked();
+    }
+
+    const listId = snapshot.params && snapshot.params.list;
+    if(listId && listId !== currentListId){
+      // It came from a different word list, so that list has to be back in place before the
+      // puzzle can be. pendingRestore is the same hand-off the first load uses.
+      pendingRestore = snapshot;
+      if(listId === CUSTOM_LIST_ID){
+        const stored = snapshot.params.sum ? findSavedList(snapshot.params.sum) : null;
+        if(!stored){
+          pendingRestore = null;
+          setStatus('That puzzle came from a word list this browser no longer holds, so it '
+            + 'cannot be brought back.', true);
+          return;
+        }
+        currentListId = CUSTOM_LIST_ID;
+        currentListSum = snapshot.params.sum;
+        wordListSelect.value = '';
+        adoptWordBank(stored.words, stored.title, stored.language);
+        startPuzzle();
+      } else if(LISTS[listId]){
+        currentListId = listId;
+        wordListSelect.value = listId;
+        fetchWordList(LISTS[listId].file, LISTS[listId].label); // restores once the bank arrives
+      }
+      return;
+    }
+
+    restoreFromSaved(snapshot);
+    saveState();
+  }
+
+  undoBtn.addEventListener('click', () => { performUndo(); restoreFocusToCurrentCell(); });
 
   function scheduleSave(){
     clearTimeout(saveTimer);
@@ -1190,8 +2259,12 @@
   });
   document.addEventListener('visibilitychange', () => {
     if(document.visibilityState === 'hidden'){
+      stopTimingWord();
       clearTimeout(saveTimer);
       saveState();
+    } else {
+      noteActivity();
+      startTimingWord(currentWordKey);
     }
   });
 
@@ -1221,9 +2294,22 @@
         if(val && cellEls[r] && cellEls[r][c]) cellEls[r][c].input.value = val;
       }
     }
+    if(saved.locked && typeof saved.locked === 'object'){
+      for(const k of Object.keys(saved.locked)){
+        const [r, c] = k.split(',').map(Number);
+        const cell = cellEls[r] && cellEls[r][c];
+        const how = saved.locked[k] === 'revealed' ? 'revealed' : 'check-correct';
+        if(cell) lockCell(cell, how);
+      }
+    }
+    hintsByWord = (saved.hintsByWord && typeof saved.hintsByWord === 'object') ? saved.hintsByWord : {};
+    cluesShownFor = (saved.cluesShownFor && typeof saved.cluesShownFor === 'object') ? saved.cluesShownFor : {};
+    checkedWrong = (saved.checkedWrong && typeof saved.checkedWrong === 'object') ? saved.checkedWrong : {};
+    recordCommitted = !!saved.recordCommitted;
     puzzleStartTime = Date.now() - (saved.elapsedMs || 0);
     celebrated = !!saved.celebrated; // don't replay the solved animation/confetti on a reload
     if(saved.params && saved.params.list) wordListSelect.value = saved.params.list;
+    if(saved.params && saved.params.mode && saved.params.mode !== puzzleMode) setPuzzleMode(saved.params.mode);
     if(saved.params && saved.params.words) wordCountInput.value = saved.params.words;
     if(saved.params && saved.params.seed) currentSeed = saved.params.seed;
     if(saved.params && saved.params.sum) currentListSum = saved.params.sum;
@@ -1233,8 +2319,20 @@
     // by fingerprint or picked by the reader - so there is nothing to adopt here. Just make sure
     // the menu is not claiming a bundled list when a loaded file is on screen.
     if(saved.params && saved.params.list === CUSTOM_LIST_ID) wordListSelect.value = '';
+    currentPuzzle = {
+      list: (saved.params && saved.params.list) || currentListId,
+      sum: (saved.params && saved.params.sum) || null,
+      words: (saved.params && saved.params.words) || Number(wordCountInput.value),
+      seed: (saved.params && saved.params.seed) || currentSeed,
+      cols: (saved.params && saved.params.cols) || saved.cols,
+      mode: (saved.params && saved.params.mode) || MODES.shareable,
+      title: saved.customTitle || currentListTitle,
+      language: currentListLanguage,
+      shape: saved.customShape || currentListShape
+    };
     printBtn.disabled = false;
     checkBtn.disabled = false;
+    updateHintButton();
     setStatus('');
     updateUrlParams();
   }
@@ -1246,21 +2344,35 @@
   //
   // The bank's order is preserved, because that is what the generator shuffles.
   function pickClues(bank, rnd){
-    return bank.map(w => ({
-      answer: w.answer,
-      clue: w.clues[Math.floor(rnd() * w.clues.length)]
-    }));
+    return bank.map(w => ({ answer: w.answer, clue: pickClue(w, rnd) }));
   }
 
   // `seed` names the puzzle: the same seed, list and word count always rebuild the same grid,
   // with the same words and the same clues. Called with no seed for a brand new puzzle.
-  function generate(seed){
+  // `budget` is the column limit the puzzle is built against. It is an input to generation, not a
+  // consequence of it, so a link has to carry it for a seed to name one particular puzzle: the
+  // same seed at two different budgets draws the same words and clues but arranges them
+  // differently. Defaults to whatever this screen can show.
+  // `keepWords` rebuilds the puzzle now on screen at a different width, rather than drawing
+  // afresh. Needed because the generator draws a larger pool than it places and lets the fitting
+  // decide which of them to use, so the same seed at two widths keeps only about four words in
+  // five. Handing it exactly the words already placed is what makes "the same words, arranged to
+  // fit" true rather than nearly true.
+  function generate(seed, budget, keepWords){
     if(!wordBank.length){
       setStatus('Load a word list first.', true);
       return;
     }
-    seed = isValidSeed(seed) ? seed : randomSeed();
+    captureUndo();
+    // A smart puzzle's words come from this reader's record, so no seed could name it for
+    // anyone else; one is still drawn, for the layout, but a seed arriving from outside is
+    // not honoured unless the words already on screen are being kept.
+    const smart = puzzleMode === MODES.smart && !keepWords;
+    seed = !smart && isValidSeed(seed) ? seed : randomSeed();
     currentSeed = seed;
+    checkedWrong = {};
+    recordCommitted = false;
+    const maxCols = Number.isFinite(budget) && budget >= 3 ? budget : computeMaxCols();
     const n = clampWordCount(parseInt(wordCountInput.value, 10) || DEFAULT_WORDS);
     // Reflect the clamp back, so the field never shows a number the puzzle didn't use.
     if(String(n) !== wordCountInput.value) wordCountInput.value = n;
@@ -1270,22 +2382,58 @@
     // values - so tuning attemptsFor() can never silently reword every existing shared puzzle.
     const rngClues = makeRng(seed + '#clues');
     const rngLayout = makeRng(seed + '#layout');
-    const result = buildCrossword(pickClues(wordBank, rngClues), n, {
-      maxCols: computeMaxCols(),
-      rng: rngLayout
+    let clued, required = null;
+    if(keepWords && placedWords.length){
+      clued = placedWords.map(w => ({ answer: w.answer, clue: w.clue }));
+    } else if(smart){
+      // Hand the generator a bank exactly the size of the pool it would have drawn, chosen by
+      // the record instead of at random. It takes all of a bank no larger than its pool, so the
+      // choice is made here and the engine is none the wiser.
+      const pool = Record.pickPool(wordBank, recordForCurrentList(), Math.ceil(n * OVERDRAW), makeRng(seed + '#pool'), Date.now());
+      clued = pickClues(pool, rngClues);
+      // Words the grid has turned away too often stop being candidates and become requirements.
+      // Only here: a shareable or daily puzzle is built for its own sake, and its reader is not
+      // owed the vocabulary they have been quietly missing.
+      required = Record.stuckIn(pool, recordForCurrentList());
+    } else {
+      clued = pickClues(wordBank, rngClues);
+    }
+    const result = buildCrossword(clued, keepWords ? clued.length : n, {
+      maxCols,
+      rng: rngLayout,
+      required,
+      overdraw: keepWords ? 1 : undefined   // every word given must appear; there is no pool to pick from
     });
     const built = trimAndIndex(result);
     const numbering = numberGrid(built);
+    if(smart) commitSkips(clued, numbering.placements);
     renderGrid(built, numbering);
     puzzleStartTime = Date.now();
+    currentPuzzle = {
+      list: currentListId,
+      sum: currentListId === CUSTOM_LIST_ID ? currentListSum : null,
+      words: n,                       // the count actually used, after clamping
+      seed: currentSeed,
+      cols: maxCols,                  // the budget it was built against, not the width it came out
+      // Which draw built it. A fitted rebuild keeps the mode of the puzzle it rebuilds.
+      mode: keepWords && currentPuzzle ? currentPuzzle.mode : (smart ? MODES.smart : MODES.shareable),
+
+      title: currentListTitle,
+      language: currentListLanguage,
+      shape: currentListShape
+    };
     printBtn.disabled = false;
     checkBtn.disabled = false;
+    updateHintButton();
     updateUrlParams();
     if(numbering.placements.length < n){
       setStatus(`Placed ${numbering.placements.length} of ${n} requested words (the rest didn't fit this layout). Click "New crossword" for another attempt.`, true);
+    } else if(undoStack.length){
+      setStatus('New puzzle. Your previous answers have not been thrown away.');
     } else {
       setStatus('');
     }
+    updateUndoButton();
     saveState();
   }
 
@@ -1317,9 +2465,22 @@
 
   // Wrapped rather than passed directly: as a listener, generate() would receive the click
   // Event as its seed argument.
-  generateBtn.addEventListener('click', () => generate());
-  checkBtn.addEventListener('click', () => { checkAnswers(); restoreFocusToCurrentCell(); });
-  printBtn.addEventListener('click', () => { window.print(); restoreFocusToCurrentCell(); });
+  generateBtn.addEventListener('click', () => { closeOptionsMenu(); hideWideChoice(); generate(); });
+  // Each of these does something to the puzzle, so the menu they were pressed from should get
+  // out of the way and let it be seen.
+  checkBtn.addEventListener('click', () => {
+    closeOptionsMenu();
+    checkAnswers();
+    restoreFocusToCurrentCell();
+  });
+  printBtn.addEventListener('click', () => {
+    // On a narrow screen this button lives inside the options menu, so the menu is still open
+    // when the print sheet appears. It is hidden from the printed page either way, but leaving
+    // it open over the preview is untidy.
+    closeOptionsMenu();
+    window.print();
+    restoreFocusToCurrentCell();
+  });
   printAnswersCk.addEventListener('change', () => {
     document.body.classList.toggle('print-answers', printAnswersCk.checked);
   });
@@ -1333,8 +2494,83 @@
   celebrateOverlay.addEventListener('click', (e) => { if(e.target === celebrateOverlay){ closeCelebration(); restoreFocusToCurrentCell(); } });
 
   // Regenerate automatically whenever the requested word count changes (a new list already
-  // triggers generation itself, from within loadWordBank).
-  wordCountInput.addEventListener('change', () => { if(wordBank.length) generate(); });
+  // triggers generation itself, from within loadWordBank). Debounced, because a number field
+  // fires change on every press of its arrows: stepping from 15 to 25 would otherwise build ten
+  // puzzles and discard nine.
+  let wordCountTimer = null;
+  wordCountInput.addEventListener('change', () => {
+    clearTimeout(wordCountTimer);
+    wordCountTimer = setTimeout(() => { if(wordBank.length) generate(); }, 450);
+  });
+
+  // ---------- narrow screens: fold the toolbar into the options menu ----------
+  // A phone has no room for a row of buttons above the puzzle - on a 664px screen the header and
+  // toolbar were eating 152px of it, which is a quarter of the puzzle. So on a narrow screen the
+  // options button moves up beside the title and everything else moves inside its menu, leaving
+  // the space to the crossword itself. Nothing changes on a desktop.
+  //
+  // Done by moving the elements rather than duplicating them, so there is only ever one Check
+  // answers button with one set of listeners on it, wherever it currently sits.
+  const compactLayout = typeof matchMedia === 'function'
+    ? matchMedia('(max-width: 599.98px), (max-height: 479.98px)')
+    : { matches: false, addEventListener: () => {} };
+
+  function applyCompactLayout(){
+    renderTitle();
+    if(compactLayout.matches){
+      if(hamburgerWrap.parentElement !== headerEl) headerEl.appendChild(hamburgerWrap);
+      menuActions.append(hintBtn, checkBtn, printBtn, generateBtn);
+    } else {
+      if(hamburgerWrap.parentElement !== toolbarEl) toolbarEl.prepend(hamburgerWrap);
+      toolbarEl.append(hintBtn, checkBtn, printBtn, generateBtn);
+    }
+  }
+  applyCompactLayout();
+  if(typeof compactLayout.addEventListener === 'function'){
+    compactLayout.addEventListener('change', applyCompactLayout);
+  }
+
+  // The on-screen keyboard does not change the layout viewport on iOS. It covers the page rather
+  // than shortening it, so vh - and dvh, which only answers to the browser's own chrome - carry
+  // on reporting the full screen, and a pane sized as a fraction of that sits happily underneath
+  // the keyboard. visualViewport is the only thing that reports what is actually left, so the
+  // panes are sized from it and shrink as the keyboard comes up.
+  //
+  // Published as a custom property rather than set on the elements, so the stylesheet keeps
+  // control of how the space is divided, and so a browser without visualViewport falls back to
+  // the viewport-relative sizes written beside it.
+  function measureVisibleArea(){
+    const root = document.documentElement;
+    if(!compactLayout.matches){
+      root.style.removeProperty('--app-height');
+      root.style.removeProperty('--app-top');
+      return;
+    }
+    const viewport = window.visualViewport;
+    // A fixed element is placed against the layout viewport, which is not what the reader can
+    // see: the keyboard covers the bottom of it, and Safari scrolls it to reveal the focused
+    // field, which pushes the top of the shell off the top of the screen. visualViewport gives
+    // both numbers needed to sit exactly over what is visible.
+    const height = viewport ? viewport.height : window.innerHeight;
+    const top = viewport ? viewport.offsetTop : 0;
+    root.style.setProperty('--app-height', Math.max(240, Math.round(height)) + 'px');
+    root.style.setProperty('--app-top', Math.round(top) + 'px');
+
+    // The regions have just changed size, so whatever was in view may not be any more. The
+    // current clue is the one thing that must stay visible.
+    const active = document.querySelector('.clue-list li.active');
+    if(active) revealClue(active);
+  }
+
+  if(window.visualViewport){
+    window.visualViewport.addEventListener('resize', measureVisibleArea);
+    window.visualViewport.addEventListener('scroll', measureVisibleArea);
+  }
+  window.addEventListener('resize', measureVisibleArea);
+  if(typeof compactLayout.addEventListener === 'function'){
+    compactLayout.addEventListener('change', measureVisibleArea);
+  }
+  measureVisibleArea();
 
   // ---------- initial load: read ?list= and ?words= from the URL so the page is never blank ----------
 
@@ -1347,12 +2583,16 @@
     const wordsParam = parseInt(p.get('words'), 10);
     const seedParam = (p.get('seed') || '').toLowerCase();
     const sumParam = (p.get('sum') || '').toLowerCase();
+    const colsParam = parseInt(p.get('cols'), 10);
     const known = LISTS[listParam] || listParam === CUSTOM_LIST_ID;
+    const modeParam = p.get('mode');
     return {
+      mode: MODES[modeParam] ? modeParam : null,
       list: known ? listParam : DEFAULT_LIST,
       sum: /^[a-z0-9]{1,16}$/.test(sumParam) ? sumParam : null,
       words: Number.isFinite(wordsParam) && wordsParam >= 2 ? Math.min(wordsParam, MAX_WORDS) : DEFAULT_WORDS,
       seed: isValidSeed(seedParam) ? seedParam : null,
+      cols: Number.isFinite(colsParam) && colsParam >= 3 && colsParam <= 200 ? colsParam : null,
       // Whether the URL actually named a list, as opposed to us having defaulted one in above.
       // A puzzle built from a loaded file has no id to put in the URL, so its saved list is null
       // and would never match the default - see sameParams.
@@ -1372,6 +2612,7 @@
       // puzzle built from a loaded file, whose list is null by nature.
       && (!requested.listExplicit || requested.list === saved.list)
       && (!requested.sum || requested.sum === saved.sum)
+      && (!requested.cols || Number(requested.cols) === Number(saved.cols))
       && Number(requested.words) === Number(saved.words)
       && (!requested.seed || requested.seed === saved.seed);
   }
@@ -1379,6 +2620,9 @@
   (function initFromUrl(){
     const requested = readPuzzleParams(window.location.search);
     const saved = loadSavedState();
+    parked = loadParked();
+    // A link with a seed names a shareable puzzle, whatever kind was on screen last time.
+    setPuzzleMode(requested.mode || (requested.seed ? MODES.shareable : loadPuzzleMode()));
 
     // Deciding between "resume what I was doing" and "give me the puzzle this link names" is
     // awkward because the app writes its own parameters into the address bar after every
@@ -1389,12 +2633,26 @@
     // ones the saved puzzle was generated from: matching means this is the same puzzle you were
     // already working on, so resume it with your answers intact. Differing means you asked for
     // something else, and the link wins.
-    const resume = !!saved && (!requested.explicit || sameParams(requested, saved.params));
+    let resume = !!saved && (!requested.explicit || sameParams(requested, saved.params));
+    // The saved puzzle is of one kind; the link may ask for the other. Then the saved one is
+    // parked under its own kind, not thrown away, and this kind resumes what it holds - or, if
+    // the link names a particular puzzle, builds that.
+    const savedMode = saved && saved.params ? (saved.params.mode || MODES.shareable) : null;
+    if(saved && savedMode !== puzzleMode){
+      parked[savedMode] = saved;
+      saveParked();
+      resume = false;
+    }
+    const waiting = !resume ? parked[puzzleMode] : null;
+    const parkedHere = waiting && (!requested.explicit || sameParams(requested, waiting.params)) ? waiting : null;
+    if(parkedHere) delete parked[puzzleMode];
 
-    const active = resume && saved.params ? saved.params : requested;
-    pendingRestore = resume ? saved : null;
-    // A link carrying a seed asks for one specific puzzle; hand it to the first generate().
+    const active = resume && saved.params ? saved.params : (parkedHere ? parkedHere.params : requested);
+    pendingRestore = resume ? saved : parkedHere;
+    // A link carrying a seed asks for one specific puzzle; hand it, and the width it was built
+    // at, to the first generate().
     pendingSeed = active.seed || null;
+    pendingBudget = active.cols || null;
 
     wordCountInput.value = active.words;
 
@@ -1427,7 +2685,30 @@
     fetchWordList(LISTS[list].file, LISTS[list].label);
   })();
 
+  // Last, so the panel is decided after the list prompt has had its say. On Chromium this runs
+  // again when beforeinstallprompt arrives, which is usually a moment after load.
+  refreshInstallUi();
+
 })();
+</script>
+
+<script>
+// Registering the worker is what makes the program keep working with no network, and what lets
+// it be kept on a home screen as an application. It is deliberately outside the main script and
+// after load, so a failure here - an old browser, a page opened from disk, a refused
+// registration - cannot stop the crossword itself from working.
+// Only from the top-level document. A worker belongs to the page someone actually opened, not
+// to a copy of it framed inside something else - and WebKit refuses a registration from a frame
+// loudly enough to fail the test harness, which runs the program in one.
+if('serviceWorker' in navigator && location.protocol.startsWith('http') && window.top === window.self){
+  window.addEventListener('load', () => {
+    // updateViaCache:'none' so the browser always asks the network whether sw.js itself has
+    // changed, rather than serving a cached copy of the thing that manages the cache.
+    navigator.serviceWorker.register('sw.js', { updateViaCache: 'none' }).catch(() => {
+      /* offline caching simply will not be available; nothing else is affected */
+    });
+  });
+}
 </script>
 </body>
 </html>

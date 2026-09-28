@@ -77,7 +77,7 @@
     white-space:nowrap;
     border:0;
   }
-  select#wordListSelect{
+  .options-menu select{
     padding:7px 30px 7px 10px;
     border:1.5px solid var(--ink);
     border-radius:4px;
@@ -199,13 +199,27 @@
   }
   .options-menu .check-field input{ margin-top:2px; flex:0 0 auto; }
 
+  #statusRow{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin:-8px 0 18px;
+    /* Tall enough for the Undo button, whether or not it is showing, so the puzzle below does
+       not jump when the button appears. */
+    min-height:24px;
+  }
   #status{
     font-family:'IBM Plex Mono',monospace;
     font-size:12.5px;
     color:var(--ink-soft);
-    margin:-8px 0 18px;
-    min-height:16px;
   }
+  #undoBtn{
+    padding:2px 10px;
+    font-size:12px;
+    line-height:1.3;
+    flex:0 0 auto;
+  }
+  #undoBtn[hidden]{ display:none; }
   #status.warn{color:var(--warn);}
 
   /* Shown when a link names a word list loaded from a file the app no longer holds. The words
@@ -219,6 +233,44 @@
     max-width:640px;
   }
   #listPrompt[hidden]{ display:none; }
+  /* Same panel treatment as the word-list prompt: an aside the reader has to answer, shown above
+     the puzzle it is about rather than in place of it. */
+  #widePrompt{
+    border:1px solid var(--rule);
+    border-radius:6px;
+    padding:12px 14px;
+    margin:0 0 12px;
+    background:var(--panel);
+    max-width:640px;
+  }
+  #widePrompt[hidden]{ display:none; }
+  #widePrompt p{ margin:0 0 10px; font-size:14px; line-height:1.5; }
+  #widePrompt button + button{ margin-left:8px; }
+
+  /* Same panel treatment again: an aside above the puzzle, not in place of it. */
+  #installBanner{
+    border:1px solid var(--rule);
+    border-radius:6px;
+    padding:12px 14px;
+    margin:0 0 12px;
+    background:var(--panel);
+    max-width:640px;
+  }
+  #installBanner[hidden]{ display:none; }
+  #installBanner p{ margin:0 0 10px; font-size:14px; line-height:1.5; }
+  #installBanner p[hidden]{ display:none; }
+  #installBanner button[hidden]{ display:none; }
+  #installBanner button + button{ margin-left:8px; }
+  /* The iOS share button, drawn rather than named: it has no dependable character, and the word
+     alone sends people hunting along a toolbar of glyphs. */
+  .share-glyph{
+    display:inline-block;
+    width:1em;
+    height:1em;
+    vertical-align:-0.15em;
+    margin:0 1px;
+  }
+  .share-glyph svg{ width:100%; height:100%; display:block; }
   #listPrompt p{
     margin:0 0 10px;
     font-size:14px;
@@ -286,7 +338,11 @@
   .cell input:focus{outline:none;}
   .cell.in-word input{background:var(--highlight-word);}
   .cell.active input{background:var(--highlight-cell);box-shadow:inset 0 0 0 2px var(--highlight-cell-border);}
+  /* A square filled in by a hint rather than by the solver. Marked so it is plain what was
+     worked out and what was given, and so the printed answers still read as answers. */
+  .cell.revealed input{ color:var(--accent); font-style:italic; }
   .cell.check-correct input{background:#4CAF50 !important; color:#fff;}
+  .cell.locked input{ cursor:default; }
   .cell.check-incorrect input{box-shadow:inset 0 0 0 2px #D6382D !important;}
   .cell input:focus-visible{box-shadow:inset 0 0 0 2px var(--accent);}
 
@@ -389,6 +445,21 @@
     min-width:280px;
     display:flex;
     gap:22px;
+    /* The clue lists scroll within themselves rather than stretching the page. Selecting a word
+       has to bring its clue into view, and the only other way to do that is to scroll the page -
+       which moves the puzzle out from under you, and fights the scroll that focusing the square
+       does a moment later. A pane of their own settles it: the clue comes into view, the grid
+       stays exactly where it was. Short lists fit inside and look no different. */
+    max-height:calc(100vh - 120px);
+    overflow-y:auto;
+    -webkit-overflow-scrolling:touch;
+  }
+  /* Which list you are reading stays legible while its clues scroll past. */
+  .clue-col h2{
+    position:sticky;
+    top:0;
+    z-index:1;
+    background:var(--paper);
   }
   .clue-col{flex:1;min-width:130px;}
   .clue-col h2{
@@ -426,6 +497,114 @@
     color:var(--ink-soft);
     min-width:18px;
   }
+  .clue-list .hint-clue{
+    display:block;
+    margin-top:2px;
+    color:var(--ink-soft);
+    font-style:italic;
+  }
+  .clue-list .hint-clue::before{ content:'also: '; font-style:normal; }
+
+  /* ---------- one puzzle per kind: tabs on a wide screen, a chip and a sheet on a phone ---------- */
+  .mode-tabs{
+    display:flex;
+    gap:4px;
+    margin:0 0 14px;
+    border-bottom:1.5px solid var(--ink);
+  }
+  .mode-tabs [role="tab"]{
+    appearance:none;
+    background:transparent;
+    border:1.5px solid transparent;
+    border-bottom:0;
+    border-radius:6px 6px 0 0;
+    padding:7px 14px 8px;
+    font-family:'Inter',sans-serif;
+    font-weight:600;
+    font-size:13.5px;
+    color:var(--ink-soft);
+    cursor:pointer;
+    display:flex;
+    gap:8px;
+    align-items:baseline;
+    margin-bottom:-1.5px;
+  }
+  .mode-tabs [role="tab"]:hover{ color:var(--ink); }
+  .mode-tabs [role="tab"]:focus-visible{ outline:2px solid var(--accent); outline-offset:-2px; }
+  .mode-tabs [role="tab"][aria-selected="true"]{
+    color:var(--ink);
+    background:var(--bg);
+    border-color:var(--ink);
+    border-bottom:1.5px solid var(--bg);
+  }
+  .mode-tabs .tab-state{
+    font-family:'IBM Plex Mono',monospace;
+    font-weight:400;
+    font-size:11.5px;
+    color:var(--ink-soft);
+  }
+  .mode-tabs .tab-state:empty{ display:none; }
+  .mode-chip{ display:none; }
+
+  #modeSheet{
+    position:fixed;
+    inset:0;
+    z-index:60;
+    background:rgba(43,42,40,0.45);
+    display:flex;
+    align-items:flex-end;
+    justify-content:center;
+  }
+  #modeSheet[hidden]{ display:none; }
+  .mode-sheet-panel{
+    background:var(--panel);
+    border:1.5px solid var(--ink);
+    border-radius:10px 10px 0 0;
+    padding:16px 16px calc(16px + env(safe-area-inset-bottom, 0px));
+    width:100%;
+    max-width:480px;
+  }
+  .mode-sheet-panel h2{ margin:0 0 12px; font-size:18px; }
+  .mode-row{
+    display:grid;
+    grid-template-columns:1fr auto auto;
+    gap:8px;
+    align-items:center;
+    padding:10px 0;
+    border-top:1px solid var(--rule);
+  }
+  .mode-row:first-child{ border-top:0; }
+  .mode-row .mode-name{ font-weight:600; }
+  .mode-row .mode-name small{ display:block; font-weight:400; color:var(--ink-soft); font-size:12px; margin-top:2px; }
+  .mode-row .mode-state{
+    grid-column:1;
+    font-family:'IBM Plex Mono',monospace;
+    font-size:11.5px;
+    color:var(--ink-soft);
+  }
+  .mode-row button{ padding:6px 12px; font-size:13px; }
+  #modeSheetClose{ margin-top:12px; width:100%; }
+
+  /* Only where it is a phone being held wrong: a touch screen, wider than it is tall, and too
+     short for a puzzle. A short desktop window is none of those. */
+  #rotateNotice{ display:none; }
+  @media screen and (orientation:landscape) and (max-height:479.98px) and (hover:none) and (pointer:coarse){
+    #rotateNotice{
+      display:flex;
+      position:fixed;
+      inset:0;
+      z-index:70;
+      background:var(--bg);
+      align-items:center;
+      justify-content:center;
+      font-family:'Inter',sans-serif;
+      font-weight:600;
+      font-size:18px;
+      text-align:center;
+      padding:24px;
+    }
+    .rotate-glyph{ display:block; font-size:40px; margin-bottom:10px; }
+  }
 
   .no-print{}
   footer.hint{
@@ -451,6 +630,11 @@
     .no-print{display:none !important;}
     .wrap{max-width:none;padding:0;margin:0;}
     header.app-head{border-bottom:2px solid #000;margin-bottom:14px;}
+    /* The screen title is clamp(28px, 4vw, 40px), so its printed size followed whatever width
+       the page happened to be laid out at - the device on a phone, the window on a desktop.
+       Pin it, so a sheet looks the same wherever it was printed from. 32px is what 4vw comes to
+       at A4 width, which is what desktop printing has been producing all along. */
+    header.app-head h1{ font-size:32px; }
     #pageTagline{display:none;}
     .board-area{display:block;}
     #gridHost{margin:0 auto 20px; width:max-content;}
@@ -469,10 +653,16 @@
     .cell .num{ color:#000; font-size:8px; }
     .cell input{ color:transparent; font-size:13px; }
     body.print-answers .cell input{ color:#000; }
+    body.print-answers .cell.revealed input{ color:#000; font-style:normal; }
     .cell.in-word input, .cell.active input{ background:transparent; box-shadow:none; }
     .cell.check-correct input{ background:transparent !important; color:transparent; }
     .cell.check-incorrect input{ box-shadow:none !important; }
-    .clues{ display:flex; gap:30px; }
+    /* Whatever the screen rules did with panels and scrolling, paper has neither. */
+    .clues{ display:flex; gap:30px; max-height:none; overflow:visible; border:0; padding:0; background:none; }
+    .clue-col h2{ position:static; background:none; }
+    #gridHost{ max-height:none; overflow:visible; }
+    footer.hint{ display:none; }
+    .clue-col h2{ position:static; }
     .clue-list{ font-size:11px; }
     .clue-list li.active{ background:transparent; }
     #printAnswerKey{ display:block !important; }
@@ -480,11 +670,9 @@
 
   #printAnswerKey{ display:none; }
   @media print{
-    /* The rotation used to be applied to this whole block, which put the dividing rule and the
-       heading upside down at the *bottom* of the section - so the sheet read: answers, then a
-       heading, then the line that was supposed to introduce them. Only the answers themselves
-       should be inverted. The heading and rule stay the right way up, at the top, where they
-       announce what follows. */
+    /* Only the answers are inverted, not the whole block: rotating the block would carry the
+       dividing rule and the heading round with it, leaving them upside down at the foot of the
+       section, below the answers they are meant to introduce. */
     #printAnswerKey{
       padding-top:12px;
       border-top:1px dashed #999;
@@ -529,13 +717,197 @@
     body.print-no-key #printAnswerKey{ display:none !important; }
   }
 
-  @media (max-width:640px){
+  /* iOS Safari zooms the page in whenever a text field or select smaller than 16px takes focus,
+     and it never zooms back out again. Tapping a square, or the word count in the options menu,
+     left the page magnified with the puzzle no longer fitting the screen, and a reload kept it
+     that way. Sixteen pixels is the threshold, so every control that can take focus is held at
+     or above it wherever the pointer is coarse - which catches tablets as well as phones,
+     regardless of how wide they are.
+
+     The other way to stop the zoom is maximum-scale=1 on the viewport, which also takes away
+     pinch-zoom from anyone who needs it. Not worth it. */
+  @media screen and (hover: none) and (pointer: coarse){
+    .cell input,
+    input[type="number"],
+    .options-menu select{ font-size:16px; }
+  }
+
+  /* Screen only, deliberately. Everything in here is about fitting a hand-held screen - panes
+     with their own scrolling, a single column of clues, a smaller title, controls folded into a
+     menu - and none of it should reach paper. Left unscoped, a phone printed a different-looking
+     sheet from a desktop: one column of clues instead of two, the panes' borders and padding, a
+     board still carrying the height of the screen it was sized for. A printed page should not
+     record what it was printed from. */
+  /* Below 600px wide, or below 480px tall: Material's compact width and compact height. The
+     height test is what catches a phone on its side, which is wide but has no room for a row of
+     anything once the keyboard is up. */
+  @media screen and (max-width:599.98px), screen and (max-height:479.98px){
     #grid{ --cell-size:30px; }
-    .cell input{font-size:14px;}
     /* Narrow enough that the toolbar wraps, and a wrapped item pushed by margin-left:auto ends
        up stranded on the right of its own row. Let it sit in line instead; the order still puts
        it last. */
     .toolbar #generateBtn{ margin-left:0; }
+
+    /* On a phone the clues sat in two narrow columns below the grid, far enough down that
+       reading one meant scrolling the puzzle off the screen and back again. A fifteen-word
+       puzzle is about 685px of grid on a 664px screen, so the two can only be on screen together
+       if each gets a pane of its own and scrolls inside it. Reading a clue no longer moves the
+       puzzle, and answering no longer hides the clue.
+
+       Reclaim what the page can spare to pay for it: tighter margins, a smaller title, and the
+       keyboard hint dropped, since it describes a mouse. */
+    /* The options button sits in the title row, and the word count moves into its menu, so the
+       whole strip of controls costs one line instead of three. */
+    header.app-head{
+      margin-bottom:10px;
+      padding-bottom:8px;
+      align-items:center;
+      gap:12px;
+    }
+    /* One line, whatever the list is called; the options button must stay in this row. The
+       title block may shrink to nothing and the button may not. */
+    header.app-head{ flex-wrap:nowrap; }
+    header.app-head > div:first-child{ min-width:0; flex:1 1 auto; }
+    header.app-head > .hamburger-wrap{ flex:0 0 auto; }
+    .mode-tabs{ display:none; }
+    .mode-chip{
+      display:inline-block;
+      flex:0 0 auto;
+      padding:6px 10px;
+      font-size:12.5px;
+      white-space:nowrap;
+    }
+    header.app-head h1{ font-size:24px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    #pageTagline{ display:none; }
+    .toolbar{ display:none; }
+    footer.hint{ display:none; }
+
+    /* The buttons, once moved in here, read as a list of actions rather than a toolbar. */
+    #menuActions{
+      display:flex;
+      flex-direction:column;
+      gap:8px;
+      margin-top:12px;
+      padding-top:12px;
+      border-top:1px solid var(--rule);
+    }
+    #menuActions button{ width:100%; }
+    /* The options button now sits at the right-hand end of the title row, so its menu has to hang
+       from that edge - anchored to the left it opened off the side of the screen. */
+    .options-menu{
+      left:auto;
+      right:0;
+      width:calc(100vw - 24px);
+      max-width:320px;
+    }
+
+    /* ---- the app is a fixed shell, not a page that scrolls ----
+       Sizing panes inside a document that could still scroll was the mistake. The panes behaved,
+       but the document behind them did not: a flick anywhere carried the whole page, took the
+       puzzle off the top of the screen, and left the clue list floating on its own. Rubber-banding
+       at the ends of a pane chained straight through to it.
+
+       So the page does not scroll at all here. The shell is fixed to the visible area, laid out
+       as a column of three regions - title, puzzle, clues - and only the two lower regions
+       scroll, each keeping its own position. This is what frames were for; a fixed flex column
+       with overflow on the children is how it is spelled now.
+
+       The height comes from --app-height rather than 100% because the iOS keyboard does not
+       shorten the viewport, it covers it: see measureVisibleArea. */
+    html, body{
+      height:100%;
+      overflow:hidden;
+      overscroll-behavior:none;  /* no rubber-band on the document behind the panes */
+    }
+    .wrap{
+      position:fixed;
+      top:var(--app-top, 0px);
+      left:0;
+      right:0;
+      bottom:auto;
+      height:var(--app-height, 100%);
+      max-width:none;
+      display:flex;
+      flex-direction:column;
+      gap:0;
+      /* Kept on a home screen there is no browser chrome to keep the page off the notch and the
+         home indicator, so the shell has to do it itself. Zero in a normal tab, where the
+         browser has already made room. */
+      padding-top:calc(10px + env(safe-area-inset-top));
+      padding-bottom:calc(14px + env(safe-area-inset-bottom));
+      padding-left:calc(12px + env(safe-area-inset-left));
+      padding-right:calc(12px + env(safe-area-inset-right));
+    }
+    header.app-head,
+    #statusRow,
+    #listPrompt,
+    #widePrompt{ flex:0 0 auto; }
+
+    /* Out of the flex column and along the bottom instead. In the column it cost 171px of the
+       space above the puzzle, against a budget of 110 for all the chrome there is - the clue
+       pane went under its readable floor and the grid was pushed off the screen. An offer the
+       reader has not asked for must not take the puzzle's room; it overlays, and it goes when
+       dismissed. */
+    #installBanner{
+      position:fixed;
+      left:0;
+      right:0;
+      bottom:0;
+      z-index:55;
+      max-width:none;
+      margin:0;
+      border:0;
+      border-top:1.5px solid var(--ink);
+      border-radius:0;
+      padding:12px 16px calc(12px + env(safe-area-inset-bottom, 0px));
+      box-shadow:0 -6px 20px rgba(43,42,40,0.18);
+    }
+
+    .board-area{
+      flex:1 1 auto;
+      min-height:0;              /* without this a flex child refuses to shrink past its content */
+      display:flex;
+      flex-direction:column;
+      /* The wide layout wraps its two panes onto a second row when they will not fit side by
+         side. Here the direction is column, so the same rule would wrap a pane that will not fit
+         into a second *column* - off the side of the screen. */
+      flex-wrap:nowrap;
+      gap:10px;
+    }
+    #gridHost{
+      width:100%;
+      flex:1 1 auto;
+      min-height:0;              /* may shrink as far as it must; the pane scrolls */
+      overflow:auto;
+      overscroll-behavior:contain;
+      -webkit-overflow-scrolling:touch;
+    }
+    .clues{
+      display:block;
+      width:100%;
+      /* Deep enough to read a clue and see the next, with room to spare. The floor matters more
+         than the ceiling: with the on-screen keyboard up there is only about a third of the
+         screen left, and a pane sized purely as a fraction of it would be too shallow to read. */
+      flex:0 0 auto;
+      height:38%;
+      /* A floor, so the clues stay readable when the keyboard has taken most of the screen.
+         Room for the heading and a couple of clues is the least that is any use. */
+      min-height:112px;
+      max-height:60%;
+      overflow-y:auto;
+      overscroll-behavior:contain;
+      -webkit-overflow-scrolling:touch;
+      border:1px solid var(--rule);
+      border-radius:var(--radius);
+      background:var(--panel);
+      padding:10px 12px;
+    }
+    .clue-col + .clue-col{ margin-top:14px; }
+    /* The gap under a sticky heading must be padding rather than margin. A margin is
+       transparent, so clues scrolling up through it appear above the heading's rule, which reads
+       as the heading being struck through. Padding carries the background with it. */
+    .clue-col h2{ top:-10px; background:var(--panel); margin:0; padding:6px 0 7px; }
+    .clue-list{ padding-top:6px; }
   }
 
   /* Readers who have asked their system for less motion get the same information without the

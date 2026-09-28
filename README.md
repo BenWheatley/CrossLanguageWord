@@ -26,10 +26,11 @@ requirements, operation, and licensing.
    7.  Using Your Own Word Lists
    8.  Printing
    9.  Saving Your Progress
-  10.  Running the Test Suite
-  11.  Known Limitations
-  12.  Troubleshooting
-  13.  Licence and Registration
+  10.  Keeping It on a Telephone
+  11.  Running the Test Suite
+  12.  Known Limitations
+  13.  Troubleshooting
+  14.  Licence and Registration
  --------------------------------------------------------------------------
 ```
 
@@ -47,9 +48,9 @@ Four word lists are included:
 | List | Contents |
 | --- | --- |
 | English | 1000 English words, English clues |
-| Deutsch A2 | 203 German words at CEFR level A2 |
+| Deutsch A2 | 1164 German words at CEFR level A2 |
 | Deutsch B1 | 1000 German words at CEFR level B1 |
-| Deutsch B1 → Englisch | German answers, English clues |
+| Deutsch B1 → Englisch | 1000 English words at CEFR level B1, German clues |
 
 Every word carries at least two hand-written clues, and the program chooses
 between them afresh for each puzzle, so the same word does not become
@@ -63,6 +64,9 @@ A live copy runs at:
 
 * A web browser of recent vintage. Firefox, Chrome, Edge and Safari have all
   been tested.
+* To keep it on a telephone and use it offline (section 10), the page must be
+  served over **https** — or from localhost, which counts as secure for this
+  purpose. The published copy qualifies.
 * A web server. **This is not optional** — see section 3.
 * No plug-ins are required. No installation program is required. No
   registry entries are created. Nothing is transmitted anywhere; the program
@@ -78,6 +82,20 @@ python3 -m http.server 8000
 ```
 
 Then direct your browser to `http://localhost:8000/`.
+
+If you are **changing** the program rather than solving its puzzles, use the server
+supplied instead:
+
+```bash
+python3 server-debug-nocache.py
+```
+
+It serves the same folder on port 8050 — pass a different one as an argument
+— and forbids caching, so every reload fetches. The ordinary server sends no
+instruction on the matter, leaving each browser to decide for itself how long a
+file remains good; Safari in particular is inclined to keep one, and an edit that
+appears not to have worked is a poor thing to have to diagnose. On a telephone or
+a simulator, where clearing the cache is awkward, it is worse still.
 
 **Please note:** opening `index.html` directly from disk (a `file://`
 address) will *not* work. Browsers refuse to let a local page read the word
@@ -97,7 +115,21 @@ the grid. Filling the last square of a word advances you to the next one.
 
 The button bearing three horizontal lines opens the options panel, where you
 may choose a different word list or a different number of words (from 2 to
-120 — see section 11). Changing either generates a fresh puzzle at once.
+120 — see section 12). Changing either generates a fresh puzzle at once.
+
+**Hint** helps with the word you are on, a little at a time. The first press
+offers a different clue for the same word, where the list has one — it gives
+nothing away, being the same word described another way, and is often all that
+is wanted when a clue is the obstacle rather than the vocabulary. Pressing again
+fills in a letter, always the next one from the front, since knowing a word
+begins SCH is worth a great deal more than knowing its seventh letter. Keep
+pressing and the word fills in.
+
+Letters are only given once you have attempted the word. This is not to be
+strict about it: trying and failing, and then being told, is how a word is
+learnt, whereas being shown one you never reached teaches nothing at all. The
+program keeps count and says at the end how many hints were taken and which word
+gave the most trouble.
 
 **Check answers** marks the squares you have filled: correct squares turn
 green, incorrect squares gain a red border. Squares you have left empty are
@@ -105,6 +137,16 @@ not marked, so you may check your work part-way through without being
 scolded for it.
 
 Complete the whole grid correctly and the program will say so.
+
+### On a telephone
+
+The screen is divided into three: the title, the puzzle, and the clues. The lower
+two scroll on their own and stay where they are put, so reading a clue never
+moves the puzzle and answering never hides the clue. Whichever square you are
+answering is kept near the middle of its region, and its clue near the middle of
+the other, so both are in view while you type.
+
+The buttons live in the options menu, to leave the screen to the crossword.
 
 ## 5. KEYBOARD REFERENCE
 
@@ -131,11 +173,19 @@ composition to finish before advancing, so the accent is not left stranded.
 Every puzzle has a seed, and the address in your browser's location bar
 always names it:
 
-    index.html?list=german&words=15&seed=4rd6k1
+    index.html?list=german&words=15&seed=4rd6k1&cols=29
 
 Send that address to someone else and they will get **the same puzzle** —
 the same grid, the same words, and the same clues — on whatever machine and
-whatever browser they happen to be using. Write the seed on the blackboard
+whatever browser they happen to be using.
+
+The last part of the address is the width the puzzle was laid out to. It is
+there because the same words can be arranged into a wide grid or a narrow one,
+and without it the puzzle would be rebuilt to suit whatever screen opened it.
+Should that width not fit — a puzzle made on a desktop, opened on a telephone —
+the program says so and offers you the choice: play it as it stands, scrolling
+sideways, or have one built to fit, which will have the same words and the same
+clues in a different arrangement. Write the seed on the blackboard
 and a class of thirty will all be solving the same crossword.
 
 This works because the program uses its own random number generator rather
@@ -161,6 +211,29 @@ plain JSON:
   ]
 }
 ```
+
+### A note on changing a word list
+
+The lists are **append-only**, and each says so in its own header. A shared puzzle
+identifies its words and clues by their position in the list, so a link made today
+has to still mean the same thing tomorrow.
+
+* Add new words, and new clues, **at the end**.
+* Never reorder, and never remove.
+* Never rewrite a clue in place — append the better wording and leave the old one
+  where it is.
+* Raise `version` in the header when you append.
+
+Kept to, links stay valid indefinitely and stay short. Broken, an old link quietly
+opens a puzzle with somebody else's clues in it, which is the sort of fault nobody
+thinks to look for.
+
+The rule has been broken once, on purpose, on 20 September 2026: six entries in
+Deutsch B1 turned out to be non-words (a misspelt *schauen*) and were corrected,
+and every clue that merely reworded another clue for the same word was removed
+from all four lists. A non-word is worse than a broken link, and a hint that
+restates the clue is no hint. Links made before that date may open with a
+different clue for a word than they did; the words are the same.
 
 Points to observe:
 
@@ -227,7 +300,90 @@ tomorrow, and you will be returned to the same grid with your answers intact.
 Saving is silent and requires nothing of you. If your browser forbids it —
 private browsing modes usually do — the program carries on without it.
 
-## 10. RUNNING THE TEST SUITE
+## 9a. THE SMART PUZZLE
+
+There are two kinds of puzzle, and you may have one of each on the go. On a
+wide screen they are two tabs above the puzzle, each showing how far along it
+is; on a telephone the same choice sits beside the title as a small button —
+*Shareable ▾* or *Smart ▾* — and opens a sheet from which you may return to
+either puzzle where you left it, or start it afresh. The **Puzzle** entry in
+the options menu opens the same sheet. Switching sets one puzzle aside and
+brings the other back exactly as it was; nothing is judged or lost by it.
+
+A **Shareable** puzzle is what the program has always made: fifteen words
+drawn at random, named by a seed, the same for anyone who opens the address.
+Section 6 describes it.
+
+A **Smart** puzzle is drawn from what the program has learned about you. It
+keeps a record of every word you have met and how it went — solved on your
+own, solved with a hint, or not solved — and chooses the next puzzle's words
+accordingly. About two-thirds of them are the words most in need of practice;
+the rest are drawn at random, so no puzzle is only the words you got wrong.
+
+The record works by boxes, five of them, of the kind a diligent student keeps
+for vocabulary cards. Every word begins in the first box. Solve it unaided and
+it moves up one; take a hint and it stays put; get it wrong, or leave it blank
+when you move on, and it goes back to the first. Each box has a waiting time —
+none at all for the first, then one day, three, seven and fourteen — and a
+word is not offered again until its time is up. A word you have just missed
+is therefore eligible for the very next puzzle, and a word you have got right
+four times running will not trouble you for a fortnight.
+
+The record is kept for shareable puzzles too — a puzzle a friend sent you says
+just as much about what you know — and only the *drawing* differs. It lives in
+the browser's own storage, beside your puzzle, and is never sent anywhere. Each
+word list has its own.
+
+One further thing the smart puzzle does, which the shareable one does not. To
+build a well-crossed grid the program draws rather more words than it needs and
+keeps whichever fit together best — and the ones it turns away are the awkwardly
+spelt, which are the same words every time, and precisely the vocabulary worth
+practising. So in a smart puzzle a word the grid has once refused is not merely
+favoured in the next draw but **required** in it, and the grid is built around
+it. Over a simulated year of daily puzzles this is the difference between
+meeting 847 of a thousand words and meeting 958, at the cost of a slightly
+looser grid. The shareable puzzle is left as it was: it is a crossword to be
+enjoyed once, and there the denser grid is the better one.
+
+A smart puzzle cannot be shared. Its words were chosen for you, from your
+record, and nobody else's copy of the program could arrive at the same ones;
+so its address carries no seed, and says instead that a smart puzzle is wanted.
+Sending that address to someone gives them a smart puzzle of their own.
+
+## 10. KEEPING IT ON A TELEPHONE
+
+The program may be kept on a telephone's home screen and used with no network at
+all — on a train, on an aeroplane, or anywhere else the signal has deserted you.
+
+On a first visit the program offers this itself, once. What it can offer differs
+by platform, and not by a little: Chrome and the other Chromium browsers let a
+page open the installer, so the offer is a button marked **Install**. Safari does
+not — there is no way whatever for a page to ask — so on an iPhone or iPad the
+offer can only say where Apple keeps the button, and the reader does the rest.
+
+Dismissed, it is not raised again. Should you want it later, **This app** in the
+options menu asks once more, as often as you like; it is not shown at all once
+the program is already being run from the home screen.
+
+To install it by hand: in Safari press the Share button and choose **Add to Home
+Screen**; in Chrome on Android the same thing lives in the menu, usually as
+**Install app**. It then opens in a window of its own, without the browser's
+address bar, and appears among your other applications.
+
+Everything needed to build a puzzle is stored on first use: the program, the
+stylesheet, and all four word lists. After that no network is required to open
+it, to solve, to check answers, to print, or to press **New crossword** — nor even
+to change word list, since all four are already there.
+
+Two points worth knowing:
+
+* The program itself is fetched afresh whenever there **is** a network, so an
+  installed copy takes up improvements as soon as it is opened online. Only the
+  word lists are served from storage first, being large and seldom changed.
+* A word list of your own is held separately (section 7) and is likewise available
+  offline, but it is not part of what is stored on first use.
+
+## 11. RUNNING THE TEST SUITE
 
 Serve the folder as in section 3 and visit `tests/` in your browser. The
 tests run in the page and report as they go. They require no Node, no npm and
@@ -256,7 +412,7 @@ npm ci && npx playwright install --with-deps && npx playwright test
 None of which the program itself requires. It remains script tags and a
 static server.
 
-## 11. KNOWN LIMITATIONS
+## 12. KNOWN LIMITATIONS
 
 * **Puzzles are limited to 120 words.** Generation time climbs steeply with
   the word count — far faster than the count itself — and 120 already
@@ -265,14 +421,29 @@ static server.
   for a moment while it is built. This is normal.
 * **Your best time is not remembered between sessions.** It is shown for
   comparison within a sitting only.
+* **Nothing is remembered about which words you found hard.** Words are drawn at
+  random from the list, so practice is not directed at your weak spots.
+* **There is no way to reveal an answer.** If a word defeats you, the program
+  will not tell you what it was.
+* **Squares are small on a telephone**, below the size a finger comfortably
+  aims at, so tapping an exact one can take two attempts.
 * **A very large word list of your own may not be kept between sessions.** Lists
   are kept so you can return to their puzzles; when there is not room, the
   least recently used are dropped and the program asks for the file again.
 
-## 12. TROUBLESHOOTING
+Planned work and known gaps are listed in `TODO.md`.
+
+## 13. TROUBLESHOOTING
 
 > **"Could not load german.json"**
 > The page is being opened from disk rather than served. See section 3.
+
+> **I have changed the program but the browser shows the old version.**
+> The browser is holding a copy. Serve it with `server-debug-nocache.py`, which
+> forbids that (section 3). In the iOS Simulator you may also clear it from
+> Settings › Apps › Safari › Clear History and Website Data, or attach the Web
+> Inspector from Safari on the Mac (Develop › your simulator) and switch on
+> Disable Caches.
 
 > **The puzzle has fewer words than I asked for.**
 > Not every word can be made to cross another. The program says so in the
@@ -287,7 +458,7 @@ static server.
 > Very long words dominate a small grid. Either raise the word count or
 > shorten the entries.
 
-## 13. LICENCE AND REGISTRATION
+## 14. LICENCE AND REGISTRATION
 
 Copyright © 2026 Ben Wheatley. **All rights reserved.**
 
