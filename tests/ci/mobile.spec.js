@@ -661,3 +661,41 @@ test('a phone on its side is asked to turn upright; a phone held upright is not'
   await page.waitForTimeout(200);
   expect(await shown(), 'upright again: gone').toBe(false);
 });
+
+test('iOS is told where the Share button is, since it cannot be asked for a prompt', async ({ page }) => {
+  // Safari has no beforeinstallprompt and no way for a page to ask, so all the panel can do is
+  // say where Apple put the button. This project runs WebKit with an iPhone user agent, which is
+  // what the detection keys on.
+  await openPuzzle(page, '?list=german&words=8&seed=ios1');
+  const state = await page.evaluate(() => ({
+    shown: !document.getElementById('installBanner').hidden,
+    directions: !document.getElementById('installDirections').hidden,
+    accept: !document.getElementById('installAcceptBtn').hidden,
+    dismiss: document.getElementById('installDismissBtn').textContent,
+    menuLabel: document.getElementById('installMenuBtn').textContent,
+    menuOffered: !document.getElementById('installField').hidden,
+    glyph: !!document.querySelector('#installDirections .share-glyph svg'),
+    words: document.getElementById('installDirections').textContent.replace(/\s+/g, ' ').trim()
+  }));
+  expect(state.shown, 'the banner should be offered on a first visit').toBe(true);
+  expect(state.directions, 'with directions').toBe(true);
+  expect(state.accept, 'and no install button, there being nothing to press').toBe(false);
+  expect(state.dismiss).toBe('Got it');
+  expect(state.menuLabel).toBe('How to install');
+  expect(state.menuOffered).toBe(true);
+  expect(state.glyph, 'the share icon is drawn, not named').toBe(true);
+  expect(state.words).toContain('Add to Home Screen');
+
+  await page.click('#installDismissBtn');
+  expect(await page.evaluate(() => document.getElementById('installBanner').hidden)).toBe(true);
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.waitForFunction(() => document.querySelectorAll('#grid .cell').length > 0);
+  expect(await page.evaluate(() => document.getElementById('installBanner').hidden),
+    'offered once, not every visit').toBe(true);
+
+  // The menu can still bring it back, as often as asked.
+  await page.click('#hamburgerBtn');
+  await page.click('#installMenuBtn');
+  await page.waitForTimeout(100);
+  expect(await page.evaluate(() => document.getElementById('installBanner').hidden)).toBe(false);
+});

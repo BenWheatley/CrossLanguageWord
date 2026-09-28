@@ -107,3 +107,92 @@ test('an edit is visible on the next reload rather than served from the cache', 
   const offline = await page.evaluate(async () => (await fetch('crossword-engine.js')).ok);
   expect(offline).toBe(true);
 });
+
+// ---------- offering to put it on the home screen ----------
+
+/** Fires the event Chromium fires, carrying a prompt() we can watch for. */
+async function fireInstallPrompt(page){
+  await page.evaluate(() => {
+    const e = new Event('beforeinstallprompt', { cancelable: true });
+    e.prompt = () => { window.__promptOpened = (window.__promptOpened || 0) + 1; return Promise.resolve({ outcome: 'accepted' }); };
+    e.userChoice = Promise.resolve({ outcome: 'accepted' });
+    window.dispatchEvent(e);
+  });
+  await page.waitForTimeout(100);
+}
+
+const banner = (page) => page.evaluate(() => {
+  const el = document.getElementById('installBanner');
+  return {
+    shown: !el.hidden,
+    text: document.getElementById('installBannerText').textContent,
+    directions: !document.getElementById('installDirections').hidden,
+    accept: !document.getElementById('installAcceptBtn').hidden,
+    dismissLabel: document.getElementById('installDismissBtn').textContent,
+    menuOffered: !document.getElementById('installField').hidden,
+    menuLabel: document.getElementById('installMenuBtn').textContent
+  };
+});
+
+test('nothing is offered until the browser says it can install, and then it is', async ({ page }) => {
+  await page.goto('/index.html?list=german&words=8&seed=inst1', { waitUntil: 'networkidle' });
+  await page.waitForFunction(() => document.querySelectorAll('#grid .cell').length > 0);
+  let state = await banner(page);
+  expect(state.shown, 'no banner before the browser offers one').toBe(false);
+  expect(state.menuOffered, 'and nothing in the menu either').toBe(false);
+
+  await fireInstallPrompt(page);
+  state = await banner(page);
+  expect(state.shown, 'the banner should appear once the browser offers').toBe(true);
+  expect(state.accept, 'with a real install button').toBe(true);
+  expect(state.directions, 'and no iOS directions').toBe(false);
+  expect(state.menuOffered).toBe(true);
+  expect(state.menuLabel).toBe('Install this app');
+});
+
+test('the install button opens the browser prompt, once', async ({ page }) => {
+  await page.goto('/index.html?list=german&words=8&seed=inst2', { waitUntil: 'networkidle' });
+  await page.waitForFunction(() => document.querySelectorAll('#grid .cell').length > 0);
+  await fireInstallPrompt(page);
+  await page.click('#installAcceptBtn');
+  await page.waitForTimeout(100);
+  expect(await page.evaluate(() => window.__promptOpened)).toBe(1);
+  expect((await banner(page)).shown, 'the banner closes behind it').toBe(false);
+  // A prompt may only be opened once, so the offer retires with it.
+  expect((await banner(page)).menuOffered).toBe(false);
+});
+
+test('the banner is offered once and not again, but the menu can still ask for it', async ({ page }) => {
+  await page.goto('/index.html?list=german&words=8&seed=inst3', { waitUntil: 'networkidle' });
+  await page.waitForFunction(() => document.querySelectorAll('#grid .cell').length > 0);
+  await fireInstallPrompt(page);
+  await page.click('#installDismissBtn');
+  expect((await banner(page)).shown).toBe(false);
+
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.waitForFunction(() => document.querySelectorAll('#grid .cell').length > 0);
+  await fireInstallPrompt(page);
+  const state = await banner(page);
+  expect(state.shown, 'dismissed once is dismissed for good').toBe(false);
+  expect(state.menuOffered, 'but the menu still offers it').toBe(true);
+
+  await page.click('#hamburgerBtn');
+  await page.click('#installMenuBtn');
+  await page.waitForTimeout(100);
+  expect(await page.evaluate(() => window.__promptOpened), 'the menu opens the prompt directly').toBe(1);
+});
+
+test('a copy already on the home screen is not asked to install itself', async ({ page }) => {
+  await page.addInitScript(() => {
+    const real = window.matchMedia.bind(window);
+    window.matchMedia = (q) => /display-mode:\s*standalone/.test(q)
+      ? { matches: true, media: q, addEventListener(){}, removeEventListener(){}, addListener(){}, removeListener(){} }
+      : real(q);
+  });
+  await page.goto('/index.html?list=german&words=8&seed=inst4', { waitUntil: 'networkidle' });
+  await page.waitForFunction(() => document.querySelectorAll('#grid .cell').length > 0);
+  await fireInstallPrompt(page);
+  const state = await banner(page);
+  expect(state.shown, 'already installed: no banner').toBe(false);
+  expect(state.menuOffered, 'and nothing in the menu').toBe(false);
+});

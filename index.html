@@ -66,6 +66,12 @@
           <label for="menuModeBtn">Puzzle</label>
           <button id="menuModeBtn" class="secondary" aria-haspopup="dialog">Shareable — switch…</button>
         </div>
+        <!-- Only while the program is running in an ordinary browser tab, and only where this
+             one can actually be installed. Hidden once it is being run from the home screen. -->
+        <div class="field" id="installField" hidden>
+          <label for="installMenuBtn">This app</label>
+          <button id="installMenuBtn" class="secondary">Install this app</button>
+        </div>
         <label class="check-field">
           <input type="checkbox" id="printAnswers"> Show my typed answers when printing, instead of a blank puzzle
         </label>
@@ -102,6 +108,24 @@
        a web app ask to be held upright, so ask in words. Touch screens only, by the stylesheet. -->
   <div id="rotateNotice" class="no-print" aria-hidden="true">
     <div><span class="rotate-glyph">⟳</span>Turn your phone upright to play.</div>
+  </div>
+
+  <!-- Offered once, on the first visit where the offer can actually be made. Android and desktop
+       Chromium hand us a real prompt to open; iOS hands us nothing at all, so there the panel can
+       only say where the button is. -->
+  <div id="installBanner" class="no-print" hidden>
+    <p id="installBannerText"></p>
+    <p id="installDirections" hidden>
+      Tap
+      <span class="share-glyph" aria-hidden="true">
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M10 2.5v9"/><path d="M6.8 5.3 10 2.2l3.2 3.1"/><path d="M5.2 8.6H4.1v8.4h11.8V8.6h-1.1"/>
+        </svg>
+      </span>
+      <strong>Share</strong> in the browser's toolbar, then choose <strong>Add to Home Screen</strong>.
+    </p>
+    <button id="installAcceptBtn">Install</button>
+    <button id="installDismissBtn" class="secondary">Not now</button>
   </div>
 
   <div id="widePrompt" class="no-print" hidden>
@@ -238,6 +262,13 @@
   const modeSheet = document.getElementById('modeSheet');
   const modeSheetRows = document.getElementById('modeSheetRows');
   const modeSheetClose = document.getElementById('modeSheetClose');
+  const installBanner = document.getElementById('installBanner');
+  const installBannerText = document.getElementById('installBannerText');
+  const installDirections = document.getElementById('installDirections');
+  const installAcceptBtn = document.getElementById('installAcceptBtn');
+  const installDismissBtn = document.getElementById('installDismissBtn');
+  const installField = document.getElementById('installField');
+  const installMenuBtn = document.getElementById('installMenuBtn');
   const generateBtn = document.getElementById('generateBtn');
   const printBtn = document.getElementById('printBtn');
   const checkBtn = document.getElementById('checkBtn');
@@ -1866,6 +1897,105 @@
     try{ return localStorage.getItem(MODE_KEY) || MODES.shareable; }catch(e){ return MODES.shareable; }
   }
 
+  // ---------- keeping it on the home screen ----------
+  // Two quite different things behind one offer, because the platforms differ absolutely rather
+  // than by degree. Chromium fires beforeinstallprompt and hands over a prompt we can open from a
+  // button of our own; iOS has no such event and no way for a page to ask, so all a page can do
+  // there is say where Apple put the button. Everything else - desktop Firefox, say - can install
+  // from its own menus or not at all, and is not nagged about it either way.
+  const INSTALL_KEY = 'crossword-trainer-install';   // 'offered' once the banner has had its turn
+  let deferredInstall = null;
+
+  // iPadOS reports itself as a Macintosh, and has done since iPadOS 13; the touch points are what
+  // give it away, no desktop Mac having any.
+  const isIOS = /iP(hone|od|ad)/.test(navigator.userAgent)
+    || (navigator.maxTouchPoints > 1 && /Macintosh/.test(navigator.userAgent));
+
+  function isInstalled(){
+    if(navigator.standalone === true) return true;   // iOS's own flag, and the only one it sets
+    try{
+      return ['standalone', 'minimal-ui', 'fullscreen'].some(m => matchMedia('(display-mode: ' + m + ')').matches);
+    }catch(e){ return false; }
+  }
+
+  /** 'prompt' when the browser will do it for us, 'ios' when we can only give directions. */
+  function installOffer(){
+    if(isInstalled()) return null;
+    if(deferredInstall) return 'prompt';
+    return isIOS ? 'ios' : null;
+  }
+
+  function installAlreadyOffered(){
+    try{ return localStorage.getItem(INSTALL_KEY) === 'offered'; }catch(e){ return true; }
+  }
+
+  function markInstallOffered(){
+    try{ localStorage.setItem(INSTALL_KEY, 'offered'); }catch(e){ /* no persistence */ }
+  }
+
+  function showInstallBanner(offer){
+    installBannerText.textContent = offer === 'prompt'
+      ? 'Keep this on your home screen, and it will open like any other app - and work with no network at all.'
+      : 'This can live on your home screen and work with no network at all.';
+    installDirections.hidden = offer !== 'ios';
+    installAcceptBtn.hidden = offer !== 'prompt';
+    installDismissBtn.textContent = offer === 'prompt' ? 'Not now' : 'Got it';
+    installBanner.hidden = false;
+  }
+
+  function hideInstallBanner(){ installBanner.hidden = true; }
+
+  function refreshInstallUi(){
+    const offer = installOffer();
+    installField.hidden = !offer;
+    if(offer) installMenuBtn.textContent = offer === 'prompt' ? 'Install this app' : 'How to install';
+    if(!offer){ hideInstallBanner(); return; }
+    // The list prompt is a question the reader has to answer before there is a puzzle at all.
+    // Wait rather than stack two panels on top of each other.
+    if(!installAlreadyOffered() && listPrompt.hidden){
+      markInstallOffered();
+      showInstallBanner(offer);
+    }
+  }
+
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();          // keep the browser's own banner out of the way; ours replaces it
+    deferredInstall = e;
+    refreshInstallUi();
+  });
+
+  window.addEventListener('appinstalled', () => {
+    deferredInstall = null;
+    markInstallOffered();
+    refreshInstallUi();
+  });
+
+  installAcceptBtn.addEventListener('click', async () => {
+    const prompt_ = deferredInstall;
+    deferredInstall = null;      // a prompt may only be opened once
+    hideInstallBanner();
+    markInstallOffered();
+    if(prompt_){
+      try{ await prompt_.prompt(); }catch(e){ /* dismissed, or already spent */ }
+    }
+    refreshInstallUi();
+    restoreFocusToCurrentCell();
+  });
+
+  installDismissBtn.addEventListener('click', () => {
+    markInstallOffered();
+    hideInstallBanner();
+    restoreFocusToCurrentCell();
+  });
+
+  // From the menu it may be asked for again, however often, dismissal notwithstanding.
+  installMenuBtn.addEventListener('click', () => {
+    const offer = installOffer();
+    closeOptionsMenu();
+    if(offer === 'prompt') installAcceptBtn.click();
+    else if(offer) showInstallBanner(offer);
+  });
+
   // ---------- generate ----------
   function updateUrlParams(){
     const params = new URLSearchParams(window.location.search);
@@ -2549,6 +2679,10 @@
     currentListId = list;
     fetchWordList(LISTS[list].file, LISTS[list].label);
   })();
+
+  // Last, so the panel is decided after the list prompt has had its say. On Chromium this runs
+  // again when beforeinstallprompt arrives, which is usually a moment after load.
+  refreshInstallUi();
 
 })();
 </script>

@@ -344,8 +344,18 @@ Sending that address to someone gives them a smart puzzle of their own.
 The program may be kept on a telephone's home screen and used with no network at
 all — on a train, on an aeroplane, or anywhere else the signal has deserted you.
 
-To install it, open it in Safari, press the Share button, and choose **Add to Home
-Screen**. In Chrome on Android the same thing lives in the menu, usually as
+On a first visit the program offers this itself, once. What it can offer differs
+by platform, and not by a little: Chrome and the other Chromium browsers let a
+page open the installer, so the offer is a button marked **Install**. Safari does
+not — there is no way whatever for a page to ask — so on an iPhone or iPad the
+offer can only say where Apple keeps the button, and the reader does the rest.
+
+Dismissed, it is not raised again. Should you want it later, **This app** in the
+options menu asks once more, as often as you like; it is not shown at all once
+the program is already being run from the home screen.
+
+To install it by hand: in Safari press the Share button and choose **Add to Home
+Screen**; in Chrome on Android the same thing lives in the menu, usually as
 **Install app**. It then opens in a window of its own, without the browser's
 address bar, and appears among your other applications.
 
