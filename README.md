@@ -334,6 +334,17 @@ just as much about what you know — and only the *drawing* differs. It lives in
 the browser's own storage, beside your puzzle, and is never sent anywhere. Each
 word list has its own.
 
+One further thing the smart puzzle does, which the shareable one does not. To
+build a well-crossed grid the program draws rather more words than it needs and
+keeps whichever fit together best — and the ones it turns away are the awkwardly
+spelt, which are the same words every time, and precisely the vocabulary worth
+practising. So in a smart puzzle a word the grid has once refused is not merely
+favoured in the next draw but **required** in it, and the grid is built around
+it. Over a simulated year of daily puzzles this is the difference between
+meeting 847 of a thousand words and meeting 958, at the cost of a slightly
+looser grid. The shareable puzzle is left as it was: it is a crossword to be
+enjoyed once, and there the denser grid is the better one.
+
 A smart puzzle cannot be shared. Its words were chosen for you, from your
 record, and nobody else's copy of the program could arrive at the same ones;
 so its address carries no seed, and says instead that a smart puzzle is wanted.
